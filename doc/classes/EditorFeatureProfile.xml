@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="EditorFeatureProfile" inherits="Reference" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="EditorFeatureProfile" inherits="Reference" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		An editor feature profile which can be used to disable specific features.
+		Профиль функций редактора, который можно использовать для отключения определенных функций.
 	</brief_description>
 	<description>
-		An editor feature profile can be used to disable specific features of the Godot editor. When disabled, the features won't appear in the editor, which makes the editor less cluttered. This is useful in education settings to reduce confusion or when working in a team. For example, artists and level designers could use a feature profile that disables the script editor to avoid accidentally making changes to files they aren't supposed to edit.
-		To manage editor feature profiles visually, use [b]Editor &gt; Manage Feature Profiles...[/b] at the top of the editor window.
+		Профиль функций редактора можно использовать для отключения определенных функций редактора Godot. Когда эти функции отключены, они не будут отображаться в редакторе, что делает его менее загроможденным. Это полезно в учебных заведениях для уменьшения путаницы или при работе в команде. Например, художники и дизайнеры уровней могут использовать профиль функций, отключающий редактор сценариев, чтобы избежать случайного внесения изменений в файлы, которые они не должны редактировать.
+		Чтобы управлять профилями возможностей редактора визуально, воспользуйтесь командой [b]Editor &gt; Manage Feature Profiles...[/b] в верхней части окна редактора.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -14,21 +14,21 @@
 			<return type="String" />
 			<argument index="0" name="feature" type="int" enum="EditorFeatureProfile.Feature" />
 			<description>
-				Returns the specified [code]feature[/code]'s human-readable name.
+				Возвращает человекочитаемое имя указанной [code]функции[/code].
 			</description>
 		</method>
 		<method name="is_class_disabled" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="class_name" type="String" />
 			<description>
-				Returns [code]true[/code] if the class specified by [code]class_name[/code] is disabled. When disabled, the class won't appear in the Create New Node dialog.
+				Возвращает [code]true[/code], если класс, указанный [code]class_name[/code], отключен. Если класс отключен, он не будет отображаться в диалоге Create New Node.
 			</description>
 		</method>
 		<method name="is_class_editor_disabled" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="class_name" type="String" />
 			<description>
-				Returns [code]true[/code] if editing for the class specified by [code]class_name[/code] is disabled. When disabled, the class will still appear in the Create New Node dialog but the inspector will be read-only when selecting a node that extends the class.
+				Возвращает [code]true[/code], если редактирование для класса, указанного [code]class_name[/code], отключено. Если класс отключен, он по-прежнему будет отображаться в диалоге Create New Node, но при выборе узла, расширяющего этот класс, инспектор будет доступен только для чтения.
 			</description>
 		</method>
 		<method name="is_class_property_disabled" qualifiers="const">
@@ -36,28 +36,28 @@
 			<argument index="0" name="class_name" type="String" />
 			<argument index="1" name="property" type="String" />
 			<description>
-				Returns [code]true[/code] if [code]property[/code] is disabled in the class specified by [code]class_name[/code]. When a property is disabled, it won't appear in the inspector when selecting a node that extends the class specified by [code]class_name[/code].
+				Возвращает [code]true[/code], если [code]свойство[/code] отключено в классе, указанном [code]class_name[/code]. Если свойство отключено, оно не будет отображаться в инспекторе при выборе узла, который расширяет класс, указанный [code]class_name[/code].
 			</description>
 		</method>
 		<method name="is_feature_disabled" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="feature" type="int" enum="EditorFeatureProfile.Feature" />
 			<description>
-				Returns [code]true[/code] if the [code]feature[/code] is disabled. When a feature is disabled, it will disappear from the editor entirely.
+				Возвращает [code]true[/code], если функция [code]отключена[/code]. Когда функция отключена, она полностью исчезает из редактора.
 			</description>
 		</method>
 		<method name="load_from_file">
 			<return type="int" enum="Error" />
 			<argument index="0" name="path" type="String" />
 			<description>
-				Loads an editor feature profile from a file. The file must follow the JSON format obtained by using the feature profile manager's [b]Export[/b] button or the [method save_to_file] method.
+				Загружает профиль возможностей редактора из файла. Файл должен соответствовать формату JSON, полученному с помощью кнопки [b]Экспорт[/b] менеджера профиля возможностей или метода [method save_to_file].
 			</description>
 		</method>
 		<method name="save_to_file">
 			<return type="int" enum="Error" />
 			<argument index="0" name="path" type="String" />
 			<description>
-				Saves the editor feature profile to a file in JSON format. It can then be imported using the feature profile manager's [b]Import[/b] button or the [method load_from_file] method.
+				Сохраняет профиль возможностей редактора в файл в формате JSON. Затем его можно импортировать с помощью кнопки [b]Импорт[/b] менеджера профилей возможностей или метода [method load_from_file].
 			</description>
 		</method>
 		<method name="set_disable_class">
@@ -65,7 +65,7 @@
 			<argument index="0" name="class_name" type="String" />
 			<argument index="1" name="disable" type="bool" />
 			<description>
-				If [code]disable[/code] is [code]true[/code], disables the class specified by [code]class_name[/code]. When disabled, the class won't appear in the Create New Node dialog.
+				Если [code]disable[/code] имеет значение [code]true[/code], отключает класс, указанный [code]class_name[/code]. При отключении класс не будет отображаться в диалоге Create New Node.
 			</description>
 		</method>
 		<method name="set_disable_class_editor">
@@ -73,7 +73,7 @@
 			<argument index="0" name="class_name" type="String" />
 			<argument index="1" name="disable" type="bool" />
 			<description>
-				If [code]disable[/code] is [code]true[/code], disables editing for the class specified by [code]class_name[/code]. When disabled, the class will still appear in the Create New Node dialog but the inspector will be read-only when selecting a node that extends the class.
+				Если [code]disable[/code] имеет значение [code]true[/code], отключается редактирование класса, указанного в [code]class_name[/code]. Если класс отключен, он по-прежнему будет отображаться в диалоге Create New Node, но при выборе узла, расширяющего этот класс, инспектор будет доступен только для чтения.
 			</description>
 		</method>
 		<method name="set_disable_class_property">
@@ -82,7 +82,7 @@
 			<argument index="1" name="property" type="String" />
 			<argument index="2" name="disable" type="bool" />
 			<description>
-				If [code]disable[/code] is [code]true[/code], disables editing for [code]property[/code] in the class specified by [code]class_name[/code]. When a property is disabled, it won't appear in the inspector when selecting a node that extends the class specified by [code]class_name[/code].
+				Если [code]disable[/code] имеет значение [code]true[/code], отключается редактирование [code]свойства[/code] в классе, указанном [code]class_name[/code]. Когда свойство отключено, оно не будет отображаться в инспекторе при выборе узла, расширяющего класс, указанный [code]class_name[/code].
 			</description>
 		</method>
 		<method name="set_disable_feature">
@@ -90,34 +90,34 @@
 			<argument index="0" name="feature" type="int" enum="EditorFeatureProfile.Feature" />
 			<argument index="1" name="disable" type="bool" />
 			<description>
-				If [code]disable[/code] is [code]true[/code], disables the editor feature specified in [code]feature[/code]. When a feature is disabled, it will disappear from the editor entirely.
+				Если [code]disable[/code] имеет значение [code]true[/code], отключается функция редактора, указанная в [code]feature[/code]. Когда функция отключена, она полностью исчезает из редактора.
 			</description>
 		</method>
 	</methods>
 	<constants>
 		<constant name="FEATURE_3D" value="0" enum="Feature">
-			The 3D editor. If this feature is disabled, the 3D editor won't display but 3D nodes will still display in the Create New Node dialog.
+			3D-редактор. Если эта функция отключена, 3D-редактор не будет отображаться, но 3D-узлы все равно будут отображаться в диалоге Create New Node.
 		</constant>
 		<constant name="FEATURE_SCRIPT" value="1" enum="Feature">
-			The Script tab, which contains the script editor and class reference browser. If this feature is disabled, the Script tab won't display.
+			Вкладка Script, содержащая редактор сценариев и браузер ссылок на классы. Если эта функция отключена, вкладка Script не будет отображаться.
 		</constant>
 		<constant name="FEATURE_ASSET_LIB" value="2" enum="Feature">
-			The AssetLib tab. If this feature is disabled, the AssetLib tab won't display.
+			Вкладка AssetLib. Если эта функция отключена, вкладка AssetLib не будет отображаться.
 		</constant>
 		<constant name="FEATURE_SCENE_TREE" value="3" enum="Feature">
-			Scene tree editing. If this feature is disabled, the Scene tree dock will still be visible but will be read-only.
+			Редактирование дерева сцен. Если эта функция отключена, док дерева сцен будет по-прежнему виден, но доступен только для чтения.
 		</constant>
 		<constant name="FEATURE_NODE_DOCK" value="4" enum="Feature">
-			The Node dock. If this feature is disabled, signals and groups won't be visible and modifiable from the editor.
+			Док для узлов. Если эта функция отключена, сигналы и группы не будут видны и изменяемы из редактора.
 		</constant>
 		<constant name="FEATURE_FILESYSTEM_DOCK" value="5" enum="Feature">
-			The FileSystem dock. If this feature is disabled, the FileSystem dock won't be visible.
+			Док FileSystem. Если эта функция отключена, док FileSystem не будет виден.
 		</constant>
 		<constant name="FEATURE_IMPORT_DOCK" value="6" enum="Feature">
-			The Import dock. If this feature is disabled, the Import dock won't be visible.
+			Док для импорта. Если эта функция отключена, док импорта не будет виден.
 		</constant>
 		<constant name="FEATURE_MAX" value="7" enum="Feature">
-			Represents the size of the [enum Feature] enum.
+			Представляет размер перечисления [enum Feature].	
 		</constant>
 	</constants>
 </class>

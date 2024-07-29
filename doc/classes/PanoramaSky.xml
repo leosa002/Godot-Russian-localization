@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="PanoramaSky" inherits="Sky" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="PanoramaSky" inherits="Sky" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		A type of [Sky] used to draw a background texture.
+		Тип [Sky] используется для рисования фоновой текстуры.
 	</brief_description>
 	<description>
-		A resource referenced in an [Environment] that is used to draw a background. The Panorama sky functions similar to skyboxes in other engines, except it uses an equirectangular sky map instead of a cube map.
-		Using an HDR panorama is strongly recommended for accurate, high-quality reflections. Godot supports the Radiance HDR ([code].hdr[/code]) and OpenEXR ([code].exr[/code]) image formats for this purpose.
-		You can use [url=https://danilw.github.io/GLSL-howto/cubemap_to_panorama_js/cubemap_to_panorama.html]this tool[/url] to convert a cube map to an equirectangular sky map.
+		Ресурс, на который ссылается [Environment] и который используется для рисования фона. Панорамное небо функционирует аналогично скайбоксам в других движках, за исключением того, что вместо кубической карты используется равноугловая карта неба.
+		Для получения точных и качественных отражений настоятельно рекомендуется использовать HDR-панораму. Godot поддерживает форматы изображений Radiance HDR ([code].hdr[/code]) и OpenEXR ([code].exr[/code]) для этой цели.
+		Вы можете использовать [url=https://danilw.github.io/GLSL-howto/cubemap_to_panorama_js/cubemap_to_panorama.html]этот инструмент[/url] для преобразования кубической карты в равноугольную карту неба.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -14,7 +14,7 @@
 	</methods>
 	<members>
 		<member name="panorama" type="Texture" setter="set_panorama" getter="get_panorama">
-			[Texture] to be applied to the PanoramaSky.
+			[Текстура], которая будет применена к PanoramaSky.
 		</member>
 	</members>
 	<constants>

@@ -5,23 +5,23 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>MIT</project_license>
   <name>Godot Engine</name>
-  <summary>Multi-platform 2D and 3D game engine with a feature-rich editor</summary>
+  <summary>Мультиплатформенный движок для 2D и 3D игр с многофункциональным редактором</summary>
   ​<launchable type="desktop-id">org.godotengine.Godot.desktop</launchable>
   <description>
     <p>
-      Godot is an advanced, feature-packed, multi-platform 2D and 3D game
-      engine. It provides a huge set of common tools, so you can just focus on
-      making your game without reinventing the wheel.
+      Godot - это передовой, многофункциональный, мультиплатформенный движок для 2D и 3D игр.
+      движок. Он предоставляет огромный набор общих инструментов, так что вы можете просто сосредоточиться на
+      создании своей игры, не изобретая велосипед.
     </p>
     <p>
-      Godot is completely free and open source under the very permissive MIT
-      license. No strings attached, no royalties, nothing. Your game is yours,
-      down to the last line of engine code.
+      Godot полностью бесплатен и имеет открытый исходный код под очень свободной лицензией MIT
+      лицензии. Никаких обязательств, никаких роялти, ничего. Ваша игра - ваша,
+      вплоть до последней строчки кода движка.
     </p>
   </description>
   <screenshots>
     <screenshot type="default" width="1330" height="720">
-      <caption>3D project loaded in the Godot Engine editor</caption>
+      <caption>3D-проект, загруженный в редактор Godot Engine</caption>
       <image>https://download.tuxfamily.org/godotengine/media/screenshots/editor_3d_fracteed-720p.jpg</image>
     </screenshot>
   </screenshots>
@@ -31,6 +31,6 @@
   <url type="help">https://docs.godotengine.org</url>
   <url type="donation">https://godotengine.org/donate</url>
   <url type="translate">https://hosted.weblate.org/projects/godot-engine/godot</url>
-  <developer_name>The Godot Engine Community</developer_name>
+  <developer_name>Сообщество Godot Engine</developer_name>
   <update_contact>akien_at_godotengine_dot_org</update_contact>
 </component>

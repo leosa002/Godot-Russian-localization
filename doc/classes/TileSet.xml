@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="TileSet" inherits="Resource" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="TileSet" inherits="Resource" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Tile library for tilemaps.
+		Библиотека для работы с плиточными картами(Тайлмапы).
 	</brief_description>
 	<description>
-		A TileSet is a library of tiles for a [TileMap]. It contains a list of tiles, each consisting of a sprite and optional collision shapes.
-		Tiles are referenced by a unique integer ID.
+		TileSet - это библиотека тайлов для [TileMap]. Он содержит список тайлов, каждый из которых состоит из спрайта и необязательных фигур столкновения.
+		На тайлы ссылается уникальный целочисленный идентификатор.
 	</description>
 	<tutorials>
 		<link title="Using Tilemaps">$DOCS_URL/tutorials/2d/using_tilemaps.html</link>
@@ -39,15 +39,15 @@
 			<argument index="0" name="drawn_id" type="int" />
 			<argument index="1" name="neighbor_id" type="int" />
 			<description>
-				Determines when the auto-tiler should consider two different auto-tile IDs to be bound together.
-				[b]Note:[/b] [code]neighbor_id[/code] will be [code]-1[/code] ([constant TileMap.INVALID_CELL]) when checking a tile against an empty neighbor tile.
+				Определяет, когда автоплиточник должен считать два разных идентификатора автоплитки связанными вместе.
+				[b]Примечание:[/b] [code]neighbor_id[/code] будет [code]-1[/code] ([константа TileMap.INVALID_CELL]) при проверке тайла на пустой соседний тайл.
 			</description>
 		</method>
 		<method name="autotile_clear_bitmask_map">
 			<return type="void" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Clears all bitmask information of the autotile.
+				Очищает всю информацию о битовой маске автотайла.
 			</description>
 		</method>
 		<method name="autotile_get_bitmask">
@@ -55,30 +55,23 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="coord" type="Vector2" />
 			<description>
-				Returns the bitmask of the subtile from an autotile given its coordinates.
-				The value is the sum of the values in [enum AutotileBindings] present in the subtile (e.g. a value of 5 means the bitmask has bindings in both the top left and top right).
+				Возвращает битовую маску субтайла из автотайла, заданного его координатами.
+				Значение представляет собой сумму значений в [enum AutotileBindings], присутствующих в субтиле (например, значение 5 означает, что битовая маска имеет привязки в верхнем левом и верхнем правом углу).
 			</description>
 		</method>
 		<method name="autotile_get_bitmask_mode" qualifiers="const">
 			<return type="int" enum="TileSet.BitmaskMode" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns the [enum BitmaskMode] of the autotile.
-			</description>
-		</method>
-		<method name="autotile_get_fallback_mode" qualifiers="const">
-			<return type="int" enum="TileSet.FallbackMode" />
-			<argument index="0" name="id" type="int" />
-			<description>
-				Returns the [enum FallbackMode] of the autotile.
+				Возвращает [enum BitmaskMode] автотайла.
 			</description>
 		</method>
 		<method name="autotile_get_icon_coordinate" qualifiers="const">
 			<return type="Vector2" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns the subtile that's being used as an icon in an atlas/autotile given its coordinates.
-				The subtile defined as the icon will be used as a fallback when the atlas/autotile's bitmask information is incomplete. It will also be used to represent it in the TileSet editor.
+				Возвращает субтиль, который используется в качестве иконки в атласе/автотайла, учитывая его координаты.
+				Субтиль, определенный как иконка, будет использоваться в качестве запасного варианта, когда информация о растровой маске атласа/автотайла будет неполной. Он также будет использоваться для представления в редакторе TileSet.
 			</description>
 		</method>
 		<method name="autotile_get_light_occluder" qualifiers="const">
@@ -86,7 +79,7 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="coord" type="Vector2" />
 			<description>
-				Returns the light occluder of the subtile from an atlas/autotile given its coordinates.
+				Возвращает светлый окклюдер субтиля из атласа/автотайла с указанием его координат.
 			</description>
 		</method>
 		<method name="autotile_get_navigation_polygon" qualifiers="const">
@@ -94,21 +87,21 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="coord" type="Vector2" />
 			<description>
-				Returns the navigation polygon of the subtile from an atlas/autotile given its coordinates.
+				Возвращает навигационный полигон субтиля из атласа/автотайла с заданными координатами.
 			</description>
 		</method>
 		<method name="autotile_get_size" qualifiers="const">
 			<return type="Vector2" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns the size of the subtiles in an atlas/autotile.
+				Возвращает размер подтилей в атласе/автотайла.
 			</description>
 		</method>
 		<method name="autotile_get_spacing" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns the spacing between subtiles of the atlas/autotile.
+				Возвращает расстояние между подтилями атласа/автотайла.
 			</description>
 		</method>
 		<method name="autotile_get_subtile_priority">
@@ -116,8 +109,8 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="coord" type="Vector2" />
 			<description>
-				Returns the priority of the subtile from an autotile given its coordinates.
-				When more than one subtile has the same bitmask value, one of them will be picked randomly for drawing. Its priority will define how often it will be picked.
+				Возвращает приоритет субтайла из автотайла, заданного его координатами.
+				Если более одного субтайла имеют одинаковое значение битовой маски, один из них будет выбран для отрисовки случайным образом. Его приоритет определяет, как часто он будет выбираться.
 			</description>
 		</method>
 		<method name="autotile_get_z_index">
@@ -125,7 +118,7 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="coord" type="Vector2" />
 			<description>
-				Returns the drawing index of the subtile from an atlas/autotile given its coordinates.
+				Возвращает индекс рисунка субтиля из атласа/автотайла, заданный его координатами.
 			</description>
 		</method>
 		<method name="autotile_set_bitmask">
@@ -134,8 +127,8 @@
 			<argument index="1" name="bitmask" type="Vector2" />
 			<argument index="2" name="flag" type="int" />
 			<description>
-				Sets the bitmask of the subtile from an autotile given its coordinates.
-				The value is the sum of the values in [enum AutotileBindings] present in the subtile (e.g. a value of 5 means the bitmask has bindings in both the top left and top right).
+				Устанавливает битовую маску субтайла из автотайла с учетом его координат.
+				Значение представляет собой сумму значений в [enum AutotileBindings], присутствующих в субтиле (например, значение 5 означает, что битовая маска имеет привязки в верхнем левом и верхнем правом углу).
 			</description>
 		</method>
 		<method name="autotile_set_bitmask_mode">
@@ -143,15 +136,7 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="mode" type="int" enum="TileSet.BitmaskMode" />
 			<description>
-				Sets the [enum BitmaskMode] of the autotile.
-			</description>
-		</method>
-		<method name="autotile_set_fallback_mode">
-			<return type="void" />
-			<argument index="0" name="id" type="int" />
-			<argument index="1" name="mode" type="int" enum="TileSet.FallbackMode" />
-			<description>
-				Returns the [enum FallbackMode] of the autotile.
+				Устанавливает [enum BitmaskMode] автотайла.
 			</description>
 		</method>
 		<method name="autotile_set_icon_coordinate">
@@ -159,8 +144,8 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="coord" type="Vector2" />
 			<description>
-				Sets the subtile that will be used as an icon in an atlas/autotile given its coordinates.
-				The subtile defined as the icon may be used as a fallback when the atlas/autotile's bitmask information is incomplete. It will also be used to represent it in the TileSet editor.
+				Устанавливает субтиль, который будет использоваться в качестве иконки в атласе/автотайла с учетом его координат.
+				Субтиль, заданный в качестве иконки, будет использоваться в качестве запасного варианта, когда информация о растровой маске атласа/автотайла будет неполной. Он также будет использоваться для представления в редакторе TileSet.
 			</description>
 		</method>
 		<method name="autotile_set_light_occluder">
@@ -169,7 +154,7 @@
 			<argument index="1" name="light_occluder" type="OccluderPolygon2D" />
 			<argument index="2" name="coord" type="Vector2" />
 			<description>
-				Sets the light occluder of the subtile from an atlas/autotile given its coordinates.
+				Устанавливает светлый окклюдер субтильного объекта из атласа/автотайла, задав его координаты.
 			</description>
 		</method>
 		<method name="autotile_set_navigation_polygon">
@@ -178,7 +163,7 @@
 			<argument index="1" name="navigation_polygon" type="NavigationPolygon" />
 			<argument index="2" name="coord" type="Vector2" />
 			<description>
-				Sets the navigation polygon of the subtile from an atlas/autotile given its coordinates.
+				Устанавливает навигационный полигон субтиля из атласа/автотайла, задавая его координаты.
 			</description>
 		</method>
 		<method name="autotile_set_size">
@@ -186,7 +171,7 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="size" type="Vector2" />
 			<description>
-				Sets the size of the subtiles in an atlas/autotile.
+				Устанавливает размер субтилей в атласе/автотайла.
 			</description>
 		</method>
 		<method name="autotile_set_spacing">
@@ -194,7 +179,7 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="spacing" type="int" />
 			<description>
-				Sets the spacing between subtiles of the atlas/autotile.
+				Устанавливает расстояние между подтилями атласа/автотайла.
 			</description>
 		</method>
 		<method name="autotile_set_subtile_priority">
@@ -203,8 +188,8 @@
 			<argument index="1" name="coord" type="Vector2" />
 			<argument index="2" name="priority" type="int" />
 			<description>
-				Sets the priority of the subtile from an autotile given its coordinates.
-				When more than one subtile has the same bitmask value, one of them will be picked randomly for drawing. Its priority will define how often it will be picked.
+				Устанавливает приоритет субтайла из автотайла с учетом его координат.
+				Если более одного субтайла имеют одинаковое значение битовой маски, один из них будет выбран для отрисовки случайным образом. Его приоритет определяет, как часто он будет выбираться.
 			</description>
 		</method>
 		<method name="autotile_set_z_index">
@@ -213,46 +198,46 @@
 			<argument index="1" name="coord" type="Vector2" />
 			<argument index="2" name="z_index" type="int" />
 			<description>
-				Sets the drawing index of the subtile from an atlas/autotile given its coordinates.
+				Устанавливает индекс отрисовки субтиля из атласа/автотайла с учетом его координат.
 			</description>
 		</method>
 		<method name="clear">
 			<return type="void" />
 			<description>
-				Clears all tiles.
+				Очищает все плитки.
 			</description>
 		</method>
 		<method name="create_tile">
 			<return type="void" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Creates a new tile with the given ID.
+				Создает новую плитку с заданным ID.
 			</description>
 		</method>
 		<method name="find_tile_by_name" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Returns the first tile matching the given name.
+				Возвращает первую плитку, соответствующую заданному имени.
 			</description>
 		</method>
 		<method name="get_last_unused_tile_id" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the ID following the last currently used ID, useful when creating a new tile.
+				Возвращает ID, следующий за последним используемым в данный момент ID, что полезно при создании новой плитки.
 			</description>
 		</method>
 		<method name="get_tiles_ids" qualifiers="const">
 			<return type="Array" />
 			<description>
-				Returns an array of all currently used tile IDs.
+				Возвращает массив всех используемых в данный момент идентификаторов/ID плиток.
 			</description>
 		</method>
 		<method name="remove_tile">
 			<return type="void" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Removes the given tile ID.
+				Удаляет заданный ID плитки.
 			</description>
 		</method>
 		<method name="tile_add_shape">
@@ -263,70 +248,70 @@
 			<argument index="3" name="one_way" type="bool" default="false" />
 			<argument index="4" name="autotile_coord" type="Vector2" default="Vector2( 0, 0 )" />
 			<description>
-				Adds a shape to the tile.
+				Добавляет фигуру к плитке.
 			</description>
 		</method>
 		<method name="tile_get_light_occluder" qualifiers="const">
 			<return type="OccluderPolygon2D" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns the tile's light occluder.
+				Возвращает световые окклюдеры плитки.
 			</description>
 		</method>
 		<method name="tile_get_material" qualifiers="const">
 			<return type="ShaderMaterial" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns the tile's material.
+				Возвращает материал плитки.
 			</description>
 		</method>
 		<method name="tile_get_modulate" qualifiers="const">
 			<return type="Color" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns the tile's modulation color.
+				Возвращает цвет модуляции плитки.
 			</description>
 		</method>
 		<method name="tile_get_name" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns the tile's name.
+				Возвращает название плитки.
 			</description>
 		</method>
 		<method name="tile_get_navigation_polygon" qualifiers="const">
 			<return type="NavigationPolygon" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns the navigation polygon of the tile.
+				Возвращает навигационный многоугольник плитки.
 			</description>
 		</method>
 		<method name="tile_get_navigation_polygon_offset" qualifiers="const">
 			<return type="Vector2" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns the offset of the tile's navigation polygon.
+				Возвращает смещение навигационного полигона плитки.
 			</description>
 		</method>
 		<method name="tile_get_normal_map" qualifiers="const">
 			<return type="Texture" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns the tile's normal map texture.
+				Возвращает текстуру карты нормалей плитки.
 			</description>
 		</method>
 		<method name="tile_get_occluder_offset" qualifiers="const">
 			<return type="Vector2" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns the offset of the tile's light occluder.
+				Возвращает смещение светового окклюдера плитки.
 			</description>
 		</method>
 		<method name="tile_get_region" qualifiers="const">
 			<return type="Rect2" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns the tile sub-region in the texture.
+				Возвращает субрегион плитки в текстуре.
 			</description>
 		</method>
 		<method name="tile_get_shape" qualifiers="const">
@@ -334,14 +319,14 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="shape_id" type="int" />
 			<description>
-				Returns a tile's given shape.
+				Возвращает заданную форму плитки.
 			</description>
 		</method>
 		<method name="tile_get_shape_count" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns the number of shapes assigned to a tile.
+				Возвращает количество фигур, назначенных плитке.
 			</description>
 		</method>
 		<method name="tile_get_shape_offset" qualifiers="const">
@@ -349,7 +334,7 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="shape_id" type="int" />
 			<description>
-				Returns the offset of a tile's shape.
+				Возвращает смещение формы плитки.
 			</description>
 		</method>
 		<method name="tile_get_shape_one_way" qualifiers="const">
@@ -357,7 +342,7 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="shape_id" type="int" />
 			<description>
-				Returns the one-way collision value of a tile's shape.
+				Возвращает значение одностороннего столкновения для формы плитки.
 			</description>
 		</method>
 		<method name="tile_get_shape_one_way_margin" qualifiers="const">
@@ -372,15 +357,15 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="shape_id" type="int" />
 			<description>
-				Returns the [Transform2D] of a tile's shape.
+				Возвращает [Transform2D] формы плитки.
 			</description>
 		</method>
 		<method name="tile_get_shapes" qualifiers="const">
 			<return type="Array" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns an array of dictionaries describing the tile's shapes.
-				[b]Dictionary structure in the array returned by this method:[/b]
+				Возвращает массив словарей, описывающих формы плитки.
+				[b]Структура словарей в массиве, возвращаемом этим методом:[/b]
 				[codeblock]
 				{
 				    "autotile_coord": Vector2,
@@ -396,28 +381,28 @@
 			<return type="Texture" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns the tile's texture.
+				Возвращает текстуру плитки.
 			</description>
 		</method>
 		<method name="tile_get_texture_offset" qualifiers="const">
 			<return type="Vector2" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns the texture offset of the tile.
+				Возвращает смещение текстуры плитки.
 			</description>
 		</method>
 		<method name="tile_get_tile_mode" qualifiers="const">
 			<return type="int" enum="TileSet.TileMode" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns the tile's [enum TileMode].
+				Возвращает [enum TileMode] плитки.
 			</description>
 		</method>
 		<method name="tile_get_z_index" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns the tile's Z index (drawing layer).
+				Возвращает индекс Z плитки (слоя рисования).
 			</description>
 		</method>
 		<method name="tile_set_light_occluder">
@@ -425,7 +410,7 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="light_occluder" type="OccluderPolygon2D" />
 			<description>
-				Sets a light occluder for the tile.
+				Устанавливает светлый окклюдер для плитки.
 			</description>
 		</method>
 		<method name="tile_set_material">
@@ -433,7 +418,7 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="material" type="ShaderMaterial" />
 			<description>
-				Sets the tile's material.
+				Устанавливает материал плитки.
 			</description>
 		</method>
 		<method name="tile_set_modulate">
@@ -441,8 +426,8 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="color" type="Color" />
 			<description>
-				Sets the tile's modulation color.
-				[b]Note:[/b] Modulation is performed by setting the tile's vertex color. To access this in a shader, use [code]COLOR[/code] rather than [code]MODULATE[/code] (which instead accesses the [TileMap]'s [member CanvasItem.modulate] property).
+				Устанавливает цвет модуляции тайла.
+				[b]Примечание:[/b] Модуляция осуществляется путем задания цвета вершин тайла. Чтобы получить к нему доступ в шейдере, используйте [code]COLOR[/code], а не [code]MODULATE[/code] (который вместо этого обращается к свойству [member CanvasItem.modulate] тайла [TileMap]).
 			</description>
 		</method>
 		<method name="tile_set_name">
@@ -450,7 +435,7 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="name" type="String" />
 			<description>
-				Sets the tile's name.
+				Устанавливает имя плитки.
 			</description>
 		</method>
 		<method name="tile_set_navigation_polygon">
@@ -458,7 +443,7 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="navigation_polygon" type="NavigationPolygon" />
 			<description>
-				Sets the tile's navigation polygon.
+				Устанавливает навигационный полигон плитки.
 			</description>
 		</method>
 		<method name="tile_set_navigation_polygon_offset">
@@ -466,7 +451,7 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="navigation_polygon_offset" type="Vector2" />
 			<description>
-				Sets an offset for the tile's navigation polygon.
+				Устанавливает смещение для навигационного полигона плитки.
 			</description>
 		</method>
 		<method name="tile_set_normal_map">
@@ -474,8 +459,8 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="normal_map" type="Texture" />
 			<description>
-				Sets the tile's normal map texture.
-				[b]Note:[/b] Godot expects the normal map to use X+, Y-, and Z+ coordinates. See [url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates]this page[/url] for a comparison of normal map coordinates expected by popular engines.
+				Устанавливает текстуру карты нормалей плитки.
+				[b]Примечание:[/b] Godot ожидает, что карта нормалей будет использовать координаты X+, Y- и Z+. Сравнение координат карты нормалей, ожидаемых популярными движками, приведено на [url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates]этой странице[/url].
 			</description>
 		</method>
 		<method name="tile_set_occluder_offset">
@@ -483,7 +468,7 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="occluder_offset" type="Vector2" />
 			<description>
-				Sets an offset for the tile's light occluder.
+				Устанавливает смещение для светового окклюдера плитки.
 			</description>
 		</method>
 		<method name="tile_set_region">
@@ -491,7 +476,7 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="region" type="Rect2" />
 			<description>
-				Sets the tile's sub-region in the texture. This is common in texture atlases.
+				Устанавливает субрегион плитки в текстуре. Это часто встречается в атласах текстур.
 			</description>
 		</method>
 		<method name="tile_set_shape">
@@ -500,7 +485,7 @@
 			<argument index="1" name="shape_id" type="int" />
 			<argument index="2" name="shape" type="Shape2D" />
 			<description>
-				Sets a shape for the tile, enabling collision.
+				Устанавливает форму для плитки, обеспечивая столкновение.
 			</description>
 		</method>
 		<method name="tile_set_shape_offset">
@@ -509,7 +494,7 @@
 			<argument index="1" name="shape_id" type="int" />
 			<argument index="2" name="shape_offset" type="Vector2" />
 			<description>
-				Sets the offset of a tile's shape.
+				Устанавливает смещение формы плитки.
 			</description>
 		</method>
 		<method name="tile_set_shape_one_way">
@@ -518,7 +503,7 @@
 			<argument index="1" name="shape_id" type="int" />
 			<argument index="2" name="one_way" type="bool" />
 			<description>
-				Enables one-way collision on a tile's shape.
+				Включает одностороннее столкновение с формой плитки.
 			</description>
 		</method>
 		<method name="tile_set_shape_one_way_margin">
@@ -535,7 +520,7 @@
 			<argument index="1" name="shape_id" type="int" />
 			<argument index="2" name="shape_transform" type="Transform2D" />
 			<description>
-				Sets a [Transform2D] on a tile's shape.
+				Устанавливает [Transform2D] на форму плитки.
 			</description>
 		</method>
 		<method name="tile_set_shapes">
@@ -543,7 +528,7 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="shapes" type="Array" />
 			<description>
-				Sets an array of shapes for the tile, enabling collision.
+				Устанавливает массив фигур для тайла, обеспечивая столкновение.
 			</description>
 		</method>
 		<method name="tile_set_texture">
@@ -551,7 +536,7 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="texture" type="Texture" />
 			<description>
-				Sets the tile's texture.
+				Устанавливает текстуру плитки.
 			</description>
 		</method>
 		<method name="tile_set_texture_offset">
@@ -559,7 +544,7 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="texture_offset" type="Vector2" />
 			<description>
-				Sets the tile's texture offset.
+				Устанавливает смещение текстуры плитки.
 			</description>
 		</method>
 		<method name="tile_set_tile_mode">
@@ -567,7 +552,7 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="tilemode" type="int" enum="TileSet.TileMode" />
 			<description>
-				Sets the tile's [enum TileMode].
+				Устанавливает режим работы плитки [enum TileMode].
 			</description>
 		</method>
 		<method name="tile_set_z_index">
@@ -575,7 +560,7 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="z_index" type="int" />
 			<description>
-				Sets the tile's drawing index.
+				Устанавливает индекс рисования плитки.
 			</description>
 		</method>
 	</methods>
@@ -585,12 +570,6 @@
 		<constant name="BITMASK_3X3_MINIMAL" value="1" enum="BitmaskMode">
 		</constant>
 		<constant name="BITMASK_3X3" value="2" enum="BitmaskMode">
-		</constant>
-		<constant name="FALLBACK_AUTO" value="0" enum="FallbackMode">
-			Autotiles will automatically find a best match for missing tiles if they're incomplete.
-		</constant>
-		<constant name="FALLBACK_ICON" value="1" enum="FallbackMode">
-			Autotiles will use the icon tile for missing tiles if they're incomplete.
 		</constant>
 		<constant name="BIND_TOPLEFT" value="1" enum="AutotileBindings">
 		</constant>

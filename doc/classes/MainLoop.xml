@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="MainLoop" inherits="Object" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="MainLoop" inherits="Object" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Abstract base class for the game's main loop.
+		Абстрактный базовый класс для главного цикла игры.
 	</brief_description>
 	<description>
-		[MainLoop] is the abstract base class for a Godot project's game loop. It is inherited by [SceneTree], which is the default game loop implementation used in Godot projects, though it is also possible to write and use one's own [MainLoop] subclass instead of the scene tree.
-		Upon the application start, a [MainLoop] implementation must be provided to the OS; otherwise, the application will exit. This happens automatically (and a [SceneTree] is created) unless a main [Script] is provided from the command line (with e.g. [code]godot -s my_loop.gd[/code], which should then be a [MainLoop] implementation.
-		Here is an example script implementing a simple [MainLoop]:
+		[MainLoop] - это абстрактный базовый класс для игрового цикла проекта Godot. Он наследуется от [SceneTree], который является реализацией игрового цикла по умолчанию, используемой в проектах Godot, хотя также можно написать и использовать собственный подкласс [MainLoop] вместо дерева сцен.
+		При запуске приложения ОС должна быть предоставлена реализация [MainLoop], в противном случае приложение завершится. Это происходит автоматически (и создается [SceneTree]), если только основной [Script] не предоставляется из командной строки (например, [code]godot -s my_loop.gd[/code]), который должен быть реализацией [MainLoop].
+		Вот пример скрипта, реализующего простой [MainLoop]:
 		[codeblock]
 		extends MainLoop
 
@@ -20,17 +20,17 @@
 
 		func _idle(delta):
 		    time_elapsed += delta
-		    # Return true to end the main loop.
+		    # Возвращает true для завершения основного цикла.
 		    return quit
 
 		func _input_event(event):
-		    # Record keys.
+		    # Клавиши для записи.
 		    if event is InputEventKey and event.pressed and !event.echo:
 		        keys_typed.append(OS.get_scancode_string(event.scancode))
-		        # Quit on Escape press.
+		        # Выйдите из игры при нажатии Escape.
 		        if event.scancode == KEY_ESCAPE:
 		            quit = true
-		    # Quit on any mouse click.
+		    # Выход по любому щелчку мыши.
 		    if event is InputEventMouseButton:
 		        quit = true
 
@@ -48,13 +48,13 @@
 			<argument index="0" name="files" type="PoolStringArray" />
 			<argument index="1" name="from_screen" type="int" />
 			<description>
-				Called when files are dragged from the OS file manager and dropped in the game window. The arguments are a list of file paths and the identifier of the screen where the drag originated.
+				Вызывается при перетаскивании файлов из файлового менеджера ОС в окно игры. Аргументами являются список путей к файлам и идентификатор экрана, на котором произошло перетаскивание.
 			</description>
 		</method>
 		<method name="_finalize" qualifiers="virtual">
 			<return type="void" />
 			<description>
-				Called before the program exits.
+				Вызывается перед выходом из программы.
 			</description>
 		</method>
 		<method name="_global_menu_action" qualifiers="virtual">
@@ -62,83 +62,83 @@
 			<argument index="0" name="id" type="Variant" />
 			<argument index="1" name="meta" type="Variant" />
 			<description>
-				Called when the user performs an action in the system global menu (e.g. the Mac OS menu bar).
+				Вызывается, когда пользователь выполняет действие в глобальном меню системы (например, в строке меню Mac OS).
 			</description>
 		</method>
 		<method name="_idle" qualifiers="virtual">
 			<return type="bool" />
 			<argument index="0" name="delta" type="float" />
 			<description>
-				Called each idle frame with the time since the last idle frame as argument (in seconds). Equivalent to [method Node._process].
-				If implemented, the method must return a boolean value. [code]true[/code] ends the main loop, while [code]false[/code] lets it proceed to the next frame.
+				Вызывается каждый холостой кадр с указанием в качестве аргумента времени, прошедшего с момента последнего холостого кадра (в секундах). Эквивалентно [методу Node._process].
+				Если метод реализован, он должен возвращать булево значение. [code]true[/code] завершает основной цикл, а [code]false[/code] позволяет перейти к следующему кадру.
 			</description>
 		</method>
 		<method name="_initialize" qualifiers="virtual">
 			<return type="void" />
 			<description>
-				Called once during initialization.
+				Вызывается один раз во время инициализации.
 			</description>
 		</method>
 		<method name="_input_event" qualifiers="virtual">
 			<return type="void" />
 			<argument index="0" name="event" type="InputEvent" />
 			<description>
-				Called whenever an [InputEvent] is received by the main loop.
+				Вызывается всякий раз, когда в главный цикл поступает событие [InputEvent].
 			</description>
 		</method>
 		<method name="_input_text" qualifiers="virtual">
 			<return type="void" />
 			<argument index="0" name="text" type="String" />
 			<description>
-				Deprecated callback, does not do anything. Use [method _input_event] to parse text input. Will be removed in Godot 4.0.
+				Устаревший обратный вызов, ничего не делает. Используйте [метод _input_event] для разбора вводимого текста. Будет удален в Godot 4.0.
 			</description>
 		</method>
 		<method name="_iteration" qualifiers="virtual">
 			<return type="bool" />
 			<argument index="0" name="delta" type="float" />
 			<description>
-				Called each physics frame with the time since the last physics frame as argument ([code]delta[/code], in seconds). Equivalent to [method Node._physics_process].
-				If implemented, the method must return a boolean value. [code]true[/code] ends the main loop, while [code]false[/code] lets it proceed to the next frame.
+				Вызывает каждый физический кадр с указанием в качестве аргумента времени, прошедшего с момента последнего физического кадра ([code]delta[/code], в секундах). Эквивалентно [методу Node._physics_process].
+				Если метод реализован, он должен возвращать булево значение. [code]true[/code] завершает основной цикл, а [code]false[/code] позволяет перейти к следующему кадру.
 			</description>
 		</method>
 		<method name="finish">
 			<return type="void" />
 			<description>
-				Should not be called manually, override [method _finalize] instead. Will be removed in Godot 4.0.
+				Не следует вызывать вручную, вместо этого переопределите [метод _finalize]. Будет удален в Godot 4.0.
 			</description>
 		</method>
 		<method name="idle">
 			<return type="bool" />
 			<argument index="0" name="delta" type="float" />
 			<description>
-				Should not be called manually, override [method _idle] instead. Will be removed in Godot 4.0.
+				Не следует вызывать вручную, вместо этого переопределите [метод _idle]. Будет удален в Godot 4.0.
 			</description>
 		</method>
 		<method name="init">
 			<return type="void" />
 			<description>
-				Should not be called manually, override [method _initialize] instead. Will be removed in Godot 4.0.
+				Не следует вызывать вручную, вместо этого переопределите [метод _initialize]. Будет удален в версии Godot 4.0.
 			</description>
 		</method>
 		<method name="input_event">
 			<return type="void" />
 			<argument index="0" name="event" type="InputEvent" />
 			<description>
-				Should not be called manually, override [method _input_event] instead. Will be removed in Godot 4.0.
+				Не следует вызывать вручную, вместо этого переопределите [метод _input_event]. Будет удален в версии Godot 4.0.
 			</description>
 		</method>
 		<method name="input_text">
 			<return type="void" />
 			<argument index="0" name="text" type="String" />
 			<description>
-				Should not be called manually, override [method _input_text] instead. Will be removed in Godot 4.0.
+				Не следует вызывать вручную, вместо этого переопределите [метод _input_text]. Будет удален в версии Godot 4.0.
 			</description>
 		</method>
 		<method name="iteration">
 			<return type="bool" />
 			<argument index="0" name="delta" type="float" />
 			<description>
-				Should not be called manually, override [method _iteration] instead. Will be removed in Godot 4.0.
+				Не следует вызывать вручную, вместо этого переопределите [метод _iteration]. Будет удален в Godot 4.0.
 			</description>
 		</method>
 	</methods>
@@ -147,66 +147,65 @@
 			<argument index="0" name="permission" type="String" />
 			<argument index="1" name="granted" type="bool" />
 			<description>
-				Emitted when a user responds to a permission request.
+				Выдается, когда пользователь отвечает на запрос разрешения.
 			</description>
 		</signal>
 	</signals>
 	<constants>
 		<constant name="NOTIFICATION_WM_MOUSE_ENTER" value="1002">
-			Notification received from the OS when the mouse enters the game window.
-			Implemented on desktop and web platforms.
+			Уведомление, получаемое от ОС, когда мышь попадает в игровое окно.
+			Реализовано на настольных и веб-платформах.
 		</constant>
 		<constant name="NOTIFICATION_WM_MOUSE_EXIT" value="1003">
-			Notification received from the OS when the mouse leaves the game window.
-			Implemented on desktop and web platforms.
+			Уведомление, получаемое от ОС, когда мышь покидает игровое окно.
+			Реализовано на настольных и веб-платформах.
 		</constant>
 		<constant name="NOTIFICATION_WM_FOCUS_IN" value="1004">
-			Notification received from the OS when the game window is focused.
-			Implemented on all platforms.
+			Уведомление, получаемое от ОС при фокусировке окна игры.
+			Реализовано на всех платформах.
 		</constant>
 		<constant name="NOTIFICATION_WM_FOCUS_OUT" value="1005">
-			Notification received from the OS when the game window is unfocused.
-			Implemented on all platforms.
+			Уведомление, получаемое от ОС при расфокусировке окна игры.
+			Реализовано на всех платформах.
 		</constant>
 		<constant name="NOTIFICATION_WM_QUIT_REQUEST" value="1006">
-			Notification received from the OS when a quit request is sent (e.g. closing the window with a "Close" button or Alt+F4).
-			Implemented on desktop platforms.
+			Уведомление, получаемое от ОС при отправке запроса на выход (например, закрытие окна с помощью кнопки "Закрыть" или Alt+F4).
+			Реализовано на настольных платформах.
 		</constant>
 		<constant name="NOTIFICATION_WM_GO_BACK_REQUEST" value="1007">
-			Notification received from the OS when a go back request is sent (e.g. pressing the "Back" button on Android).
-			Specific to the Android platform.
+			Уведомление, получаемое от ОС при отправке запроса на возврат (например, нажатие кнопки "Назад" на Android).
+			Специфично для платформы Android.
 		</constant>
 		<constant name="NOTIFICATION_WM_UNFOCUS_REQUEST" value="1008">
-			Notification received from the OS when an unfocus request is sent (e.g. another OS window wants to take the focus).
-			No supported platforms currently send this notification.
+			Уведомление, получаемое от ОС, когда отправляется запрос на расфокусировку (например, другое окно ОС хочет захватить фокус).
+			В настоящее время ни одна из поддерживаемых платформ не отправляет это уведомление.
 		</constant>
 		<constant name="NOTIFICATION_OS_MEMORY_WARNING" value="1009">
-			Notification received from the OS when the application is exceeding its allocated memory.
-			Specific to the iOS platform.
+			Уведомление, получаемое от ОС, когда приложение превышает выделенную ему память.
+			Специфично для платформы iOS.
 		</constant>
 		<constant name="NOTIFICATION_TRANSLATION_CHANGED" value="1010">
-			Notification received when translations may have changed. Can be triggered by the user changing the locale. Can be used to respond to language changes, for example to change the UI strings on the fly. Useful when working with the built-in translation support, like [method Object.tr].
+			Уведомление о возможном изменении перевода. Может быть вызвано изменением локали пользователем. Может использоваться для реагирования на изменение языка, например, для изменения строк пользовательского интерфейса на лету. Полезно при работе со встроенной поддержкой переводов, например [метод Object.tr].
 		</constant>
 		<constant name="NOTIFICATION_WM_ABOUT" value="1011">
-			Notification received from the OS when a request for "About" information is sent.
-			Specific to the macOS platform.
+			Уведомление, получаемое от ОС при отправке запроса на информацию "О программе".
+			Специфично для платформы macOS.
 		</constant>
 		<constant name="NOTIFICATION_CRASH" value="1012">
-			Notification received from Godot's crash handler when the engine is about to crash.
-			Implemented on desktop platforms if the crash handler is enabled.
+			Уведомление, получаемое от обработчика сбоев Godot, когда движок вот-вот упадет.
+			Реализовано на настольных платформах, если обработчик сбоев включен.
 		</constant>
 		<constant name="NOTIFICATION_OS_IME_UPDATE" value="1013">
-			Notification received from the OS when an update of the Input Method Engine occurs (e.g. change of IME cursor position or composition string).
-			Specific to the macOS platform.
+			Уведомление, получаемое от ОС при обновлении механизма метода ввода (например, изменение положения курсора IME или строки композиции).
+			Специфично для платформы macOS.
 		</constant>
 		<constant name="NOTIFICATION_APP_RESUMED" value="1014">
-			Notification received from the OS when the app is resumed.
-			Specific to mobile platforms.
+			Уведомление, получаемое от ОС при возобновлении работы приложения.
+			Специфично для платформы Android.
 		</constant>
 		<constant name="NOTIFICATION_APP_PAUSED" value="1015">
-			Notification received from the OS when the app is paused.
-			Specific to mobile platforms.
-			[b]Note:[/b] On iOS, you only have approximately 5 seconds to finish a task started by this signal. If you go over this allotment, iOS will kill the app instead of pausing it.
+			Уведомление, получаемое от ОС, когда приложение приостанавливается.
+			Специфично для платформы Android.
 		</constant>
 	</constants>
 </class>

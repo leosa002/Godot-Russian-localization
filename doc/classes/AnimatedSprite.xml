@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="AnimatedSprite" inherits="Node2D" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="AnimatedSprite" inherits="Node2D" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Sprite node that contains multiple textures as frames to play for animation.
+		Узел спрайта, содержащий несколько текстур в качестве кадров для воспроизведения анимации
 	</brief_description>
 	<description>
-		[AnimatedSprite] is similar to the [Sprite] node, except it carries multiple textures as animation frames. Animations are created using a [SpriteFrames] resource, which allows you to import image files (or a folder containing said files) to provide the animation frames for the sprite. The [SpriteFrames] resource can be configured in the editor via the SpriteFrames bottom panel.
-		[b]Note:[/b] You can associate a set of normal maps by creating additional animations with a [code]_normal[/code] suffix. For example, having 2 animations [code]run[/code] and [code]run_normal[/code] will make it so the [code]run[/code] animation uses the normal map.
+		Узел [AnimatedSprite] аналогичен узлу [Sprite], только в качестве кадров анимации в нем используется несколько текстур. Анимация создается с помощью ресурса [SpriteFrames], который позволяет импортировать файлы изображений (или папку, содержащую эти файлы) для создания кадров анимации спрайта. Ресурс [SpriteFrames] может быть настроен в редакторе через нижнюю панель SpriteFrames.
+		[b]Примечание:[/b] Набор нормальных или зеркальных карт можно связать, создав дополнительные ресурсы [SpriteFrames] с суффиксом [code]_normal[/code] или [code]_specular[/code]. Например, при наличии трех ресурсов [SpriteFrames] [code]run[/code], [code]run_normal[/code] и [code]run_specular[/code] анимация [code]run[/code] будет использовать карты нормалей и спекуляров.
 	</description>
 	<tutorials>
 		<link title="2D Sprite animation">$DOCS_URL/tutorials/2d/2d_sprite_animation.html</link>
@@ -17,54 +17,54 @@
 			<argument index="0" name="anim" type="String" default="&quot;&quot;" />
 			<argument index="1" name="backwards" type="bool" default="false" />
 			<description>
-				Plays the animation named [code]anim[/code]. If no [code]anim[/code] is provided, the current animation is played. If [code]backwards[/code] is [code]true[/code], the animation will be played in reverse.
+				Воспроизводит анимацию с именем [code]anim[/code]. Если [code]anim[/code] не указан, то воспроизводится текущая анимация. Если [code]backwards[/code] имеет значение [code]true[/code], то анимация будет воспроизводиться в обратном порядке.
 			</description>
 		</method>
 		<method name="stop">
 			<return type="void" />
 			<description>
-				Stops the current animation (does not reset the frame counter).
+				Останавливает текущую анимацию (не сбрасывает счетчик кадров).
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="animation" type="String" setter="set_animation" getter="get_animation" default="&quot;default&quot;">
-			The current animation from the [member frames] resource. If this value changes, the [code]frame[/code] counter is reset.
+			Текущая анимация из ресурса [member frames]. При изменении этого значения счетчик [code]frame[/code] сбрасывается
 		</member>
 		<member name="centered" type="bool" setter="set_centered" getter="is_centered" default="true">
-			If [code]true[/code], texture will be centered.
+			Если [code]true[/code], то текстура будет центрирована.
 		</member>
 		<member name="flip_h" type="bool" setter="set_flip_h" getter="is_flipped_h" default="false">
-			If [code]true[/code], texture is flipped horizontally.
+			Если [code]true[/code], то текстура переворачивается по горизонтали.
 		</member>
 		<member name="flip_v" type="bool" setter="set_flip_v" getter="is_flipped_v" default="false">
-			If [code]true[/code], texture is flipped vertically.
+			Если [code]true[/code], то текстура переворачивается по вертикали.
 		</member>
 		<member name="frame" type="int" setter="set_frame" getter="get_frame" default="0">
-			The displayed animation frame's index.
+			Индекс отображаемого кадра анимации.
 		</member>
 		<member name="frames" type="SpriteFrames" setter="set_sprite_frames" getter="get_sprite_frames">
-			The [SpriteFrames] resource containing the animation(s). Allows you the option to load, edit, clear, make unique and save the states of the [SpriteFrames] resource.
+			Ресурс [SpriteFrames], содержащий анимацию (анимации). Позволяет загружать, редактировать, очищать, делать уникальными и сохранять состояния ресурса [SpriteFrames].
 		</member>
 		<member name="offset" type="Vector2" setter="set_offset" getter="get_offset" default="Vector2( 0, 0 )">
-			The texture's drawing offset.
+			Смещение отрисовки текстуры.
 		</member>
 		<member name="playing" type="bool" setter="set_playing" getter="is_playing" default="false">
-			If [code]true[/code], the [member animation] is currently playing.
+			Если [code]true[/code], то в данный момент воспроизводится [member animation].
 		</member>
 		<member name="speed_scale" type="float" setter="set_speed_scale" getter="get_speed_scale" default="1.0">
-			The animation speed is multiplied by this value.
+			Скорость анимации умножается на это значение.
 		</member>
 	</members>
 	<signals>
 		<signal name="animation_finished">
 			<description>
-				Emitted when the animation is finished (when it plays the last frame). If the animation is looping, this signal is emitted every time the last frame is drawn.
+				Выдается при завершении анимации (при воспроизведении последнего кадра). Если анимация зациклена, то этот сигнал будет выдаваться каждый раз, когда будет отрисован последний кадр.
 			</description>
 		</signal>
 		<signal name="frame_changed">
 			<description>
-				Emitted when [member frame] changed.
+				Выдается при изменении [member frame].
 			</description>
 		</signal>
 	</signals>

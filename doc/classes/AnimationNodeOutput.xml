@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="AnimationNodeOutput" inherits="AnimationNode" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="AnimationNodeOutput" inherits="AnimationNode" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Generic output node to be added to [AnimationNodeBlendTree].
+		Общий выходной узел, добавляемый в [AnimationNodeBlendTree].
 	</brief_description>
 	<description>
 	</description>

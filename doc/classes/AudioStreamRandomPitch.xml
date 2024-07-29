@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="AudioStreamRandomPitch" inherits="AudioStream" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="AudioStreamRandomPitch" inherits="AudioStream" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Plays audio with random pitch shifting.
+		Воспроизводит аудио со случайным изменением высоты тона.
 	</brief_description>
 	<description>
-		Randomly varies pitch on each start.
+		Случайно изменяет питч при каждом старте.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -12,10 +12,10 @@
 	</methods>
 	<members>
 		<member name="audio_stream" type="AudioStream" setter="set_audio_stream" getter="get_audio_stream">
-			The current [AudioStream].
+			Текущий [AudioStream].
 		</member>
 		<member name="random_pitch" type="float" setter="set_random_pitch" getter="get_random_pitch" default="1.1">
-			The intensity of random pitch variation.
+			Интенсивность случайных колебаний высоты тона.
 		</member>
 	</members>
 	<constants>

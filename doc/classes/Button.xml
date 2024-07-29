@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Button" inherits="BaseButton" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Button" inherits="BaseButton" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Standard themed Button.
+		Стандартная тематическая кнопка.
 	</brief_description>
 	<description>
-		Button is the standard themed button. It can contain text and an icon, and will display them according to the current [Theme].
-		[b]Example of creating a button and assigning an action when pressed by code:[/b]
+		Button - это стандартная тематическая кнопка. Она может содержать текст и иконку и отображать их в соответствии с текущей темой [Theme].
+		[b]Пример создания кнопки и назначения действия при нажатии с помощью кода:[/b]
 		[codeblock]
 		func _ready():
 		    var button = Button.new()
-		    button.text = "Click me"
+		    button.text = "Нажмите на меня"
 		    button.connect("pressed", self, "_button_pressed")
 		    add_child(button)
 
 		func _button_pressed():
-		    print("Hello world!")
+		    print("Привет мир!")
 		[/codeblock]
-		Buttons (like all Control nodes) can also be created in the editor, but some situations may require creating them from code.
-		See also [BaseButton] which contains common properties and methods associated with this node.
-		[b]Note:[/b] Buttons do not interpret touch input and therefore don't support multitouch, since mouse emulation can only press one button at a given time. Use [TouchScreenButton] for buttons that trigger gameplay movement or actions, as [TouchScreenButton] supports multitouch.
+		Кнопки (как и все узлы Control) также могут быть созданы в редакторе, но в некоторых ситуациях может потребоваться их создание из кода.
+		См. также [BaseButton], который содержит общие свойства и методы, связанные с этим узлом.
+		[b]Примечание:[/b] Кнопки не интерпретируют сенсорный ввод и поэтому не поддерживают мультитач, поскольку эмуляция мыши может одновременно нажимать только одну кнопку. Используйте [TouchScreenButton] для кнопок, запускающих движение или действия в игровом процессе, поскольку [TouchScreenButton] поддерживает мультитач.
 	</description>
 	<tutorials>
 		<link title="2D Dodge The Creeps Demo">https://godotengine.org/asset-library/asset/515</link>
@@ -28,96 +28,75 @@
 	</methods>
 	<members>
 		<member name="align" type="int" setter="set_text_align" getter="get_text_align" enum="Button.TextAlign" default="1">
-			Text alignment policy for the button's text, use one of the [enum TextAlign] constants.
+			Политика выравнивания текста кнопки, используется одна из констант [enum TextAlign].
 		</member>
 		<member name="clip_text" type="bool" setter="set_clip_text" getter="get_clip_text" default="false">
-			When this property is enabled, text that is too large to fit the button is clipped, when disabled the Button will always be wide enough to hold the text.
+			Если это свойство включено, то текст, который слишком велик, чтобы поместиться в кнопку, обрезается, если выключено - кнопка всегда будет достаточно широкой, чтобы вместить текст.
 		</member>
 		<member name="expand_icon" type="bool" setter="set_expand_icon" getter="is_expand_icon" default="false">
-			When enabled, the button's icon will expand/shrink to fit the button's size while keeping its aspect.
+			При включении этой опции значок кнопки будет расширяться/сжиматься в соответствии с ее размерами, сохраняя свой аспект.
 		</member>
 		<member name="flat" type="bool" setter="set_flat" getter="is_flat" default="false">
-			Flat buttons don't display decoration.
+			Плоские кнопки не имеют декоративного оформления.
 		</member>
 		<member name="icon" type="Texture" setter="set_button_icon" getter="get_button_icon">
-			Button's icon, if text is present the icon will be placed before the text.
-			To edit margin and spacing of the icon, use [code]hseparation[/code] theme property of [Button] and [code]content_margin_*[/code] properties of the used [StyleBox]es.
+			Иконка кнопки, при наличии текста иконка будет размещена перед текстом.
+			Для редактирования отступов и интервалов между пиктограммами используйте свойство [code]hseparation[/code] темы [Button] и свойства [code]content_margin_*[/code] используемых [StyleBox]ов.
 		</member>
 		<member name="icon_align" type="int" setter="set_icon_align" getter="get_icon_align" enum="Button.TextAlign" default="0">
-			Specifies if the icon should be aligned to the left, right, or center of a button. Uses the same [enum TextAlign] constants as the text alignment. If centered, text will draw on top of the icon.
+			Определяет, как должен быть выровнен значок - по левому, правому или центральному краю кнопки. Используются те же константы [enum TextAlign], что и для выравнивания текста. Если выравнивать по центру, то текст будет рисоваться поверх значка.
 		</member>
 		<member name="text" type="String" setter="set_text" getter="get_text" default="&quot;&quot;">
-			The button's text that will be displayed inside the button's area.
+			Текст кнопки, который будет отображаться в ее области.
 		</member>
 	</members>
 	<constants>
 		<constant name="ALIGN_LEFT" value="0" enum="TextAlign">
-			Align the text to the left.
+			Выравнивание текста по левому краю.
 		</constant>
 		<constant name="ALIGN_CENTER" value="1" enum="TextAlign">
-			Align the text to the center.
+			Выравнивание текста по центру.
 		</constant>
 		<constant name="ALIGN_RIGHT" value="2" enum="TextAlign">
-			Align the text to the right.
+			Выравнивание текста по правому краю.
 		</constant>
 	</constants>
 	<theme_items>
 		<theme_item name="font_color" data_type="color" type="Color" default="Color( 0.88, 0.88, 0.88, 1 )">
-			Default text [Color] of the [Button].
+			Текст [Color] по умолчанию для [Button].
 		</theme_item>
 		<theme_item name="font_color_disabled" data_type="color" type="Color" default="Color( 0.9, 0.9, 0.9, 0.2 )">
-			Text [Color] used when the [Button] is disabled.
+			Текст [Color], используемый при отключенной [Button].
 		</theme_item>
 		<theme_item name="font_color_focus" data_type="color" type="Color" default="Color( 0.94, 0.94, 0.94, 1 )">
-			Text [Color] used when the [Button] is focused. Only replaces the normal text color of the button. Disabled, hovered, and pressed states take precedence over this color.
+			Цвет текста [Color], используемый при фокусировке [Button]. Заменяет только обычный цвет текста кнопки. Для отключенных, наведенных и нажатых состояний этот цвет имеет приоритет.
 		</theme_item>
 		<theme_item name="font_color_hover" data_type="color" type="Color" default="Color( 0.94, 0.94, 0.94, 1 )">
-			Text [Color] used when the [Button] is being hovered.
-		</theme_item>
-		<theme_item name="font_color_hover_pressed" data_type="color" type="Color" default="Color( 1, 1, 1, 1 )">
-			Text [Color] used when the [Button] is being hovered and pressed.
+			Цвет текста [Color], используемый при наведении курсора на [Button].
 		</theme_item>
 		<theme_item name="font_color_pressed" data_type="color" type="Color" default="Color( 1, 1, 1, 1 )">
-			Text [Color] used when the [Button] is being pressed.
-		</theme_item>
-		<theme_item name="icon_color_disabled" data_type="color" type="Color" default="Color( 1, 1, 1, 0.4 )">
-			Icon modulate [Color] used when the [Button] is disabled.
-		</theme_item>
-		<theme_item name="icon_color_focus" data_type="color" type="Color" default="Color( 1, 1, 1, 1 )">
-			Icon modulate [Color] used when the [Button] is focused. Only replaces the normal modulate color of the button. Disabled, hovered, and pressed states take precedence over this color.
-		</theme_item>
-		<theme_item name="icon_color_hover" data_type="color" type="Color" default="Color( 1, 1, 1, 1 )">
-			Icon modulate [Color] used when the [Button] is being hovered.
-		</theme_item>
-		<theme_item name="icon_color_hover_pressed" data_type="color" type="Color" default="Color( 1, 1, 1, 1 )">
-			Icon modulate [Color] used when the [Button] is being hovered and pressed.
-		</theme_item>
-		<theme_item name="icon_color_normal" data_type="color" type="Color" default="Color( 1, 1, 1, 1 )">
-			Default icon modulate [Color] of the [Button].
-		</theme_item>
-		<theme_item name="icon_color_pressed" data_type="color" type="Color" default="Color( 1, 1, 1, 1 )">
-			Icon modulate [Color] used when the [Button] is being pressed.
+			Цвет текста [Color], используемый при нажатии кнопки [Button].
 		</theme_item>
 		<theme_item name="hseparation" data_type="constant" type="int" default="2">
-			The horizontal space between [Button]'s icon and text.
+			Горизонтальное пространство между значком [Button] и текстом.
 		</theme_item>
 		<theme_item name="font" data_type="font" type="Font">
-			[Font] of the [Button]'s text.
+			[Шрифт] текста кнопки [Button].
 		</theme_item>
 		<theme_item name="disabled" data_type="style" type="StyleBox">
-			[StyleBox] used when the [Button] is disabled.
+			[StyleBox], используемый при отключенной [Button].
 		</theme_item>
 		<theme_item name="focus" data_type="style" type="StyleBox">
-			[StyleBox] used when the [Button] is focused. It is displayed over the current [StyleBox], so using [StyleBoxEmpty] will just disable the focus visual effect.
+			[StyleBox], используемый при фокусировке [Button]. Он отображается поверх текущего [StyleBox], поэтому использование [StyleBoxEmpty] просто отключит визуальный эффект фокусировки.
 		</theme_item>
 		<theme_item name="hover" data_type="style" type="StyleBox">
-			[StyleBox] used when the [Button] is being hovered.
+			[StyleBox], используемый при наведении курсора на [Button].
 		</theme_item>
 		<theme_item name="normal" data_type="style" type="StyleBox">
-			Default [StyleBox] for the [Button].
+			Стиль по умолчанию [StyleBox] для [Button].
 		</theme_item>
 		<theme_item name="pressed" data_type="style" type="StyleBox">
-			[StyleBox] used when the [Button] is being pressed.
+			[StyleBox], используемый при нажатии кнопки [Button].
 		</theme_item>
 	</theme_items>
 </class>

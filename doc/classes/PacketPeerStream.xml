@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="PacketPeerStream" inherits="PacketPeer" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="PacketPeerStream" inherits="PacketPeer" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Wrapper to use a PacketPeer over a StreamPeer.
+		Обертка для использования PacketPeer над StreamPeer.
 	</brief_description>
 	<description>
-		PacketStreamPeer provides a wrapper for working using packets over a stream. This allows for using packet based code with StreamPeers. PacketPeerStream implements a custom protocol over the StreamPeer, so the user should not read or write to the wrapped StreamPeer directly.
+		PacketStreamPeer предоставляет обертку для работы с пакетами через поток. Это позволяет использовать код, основанный на пакетах, со StreamPeers. PacketPeerStream реализует собственный протокол над StreamPeer, поэтому пользователь не должен читать или писать в обернутый StreamPeer напрямую.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -16,7 +16,7 @@
 		<member name="output_buffer_max_size" type="int" setter="set_output_buffer_max_size" getter="get_output_buffer_max_size" default="65532">
 		</member>
 		<member name="stream_peer" type="StreamPeer" setter="set_stream_peer" getter="get_stream_peer">
-			The wrapped [StreamPeer] object.
+			Обернутый объект [StreamPeer].
 		</member>
 	</members>
 	<constants>

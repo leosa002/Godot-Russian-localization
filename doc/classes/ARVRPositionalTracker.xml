@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="ARVRPositionalTracker" inherits="Reference" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="ARVRPositionalTracker" inherits="Reference" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		A tracked object.
+		Отслеживаемый объект.
 	</brief_description>
 	<description>
-		An instance of this object represents a device that is tracked, such as a controller or anchor point. HMDs aren't represented here as they are handled internally.
-		As controllers are turned on and the AR/VR interface detects them, instances of this object are automatically added to this list of active tracking objects accessible through the [ARVRServer].
-		The [ARVRController] and [ARVRAnchor] both consume objects of this type and should be used in your project. The positional trackers are just under-the-hood objects that make this all work. These are mostly exposed so that GDNative-based interfaces can interact with them.
+		Экземпляр этого объекта представляет отслеживаемое устройство, например контроллер или точку привязки. HMD здесь не представлены, поскольку они обрабатываются внутренними средствами.
+		По мере включения контроллеров и обнаружения их AR/VR-интерфейсом экземпляры этого объекта автоматически добавляются в список активных объектов отслеживания, доступных через [ARVRServer].
+		Объекты [ARVRController] и [ARVRAnchor] потребляют объекты этого типа и должны быть использованы в вашем проекте. Позиционные трекеры - это просто "подкапотные" объекты, с помощью которых все это работает. В основном они раскрываются для того, чтобы с ними могли взаимодействовать интерфейсы, основанные на GDNative.
 	</description>
 	<tutorials>
 		<link>$DOCS_URL/tutorials/vr/index.html</link>
@@ -15,85 +15,85 @@
 		<method name="get_hand" qualifiers="const">
 			<return type="int" enum="ARVRPositionalTracker.TrackerHand" />
 			<description>
-				Returns the hand holding this tracker, if known. See [enum TrackerHand] constants.
+				Возвращает руку, держащую данный трекер, если она известна. См. константы [enum TrackerHand].
 			</description>
 		</method>
 		<method name="get_joy_id" qualifiers="const">
 			<return type="int" />
 			<description>
-				If this is a controller that is being tracked, the controller will also be represented by a joystick entry with this ID.
+				Если это контроллер, который отслеживается, то он также будет представлен записью джойстика с этим идентификатором.
 			</description>
 		</method>
 		<method name="get_mesh" qualifiers="const">
 			<return type="Mesh" />
 			<description>
-				Returns the mesh related to a controller or anchor point if one is available.
+				Возвращает сетку, связанную с контроллером или точкой привязки, если таковая имеется.
 			</description>
 		</method>
 		<method name="get_name" qualifiers="const">
 			<return type="String" />
 			<description>
-				Returns the controller or anchor point's name if available.
+				Возвращает имя контроллера или опорной точки, если оно доступно.
 			</description>
 		</method>
 		<method name="get_orientation" qualifiers="const">
 			<return type="Basis" />
 			<description>
-				Returns the controller's orientation matrix.
+				Возвращает матрицу ориентации контроллера.
 			</description>
 		</method>
 		<method name="get_position" qualifiers="const">
 			<return type="Vector3" />
 			<description>
-				Returns the world-space controller position.
+				Возвращает положение контроллера в мировом пространстве.
 			</description>
 		</method>
 		<method name="get_tracker_id" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the internal tracker ID. This uniquely identifies the tracker per tracker type and matches the ID you need to specify for nodes such as the [ARVRController] and [ARVRAnchor] nodes.
+				Возвращает внутренний идентификатор трекера. Он однозначно идентифицирует трекер по типу трекера и соответствует идентификатору, который необходимо указывать для таких узлов, как [ARVRController] и [ARVRAnchor].
 			</description>
 		</method>
 		<method name="get_tracks_orientation" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if this device tracks orientation.
+				Возвращает [code]true[/code], если устройство отслеживает ориентацию.
 			</description>
 		</method>
 		<method name="get_tracks_position" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if this device tracks position.
+				Возвращает [code]true[/code], если устройство отслеживает положение.
 			</description>
 		</method>
 		<method name="get_transform" qualifiers="const">
 			<return type="Transform" />
 			<argument index="0" name="adjust_by_reference_frame" type="bool" />
 			<description>
-				Returns the transform combining this device's orientation and position.
+				Returns the transform combining this device's orientation and .
 			</description>
 		</method>
 		<method name="get_type" qualifiers="const">
 			<return type="int" enum="ARVRServer.TrackerType" />
 			<description>
-				Returns the tracker's type.
+				Возвращает тип трекера.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="rumble" type="float" setter="set_rumble" getter="get_rumble" default="0.0">
-			The degree to which the tracker rumbles. Ranges from [code]0.0[/code] to [code]1.0[/code] with precision [code].01[/code].
+			Степень грохота трекера. Варьируется от [code]0.0[/code] до [code]1.0[/code] с точностью [code].01[/code].
 		</member>
 	</members>
 	<constants>
 		<constant name="TRACKER_HAND_UNKNOWN" value="0" enum="TrackerHand">
-			The hand this tracker is held in is unknown or not applicable.
+			Рука, в которой находится этот трекер, неизвестна или неприменима.
 		</constant>
 		<constant name="TRACKER_LEFT_HAND" value="1" enum="TrackerHand">
-			This tracker is the left hand controller.
+			Этот трекер является левым контроллером.
 		</constant>
 		<constant name="TRACKER_RIGHT_HAND" value="2" enum="TrackerHand">
-			This tracker is the right hand controller.
+			Этот трекер является правым контроллером.
 		</constant>
 	</constants>
 </class>

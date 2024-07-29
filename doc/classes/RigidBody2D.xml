@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="RigidBody2D" inherits="PhysicsBody2D" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="RigidBody2D" inherits="PhysicsBody2D" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		A body that is controlled by the 2D physics engine.
+		Тело, управляемое физическим движком 2D.
 	</brief_description>
 	<description>
-		This node implements simulated 2D physics. You do not control a RigidBody2D directly. Instead, you apply forces to it (gravity, impulses, etc.) and the physics simulation calculates the resulting movement based on its mass, friction, and other physical properties.
-		A RigidBody2D has 4 behavior [member mode]s: Rigid, Static, Character, and Kinematic.
-		[b]Note:[/b] You should not change a RigidBody2D's [code]position[/code] or [code]linear_velocity[/code] every frame or even very often. If you need to directly affect the body's state, use [method _integrate_forces], which allows you to directly access the physics state.
-		Please also keep in mind that physics bodies manage their own transform which overwrites the ones you set. So any direct or indirect transformation (including scaling of the node or its parent) will be visible in the editor only, and immediately reset at runtime.
-		If you need to override the default physics behavior or add a transformation at runtime, you can write a custom force integration. See [member custom_integrator].
-		The center of mass is always located at the node's origin without taking into account the [CollisionShape2D] centroid offsets.
+		Этот узел реализует симуляцию 2D-физики. Вы не управляете RigidBody2D напрямую. Вместо этого вы прикладываете к нему силы (гравитацию, импульсы и т.д.), а физическая симуляция рассчитывает результирующее движение на основе его массы, трения и других физических свойств.
+		У RigidBody2D есть 4 режима поведения [member mode]: Rigid, Static, Character и Kinematic.
+		[b]Примечание:[/b] Не следует изменять [code]позицию[/code] или [code]линейную_скорость[/code] RigidBody2D каждый кадр или даже очень часто. Если вам нужно напрямую повлиять на состояние тела, используйте [метод _integrate_forces], который позволяет получить прямой доступ к состоянию физики.
+		Также не забывайте, что физические тела управляют собственными трансформациями, которые перезаписывают заданные вами. Поэтому любая прямая или косвенная трансформация (включая масштабирование узла или его родителя) будет видна только в редакторе и немедленно сбросится во время выполнения.
+		Если вам нужно переопределить поведение физики по умолчанию или добавить трансформацию во время выполнения, вы можете написать пользовательскую интеграцию силы. См. раздел [member custom_integrator].
+		Центр масс всегда находится в начале узла без учета смещения центроида [CollisionShape2D].
 	</description>
 	<tutorials>
 		<link title="2D Physics Platformer Demo">https://godotengine.org/asset-library/asset/119</link>
@@ -20,14 +20,14 @@
 			<return type="void" />
 			<argument index="0" name="state" type="Physics2DDirectBodyState" />
 			<description>
-				Allows you to read and safely modify the simulation state for the object. Use this instead of [method Node._physics_process] if you need to directly change the body's [code]position[/code] or other physics properties. By default, it works in addition to the usual physics behavior, but [member custom_integrator] allows you to disable the default behavior and write custom force integration for a body.
+				Позволяет считывать и безопасно изменять состояние симуляции для объекта. Используйте его вместо [method Node._physics_process], если вам нужно напрямую изменить [code]положение[/code] или другие физические свойства тела. По умолчанию он работает в дополнение к обычному поведению физики, но [member custom_integrator] позволяет отключить поведение по умолчанию и написать пользовательскую интеграцию силы для тела.
 			</description>
 		</method>
 		<method name="add_central_force">
 			<return type="void" />
 			<argument index="0" name="force" type="Vector2" />
 			<description>
-				Adds a constant directional force without affecting rotation.
+				Добавляет постоянную направленную силу, не влияя на вращение.
 			</description>
 		</method>
 		<method name="add_force">
@@ -35,21 +35,21 @@
 			<argument index="0" name="offset" type="Vector2" />
 			<argument index="1" name="force" type="Vector2" />
 			<description>
-				Adds a positioned force to the body. Both the force and the offset from the body origin are in global coordinates.
+				Добавляет позиционированную силу к телу. Сила и смещение от начала тела задаются в глобальных координатах.
 			</description>
 		</method>
 		<method name="add_torque">
 			<return type="void" />
 			<argument index="0" name="torque" type="float" />
 			<description>
-				Adds a constant rotational force.
+				Добавляет постоянную вращательную силу.
 			</description>
 		</method>
 		<method name="apply_central_impulse">
 			<return type="void" />
 			<argument index="0" name="impulse" type="Vector2" />
 			<description>
-				Applies a directional impulse without affecting rotation.
+				Применяет направленный импульс, не влияя на вращение.
 			</description>
 		</method>
 		<method name="apply_impulse">
@@ -57,28 +57,28 @@
 			<argument index="0" name="offset" type="Vector2" />
 			<argument index="1" name="impulse" type="Vector2" />
 			<description>
-				Applies a positioned impulse to the body. An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason it should only be used when simulating one-time impacts (use the "_force" functions otherwise). The position uses the rotation of the global coordinate system, but is centered at the object's origin.
+				Применяет позиционированный импульс к телу. Импульс не зависит от времени! Применение импульса каждый кадр приведет к возникновению силы, зависящей от кадра. По этой причине его следует использовать только при моделировании однократных ударов (в противном случае используйте функции "_force"). Позиция использует вращение глобальной системы координат, но центрируется в начале координат объекта.
 			</description>
 		</method>
 		<method name="apply_torque_impulse">
 			<return type="void" />
 			<argument index="0" name="torque" type="float" />
 			<description>
-				Applies a rotational impulse to the body.
+				Прикладывает к телу вращательный импульс.
 			</description>
 		</method>
 		<method name="get_colliding_bodies" qualifiers="const">
 			<return type="Array" />
 			<description>
-				Returns a list of the bodies colliding with this one. Requires [member contact_monitor] to be set to [code]true[/code] and [member contacts_reported] to be set high enough to detect all the collisions.
-				[b]Note:[/b] The result of this test is not immediate after moving objects. For performance, list of collisions is updated once per frame and before the physics step. Consider using signals instead.
+				Возвращает список тел, столкнувшихся с данным телом. Требуется, чтобы [member contact_monitor] был установлен в [code]true[/code] и [member contacts_reported] был установлен достаточно высоко, чтобы обнаружить все столкновения.
+				[b]Примечание:[/b] Результат этого теста не будет немедленным после перемещения объектов. Для повышения производительности список столкновений обновляется один раз за кадр и перед шагом физики. Рассмотрите возможность использования сигналов вместо этого.
 			</description>
 		</method>
 		<method name="set_axis_velocity">
 			<return type="void" />
 			<argument index="0" name="axis_velocity" type="Vector2" />
 			<description>
-				Sets the body's velocity on the given axis. The velocity in the given vector axis will be set as the given vector length. This is useful for jumping behavior.
+				Устанавливает скорость тела по заданной оси. Скорость по заданной оси вектора будет установлена как заданная длина вектора. Это полезно для поведения при прыжках.
 			</description>
 		</method>
 		<method name="test_motion">
@@ -88,93 +88,93 @@
 			<argument index="2" name="margin" type="float" default="0.08" />
 			<argument index="3" name="result" type="Physics2DTestMotionResult" default="null" />
 			<description>
-				Returns [code]true[/code] if a collision would result from moving in the given vector. [code]margin[/code] increases the size of the shapes involved in the collision detection, and [code]result[/code] is an object of type [Physics2DTestMotionResult], which contains additional information about the collision (should there be one).
+				Возвращает [code]true[/code], если движение по заданному вектору приведет к столкновению. [code]margin[/code] увеличивает размер фигур, участвующих в обнаружении столкновения, а [code]result[/code] - это объект типа [Physics2DTestMotionResult], который содержит дополнительную информацию о столкновении (если таковое произошло).
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="angular_damp" type="float" setter="set_angular_damp" getter="get_angular_damp" default="-1.0">
-			Damps the body's [member angular_velocity]. If [code]-1[/code], the body will use the [b]Default Angular Damp[/b] defined in [b]Project &gt; Project Settings &gt; Physics &gt; 2d[/b]. If greater than [code]-1[/code] it will be added to the default project value.
-			See [member ProjectSettings.physics/2d/default_angular_damp] for more details about damping.
+			Демпфирует угловую скорость [member angular_velocity] тела. Если [code]-1[/code], тело будет использовать [b]Угловую демпфирующую силу по умолчанию[/b], определенную в [b]Project &gt; Project Settings &gt; Physics &gt; 2d[/b]. Если значение больше, чем [code]-1[/code], оно будет добавлено к значению проекта по умолчанию.
+			Дополнительные сведения о демпфировании см. в [member ProjectSettings.physics/2d/default_angular_damp].
 		</member>
 		<member name="angular_velocity" type="float" setter="set_angular_velocity" getter="get_angular_velocity" default="0.0">
-			The body's rotational velocity in [i]radians[/i] per second.
+			Скорость вращения тела в [i]радианах[/i] в секунду.
 		</member>
 		<member name="applied_force" type="Vector2" setter="set_applied_force" getter="get_applied_force" default="Vector2( 0, 0 )">
-			The body's total applied force.
+			Суммарная приложенная сила тела.
 		</member>
 		<member name="applied_torque" type="float" setter="set_applied_torque" getter="get_applied_torque" default="0.0">
-			The body's total applied torque.
+			Суммарный приложенный момент тела.
 		</member>
 		<member name="bounce" type="float" setter="set_bounce" getter="get_bounce">
-			The body's bounciness. Values range from [code]0[/code] (no bounce) to [code]1[/code] (full bounciness).
-			Deprecated, use [member PhysicsMaterial.bounce] instead via [member physics_material_override].
+			Подпрыгиваемость тела. Значения варьируются от [code]0[/code] (отсутствие отскока) до [code]1[/code] (полный отскок).
+			Утратило силу, вместо него используйте [member PhysicsMaterial.bounce] через [member physics_material_override].
 		</member>
 		<member name="can_sleep" type="bool" setter="set_can_sleep" getter="is_able_to_sleep" default="true">
-			If [code]true[/code], the body can enter sleep mode when there is no movement. See [member sleeping].
-			[b]Note:[/b] A RigidBody2D will never enter sleep mode automatically if its [member mode] is [constant MODE_CHARACTER]. It can still be put to sleep manually by setting its [member sleeping] property to [code]true[/code].
+			Если [code]true[/code], тело может перейти в режим сна, когда нет движения. См. раздел [member sleeping].
+			[b]Примечание:[/b] RigidBody2D никогда не перейдет в спящий режим автоматически, если его [member mode] - [constant MODE_CHARACTER]. Его можно перевести в спящий режим вручную, установив свойство [member sleeping] в [code]true[/code].
 		</member>
 		<member name="contact_monitor" type="bool" setter="set_contact_monitor" getter="is_contact_monitor_enabled" default="false">
-			If [code]true[/code], the body will emit signals when it collides with another RigidBody2D. See also [member contacts_reported].
+			Если [code]true[/code], тело будет издавать сигналы при столкновении с другим RigidBody2D. См. также [member contacts_reported].
 		</member>
 		<member name="contacts_reported" type="int" setter="set_max_contacts_reported" getter="get_max_contacts_reported" default="0">
-			The maximum number of contacts that will be recorded. Requires [member contact_monitor] to be set to [code]true[/code].
-			[b]Note:[/b] The number of contacts is different from the number of collisions. Collisions between parallel edges will result in two contacts (one at each end).
+			Максимальное количество контактов, которые будут записаны. Требуется, чтобы для параметра [member contact_monitor] было установлено значение [code]true[/code].
+			[b]Примечание:[/b] Количество контактов отличается от количества столкновений. Столкновения между параллельными гранями приведут к двум контактам (по одному на каждом конце).
 		</member>
 		<member name="continuous_cd" type="int" setter="set_continuous_collision_detection_mode" getter="get_continuous_collision_detection_mode" enum="RigidBody2D.CCDMode" default="0">
-			Continuous collision detection mode.
-			Continuous collision detection tries to predict where a moving body will collide instead of moving it and correcting its movement after collision. Continuous collision detection is slower, but more precise and misses fewer collisions with small, fast-moving objects. Raycasting and shapecasting methods are available. See [enum CCDMode] for details.
+			Режим непрерывного обнаружения столкновений.
+			Непрерывное обнаружение столкновений пытается предсказать место столкновения движущегося тела, вместо того чтобы перемещать его и корректировать его движение после столкновения. Непрерывное обнаружение столкновений происходит медленнее, но более точно и пропускает меньше столкновений с маленькими и быстро движущимися объектами. Доступны методы Raycasting и Shapecasting. Подробности см. в [enum CCDMode].
 		</member>
 		<member name="custom_integrator" type="bool" setter="set_use_custom_integrator" getter="is_using_custom_integrator" default="false">
-			If [code]true[/code], internal force integration is disabled for this body. Aside from collision response, the body will only move as determined by the [method _integrate_forces] function.
+			Если [code]true[/code], интеграция внутренних сил для этого тела отключена. Кроме реакции на столкновения, тело будет двигаться только так, как определено функцией [method _integrate_forces].
 		</member>
 		<member name="friction" type="float" setter="set_friction" getter="get_friction">
-			The body's friction. Values range from [code]0[/code] (frictionless) to [code]1[/code] (maximum friction).
-			Deprecated, use [member PhysicsMaterial.friction] instead via [member physics_material_override].
+			Трение тела. Значения варьируются от [code]0[/code] (без трения) до [code]1[/code] (максимальное трение).
+			Утратило силу, вместо него используйте [member PhysicsMaterial.friction] через [member physics_material_override].
 		</member>
 		<member name="gravity_scale" type="float" setter="set_gravity_scale" getter="get_gravity_scale" default="1.0">
-			Multiplies the gravity applied to the body. The body's gravity is calculated from the [b]Default Gravity[/b] value in [b]Project &gt; Project Settings &gt; Physics &gt; 2d[/b] and/or any additional gravity vector applied by [Area2D]s.
+			Умножает силу тяжести, приложенную к телу. Гравитация тела вычисляется из значения [b]Default Gravity[/b] в [b]Project &gt; Project Settings &gt; Physics &gt; 2d[/b] и/или любого дополнительного вектора гравитации, применяемого [Area2D]s.
 		</member>
 		<member name="inertia" type="float" setter="set_inertia" getter="get_inertia">
-			The body's moment of inertia. This is like mass, but for rotation: it determines how much torque it takes to rotate the body. The moment of inertia is usually computed automatically from the mass and the shapes, but this function allows you to set a custom value. Set 0 inertia to return to automatically computing it.
+			Момент инерции тела. Это как масса, но для вращения: он определяет, какой крутящий момент требуется для вращения тела. Момент инерции обычно вычисляется автоматически из массы и формы, но эта функция позволяет задать собственное значение. Чтобы вернуться к автоматическому вычислению момента инерции, установите 0.
 		</member>
 		<member name="linear_damp" type="float" setter="set_linear_damp" getter="get_linear_damp" default="-1.0">
-			Damps the body's [member linear_velocity]. If [code]-1[/code], the body will use the [b]Default Linear Damp[/b] in [b]Project &gt; Project Settings &gt; Physics &gt; 2d[/b]. If greater than [code]-1[/code] it will be added to the default project value.
-			See [member ProjectSettings.physics/2d/default_linear_damp] for more details about damping.
+			Демпфирует [member linear_velocity] тела. Если [code]-1[/code], тело будет использовать [b]Default Linear Damp[/b] в [b]Project &gt; Project Settings &gt; Physics &gt; 2d[/b]. Если значение больше, чем [code]-1[/code], оно будет добавлено к значению проекта по умолчанию.
+			Дополнительные сведения о демпфировании см. в [member ProjectSettings.physics/2d/default_linear_damp].
 		</member>
 		<member name="linear_velocity" type="Vector2" setter="set_linear_velocity" getter="get_linear_velocity" default="Vector2( 0, 0 )">
-			The body's linear velocity in pixels per second. Can be used sporadically, but [b]don't set this every frame[/b], because physics may run in another thread and runs at a different granularity. Use [method _integrate_forces] as your process loop for precise control of the body state.
+			Линейная скорость тела в пикселях в секунду. Может использоваться эпизодически, но [b]не устанавливайте это значение каждый кадр[/b], потому что физика может выполняться в другом потоке и работать на другой гранулярности. Используйте [метод _integrate_forces] в качестве цикла процесса для точного контроля состояния тела.
 		</member>
 		<member name="mass" type="float" setter="set_mass" getter="get_mass" default="1.0">
-			The body's mass.
+			Масса тела.
 		</member>
 		<member name="mode" type="int" setter="set_mode" getter="get_mode" enum="RigidBody2D.Mode" default="0">
-			The body's mode. See [enum Mode] for possible values.
+			Режим тела. Возможные значения см. в [enum Mode].
 		</member>
 		<member name="physics_material_override" type="PhysicsMaterial" setter="set_physics_material_override" getter="get_physics_material_override">
-			The physics material override for the body.
-			If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.
+			Переопределение материала физики для тела.
+			Если этому свойству присвоен материал, то он будет использоваться вместо любого другого физического материала, например, унаследованного.
 		</member>
 		<member name="sleeping" type="bool" setter="set_sleeping" getter="is_sleeping" default="false">
-			If [code]true[/code], the body will not move and will not calculate forces until woken up by another body through, for example, a collision, or by using the [method apply_impulse] or [method add_force] methods.
+			Если [code]true[/code], тело не будет двигаться и рассчитывать силы, пока его не разбудит другое тело, например, в результате столкновения или с помощью методов [method apply_impulse] или [method add_force].
 		</member>
 		<member name="weight" type="float" setter="set_weight" getter="get_weight" default="9.8">
-			The body's weight based on its mass and the [b]Default Gravity[/b] value in [b]Project &gt; Project Settings &gt; Physics &gt; 2d[/b].
+			Вес тела зависит от его массы и значения [b]Default Gravity[/b] в [b]Project &gt; Project Settings &gt; Physics &gt; 2d[/b].
 		</member>
 	</members>
 	<signals>
 		<signal name="body_entered">
 			<argument index="0" name="body" type="Node" />
 			<description>
-				Emitted when a collision with another [PhysicsBody2D] or [TileMap] occurs. Requires [member contact_monitor] to be set to [code]true[/code] and [member contacts_reported] to be set high enough to detect all the collisions. [TileMap]s are detected if the [TileSet] has Collision [Shape2D]s.
-				[code]body[/code] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].
+				Выдается при столкновении с другим [PhysicsBody2D] или [TileMap]. Требуется, чтобы [member contact_monitor] был установлен в [code]true[/code] и [member contacts_reported] был достаточно высок, чтобы обнаружить все столкновения. [TileMap] обнаруживаются, если в [TileSet] есть [Shape2D]-коллизии.
+				[code]body[/code] узел [Node], если он существует в дереве, другого [PhysicsBody2D] или [TileMap].
 			</description>
 		</signal>
 		<signal name="body_exited">
 			<argument index="0" name="body" type="Node" />
 			<description>
-				Emitted when the collision with another [PhysicsBody2D] or [TileMap] ends. Requires [member contact_monitor] to be set to [code]true[/code] and [member contacts_reported] to be set high enough to detect all the collisions. [TileMap]s are detected if the [TileSet] has Collision [Shape2D]s.
-				[code]body[/code] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].
+				Выдается, когда заканчивается столкновение с другим [PhysicsBody2D] или [TileMap]. Требуется, чтобы [member contact_monitor] был установлен в [code]true[/code], а [member contacts_reported] был достаточно высок, чтобы обнаружить все столкновения. [TileMap] обнаруживаются, если в [TileSet] есть [Shape2D]-коллизии.
+				[code]body[/code] узел [Node], если он существует в дереве, другого [PhysicsBody2D] или [TileMap].
 			</description>
 		</signal>
 		<signal name="body_shape_entered">
@@ -183,19 +183,11 @@
 			<argument index="2" name="body_shape_index" type="int" />
 			<argument index="3" name="local_shape_index" type="int" />
 			<description>
-				Emitted when one of this RigidBody2D's [Shape2D]s collides with another [PhysicsBody2D] or [TileMap]'s [Shape2D]s. Requires [member contact_monitor] to be set to [code]true[/code] and [member contacts_reported] to be set high enough to detect all the collisions. [TileMap]s are detected if the [TileSet] has Collision [Shape2D]s.
-				[code]body_rid[/code] the [RID] of the other [PhysicsBody2D] or [TileSet]'s [CollisionObject2D] used by the [Physics2DServer].
-				[code]body[/code] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].
-				[code]body_shape_index[/code] the index of the [Shape2D] of the other [PhysicsBody2D] or [TileMap].
-				[code]local_shape_index[/code] the index of the [Shape2D] of this RigidBody2D.
-				[b]Example of getting the[/b] [CollisionShape2D] [b]node from the shape index:[/b]
-				[codeblock]
-				var body_shape_owner = body.shape_find_owner(body_shape_index)
-				var body_shape_node = body.shape_owner_get_owner(body_shape_owner)
-
-				var local_shape_owner = shape_find_owner(local_shape_index)
-				var local_shape_node = shape_owner_get_owner(local_shape_owner)
-				[/codeblock]
+				Испускается, когда один из [Shape2D] этого RigidBody2D сталкивается с другим [PhysicsBody2D] или [Shape2D] [TileMap]. Требуется, чтобы [member contact_monitor] был установлен в [code]true[/code] и [member contacts_reported] был установлен достаточно высоко, чтобы обнаружить все столкновения. Коллизии [TileMap] обнаруживаются, если в [TileSet] есть коллизии [Shape2D].
+				[code]body_rid[/code] [RID] другого [PhysicsBody2D] или [CollisionObject2D] набора [TileSet], используемого [Physics2DServer].
+				[code]body[/code] узел [Node], если он существует в дереве, другого [PhysicsBody2D] или [TileMap].
+				[code]body_shape_index[/code] индекс [Shape2D] другого [PhysicsBody2D] или [TileMap], используемого [Physics2DServer]. Получите узел [CollisionShape2D] с помощью [code]body.shape_owner_get_owner(body_shape_index)[/code].
+				[code]local_shape_index[/code] индекс [Shape2D] этого RigidBody2D, используемый [Physics2DServer]. Получите узел [CollisionShape2D] с помощью [code]self.shape_owner_get_owner(local_shape_index)[/code].
 			</description>
 		</signal>
 		<signal name="body_shape_exited">
@@ -204,42 +196,41 @@
 			<argument index="2" name="body_shape_index" type="int" />
 			<argument index="3" name="local_shape_index" type="int" />
 			<description>
-				Emitted when the collision between one of this RigidBody2D's [Shape2D]s and another [PhysicsBody2D] or [TileMap]'s [Shape2D]s ends. Requires [member contact_monitor] to be set to [code]true[/code] and [member contacts_reported] to be set high enough to detect all the collisions. [TileMap]s are detected if the [TileSet] has Collision [Shape2D]s.
-				[code]body_rid[/code] the [RID] of the other [PhysicsBody2D] or [TileSet]'s [CollisionObject2D] used by the [Physics2DServer].
-				[code]body[/code] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].
-				[code]body_shape_index[/code] the index of the [Shape2D] of the other [PhysicsBody2D] or [TileMap].
-				[code]local_shape_index[/code] the index of the [Shape2D] of this RigidBody2D.
-				See also [signal body_shape_entered].
+				Испускается, когда заканчивается столкновение между одним из [Shape2D] этого RigidBody2D и другим [PhysicsBody2D] или [Shape2D] [TileMap]. Требуется, чтобы [member contact_monitor] был установлен в [code]true[/code], а [member contacts_reported] был установлен достаточно высоко, чтобы обнаружить все столкновения. Коллизии [TileMap] обнаруживаются, если в [TileSet] есть коллизии [Shape2D].
+				[code]body_rid[/code] [RID] другого [PhysicsBody2D] или [CollisionObject2D] набора [TileSet], используемого [Physics2DServer].
+				[code]body[/code] узел [Node], если он существует в дереве, другого [PhysicsBody2D] или [TileMap].
+				[code]body_shape_index[/code] индекс [Shape2D] другого [PhysicsBody2D] или [TileMap], используемого [Physics2DServer]. Получите узел [CollisionShape2D] с помощью [code]body.shape_owner_get_owner(body_shape_index)[/code].
+				[code]local_shape_index[/code] индекс [Shape2D] этого RigidBody2D, используемый [Physics2DServer]. Получите узел [CollisionShape2D] с помощью [code]self.shape_owner_get_owner(local_shape_index)[/code].
 			</description>
 		</signal>
 		<signal name="sleeping_state_changed">
 			<description>
-				Emitted when the physics engine changes the body's sleeping state.
-				[b]Note:[/b] Changing the value [member sleeping] will not trigger this signal. It is only emitted if the sleeping state is changed by the physics engine or [code]emit_signal("sleeping_state_changed")[/code] is used.
+				Выдается, когда физический движок изменяет состояние сна тела.
+				[b]Примечание:[/b] Изменение значения [member sleeping] не вызовет этот сигнал. Он подается только в том случае, если физический движок изменяет состояние сна или используется [code]emit_signal("sleeping_state_changed")[/code].
 			</description>
 		</signal>
 	</signals>
 	<constants>
 		<constant name="MODE_RIGID" value="0" enum="Mode">
-			Rigid mode. The body behaves as a physical object. It collides with other bodies and responds to forces applied to it. This is the default mode.
+			Жесткий режим. Тело ведет себя как физический объект. Оно сталкивается с другими телами и реагирует на приложенные к нему силы. Это режим по умолчанию.
 		</constant>
 		<constant name="MODE_STATIC" value="1" enum="Mode">
-			Static mode. The body behaves like a [StaticBody2D] and does not move.
+			Статический режим. Тело ведет себя как [StaticBody2D] и не двигается.
 		</constant>
 		<constant name="MODE_CHARACTER" value="2" enum="Mode">
-			Character mode. Similar to [constant MODE_RIGID], but the body can not rotate.
+			Режим персонажа. Аналогичен [constant MODE_RIGID], но тело не может вращаться.
 		</constant>
 		<constant name="MODE_KINEMATIC" value="3" enum="Mode">
 			Kinematic mode. The body behaves like a [KinematicBody2D], and must be moved by code.
 		</constant>
 		<constant name="CCD_MODE_DISABLED" value="0" enum="CCDMode">
-			Continuous collision detection disabled. This is the fastest way to detect body collisions, but can miss small, fast-moving objects.
+			Непрерывное обнаружение столкновений отключено. Это самый быстрый способ обнаружения столкновений тел, но он может пропустить небольшие, быстро движущиеся объекты.
 		</constant>
 		<constant name="CCD_MODE_CAST_RAY" value="1" enum="CCDMode">
-			Continuous collision detection enabled using raycasting. This is faster than shapecasting but less precise.
+			Непрерывное обнаружение столкновений включено с помощью лучевого кастинга. Это быстрее, чем шейп-кастинг, но менее точно.
 		</constant>
 		<constant name="CCD_MODE_CAST_SHAPE" value="2" enum="CCDMode">
-			Continuous collision detection enabled using shapecasting. This is the slowest CCD method and the most precise.
+			Непрерывное обнаружение столкновений с помощью шейп-костинга. Это самый медленный метод CCD и самый точный.
 		</constant>
 	</constants>
 </class>

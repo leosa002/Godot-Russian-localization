@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="AtlasTexture" inherits="Texture" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="AtlasTexture" inherits="Texture" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Crops out one part of a texture, such as a texture from a texture atlas.
+		Обрезает одну часть текстуры, например, текстуру из атласа текстур.
 	</brief_description>
 	<description>
-		[Texture] resource that crops out one part of the [member atlas] texture, defined by [member region]. The main use case is cropping out textures from a texture atlas, which is a big texture file that packs multiple smaller textures. Consists of a [Texture] for the [member atlas], a [member region] that defines the area of [member atlas] to use, and a [member margin] that defines the border width.
-		[AtlasTexture] cannot be used in an [AnimatedTexture], cannot be tiled in nodes such as [TextureRect], and does not work properly if used inside of other [AtlasTexture] resources. Multiple [AtlasTexture] resources can be used to crop multiple textures from the atlas. Using a texture atlas helps to optimize video memory costs and render calls compared to using multiple small files.
-		[b]Note:[/b] AtlasTextures don't support repetition. The [constant Texture.FLAG_REPEAT] and [constant Texture.FLAG_MIRRORED_REPEAT] flags are ignored when using an AtlasTexture.
+		Ресурс [Texture], обрезающий одну часть текстуры [member atlas], определенной [member region]. Основное применение - вырезание текстур из атласа текстур, который представляет собой большой файл текстур, содержащий несколько текстур меньшего размера. Состоит из [Texture] для [member atlas], [member region], определяющего область [member atlas] для использования, и [member margin], определяющего ширину границы.
+		[AtlasTexture] не может быть использован в [AnimatedTexture], не может быть плиточным в узлах, таких как [TextureRect], и не работает должным образом, если используется внутри других ресурсов [AtlasTexture]. Несколько ресурсов [AtlasTexture] могут быть использованы для обрезки нескольких текстур из атласа. Использование атласа текстур позволяет оптимизировать затраты видеопамяти и вызовы рендеринга по сравнению с использованием нескольких небольших файлов.
+		[b]Примечание:[/b] Текстуры AtlasTexture не поддерживают повторения. Флаги [constant Texture.FLAG_REPEAT] и [constant Texture.FLAG_MIRRORED_REPEAT] игнорируются при использовании AtlasTexture.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -14,17 +14,17 @@
 	</methods>
 	<members>
 		<member name="atlas" type="Texture" setter="set_atlas" getter="get_atlas">
-			The texture that contains the atlas. Can be any [Texture] subtype.
+			Текстура, содержащая атлас. Может быть любым подтипом [Texture].
 		</member>
 		<member name="filter_clip" type="bool" setter="set_filter_clip" getter="has_filter_clip" default="false">
-			If [code]true[/code], clips the area outside of the region to avoid bleeding of the surrounding texture pixels.
+			Если [code]true[/code], обрезается область за пределами региона, чтобы избежать растекания окружающих пикселей текстуры.
 		</member>
 		<member name="flags" type="int" setter="set_flags" getter="get_flags" overrides="Texture" default="0" />
 		<member name="margin" type="Rect2" setter="set_margin" getter="get_margin" default="Rect2( 0, 0, 0, 0 )">
-			The margin around the region. The [Rect2]'s [member Rect2.size] parameter ("w" and "h" in the editor) resizes the texture so it fits within the margin.
+			Поле вокруг области. Параметр [Rect2] [member Rect2.size] ("w" и "h" в редакторе) изменяет размер текстуры так, чтобы она помещалась в пределах поля.
 		</member>
 		<member name="region" type="Rect2" setter="set_region" getter="get_region" default="Rect2( 0, 0, 0, 0 )">
-			The AtlasTexture's used region.
+			Используемый регион AtlasTexture.
 		</member>
 	</members>
 	<constants>

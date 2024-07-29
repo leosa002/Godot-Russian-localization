@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="AnimationNodeBlendTree" inherits="AnimationRootNode" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="AnimationNodeBlendTree" inherits="AnimationRootNode" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		[AnimationTree] node resource that contains many blend type nodes.
+		Ресурс узла [AnimationTree], содержащий множество узлов типа blend.
 	</brief_description>
 	<description>
-		This node may contain a sub-tree of any other blend type nodes, such as [AnimationNodeTransition], [AnimationNodeBlend2], [AnimationNodeBlend3], [AnimationNodeOneShot], etc. This is one of the most commonly used roots.
-		An [AnimationNodeOutput] node named [code]output[/code] is created by default.
+		Этот узел может содержать поддерево любых других узлов типа blend, таких как [AnimationNodeTransition], [AnimationNodeBlend2], [AnimationNodeBlend3], [AnimationNodeOneShot] и т.д. Это один из наиболее часто используемых корней.
+		По умолчанию создается узел [AnimationNodeOutput] с именем [code]output[/code].
 	</description>
 	<tutorials>
 		<link>$DOCS_URL/tutorials/animation/animation_tree.html</link>
@@ -17,7 +17,7 @@
 			<argument index="1" name="node" type="AnimationNode" />
 			<argument index="2" name="position" type="Vector2" default="Vector2( 0, 0 )" />
 			<description>
-				Adds an [AnimationNode] at the given [code]position[/code]. The [code]name[/code] is used to identify the created sub-node later.
+				Добавляет узел [AnimationNode] в заданную [code]position[/code]. Имя [code]name[/code] используется для последующей идентификации созданного подузла.
 			</description>
 		</method>
 		<method name="connect_node">
@@ -26,7 +26,7 @@
 			<argument index="1" name="input_index" type="int" />
 			<argument index="2" name="output_node" type="String" />
 			<description>
-				Connects the output of an [AnimationNode] as input for another [AnimationNode], at the input port specified by [code]input_index[/code].
+				Подключает выход [AnimationNode] в качестве входа для другого [AnimationNode], на входном порту, указанном [code]input_index[/code].
 			</description>
 		</method>
 		<method name="disconnect_node">
@@ -34,35 +34,35 @@
 			<argument index="0" name="input_node" type="String" />
 			<argument index="1" name="input_index" type="int" />
 			<description>
-				Disconnects the node connected to the specified input.
+				Отключает узел, подключенный к указанному входу.
 			</description>
 		</method>
 		<method name="get_node" qualifiers="const">
 			<return type="AnimationNode" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Returns the sub-node with the specified [code]name[/code].
+				Возвращает вложенный узел с указанным [code]name[/code].
 			</description>
 		</method>
 		<method name="get_node_position" qualifiers="const">
 			<return type="Vector2" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Returns the position of the sub-node with the specified [code]name[/code].
+				Возвращает позицию вложенного узла с указанным [code]name[/code].
 			</description>
 		</method>
 		<method name="has_node" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Returns [code]true[/code] if a sub-node with specified [code]name[/code] exists.
+				Возвращает [code]true[/code], если вложенный узел с указанным [code]name[/code] существует.
 			</description>
 		</method>
 		<method name="remove_node">
 			<return type="void" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Removes a sub-node.
+				Удаляет вложенный узел.
 			</description>
 		</method>
 		<method name="rename_node">
@@ -70,7 +70,7 @@
 			<argument index="0" name="name" type="String" />
 			<argument index="1" name="new_name" type="String" />
 			<description>
-				Changes the name of a sub-node.
+				Изменяет имя подузла.
 			</description>
 		</method>
 		<method name="set_node_position">
@@ -78,33 +78,33 @@
 			<argument index="0" name="name" type="String" />
 			<argument index="1" name="position" type="Vector2" />
 			<description>
-				Modifies the position of a sub-node.
+				Изменяет положение подузла.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="graph_offset" type="Vector2" setter="set_graph_offset" getter="get_graph_offset" default="Vector2( 0, 0 )">
-			The global offset of all sub-nodes.
+			Глобальное смещение всех подузлов.
 		</member>
 	</members>
 	<constants>
 		<constant name="CONNECTION_OK" value="0">
-			The connection was successful.
+			Соединение прошло успешно.
 		</constant>
 		<constant name="CONNECTION_ERROR_NO_INPUT" value="1">
-			The input node is [code]null[/code].
+			Входным узлом является [code]null[/code].
 		</constant>
 		<constant name="CONNECTION_ERROR_NO_INPUT_INDEX" value="2">
 			The specified input port is out of range.
 		</constant>
 		<constant name="CONNECTION_ERROR_NO_OUTPUT" value="3">
-			The output node is [code]null[/code].
+			Выходным узлом является [code]null[/code].
 		</constant>
 		<constant name="CONNECTION_ERROR_SAME_NODE" value="4">
-			Input and output nodes are the same.
+			Входные и выходные узлы одинаковы.
 		</constant>
 		<constant name="CONNECTION_ERROR_CONNECTION_EXISTS" value="5">
-			The specified connection already exists.
+			Указанное соединение уже существует.
 		</constant>
 	</constants>
 </class>

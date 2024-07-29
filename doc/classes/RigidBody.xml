@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="RigidBody" inherits="PhysicsBody" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="RigidBody" inherits="PhysicsBody" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Physics Body whose position is determined through physics simulation in 3D space.
+		Физическое тело, положение которого определяется с помощью физического моделирования в 3D-пространстве.
 	</brief_description>
 	<description>
-		This is the node that implements full 3D physics. This means that you do not control a RigidBody directly. Instead, you can apply forces to it (gravity, impulses, etc.), and the physics simulation will calculate the resulting movement, collision, bouncing, rotating, etc.
-		A RigidBody has 4 behavior [member mode]s: Rigid, Static, Character, and Kinematic.
-		[b]Note:[/b] Don't change a RigidBody's position every frame or very often. Sporadic changes work fine, but physics runs at a different granularity (fixed Hz) than usual rendering (process callback) and maybe even in a separate thread, so changing this from a process loop may result in strange behavior. If you need to directly affect the body's state, use [method _integrate_forces], which allows you to directly access the physics state.
-		If you need to override the default physics behavior, you can write a custom force integration function. See [member custom_integrator].
-		With Bullet physics (the default), the center of mass is the RigidBody3D center. With GodotPhysics, the center of mass is the average of the [CollisionShape] centers.
-		[b]Warning:[/b] With a non-uniform scale this node will probably not function as expected. Please make sure to keep its scale uniform (i.e. the same on all axes), and change the size(s) of its collision shape(s) instead.
+		Это узел, который реализует полную 3D-физику. Это означает, что вы не управляете RigidBody напрямую. Вместо этого вы можете прикладывать к нему силы (гравитацию, импульсы и т. д.), а физическая симуляция будет рассчитывать результирующее движение, столкновение, отскок, вращение и т. д.
+
+		У RigidBody есть 4 режима поведения [member mode]: Rigid, Static, Character и Kinematic.
+
+		[b]Примечание:[/b] Не меняйте положение RigidBody каждый кадр или очень часто. Спорадические изменения работают хорошо, но физика работает на другой гранулярности (фиксированная частота), чем обычный рендеринг (обратный вызов процесса), и, возможно, даже в отдельном потоке, поэтому изменение этого параметра из цикла процесса может привести к странному поведению. Если вам нужно напрямую влиять на состояние тела, используйте [метод _integrate_forces], который позволяет напрямую обращаться к состоянию физики.
+
+		Если вам нужно переопределить поведение физики по умолчанию, вы можете написать собственную функцию интегрирования сил. Смотрите [member custom_integrator].
+
+		В физике Bullet (по умолчанию) центром масс является центр RigidBody3D. В GodotPhysics центром масс является среднее значение центров [CollisionShape].
+
+		[b]Предупреждение:[/b] При неравномерном масштабе этот узел, вероятно, будет работать не так, как ожидалось. Пожалуйста, убедитесь, что его масштаб равномерен (т.е. одинаков по всем осям), и вместо этого измените размер (размеры) его формы (форм) столкновения.
 	</description>
 	<tutorials>
 		<link title="Physics introduction">$DOCS_URL/tutorials/physics/physics_introduction.html</link>
@@ -21,15 +26,15 @@
 			<return type="void" />
 			<argument index="0" name="state" type="PhysicsDirectBodyState" />
 			<description>
-				Called during physics processing, allowing you to read and safely modify the simulation state for the object. By default, it works in addition to the usual physics behavior, but the [member custom_integrator] property allows you to disable the default behavior and do fully custom force integration for a body.
+				Вызывается во время обработки физики, позволяя вам читать и безопасно изменять состояние моделирования для объекта. По умолчанию он работает в дополнение к обычному поведению физики, но свойство [member custom_integrator] позволяет отключить поведение по умолчанию и сделать полностью пользовательскую интеграцию силы для тела.
 			</description>
 		</method>
 		<method name="add_central_force">
 			<return type="void" />
 			<argument index="0" name="force" type="Vector3" />
 			<description>
-				Adds a constant directional force (i.e. acceleration) without affecting rotation.
-				This is equivalent to [code]add_force(force, Vector3(0,0,0))[/code].
+				Добавляет постоянную направленную силу (т.е. ускорение), не влияя на вращение.
+				Это эквивалентно [code]add_force(force, Vector3(0,0,0))[/code].
 			</description>
 		</method>
 		<method name="add_force">
@@ -37,23 +42,23 @@
 			<argument index="0" name="force" type="Vector3" />
 			<argument index="1" name="position" type="Vector3" />
 			<description>
-				Adds a constant directional force (i.e. acceleration).
-				The position uses the rotation of the global coordinate system, but is centered at the object's origin.
+				Добавляет постоянную направленную силу (т. е. ускорение).
+				Позиция использует вращение глобальной системы координат, но центрируется в начале координат объекта.
 			</description>
 		</method>
 		<method name="add_torque">
 			<return type="void" />
 			<argument index="0" name="torque" type="Vector3" />
 			<description>
-				Adds a constant rotational force (i.e. a motor) without affecting position.
+				Добавляет постоянную вращательную силу (например, мотор), не влияя на положение.
 			</description>
 		</method>
 		<method name="apply_central_impulse">
 			<return type="void" />
 			<argument index="0" name="impulse" type="Vector3" />
 			<description>
-				Applies a directional impulse without affecting rotation.
-				This is equivalent to [code]apply_impulse(Vector3(0,0,0), impulse)[/code].
+				Применяет направленный импульс, не влияя на вращение.
+				Это эквивалентно [code]apply_impulse(Vector3(0,0,0), impulse)[/code].
 			</description>
 		</method>
 		<method name="apply_impulse">
@@ -61,34 +66,34 @@
 			<argument index="0" name="position" type="Vector3" />
 			<argument index="1" name="impulse" type="Vector3" />
 			<description>
-				Applies a positioned impulse to the body. An impulse is time independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason it should only be used when simulating one-time impacts. The position uses the rotation of the global coordinate system, but is centered at the object's origin.
+				Применяет позиционированный импульс к телу. Импульс не зависит от времени! Применение импульса каждый кадр приведет к возникновению силы, зависящей от кадра. По этой причине его следует использовать только при моделировании однократных ударов. Позиция использует вращение глобальной системы координат, но центрируется в начале координат объекта.
 			</description>
 		</method>
 		<method name="apply_torque_impulse">
 			<return type="void" />
 			<argument index="0" name="impulse" type="Vector3" />
 			<description>
-				Applies a torque impulse which will be affected by the body mass and shape. This will rotate the body around the [code]impulse[/code] vector passed.
+				Применяет импульс крутящего момента, на который влияет масса и форма тела. Это повернет тело вокруг вектора [code]импульса[/code].
 			</description>
 		</method>
 		<method name="get_axis_lock" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="axis" type="int" enum="PhysicsServer.BodyAxis" />
 			<description>
-				Returns [code]true[/code] if the specified linear or rotational axis is locked.
+				Возвращает [code]true[/code], если указанная линейная или вращательная ось заблокирована.
 			</description>
 		</method>
 		<method name="get_colliding_bodies" qualifiers="const">
 			<return type="Array" />
 			<description>
-				Returns a list of the bodies colliding with this one. Requires [member contact_monitor] to be set to [code]true[/code] and [member contacts_reported] to be set high enough to detect all the collisions.
-				[b]Note:[/b] The result of this test is not immediate after moving objects. For performance, list of collisions is updated once per frame and before the physics step. Consider using signals instead.
+				Возвращает список тел, столкнувшихся с данным телом. Требуется, чтобы [member contact_monitor] был установлен в [code]true[/code] и [member contacts_reported] был установлен достаточно высоко, чтобы обнаружить все столкновения.
+				[b]Примечание:[/b] Результат этого теста не будет немедленным после перемещения объектов. Для повышения производительности список столкновений обновляется один раз за кадр и перед шагом физики. Рассмотрите возможность использования сигналов вместо этого.
 			</description>
 		</method>
 		<method name="get_inverse_inertia_tensor">
 			<return type="Basis" />
 			<description>
-				Returns the inverse inertia tensor basis. This is used to calculate the angular acceleration resulting from a torque applied to the RigidBody.
+				Возвращает обратный базис тензора инерции. Это используется для расчета углового ускорения, возникающего в результате крутящего момента, приложенного к RigidBody.
 			</description>
 		</method>
 		<method name="set_axis_lock">
@@ -96,109 +101,114 @@
 			<argument index="0" name="axis" type="int" enum="PhysicsServer.BodyAxis" />
 			<argument index="1" name="lock" type="bool" />
 			<description>
-				Locks the specified linear or rotational axis.
+				Фиксирует указанную линейную или вращательную ось.
 			</description>
 		</method>
 		<method name="set_axis_velocity">
 			<return type="void" />
 			<argument index="0" name="axis_velocity" type="Vector3" />
 			<description>
-				Sets an axis velocity. The velocity in the given vector axis will be set as the given vector length. This is useful for jumping behavior.
+				Устанавливает скорость по оси. Скорость по заданной оси вектора будет установлена как заданная длина вектора. Это полезно для поведения при прыжках.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="angular_damp" type="float" setter="set_angular_damp" getter="get_angular_damp" default="-1.0">
-			Damps the body's rotational forces. If this value is different from -1.0 it will be added to any angular damp derived from the world or areas.
-			See [member ProjectSettings.physics/3d/default_angular_damp] for more details about damping.
+			Гасит вращательные силы тела. Если это значение отлично от -1.0, оно будет добавлено к любой угловой демпфирующей силе, полученной из мира или областей.
+			Дополнительные сведения о демпфировании см. в [member ProjectSettings.physics/3d/default_angular_damp].
 		</member>
 		<member name="angular_velocity" type="Vector3" setter="set_angular_velocity" getter="get_angular_velocity" default="Vector3( 0, 0, 0 )">
-			The body's rotational velocity in axis-angle format. The magnitude of the vector is the rotation rate in [i]radians[/i] per second.
+			Скорость вращения тела в формате ось-угол. Величина вектора - это скорость вращения в [i]радианах[/i] в секунду.
 		</member>
 		<member name="axis_lock_angular_x" type="bool" setter="set_axis_lock" getter="get_axis_lock" default="false">
-			Lock the body's rotation in the X axis.
+			Зафиксируйте вращение тела по оси X.
 		</member>
 		<member name="axis_lock_angular_y" type="bool" setter="set_axis_lock" getter="get_axis_lock" default="false">
-			Lock the body's rotation in the Y axis.
+			Заблокируйте вращение тела по оси Y.
 		</member>
 		<member name="axis_lock_angular_z" type="bool" setter="set_axis_lock" getter="get_axis_lock" default="false">
-			Lock the body's rotation in the Z axis.
+			Заблокируйте вращение тела по оси Z.
 		</member>
 		<member name="axis_lock_linear_x" type="bool" setter="set_axis_lock" getter="get_axis_lock" default="false">
-			Lock the body's movement in the X axis.
+			Зафиксируйте движение тела по оси X.
 		</member>
 		<member name="axis_lock_linear_y" type="bool" setter="set_axis_lock" getter="get_axis_lock" default="false">
-			Lock the body's movement in the Y axis.
+			Зафиксируйте движение тела по оси Y.
 		</member>
 		<member name="axis_lock_linear_z" type="bool" setter="set_axis_lock" getter="get_axis_lock" default="false">
-			Lock the body's movement in the Z axis.
+			Зафиксируйте движение тела по оси Z.
 		</member>
 		<member name="bounce" type="float" setter="set_bounce" getter="get_bounce">
-			The body's bounciness. Values range from [code]0[/code] (no bounce) to [code]1[/code] (full bounciness).
-			Deprecated, use [member PhysicsMaterial.bounce] instead via [member physics_material_override].
+			Подпрыгиваемость тела. Значения варьируются от [code]0[/code] (отсутствие отскока) до [code]1[/code] (полный отскок).
+			Утратило силу, вместо него используйте [member PhysicsMaterial.bounce] через [member physics_material_override].
 		</member>
 		<member name="can_sleep" type="bool" setter="set_can_sleep" getter="is_able_to_sleep" default="true">
-			If [code]true[/code], the body can enter sleep mode when there is no movement. See [member sleeping].
-			[b]Note:[/b] A RigidBody3D will never enter sleep mode automatically if its [member mode] is [constant MODE_CHARACTER]. It can still be put to sleep manually by setting its [member sleeping] property to [code]true[/code].
+			Если [code]true[/code], тело может перейти в режим сна, когда нет движения. См. раздел [member sleeping].
+			[b]Примечание:[/b] RigidBody3D никогда не перейдет в спящий режим автоматически, если его [member mode] - [constant MODE_CHARACTER]. Его можно перевести в спящий режим вручную, установив свойство [member sleeping] в [code]true[/code].
 		</member>
 		<member name="contact_monitor" type="bool" setter="set_contact_monitor" getter="is_contact_monitor_enabled" default="false">
-			If [code]true[/code], the RigidBody will emit signals when it collides with another RigidBody. See also [member contacts_reported].
+			Если [code]true[/code], то RigidBody будет издавать сигналы при столкновении с другим RigidBody. См. также [member contacts_reported].
 		</member>
 		<member name="contacts_reported" type="int" setter="set_max_contacts_reported" getter="get_max_contacts_reported" default="0">
-			The maximum number of contacts that will be recorded. Requires [member contact_monitor] to be set to [code]true[/code].
-			[b]Note:[/b] The number of contacts is different from the number of collisions. Collisions between parallel edges will result in two contacts (one at each end), and collisions between parallel faces will result in four contacts (one at each corner).
+			Максимальное количество контактов, которые будут записаны. Требуется, чтобы для параметра [member contact_monitor] было установлено значение [code]true[/code].
+
+			[b]Примечание:[/b] Количество контактов отличается от количества столкновений. Столкновения между параллельными ребрами приведут к двум контактам (по одному на каждом конце), а столкновения между параллельными гранями - к четырем контактам (по одному на каждом углу).
 		</member>
 		<member name="continuous_cd" type="bool" setter="set_use_continuous_collision_detection" getter="is_using_continuous_collision_detection" default="false">
-			If [code]true[/code], continuous collision detection is used.
-			Continuous collision detection tries to predict where a moving body will collide, instead of moving it and correcting its movement if it collided. Continuous collision detection is more precise, and misses fewer impacts by small, fast-moving objects. Not using continuous collision detection is faster to compute, but can miss small, fast-moving objects.
+			Если [code]true[/code], используется непрерывное обнаружение столкновений.
+
+			Непрерывное обнаружение столкновений пытается предсказать, где движущееся тело столкнется, вместо того чтобы перемещать его и корректировать его движение при столкновении. Непрерывное обнаружение столкновений является более точным и пропускает меньше столкновений с небольшими, быстро движущимися объектами. Неиспользование непрерывного обнаружения столкновений быстрее вычисляется, но может пропустить столкновение с небольшими быстродвижущимися объектами.
 		</member>
 		<member name="custom_integrator" type="bool" setter="set_use_custom_integrator" getter="is_using_custom_integrator" default="false">
-			If [code]true[/code], internal force integration will be disabled (like gravity or air friction) for this body. Other than collision response, the body will only move as determined by the [method _integrate_forces] function, if defined.
+			Если [code]true[/code], интеграция внутренних сил (например, гравитации или трения воздуха) для этого тела будет отключена. Кроме реакции на столкновение, тело будет двигаться только так, как определено функцией [method _integrate_forces], если она определена.
 		</member>
 		<member name="friction" type="float" setter="set_friction" getter="get_friction">
-			The body's friction, from 0 (frictionless) to 1 (max friction).
-			Deprecated, use [member PhysicsMaterial.friction] instead via [member physics_material_override].
+			Трение тела, от 0 (без трения) до 1 (максимальное трение).
+			Утратил силу, вместо него используйте [member PhysicsMaterial.friction] через [member physics_material_override].
 		</member>
 		<member name="gravity_scale" type="float" setter="set_gravity_scale" getter="get_gravity_scale" default="1.0">
-			This is multiplied by the global 3D gravity setting found in [b]Project &gt; Project Settings &gt; Physics &gt; 3d[/b] to produce RigidBody's gravity. For example, a value of 1 will be normal gravity, 2 will apply double gravity, and 0.5 will apply half gravity to this object.
+			Это значение умножается на глобальную настройку 3D-гравитации, найденную в [b]Project &gt; Project Settings &gt; Physics &gt; 3d[/b], чтобы получить гравитацию RigidBody. Например, значение 1 будет нормальной гравитацией, 2 - двойной гравитацией, а 0,5 - половинной гравитацией для данного объекта.
 		</member>
 		<member name="linear_damp" type="float" setter="set_linear_damp" getter="get_linear_damp" default="-1.0">
-			The body's linear damp. Cannot be less than -1.0. If this value is different from -1.0 it will be added to any linear damp derived from the world or areas.
-			See [member ProjectSettings.physics/3d/default_linear_damp] for more details about damping.
+			Линейная влажность тела. Не может быть меньше -1.0. Если это значение отлично от -1.0, оно будет добавлено к любой линейной влажности, полученной из мира или областей.
+
+			Дополнительные сведения о демпфировании см. в [member ProjectSettings.physics/3d/default_linear_damp].
 		</member>
 		<member name="linear_velocity" type="Vector3" setter="set_linear_velocity" getter="get_linear_velocity" default="Vector3( 0, 0, 0 )">
-			The body's linear velocity in units per second. Can be used sporadically, but [b]don't set this every frame[/b], because physics may run in another thread and runs at a different granularity. Use [method _integrate_forces] as your process loop for precise control of the body state.
+			Линейная скорость тела в единицах в секунду. Может использоваться спорадически, но [b]не устанавливайте это значение каждый кадр[/b], потому что физика может выполняться в другом потоке и работать на другой гранулярности. Используйте [метод _integrate_forces] в качестве цикла процесса для точного контроля состояния тела.
 		</member>
 		<member name="mass" type="float" setter="set_mass" getter="get_mass" default="1.0">
-			The body's mass.
+			Масса тела.
 		</member>
 		<member name="mode" type="int" setter="set_mode" getter="get_mode" enum="RigidBody.Mode" default="0">
-			The body mode. See [enum Mode] for possible values.
+			Режим тела. Возможные значения см. в [enum Mode].
 		</member>
 		<member name="physics_material_override" type="PhysicsMaterial" setter="set_physics_material_override" getter="get_physics_material_override">
-			The physics material override for the body.
-			If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.
+			Переопределение материала физики для тела.
+			Если этому свойству присвоен материал, то он будет использоваться вместо любого другого физического материала, например, унаследованного.
 		</member>
 		<member name="sleeping" type="bool" setter="set_sleeping" getter="is_sleeping" default="false">
-			If [code]true[/code], the body will not move and will not calculate forces until woken up by another body through, for example, a collision, or by using the [method apply_impulse] or [method add_force] methods.
+			Если [code]true[/code], тело не будет двигаться и рассчитывать силы, пока его не разбудит другое тело, например, в результате столкновения или с помощью методов [method apply_impulse] или [method add_force].
 		</member>
 		<member name="weight" type="float" setter="set_weight" getter="get_weight" default="9.8">
-			The body's weight based on its mass and the global 3D gravity. Global values are set in [b]Project &gt; Project Settings &gt; Physics &gt; 3d[/b].
+			Вес тела, основанный на его массе и глобальной 3D-гравитации. Глобальные значения задаются в разделе [b]Проект &gt; Настройки проекта &gt; Физика &gt; 3d[/b].
 		</member>
 	</members>
 	<signals>
 		<signal name="body_entered">
 			<argument index="0" name="body" type="Node" />
 			<description>
-				Emitted when a collision with another [PhysicsBody] or [GridMap] occurs. Requires [member contact_monitor] to be set to [code]true[/code] and [member contacts_reported] to be set high enough to detect all the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape]s.
-				[code]body[/code] the [Node], if it exists in the tree, of the other [PhysicsBody] or [GridMap].
+				Выдается при столкновении с другим [PhysicsBody] или [GridMap]. Требуется, чтобы [member contact_monitor] был установлен в [code]true[/code], а [member contacts_reported] был установлен достаточно высоко, чтобы обнаружить все столкновения. [GridMap]ы обнаруживаются, если в [MeshLibrary] есть [Shape]ы столкновений.
+
+				[code]body[/code] узел [Node], если он существует в дереве, другого [PhysicsBody] или [GridMap].
 			</description>
 		</signal>
 		<signal name="body_exited">
 			<argument index="0" name="body" type="Node" />
 			<description>
-				Emitted when the collision with another [PhysicsBody] or [GridMap] ends. Requires [member contact_monitor] to be set to [code]true[/code] and [member contacts_reported] to be set high enough to detect all the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape]s.
-				[code]body[/code] the [Node], if it exists in the tree, of the other [PhysicsBody] or [GridMap].
+				Выдается, когда заканчивается столкновение с другим [PhysicsBody] или [GridMap]. Требуется, чтобы [member contact_monitor] был установлен в [code]true[/code], а [member contacts_reported] был достаточно высоким, чтобы обнаружить все столкновения. [GridMap]ы обнаруживаются, если в [MeshLibrary] есть [Shape]ы столкновений.
+
+				[code]body[/code] узел [Node], если он существует в дереве, другого [PhysicsBody] или [GridMap].
 			</description>
 		</signal>
 		<signal name="body_shape_entered">
@@ -207,20 +217,12 @@
 			<argument index="2" name="body_shape_index" type="int" />
 			<argument index="3" name="local_shape_index" type="int" />
 			<description>
-				Emitted when one of this RigidBody's [Shape]s collides with another [PhysicsBody] or [GridMap]'s [Shape]s. Requires [member contact_monitor] to be set to [code]true[/code] and [member contacts_reported] to be set high enough to detect all the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape]s.
-				[code]body_rid[/code] the [RID] of the other [PhysicsBody] or [MeshLibrary]'s [CollisionObject] used by the [PhysicsServer].
-				[code]body[/code] the [Node], if it exists in the tree, of the other [PhysicsBody] or [GridMap].
-				[code]body_shape_index[/code] the index of the [Shape] of the other [PhysicsBody] or [GridMap].
-				[code]local_shape_index[/code] the index of the [Shape] of this RigidBody.
-				[b]Example of getting the[/b] [CollisionShape] [b]node from the shape index:[/b]
-				[codeblock]
-				var body_shape_owner = body.shape_find_owner(body_shape_index)
-				var body_shape_node = body.shape_owner_get_owner(body_shape_owner)
-
-				var local_shape_owner = shape_find_owner(local_shape_index)
-				var local_shape_node = shape_owner_get_owner(local_shape_owner)
-				[/codeblock]
-				[b]Note:[/b] Bullet physics cannot identify the shape index when using a [ConcavePolygonShape]. Don't use multiple [CollisionShape]s when using a [ConcavePolygonShape] with Bullet physics if you need shape indices.
+				Выдается, когда одно из [Shape]ов этого RigidBody сталкивается с другим [PhysicsBody] или [GridMap] [Shape]ом. Требуется, чтобы [member contact_monitor] был установлен в [code]true[/code], а [member contacts_reported] был установлен достаточно высоко, чтобы обнаружить все столкновения. [GridMap]ы обнаруживаются, если в [MeshLibrary] есть [Shape]ы столкновений.
+				[code]body_rid[/code] [RID] другого [PhysicsBody] или [MeshLibrary]'s [CollisionObject], используемого [PhysicsServer].
+				[code]body[/code] узел [Node], если он существует в дереве, другого [PhysicsBody] или [GridMap].
+				[code]body_shape_index[/code] индекс [Shape] другого [PhysicsBody] или [GridMap], используемого [PhysicsServer]. Получите узел [CollisionShape] с помощью [code]body.shape_owner_get_owner(body_shape_index)[/code].
+				[code]local_shape_index[/code] индекс [Shape] этого RigidBody, используемый [PhysicsServer]. Получите узел [CollisionShape] с помощью [code]self.shape_owner_get_owner(local_shape_index)[/code].
+				[b]Примечание:[/b] Физика пули не может определить индекс формы при использовании [ConcavePolygonShape]. Не используйте несколько [CollisionShape] при использовании [ConcavePolygonShape] с физикой Bullet, если вам нужны индексы формы.
 			</description>
 		</signal>
 		<signal name="body_shape_exited">
@@ -229,34 +231,33 @@
 			<argument index="2" name="body_shape_index" type="int" />
 			<argument index="3" name="local_shape_index" type="int" />
 			<description>
-				Emitted when the collision between one of this RigidBody's [Shape]s and another [PhysicsBody] or [GridMap]'s [Shape]s ends. Requires [member contact_monitor] to be set to [code]true[/code] and [member contacts_reported] to be set high enough to detect all the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape]s.
-				[code]body_rid[/code] the [RID] of the other [PhysicsBody] or [MeshLibrary]'s [CollisionObject] used by the [PhysicsServer]. [GridMap]s are detected if the Meshes have [Shape]s.
-				[code]body[/code] the [Node], if it exists in the tree, of the other [PhysicsBody] or [GridMap].
-				[code]body_shape_index[/code] the index of the [Shape] of the other [PhysicsBody] or [GridMap].
-				[code]local_shape_index[/code] the index of the [Shape] of this RigidBody.
-				[b]Note:[/b] Bullet physics cannot identify the shape index when using a [ConcavePolygonShape]. Don't use multiple [CollisionShape]s when using a [ConcavePolygonShape] with Bullet physics if you need shape indices.
-				See also [signal body_shape_entered].
+				Испускается, когда заканчивается столкновение между одним из [Shape] этого RigidBody и другим [PhysicsBody] или [Shape] [GridMap]. Требуется, чтобы [member contact_monitor] был установлен в [code]true[/code], а [member contacts_reported] был установлен достаточно высоко, чтобы обнаружить все столкновения. [GridMap]ы обнаруживаются, если в [MeshLibrary] есть [Shape]ы столкновений.
+				[code]body_rid[/code] [RID] другого [PhysicsBody] или [MeshLibrary]-объекта [CollisionObject], используемого [PhysicsServer]. Карты [GridMap] определяются, если у мешей есть [Shape]s.
+				[code]body[/code] узел [Node], если он существует в дереве, другого [PhysicsBody] или [GridMap].
+				[code]body_shape_index[/code] индекс [Shape] другого [PhysicsBody] или [GridMap], используемого [PhysicsServer]. Получите узел [CollisionShape] с помощью [code]body.shape_owner_get_owner(body_shape_index)[/code].
+				[code]local_shape_index[/code] индекс [Shape] этого RigidBody, используемый [PhysicsServer]. Получите узел [CollisionShape] с помощью [code]self.shape_owner_get_owner(local_shape_index)[/code].
+				[b]Примечание:[/b] Физика пули не может определить индекс формы при использовании [ConcavePolygonShape]. Не используйте несколько [CollisionShape] при использовании [ConcavePolygonShape] с физикой Bullet, если вам нужны индексы формы.
 			</description>
 		</signal>
 		<signal name="sleeping_state_changed">
 			<description>
-				Emitted when the physics engine changes the body's sleeping state.
-				[b]Note:[/b] Changing the value [member sleeping] will not trigger this signal. It is only emitted if the sleeping state is changed by the physics engine or [code]emit_signal("sleeping_state_changed")[/code] is used.
+				Выдается, когда физический движок изменяет состояние сна тела.
+				[b]Примечание:[/b] Изменение значения [member sleeping] не вызовет этот сигнал. Он подается только в том случае, если физический движок изменяет состояние сна или используется [code]emit_signal("sleeping_state_changed")[/code].
 			</description>
 		</signal>
 	</signals>
 	<constants>
 		<constant name="MODE_RIGID" value="0" enum="Mode">
-			Rigid body mode. This is the "natural" state of a rigid body. It is affected by forces, and can move, rotate, and be affected by user code.
+			Режим жесткого тела. Это "естественное" состояние жесткого тела. На него действуют силы, оно может двигаться, вращаться и подвергаться воздействию пользовательского кода.
 		</constant>
 		<constant name="MODE_STATIC" value="1" enum="Mode">
-			Static mode. The body behaves like a [StaticBody], and can only move by user code.
+			Статический режим. Тело ведет себя как [StaticBody] и может двигаться только по коду пользователя.
 		</constant>
 		<constant name="MODE_CHARACTER" value="2" enum="Mode">
-			Character body mode. This behaves like a rigid body, but can not rotate.
+			Режим тела персонажа. Он ведет себя как жесткое тело, но не может вращаться.
 		</constant>
 		<constant name="MODE_KINEMATIC" value="3" enum="Mode">
-			Kinematic body mode. The body behaves like a [KinematicBody], and can only move by user code.
+			Кинематический режим тела. Тело ведет себя как [KinematicBody] и может перемещаться только с помощью пользовательского кода.
 		</constant>
 	</constants>
 </class>

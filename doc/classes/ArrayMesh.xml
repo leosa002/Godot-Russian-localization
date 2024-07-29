@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="ArrayMesh" inherits="Mesh" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="ArrayMesh" inherits="Mesh" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		[Mesh] type that provides utility for constructing a surface from arrays.
+		Тип [Mesh], обеспечивающий возможность построения поверхности из массивов.
 	</brief_description>
 	<description>
-		The [ArrayMesh] is used to construct a [Mesh] by specifying the attributes as arrays.
-		The most basic example is the creation of a single triangle:
+		[ArrayMesh] используется для построения [Mesh] путем задания атрибутов в виде массивов.
+		Самый простой пример - создание одного треугольника:
 		[codeblock]
 		var vertices = PoolVector3Array()
 		vertices.push_back(Vector3(0, 1, 0))
 		vertices.push_back(Vector3(1, 0, 0))
 		vertices.push_back(Vector3(0, 0, 1))
-		# Initialize the ArrayMesh.
+		# Инициализация сетки ArrayMesh.
 		var arr_mesh = ArrayMesh.new()
 		var arrays = []
 		arrays.resize(ArrayMesh.ARRAY_MAX)
 		arrays[ArrayMesh.ARRAY_VERTEX] = vertices
-		# Create the Mesh.
+		# Создать сетку.
 		arr_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
 		var m = MeshInstance.new()
 		m.mesh = arr_mesh
 		[/codeblock]
-		The [MeshInstance] is ready to be added to the [SceneTree] to be shown.
-		See also [ImmediateGeometry], [MeshDataTool] and [SurfaceTool] for procedural geometry generation.
-		[b]Note:[/b] Godot uses clockwise [url=https://learnopengl.com/Advanced-OpenGL/Face-culling]winding order[/url] for front faces of triangle primitive modes.
+		Экземпляр [MeshInstance] готов к добавлению в дерево [SceneTree] для отображения.
+		Смотрите также [ImmediateGeometry], [MeshDataTool] и [SurfaceTool] для процедурной генерации геометрии.
+		[b]Примечание:[/b] Для передних граней треугольных примитивов Godot использует [url=https://learnopengl.com/Advanced-OpenGL/Face-culling]порядок намотки по часовой стрелке[/url].
 	</description>
 	<tutorials>
 		<link>$DOCS_URL/tutorials/3d/procedural_geometry/arraymesh.html</link>
@@ -33,7 +33,7 @@
 			<return type="void" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Adds name for a blend shape that will be added with [method add_surface_from_arrays]. Must be called before surface is added.
+				Добавляет имя для формы смешивания, которая будет добавлена с помощью [method add_surface_from_arrays]. Должно быть вызвано до добавления поверхности.
 			</description>
 		</method>
 		<method name="add_surface_from_arrays">
@@ -43,36 +43,36 @@
 			<argument index="2" name="blend_shapes" type="Array" default="[  ]" />
 			<argument index="3" name="compress_flags" type="int" default="2194432" />
 			<description>
-				Creates a new surface.
-				Surfaces are created to be rendered using a [code]primitive[/code], which may be any of the types defined in [enum Mesh.PrimitiveType]. (As a note, when using indices, it is recommended to only use points, lines, or triangles.) [method Mesh.get_surface_count] will become the [code]surf_idx[/code] for this new surface.
-				The [code]arrays[/code] argument is an array of arrays. See [enum ArrayType] for the values used in this array. For example, [code]arrays[0][/code] is the array of vertices. That first vertex sub-array is always required; the others are optional. Adding an index array puts this function into "index mode" where the vertex and other arrays become the sources of data and the index array defines the vertex order. All sub-arrays must have the same length as the vertex array or be empty, except for [constant ARRAY_INDEX] if it is used.
-				[code]compress_flags[/code] is a bitfield made of [enum Mesh.ArrayFormat] values. It defaults to [constant Mesh.ARRAY_COMPRESS_DEFAULT].
-				[b]Note:[/b] The default [code]compress_flags[/code] enable [constant Mesh.ARRAY_COMPRESS_COLOR], which makes vertex colors stored as 8-bit unsigned integers. This will clamp overbright vertex colors to [code]Color(1, 1, 1, 1)[/code] and reduce their precision. To store HDR vertex colors, remove the vertex color compression flag by passing [code]Mesh.ARRAY_COMPRESS_DEFAULT ^ Mesh.ARRAY_COMPRESS_COLOR[/code] as the value of [code]compress_flags[/code].
+				Создает новую поверхность.
+				Поверхности создаются для визуализации с помощью [code]primitive[/code], который может быть любого из типов, определенных в [enum Mesh.PrimitiveType]. (Примечание: при использовании индексов рекомендуется использовать только точки, линии или треугольники). [method Mesh.get_surface_count] станет [code]surf_idx[/code] для этой новой поверхности.
+				Аргумент [code]arrays[/code] представляет собой массив массивов. Значения, используемые в этом массиве, см. в [enum ArrayType]. Например, [code]arrays[0][/code] - это массив вершин. Первый подмассив вершин всегда обязателен, остальные - необязательны. Добавление индексного массива переводит функцию в "индексный режим", в котором вершинные и другие массивы становятся источниками данных, а индексный массив определяет порядок вершин. Все подмассивы должны иметь ту же длину, что и вершинный массив, или быть пустыми, за исключением [constant ARRAY_INDEX], если он используется.
+				[code]compress_flags[/code] - битовое поле, состоящее из значений [enum Mesh.ArrayFormat]. По умолчанию оно принимает значение [constant Mesh.ARRAY_COMPRESS_DEFAULT].
+				[b]Примечание:[/b] По умолчанию [code]compress_flags[/code] включает [constant Mesh.ARRAY_COMPRESS_COLOR], в результате чего цвета вершин хранятся как 8-битные целые числа без знака. Это приведет к пересвету вершинных цветов до [code]Color(1, 1, 1, 1)[/code] и снизит их точность. Для хранения вершинных цветов HDR снимите флаг сжатия вершинных цветов, передав [code]Mesh.ARRAY_COMPRESS_DEFAULT ^ Mesh.ARRAY_COMPRESS_COLOR[/code] в качестве значения [code]compress_flags[/code].
 			</description>
 		</method>
 		<method name="clear_blend_shapes">
 			<return type="void" />
 			<description>
-				Removes all blend shapes from this [ArrayMesh].
+				Удаляет все формы смешивания из данной [ArrayMesh].
 			</description>
 		</method>
 		<method name="clear_surfaces">
 			<return type="void" />
 			<description>
-				Removes all surfaces from this [ArrayMesh].
+				Удаляет все поверхности из данной [ArrayMesh].
 			</description>
 		</method>
 		<method name="get_blend_shape_count" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the number of blend shapes that the [ArrayMesh] holds.
+				Возвращает количество форм смешивания, которые содержит [ArrayMesh].
 			</description>
 		</method>
 		<method name="get_blend_shape_name" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="index" type="int" />
 			<description>
-				Returns the name of the blend shape at this index.
+				Возвращает имя формы смешивания по данному индексу.
 			</description>
 		</method>
 		<method name="lightmap_unwrap">
@@ -80,13 +80,13 @@
 			<argument index="0" name="transform" type="Transform" />
 			<argument index="1" name="texel_size" type="float" />
 			<description>
-				Will perform a UV unwrap on the [ArrayMesh] to prepare the mesh for lightmapping.
+				Выполняет UV-развертку [ArrayMesh] для подготовки сетки к лайтмэппингу.
 			</description>
 		</method>
 		<method name="regen_normalmaps">
 			<return type="void" />
 			<description>
-				Will regenerate normal maps for the [ArrayMesh].
+				Регенерирует карты нормалей для [ArrayMesh].
 			</description>
 		</method>
 		<method name="set_blend_shape_name">
@@ -100,49 +100,49 @@
 			<return type="int" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Returns the index of the first surface with this name held within this [ArrayMesh]. If none are found, -1 is returned.
+				Возвращает индекс первой поверхности с таким именем, содержащейся в данном [ArrayMesh]. Если таковых не найдено, возвращается -1.
 			</description>
 		</method>
 		<method name="surface_get_array_index_len" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="surf_idx" type="int" />
 			<description>
-				Returns the length in indices of the index array in the requested surface (see [method add_surface_from_arrays]).
+				Возвращает длину в индексах массива индексов в запрашиваемой поверхности (см. [method add_surface_from_arrays]).
 			</description>
 		</method>
 		<method name="surface_get_array_len" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="surf_idx" type="int" />
 			<description>
-				Returns the length in vertices of the vertex array in the requested surface (see [method add_surface_from_arrays]).
+				Возвращает длину в вершинах массива вершин в запрашиваемой поверхности (см. [method add_surface_from_arrays]).
 			</description>
 		</method>
 		<method name="surface_get_format" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="surf_idx" type="int" />
 			<description>
-				Returns the format mask of the requested surface (see [method add_surface_from_arrays]).
+				Возвращает форматную маску запрашиваемой поверхности (см. [method add_surface_from_arrays]).
 			</description>
 		</method>
 		<method name="surface_get_name" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="surf_idx" type="int" />
 			<description>
-				Gets the name assigned to this surface.
+				Получает имя, присвоенное данной поверхности.
 			</description>
 		</method>
 		<method name="surface_get_primitive_type" qualifiers="const">
 			<return type="int" enum="Mesh.PrimitiveType" />
 			<argument index="0" name="surf_idx" type="int" />
 			<description>
-				Returns the primitive type of the requested surface (see [method add_surface_from_arrays]).
+				Возвращает примитивный тип запрашиваемой поверхности (см. [method add_surface_from_arrays]).
 			</description>
 		</method>
 		<method name="surface_remove">
 			<return type="void" />
 			<argument index="0" name="surf_idx" type="int" />
 			<description>
-				Removes a surface at position [code]surf_idx[/code], shifting greater surfaces one [code]surf_idx[/code] slot down.
+				Удаляет поверхность в позиции [code]surf_idx[/code], сдвигая остальные поверхности на один [code]surf_idx[/code] слот вниз.
 			</description>
 		</method>
 		<method name="surface_set_name">
@@ -150,7 +150,7 @@
 			<argument index="0" name="surf_idx" type="int" />
 			<argument index="1" name="name" type="String" />
 			<description>
-				Sets a name for a given surface.
+				Задает имя для заданной поверхности.
 			</description>
 		</method>
 		<method name="surface_update_region">
@@ -159,83 +159,83 @@
 			<argument index="1" name="offset" type="int" />
 			<argument index="2" name="data" type="PoolByteArray" />
 			<description>
-				Updates a specified region of mesh arrays on the GPU.
-				[b]Warning:[/b] Only use if you know what you are doing. You can easily cause crashes by calling this function with improper arguments.
+				Обновляет указанную область сетчатых массивов на GPU.
+				[b]Предупреждение:[/b] Использовать только в том случае, если вы знаете, что делаете. Вызов этой функции с неправильными аргументами может легко привести к сбоям.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="blend_shape_mode" type="int" setter="set_blend_shape_mode" getter="get_blend_shape_mode" enum="Mesh.BlendShapeMode" default="1">
-			Sets the blend shape mode to one of [enum Mesh.BlendShapeMode].
+			Устанавливает режим формы наложения на один из [enum Mesh.BlendShapeMode].
 		</member>
 		<member name="custom_aabb" type="AABB" setter="set_custom_aabb" getter="get_custom_aabb" default="AABB( 0, 0, 0, 0, 0, 0 )">
-			Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful to avoid unexpected culling when using a shader to offset vertices.
+			Заменяет значение [AABB] значением, заданным пользователем, для использования при обрезании фруста. Особенно полезно для предотвращения неожиданного обрезания при использовании шейдера для смещения вершин.
 		</member>
 	</members>
 	<constants>
 		<constant name="NO_INDEX_ARRAY" value="-1">
-			Value used internally when no indices are present.
+			Внутреннее значение, используемое при отсутствии индексов.
 		</constant>
 		<constant name="ARRAY_WEIGHTS_SIZE" value="4">
-			Amount of weights/bone indices per vertex (always 4).
+			Количество весов/индексов костей на вершину (всегда 4).
 		</constant>
 		<constant name="ARRAY_VERTEX" value="0" enum="ArrayType">
-			[PoolVector3Array], [PoolVector2Array], or [Array] of vertex positions.
+			[PoolVector3Array], [PoolVector2Array] или [Array] позиций вершин.
 		</constant>
 		<constant name="ARRAY_NORMAL" value="1" enum="ArrayType">
-			[PoolVector3Array] of vertex normals.
+			[PoolVector3Array] нормалей вершин.
 		</constant>
 		<constant name="ARRAY_TANGENT" value="2" enum="ArrayType">
-			[PoolRealArray] of vertex tangents. Each element in groups of 4 floats, first 3 floats determine the tangent, and the last the binormal direction as -1 or 1.
+			[PoolRealArray] касательных к вершинам. Каждый элемент в группах по 4 float, первые 3 float определяют касательную, а последний - бинормальное направление как -1 или 1.
 		</constant>
 		<constant name="ARRAY_COLOR" value="3" enum="ArrayType">
-			[PoolColorArray] of vertex colors.
+			[PoolColorArray] цветов вершин.
 		</constant>
 		<constant name="ARRAY_TEX_UV" value="4" enum="ArrayType">
-			[PoolVector2Array] for UV coordinates.
+			[PoolVector2Array] для UV-координат.
 		</constant>
 		<constant name="ARRAY_TEX_UV2" value="5" enum="ArrayType">
-			[PoolVector2Array] for second UV coordinates.
+			[PoolVector2Array] для вторых UV-координат.
 		</constant>
 		<constant name="ARRAY_BONES" value="6" enum="ArrayType">
-			[PoolRealArray] or [PoolIntArray] of bone indices. Each element in groups of 4 floats.
+			[PoolRealArray] или [PoolIntArray] индексов костей. Каждый элемент в группах по 4 плавающих символа.
 		</constant>
 		<constant name="ARRAY_WEIGHTS" value="7" enum="ArrayType">
-			[PoolRealArray] of bone weights. Each element in groups of 4 floats.
+			[PoolRealArray] весов костей. Каждый элемент в группах по 4 поплавка.
 		</constant>
 		<constant name="ARRAY_INDEX" value="8" enum="ArrayType">
-			[PoolIntArray] of integers used as indices referencing vertices, colors, normals, tangents, and textures. All of those arrays must have the same number of elements as the vertex array. No index can be beyond the vertex array size. When this index array is present, it puts the function into "index mode," where the index selects the *i*'th vertex, normal, tangent, color, UV, etc. This means if you want to have different normals or colors along an edge, you have to duplicate the vertices.
-			For triangles, the index array is interpreted as triples, referring to the vertices of each triangle. For lines, the index array is in pairs indicating the start and end of each line.
+			[PoolIntArray] целых чисел, используемых в качестве индексов, ссылающихся на вершины, цвета, нормали, касательные и текстуры. Все эти массивы должны иметь то же количество элементов, что и массив вершин. Ни один индекс не может быть больше размера массива вершин. При наличии этого индексного массива функция переходит в "индексный режим", где индекс выбирает *i*-ю вершину, нормаль, тангенс, цвет, UV и т.д. Это означает, что если вы хотите иметь разные нормали или цвета вдоль ребра, то вам придется дублировать вершины.
+			Для треугольников индексный массив интерпретируется как тройки, ссылающиеся на вершины каждого треугольника. Для линий индексный массив представляет собой пары, указывающие на начало и конец каждой линии.
 		</constant>
 		<constant name="ARRAY_MAX" value="9" enum="ArrayType">
-			Represents the size of the [enum ArrayType] enum.
+			Представляет собой размер перечисления [enum ArrayType].
 		</constant>
 		<constant name="ARRAY_FORMAT_VERTEX" value="1" enum="ArrayFormat">
-			Array format will include vertices (mandatory).
+			Формат массива будет включать вершины (обязательно).
 		</constant>
 		<constant name="ARRAY_FORMAT_NORMAL" value="2" enum="ArrayFormat">
-			Array format will include normals.
+			Формат массива будет включать нормали.
 		</constant>
 		<constant name="ARRAY_FORMAT_TANGENT" value="4" enum="ArrayFormat">
-			Array format will include tangents.
+			Формат массива будет включать касательные.
 		</constant>
 		<constant name="ARRAY_FORMAT_COLOR" value="8" enum="ArrayFormat">
-			Array format will include a color array.
+			Формат массива будет включать в себя цветовой массив.
 		</constant>
 		<constant name="ARRAY_FORMAT_TEX_UV" value="16" enum="ArrayFormat">
-			Array format will include UVs.
+			Формат массива будет включать набор UV карт
 		</constant>
 		<constant name="ARRAY_FORMAT_TEX_UV2" value="32" enum="ArrayFormat">
-			Array format will include another set of UVs.
+			Формат массива будет включать в себя еще один набор UV карт.
 		</constant>
 		<constant name="ARRAY_FORMAT_BONES" value="64" enum="ArrayFormat">
-			Array format will include bone indices.
+			Формат массива будет включать индексы костей.
 		</constant>
 		<constant name="ARRAY_FORMAT_WEIGHTS" value="128" enum="ArrayFormat">
-			Array format will include bone weights.
+			Формат массива будет включать вес костей.
 		</constant>
 		<constant name="ARRAY_FORMAT_INDEX" value="256" enum="ArrayFormat">
-			Index array will be used.
+			Будет использоваться индексный массив.
 		</constant>
 	</constants>
 </class>

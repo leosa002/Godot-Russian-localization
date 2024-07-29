@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Input" inherits="Object" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Input" inherits="Object" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		A singleton that deals with inputs.
+		Синглтон, который работает с входными данными.
 	</brief_description>
 	<description>
-		A singleton that deals with inputs. This includes key presses, mouse buttons and movement, joypads, and input actions. Actions and their events can be set in the [b]Input Map[/b] tab in the [b]Project &gt; Project Settings[/b], or with the [InputMap] class.
+		Синглтон, работающий с входными данными. Сюда входят нажатия клавиш, кнопки мыши и перемещения, джойпады и действия ввода. Действия и их события можно задать на вкладке [b]Input Map[/b] в [b]Project &gt; Project Settings[/b] или с помощью класса [InputMap].
 	</description>
 	<tutorials>
 		<link title="Inputs tutorial index">$DOCS_URL/tutorials/inputs/index.html</link>
@@ -17,16 +17,16 @@
 			<argument index="0" name="action" type="String" />
 			<argument index="1" name="strength" type="float" default="1.0" />
 			<description>
-				This will simulate pressing the specified action.
-				The strength can be used for non-boolean actions, it's ranged between 0 and 1 representing the intensity of the given action.
-				[b]Note:[/b] This method will not cause any [method Node._input] calls. It is intended to be used with [method is_action_pressed] and [method is_action_just_pressed]. If you want to simulate [code]_input[/code], use [method parse_input_event] instead.
+				Это имитирует нажатие указанного действия.
+				Сила может быть использована для небулевых действий, она варьируется от 0 до 1, представляя интенсивность данного действия.
+				[b]Примечание:[/b] Этот метод не вызывает никаких вызовов [method Node._input]. Он предназначен для использования с [method is_action_pressed] и [method is_action_just_pressed]. Если вы хотите имитировать [code]_input[/code], используйте вместо него [method parse_input_event].
 			</description>
 		</method>
 		<method name="action_release">
 			<return type="void" />
 			<argument index="0" name="action" type="String" />
 			<description>
-				If the specified action is already pressed, this will release it.
+				Если указанное действие уже нажато, это действие отпустит его.
 			</description>
 		</method>
 		<method name="add_joy_mapping">
@@ -34,22 +34,22 @@
 			<argument index="0" name="mapping" type="String" />
 			<argument index="1" name="update_existing" type="bool" default="false" />
 			<description>
-				Adds a new mapping entry (in SDL2 format) to the mapping database. Optionally update already connected devices.
+				Добавляет новую запись отображения (в формате SDL2) в базу данных отображения. Опционально обновляет уже подключенные устройства.
 			</description>
 		</method>
 		<method name="flush_buffered_events">
 			<return type="void" />
 			<description>
-				Sends all input events which are in the current buffer to the game loop. These events may have been buffered as a result of accumulated input ([member use_accumulated_input]) or agile input flushing ([member ProjectSettings.input_devices/buffering/agile_event_flushing]).
-				The engine will already do this itself at key execution points (at least once per frame). However, this can be useful in advanced cases where you want precise control over the timing of event handling.
+				Отправляет все события ввода, находящиеся в текущем буфере, в игровой цикл. Эти события могут быть помещены в буфер в результате накопленного ввода ([member use_accumulated_input]) или проворной промывки ввода ([member ProjectSettings.input_devices/buffering/agile_event_flushing]).
+				Движок уже сам будет делать это в ключевых точках выполнения (по крайней мере, раз в кадр). Однако это может быть полезно в сложных случаях, когда вам нужен точный контроль над временем обработки событий.
 			</description>
 		</method>
 		<method name="get_accelerometer" qualifiers="const">
 			<return type="Vector3" />
 			<description>
-				Returns the acceleration of the device's accelerometer sensor, if the device has one. Otherwise, the method returns [constant Vector3.ZERO].
-				Note this method returns an empty [Vector3] when running from the editor even when your device has an accelerometer. You must export your project to a supported device to read values from the accelerometer.
-				[b]Note:[/b] This method only works on iOS, Android, and UWP. On other platforms, it always returns [constant Vector3.ZERO]. On Android the unit of measurement for each axis is m/s² while on iOS and UWP it's a multiple of the Earth's gravitational acceleration [code]g[/code] (~9.81 m/s²).
+				Возвращает ускорение датчика акселерометра устройства, если он есть. В противном случае метод возвращает [константу Vector3.ZERO].
+				Обратите внимание, что этот метод возвращает пустой [Vector3] при запуске из редактора, даже если в устройстве есть акселерометр. Чтобы считать значения с акселерометра, необходимо экспортировать проект на поддерживаемое устройство.
+				[b]Примечание:[/b] Этот метод работает только на iOS, Android и UWP. На других платформах он всегда возвращает [константу Vector3.ZERO]. На Android единицей измерения для каждой оси является м/с², а на iOS и UWP - кратное гравитационное ускорение Земли [code]g[/code] (~9,81 м/с²).
 			</description>
 		</method>
 		<method name="get_action_raw_strength" qualifiers="const">
@@ -57,8 +57,8 @@
 			<argument index="0" name="action" type="String" />
 			<argument index="1" name="exact" type="bool" default="false" />
 			<description>
-				Returns a value between 0 and 1 representing the raw intensity of the given action, ignoring the action's deadzone. In most cases, you should use [method get_action_strength] instead.
-				If [code]exact[/code] is [code]false[/code], it ignores additional input modifiers for [InputEventKey] and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+				Возвращает значение от 0 до 1, представляющее сырую интенсивность данного действия, без учета мертвой зоны действия. В большинстве случаев вместо этого следует использовать [метод get_action_strength].
+				Если [code]exact[/code] имеет значение [code]false[/code], то игнорируются дополнительные модификаторы ввода для событий [InputEventKey] и [InputEventMouseButton], а также направление для событий [InputEventJoypadMotion].
 			</description>
 		</method>
 		<method name="get_action_strength" qualifiers="const">
@@ -66,8 +66,8 @@
 			<argument index="0" name="action" type="String" />
 			<argument index="1" name="exact" type="bool" default="false" />
 			<description>
-				Returns a value between 0 and 1 representing the intensity of the given action. In a joypad, for example, the further away the axis (analog sticks or L2, R2 triggers) is from the dead zone, the closer the value will be to 1. If the action is mapped to a control that has no axis as the keyboard, the value returned will be 0 or 1.
-				If [code]exact[/code] is [code]false[/code], it ignores additional input modifiers for [InputEventKey] and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+				Возвращает значение от 0 до 1, отражающее интенсивность данного действия. Например, на джойпаде, чем дальше ось (аналоговые стики или триггеры L2, R2) от мертвой зоны, тем ближе значение будет к 1. Если действие отображается на элемент управления, у которого нет оси, как у клавиатуры, возвращаемое значение будет 0 или 1.
+				Если [code]exact[/code] имеет значение [code]false[/code], то игнорируются дополнительные модификаторы ввода для событий [InputEventKey] и [InputEventMouseButton], а также направление для событий [InputEventJoypadMotion].
 			</description>
 		</method>
 		<method name="get_axis" qualifiers="const">
@@ -75,34 +75,34 @@
 			<argument index="0" name="negative_action" type="String" />
 			<argument index="1" name="positive_action" type="String" />
 			<description>
-				Get axis input by specifying two actions, one negative and one positive.
-				This is a shorthand for writing [code]Input.get_action_strength("positive_action") - Input.get_action_strength("negative_action")[/code].
+				Получите вход оси, указав два действия, одно отрицательное и одно положительное.
+				Это сокращение для написания [code]Input.get_action_strength("positive_action") - Input.get_action_strength("negative_action")[/code].
 			</description>
 		</method>
 		<method name="get_connected_joypads">
 			<return type="Array" />
 			<description>
-				Returns an [Array] containing the device IDs of all currently connected joypads.
+				Возвращает [Array], содержащий идентификаторы устройств всех подключенных в данный момент джойпадов.
 			</description>
 		</method>
 		<method name="get_current_cursor_shape" qualifiers="const">
 			<return type="int" enum="Input.CursorShape" />
 			<description>
-				Returns the currently assigned cursor shape (see [enum CursorShape]).
+				Возвращает текущую назначенную форму курсора (см. [enum CursorShape]).
 			</description>
 		</method>
 		<method name="get_gravity" qualifiers="const">
 			<return type="Vector3" />
 			<description>
-				Returns the gravity of the device's accelerometer sensor, if the device has one. Otherwise, the method returns [constant Vector3.ZERO].
-				[b]Note:[/b] This method only works on Android and iOS. On other platforms, it always returns [constant Vector3.ZERO]. On Android the unit of measurement for each axis is m/s² while on iOS it's a multiple of the Earth's gravitational acceleration [code]g[/code] (~9.81 m/s²).
+				Возвращает значение силы тяжести датчика акселерометра устройства, если он есть. В противном случае метод возвращает [константу Vector3.ZERO].
+				[b]Примечание:[/b] Этот метод работает только на Android и iOS. На других платформах он всегда возвращает [константу Vector3.ZERO]. На Android единицей измерения для каждой оси является м/с², а на iOS - кратное гравитационное ускорение Земли [code]g[/code] (~9,81 м/с²).
 			</description>
 		</method>
 		<method name="get_gyroscope" qualifiers="const">
 			<return type="Vector3" />
 			<description>
-				Returns the rotation rate in rad/s around a device's X, Y, and Z axes of the gyroscope sensor, if the device has one. Otherwise, the method returns [constant Vector3.ZERO].
-				[b]Note:[/b] This method only works on Android and iOS. On other platforms, it always returns [constant Vector3.ZERO].
+				Возвращает скорость вращения в рад/с вокруг осей X, Y и Z гироскопа устройства, если он есть. В противном случае метод возвращает [константу Vector3.ZERO].
+				[b]Примечание:[/b] Этот метод работает только на Android и iOS. На других платформах он всегда возвращает [константу Vector3.ZERO].
 			</description>
 		</method>
 		<method name="get_joy_axis" qualifiers="const">
@@ -110,82 +110,82 @@
 			<argument index="0" name="device" type="int" />
 			<argument index="1" name="axis" type="int" />
 			<description>
-				Returns the current value of the joypad axis at given index (see [enum JoystickList]).
+				Возвращает текущее значение оси джойстика с заданным индексом (см. [enum JoystickList]).
 			</description>
 		</method>
 		<method name="get_joy_axis_index_from_string">
 			<return type="int" />
 			<argument index="0" name="axis" type="String" />
 			<description>
-				Returns the index of the provided axis name.
+				Возвращает индекс имени указанной оси.
 			</description>
 		</method>
 		<method name="get_joy_axis_string">
 			<return type="String" />
 			<argument index="0" name="axis_index" type="int" />
 			<description>
-				Receives a [enum JoystickList] axis and returns its equivalent name as a string.
+				Получает ось [enum JoystickList] и возвращает ее эквивалентное имя в виде строки.
 			</description>
 		</method>
 		<method name="get_joy_button_index_from_string">
 			<return type="int" />
 			<argument index="0" name="button" type="String" />
 			<description>
-				Returns the index of the provided button name.
+				Возвращает индекс указанного имени кнопки.
 			</description>
 		</method>
 		<method name="get_joy_button_string">
 			<return type="String" />
 			<argument index="0" name="button_index" type="int" />
 			<description>
-				Receives a gamepad button from [enum JoystickList] and returns its equivalent name as a string.
+				Получает кнопку геймпада из [enum JoystickList] и возвращает ее эквивалентное имя в виде строки.
 			</description>
 		</method>
 		<method name="get_joy_guid" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="device" type="int" />
 			<description>
-				Returns a SDL2-compatible device GUID on platforms that use gamepad remapping, e.g. [code]030000004c050000c405000000010000[/code]. Returns [code]"Default Gamepad"[/code] otherwise. Godot uses the [url=https://github.com/gabomdq/SDL_GameControllerDB]SDL2 game controller database[/url] to determine gamepad names and mappings based on this GUID.
+				Возвращает SDL2-совместимый GUID устройства на платформах, использующих ремаппинг геймпада, например, [code]030000004c050000c405000000010000[/code]. В противном случае возвращается [code]"Default Gamepad"[/code]. Godot использует базу данных игровых контроллеров [url=https://github.com/gabomdq/SDL_GameControllerDB]SDL2[/url] для определения имен и сопоставления геймпадов на основе этого GUID.
 			</description>
 		</method>
 		<method name="get_joy_name">
 			<return type="String" />
 			<argument index="0" name="device" type="int" />
 			<description>
-				Returns the name of the joypad at the specified device index, e.g. [code]PS4 Controller[/code]. Godot uses the [url=https://github.com/gabomdq/SDL_GameControllerDB]SDL2 game controller database[/url] to determine gamepad names.
+				Возвращает название джойпада по указанному индексу устройства, например [code]PS4 Controller[/code]. Для определения имен геймпадов Godot использует [url=https://github.com/gabomdq/SDL_GameControllerDB] базу данных игровых контроллеров SDL2[/url].
 			</description>
 		</method>
 		<method name="get_joy_vibration_duration">
 			<return type="float" />
 			<argument index="0" name="device" type="int" />
 			<description>
-				Returns the duration of the current vibration effect in seconds.
+				Возвращает длительность текущего эффекта вибрации в секундах.
 			</description>
 		</method>
 		<method name="get_joy_vibration_strength">
 			<return type="Vector2" />
 			<argument index="0" name="device" type="int" />
 			<description>
-				Returns the strength of the joypad vibration: x is the strength of the weak motor, and y is the strength of the strong motor.
+				Возвращает силу вибрации джойпада: x - сила слабого двигателя, y - сила сильного двигателя.
 			</description>
 		</method>
-		<method name="get_last_mouse_speed">
+		<method name="get_last_mouse_speed" qualifiers="const">
 			<return type="Vector2" />
 			<description>
-				Returns the last mouse speed. To provide a precise and jitter-free speed, mouse speed is only calculated every 0.1s. Therefore, mouse speed will lag mouse movements.
+				Возвращает скорость движения мыши в последний раз, когда курсор был перемещен, и до следующего кадра, в котором мышь движется. Это означает, что даже если мышь не движется, эта функция все равно вернет значение последнего движения.
 			</description>
 		</method>
 		<method name="get_magnetometer" qualifiers="const">
 			<return type="Vector3" />
 			<description>
-				Returns the magnetic field strength in micro-Tesla for all axes of the device's magnetometer sensor, if the device has one. Otherwise, the method returns [constant Vector3.ZERO].
-				[b]Note:[/b] This method only works on Android, iOS and UWP. On other platforms, it always returns [constant Vector3.ZERO].
+				Возвращает напряженность магнитного поля в микротеслах для всех осей магнитометрического датчика устройства, если он есть. В противном случае метод возвращает [константу Vector3.ZERO].
+				[b]Примечание:[/b] Этот метод работает только на Android, iOS и UWP. На других платформах он всегда возвращает [константу Vector3.ZERO].
 			</description>
 		</method>
 		<method name="get_mouse_button_mask" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns mouse buttons as a bitmask. If multiple mouse buttons are pressed at the same time, the bits are added together.
+				Возвращает кнопки мыши в виде битовой маски. Если несколько кнопок мыши нажаты одновременно, биты суммируются.
 			</description>
 		</method>
 		<method name="get_vector" qualifiers="const">
@@ -196,9 +196,9 @@
 			<argument index="3" name="positive_y" type="String" />
 			<argument index="4" name="deadzone" type="float" default="-1.0" />
 			<description>
-				Gets an input vector by specifying four actions for the positive and negative X and Y axes.
-				This method is useful when getting vector input, such as from a joystick, directional pad, arrows, or WASD. The vector has its length limited to 1 and has a circular deadzone, which is useful for using vector input as movement.
-				By default, the deadzone is automatically calculated from the average of the action deadzones. However, you can override the deadzone to be whatever you want (on the range of 0 to 1).
+				Получает вектор ввода, указывая четыре действия для положительных и отрицательных осей X и Y.
+				Этот метод полезен при получении векторного ввода, например, от джойстика, курсора, стрелок или WASD. Длина вектора ограничена 1 и имеет круговую мертвую зону, что удобно при использовании векторного ввода в качестве движения.
+				По умолчанию мертвая зона автоматически рассчитывается из среднего значения мертвых зон действий. Однако вы можете изменить значение мертвой зоны на любое (в диапазоне от 0 до 1).
 			</description>
 		</method>
 		<method name="is_action_just_pressed" qualifiers="const">
@@ -206,11 +206,10 @@
 			<argument index="0" name="action" type="String" />
 			<argument index="1" name="exact" type="bool" default="false" />
 			<description>
-				Returns [code]true[/code] when the user has [i]started[/i] pressing the action event in the current frame or physics tick. It will only return [code]true[/code] on the frame or tick that the user pressed down the button.
-				This is useful for code that needs to run only once when an action is pressed, instead of every frame while it's pressed.
-				If [code]exact[/code] is [code]false[/code], it ignores additional input modifiers for [InputEventKey] and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
-				[b]Note:[/b] Returning [code]true[/code] does not imply that the action is [i]still[/i] pressed. An action can be pressed and released again rapidly, and [code]true[/code] will still be returned so as not to miss input.
-				[b]Note:[/b] Due to keyboard ghosting, [method is_action_just_pressed] may return [code]false[/code] even if one of the action's keys is pressed. See [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the documentation for more information.
+				Возвращает [code]true[/code], когда пользователь начинает нажимать на событие действия, то есть [code]true[/code] только на том кадре, когда пользователь нажал на кнопку.
+				Это полезно для кода, который должен выполняться только один раз, когда действие нажато, а не каждый кадр, пока оно нажато.
+				Если [code]exact[/code] имеет значение [code]false[/code], то игнорируются дополнительные модификаторы ввода для событий [InputEventKey] и [InputEventMouseButton], а также направление для событий [InputEventJoypadMotion].
+				[b]Примечание:[/b] Из-за призрачности клавиатуры [метод is_action_just_pressed] может вернуть [code]false[/code], даже если одна из клавиш действия нажата. Дополнительную информацию см. в документации [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Примеры ввода[/url].
 			</description>
 		</method>
 		<method name="is_action_just_released" qualifiers="const">
@@ -218,9 +217,8 @@
 			<argument index="0" name="action" type="String" />
 			<argument index="1" name="exact" type="bool" default="false" />
 			<description>
-				Returns [code]true[/code] when the user [i]stops[/i] pressing the action event in the current frame or physics tick. It will only return [code]true[/code] on the frame or tick that the user releases the button.
-				If [code]exact[/code] is [code]false[/code], it ignores additional input modifiers for [InputEventKey] and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
-				[b]Note:[/b] Returning [code]true[/code] does not imply that the action is [i]still[/i] not pressed. An action can be released and pressed again rapidly, and [code]true[/code] will still be returned so as not to miss input.
+				Возвращает [code]true[/code], когда пользователь перестает нажимать на событие действия, то есть [code]true[/code] только на том кадре, на котором пользователь отпустил кнопку.
+				Если [code]exact[/code] равен [code]false[/code], то игнорируются дополнительные модификаторы ввода для событий [InputEventKey] и [InputEventMouseButton], а также направление для событий [InputEventJoypadMotion].
 			</description>
 		</method>
 		<method name="is_action_pressed" qualifiers="const">
@@ -228,9 +226,9 @@
 			<argument index="0" name="action" type="String" />
 			<argument index="1" name="exact" type="bool" default="false" />
 			<description>
-				Returns [code]true[/code] if you are pressing the action event. Note that if an action has multiple buttons assigned and more than one of them is pressed, releasing one button will release the action, even if some other button assigned to this action is still pressed.
-				If [code]exact[/code] is [code]false[/code], it ignores additional input modifiers for [InputEventKey] and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
-				[b]Note:[/b] Due to keyboard ghosting, [method is_action_pressed] may return [code]false[/code] even if one of the action's keys is pressed. See [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the documentation for more information.
+				Возвращает [code]true[/code], если вы нажимаете на событие действия. Обратите внимание, что если действию назначено несколько кнопок и нажато более одной из них, отпускание одной кнопки приведет к освобождению действия, даже если какая-то другая кнопка, назначенная этому действию, все еще нажата.
+				Если [code]exact[/code] имеет значение [code]false[/code], то игнорируются дополнительные модификаторы ввода для событий [InputEventKey] и [InputEventMouseButton], а также направление для событий [InputEventJoypadMotion].
+				[b]Примечание:[/b] Из-за призрачности клавиатуры [метод is_action_pressed] может возвращать [code]false[/code], даже если одна из клавиш действия нажата. Дополнительную информацию см. в документации [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Примеры ввода[/url].
 			</description>
 		</method>
 		<method name="is_joy_button_pressed" qualifiers="const">
@@ -238,39 +236,39 @@
 			<argument index="0" name="device" type="int" />
 			<argument index="1" name="button" type="int" />
 			<description>
-				Returns [code]true[/code] if you are pressing the joypad button (see [enum JoystickList]).
+				Возвращает [code]true[/code], если вы нажимаете кнопку джойстика (см. [enum JoystickList]).
 			</description>
 		</method>
 		<method name="is_joy_known">
 			<return type="bool" />
 			<argument index="0" name="device" type="int" />
 			<description>
-				Returns [code]true[/code] if the system knows the specified device. This means that it sets all button and axis indices exactly as defined in [enum JoystickList]. Unknown joypads are not expected to match these constants, but you can still retrieve events from them.
+				Возвращает [code]true[/code], если система знает указанное устройство. Это означает, что она устанавливает все индексы кнопок и осей точно так, как определено в [enum JoystickList]. Ожидается, что неизвестные джойстики не будут соответствовать этим константам, но вы все равно сможете получать от них события.
 			</description>
 		</method>
 		<method name="is_key_pressed" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="scancode" type="int" />
 			<description>
-				Returns [code]true[/code] if you are pressing the key in the current keyboard layout. You can pass a [enum KeyList] constant.
-				[method is_key_pressed] is only recommended over [method is_physical_key_pressed] in non-game applications. This ensures that shortcut keys behave as expected depending on the user's keyboard layout, as keyboard shortcuts are generally dependent on the keyboard layout in non-game applications. If in doubt, use [method is_physical_key_pressed].
-				[b]Note:[/b] Due to keyboard ghosting, [method is_key_pressed] may return [code]false[/code] even if one of the action's keys is pressed. See [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the documentation for more information.
+				Возвращает [code]true[/code], если вы нажимаете клавишу в текущей раскладке клавиатуры. Вы можете передать константу [enum KeyList].
+				Метод [method is_key_pressed] рекомендуется использовать вместо [method is_physical_key_pressed] только в неигровых приложениях. Это гарантирует, что клавиши быстрого доступа будут вести себя так, как ожидается, в зависимости от раскладки клавиатуры пользователя, поскольку в неигровых приложениях комбинации клавиш обычно зависят от раскладки клавиатуры. Если вы сомневаетесь, используйте [метод is_physical_key_pressed].
+				[b]Примечание:[/b] Из-за призрачности клавиатуры метод [is_key_pressed] может вернуть [code]false[/code], даже если одна из клавиш действия нажата. Дополнительные сведения см. в документации [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Примеры ввода[/url].
 			</description>
 		</method>
 		<method name="is_mouse_button_pressed" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="button" type="int" />
 			<description>
-				Returns [code]true[/code] if you are pressing the mouse button specified with [enum ButtonList].
+				Возвращает [code]true[/code], если вы нажимаете кнопку мыши, указанную в [enum ButtonList].
 			</description>
 		</method>
 		<method name="is_physical_key_pressed" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="scancode" type="int" />
 			<description>
-				Returns [code]true[/code] if you are pressing the key in the physical location on the 101/102-key US QWERTY keyboard. You can pass a [enum KeyList] constant.
-				[method is_physical_key_pressed] is recommended over [method is_key_pressed] for in-game actions, as it will make W/A/S/D layouts work regardless of the user's keyboard layout. [method is_physical_key_pressed] will also ensure that the top row number keys work on any keyboard layout. If in doubt, use [method is_physical_key_pressed].
-				[b]Note:[/b] Due to keyboard ghosting, [method is_physical_key_pressed] may return [code]false[/code] even if one of the action's keys is pressed. See [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the documentation for more information.
+				Возвращает [code]true[/code], если вы нажимаете клавишу в физическом месте на 101/102-клавишной американской QWERTY-клавиатуре. Вы можете передать константу [enum KeyList].
+				Метод [method is_physical_key_pressed] рекомендуется использовать для внутриигровых действий вместо [method is_key_pressed], так как в этом случае раскладки W/A/S/D будут работать независимо от раскладки клавиатуры пользователя. [method is_physical_key_pressed] также гарантирует, что цифровые клавиши верхнего ряда будут работать на любой раскладке клавиатуры. Если вы сомневаетесь, используйте [method is_physical_key_pressed].
+				[b]Примечание:[/b] Из-за призрачности клавиатуры метод [is_physical_key_pressed] может вернуть [code]false[/code], даже если одна из клавиш действия нажата. Дополнительную информацию см. в документации [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Примеры ввода[/url].
 			</description>
 		</method>
 		<method name="joy_connection_changed">
@@ -280,16 +278,16 @@
 			<argument index="2" name="name" type="String" />
 			<argument index="3" name="guid" type="String" />
 			<description>
-				Notifies the [Input] singleton that a connection has changed, to update the state for the [code]device[/code] index.
-				This is used internally and should not have to be called from user scripts. See [signal joy_connection_changed] for the signal emitted when this is triggered internally.
+				Уведомляет синглтон [Input] об изменении соединения, чтобы обновить состояние для индекса [code]device[/code].
+				Это используется внутренне и не должно вызываться из пользовательских скриптов. Смотрите [signal joy_connection_changed] для сигнала, издаваемого при этом внутреннем срабатывании.
 			</description>
 		</method>
 		<method name="parse_input_event">
 			<return type="void" />
 			<argument index="0" name="event" type="InputEvent" />
 			<description>
-				Feeds an [InputEvent] to the game. Can be used to artificially trigger input events from code. Also generates [method Node._input] calls.
-				Example:
+				Передает [InputEvent] в игру. Может использоваться для искусственного запуска событий ввода из кода. Также генерирует вызовы [метода Node._input].
+				Пример:
 				[codeblock]
 				var a = InputEventAction.new()
 				a.action = "ui_cancel"
@@ -302,15 +300,15 @@
 			<return type="void" />
 			<argument index="0" name="guid" type="String" />
 			<description>
-				Removes all mappings from the internal database that match the given GUID.
+				Удаляет из внутренней базы данных все отображения, соответствующие заданному GUID.
 			</description>
 		</method>
 		<method name="set_accelerometer">
 			<return type="void" />
 			<argument index="0" name="value" type="Vector3" />
 			<description>
-				Sets the acceleration value of the accelerometer sensor. Can be used for debugging on devices without a hardware sensor, for example in an editor on a PC.
-				[b]Note:[/b] This value can be immediately overwritten by the hardware sensor value on Android and iOS.
+				Устанавливает значение ускорения датчика акселерометра. Может использоваться для отладки на устройствах без аппаратного датчика, например, в редакторе на ПК.
+				[b]Примечание:[/b] Это значение может быть немедленно перезаписано значением аппаратного датчика на Android и iOS.
 			</description>
 		</method>
 		<method name="set_custom_mouse_cursor">
@@ -319,54 +317,45 @@
 			<argument index="1" name="shape" type="int" enum="Input.CursorShape" default="0" />
 			<argument index="2" name="hotspot" type="Vector2" default="Vector2( 0, 0 )" />
 			<description>
-				Sets a custom mouse cursor image, which is only visible inside the game window. The hotspot can also be specified. Passing [code]null[/code] to the image parameter resets to the system cursor. See [enum CursorShape] for the list of shapes.
-				[code]image[/code]'s size must be lower than or equal to 256×256. To avoid rendering issues, sizes lower than or equal to 128×128 are recommended.
-				[code]hotspot[/code] must be within [code]image[/code]'s size.
-				[b]Note:[/b] [AnimatedTexture]s aren't supported as custom mouse cursors. If using an [AnimatedTexture], only the first frame will be displayed.
-				[b]Note:[/b] Only images imported with the [b]Lossless[/b], [b]Lossy[/b] or [b]Uncompressed[/b] compression modes are supported. The [b]Video RAM[/b] compression mode can't be used for custom cursors.
-				[b]Note:[/b] On the web platform, the maximum allowed cursor image size is 128×128. Cursor images larger than 32×32 will also only be displayed if the mouse cursor image is entirely located within the page for [url=https://chromestatus.com/feature/5825971391299584]security reasons[/url].
+				Устанавливает пользовательское изображение курсора мыши, которое будет видно только в игровом окне. Также можно указать горячую точку. При передаче [code]null[/code] в параметр image происходит сброс на системный курсор. Список форм см. в [enum CursorShape].
+				Размер [code]image[/code] должен быть меньше или равен 256×256. Чтобы избежать проблем с рендерингом, рекомендуется использовать размеры меньше или равные 128×128.
+				[code]hotspot[/code] должен находиться в пределах размера [code]изображения[/code].
+				[b]Примечание:[/b] [AnimatedTexture]ы не поддерживаются в качестве пользовательских курсоров мыши. При использовании [AnimatedTexture] будет отображаться только первый кадр.
+				[b]Примечание:[/b] Поддерживаются только изображения, импортированные с режимами сжатия [b]Lossless[/b], [b]Lossy[/b] или [b]Uncompressed[/b]. Режим сжатия [b]Video RAM[/b] не может быть использован для пользовательских курсоров.
+				[b]Примечание:[/b] На веб-платформе максимально допустимый размер изображения курсора составляет 128×128. Изображения курсора размером более 32×32 также будут отображаться только в том случае, если изображение курсора мыши полностью расположено на странице по [url=https://chromestatus.com/feature/5825971391299584] соображениям безопасности[/url].
 			</description>
 		</method>
 		<method name="set_default_cursor_shape">
 			<return type="void" />
 			<argument index="0" name="shape" type="int" enum="Input.CursorShape" default="0" />
 			<description>
-				Sets the default cursor shape to be used in the viewport instead of [constant CURSOR_ARROW].
-				[b]Note:[/b] If you want to change the default cursor shape for [Control]'s nodes, use [member Control.mouse_default_cursor_shape] instead.
-				[b]Note:[/b] This method generates an [InputEventMouseMotion] to update cursor immediately.
+				Устанавливает форму курсора по умолчанию, которая будет использоваться во вьюпорте вместо [constant CURSOR_ARROW].
+				[b]Примечание:[/b] Если вы хотите изменить форму курсора по умолчанию для узлов [Control], используйте вместо этого [member Control.mouse_default_cursor_shape].
+				[b]Примечание:[/b] Этот метод генерирует событие [InputEventMouseMotion] для немедленного обновления курсора.
 			</description>
 		</method>
 		<method name="set_gravity">
 			<return type="void" />
 			<argument index="0" name="value" type="Vector3" />
 			<description>
-				Sets the gravity value of the accelerometer sensor. Can be used for debugging on devices without a hardware sensor, for example in an editor on a PC.
-				[b]Note:[/b] This value can be immediately overwritten by the hardware sensor value on Android and iOS.
+				Устанавливает значение силы тяжести датчика акселерометра. Может использоваться для отладки на устройствах без аппаратного датчика, например, в редакторе на ПК.
+				[b]Примечание:[/b] Это значение может быть немедленно перезаписано значением аппаратного датчика на Android и iOS.
 			</description>
 		</method>
 		<method name="set_gyroscope">
 			<return type="void" />
 			<argument index="0" name="value" type="Vector3" />
 			<description>
-				Sets the value of the rotation rate of the gyroscope sensor. Can be used for debugging on devices without a hardware sensor, for example in an editor on a PC.
-				[b]Note:[/b] This value can be immediately overwritten by the hardware sensor value on Android and iOS.
+				Устанавливает значение скорости вращения датчика гироскопа. Может использоваться для отладки на устройствах без аппаратного датчика, например в редакторе на ПК.
+				[b]Примечание:[/b] Это значение может быть немедленно перезаписано значением аппаратного датчика на Android и iOS.
 			</description>
 		</method>
 		<method name="set_magnetometer">
 			<return type="void" />
 			<argument index="0" name="value" type="Vector3" />
 			<description>
-				Sets the value of the magnetic field of the magnetometer sensor. Can be used for debugging on devices without a hardware sensor, for example in an editor on a PC.
-				[b]Note:[/b] This value can be immediately overwritten by the hardware sensor value on Android and iOS.
-			</description>
-		</method>
-		<method name="should_ignore_device" qualifiers="const">
-			<return type="bool" />
-			<argument index="0" name="vendor_id" type="int" />
-			<argument index="1" name="product_id" type="int" />
-			<description>
-				Queries whether an input device should be ignored or not. Devices can be ignored by setting the environment variable [code]SDL_GAMECONTROLLER_IGNORE_DEVICES[/code]. Read the [url=https://wiki.libsdl.org/SDL2]SDL documentation[/url] for more information.
-				[b]Note:[/b] Some 3rd party tools can contribute to the list of ignored devices. For example, [i]SteamInput[/i] creates virtual devices from physical devices for remapping purposes. To avoid handling the same input device twice, the original device is added to the ignore list.
+				Устанавливает значение магнитного поля датчика магнитометра. Может использоваться для отладки на устройствах без аппаратного датчика, например, в редакторе на ПК.
+				[b]Примечание:[/b] Это значение может быть немедленно перезаписано значением аппаратного датчика на Android и iOS.
 			</description>
 		</method>
 		<method name="start_joy_vibration">
@@ -376,45 +365,45 @@
 			<argument index="2" name="strong_magnitude" type="float" />
 			<argument index="3" name="duration" type="float" default="0" />
 			<description>
-				Starts to vibrate the joypad. Joypads usually come with two rumble motors, a strong and a weak one. [code]weak_magnitude[/code] is the strength of the weak motor (between 0 and 1) and [code]strong_magnitude[/code] is the strength of the strong motor (between 0 and 1). [code]duration[/code] is the duration of the effect in seconds (a duration of 0 will try to play the vibration indefinitely). The vibration can be stopped early by calling [method stop_joy_vibration].
-				[b]Note:[/b] Not every hardware is compatible with long effect durations; it is recommended to restart an effect if it has to be played for more than a few seconds.
+				Начинает вибрировать джойпад. Джойпады обычно поставляются с двумя моторами вибрации, сильным и слабым. [code]weak_magnitude[/code] - сила слабого мотора (от 0 до 1), а [code]strong_magnitude[/code] - сила сильного мотора (от 0 до 1). [code]duration[/code] - длительность эффекта в секундах (при длительности 0 вибрация будет воспроизводиться бесконечно).
+				[b]Примечание:[/b] Не каждое оборудование совместимо с длительными эффектами; рекомендуется перезапускать эффект, если он должен воспроизводиться более нескольких секунд.
 			</description>
 		</method>
 		<method name="stop_joy_vibration">
 			<return type="void" />
 			<argument index="0" name="device" type="int" />
 			<description>
-				Stops the vibration of the joypad started with [method start_joy_vibration].
+				Прекращение вибрации джойпада.
 			</description>
 		</method>
 		<method name="vibrate_handheld">
 			<return type="void" />
 			<argument index="0" name="duration_ms" type="int" default="500" />
 			<description>
-				Vibrate the handheld device for the specified duration in milliseconds.
-				[b]Note:[/b] This method is implemented on Android, iOS, and HTML5. It has no effect on other platforms.
-				[b]Note:[/b] For Android, [method vibrate_handheld] requires enabling the [code]VIBRATE[/code] permission in the export preset. Otherwise, [method vibrate_handheld] will have no effect.
-				[b]Note:[/b] For iOS, specifying the duration is only supported in iOS 13 and later.
-				[b]Note:[/b] Some web browsers such as Safari and Firefox for Android do not support [method vibrate_handheld].
+				Вибрация портативных устройств.
+				[b]Примечание:[/b] Этот метод реализован на Android, iOS и HTML5.
+				[b]Примечание:[/b] Для Android требуется включить разрешение [code]VIBRATE[/code] в экспортируемой предустановке.
+				[b]Примечание:[/b] Для iOS указание длительности поддерживается в iOS 13 и более поздних версиях.
+				[b]Примечание:[/b] Некоторые веб-браузеры, такие как Safari и Firefox для Android, не поддерживают этот метод.
 			</description>
 		</method>
 		<method name="warp_mouse_position">
 			<return type="void" />
 			<argument index="0" name="to" type="Vector2" />
 			<description>
-				Sets the mouse position to the specified vector, provided in pixels and relative to an origin at the upper left corner of the game window.
-				Mouse position is clipped to the limits of the screen resolution, or to the limits of the game window if [enum MouseMode] is set to [constant MOUSE_MODE_CONFINED].
+				Устанавливает положение мыши на указанный вектор, заданный в пикселях и относительно начала координат в левом верхнем углу игрового окна.
+				Положение мыши обрезается до пределов разрешения экрана или до пределов игрового окна, если для [enum MouseMode] установлено значение [constant MOUSE_MODE_CONFINED].
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="mouse_mode" type="int" setter="set_mouse_mode" getter="get_mouse_mode" enum="Input.MouseMode">
-			Controls the mouse mode. See [enum MouseMode] for more information.
+			Управляет режимом работы мыши. Дополнительную информацию см. в [enum MouseMode].
 		</member>
 		<member name="use_accumulated_input" type="bool" setter="set_use_accumulated_input" getter="is_using_accumulated_input">
-			If [code]true[/code], similar input events sent by the operating system are accumulated. When input accumulation is enabled, all input events generated during a frame will be merged and emitted when the frame is done rendering. Therefore, this limits the number of input method calls per second to the rendering FPS.
-			Input accumulation can be disabled to get slightly more precise/reactive input at the cost of increased CPU usage. In applications where drawing freehand lines is required, input accumulation should generally be disabled while the user is drawing the line to get results that closely follow the actual input.
-			[b]Note:[/b] Input accumulation is [i]enabled[/i] by default. It is recommended to keep it enabled for games which don't require very reactive input, as this will decrease CPU usage.
+			Если [code]true[/code], то аналогичные события ввода, посылаемые операционной системой, накапливаются. Когда накопление входных данных включено, все входные события, сгенерированные в течение кадра, будут объединены и выданы, когда кадр закончит рендеринг. Таким образом, количество вызовов метода ввода в секунду ограничивается FPS рендеринга.
+			Накопление ввода можно отключить, чтобы получить немного более точный/реактивный ввод ценой увеличения загрузки процессора. В приложениях, где требуется рисовать линии от руки, накопление ввода обычно отключается на время рисования линии пользователем, чтобы получить результаты, точно соответствующие реальному вводу.
+			[b]Примечание:[/b] Накопление ввода [i]включено[/i] по умолчанию. Рекомендуется оставить его включенным для игр, в которых не требуется очень реактивный ввод, так как это снизит нагрузку на процессор.
 		</member>
 	</members>
 	<signals>
@@ -422,77 +411,74 @@
 			<argument index="0" name="device" type="int" />
 			<argument index="1" name="connected" type="bool" />
 			<description>
-				Emitted when a joypad device has been connected or disconnected.
+				Выдается, когда устройство джойпада было подключено или отключено.
 			</description>
 		</signal>
 	</signals>
 	<constants>
 		<constant name="MOUSE_MODE_VISIBLE" value="0" enum="MouseMode">
-			Makes the mouse cursor visible if it is hidden.
+			Делает курсор мыши видимым, если он скрыт.
 		</constant>
 		<constant name="MOUSE_MODE_HIDDEN" value="1" enum="MouseMode">
-			Makes the mouse cursor hidden if it is visible.
+			Делает курсор мыши скрытым, если он виден.
 		</constant>
 		<constant name="MOUSE_MODE_CAPTURED" value="2" enum="MouseMode">
-			Captures the mouse. The mouse will be hidden and its position locked at the center of the screen.
-			[b]Note:[/b] If you want to process the mouse's movement in this mode, you need to use [member InputEventMouseMotion.relative].
+			Захватывает мышь. Мышь будет скрыта, а ее положение зафиксировано в центре экрана.
+			[b]Примечание:[/b] Если вы хотите обрабатывать движение мыши в этом режиме, вам нужно использовать [member InputEventMouseMotion.relative].
 		</constant>
 		<constant name="MOUSE_MODE_CONFINED" value="3" enum="MouseMode">
-			Confines the mouse cursor to the game window, and make it visible.
-		</constant>
-		<constant name="MOUSE_MODE_CONFINED_HIDDEN" value="4" enum="MouseMode">
-			Confines the mouse cursor to the game window, and make it hidden.
+			Делает курсор мыши видимым, но ограничивает его рамками игрового окна.
 		</constant>
 		<constant name="CURSOR_ARROW" value="0" enum="CursorShape">
-			Arrow cursor. Standard, default pointing cursor.
+			Курсор со стрелками. Стандартный курсор по умолчанию.
 		</constant>
 		<constant name="CURSOR_IBEAM" value="1" enum="CursorShape">
-			I-beam cursor. Usually used to show where the text cursor will appear when the mouse is clicked.
+			Курсор в виде двутавра. Обычно используется для того, чтобы показать, где появится текстовый курсор при нажатии кнопки мыши.
 		</constant>
 		<constant name="CURSOR_POINTING_HAND" value="2" enum="CursorShape">
-			Pointing hand cursor. Usually used to indicate the pointer is over a link or other interactable item.
+			Курсор в виде указывающей руки. Обычно используется для указания на то, что указатель находится над ссылкой или другим взаимодействующим элементом.
 		</constant>
 		<constant name="CURSOR_CROSS" value="3" enum="CursorShape">
-			Cross cursor. Typically appears over regions in which a drawing operation can be performed or for selections.
+			Крестообразный курсор. Обычно появляется над областями, в которых можно выполнить операцию рисования, или для выделения.
 		</constant>
 		<constant name="CURSOR_WAIT" value="4" enum="CursorShape">
-			Wait cursor. Indicates that the application is busy performing an operation. This cursor shape denotes that the application isn't usable during the operation (e.g. something is blocking its main thread).
+			Курсор ожидания. Указывает на то, что приложение занято выполнением какой-либо операции. Такая форма курсора означает, что приложение не может быть использовано во время выполнения операции (например, что-то блокирует его основной поток).
 		</constant>
 		<constant name="CURSOR_BUSY" value="5" enum="CursorShape">
-			Busy cursor. Indicates that the application is busy performing an operation. This cursor shape denotes that the application is still usable during the operation.
+			Занятый курсор. Указывает, что приложение занято выполнением операции. Такая форма курсора означает, что приложение все еще можно использовать во время выполнения операции.
 		</constant>
 		<constant name="CURSOR_DRAG" value="6" enum="CursorShape">
-			Drag cursor. Usually displayed when dragging something.
+			Курсор перетаскивания. Обычно отображается при перетаскивании чего-либо.
 		</constant>
 		<constant name="CURSOR_CAN_DROP" value="7" enum="CursorShape">
-			Can drop cursor. Usually displayed when dragging something to indicate that it can be dropped at the current position.
+			Курсор "Можно бросить". Обычно отображается при перетаскивании чего-либо, чтобы указать, что его можно опустить в текущей позиции.
 		</constant>
 		<constant name="CURSOR_FORBIDDEN" value="8" enum="CursorShape">
-			Forbidden cursor. Indicates that the current action is forbidden (for example, when dragging something) or that the control at a position is disabled.
+			Запрещенный курсор. Указывает, что текущее действие запрещено (например, при перетаскивании чего-либо) или что элемент управления в данной позиции отключен.
 		</constant>
 		<constant name="CURSOR_VSIZE" value="9" enum="CursorShape">
-			Vertical resize mouse cursor. A double-headed vertical arrow. It tells the user they can resize the window or the panel vertically.
+			Вертикальное изменение размера курсора мыши. Двуглавая вертикальная стрелка. Она указывает пользователю, что он может изменить размер окна или панели по вертикали.
 		</constant>
 		<constant name="CURSOR_HSIZE" value="10" enum="CursorShape">
-			Horizontal resize mouse cursor. A double-headed horizontal arrow. It tells the user they can resize the window or the panel horizontally.
+			Горизонтальный курсор мыши для изменения размера. Двуглавая горизонтальная стрелка. Она указывает пользователю, что он может изменить размер окна или панели по горизонтали.
 		</constant>
 		<constant name="CURSOR_BDIAGSIZE" value="11" enum="CursorShape">
-			Window resize mouse cursor. The cursor is a double-headed arrow that goes from the bottom left to the top right. It tells the user they can resize the window or the panel both horizontally and vertically.
+			Изменение размера курсора мыши в окне. Курсор представляет собой двунаправленную стрелку, идущую от левого нижнего угла к правому верхнему. Она указывает пользователю, что он может изменять размер окна или панели как по горизонтали, так и по вертикали.
 		</constant>
 		<constant name="CURSOR_FDIAGSIZE" value="12" enum="CursorShape">
-			Window resize mouse cursor. The cursor is a double-headed arrow that goes from the top left to the bottom right, the opposite of [constant CURSOR_BDIAGSIZE]. It tells the user they can resize the window or the panel both horizontally and vertically.
+			Изменение размера курсора мыши в окне. Курсор представляет собой двунаправленную стрелку, идущую от левого верхнего края к правому нижнему, противоположную [constant CURSOR_BDIAGSIZE]. Он сообщает пользователю, что он может изменять размеры окна или панели как по горизонтали, так и по вертикали.
 		</constant>
 		<constant name="CURSOR_MOVE" value="13" enum="CursorShape">
-			Move cursor. Indicates that something can be moved.
+			Переместить курсор. Указывает на возможность перемещения.
 		</constant>
 		<constant name="CURSOR_VSPLIT" value="14" enum="CursorShape">
-			Vertical split mouse cursor. On Windows, it's the same as [constant CURSOR_VSIZE].
+			Разделение курсора мыши по вертикали. В Windows это то же самое, что и [constant CURSOR_VSIZE].
 		</constant>
 		<constant name="CURSOR_HSPLIT" value="15" enum="CursorShape">
-			Horizontal split mouse cursor. On Windows, it's the same as [constant CURSOR_HSIZE].
+			Горизонтальное разделение курсора мыши. В Windows это то же самое, что и [constant CURSOR_HSIZE].
 		</constant>
 		<constant name="CURSOR_HELP" value="16" enum="CursorShape">
-			Help cursor. Usually a question mark.
+			Справочный курсор. Обычно это знак вопроса.
 		</constant>
 	</constants>
 </class>

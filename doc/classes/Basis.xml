@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Basis" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Basis" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		3×3 matrix datatype.
+		Тип данных матрицы 3×3.
 	</brief_description>
 	<description>
-		3×3 matrix used for 3D rotation and scale. Almost always used as an orthogonal basis for a Transform.
-		Contains 3 vector fields X, Y and Z as its columns, which are typically interpreted as the local basis vectors of a transformation. For such use, it is composed of a scaling and a rotation matrix, in that order (M = R.S).
-		Can also be accessed as array of 3D vectors. These vectors are normally orthogonal to each other, but are not necessarily normalized (due to scaling).
-		For more information, read the "Matrices and transforms" documentation article.
+		Матрица 3×3, используемая для трехмерного вращения и масштабирования. Практически всегда используется в качестве ортогонального базиса преобразования.
+		Содержит в качестве столбцов 3 векторных поля X, Y и Z, которые обычно интерпретируются как локальные базисные векторы преобразования. Для такого использования она состоит из матрицы масштабирования и матрицы вращения, причем в таком порядке (M = R.S).
+		Также может быть использован как массив трехмерных векторов. Эти векторы обычно ортогональны друг другу, но не обязательно нормализованы (из-за масштабирования).
+		Более подробную информацию можно найти в статье документации "Матрицы и преобразования".
 	</description>
 	<tutorials>
 		<link title="Math tutorial index">$DOCS_URL/tutorials/math/index.html</link>
@@ -23,15 +23,15 @@
 			<return type="Basis" />
 			<argument index="0" name="from" type="Quat" />
 			<description>
-				Constructs a pure rotation basis matrix from the given quaternion.
+				Строит чистую базисную матрицу вращения из заданного кватерниона.
 			</description>
 		</method>
 		<method name="Basis">
 			<return type="Basis" />
 			<argument index="0" name="from" type="Vector3" />
 			<description>
-				Constructs a pure rotation basis matrix from the given Euler angles (in the YXZ convention: when *composing*, first Y, then X, and Z last), given in the vector format as (X angle, Y angle, Z angle).
-				Consider using the [Quat] constructor instead, which uses a quaternion instead of Euler angles.
+				Строит чистую матрицу базиса вращения из заданных углов Эйлера (в соответствии с YXZ: при *композиции* сначала Y, затем X, и в последнюю очередь Z), заданных в векторном формате (угол X, угол Y, угол Z).
+				Вместо этого можно использовать конструктор [Quat], в котором вместо углов Эйлера используется кватернион.
 			</description>
 		</method>
 		<method name="Basis">
@@ -39,7 +39,7 @@
 			<argument index="0" name="axis" type="Vector3" />
 			<argument index="1" name="angle" type="float" />
 			<description>
-				Constructs a pure rotation basis matrix, rotated around the given [code]axis[/code] by [code]angle[/code] (in radians). The axis must be a normalized vector.
+				Строит базисную матрицу чистого вращения, повернутую вокруг заданной [code]axis[/code] на [code]angle[/code] (в радианах). Ось должна быть нормализованным вектором.
 			</description>
 		</method>
 		<method name="Basis">
@@ -48,45 +48,45 @@
 			<argument index="1" name="y_axis" type="Vector3" />
 			<argument index="2" name="z_axis" type="Vector3" />
 			<description>
-				Constructs a basis matrix from 3 axis vectors (matrix columns).
+				Строит базисную матрицу из 3 осевых векторов (столбцов матрицы).
 			</description>
 		</method>
 		<method name="determinant">
 			<return type="float" />
 			<description>
-				Returns the determinant of the basis matrix. If the basis is uniformly scaled, its determinant is the square of the scale.
-				A negative determinant means the basis has a negative scale. A zero determinant means the basis isn't invertible, and is usually considered invalid.
+				Возвращает определитель матрицы базиса. Если базис равномерно масштабирован, то его определитель равен квадрату масштаба.
+				Отрицательный определитель означает, что базис имеет отрицательный масштаб. Нулевой определитель означает, что базис не является инвертируемым, и обычно считается недействительным.
 			</description>
 		</method>
 		<method name="get_euler">
 			<return type="Vector3" />
 			<description>
-				Returns the basis's rotation in the form of Euler angles (in the YXZ convention: when decomposing, first Z, then X, and Y last). The returned vector contains the rotation angles in the format (X angle, Y angle, Z angle).
-				Consider using the [method get_rotation_quat] method instead, which returns a [Quat] quaternion instead of Euler angles.
+				Возвращает вращение базиса в виде углов Эйлера (по схеме YXZ: при разложении сначала Z, затем X и в последнюю очередь Y). Возвращаемый вектор содержит углы поворота в формате (угол X, угол Y, угол Z).
+				Вместо него можно использовать метод [method get_rotation_quat], который вместо углов Эйлера возвращает кватернион [Quat].
 			</description>
 		</method>
 		<method name="get_orthogonal_index">
 			<return type="int" />
 			<description>
-				This function considers a discretization of rotations into 24 points on unit sphere, lying along the vectors (x,y,z) with each component being either -1, 0, or 1, and returns the index of the point best representing the orientation of the object. It is mainly used by the [GridMap] editor. For further details, refer to the Godot source code.
+				Эта функция рассматривает дискретизацию вращений на 24 точки на единичной сфере, лежащие вдоль векторов (x,y,z), каждая из которых равна либо -1, либо 0, либо 1, и возвращает индекс точки, наилучшим образом представляющей ориентацию объекта. В основном используется в редакторе [GridMap]. Более подробная информация приведена в исходном коде Godot.
 			</description>
 		</method>
 		<method name="get_rotation_quat">
 			<return type="Quat" />
 			<description>
-				Returns the basis's rotation in the form of a quaternion. See [method get_euler] if you need Euler angles, but keep in mind quaternions should generally be preferred to Euler angles.
+				Возвращает вращение базиса в виде кватерниона. Если вам нужны углы Эйлера, смотрите [method get_euler], но имейте в виду, что кватернионы, как правило, предпочтительнее углов Эйлера.
 			</description>
 		</method>
 		<method name="get_scale">
 			<return type="Vector3" />
 			<description>
-				Assuming that the matrix is the combination of a rotation and scaling, return the absolute value of scaling factors along each axis.
+				Предполагая, что матрица представляет собой комбинацию вращения и масштабирования, верните абсолютное значение коэффициентов масштабирования по каждой оси.
 			</description>
 		</method>
 		<method name="inverse">
 			<return type="Basis" />
 			<description>
-				Returns the inverse of the matrix.
+				Возвращает обратную величину матрицы.
 			</description>
 		</method>
 		<method name="is_equal_approx">
@@ -94,14 +94,14 @@
 			<argument index="0" name="b" type="Basis" />
 			<argument index="1" name="epsilon" type="float" default="1e-05" />
 			<description>
-				Returns [code]true[/code] if this basis and [code]b[/code] are approximately equal, by calling [code]is_equal_approx[/code] on each component.
-				[b]Note:[/b] For complicated reasons, the epsilon argument is always discarded. Don't use the epsilon argument, it does nothing.
+				Возвращает [code]true[/code], если данный базис и [code]b[/code] приблизительно равны, путем вызова [code]is_equal_approx[/code] для каждой компоненты.
+				[b]Примечание:[/b] По сложным причинам аргумент epsilon всегда отбрасывается. Не используйте аргумент epsilon, он ничего не дает.
 			</description>
 		</method>
 		<method name="orthonormalized">
 			<return type="Basis" />
 			<description>
-				Returns the orthonormalized version of the matrix (useful to call from time to time to avoid rounding error for orthogonal matrices). This performs a Gram-Schmidt orthonormalization on the basis of the matrix.
+				Возвращает ортонормированную версию матрицы (полезно вызывать время от времени, чтобы избежать ошибки округления для ортогональных матриц). При этом выполняется ортонормирование по Граму-Шмидту по базису матрицы.
 			</description>
 		</method>
 		<method name="rotated">
@@ -109,14 +109,14 @@
 			<argument index="0" name="axis" type="Vector3" />
 			<argument index="1" name="angle" type="float" />
 			<description>
-				Introduce an additional rotation around the given axis by [code]angle[/code] (in radians). The axis must be a normalized vector.
+				Вводит дополнительное вращение вокруг заданной оси на [code]angle[/code] (в радианах). Ось должна быть нормализованным вектором.
 			</description>
 		</method>
 		<method name="scaled">
 			<return type="Basis" />
 			<argument index="0" name="scale" type="Vector3" />
 			<description>
-				Introduce an additional scaling specified by the given 3D scaling factor.
+				Ввести дополнительное масштабирование, задаваемое заданным коэффициентом масштабирования 3D.
 			</description>
 		</method>
 		<method name="slerp">
@@ -124,76 +124,76 @@
 			<argument index="0" name="to" type="Basis" />
 			<argument index="1" name="weight" type="float" />
 			<description>
-				Assuming that the matrix is a proper rotation matrix, slerp performs a spherical-linear interpolation with another rotation matrix.
+				Предполагая, что матрица является правильной матрицей вращения, slerp выполняет сферолинейную интерполяцию с другой матрицей вращения.
 			</description>
 		</method>
 		<method name="tdotx">
 			<return type="float" />
 			<argument index="0" name="with" type="Vector3" />
 			<description>
-				Transposed dot product with the X axis of the matrix.
+				Транспонированное точечное произведение с осью X матрицы.
 			</description>
 		</method>
 		<method name="tdoty">
 			<return type="float" />
 			<argument index="0" name="with" type="Vector3" />
 			<description>
-				Transposed dot product with the Y axis of the matrix.
+				Транспонированное точечное произведение с осью Y матрицы.
 			</description>
 		</method>
 		<method name="tdotz">
 			<return type="float" />
 			<argument index="0" name="with" type="Vector3" />
 			<description>
-				Transposed dot product with the Z axis of the matrix.
+				Транспонированное точечное произведение с осью Z матрицы.
 			</description>
 		</method>
 		<method name="transposed">
 			<return type="Basis" />
 			<description>
-				Returns the transposed version of the matrix.
+				Возвращает транспонированную версию матрицы
 			</description>
 		</method>
 		<method name="xform">
 			<return type="Vector3" />
 			<argument index="0" name="v" type="Vector3" />
 			<description>
-				Returns a vector transformed (multiplied) by the matrix.
+				Возвращает вектор, преобразованный (умноженный) на матрицу.
 			</description>
 		</method>
 		<method name="xform_inv">
 			<return type="Vector3" />
 			<argument index="0" name="v" type="Vector3" />
 			<description>
-				Returns a vector transformed (multiplied) by the transposed basis matrix.
-				[b]Note:[/b] This results in a multiplication by the inverse of the matrix only if it represents a rotation-reflection.
+				Возвращает вектор, преобразованный (умноженный) на транспонированную базисную матрицу.
+				[b]Примечание:[/b] Это приводит к умножению на обратную матрицу только в том случае, если она представляет собой вращение-отражение.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="x" type="Vector3" setter="" getter="" default="Vector3( 1, 0, 0 )">
-			The basis matrix's X vector (column 0). Equivalent to array index [code]0[/code].
+			Вектор X базисной матрицы (столбец 0). Эквивалентен индексу массива [code]0[/code].
 		</member>
 		<member name="y" type="Vector3" setter="" getter="" default="Vector3( 0, 1, 0 )">
-			The basis matrix's Y vector (column 1). Equivalent to array index [code]1[/code].
+			Вектор Y базисной матрицы (столбец 1). Эквивалентен индексу массива [code]1[/code].
 		</member>
 		<member name="z" type="Vector3" setter="" getter="" default="Vector3( 0, 0, 1 )">
-			The basis matrix's Z vector (column 2). Equivalent to array index [code]2[/code].
+			Вектор Z базисной матрицы (столбец 2). Эквивалентен индексу массива [code]2[/code].
 		</member>
 	</members>
 	<constants>
 		<constant name="IDENTITY" value="Basis( 1, 0, 0, 0, 1, 0, 0, 0, 1 )">
-			The identity basis, with no rotation or scaling applied.
-			This is identical to calling [code]Basis()[/code] without any parameters. This constant can be used to make your code clearer, and for consistency with C#.
+			Базис тождества, без применения вращения и масштабирования.
+			Это идентично вызову [code]Basis()[/code] без каких-либо параметров. Эта константа может быть использована для повышения ясности кода, а также для согласованности с C#.
 		</constant>
 		<constant name="FLIP_X" value="Basis( -1, 0, 0, 0, 1, 0, 0, 0, 1 )">
-			The basis that will flip something along the X axis when used in a transformation.
+			Основа, которая будет переворачивать что-либо по оси X при использовании в преобразовании.
 		</constant>
 		<constant name="FLIP_Y" value="Basis( 1, 0, 0, 0, -1, 0, 0, 0, 1 )">
-			The basis that will flip something along the Y axis when used in a transformation.
+			Основа, которая будет переворачивать что-либо по оси Y при использовании в преобразовании.
 		</constant>
 		<constant name="FLIP_Z" value="Basis( 1, 0, 0, 0, 1, 0, 0, 0, -1 )">
-			The basis that will flip something along the Z axis when used in a transformation.
+			Основа, которая будет переворачивать что-либо по оси Z при использовании в преобразовании.
 		</constant>
 	</constants>
 </class>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="@GDScript" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+<class name="@GDScript" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
 	<brief_description>
-		Built-in GDScript functions.
+		Встроенные функции языка GDScript.
 	</brief_description>
 	<description>
-		List of core built-in GDScript functions. Math functions and other utilities. Everything else is provided by objects. (Keywords: builtin, built in, global functions.)
+		Список основных встроенных функций GDScript. Математические функции и другие утилиты. Все остальное предоставляется объектами. (Ключевые слова: встроенные, встроенные в, глобальные функции).
 	</description>
 	<tutorials>
 	</tutorials>
@@ -16,11 +16,11 @@
 			<argument index="2" name="b8" type="int" />
 			<argument index="3" name="a8" type="int" default="255" />
 			<description>
-				Returns a color constructed from integer red, green, blue, and alpha channels. Each channel should have 8 bits of information ranging from 0 to 255.
-				[code]r8[/code] red channel
-				[code]g8[/code] green channel
-				[code]b8[/code] blue channel
-				[code]a8[/code] alpha channel
+				Возвращает цвет, построенный из целочисленных красного, зеленого, синего и альфа-каналов. Каждый канал должен содержать 8 бит информации в диапазоне от 0 до 255.
+				[code]r8[/code] красный канал
+				[code]g8[/code] зеленый канал
+				[code]b8[/code] синий канал
+				[code]a8[/code] альфа-канал
 				[codeblock]
 				red = Color8(255, 0, 0)
 				[/codeblock]
@@ -31,20 +31,20 @@
 			<argument index="0" name="name" type="String" />
 			<argument index="1" name="alpha" type="float" default="1.0" />
 			<description>
-				Returns a color according to the standardized [code]name[/code] with [code]alpha[/code] ranging from 0 to 1.
+				Возвращает цвет в соответствии со стандартизированным [code]name[/code] с [code]alpha[/code] в диапазоне от 0 до 1.
 				[codeblock]
 				red = ColorN("red", 1)
 				[/codeblock]
-				Supported color names are the same as the constants defined in [Color].
+				Поддерживаемые имена цветов совпадают с константами, определенными в [Color].
 			</description>
 		</method>
 		<method name="abs">
 			<return type="float" />
 			<argument index="0" name="s" type="float" />
 			<description>
-				Returns the absolute value of parameter [code]s[/code] (i.e. positive value).
+				Возвращает абсолютное значение параметра [code]s[/code] (т.е. положительное значение).
 				[codeblock]
-				a = abs(-1) # a is 1
+				a = abs(-1) # a равно 1
 				[/codeblock]
 			</description>
 		</method>
@@ -52,9 +52,9 @@
 			<return type="float" />
 			<argument index="0" name="s" type="float" />
 			<description>
-				Returns the arc cosine of [code]s[/code] in radians. Use to get the angle of cosine [code]s[/code]. [code]s[/code] will be clamped between [code]-1.0[/code] and [code]1.0[/code] (inclusive), in order to prevent [method acos] from returning [constant NAN].
+				Возвращает косинус дуги [code]s[/code] в радианах. Используется для получения угла косинуса [code]s[/code]. [code]s[/code] должен быть между [code]-1.0[/code] и [code]1.0[/code] (включительно), иначе [метод acos] вернет [константу NAN].
 				[codeblock]
-				# c is 0.523599 or 30 degrees if converted with rad2deg(s)
+				# c - 0,523599 или 30 градусов, если преобразовать с помощью rad2deg(s).
 				c = acos(0.866025)
 				[/codeblock]
 			</description>
@@ -63,9 +63,9 @@
 			<return type="float" />
 			<argument index="0" name="s" type="float" />
 			<description>
-				Returns the arc sine of [code]s[/code] in radians. Use to get the angle of sine [code]s[/code]. [code]s[/code] will be clamped between [code]-1.0[/code] and [code]1.0[/code] (inclusive), in order to prevent [method asin] from returning [constant NAN].
+				Возвращает синус дуги [code]s[/code] в радианах. Используется для получения угла синуса [code]s[/code]. [code]s[/code] должен находиться между [code]-1.0[/code] и [code]1.0[/code] (включительно), иначе [метод asin] вернет [константу NAN].
 				[codeblock]
-				# s is 0.523599 or 30 degrees if converted with rad2deg(s)
+				# s равно 0,523599 или 30 градусам, если преобразовать с помощью rad2deg(s).
 				s = asin(0.5)
 				[/codeblock]
 			</description>
@@ -75,16 +75,16 @@
 			<argument index="0" name="condition" type="bool" />
 			<argument index="1" name="message" type="String" default="&quot;&quot;" />
 			<description>
-				Asserts that the [code]condition[/code] is [code]true[/code]. If the [code]condition[/code] is [code]false[/code], an error is generated. When running from the editor, the running project will also be paused until you resume it. This can be used as a stronger form of [method push_error] for reporting errors to project developers or add-on users.
-				[b]Note:[/b] For performance reasons, the code inside [method assert] is only executed in debug builds or when running the project from the editor. Don't include code that has side effects in an [method assert] call. Otherwise, the project will behave differently when exported in release mode.
-				The optional [code]message[/code] argument, if given, is shown in addition to the generic "Assertion failed" message. You can use this to provide additional details about why the assertion failed.
+				Утверждает, что [код]условие[/код] является [код]истинным[/код]. Если [code]условие[/code] является [code]ложным[/code], генерируется ошибка. При запуске из редактора запущенный проект также будет приостановлен до тех пор, пока вы его не возобновите. Это можно использовать как более сильную форму [method push_error] для сообщения об ошибках разработчикам проекта или пользователям дополнений.
+				[b]Примечание:[/b] По соображениям производительности код внутри [method assert] выполняется только в отладочных сборках или при запуске проекта из редактора. Не включайте в вызов [method assert] код, имеющий побочные эффекты. В противном случае проект будет вести себя по-другому при экспорте в режиме релиза.
+				Необязательный аргумент [code]message[/code], если он указан, отображается в дополнение к общему сообщению "Assertion failed". Вы можете использовать его для предоставления дополнительных сведений о том, почему утверждение не удалось.
 				[codeblock]
-				# Imagine we always want speed to be between 0 and 20.
+				# Представьте, что мы хотим, чтобы скорость всегда находилась в диапазоне от 0 до 20.
 				var speed = -10
-				assert(speed &lt; 20) # True, the program will continue
-				assert(speed &gt;= 0) # False, the program will stop
-				assert(speed &gt;= 0 and speed &lt; 20) # You can also combine the two conditional statements in one check
-				assert(speed &lt; 20, "speed = %f, but the speed limit is 20" % speed) # Show a message with clarifying details
+				assert(speed &lt; 20) # Правда, программа будет продолжаться
+				assert(speed &gt;= 0) # Ложь, программа будет остановлена
+				assert(speed &gt;= 0 и скорость &lt; 20) # Вы также можете объединить два условных оператора в одну проверку
+				assert(speed &lt; 20, "speed = %f, но ограничение скорости составляет 20" % скорости) # Показать сообщение с уточняющими деталями
 				[/codeblock]
 			</description>
 		</method>
@@ -92,10 +92,10 @@
 			<return type="float" />
 			<argument index="0" name="s" type="float" />
 			<description>
-				Returns the arc tangent of [code]s[/code] in radians. Use it to get the angle from an angle's tangent in trigonometry: [code]atan(tan(angle)) == angle[/code].
-				The method cannot know in which quadrant the angle should fall. See [method atan2] if you have both [code]y[/code] and [code]x[/code].
+				Возвращает тангенс дуги [code]s[/code] в радианах. Используйте его для получения угла из тангенса угла в тригонометрии: [code]atan(tan(angle)) == angle[/code].
+				Метод не может знать, в какой квадрант должен попадать угол. Смотрите [метод atan2], если у вас есть и [code]y[/code], и [code]x[/code].
 				[codeblock]
-				a = atan(0.5) # a is 0.463648
+				a = atan(0.5) # a составляет 0.463648
 				[/codeblock]
 			</description>
 		</method>
@@ -104,10 +104,10 @@
 			<argument index="0" name="y" type="float" />
 			<argument index="1" name="x" type="float" />
 			<description>
-				Returns the arc tangent of [code]y/x[/code] in radians. Use to get the angle of tangent [code]y/x[/code]. To compute the value, the method takes into account the sign of both arguments in order to determine the quadrant.
-				Important note: The Y coordinate comes first, by convention.
+				Возвращает тангенс дуги [code]y/x[/code] в радианах. Используется для получения угла наклона касательной [code]y/x[/code]. Для вычисления значения метод учитывает знак обоих аргументов, чтобы определить квадрант.
+				Важное замечание: по условию, координата Y стоит на первом месте.
 				[codeblock]
-				a = atan2(0, -1) # a is 3.141593
+				a = atan2(0, -1) # a составляет 3.141593
 				[/codeblock]
 			</description>
 		</method>
@@ -116,8 +116,8 @@
 			<argument index="0" name="bytes" type="PoolByteArray" />
 			<argument index="1" name="allow_objects" type="bool" default="false" />
 			<description>
-				Decodes a byte array back to a value. When [code]allow_objects[/code] is [code]true[/code] decoding objects is allowed.
-				[b]WARNING:[/b] Deserialized object can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats (remote code execution).
+				Декодирует байтовый массив обратно в значение. Если [code]allow_objects[/code] имеет значение [code]true[/code], декодирование объектов разрешено.
+				[b]ВНИМАНИЕ:[/b] Десериализованный объект может содержать код, который будет выполнен. Не используйте эту опцию, если сериализованный объект получен из ненадежных источников, чтобы избежать потенциальных угроз безопасности (удаленное выполнение кода).
 			</description>
 		</method>
 		<method name="cartesian2polar">
@@ -125,32 +125,32 @@
 			<argument index="0" name="x" type="float" />
 			<argument index="1" name="y" type="float" />
 			<description>
-				Converts a 2D point expressed in the cartesian coordinate system (X and Y axis) to the polar coordinate system (a distance from the origin and an angle).
+				Преобразует 2D точку, выраженную в картезианской системе координат (оси X и Y), в полярную систему координат (расстояние от начала координат и угол).
 			</description>
 		</method>
 		<method name="ceil">
 			<return type="float" />
 			<argument index="0" name="s" type="float" />
 			<description>
-				Rounds [code]s[/code] upward (towards positive infinity), returning the smallest whole number that is not less than [code]s[/code].
+				Округляет [code]s[/code] по возрастанию (в сторону положительной бесконечности), возвращая наименьшее целое число, которое не меньше [code]s[/code].
 				[codeblock]
-				a = ceil(1.45)  # a is 2.0
-				a = ceil(1.001) # a is 2.0
+				a = ceil(1.45)  # a является 2.0
+				a = ceil(1.001) # a является 2.0
 				[/codeblock]
-				See also [method floor], [method round], [method stepify], and [int].
+				См. также [метод floor], [метод round], [метод stepify] и [int].
 			</description>
 		</method>
 		<method name="char">
 			<return type="String" />
 			<argument index="0" name="code" type="int" />
 			<description>
-				Returns a character as a String of the given Unicode code point (which is compatible with ASCII code).
+				Возвращает символ в виде строки с заданной точкой кода Unicode (совместимой с кодом ASCII).
 				[codeblock]
-				a = char(65)      # a is "A"
-				a = char(65 + 32) # a is "a"
-				a = char(8364)    # a is "€"
+				a = char(65)      # a является "A"
+				a = char(65 + 32) # a является "a"
+				a = char(8364)    # a является "€"
 				[/codeblock]
-				This is the inverse of [method ord].
+				Это обратное действие по отношению к [method ord].
 			</description>
 		</method>
 		<method name="clamp">
@@ -159,11 +159,11 @@
 			<argument index="1" name="min" type="float" />
 			<argument index="2" name="max" type="float" />
 			<description>
-				Clamps [code]value[/code] and returns a value not less than [code]min[/code] and not more than [code]max[/code].
+				Зажимает [code]value[/code] и возвращает значение не меньше [code]min[/code] и не больше [code]max[/code].
 				[codeblock]
-				a = clamp(1000, 1, 20) # a is 20
-				a = clamp(-10, 1, 20)  # a is 1
-				a = clamp(15, 1, 20)   # a is 15
+				a = clamp(1000, 1, 20) # a является 20
+				a = clamp(-10, 1, 20)  # a является 1
+				a = clamp(15, 1, 20)   # a является 15
 				[/codeblock]
 			</description>
 		</method>
@@ -172,13 +172,13 @@
 			<argument index="0" name="what" type="Variant" />
 			<argument index="1" name="type" type="int" />
 			<description>
-				Converts from a type to another in the best way possible. The [code]type[/code] parameter uses the [enum Variant.Type] values.
+				Преобразовывает тип в другой наилучшим образом. Параметр [code]type[/code] использует значения [enum Variant.Type].
 				[codeblock]
 				a = Vector2(1, 0)
-				# Prints 1
+				# Выводит 1
 				print(a.length())
 				a = convert(a, TYPE_STRING)
-				# Prints 6 as "(1, 0)" is 6 characters
+				# Выводит 6, так как "(1, 0)" - это 6 символов.
 				print(a.length())
 				[/codeblock]
 			</description>
@@ -187,10 +187,10 @@
 			<return type="float" />
 			<argument index="0" name="s" type="float" />
 			<description>
-				Returns the cosine of angle [code]s[/code] in radians.
+				Возвращает косинус угла [code]s[/code] в радианах.
 				[codeblock]
-				a = cos(TAU) # a is 1.0
-				a = cos(PI)  # a is -1.0
+				a = cos(TAU) # a является 1.0
+				a = cos(PI)  # a является -1.0
 				[/codeblock]
 			</description>
 		</method>
@@ -198,9 +198,9 @@
 			<return type="float" />
 			<argument index="0" name="s" type="float" />
 			<description>
-				Returns the hyperbolic cosine of [code]s[/code] in radians.
+				Возвращает гиперболический косинус [code]s[/code] в радианах.
 				[codeblock]
-				print(cosh(1)) # Prints 1.543081
+				print(cosh(1)) # Выводит 1.543081
 				[/codeblock]
 			</description>
 		</method>
@@ -208,14 +208,14 @@
 			<return type="float" />
 			<argument index="0" name="db" type="float" />
 			<description>
-				Converts from decibels to linear energy (audio).
+				Преобразование децибел в линейную энергию (звук).
 			</description>
 		</method>
 		<method name="decimals">
 			<return type="int" />
 			<argument index="0" name="step" type="float" />
 			<description>
-				Deprecated alias for [method step_decimals].
+				Утративший силу псевдоним для [method step_decimals].
 			</description>
 		</method>
 		<method name="dectime">
@@ -224,10 +224,10 @@
 			<argument index="1" name="amount" type="float" />
 			<argument index="2" name="step" type="float" />
 			<description>
-				[b]Note:[/b] [code]dectime[/code] has been deprecated and will be removed in Godot 4.0, please use [method move_toward] instead.
-				Returns the result of [code]value[/code] decreased by [code]step[/code] * [code]amount[/code].
+				[b]Примечание:[/b] [code]dectime[/code] был устаревшим и будет удален в Godot 4.0, вместо него используйте [method move_toward].
+				Возвращает результат уменьшения [code]значения[/code] на [code]шаг[/code] * [code]количество[/code].
 				[codeblock]
-				a = dectime(60, 10, 0.1)) # a is 59.0
+				a = dectime(60, 10, 0.1)) # a является 59.0
 				[/codeblock]
 			</description>
 		</method>
@@ -236,21 +236,21 @@
 			<argument index="0" name="a" type="Variant" />
 			<argument index="1" name="b" type="Variant" />
 			<description>
-				Compares two values by checking their actual contents, recursing into any [Array] or [Dictionary] up to its deepest level.
-				This compares to [code]==[/code] in a number of ways:
-				- For [code]null[/code], [code]int[/code], [code]float[/code], [code]String[/code], [code]Object[/code] and [code]RID[/code] both [code]deep_equal[/code] and [code]==[/code] work the same.
-				- For [code]Dictionary[/code], [code]==[/code] considers equality if, and only if, both variables point to the very same [code]Dictionary[/code], with no recursion or awareness of the contents at all.
-				- For [code]Array[/code], [code]==[/code] considers equality if, and only if, each item in the first [code]Array[/code] is equal to its counterpart in the second [code]Array[/code], as told by [code]==[/code] itself. That implies that [code]==[/code] recurses into [code]Array[/code], but not into [code]Dictionary[/code].
-				In short, whenever a [code]Dictionary[/code] is potentially involved, if you want a true content-aware comparison, you have to use [code]deep_equal[/code].
+				Сравнивает два значения, проверяя их фактическое содержимое, обращаясь к любому [Array] или [Dictionary] до самого глубокого уровня.
+				Это сравнивается с [code]==[/code] несколькими способами:
+				- Для [code]null[/code], [code]int[/code], [code]float[/code], [code]String[/code], [code]Object[/code] и [code]RID[/code] как [code]deep_equal[/code], так и [code]==[/code] работают одинаково.
+				- Для [code]Dictionary[/code], [code]==[/code] считает равенство тогда и только тогда, когда обе переменные указывают на один и тот же [code]Dictionary[/code], без рекурсии или осведомленности о содержимом вообще.
+				- Для [code]Array[/code], [code]==[/code] считает равенство тогда и только тогда, когда каждый элемент первого [code]Array[/code] равен своему аналогу во втором [code]Array[/code], как говорит сам [code]==[/code]. Из этого следует, что [code]==[/code] рекурсирует в [code]Array[/code], но не в [code]Dictionary[/code].
+				Короче говоря, везде, где потенциально может быть задействован [code]Dictionary[/code], если вы хотите получить истинное сравнение с учетом содержимого, вы должны использовать [code]deep_equal[/code].
 			</description>
 		</method>
 		<method name="deg2rad">
 			<return type="float" />
 			<argument index="0" name="deg" type="float" />
 			<description>
-				Converts an angle expressed in degrees to radians.
+				Преобразует угол, выраженный в градусах, в радианы.
 				[codeblock]
-				r = deg2rad(180) # r is 3.141593
+				r = deg2rad(180) # r является 3.141593
 				[/codeblock]
 			</description>
 		</method>
@@ -258,7 +258,7 @@
 			<return type="Object" />
 			<argument index="0" name="dict" type="Dictionary" />
 			<description>
-				Converts a dictionary (previously created with [method inst2dict]) back to an instance. Useful for deserializing.
+				Преобразует словарь (ранее созданный с помощью [method inst2dict]) обратно в экземпляр. Полезно для десериализации.
 			</description>
 		</method>
 		<method name="ease">
@@ -266,29 +266,29 @@
 			<argument index="0" name="s" type="float" />
 			<argument index="1" name="curve" type="float" />
 			<description>
-				Returns an "eased" value of [code]x[/code] based on an easing function defined with [code]curve[/code]. This easing function is based on an exponent. The [code]curve[/code] can be any floating-point number, with specific values leading to the following behaviors:
+				Возвращает "смягченное" значение [code]x[/code] на основе функции смягчения, заданной с помощью [code]curve[/code]. Эта функция смягчения основана на экспоненте. Кривая [code]curve[/code] может быть любым числом с плавающей точкой, при этом определенные значения приводят к следующим вариантам поведения:
 				[codeblock]
-				- Lower than -1.0 (exclusive): Ease in-out
-				- 1.0: Linear
-				- Between -1.0 and 0.0 (exclusive): Ease out-in
-				- 0.0: Constant
-				- Between 0.0 to 1.0 (exclusive): Ease out
-				- 1.0: Linear
-				- Greater than 1.0 (exclusive): Ease in
+				- Ниже -1,0 (исключительно): Облегчение входа-выхода
+				- 1.0: Линейный
+				- От -1,0 до 0,0 (исключительно): Облегчение в
+				- 0.0: Постоянный
+				- От 0,0 до 1,0 (исключая): Облегчение
+				- 1.0: Линейный
+				- Больше 1,0 (исключительно): Облегчение
 				[/codeblock]
-				[url=https://raw.githubusercontent.com/godotengine/godot-docs/3.6/img/ease_cheatsheet.png]ease() curve values cheatsheet[/url]
-				See also [method smoothstep]. If you need to perform more advanced transitions, use [Tween] or [AnimationPlayer].
+				[url=https://raw.githubusercontent.com/godotengine/godot-docs/3.5/img/ease_cheatsheet.png]ease() curve values cheatsheet[/url]
+				См. также [метод smoothstep]. Если вам нужно выполнить более сложные переходы, используйте [Tween] или [AnimationPlayer].
 			</description>
 		</method>
 		<method name="exp">
 			<return type="float" />
 			<argument index="0" name="s" type="float" />
 			<description>
-				The natural exponential function. It raises the mathematical constant [b]e[/b] to the power of [code]s[/code] and returns it.
-				[b]e[/b] has an approximate value of 2.71828, and can be obtained with [code]exp(1)[/code].
-				For exponents to other bases use the method [method pow].
-				[codeblock]
-				a = exp(2) # Approximately 7.39
+				Естественная экспоненциальная функция. Возводит математическую константу [b]e[/b] в степень [code]s[/code] и возвращает ее.
+				Приблизительное значение [b]e[/b] равно 2,71828, и его можно получить с помощью [code]exp(1)[/code].
+				Для получения экспоненты к другим основаниям используйте метод [method pow].
+				[codeblock].
+				a = exp(2) # Приблизительно 7.39
 				[/codeblock]
 			</description>
 		</method>
@@ -296,14 +296,14 @@
 			<return type="float" />
 			<argument index="0" name="s" type="float" />
 			<description>
-				Rounds [code]s[/code] downward (towards negative infinity), returning the largest whole number that is not more than [code]s[/code].
+				Округляет [code]s[/code] в сторону уменьшения (к отрицательной бесконечности), возвращая наибольшее целое число, которое не больше [code]s[/code].
 				[codeblock]
-				a = floor(2.45)  # a is 2.0
-				a = floor(2.99)  # a is 2.0
-				a = floor(-2.99) # a is -3.0
-				[/codeblock]
-				See also [method ceil], [method round], [method stepify], and [int].
-				[b]Note:[/b] This method returns a float. If you need an integer and [code]s[/code] is a non-negative number, you can use [code]int(s)[/code] directly.
+				a = floor(2.45) # a равно 2.0
+				a = floor(2.99) # a равно 2.0
+				a = floor(-2.99) # a равно -3.0
+				[/codeblock].
+				Смотрите также [method ceil], [method round], [method stepify] и [int].
+				[b]Примечание:[/b] Этот метод возвращает число float. Если вам нужно целое число и [code]s[/code] - неотрицательное число, вы можете использовать [code]int(s)[/code] напрямую.
 			</description>
 		</method>
 		<method name="fmod">
@@ -311,11 +311,11 @@
 			<argument index="0" name="a" type="float" />
 			<argument index="1" name="b" type="float" />
 			<description>
-				Returns the floating-point remainder of [code]a/b[/code], keeping the sign of [code]a[/code].
+				Возвращает остаток с плавающей точкой от [code]a/b[/code], сохраняя знак [code]a[/code].
 				[codeblock]
-				r = fmod(7, 5.5) # r is 1.5
+				r = fmod(7, 5.5) # r равно 1.5
 				[/codeblock]
-				For the integer remainder operation, use the % operator.
+				Для операции целочисленного остатка используйте оператор %.
 			</description>
 		</method>
 		<method name="fposmod">
@@ -323,13 +323,13 @@
 			<argument index="0" name="a" type="float" />
 			<argument index="1" name="b" type="float" />
 			<description>
-				Returns the floating-point modulus of [code]a/b[/code] that wraps equally in positive and negative.
+				Возвращает модуль [code]a/b[/code] с плавающей запятой, который одинаково оборачивается как в положительную, так и в отрицательную сторону.
 				[codeblock]
 				for i in 7:
 				    var x = 0.5 * i - 1.5
 				    print("%4.1f %4.1f %4.1f" % [x, fmod(x, 1.5), fposmod(x, 1.5)])
-				[/codeblock]
-				Produces:
+				[/codeblock].
+				Выводит:
 				[codeblock]
 				-1.5 -0.0  0.0
 				-1.0 -1.0  0.5
@@ -346,20 +346,20 @@
 			<argument index="0" name="instance" type="Object" />
 			<argument index="1" name="funcname" type="String" />
 			<description>
-				Returns a reference to the specified function [code]funcname[/code] in the [code]instance[/code] node. As functions aren't first-class objects in GDscript, use [code]funcref[/code] to store a [FuncRef] in a variable and call it later.
+				Возвращает ссылку на указанную функцию [code]funcname[/code] в узле [code]instance[/code]. Поскольку в GDscript функции не являются объектами первого класса, используйте [code]funcref[/code], чтобы сохранить [FuncRef] в переменной и вызвать ее позже.
 				[codeblock]
 				func foo():
 				    return("bar")
 
 				a = funcref(self, "foo")
-				print(a.call_func()) # Prints bar
+				print(a.call_func()) # Выведет текст "bar"
 				[/codeblock]
 			</description>
 		</method>
 		<method name="get_stack">
 			<return type="Array" />
 			<description>
-				Returns an array of dictionaries representing the current call stack. See also [method print_stack].
+				Возвращает массив словарей, представляющих текущий стек вызовов. См. также [метод print_stack].
 				[codeblock]
 				func _ready():
 				    foo()
@@ -370,20 +370,20 @@
 				func bar():
 				    print(get_stack())
 				[/codeblock]
-				would print
+				напечатает
 				[codeblock]
 				[{function:bar, line:12, source:res://script.gd}, {function:foo, line:9, source:res://script.gd}, {function:_ready, line:6, source:res://script.gd}]
 				[/codeblock]
-				[b]Note:[/b] [method get_stack] only works if the running instance is connected to a debugging server (i.e. an editor instance). [method get_stack] will not work in projects exported in release mode, or in projects exported in debug mode if not connected to a debugging server.
+				[b]Примечание:[/b] [метод get_stack] работает только в том случае, если запущенный экземпляр подключен к отладочному серверу (т.е. к экземпляру редактора). [метод get_stack] не будет работать в проектах, экспортированных в режиме релиза, или в проектах, экспортированных в режиме отладки, если они не подключены к отладочному серверу.
 			</description>
 		</method>
 		<method name="hash">
 			<return type="int" />
 			<argument index="0" name="var" type="Variant" />
 			<description>
-				Returns the integer hash of the variable passed.
+				Возвращает целочисленный хэш переданной переменной.
 				[codeblock]
-				print(hash("a")) # Prints 177670
+				print(hash("a")) # Выводит 177670
 				[/codeblock]
 			</description>
 		</method>
@@ -391,7 +391,7 @@
 			<return type="Dictionary" />
 			<argument index="0" name="inst" type="Object" />
 			<description>
-				Returns the passed instance converted to a dictionary (useful for serializing).
+				Возвращает переданный экземпляр, преобразованный в словарь (полезно для сериализации).
 				[codeblock]
 				var foo = "bar"
 				func _ready():
@@ -399,7 +399,7 @@
 				    print(d.keys())
 				    print(d.values())
 				[/codeblock]
-				Prints out:
+				Выведет:
 				[codeblock]
 				[@subpath, @path, foo]
 				[, res://test.gd, bar]
@@ -410,13 +410,13 @@
 			<return type="Object" />
 			<argument index="0" name="instance_id" type="int" />
 			<description>
-				Returns the Object that corresponds to [code]instance_id[/code]. All Objects have a unique instance ID.
+				Возвращает объект, соответствующий [code]instance_id[/code]. Все объекты имеют уникальный идентификатор(ID) экземпляра.
 				[codeblock]
 				var foo = "bar"
 				func _ready():
 				    var id = get_instance_id()
 				    var inst = instance_from_id(id)
-				    print(inst.foo) # Prints bar
+				    print(inst.foo) # Выведет bar
 				[/codeblock]
 			</description>
 		</method>
@@ -426,16 +426,16 @@
 			<argument index="1" name="to" type="float" />
 			<argument index="2" name="weight" type="float" />
 			<description>
-				Returns an interpolation or extrapolation factor considering the range specified in [code]from[/code] and [code]to[/code], and the interpolated value specified in [code]weight[/code]. The returned value will be between [code]0.0[/code] and [code]1.0[/code] if [code]weight[/code] is between [code]from[/code] and [code]to[/code] (inclusive). If [code]weight[/code] is located outside this range, then an extrapolation factor will be returned (return value lower than [code]0.0[/code] or greater than [code]1.0[/code]). Use [method clamp] on the result of [method inverse_lerp] if this is not desired.
+				Возвращает коэффициент интерполяции или экстраполяции, учитывающий диапазон, указанный в [code]from[/code] и [code]to[/code], и интерполируемое значение, указанное в [code]weight[/code]. Возвращаемое значение будет находиться между [code]0.0[/code] и [code]1.0[/code], если [code]weight[/code] находится между [code]from[/code] и [code]to[/code] (включительно). Если [code]weight[/code] находится вне этого диапазона, то будет возвращен коэффициент экстраполяции (возвращаемое значение меньше, чем [code]0.0[/code] или больше, чем [code]1.0[/code]). Если это нежелательно, используйте [method clamp] для результата [method inverse_lerp].
 				[codeblock]
-				# The interpolation ratio in the `lerp()` call below is 0.75.
+				# Коэффициент интерполяции в вызове `lerp()` ниже равен 0,75.
 				var middle = lerp(20, 30, 0.75)
-				# `middle` is now 27.5.
-				# Now, we pretend to have forgotten the original ratio and want to get it back.
+				# `среднее` теперь равно 27,5.
+				# Теперь мы притворимся, что забыли исходное соотношение и хотим его вернуть.
 				var ratio = inverse_lerp(20, 30, 27.5)
-				# `ratio` is now 0.75.
-				[/codeblock]
-				See also [method lerp] which performs the reverse of this operation, and [method range_lerp] to map a continuous series of values to another.
+				# `ratio` теперь равно 0,75.
+				[/codeblock].
+				Смотрите также [метод lerp], который выполняет обратную операцию, и [метод range_lerp] для преобразования непрерывного ряда значений в другой.
 			</description>
 		</method>
 		<method name="is_equal_approx">
@@ -443,49 +443,49 @@
 			<argument index="0" name="a" type="float" />
 			<argument index="1" name="b" type="float" />
 			<description>
-				Returns [code]true[/code] if [code]a[/code] and [code]b[/code] are approximately equal to each other.
-				Here, approximately equal means that [code]a[/code] and [code]b[/code] are within a small internal epsilon of each other, which scales with the magnitude of the numbers.
-				Infinity values of the same sign are considered equal.
+				Возвращает [code]true[/code], если [code]a[/code] и [code]b[/code] приблизительно равны друг другу.
+				Здесь "приблизительно равны" означает, что [code]a[/code] и [code]b[/code] находятся в пределах небольшого внутреннего эпсилона друг от друга, который увеличивается с ростом величины чисел.
+				Бесконечные значения одного и того же знака считаются равными.
 			</description>
 		</method>
 		<method name="is_inf">
 			<return type="bool" />
 			<argument index="0" name="s" type="float" />
 			<description>
-				Returns whether [code]s[/code] is an infinity value (either positive infinity or negative infinity).
+				Возвращает, является ли [code]s[/code] бесконечным значением (либо положительной бесконечностью, либо отрицательной бесконечностью).
 			</description>
 		</method>
 		<method name="is_instance_valid">
 			<return type="bool" />
 			<argument index="0" name="instance" type="Object" />
 			<description>
-				Returns whether [code]instance[/code] is a valid object (e.g. has not been deleted from memory).
+				Возвращает, является ли [code]instance[/code] действительным объектом (например, не был ли он удален из памяти).
 			</description>
 		</method>
 		<method name="is_nan">
 			<return type="bool" />
 			<argument index="0" name="s" type="float" />
 			<description>
-				Returns whether [code]s[/code] is a NaN ("Not a Number" or invalid) value.
+				Возвращает, является ли [code]s[/code] значением NaN ("Not a Number" - не числом или invalid - Недействительным).
 			</description>
 		</method>
 		<method name="is_zero_approx">
 			<return type="bool" />
 			<argument index="0" name="s" type="float" />
 			<description>
-				Returns [code]true[/code] if [code]s[/code] is zero or almost zero.
-				This method is faster than using [method is_equal_approx] with one value as zero.
+				Возвращает [code]true[/code], если [code]s[/code] равно нулю или почти нулю.
+				Этот метод быстрее, чем использование [method is_equal_approx] с одним значением в качестве нуля.
 			</description>
 		</method>
 		<method name="len">
 			<return type="int" />
 			<argument index="0" name="var" type="Variant" />
 			<description>
-				Returns length of Variant [code]var[/code]. Length is the character count of String, element count of Array, size of Dictionary, etc.
-				[b]Note:[/b] Generates a fatal error if Variant can not provide a length.
+				Возвращает длину переменной [code]var[/code]. Длина - это количество символов в строке, количество элементов в массиве, размер словаря и т. д.
+				[b]Примечание:[/b] Генерирует фатальную ошибку, если Variant не может предоставить длину.
 				[codeblock]
 				a = [1, 2, 3, 4]
-				len(a) # Returns 4
+				len(a) # вернет 4
 				[/codeblock]
 			</description>
 		</method>
@@ -495,14 +495,14 @@
 			<argument index="1" name="to" type="Variant" />
 			<argument index="2" name="weight" type="float" />
 			<description>
-				Linearly interpolates between two values by the factor defined in [code]weight[/code]. To perform interpolation, [code]weight[/code] should be between [code]0.0[/code] and [code]1.0[/code] (inclusive). However, values outside this range are allowed and can be used to perform [i]extrapolation[/i]. Use [method clamp] on the result of [method lerp] if this is not desired.
-				If the [code]from[/code] and [code]to[/code] arguments are of type [int] or [float], the return value is a [float].
-				If both are of the same vector type ([Vector2], [Vector3] or [Color]), the return value will be of the same type ([code]lerp[/code] then calls the vector type's [code]linear_interpolate[/code] method).
+				Линейно интерполирует между двумя значениями на коэффициент, заданный в [code]weight[/code]. Для выполнения интерполяции [code]weight[/code] должен находиться в диапазоне от [code]0.0[/code] до [code]1.0[/code] (включительно). Однако значения за пределами этого диапазона допустимы и могут быть использованы для [i]экстраполяции[/i]. Если это нежелательно, используйте [method clamp] для результата [method lerp].
+				Если аргументы [code]from[/code] и [code]to[/code] имеют тип [int] или [float], то возвращаемое значение будет [float].
+				Если оба аргумента имеют один и тот же тип вектора ([Vector2], [Vector3] или [Color]), то возвращаемое значение будет того же типа ([code]lerp[/code] затем вызывает метод [code]linear_interpolate[/code] типа вектора).
 				[codeblock]
-				lerp(0, 4, 0.75) # Returns 3.0
-				lerp(Vector2(1, 5), Vector2(3, 2), 0.5) # Returns Vector2(2, 3.5)
-				[/codeblock]
-				See also [method inverse_lerp] which performs the reverse of this operation. To perform eased interpolation with [method lerp], combine it with [method ease] or [method smoothstep]. See also [method range_lerp] to map a continuous series of values to another.
+				lerp(0, 4, 0.75) # Возвращает 3.0
+				lerp(Vector2(1, 5), Vector2(3, 2), 0.5) # Возвращает Vector2(2, 3.5)
+				[/codeblock].
+				Смотрите также [метод inverse_lerp], который выполняет обратную операцию. Чтобы выполнить облегченную интерполяцию с помощью [method lerp], объедините его с [method ease] или [method smoothstep]. См. также [метод range_lerp] для преобразования непрерывного ряда значений в другой.
 			</description>
 		</method>
 		<method name="lerp_angle">
@@ -511,8 +511,8 @@
 			<argument index="1" name="to" type="float" />
 			<argument index="2" name="weight" type="float" />
 			<description>
-				Linearly interpolates between two angles (in radians) by a normalized value.
-				Similar to [method lerp], but interpolates correctly when the angles wrap around [constant @GDScript.TAU]. To perform eased interpolation with [method lerp_angle], combine it with [method ease] or [method smoothstep].
+				Линейно интерполирует два угла (в радианах) по нормализованному значению.
+				Аналогично [method lerp], но интерполирует правильно, если углы огибают [константу @GDScript.TAU]. Чтобы выполнить облегченную интерполяцию с помощью [method lerp_angle], объедините его с [method ease] или [method smoothstep].
 				[codeblock]
 				extends Sprite
 				var elapsed = 0.0
@@ -522,18 +522,18 @@
 				    rotation = lerp_angle(min_angle, max_angle, elapsed)
 				    elapsed += delta
 				[/codeblock]
-				[b]Note:[/b] This method lerps through the shortest path between [code]from[/code] and [code]to[/code]. However, when these two angles are approximately [code]PI + k * TAU[/code] apart for any integer [code]k[/code], it's not obvious which way they lerp due to floating-point precision errors. For example, [code]lerp_angle(0, PI, weight)[/code] lerps counter-clockwise, while [code]lerp_angle(0, PI + 5 * TAU, weight)[/code] lerps clockwise.
+				[b]Примечание:[/b] Этот метод использует кратчайший путь между [code]from[/code] и [code]to[/code]. Однако, когда эти два угла находятся на расстоянии примерно [code]PI + k * TAU[/code] для любого целого числа [code]k[/code], не очевидно, в какую сторону они отклоняются из-за ошибок точности вычислений с плавающей точкой. Например, [code]lerp_angle(0, PI, weight)[/code] вращается против часовой стрелки, а [code]lerp_angle(0, PI + 5 * TAU, weight)[/code] вращается по часовой стрелке.
 			</description>
 		</method>
 		<method name="linear2db">
 			<return type="float" />
 			<argument index="0" name="nrg" type="float" />
 			<description>
-				Converts from linear energy to decibels (audio). This can be used to implement volume sliders that behave as expected (since volume isn't linear). Example:
+				Преобразует линейную энергию в децибелы (аудио). Это может быть использовано для реализации ползунков громкости, которые ведут себя так, как ожидается (поскольку громкость не линейна). Пример:
 				[codeblock]
-				# "Slider" refers to a node that inherits Range such as HSlider or VSlider.
-				# Its range must be configured to go from 0 to 1.
-				# Change the bus name if you'd like to change the volume of a specific bus only.
+				# "Слайдер" относится к узлу, который наследует Range, например HSlider или VSlider.
+				# Его диапазон должен быть сконфигурирован для перехода от 0 к 1.
+				# Измените имя шины, если вы хотите изменить громкость только определенной шины.
 				AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear2db($Slider.value))
 				[/codeblock]
 			</description>
@@ -542,26 +542,26 @@
 			<return type="Resource" />
 			<argument index="0" name="path" type="String" />
 			<description>
-				Loads a resource from the filesystem located at [code]path[/code]. The resource is loaded on the method call (unless it's referenced already elsewhere, e.g. in another script or in the scene), which might cause slight delay, especially when loading scenes. To avoid unnecessary delays when loading something multiple times, either store the resource in a variable or use [method preload].
-				[b]Note:[/b] Resource paths can be obtained by right-clicking on a resource in the FileSystem dock and choosing "Copy Path" or by dragging the file from the FileSystem dock into the script.
+				Загружает ресурс из файловой системы, расположенной по адресу [code]path[/code]. Ресурс загружается при вызове метода (если на него уже нет ссылки в другом месте, например, в другом скрипте или в сцене), что может вызвать небольшую задержку, особенно при загрузке сцен. Чтобы избежать ненужных задержек при многократной загрузке, либо храните ресурс в переменной, либо используйте [method preload].
+				[b]Примечание:[/b] Пути к ресурсам можно получить, щелкнув правой кнопкой мыши на ресурсе в доке FileSystem и выбрав "Copy Path", или перетащив файл из дока FileSystem в сценарий.
 				[codeblock]
-				# Load a scene called main located in the root of the project directory and cache it in a variable.
-				var main = load("res://main.tscn") # main will contain a PackedScene resource.
+				# Загрузите сцену с именем main, расположенную в корне каталога проекта, и кэшируйте ее в переменную.
+				var main = load("res://main.tscn") # main будет содержать ресурс PackedScene.
 				[/codeblock]
-				[b]Important:[/b] The path must be absolute, a local path will just return [code]null[/code].
-				This method is a simplified version of [method ResourceLoader.load], which can be used for more advanced scenarios.
+				[b]Важно:[/b] Путь должен быть абсолютным, локальный путь просто вернет [code]null[/code].
+				Этот метод является упрощенной версией метода [method ResourceLoader.load], который может быть использован для более сложных сценариев.
 			</description>
 		</method>
 		<method name="log">
 			<return type="float" />
 			<argument index="0" name="s" type="float" />
 			<description>
-				Returns the [url=https://en.wikipedia.org/wiki/Natural_logarithm]natural logarithm[/url] of [code]s[/code] (base [url=https://en.wikipedia.org/wiki/E_(mathematical_constant)][i]e[/i][/url], with [i]e[/i] being approximately 2.71828). This is the amount of time needed to reach a certain level of continuous growth.
-				[b]Note:[/b] This is not the same as the "log" function on most calculators, which uses a base 10 logarithm. To use base 10 logarithm, use [code]log(x) / log(10)[/code].
+				Возвращает [url=https://en.wikipedia.org/wiki/Natural_logarithm]натуральный логарифм[/url] от [code]s[/code] (основание [url=https://en.wikipedia.org/wiki/E_(математическая_константа)][i]e[/i][/url], причем [i]e[/i] равно примерно 2,71828). Это количество времени, необходимое для достижения определенного уровня непрерывного роста.
+				[b]Примечание:[/b] Это не то же самое, что функция "log" на большинстве калькуляторов, которая использует логарифм по основанию 10. Чтобы использовать логарифм по основанию 10, используйте [code]log(x) / log(10)[/code].
 				[codeblock]
-				log(10) # Returns 2.302585
+				log(10) # Возвращает 2.302585
 				[/codeblock]
-				[b]Note:[/b] The logarithm of [code]0[/code] returns [code]-inf[/code], while negative values return [code]-nan[/code].
+				[b]Примечание:[/b] Логарифм от [code]0[/code] возвращает [code]-inf[/code], а отрицательные значения возвращают [code]-nan[/code].
 			</description>
 		</method>
 		<method name="max">
@@ -569,10 +569,10 @@
 			<argument index="0" name="a" type="float" />
 			<argument index="1" name="b" type="float" />
 			<description>
-				Returns the maximum of two values.
+				Возвращает максимальное из двух значений.
 				[codeblock]
-				max(1, 2) # Returns 2
-				max(-3.99, -4) # Returns -3.99
+				max(1, 2) # Возвращает 2
+				max(-3.99, -4) # Возвращает -3.99
 				[/codeblock]
 			</description>
 		</method>
@@ -581,10 +581,10 @@
 			<argument index="0" name="a" type="float" />
 			<argument index="1" name="b" type="float" />
 			<description>
-				Returns the minimum of two values.
+				Возвращает минимальное из двух значений.
 				[codeblock]
-				min(1, 2) # Returns 1
-				min(-3.99, -4) # Returns -4
+				min(1, 2) # Возвращает 1
+				min(-3.99, -4) # Возвращает -4
 				[/codeblock]
 			</description>
 		</method>
@@ -594,12 +594,12 @@
 			<argument index="1" name="to" type="float" />
 			<argument index="2" name="delta" type="float" />
 			<description>
-				Moves [code]from[/code] toward [code]to[/code] by the [code]delta[/code] value.
-				Use a negative [code]delta[/code] value to move away.
+				Перемещает [code]from[/code] в сторону [code]to[/code] на величину [code]delta[/code].
+				Для перемещения в сторону используйте отрицательное значение [code]delta[/code].
 				[codeblock]
-				move_toward(5, 10, 4) # Returns 9
-				move_toward(10, 5, 4) # Returns 6
-				move_toward(10, 5, -1.5) # Returns 11.5
+				move_toward(5, 10, 4) # Возвращает 9
+				move_toward(10, 5, 4) # Возвращает 6
+				move_toward(10, 5, -1.5) # Возвращает 11.5
 				[/codeblock]
 			</description>
 		</method>
@@ -607,47 +607,47 @@
 			<return type="int" />
 			<argument index="0" name="value" type="int" />
 			<description>
-				Returns the nearest equal or larger power of 2 for integer [code]value[/code].
-				In other words, returns the smallest value [code]a[/code] where [code]a = pow(2, n)[/code] such that [code]value &lt;= a[/code] for some non-negative integer [code]n[/code].
-				[codeblock]
-				nearest_po2(3) # Returns 4
-				nearest_po2(4) # Returns 4
-				nearest_po2(5) # Returns 8
+				Возвращает ближайшую равную или большую степень 2 для целого числа [code]value[/code].
+				Другими словами, возвращается наименьшее значение [code]a[/code], где [code]a = pow(2, n)[/code] такое, что [code]value &lt;= a[/code] для некоторого неотрицательного целого числа [code]n[/code].
+				[codeblock].
+				nearest_po2(3) # Возвращает 4
+				nearest_po2(4) # Возвращает 4
+				nearest_po2(5) # Возвращает 8
 
-				nearest_po2(0) # Returns 0 (this may not be what you expect)
-				nearest_po2(-1) # Returns 0 (this may not be what you expect)
+				nearest_po2(0) # Возвращает 0 (это может быть не то, что вы ожидаете)
+				nearest_po2(-1) # Возвращает 0 (это может быть не то, что вы ожидаете)
 				[/codeblock]
-				[b]WARNING:[/b] Due to the way it is implemented, this function returns [code]0[/code] rather than [code]1[/code] for non-positive values of [code]value[/code] (in reality, 1 is the smallest integer power of 2).
+				[b]ВНИМАНИЕ:[/b] Из-за особенностей реализации эта функция возвращает [code]0[/code], а не [code]1[/code] для неположительных значений [code]value[/code] (в действительности 1 - это наименьшая целая степень 2).
 			</description>
 		</method>
 		<method name="ord">
 			<return type="int" />
 			<argument index="0" name="char" type="String" />
 			<description>
-				Returns an integer representing the Unicode code point of the given Unicode character [code]char[/code].
+				Возвращает целое число, представляющее кодовую точку Unicode данного символа [code]char[/code].
 				[codeblock]
-				a = ord("A") # a is 65
-				a = ord("a") # a is 97
-				a = ord("€") # a is 8364
+				a = ord("A") # a равно 65
+				a = ord("a") # a равно 97
+				a = ord("€") # a равно 8364
 				[/codeblock]
-				This is the inverse of [method char].
+				Это обратный вариант [метода char].
 			</description>
 		</method>
 		<method name="parse_json">
 			<return type="Variant" />
 			<argument index="0" name="json" type="String" />
 			<description>
-				Parse JSON text to a Variant. (Use [method typeof] to check if the Variant's type is what you expect.)
-				[b]Note:[/b] The JSON specification does not define integer or float types, but only a [i]number[/i] type. Therefore, parsing a JSON text will convert all numerical values to [float] types.
-				[b]Note:[/b] JSON objects do not preserve key order like Godot dictionaries, thus, you should not rely on keys being in a certain order if a dictionary is constructed from JSON. In contrast, JSON arrays retain the order of their elements:
+				Разберите текст JSON на варианты. (Используйте [метод typeof], чтобы проверить, является ли тип Variant тем, что вы ожидаете).
+				[b]Примечание:[/b] В спецификации JSON не определены типы integer или float, а только тип [i]число[/i]. Поэтому при разборе текста JSON все числовые значения будут преобразованы к типу [float].
+				[b]Примечание:[/b] Объекты JSON не сохраняют порядок ключей, как словари Godot, поэтому при построении словаря из JSON не следует полагаться на то, что ключи будут расположены в определенном порядке. Напротив, массивы JSON сохраняют порядок элементов:
 				[codeblock]
 				var p = JSON.parse('["hello", "world", "!"]')
 				if typeof(p.result) == TYPE_ARRAY:
-				    print(p.result[0]) # Prints "hello"
+				    print(p.result[0]) # Выведет "hello"
 				else:
 				    push_error("Unexpected results.")
 				[/codeblock]
-				See also [JSON] for an alternative way to parse JSON text.
+				Смотрите также [JSON] для альтернативного способа разбора текста JSON.
 			</description>
 		</method>
 		<method name="polar2cartesian">
@@ -655,7 +655,7 @@
 			<argument index="0" name="r" type="float" />
 			<argument index="1" name="th" type="float" />
 			<description>
-				Converts a 2D point expressed in the polar coordinate system (a distance from the origin [code]r[/code] and an angle [code]th[/code]) to the cartesian coordinate system (X and Y axis).
+				Преобразует 2D точку, выраженную в полярной системе координат (расстояние от начала координат [code]r[/code] и угол [code]th[/code]), в декартовую систему координат (оси X и Y).
 			</description>
 		</method>
 		<method name="posmod">
@@ -663,12 +663,12 @@
 			<argument index="0" name="a" type="int" />
 			<argument index="1" name="b" type="int" />
 			<description>
-				Returns the integer modulus of [code]a/b[/code] that wraps equally in positive and negative.
+				Возвращает модуль целого числа [code]a/b[/code], которое одинаково обертывается в положительную и отрицательную сторону.
 				[codeblock]
 				for i in range(-3, 4):
 				    print("%2d %2d %2d" % [i, i % 3, posmod(i, 3)])
 				[/codeblock]
-				Produces:
+				Производит:
 				[codeblock]
 				-3  0  0
 				-2 -2  1
@@ -685,9 +685,9 @@
 			<argument index="0" name="base" type="float" />
 			<argument index="1" name="exp" type="float" />
 			<description>
-				Returns the result of [code]base[/code] raised to the power of [code]exp[/code].
+				Возвращает результат [code]base[/code], возведенного в степень [code]exp[/code].
 				[codeblock]
-				pow(2, 5) # Returns 32.0
+				pow(2, 5) # Возвращает 32.0
 				[/codeblock]
 			</description>
 		</method>
@@ -695,10 +695,10 @@
 			<return type="Resource" />
 			<argument index="0" name="path" type="String" />
 			<description>
-				Returns a [Resource] from the filesystem located at [code]path[/code]. The resource is loaded during script parsing, i.e. is loaded with the script and [method preload] effectively acts as a reference to that resource. Note that the method requires a constant path. If you want to load a resource from a dynamic/variable path, use [method load].
-				[b]Note:[/b] Resource paths can be obtained by right clicking on a resource in the Assets Panel and choosing "Copy Path" or by dragging the file from the FileSystem dock into the script.
+				Возвращает [Resource] из файловой системы, расположенной по адресу [code]path[/code]. Ресурс загружается во время разбора скрипта, то есть загружается вместе со скриптом, и [метод preload] фактически выступает в качестве ссылки на этот ресурс. Обратите внимание, что метод требует постоянного пути. Если вы хотите загрузить ресурс по динамическому/переменному пути, используйте [method load].
+				[b]Примечание:[/b] Пути к ресурсам можно получить, щелкнув правой кнопкой мыши на ресурсе в панели активов и выбрав "Copy Path", или перетащив файл из дока FileSystem в скрипт.
 				[codeblock]
-				# Instance a scene.
+				# Инстанс/Инициализация сцены.
 				var diamond = preload("res://diamond.tscn").instance()
 				[/codeblock]
 			</description>
@@ -706,21 +706,21 @@
 		<method name="print" qualifiers="vararg">
 			<return type="void" />
 			<description>
-				Converts one or more arguments of any type to string in the best way possible and prints them to the console.
+				Преобразует один или несколько аргументов любого типа в строку наилучшим образом и выводит их на консоль.
 				[codeblock]
 				a = [1, 2, 3]
-				print("a", "=", a) # Prints a=[1, 2, 3]
+				print("a", "=", a) # Выводит a=[1, 2, 3]
 				[/codeblock]
-				[b]Note:[/b] Consider using [method push_error] and [method push_warning] to print error and warning messages instead of [method print]. This distinguishes them from print messages used for debugging purposes, while also displaying a stack trace when an error or warning is printed.
+				[b]Примечание:[/b] Рассмотрите возможность использования [method push_error] и [method push_warning] для печати сообщений об ошибках и предупреждениях вместо [method print]. Это позволяет отличить их от сообщений печати, используемых для отладки, а также вывести трассировку стека при печати ошибки или предупреждения.
 			</description>
 		</method>
 		<method name="print_debug" qualifiers="vararg">
 			<return type="void" />
 			<description>
-				Like [method print], but includes the current stack frame when running with the debugger turned on.
-				Output in the console would look something like this:
+				Подобно [method print], но включает текущий кадр стека при запуске с включенным отладчиком.
+				Вывод в консоль будет выглядеть примерно так:
 				[codeblock]
-				Test print
+				Печать теста
 				   At: res://test.gd:15:_process()
 				[/codeblock]
 			</description>
@@ -728,18 +728,18 @@
 		<method name="print_stack">
 			<return type="void" />
 			<description>
-				Prints a stack trace at the current code location. See also [method get_stack].
-				Output in the console would look something like this:
+				Печатает трассировку стека в текущем месте кода. См. также [метод get_stack].
+				Вывод в консоль будет выглядеть примерно так:
 				[codeblock]
-				Frame 0 - res://test.gd:16 in function '_process'
+				Фрейм 0 - res://test.gd:16 в функции '_process'
 				[/codeblock]
-				[b]Note:[/b] [method print_stack] only works if the running instance is connected to a debugging server (i.e. an editor instance). [method print_stack] will not work in projects exported in release mode, or in projects exported in debug mode if not connected to a debugging server.
+				[b]Примечание:[/b] [method print_stack] работает только в том случае, если запущенный экземпляр подключен к отладочному серверу (т.е. экземпляру редактора). [method print_stack] не будет работать в проектах, экспортированных в режиме релиза, или в проектах, экспортированных в режиме отладки, если они не подключены к отладочному серверу.
 			</description>
 		</method>
 		<method name="printerr" qualifiers="vararg">
 			<return type="void" />
 			<description>
-				Prints one or more arguments to strings in the best way possible to standard error line.
+				Выводит один или несколько аргументов в виде строк наилучшим образом в стандартную строку ошибок.
 				[codeblock]
 				printerr("prints to stderr")
 				[/codeblock]
@@ -748,30 +748,30 @@
 		<method name="printraw" qualifiers="vararg">
 			<return type="void" />
 			<description>
-				Prints one or more arguments to strings in the best way possible to console. No newline is added at the end.
+				Выводит на консоль один или несколько аргументов в виде строк в наилучшем виде. Новая строка в конце не добавляется.
 				[codeblock]
 				printraw("A")
 				printraw("B")
-				# Prints AB
+				# Печатает AB
 				[/codeblock]
-				[b]Note:[/b] Due to limitations with Godot's built-in console, this only prints to the terminal. If you need to print in the editor, use another method, such as [method print].
+				[b]Примечание:[/b] Из-за ограничений встроенной консоли Godot, этот метод печатает только в терминал. Если вам нужно печатать в редакторе, используйте другой метод, например [method print].
 			</description>
 		</method>
 		<method name="prints" qualifiers="vararg">
 			<return type="void" />
 			<description>
-				Prints one or more arguments to the console with a space between each argument.
+				Выводит один или несколько аргументов на консоль с пробелом между каждым аргументом.
 				[codeblock]
-				prints("A", "B", "C") # Prints A B C
+				prints("A", "B", "C") # Печатает A B C
 				[/codeblock]
 			</description>
 		</method>
 		<method name="printt" qualifiers="vararg">
 			<return type="void" />
 			<description>
-				Prints one or more arguments to the console with a tab between each argument.
+				Выводит один или несколько аргументов в консоль с табуляцией между каждым аргументом.
 				[codeblock]
-				printt("A", "B", "C") # Prints A       B       C
+				printt("A", "B", "C") # Печатает A       B       C
 				[/codeblock]
 			</description>
 		</method>
@@ -779,20 +779,20 @@
 			<return type="void" />
 			<argument index="0" name="message" type="String" />
 			<description>
-				Pushes an error message to Godot's built-in debugger and to the OS terminal.
+				Выводит сообщение об ошибке во встроенный отладчик Godot и в терминал ОС.
 				[codeblock]
-				push_error("test error") # Prints "test error" to debugger and terminal as error call
+				push_error("test error") # Выводит "test error" в отладчик и терминал как вызов ошибки
 				[/codeblock]
-				[b]Note:[/b] Errors printed this way will not pause project execution. To print an error message and pause project execution in debug builds, use [code]assert(false, "test error")[/code] instead.
+				[b]Примечание:[/b] Ошибки, выведенные таким образом, не приостанавливают выполнение проекта. Чтобы вывести сообщение об ошибке и приостановить выполнение проекта в отладочных сборках, используйте вместо этого [code]assert(false, "test error")[/code].
 			</description>
 		</method>
 		<method name="push_warning">
 			<return type="void" />
 			<argument index="0" name="message" type="String" />
 			<description>
-				Pushes a warning message to Godot's built-in debugger and to the OS terminal.
+				Выводит предупреждающее сообщение во встроенный отладчик Godot и в терминал ОС.
 				[codeblock]
-				push_warning("test warning") # Prints "test warning" to debugger and terminal as warning call
+				push_warning("test warning") # Выводит "test warning" в отладчик и терминал как вызов предупреждения
 				[/codeblock]
 			</description>
 		</method>
@@ -800,9 +800,9 @@
 			<return type="float" />
 			<argument index="0" name="rad" type="float" />
 			<description>
-				Converts an angle expressed in radians to degrees.
+				Преобразует угол, выраженный в радианах, в градусы.
 				[codeblock]
-				rad2deg(0.523599) # Returns 30.0
+				rad2deg(0.523599) # Возвращает 30.0
 				[/codeblock]
 			</description>
 		</method>
@@ -811,45 +811,45 @@
 			<argument index="0" name="from" type="float" />
 			<argument index="1" name="to" type="float" />
 			<description>
-				Returns a random floating point value between [code]from[/code] and [code]to[/code] (both endpoints inclusive).
+				Возвращает случайное значение с плавающей точкой между [code]from[/code] и [code]to[/code] (обе конечные точки включительно).
 				[codeblock]
-				prints(rand_range(0, 1), rand_range(0, 1)) # Prints e.g. 0.135591 0.405263
+				prints(rand_range(0, 1), rand_range(0, 1)) # Выводит, например, 0.135591 0.405263
 				[/codeblock]
-				[b]Note:[/b] This is equivalent to [code]randf() * (to - from) + from[/code].
+				[b]Примечание:[/b] Это эквивалентно [code]randf() * (to - from) + from[/code].
 			</description>
 		</method>
 		<method name="rand_seed">
 			<return type="Array" />
 			<argument index="0" name="seed" type="int" />
 			<description>
-				Random from seed: pass a [code]seed[/code], and an array with both number and new seed is returned. "Seed" here refers to the internal state of the pseudo random number generator. The internal state of the current implementation is 64 bits.
+				Random from seed(Случайный сид): передайте [code]seed[/code], и будет возвращен массив с числом и новым seed. Под "seed" здесь понимается внутреннее состояние генератора псевдослучайных чисел. Внутреннее состояние текущей реализации - 64 бита.
 			</description>
 		</method>
 		<method name="randf">
 			<return type="float" />
 			<description>
-				Returns a random floating point value on the interval [code][0, 1][/code].
+				Возвращает случайное значение с плавающей точкой на интервале [code][0, 1][/code].
 				[codeblock]
-				randf() # Returns e.g. 0.375671
+				randf() # Возвращает, например, 0.375671
 				[/codeblock]
 			</description>
 		</method>
 		<method name="randi">
 			<return type="int" />
 			<description>
-				Returns a random unsigned 32-bit integer. Use remainder to obtain a random value in the interval [code][0, N - 1][/code] (where N is smaller than 2^32).
+				Возвращает случайное беззнаковое 32-битное целое число. Используйте остаток для получения случайного значения в интервале [code][0, N - 1][/code] (где N меньше 2^32).
 				[codeblock]
-				randi()           # Returns random integer between 0 and 2^32 - 1
-				randi() % 20      # Returns random integer between 0 and 19
-				randi() % 100     # Returns random integer between 0 and 99
-				randi() % 100 + 1 # Returns random integer between 1 and 100
+				randi() # Возвращает случайное целое число в интервале от 0 до 2^32 - 1
+				randi() % 20 # Возвращает случайное целое число от 0 до 19
+				randi() % 100 # Возвращает случайное целое число от 0 до 99
+				randi() % 100 + 1 # Возвращает случайное целое число от 1 до 100
 				[/codeblock]
 			</description>
 		</method>
 		<method name="randomize">
 			<return type="void" />
 			<description>
-				Randomizes the seed (or the internal state) of the random number generator. Current implementation reseeds using a number based on time.
+				Рандомизирует seed (или внутреннее состояние) генератора случайных чисел. В текущей реализации для повторного засева используется число, основанное на времени.
 				[codeblock]
 				func _ready():
 				    randomize()
@@ -859,26 +859,26 @@
 		<method name="range" qualifiers="vararg">
 			<return type="Array" />
 			<description>
-				Returns an array with the given range. [method range] can be called in three ways:
-				[code]range(n: int)[/code]: Starts from 0, increases by steps of 1, and stops [i]before[/i] [code]n[/code]. The argument [code]n[/code] is [b]exclusive[/b].
-				[code]range(b: int, n: int)[/code]: Starts from [code]b[/code], increases by steps of 1, and stops [i]before[/i] [code]n[/code]. The arguments [code]b[/code] and [code]n[/code] are [b]inclusive[/b] and [b]exclusive[/b], respectively.
-				[code]range(b: int, n: int, s: int)[/code]: Starts from [code]b[/code], increases/decreases by steps of [code]s[/code], and stops [i]before[/i] [code]n[/code]. The arguments [code]b[/code] and [code]n[/code] are [b]inclusive[/b] and [b]exclusive[/b], respectively. The argument [code]s[/code] [b]can[/b] be negative, but not [code]0[/code]. If [code]s[/code] is [code]0[/code], an error message is printed.
-				[method range] converts all arguments to [int] before processing.
-				[b]Note:[/b] Returns an empty array if no value meets the value constraint (e.g. [code]range(2, 5, -1)[/code] or [code]range(5, 5, 1)[/code]).
-				Examples:
+				Возвращает массив с заданным диапазоном. [метод range] может быть вызван тремя способами:
+				[code]range(n: int)[/code]: Начинается с 0, увеличивается с шагом в 1 и останавливается [i]перед[/i] [code]n[/code]. Аргумент [code]n[/code] является [b]эксклюзивным[/b].
+				[code]range(b: int, n: int)[/code]: Начинается с [code]b[/code], увеличивается с шагом в 1 и останавливается [i]перед[/i] [code]n[/code]. Аргументы [code]b[/code] и [code]n[/code] являются [b]инклюзивными[/b] и [b]эксклюзивными[/b], соответственно.
+				[code]range(b: int, n: int, s: int)[/code]: Начинается с [code]b[/code], увеличивается/уменьшается на шаг [code]s[/code] и останавливается [i]перед[/i] [code]n[/code]. Аргументы [code]b[/code] и [code]n[/code] являются [b]инклюзивными[/b] и [b]эксклюзивными[/b], соответственно. Аргумент [code]s[/code] [b]может[/b] быть отрицательным, но не [code]0[/code]. Если [code]s[/code] равен [code]0[/code], выводится сообщение об ошибке.
+				Метод [method range] преобразует все аргументы в [int] перед обработкой.
+				[b]Примечание:[/b] Возвращает пустой массив, если ни одно значение не удовлетворяет ограничению на значение (например, [code]range(2, 5, -1)[/code] или [code]range(5, 5, 1)[/code]).
+				Примеры:
 				[codeblock]
-				print(range(4))        # Prints [0, 1, 2, 3]
-				print(range(2, 5))     # Prints [2, 3, 4]
-				print(range(0, 6, 2))  # Prints [0, 2, 4]
-				print(range(4, 1, -1)) # Prints [4, 3, 2]
+				print(range(4))        # Выведет [0, 1, 2, 3]
+				print(range(2, 5))     # Выведет [2, 3, 4]
+				print(range(0, 6, 2))  # Выведет [0, 2, 4]
+				print(range(4, 1, -1)) # Выведет [4, 3, 2]
 				[/codeblock]
-				To iterate over an [Array] backwards, use:
+				Чтобы выполнить итерацию по [Array] назад, используйте:
 				[codeblock]
 				var array = [3, 6, 9]
 				for i in range(array.size(), 0, -1):
 				    print(array[i - 1])
 				[/codeblock]
-				Output:
+				Вывод:
 				[codeblock]
 				9
 				6
@@ -894,31 +894,31 @@
 			<argument index="3" name="ostart" type="float" />
 			<argument index="4" name="ostop" type="float" />
 			<description>
-				Maps a [code]value[/code] from range [code][istart, istop][/code] to [code][ostart, ostop][/code]. See also [method lerp] and [method inverse_lerp]. If [code]value[/code] is outside [code][istart, istop][/code], then the resulting value will also be outside [code][ostart, ostop][/code]. Use [method clamp] on the result of [method range_lerp] if this is not desired.
+				Сопоставляет [code]значение[/code] из диапазона [code][istart, istop][/code] в [code][ostart, ostop][/code]. См. также [method lerp] и [method inverse_lerp]. Если [code]value[/code] находится за пределами [code][istart, istop][/code], то результирующее значение также будет находиться за пределами [code][ostart, ostop][/code]. Если это нежелательно, используйте [method clamp] для результата [method range_lerp].
 				[codeblock]
-				range_lerp(75, 0, 100, -1, 1) # Returns 0.5
+				range_lerp(75, 0, 100, -1, 1) # Возвращает 0,5
 				[/codeblock]
-				For complex use cases where you need multiple ranges, consider using [Curve] or [Gradient] instead.
+				Для сложных случаев использования, когда вам нужно несколько диапазонов, используйте [Curve] или [Gradient].
 			</description>
 		</method>
 		<method name="round">
 			<return type="float" />
 			<argument index="0" name="s" type="float" />
 			<description>
-				Rounds [code]s[/code] to the nearest whole number, with halfway cases rounded away from zero.
+				Округляет [code]s[/code] до ближайшего целого числа, при этом половинные случаи округляются от нуля.
 				[codeblock]
-				a = round(2.49) # a is 2.0
-				a = round(2.5)  # a is 3.0
-				a = round(2.51) # a is 3.0
-				[/codeblock]
-				See also [method floor], [method ceil], [method stepify], and [int].
+				a = round(2.49) # a равно 2.0
+				a = round(2.5) # a равно 3.0
+				a = round(2.51) # a равно 3.0
+				[/codeblock].
+				См. также [method floor], [method ceil], [method stepify] и [int].
 			</description>
 		</method>
 		<method name="seed">
 			<return type="void" />
 			<argument index="0" name="seed" type="int" />
 			<description>
-				Sets seed for the random number generator.
+				Задает seed для генератора случайных чисел.
 				[codeblock]
 				my_seed = "Godot Rocks"
 				seed(my_seed.hash())
@@ -929,11 +929,11 @@
 			<return type="float" />
 			<argument index="0" name="s" type="float" />
 			<description>
-				Returns the sign of [code]s[/code]: -1 or 1. Returns 0 if [code]s[/code] is 0.
+				Возвращает знак [code]s[/code]: -1 или 1. Возвращает 0, если [code]s[/code] равен 0.
 				[codeblock]
-				sign(-6) # Returns -1
-				sign(0)  # Returns 0
-				sign(6)  # Returns 1
+				sign(-6) # Возвращает -1
+				sign(0) # Возвращает 0
+				sign(6) # Возвращает 1
 				[/codeblock]
 			</description>
 		</method>
@@ -941,9 +941,9 @@
 			<return type="float" />
 			<argument index="0" name="s" type="float" />
 			<description>
-				Returns the sine of angle [code]s[/code] in radians.
+				Возвращает синус угла [code]s[/code] в радианах.
 				[codeblock]
-				sin(0.523599) # Returns 0.5
+				sin(0.523599) # Возвращает 0.5
 				[/codeblock]
 			</description>
 		</method>
@@ -951,10 +951,10 @@
 			<return type="float" />
 			<argument index="0" name="s" type="float" />
 			<description>
-				Returns the hyperbolic sine of [code]s[/code].
+				Возвращает гиперболический синус [code]s[/code].
 				[codeblock]
-				a = log(2.0) # Returns 0.693147
-				sinh(a) # Returns 0.75
+				a = log(2.0) # Возвращает 0.693147
+				sinh(a) # Возвращает 0.75
 				[/codeblock]
 			</description>
 		</method>
@@ -964,39 +964,39 @@
 			<argument index="1" name="to" type="float" />
 			<argument index="2" name="s" type="float" />
 			<description>
-				Returns the result of smoothly interpolating the value of [code]s[/code] between [code]0[/code] and [code]1[/code], based on the where [code]s[/code] lies with respect to the edges [code]from[/code] and [code]to[/code].
-				The return value is [code]0[/code] if [code]s &lt;= from[/code], and [code]1[/code] if [code]s &gt;= to[/code]. If [code]s[/code] lies between [code]from[/code] and [code]to[/code], the returned value follows an S-shaped curve that maps [code]s[/code] between [code]0[/code] and [code]1[/code].
-				This S-shaped curve is the cubic Hermite interpolator, given by [code]f(y) = 3*y^2 - 2*y^3[/code] where [code]y = (x-from) / (to-from)[/code].
+				Возвращает результат гладкой интерполяции значения [code]s[/code] между [code]0[/code] и [code]1[/code] на основе того, где [code]s[/code] лежит по отношению к ребрам [code]from[/code] и [code]to[/code].
+				Возвращаемое значение будет [code]0[/code], если [code]s &lt;= from[/code], и [code]1[/code], если [code]s &gt;= to[/code]. Если [code]s[/code] лежит между [code]from[/code] и [code]to[/code], возвращаемое значение следует S-образной кривой, которая отображает [code]s[/code] между [code]0[/code] и [code]1[/code].
+				Эта S-образная кривая представляет собой кубический интерполятор Эрмита, заданный [code]f(y) = 3*y^2 - 2*y^3[/code], где [code]y = (x-from) / (to-from)[/code].
 				[codeblock]
-				smoothstep(0, 2, -5.0) # Returns 0.0
-				smoothstep(0, 2, 0.5) # Returns 0.15625
-				smoothstep(0, 2, 1.0) # Returns 0.5
-				smoothstep(0, 2, 2.0) # Returns 1.0
-				[/codeblock]
-				Compared to [method ease] with a curve value of [code]-1.6521[/code], [method smoothstep] returns the smoothest possible curve with no sudden changes in the derivative. If you need to perform more advanced transitions, use [Tween] or [AnimationPlayer].
-				[url=https://raw.githubusercontent.com/godotengine/godot-docs/3.6/img/smoothstep_ease_comparison.png]Comparison between smoothstep() and ease(x, -1.6521) return values[/url]
+				smoothstep(0, 2, -5.0) # Возвращает 0.0
+				smoothstep(0, 2, 0.5) # Возвращает 0.15625
+				smoothstep(0, 2, 1.0) # Возвращает 0.5
+				smoothstep(0, 2, 2.0) # Возвращает 1.0
+				[/codeblock].
+				По сравнению с [method ease] со значением кривой [code]-1.6521[/code], [method smoothstep] возвращает максимально гладкую кривую без резких изменений производной. Если вам нужно выполнить более сложные переходы, используйте [Tween] или [AnimationPlayer].
+				[url=https://raw.githubusercontent.com/godotengine/godot-docs/3.5/img/smoothstep_ease_comparison.png]Сравнение возвращаемых значений smoothstep() и ease(x, -1.6521)[/url]
 			</description>
 		</method>
 		<method name="sqrt">
 			<return type="float" />
 			<argument index="0" name="s" type="float" />
 			<description>
-				Returns the square root of [code]s[/code], where [code]s[/code] is a non-negative number.
+				Возвращает квадратный корень из [code]s[/code], где [code]s[/code] - неотрицательное число.
 				[codeblock]
-				sqrt(9) # Returns 3
+				sqrt(9) # Возвращает 3
 				[/codeblock]
-				[b]Note:[/b] Negative values of [code]s[/code] return NaN. If you need negative inputs, use [code]System.Numerics.Complex[/code] in C#.
+				[b]Примечание:[/b] Отрицательные значения [code]s[/code] возвращают NaN. Если вам нужны отрицательные значения, используйте [code]System.Numerics.Complex[/code] в C#.
 			</description>
 		</method>
 		<method name="step_decimals">
 			<return type="int" />
 			<argument index="0" name="step" type="float" />
 			<description>
-				Returns the position of the first non-zero digit, after the decimal point. Note that the maximum return value is 10, which is a design decision in the implementation.
+				Возвращает позицию первой ненулевой цифры после десятичной точки. Обратите внимание, что максимальное возвращаемое значение равно 10, что является конструктивным решением в реализации.
 				[codeblock]
-				n = step_decimals(5)           # n is 0
-				n = step_decimals(1.0005)      # n is 4
-				n = step_decimals(0.000000005) # n is 9
+				n = step_decimals(5) # n равно 0
+				n = step_decimals(1.0005) # n равно 4
+				n = step_decimals(0.000000005) # n равно 9
 				[/codeblock]
 			</description>
 		</method>
@@ -1005,23 +1005,23 @@
 			<argument index="0" name="s" type="float" />
 			<argument index="1" name="step" type="float" />
 			<description>
-				Snaps float value [code]s[/code] to a given [code]step[/code]. This can also be used to round a floating point number to an arbitrary number of decimals.
+				Привязывает плавающее значение [code]s[/code] к заданному [code]шагу[/code]. Это также можно использовать для округления числа с плавающей точкой до произвольного количества десятичных знаков.
 				[codeblock]
-				stepify(100, 32) # Returns 96.0
-				stepify(3.14159, 0.01) # Returns 3.14
+				stepify(100, 32) # Возвращает 96,0
+				stepify(3.14159, 0.01) # Возвращает 3.14
 				[/codeblock]
-				See also [method ceil], [method floor], [method round], and [int].
+				См. также [method ceil], [method floor], [method round] и [int].
 			</description>
 		</method>
 		<method name="str" qualifiers="vararg">
 			<return type="String" />
 			<description>
-				Converts one or more arguments of any type to string in the best way possible.
+				Преобразует один или несколько аргументов любого типа в строку наилучшим образом.
 				[codeblock]
 				var a = [10, 20, 30]
 				var b = str(a);
-				len(a) # Returns 3
-				len(b) # Returns 12
+				len(a) # Возвращает 3
+				len(b) # Возвращает 12
 				[/codeblock]
 			</description>
 		</method>
@@ -1029,11 +1029,11 @@
 			<return type="Variant" />
 			<argument index="0" name="string" type="String" />
 			<description>
-				Converts a formatted string that was returned by [method var2str] to the original value.
+				Преобразует форматированную строку, возвращенную [методом var2str], в исходное значение.
 				[codeblock]
-				a = '{ "a": 1, "b": 2 }'
+				a = '{"a": 1, "b": 2 }'
 				b = str2var(a)
-				print(b["a"]) # Prints 1
+				print(b["a"]) # Печатает 1
 				[/codeblock]
 			</description>
 		</method>
@@ -1041,9 +1041,9 @@
 			<return type="float" />
 			<argument index="0" name="s" type="float" />
 			<description>
-				Returns the tangent of angle [code]s[/code] in radians.
+				Возвращает тангенс угла [code]s[/code] в радианах.
 				[codeblock]
-				tan(deg2rad(45)) # Returns 1
+				tan(deg2rad(45)) # Возвращает 1
 				[/codeblock]
 			</description>
 		</method>
@@ -1051,10 +1051,10 @@
 			<return type="float" />
 			<argument index="0" name="s" type="float" />
 			<description>
-				Returns the hyperbolic tangent of [code]s[/code].
+				Возвращает гиперболический тангенс [code]s[/code].
 				[codeblock]
-				a = log(2.0) # a is 0.693147
-				b = tanh(a)  # b is 0.6
+				a = log(2.0) # a равно 0.693147
+				b = tanh(a) # b равно 0.6
 				[/codeblock]
 			</description>
 		</method>
@@ -1062,26 +1062,26 @@
 			<return type="String" />
 			<argument index="0" name="var" type="Variant" />
 			<description>
-				Converts a [Variant] [code]var[/code] to JSON text and return the result. Useful for serializing data to store or send over the network.
+				Преобразует [Variant] [code]var[/code] в текст JSON и возвращает результат. Пригодится для сериализации данных для хранения или отправки по сети.
 				[codeblock]
-				# Both numbers below are integers.
+				# Оба числа ниже - целые числа.
 				a = { "a": 1, "b": 2 }
 				b = to_json(a)
 				print(b) # {"a":1, "b":2}
-				# Both numbers above are floats, even if they display without any decimal places.
+				# Оба числа выше являются плавающими, даже если они отображаются без десятичных знаков.
 				[/codeblock]
-				[b]Note:[/b] The JSON specification does not define integer or float types, but only a [i]number[/i] type. Therefore, converting a [Variant] to JSON text will convert all numerical values to [float] types.
-				See also [JSON] for an alternative way to convert a [Variant] to JSON text.
+				[b]Примечание:[/b] В спецификации JSON не определены типы integer или float, а только тип [i]number[/i]. Поэтому при преобразовании [Variant] в текст JSON все числовые значения будут преобразованы в типы [float].
+				Альтернативный способ преобразования [Variant] в текст JSON см. также в [JSON].
 			</description>
 		</method>
 		<method name="type_exists">
 			<return type="bool" />
 			<argument index="0" name="type" type="String" />
 			<description>
-				Returns whether the given class exists in [ClassDB].
+				Возвращает, существует ли данный класс в [ClassDB].
 				[codeblock]
-				type_exists("Sprite") # Returns true
-				type_exists("Variant") # Returns false
+				type_exists("Sprite") # Возвращает true
+				type_exists("Variant") # Возвращает false
 				[/codeblock]
 			</description>
 		</method>
@@ -1089,13 +1089,13 @@
 			<return type="int" />
 			<argument index="0" name="what" type="Variant" />
 			<description>
-				Returns the internal type of the given Variant object, using the [enum Variant.Type] values.
+				Возвращает внутренний тип данного объекта Variant, используя значения [enum Variant.Type].
 				[codeblock]
 				p = parse_json('["a", "b", "c"]')
 				if typeof(p) == TYPE_ARRAY:
-				    print(p[0]) # Prints a
+				    print(p[0]) # Выводит a
 				else:
-				    print("unexpected results")
+				    print("unexpected results") # неожиданные результаты
 				[/codeblock]
 			</description>
 		</method>
@@ -1103,14 +1103,14 @@
 			<return type="String" />
 			<argument index="0" name="json" type="String" />
 			<description>
-				Checks that [code]json[/code] is valid JSON data. Returns an empty string if valid, or an error message otherwise.
+				Проверяет, является ли [code]json[/code] корректными данными JSON. Возвращает пустую строку, если она верна, или сообщение об ошибке в противном случае.
 				[codeblock]
 				j = to_json([1, 2, 3])
 				v = validate_json(j)
 				if not v:
-				    print("Valid JSON.")
+				    print("Valid JSON.") # верный JSON
 				else:
-				    push_error("Invalid JSON: " + v)
+				    push_error("Invalid JSON: " + v) # неверный JSON
 				[/codeblock]
 			</description>
 		</method>
@@ -1119,19 +1119,19 @@
 			<argument index="0" name="var" type="Variant" />
 			<argument index="1" name="full_objects" type="bool" default="false" />
 			<description>
-				Encodes a variable value to a byte array. When [code]full_objects[/code] is [code]true[/code] encoding objects is allowed (and can potentially include code).
+				Кодирует значение переменной в байтовый массив. Когда [code]full_objects[/code] имеет значение [code]true[/code], кодирование объектов разрешено (и потенциально может включать код).
 			</description>
 		</method>
 		<method name="var2str">
 			<return type="String" />
 			<argument index="0" name="var" type="Variant" />
 			<description>
-				Converts a Variant [code]var[/code] to a formatted string that can later be parsed using [method str2var].
+				Преобразует переменную [code]var[/code] в форматированную строку, которую впоследствии можно разобрать с помощью [метода str2var].
 				[codeblock]
 				a = { "a": 1, "b": 2 }
 				print(var2str(a))
 				[/codeblock]
-				prints
+				Печатает
 				[codeblock]
 				{
 				"a": 1,
@@ -1144,8 +1144,8 @@
 			<return type="WeakRef" />
 			<argument index="0" name="obj" type="Object" />
 			<description>
-				Returns a weak reference to an object.
-				A weak reference to an object is not enough to keep the object alive: when the only remaining references to a referent are weak references, garbage collection is free to destroy the referent and reuse its memory for something else. However, until the object is actually destroyed the weak reference may return the object even if there are no strong references to it.
+				Возвращает слабую ссылку на объект.
+				Слабой ссылки на объект недостаточно, чтобы сохранить объект живым: когда единственными оставшимися ссылками на объект являются слабые ссылки, сборщик мусора может уничтожить объект и использовать его память для чего-то другого. Однако до тех пор, пока объект не будет уничтожен, слабая ссылка может возвращать объект, даже если на него нет сильных ссылок.
 			</description>
 		</method>
 		<method name="wrapf">
@@ -1154,22 +1154,22 @@
 			<argument index="1" name="min" type="float" />
 			<argument index="2" name="max" type="float" />
 			<description>
-				Wraps float [code]value[/code] between [code]min[/code] and [code]max[/code].
-				Usable for creating loop-alike behavior or infinite surfaces.
+				Обертывает плавающее [code]значение[/code] между [code]min[/code] и [code]max[/code].
+				Используется для создания поведения, похожего на цикл, или бесконечных поверхностей.
 				[codeblock]
-				# Infinite loop between 5.0 and 9.9
+				# Бесконечный цикл между 5,0 и 9,9
 				value = wrapf(value + 0.1, 5.0, 10.0)
 				[/codeblock]
 				[codeblock]
-				# Infinite rotation (in radians)
+				# Бесконечное вращение (в радианах)
 				angle = wrapf(angle + 0.1, 0.0, TAU)
 				[/codeblock]
 				[codeblock]
-				# Infinite rotation (in radians)
+				# Бесконечное вращение (в радианах)
 				angle = wrapf(angle + 0.1, -PI, PI)
 				[/codeblock]
-				[b]Note:[/b] If [code]min[/code] is [code]0[/code], this is equivalent to [method fposmod], so prefer using that instead.
-				[code]wrapf[/code] is more flexible than using the [method fposmod] approach by giving the user control over the minimum value.
+				[b]Примечание:[/b] Если [code]min[/code] равен [code]0[/code], это эквивалентно [method fposmod], так что лучше использовать его вместо этого.
+				[code]wrapf[/code] является более гибким, чем подход [method fposmod], поскольку дает пользователю контроль над минимальным значением.
 			</description>
 		</method>
 		<method name="wrapi">
@@ -1178,18 +1178,18 @@
 			<argument index="1" name="min" type="int" />
 			<argument index="2" name="max" type="int" />
 			<description>
-				Wraps integer [code]value[/code] between [code]min[/code] and [code]max[/code].
-				Usable for creating loop-alike behavior or infinite surfaces.
+				Обертывает целочисленное [code]значение[/code] между [code]min[/code] и [code]max[/code].
+				Используется для создания поведения, похожего на цикл, или бесконечных поверхностей.
 				[codeblock]
-				# Infinite loop between 5 and 9
+				# Бесконечный цикл между 5 и 9
 				frame = wrapi(frame + 1, 5, 10)
 				[/codeblock]
 				[codeblock]
-				# result is -2
+				# результат равен -2
 				var result = wrapi(-6, -5, -1)
 				[/codeblock]
-				[b]Note:[/b] If [code]min[/code] is [code]0[/code], this is equivalent to [method posmod], so prefer using that instead.
-				[code]wrapi[/code] is more flexible than using the [method posmod] approach by giving the user control over the minimum value.
+				[b]Примечание:[/b] Если [code]min[/code] равен [code]0[/code], это эквивалентно [method posmod], так что лучше использовать его вместо этого.
+				[code]wrapi[/code] является более гибким, чем подход [method posmod], предоставляя пользователю контроль над минимальным значением.
 			</description>
 		</method>
 		<method name="yield">
@@ -1197,17 +1197,17 @@
 			<argument index="0" name="object" type="Object" default="null" />
 			<argument index="1" name="signal" type="String" default="&quot;&quot;" />
 			<description>
-				Stops the function execution and returns the current suspended state to the calling function.
-				From the caller, call [method GDScriptFunctionState.resume] on the state to resume execution. This invalidates the state. Within the resumed function, [code]yield()[/code] returns whatever was passed to the [code]resume()[/code] function call.
-				If passed an object and a signal, the execution is resumed when the object emits the given signal. In this case, [code]yield()[/code] returns the argument passed to [code]emit_signal()[/code] if the signal takes only one argument, or an array containing all the arguments passed to [code]emit_signal()[/code] if the signal takes multiple arguments.
-				You can also use [code]yield[/code] to wait for a function to finish:
+				Останавливает выполнение функции и возвращает текущее приостановленное состояние вызывающей функции.
+				Вызывающая функция должна вызвать [метод GDScriptFunctionState.resume] для состояния, чтобы возобновить выполнение. Это аннулирует состояние. Внутри возобновленной функции [code]yield()[/code] возвращает то, что было передано в вызов функции [code]resume()[/code].
+				Если передать объект и сигнал, то выполнение будет возобновлено, когда объект издаст заданный сигнал. В этом случае [code]yield()[/code] возвращает аргумент, переданный в [code]emit_signal()[/code], если сигнал принимает только один аргумент, или массив, содержащий все аргументы, переданные в [code]emit_signal()[/code], если сигнал принимает несколько аргументов.
+				Вы также можете использовать [code]yield[/code], чтобы дождаться завершения функции:
 				[codeblock]
 				func _ready():
-				    yield(countdown(), "completed") # waiting for the countdown() function to complete
+				    yield(countdown(), "completed") # ожидание завершения функции countdown()
 				    print('Ready')
 
 				func countdown():
-				    yield(get_tree(), "idle_frame") # returns a GDScriptFunctionState object to _ready()
+				    yield(get_tree(), "idle_frame") # возвращает объект GDScriptFunctionState для _ready().
 				    print(3)
 				    yield(get_tree().create_timer(1.0), "timeout")
 				    print(2)
@@ -1215,31 +1215,31 @@
 				    print(1)
 				    yield(get_tree().create_timer(1.0), "timeout")
 
-				# prints:
+				# Вывод:
 				# 3
 				# 2
 				# 1
 				# Ready
 				[/codeblock]
-				When yielding on a function, the [code]completed[/code] signal will be emitted automatically when the function returns. It can, therefore, be used as the [code]signal[/code] parameter of the [code]yield[/code] method to resume.
-				In order to yield on a function, the resulting function should also return a [code]GDScriptFunctionState[/code]. Notice [code]yield(get_tree(), "idle_frame")[/code] from the above example.
+				При уступке функции сигнал [code]completed[/code] будет выдан автоматически, когда функция вернется. Поэтому его можно использовать в качестве параметра [code]signal[/code] метода [code]yield[/code] для возобновления работы.
+				Для того чтобы выполнить выход из функции, результирующая функция также должна вернуть [code]GDScriptFunctionState[/code]. Обратите внимание на [code]yield(get_tree(), "idle_frame")[/code] из приведенного выше примера.
 			</description>
 		</method>
 	</methods>
 	<constants>
 		<constant name="PI" value="3.141593">
-			Constant that represents how many times the diameter of a circle fits around its perimeter. This is equivalent to [code]TAU / 2[/code].
+			Константа, которая показывает, сколько раз диаметр круга помещается по его периметру. Это эквивалентно [code]TAU / 2[/code].
 		</constant>
 		<constant name="TAU" value="6.283185">
-			The circle constant, the circumference of the unit circle in radians. This is equivalent to [code]PI * 2[/code], or 360 degrees in rotations.
+			Константа окружности, окружность единичного круга в радианах. Это эквивалентно [code]PI * 2[/code], или 360 градусов во вращении.
 		</constant>
 		<constant name="INF" value="inf">
-			Positive floating-point infinity. This is the result of floating-point division when the divisor is [code]0.0[/code]. For negative infinity, use [code]-INF[/code]. Dividing by [code]-0.0[/code] will result in negative infinity if the numerator is positive, so dividing by [code]0.0[/code] is not the same as dividing by [code]-0.0[/code] (despite [code]0.0 == -0.0[/code] returning [code]true[/code]).
-			[b]Note:[/b] Numeric infinity is only a concept with floating-point numbers, and has no equivalent for integers. Dividing an integer number by [code]0[/code] will not result in [constant INF] and will result in a run-time error instead.
+			Положительная бесконечность с плавающей запятой. Это результат деления с плавающей точкой, когда делитель равен [code]0.0[/code]. Для отрицательной бесконечности используйте [code]-INF[/code]. Деление на [code]-0.0[/code] приведет к отрицательной бесконечности, если числитель положительный, поэтому деление на [code]0.0[/code] - это не то же самое, что деление на [code]-0.0[/code] (несмотря на то, что [code]0.0 == -0.0[/code] возвращает [code]true[/code]).
+			[b]Примечание:[/b] Числовая бесконечность является понятием только для чисел с плавающей точкой и не имеет эквивалента для целых чисел. Деление целого числа на [code]0[/code] не приведет к [constant INF] и вместо этого приведет к ошибке времени выполнения.
 		</constant>
 		<constant name="NAN" value="nan">
-			"Not a Number", an invalid floating-point value. [constant NAN] has special properties, including that it is not equal to itself ([code]NAN == NAN[/code] returns [code]false[/code]). It is output by some invalid operations, such as dividing floating-point [code]0.0[/code] by [code]0.0[/code].
-			[b]Note:[/b] "Not a Number" is only a concept with floating-point numbers, and has no equivalent for integers. Dividing an integer [code]0[/code] by [code]0[/code] will not result in [constant NAN] and will result in a run-time error instead.
+			Not a Numbe - "Не число", недопустимое значение с плавающей точкой. [константа NAN] обладает особыми свойствами, в том числе тем, что она не равна самой себе ([code]NAN == NAN[/code] возвращает [code]false[/code]). Она выводится некоторыми недопустимыми операциями, например делением [code]0.0[/code] с плавающей точкой на [code]0.0[/code].
+			[b]Примечание:[/b] "Не число" - это понятие только для чисел с плавающей точкой и не имеет эквивалента для целых чисел. Деление целого числа [code]0[/code] на [code]0[/code] не приведет к [constant NAN] и вместо этого приведет к ошибке времени выполнения.
 		</constant>
 	</constants>
 </class>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Light" inherits="VisualInstance" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Light" inherits="VisualInstance" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Provides a base class for different kinds of light nodes.
+		Предоставляет базовый класс для различных видов световых(освещения) узлов.
 	</brief_description>
 	<description>
-		Light is the [i]abstract[/i] base class for light nodes. As it can't be instanced, it shouldn't be used directly. Other types of light nodes inherit from it. Light contains the common variables and parameters used for lighting.
+		Light - это [i]абстрактный[/i] базовый класс для узлов света. Поскольку он не может быть инстансирован, его не следует использовать напрямую. Другие типы световых узлов наследуют от него. Light содержит общие переменные и параметры, используемые для освещения.
 	</description>
 	<tutorials>
 		<link title="3D lights and shadows">$DOCS_URL/tutorials/3d/lights_and_shadows.html</link>
@@ -15,7 +15,7 @@
 			<return type="float" />
 			<argument index="0" name="param" type="int" enum="Light.Param" />
 			<description>
-				Returns the value of the specified [enum Light.Param] parameter.
+				Возвращает значение указанного параметра [enum Light.Param].
 			</description>
 		</method>
 		<method name="set_param">
@@ -23,121 +23,118 @@
 			<argument index="0" name="param" type="int" enum="Light.Param" />
 			<argument index="1" name="value" type="float" />
 			<description>
-				Sets the value of the specified [enum Light.Param] parameter.
+				Устанавливает значение указанного параметра [enum Light.Param].
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="editor_only" type="bool" setter="set_editor_only" getter="is_editor_only" default="false">
-			If [code]true[/code], the light only appears in the editor and will not be visible at runtime.
+			Если [code]true[/code], то свет появится только в редакторе и не будет виден во время выполнения.
 		</member>
 		<member name="light_bake_mode" type="int" setter="set_bake_mode" getter="get_bake_mode" enum="Light.BakeMode" default="1">
-			The light's bake mode. See [enum BakeMode].
+			Режим запекания света. См. [enum BakeMode].
 		</member>
 		<member name="light_color" type="Color" setter="set_color" getter="get_color" default="Color( 1, 1, 1, 1 )">
-			The light's color. An [i]overbright[/i] color can be used to achieve a result equivalent to increasing the light's [member light_energy].
+			Цвет света. Для достижения результата, эквивалентного увеличению [member light_energy], можно использовать [i]сверхъяркий[/i] цвет.
 		</member>
 		<member name="light_cull_mask" type="int" setter="set_cull_mask" getter="get_cull_mask" default="4294967295">
-			The light will affect objects in the selected layers.
+			Свет повлияет на объекты в выбранных слоях.
 		</member>
 		<member name="light_energy" type="float" setter="set_param" getter="get_param" default="1.0">
-			The light's strength multiplier (this is not a physical unit). For [OmniLight] and [SpotLight], changing this value will only change the light color's intensity, not the light's radius.
+			Множитель силы света (это не физическая единица). Для [OmniLight] и [SpotLight] изменение этого значения изменит только интенсивность цвета света, но не его радиус.
 		</member>
 		<member name="light_indirect_energy" type="float" setter="set_param" getter="get_param" default="1.0">
-			Secondary multiplier used with indirect light (light bounces). This works on both [BakedLightmap] and [GIProbe].
+			Вторичный множитель, используемый с непрямым светом (свет отражается). Это работает как с [BakedLightmap], так и с [GIProbe].
 		</member>
 		<member name="light_negative" type="bool" setter="set_negative" getter="is_negative" default="false">
-			If [code]true[/code], the light's effect is reversed, darkening areas and casting bright shadows.
+			Если [code]true[/code], эффект света меняется на противоположный, затемняя области и отбрасывая яркие тени.
 		</member>
 		<member name="light_size" type="float" setter="set_param" getter="get_param" default="0.0">
-			The size of the light in Godot units. Only considered in baked lightmaps and only if [member light_bake_mode] is set to [constant BAKE_ALL]. Increasing this value will make the shadows appear blurrier. This can be used to simulate area lights to an extent.
-			[b]Note:[/b] [member light_size] is not affected by [member Spatial.scale] (the light's scale or its parent's scale).
+			Размер света в единицах Годо. Учитывается только в запеченных лайтмапах(Карты освещения) и только если для [member light_bake_mode] установлено значение [constant BAKE_ALL]. При увеличении этого значения тени будут казаться более размытыми. Это может быть использовано для имитации освещения области в некоторой степени.
+			[b]Примечание:[/b] [member light_size] не зависит от [member Spatial.scale] (масштаб света или его родителя).
 		</member>
 		<member name="light_specular" type="float" setter="set_param" getter="get_param" default="0.5">
-			The intensity of the specular blob in objects affected by the light. At [code]0[/code], the light becomes a pure diffuse light. When not baking emission, this can be used to avoid unrealistic reflections when placing lights above an emissive surface.
+			Интенсивность спекулярных пятен на объектах, на которые падает свет. При [code]0[/code] свет становится чистым рассеянным светом. Если не печься об эмиссии, этот параметр можно использовать, чтобы избежать нереалистичных отражений при размещении света над излучающей поверхностью.
 		</member>
 		<member name="shadow_bias" type="float" setter="set_param" getter="get_param" default="0.15">
-			Used to adjust shadow appearance. Too small a value results in self-shadowing ("shadow acne"), while too large a value causes shadows to separate from casters ("peter-panning"). Adjust as needed.
+			Используется для настройки внешнего вида теней. Слишком маленькое значение приводит к самозатенению ("теневые прыщи"), а слишком большое - к отделению теней от кастеров ("peter панорамирование"). Настройте по необходимости.
 		</member>
 		<member name="shadow_color" type="Color" setter="set_shadow_color" getter="get_shadow_color" default="Color( 0, 0, 0, 1 )">
-			The color of shadows cast by this light.
+			Цвет теней, отбрасываемых данным светом.
 		</member>
 		<member name="shadow_contact" type="float" setter="set_param" getter="get_param" default="0.0">
-			Attempts to reduce [member shadow_bias] gap by rendering screen-space contact shadows. This has a performance impact, especially at higher values.
-			[b]Note:[/b] Contact shadows can look broken, so leaving this property to [code]0.0[/code] is recommended.
+			Попытка уменьшить разрыв [member shadow_bias] путем отрисовки контактных теней в пространстве экрана. Это влияет на производительность, особенно при больших значениях.
+			[b]Примечание:[/b] Тени от контактов могут выглядеть изломанными, поэтому рекомендуется оставить значение этого свойства равным [code]0.0[/code].
 		</member>
 		<member name="shadow_enabled" type="bool" setter="set_shadow" getter="has_shadow" default="false">
-			If [code]true[/code], the light will cast shadows.
+			Если [code]true[/code], свет будет отбрасывать тени.
 		</member>
 		<member name="shadow_reverse_cull_face" type="bool" setter="set_shadow_reverse_cull_face" getter="get_shadow_reverse_cull_face" default="false">
-			If [code]true[/code], reverses the backface culling of the mesh. This can be useful when you have a flat mesh that has a light behind it. If you need to cast a shadow on both sides of the mesh, set the mesh to use double-sided shadows with [constant GeometryInstance.SHADOW_CASTING_SETTING_DOUBLE_SIDED].
+			Если [code]true[/code], изменяет на противоположный режим обводки сетки. Это может быть полезно, если у вас плоская сетка, за которой находится свет. Если вам нужно отбрасывать тень на обе стороны сетки, настройте сетку на использование двусторонних теней с помощью [константы GeometryInstance.SHADOW_CASTING_SETTING_DOUBLE_SIDED].
 		</member>
 	</members>
 	<constants>
 		<constant name="PARAM_ENERGY" value="0" enum="Param">
-			Constant for accessing [member light_energy].
+			Константа для доступа к [member light_energy].
 		</constant>
 		<constant name="PARAM_INDIRECT_ENERGY" value="1" enum="Param">
-			Constant for accessing [member light_indirect_energy].
+			Константа для доступа к [member light_indirect_energy].
 		</constant>
 		<constant name="PARAM_SIZE" value="2" enum="Param">
-			Constant for accessing [member light_size].
+			Константа для доступа к [member light_size].
 		</constant>
 		<constant name="PARAM_SPECULAR" value="3" enum="Param">
-			Constant for accessing [member light_specular].
+			Константа для доступа к [member light_specular].
 		</constant>
 		<constant name="PARAM_RANGE" value="4" enum="Param">
-			Constant for accessing [member OmniLight.omni_range] or [member SpotLight.spot_range].
+			Константа для доступа к [member OmniLight.omni_range] или [member SpotLight.spot_range].
 		</constant>
 		<constant name="PARAM_ATTENUATION" value="5" enum="Param">
-			Constant for accessing [member OmniLight.omni_attenuation] or [member SpotLight.spot_attenuation].
+			Константа для доступа к [member OmniLight.omni_attenuation] или [member SpotLight.spot_attenuation].
 		</constant>
 		<constant name="PARAM_SPOT_ANGLE" value="6" enum="Param">
-			Constant for accessing [member SpotLight.spot_angle].
+			Константа для доступа к [member SpotLight.spot_angle].
 		</constant>
 		<constant name="PARAM_SPOT_ATTENUATION" value="7" enum="Param">
-			Constant for accessing [member SpotLight.spot_angle_attenuation].
+			Константа для доступа к [члену SpotLight.spot_angle_attenuation].
 		</constant>
 		<constant name="PARAM_CONTACT_SHADOW_SIZE" value="8" enum="Param">
-			Constant for accessing [member shadow_contact].
+			Постоянный доступ к [member shadow_contact].
 		</constant>
 		<constant name="PARAM_SHADOW_MAX_DISTANCE" value="9" enum="Param">
-			Constant for accessing [member DirectionalLight.directional_shadow_max_distance].
+			Константа для доступа к [member DirectionalLight.directional_shadow_max_distance].
 		</constant>
 		<constant name="PARAM_SHADOW_SPLIT_1_OFFSET" value="10" enum="Param">
-			Constant for accessing [member DirectionalLight.directional_shadow_split_1].
+			Константа для доступа к [member DirectionalLight.directional_shadow_split_1].
 		</constant>
 		<constant name="PARAM_SHADOW_SPLIT_2_OFFSET" value="11" enum="Param">
-			Constant for accessing [member DirectionalLight.directional_shadow_split_2].
+			Константа для доступа к [member DirectionalLight.directional_shadow_split_2].
 		</constant>
 		<constant name="PARAM_SHADOW_SPLIT_3_OFFSET" value="12" enum="Param">
-			Constant for accessing [member DirectionalLight.directional_shadow_split_3].
+			Константа для доступа к [member DirectionalLight.directional_shadow_split_3].
 		</constant>
 		<constant name="PARAM_SHADOW_NORMAL_BIAS" value="13" enum="Param">
-			Constant for accessing [member DirectionalLight.directional_shadow_normal_bias].
+			Константа для доступа к [member DirectionalLight.directional_shadow_normal_bias].
 		</constant>
 		<constant name="PARAM_SHADOW_BIAS" value="14" enum="Param">
-			Constant for accessing [member shadow_bias].
+			Константа для доступа к [member shadow_bias].
 		</constant>
 		<constant name="PARAM_SHADOW_BIAS_SPLIT_SCALE" value="15" enum="Param">
-			Constant for accessing [member DirectionalLight.directional_shadow_bias_split_scale].
+			Константа для доступа к [member DirectionalLight.directional_shadow_bias_split_scale].
 		</constant>
-		<constant name="PARAM_SHADOW_FADE_START" value="16" enum="Param">
-			Constant for accessing [member DirectionalLight.directional_shadow_fade_start].
-		</constant>
-		<constant name="PARAM_MAX" value="17" enum="Param">
-			Represents the size of the [enum Param] enum.
+		<constant name="PARAM_MAX" value="16" enum="Param">
+			Представляет размер перечисления [enum Param].
 		</constant>
 		<constant name="BAKE_DISABLED" value="0" enum="BakeMode">
-			Light is ignored when baking.
-			[b]Note:[/b] Hiding a light does [i]not[/i] affect baking.
+			Свет игнорируется при запекании.
+			[b]Примечание:[/b] Скрытие света [i]не[/i] влияет на запекание.
 		</constant>
 		<constant name="BAKE_INDIRECT" value="1" enum="BakeMode">
-			Only indirect lighting will be baked (default).
+			Запекается только непрямое освещение (по умолчанию).
 		</constant>
 		<constant name="BAKE_ALL" value="2" enum="BakeMode">
-			Both direct and indirect light will be baked.
-			[b]Note:[/b] You should hide the light if you don't want it to appear twice (dynamic and baked).
+			Прямой и непрямой свет будет запечен.
+			[b]Примечание:[/b] Вам следует скрыть свет, если вы не хотите, чтобы он отображался дважды (динамический и запеченный).
 		</constant>
 	</constants>
 </class>

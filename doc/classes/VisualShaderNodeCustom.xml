@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="VisualShaderNodeCustom" inherits="VisualShaderNode" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="VisualShaderNodeCustom" inherits="VisualShaderNode" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Virtual class to define custom [VisualShaderNode]s for use in the Visual Shader Editor.
+		Виртуальный класс для определения пользовательских [VisualShaderNode]ов для использования в редакторе визуальных шейдеров.
 	</brief_description>
 	<description>
-		By inheriting this class you can create a custom [VisualShader] script addon which will be automatically added to the Visual Shader Editor. The [VisualShaderNode]'s behavior is defined by overriding the provided virtual methods.
-		In order for the node to be registered as an editor addon, you must use the [code]tool[/code] keyword and provide a [code]class_name[/code] for your custom script. For example:
+		Наследуя этот класс, вы можете создать собственный скрипт [VisualShader], который будет автоматически добавлен в редактор визуальных шейдеров. Поведение [VisualShaderNode] определяется переопределением предоставленных виртуальных методов.
+		Чтобы узел был зарегистрирован как аддон редактора, вы должны использовать ключевое слово [code]tool[/code] и указать [code]class_name[/code] для вашего пользовательского скрипта. Например:
 		[codeblock]
 		tool
 		extends VisualShaderNodeCustom
@@ -19,8 +19,8 @@
 		<method name="_get_category" qualifiers="virtual">
 			<return type="String" />
 			<description>
-				Override this method to define the category of the associated custom node in the Visual Shader Editor's members dialog. The path may look like [code]"MyGame/MyFunctions/Noise"[/code].
-				Defining this method is [b]optional[/b]. If not overridden, the node will be filed under the "Custom" category.
+				Переопределите этот метод, чтобы определить категорию связанного пользовательского узла в диалоге членов Visual Shader Editor. Путь может выглядеть как [code]"MyGame/MyFunctions/Noise"[/code].
+				Определение этого метода является [b]необязательным[/b]. Если его не переопределить, то узел будет помещен в категорию "Custom".
 			</description>
 		</method>
 		<method name="_get_code" qualifiers="virtual">
@@ -30,95 +30,95 @@
 			<argument index="2" name="mode" type="int" />
 			<argument index="3" name="type" type="int" />
 			<description>
-				Override this method to define the actual shader code of the associated custom node. The shader code should be returned as a string, which can have multiple lines (the [code]"""[/code] multiline string construct can be used for convenience).
-				The [code]input_vars[/code] and [code]output_vars[/code] arrays contain the string names of the various input and output variables, as defined by [code]_get_input_*[/code] and [code]_get_output_*[/code] virtual methods in this class.
-				The output ports can be assigned values in the shader code. For example, [code]return output_vars[0] + " = " + input_vars[0] + ";"[/code].
-				You can customize the generated code based on the shader [code]mode[/code] (see [enum Shader.Mode]) and/or [code]type[/code] (see [enum VisualShader.Type]).
-				Defining this method is [b]required[/b].
+				Переопределите этот метод, чтобы определить фактический код шейдера для связанного пользовательского узла. Код шейдера должен быть возвращен в виде строки, которая может иметь несколько строк (для удобства может быть использована конструкция [code]"""[/code] многострочной строки).
+				Массивы [code]input_vars[/code] и [code]output_vars[/code] содержат строковые имена различных входных и выходных переменных, определяемых виртуальными методами [code]_get_input_*[/code] и [code]_get_output_*[/code] этого класса.
+				Выходным портам могут быть присвоены значения в коде шейдера. Например, [code]return output_vars[0] + " = " + input_vars[0] + ";"[/code].
+				Вы можете настроить генерируемый код в зависимости от [code]режима[/code] шейдера (см. [enum Shader.Mode]) и/или [code]типа[/code] (см. [enum VisualShader.Type]).
+				Определение этого метода является [b]обязательным[/b].
 			</description>
 		</method>
 		<method name="_get_description" qualifiers="virtual">
 			<return type="String" />
 			<description>
-				Override this method to define the description of the associated custom node in the Visual Shader Editor's members dialog.
-				Defining this method is [b]optional[/b].
+				Переопределите этот метод, чтобы определить описание связанного пользовательского узла в диалоге членов редактора Visual Shader Editor.
+				Определение этого метода является [b]необязательным[/b].
 			</description>
 		</method>
 		<method name="_get_global_code" qualifiers="virtual">
 			<return type="String" />
 			<argument index="0" name="mode" type="int" />
 			<description>
-				Override this method to add shader code on top of the global shader, to define your own standard library of reusable methods, varyings, constants, uniforms, etc. The shader code should be returned as a string, which can have multiple lines (the [code]"""[/code] multiline string construct can be used for convenience).
-				Be careful with this functionality as it can cause name conflicts with other custom nodes, so be sure to give the defined entities unique names.
-				You can customize the generated code based on the shader [code]mode[/code] (see [enum Shader.Mode]).
-				Defining this method is [b]optional[/b].
+				Переопределите этот метод, чтобы добавить код шейдера поверх глобального шейдера, чтобы определить свою собственную стандартную библиотеку многократно используемых методов, вариаций, констант, форм и т. д. Код шейдера должен быть возвращен в виде строки, которая может иметь несколько строк (для удобства можно использовать конструкцию [code]"""[/code] многострочной строки).
+				Будьте осторожны с этой функциональностью, так как она может вызвать конфликт имен с другими пользовательскими узлами, поэтому не забудьте дать определяемым сущностям уникальные имена.
+				Вы можете настроить генерируемый код в зависимости от [code]режима[/code] шейдера (см. [enum Shader.Mode]).
+				Определение этого метода является [b]необязательным[/b].
 			</description>
 		</method>
 		<method name="_get_input_port_count" qualifiers="virtual">
 			<return type="int" />
 			<description>
-				Override this method to define the amount of input ports of the associated custom node.
-				Defining this method is [b]required[/b]. If not overridden, the node has no input ports.
+				Переопределите этот метод, чтобы определить количество входных портов связанного пользовательского узла.
+				Определение этого метода является [b]обязательным[/b]. Если он не переопределен, узел не имеет входных портов.
 			</description>
 		</method>
 		<method name="_get_input_port_name" qualifiers="virtual">
 			<return type="String" />
 			<argument index="0" name="port" type="int" />
 			<description>
-				Override this method to define the names of input ports of the associated custom node. The names are used both for the input slots in the editor and as identifiers in the shader code, and are passed in the [code]input_vars[/code] array in [method _get_code].
-				Defining this method is [b]optional[/b], but recommended. If not overridden, input ports are named as [code]"in" + str(port)[/code].
+				Переопределите этот метод, чтобы задать имена входных портов связанного пользовательского узла. Имена используются как для входных слотов в редакторе, так и в качестве идентификаторов в коде шейдера, и передаются в массиве [code]input_vars[/code] в [метод _get_code].
+				Определение этого метода [b]необязательно[/b], но рекомендуется. Если он не переопределен, входные порты именуются как [code]"in" + str(port)[/code].
 			</description>
 		</method>
 		<method name="_get_input_port_type" qualifiers="virtual">
 			<return type="int" />
 			<argument index="0" name="port" type="int" />
 			<description>
-				Override this method to define the returned type of each input port of the associated custom node (see [enum VisualShaderNode.PortType] for possible types).
-				Defining this method is [b]optional[/b], but recommended. If not overridden, input ports will return the [constant VisualShaderNode.PORT_TYPE_SCALAR] type.
+				Переопределите этот метод, чтобы определить возвращаемый тип каждого входного порта связанного пользовательского узла (см. [enum VisualShaderNode.PortType] для возможных типов).
+				Определение этого метода [b]необязательно[/b], но рекомендуется. Если он не переопределен, входные порты будут возвращать тип [constant VisualShaderNode.PORT_TYPE_SCALAR].
 			</description>
 		</method>
 		<method name="_get_name" qualifiers="virtual">
 			<return type="String" />
 			<description>
-				Override this method to define the name of the associated custom node in the Visual Shader Editor's members dialog and graph.
-				Defining this method is [b]optional[/b], but recommended. If not overridden, the node will be named as "Unnamed".
+				Переопределите этот метод, чтобы определить имя связанного пользовательского узла в диалоге членов и графике редактора Visual Shader Editor.
+				Определение этого метода [b]необязательно[/b], но рекомендуется. Если его не переопределить, узел будет назван "Unnamed".
 			</description>
 		</method>
 		<method name="_get_output_port_count" qualifiers="virtual">
 			<return type="int" />
 			<description>
-				Override this method to define the amount of output ports of the associated custom node.
-				Defining this method is [b]required[/b]. If not overridden, the node has no output ports.
+				Переопределите этот метод, чтобы определить количество выходных портов связанного пользовательского узла.
+				Определение этого метода является [b]обязательным[/b]. Если он не переопределен, узел не имеет выходных портов.
 			</description>
 		</method>
 		<method name="_get_output_port_name" qualifiers="virtual">
 			<return type="String" />
 			<argument index="0" name="port" type="int" />
 			<description>
-				Override this method to define the names of output ports of the associated custom node. The names are used both for the output slots in the editor and as identifiers in the shader code, and are passed in the [code]output_vars[/code] array in [method _get_code].
-				Defining this method is [b]optional[/b], but recommended. If not overridden, output ports are named as [code]"out" + str(port)[/code].
+				Переопределите этот метод, чтобы задать имена выходных портов связанного пользовательского узла. Имена используются как для слотов вывода в редакторе, так и в качестве идентификаторов в коде шейдера, и передаются в массиве [code]output_vars[/code] в [метод _get_code].
+				Определение этого метода [b]необязательно[/b], но рекомендуется. Если он не переопределен, порты вывода именуются как [code]"out" + str(port)[/code].
 			</description>
 		</method>
 		<method name="_get_output_port_type" qualifiers="virtual">
 			<return type="int" />
 			<argument index="0" name="port" type="int" />
 			<description>
-				Override this method to define the returned type of each output port of the associated custom node (see [enum VisualShaderNode.PortType] for possible types).
-				Defining this method is [b]optional[/b], but recommended. If not overridden, output ports will return the [constant VisualShaderNode.PORT_TYPE_SCALAR] type.
+				Переопределите этот метод, чтобы определить возвращаемый тип каждого выходного порта связанного пользовательского узла (см. [enum VisualShaderNode.PortType] для возможных типов).
+				Определение этого метода [b]необязательно[/b], но рекомендуется. Если он не переопределен, выходные порты будут возвращать тип [constant VisualShaderNode.PORT_TYPE_SCALAR].
 			</description>
 		</method>
 		<method name="_get_return_icon_type" qualifiers="virtual">
 			<return type="int" />
 			<description>
-				Override this method to define the return icon of the associated custom node in the Visual Shader Editor's members dialog.
-				Defining this method is [b]optional[/b]. If not overridden, no return icon is shown.
+				Переопределите этот метод, чтобы определить иконку возврата связанного пользовательского узла в диалоге членов Visual Shader Editor.
+				Определение этого метода является [b]необязательным[/b]. Если он не переопределен, значок возврата не отображается.
 			</description>
 		</method>
 		<method name="_get_subcategory" qualifiers="virtual">
 			<return type="String" />
 			<description>
-				Override this method to define the subcategory of the associated custom node in the Visual Shader Editor's members dialog.
-				Defining this method is [b]optional[/b]. If not overridden, the node will be filed under the root of the main category (see [method _get_category]).
+				Переопределите этот метод, чтобы определить подкатегорию связанного пользовательского узла в диалоге членов редактора Visual Shader Editor.
+				Определение этого метода является [b]необязательным[/b]. Если он не переопределен, узел будет помещен в корень основной категории (см. [метод _get_category]).
 			</description>
 		</method>
 	</methods>

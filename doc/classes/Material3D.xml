@@ -11,658 +11,653 @@
 			<return type="bool" />
 			<argument index="0" name="feature" type="int" enum="Material3D.Feature" />
 			<description>
-				Returns [code]true[/code], if the specified [enum Feature] is enabled.
+				Возвращает [code]true[/code], если указанная [enum Feature] включена.
 			</description>
 		</method>
 		<method name="get_flag" qualifiers="const">
 			<return type="bool" />
-			<argument index="0" name="flag" type="int" enum="Material3D.Flags" />
+			<argument index="0" name="flag" type="int" enum="SpatialMaterial.Flags" />
 			<description>
-				Returns [code]true[/code], if the specified flag is enabled. See [enum Flags] enumerator for options.
+				Возвращает [code]true[/code], если указанный флаг включен. Опции см. в перечислителе [enum Flags].
 			</description>
 		</method>
 		<method name="get_texture" qualifiers="const">
 			<return type="Texture" />
-			<argument index="0" name="param" type="int" enum="Material3D.TextureParam" />
+			<argument index="0" name="param" type="int" enum="SpatialMaterial.TextureParam" />
 			<description>
-				Returns the [Texture] associated with the specified [enum TextureParam].
+				Возвращает [Texture], связанную с указанным [enum TextureParam].
 			</description>
 		</method>
 		<method name="set_feature">
 			<return type="void" />
-			<argument index="0" name="feature" type="int" enum="Material3D.Feature" />
+			<argument index="0" name="feature" type="int" enum="SpatialMaterial.Feature" />
 			<argument index="1" name="enable" type="bool" />
 			<description>
-				If [code]true[/code], enables the specified [enum Feature]. Many features that are available in [SpatialMaterial]s need to be enabled before use. This way the cost for using the feature is only incurred when specified. Features can also be enabled by setting the corresponding member to [code]true[/code].
+				Если [code]true[/code], включает указанную [enum Feature]. Многие функции, доступные в [SpatialMaterial]ах, должны быть включены перед использованием. Таким образом, затраты на использование функции возникают только при ее указании. Функции также можно включить, установив соответствующий член в [code]true[/code].
 			</description>
 		</method>
 		<method name="set_flag">
 			<return type="void" />
-			<argument index="0" name="flag" type="int" enum="Material3D.Flags" />
+			<argument index="0" name="flag" type="int" enum="SpatialMaterial.Flags" />
 			<argument index="1" name="enable" type="bool" />
 			<description>
-				If [code]true[/code], enables the specified flag. Flags are optional behavior that can be turned on and off. Only one flag can be enabled at a time with this function, the flag enumerators cannot be bit-masked together to enable or disable multiple flags at once. Flags can also be enabled by setting the corresponding member to [code]true[/code]. See [enum Flags] enumerator for options.
+				Если [code]true[/code], включает указанный флаг. Флаги - это необязательное поведение, которое можно включать и выключать. Одновременно с помощью этой функции можно включить только один флаг, перечислители флагов не могут быть объединены битовой маской, чтобы включить или выключить несколько флагов одновременно. Флаги также можно включить, установив соответствующий член в [code]true[/code]. Варианты перечисления см. в перечислителе [enum Flags].
 			</description>
 		</method>
 		<method name="set_texture">
 			<return type="void" />
-			<argument index="0" name="param" type="int" enum="Material3D.TextureParam" />
+			<argument index="0" name="param" type="int" enum="SpatialMaterial.TextureParam" />
 			<argument index="1" name="texture" type="Texture" />
 			<description>
-				Sets the [Texture] to be used by the specified [enum TextureParam]. This function is called when setting members ending in [code]*_texture[/code].
+				Устанавливает [Texture], которая будет использоваться указанным [enum TextureParam]. Эта функция вызывается при установке членов, заканчивающихся на [code]*_texture[/code].
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="albedo_color" type="Color" setter="set_albedo" getter="get_albedo" default="Color( 1, 1, 1, 1 )">
-			The material's base color.
+			Основной цвет материала.
 		</member>
 		<member name="albedo_texture" type="Texture" setter="set_texture" getter="get_texture">
-			Texture to multiply by [member albedo_color]. Used for basic texturing of objects.
+			Текстура для умножения на [member albedo_color]. Используется для базового текстурирования объектов.
 		</member>
 		<member name="anisotropy" type="float" setter="set_anisotropy" getter="get_anisotropy">
-			The strength of the anisotropy effect. This is multiplied by [member anisotropy_flowmap]'s alpha channel if a texture is defined there and the texture contains an alpha channel.
+			Сила эффекта анизотропии. Умножается на альфа-канал [member anisotropy_flowmap], если там определена текстура и текстура содержит альфа-канал.
 		</member>
 		<member name="anisotropy_enabled" type="bool" setter="set_feature" getter="get_feature" default="false">
-			If [code]true[/code], anisotropy is enabled. Anisotropy changes the shape of the specular blob and aligns it to tangent space. This is useful for brushed aluminium and hair reflections.
-			[b]Note:[/b] Mesh tangents are needed for anisotropy to work. If the mesh does not contain tangents, the anisotropy effect will appear broken.
-			[b]Note:[/b] Material anisotropy should not to be confused with anisotropic texture filtering. Anisotropic texture filtering can be enabled by selecting a texture in the FileSystem dock, going to the Import dock, checking the [b]Anisotropic[/b] checkbox then clicking [b]Reimport[/b]. The anisotropic filtering level can be changed by adjusting [member ProjectSettings.rendering/quality/filters/anisotropic_filter_level].
+			Если [code]true[/code], анизотропия включена. Анизотропия изменяет форму зеркального пятна и выравнивает его по касательной к пространству. Это полезно для матового алюминия и отражения волос.
+			[b]Примечание:[/b] Для работы анизотропии необходимы тангенсы сетки. Если сетка не содержит касательных, эффект анизотропии будет выглядеть нарушенным.
+			[b]Примечание:[/b] Анизотропию материала не следует путать с анизотропной фильтрацией текстур. Анизотропную фильтрацию текстур можно включить, выбрав текстуру в доке FileSystem, перейдя в док Import, установив флажок [b]Anisotropic[/b] и нажав [b]Reimport[/b]. Уровень анизотропной фильтрации можно изменить, настроив [member ProjectSettings.rendering/quality/filters/anisotropic_filter_level].
 		</member>
 		<member name="anisotropy_flowmap" type="Texture" setter="set_texture" getter="get_texture">
-			Texture that offsets the tangent map for anisotropy calculations and optionally controls the anisotropy effect (if an alpha channel is present). The flowmap texture is expected to be a derivative map, with the red channel representing distortion on the X axis and green channel representing distortion on the Y axis. Values below 0.5 will result in negative distortion, whereas values above 0.5 will result in positive distortion.
-			If present, the texture's alpha channel will be used to multiply the strength of the [member anisotropy] effect. Fully opaque pixels will keep the anisotropy effect's original strength while fully transparent pixels will disable the anisotropy effect entirely. The flowmap texture's blue channel is ignored.
+			Текстура, которая смещает карту касательных для расчетов анизотропии и опционально управляет эффектом анизотропии (если присутствует альфа-канал). Текстура flowmap должна быть производной, с красным каналом, представляющим искажение по оси X, и зеленым каналом, представляющим искажение по оси Y. Значения ниже 0,5 приводят к отрицательным искажениям, а значения выше 0,5 - к положительным.
+			Если присутствует, альфа-канал текстуры будет использоваться для умножения силы эффекта [анизотропии членов]. Полностью непрозрачные пиксели сохранят исходную силу эффекта анизотропии, в то время как полностью прозрачные пиксели полностью отключат эффект анизотропии. Синий канал текстуры flowmap игнорируется.
 		</member>
 		<member name="ao_enabled" type="bool" setter="set_feature" getter="get_feature" default="false">
-			If [code]true[/code], ambient occlusion is enabled. Ambient occlusion darkens areas based on the [member ao_texture].
+			Если [code]true[/code], то окклюзия окружения включена. Окружающая окклюзия затемняет области, основанные на [члене ao_texture].
 		</member>
 		<member name="ao_light_affect" type="float" setter="set_ao_light_affect" getter="get_ao_light_affect">
-			Amount that ambient occlusion affects lighting from lights. If [code]0[/code], ambient occlusion only affects ambient light. If [code]1[/code], ambient occlusion affects lights just as much as it affects ambient light. This can be used to impact the strength of the ambient occlusion effect, but typically looks unrealistic.
+			Степень влияния окклюзии окружающей среды на освещение от фонарей. Если [code]0[/code], ambient occlusion влияет только на окружающий свет. Если [code]1[/code], окружающая окклюзия влияет на освещение так же сильно, как и на окружающий свет. Это можно использовать для влияния на силу эффекта ambient occlusion, но обычно он выглядит нереалистично.
 		</member>
 		<member name="ao_on_uv2" type="bool" setter="set_flag" getter="get_flag">
-			If [code]true[/code], use [code]UV2[/code] coordinates to look up from the [member ao_texture].
+			Если [code]true[/code], используйте [code]UV2[/code] координаты для поиска вверх от [member ao_texture].
 		</member>
 		<member name="ao_texture" type="Texture" setter="set_texture" getter="get_texture">
-			Texture that defines the amount of ambient occlusion for a given point on the object.
+			Текстура, определяющая степень окклюзии для данной точки объекта.
 		</member>
-		<member name="ao_texture_channel" type="int" setter="set_ao_texture_channel" getter="get_ao_texture_channel" enum="Material3D.TextureChannel">
-			Specifies the channel of the [member ao_texture] in which the ambient occlusion information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use.
+		<member name="ao_texture_channel" type="int" setter="set_ao_texture_channel" getter="get_ao_texture_channel" enum="SpatialMaterial.TextureChannel">
+			Указывает канал [member ao_texture], в котором хранится информация об окклюзии окружения. Это полезно, когда вы храните информацию о нескольких эффектах в одной текстуре. Например, если вы сохраните металлический цвет в красном канале, шероховатость - в синем, а окружающую окклюзию - в зеленом, вы сможете сократить количество используемых текстур.
 		</member>
-		<member name="async_mode" type="int" setter="set_async_mode" getter="get_async_mode" enum="Material3D.AsyncMode" default="0">
-			If [member ProjectSettings.rendering/gles3/shaders/shader_compilation_mode] is [code]Synchronous[/code] (with or without cache), this determines how this material must behave in regards to asynchronous shader compilation.
-			[constant ASYNC_MODE_VISIBLE] is the default and the best for most cases.
+		<member name="async_mode" type="int" setter="set_async_mode" getter="get_async_mode" enum="SpatialMaterial.AsyncMode" default="0">
+			Если [member ProjectSettings.rendering/gles3/shaders/shader_compilation_mode] имеет значение [code]Synchronous[/code] (с кэшем или без), это определяет, как данный материал должен вести себя в отношении асинхронной компиляции шейдеров.
+			[constant ASYNC_MODE_VISIBLE] - это значение по умолчанию и наилучшее для большинства случаев.
 		</member>
 		<member name="clearcoat" type="float" setter="set_clearcoat" getter="get_clearcoat">
-			Sets the strength of the clearcoat effect. Setting to [code]0[/code] looks the same as disabling the clearcoat effect.
+			Устанавливает силу эффекта прозрачного покрытия. Установка значения [code]0[/code] аналогична отключению эффекта прозрачного покрытия.
 		</member>
 		<member name="clearcoat_enabled" type="bool" setter="set_feature" getter="get_feature" default="false">
-			If [code]true[/code], clearcoat rendering is enabled. Adds a secondary transparent pass to the lighting calculation resulting in an added specular blob. This makes materials appear as if they have a clear layer on them that can be either glossy or rough.
-			[b]Note:[/b] Clearcoat rendering is not visible if the material has [member flags_unshaded] set to [code]true[/code].
+			Если [code]true[/code], рендеринг прозрачного слоя включен. Добавляет вторичный прозрачный проход к расчету освещения, что приводит к добавлению спекулярного пятна. Благодаря этому материалы выглядят так, будто на них нанесен прозрачный слой, который может быть глянцевым или шероховатым.
+			[b]Примечание:[/b] Рендеринг прозрачного слоя не будет виден, если для материала [member flags_unshaded] установлено значение [code]true[/code].
 		</member>
 		<member name="clearcoat_gloss" type="float" setter="set_clearcoat_gloss" getter="get_clearcoat_gloss">
-			Sets the roughness of the clearcoat pass. A higher value results in a smoother clearcoat while a lower value results in a rougher clearcoat.
+			Устанавливает шероховатость прохода прозрачного покрытия. При большем значении получается более гладкое прозрачное покрытие, а при меньшем - более шероховатое.
 		</member>
 		<member name="clearcoat_texture" type="Texture" setter="set_texture" getter="get_texture">
-			Texture that defines the strength of the clearcoat effect and the glossiness of the clearcoat. Strength is specified in the red channel while glossiness is specified in the green channel.
+			Текстура, определяющая силу эффекта прозрачного покрытия и его блеск. Сила задается в красном канале, а блеск - в зеленом.
 		</member>
 		<member name="depth_deep_parallax" type="bool" setter="set_depth_deep_parallax" getter="is_depth_deep_parallax_enabled">
-			If [code]true[/code], the shader will read depth texture at multiple points along the view ray to determine occlusion and parrallax. This can be very performance demanding, but results in more realistic looking depth mapping.
+			Если [code]true[/code], шейдер будет считывать текстуру глубины в нескольких точках вдоль луча зрения, чтобы определить окклюзию и параллакс. Это может быть очень требовательно к производительности, но позволяет получить более реалистичное отображение глубины.
 		</member>
 		<member name="depth_enabled" type="bool" setter="set_feature" getter="get_feature" default="false">
-			If [code]true[/code], depth mapping is enabled (also called "parallax mapping" or "height mapping"). See also [member normal_enabled].
-			[b]Note:[/b] Depth mapping is not supported if triplanar mapping is used on the same material. The value of [member depth_enabled] will be ignored if [member uv1_triplanar] is enabled.
+			Если [code]true[/code], то включено отображение глубины (также называемое "отображением параллакса" или "отображением высоты"). См. также [member normal_enabled].
+			[b]Примечание:[/b] Картирование глубины не поддерживается, если на одном и том же материале используется трипланарное отображение. Значение [member depth_enabled] будет игнорироваться, если включен [member uv1_triplanar].
 		</member>
 		<member name="depth_flip_binormal" type="bool" setter="set_depth_deep_parallax_flip_binormal" getter="get_depth_deep_parallax_flip_binormal">
-			If [code]true[/code], direction of the binormal is flipped before using in the depth effect. This may be necessary if you have encoded your binormals in a way that is conflicting with the depth effect.
+			Если [code]true[/code], то направление бинормали будет перевернуто перед использованием в эффекте глубины. Это может понадобиться, если вы закодировали бинормали таким образом, что они конфликтуют с эффектом глубины.
 		</member>
 		<member name="depth_flip_tangent" type="bool" setter="set_depth_deep_parallax_flip_tangent" getter="get_depth_deep_parallax_flip_tangent">
-			If [code]true[/code], direction of the tangent is flipped before using in the depth effect. This may be necessary if you have encoded your tangents in a way that is conflicting with the depth effect.
+			Если [code]true[/code], направление касательной будет перевернуто перед использованием в эффекте глубины. Это может понадобиться, если вы закодировали касательные таким образом, что они конфликтуют с эффектом глубины.
 		</member>
 		<member name="depth_max_layers" type="int" setter="set_depth_deep_parallax_max_layers" getter="get_depth_deep_parallax_max_layers">
-			Number of layers to use when using [member depth_deep_parallax] and the view direction is perpendicular to the surface of the object. A higher number will be more performance demanding while a lower number may not look as crisp.
+			Количество слоев, используемых при использовании [member depth_deep_parallax] и направлении взгляда перпендикулярно поверхности объекта. Большее число будет более требовательным к производительности, в то время как меньшее число может выглядеть не так четко.
 		</member>
 		<member name="depth_min_layers" type="int" setter="set_depth_deep_parallax_min_layers" getter="get_depth_deep_parallax_min_layers">
-			Number of layers to use when using [member depth_deep_parallax] and the view direction is parallel to the surface of the object. A higher number will be more performance demanding while a lower number may not look as crisp.
+			Количество слоев, используемых при использовании [member depth_deep_parallax] и направлении взгляда параллельно поверхности объекта. Большее число будет более требовательным к производительности, в то время как меньшее число может выглядеть не так четко.
 		</member>
 		<member name="depth_scale" type="float" setter="set_depth_scale" getter="get_depth_scale">
-			Scales the depth offset effect. A higher number will create a larger depth.
+			Масштаб эффекта смещения глубины. Большее число создает большую глубину.
 		</member>
 		<member name="depth_texture" type="Texture" setter="set_texture" getter="get_texture">
-			Texture used to determine depth at a given pixel. Depth is always stored in the red channel.
+			Текстура, используемая для определения глубины в данном пикселе. Глубина всегда хранится в красном канале.
 		</member>
 		<member name="detail_albedo" type="Texture" setter="set_texture" getter="get_texture">
-			Texture that specifies the color of the detail overlay.
+			Текстура, задающая цвет наложения деталей.
 		</member>
-		<member name="detail_blend_mode" type="int" setter="set_detail_blend_mode" getter="get_detail_blend_mode" enum="Material3D.BlendMode">
-			Specifies how the [member detail_albedo] should blend with the current [code]ALBEDO[/code]. See [enum BlendMode] for options.
+		<member name="detail_blend_mode" type="int" setter="set_detail_blend_mode" getter="get_detail_blend_mode" enum="SpatialMaterial.BlendMode">
+			Определяет, как [член detail_albedo] должен сочетаться с текущим [code]ALBEDO[/code]. Варианты см. в [enum BlendMode].
 		</member>
 		<member name="detail_enabled" type="bool" setter="set_feature" getter="get_feature" default="false">
-			If [code]true[/code], enables the detail overlay. Detail is a second texture that gets mixed over the surface of the object based on [member detail_mask]. This can be used to add variation to objects, or to blend between two different albedo/normal textures.
+			Если [code]true[/code], включается наложение деталей. Деталь - это вторая текстура, которая накладывается на поверхность объекта на основе [member detail_mask]. Это можно использовать для добавления разнообразия объектам или для смешивания двух разных альбедо/нормальных текстур.
 		</member>
 		<member name="detail_mask" type="Texture" setter="set_texture" getter="get_texture">
-			Texture used to specify how the detail textures get blended with the base textures.
+			Текстура используется для указания способа смешивания текстур деталей с базовыми текстурами.
 		</member>
 		<member name="detail_normal" type="Texture" setter="set_texture" getter="get_texture">
-			Texture that specifies the per-pixel normal of the detail overlay.
-			[b]Note:[/b] Godot expects the normal map to use X+, Y+, and Z+ coordinates. See [url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates]this page[/url] for a comparison of normal map coordinates expected by popular engines.
+			Текстура, определяющая пиксельную нормаль наложения деталей.
+			[b]Примечание:[/b] Godot ожидает, что карта нормалей будет использовать координаты X+, Y+ и Z+. Сравнение координат карты нормалей, ожидаемых популярными движками, приведено на [url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates]этой странице[/url].
 		</member>
-		<member name="detail_uv_layer" type="int" setter="set_detail_uv" getter="get_detail_uv" enum="Material3D.DetailUV">
-			Specifies whether to use [code]UV[/code] or [code]UV2[/code] for the detail layer. See [enum DetailUV] for options.
+		<member name="detail_uv_layer" type="int" setter="set_detail_uv" getter="get_detail_uv" enum="SpatialMaterial.DetailUV">
+			Указывает, использовать ли [code]UV[/code] или [code]UV2[/code] для слоя детализации. Варианты см. в [enum DetailUV].
 		</member>
 		<member name="distance_fade_max_distance" type="float" setter="set_distance_fade_max_distance" getter="get_distance_fade_max_distance">
-			Distance at which the object appears fully opaque.
-			[b]Note:[/b] If [code]distance_fade_max_distance[/code] is less than [code]distance_fade_min_distance[/code], the behavior will be reversed. The object will start to fade away at [code]distance_fade_max_distance[/code] and will fully disappear once it reaches [code]distance_fade_min_distance[/code].
+			Расстояние, на котором объект становится полностью непрозрачным.
+			[b]Примечание:[/b] Если [code]distance_fade_max_distance[/code] меньше, чем [code]distance_fade_min_distance[/code], поведение будет обратным. Объект начнет исчезать на [code]distance_fade_max_distance[/code] и полностью исчезнет, когда достигнет [code]distance_fade_min_distance[/code].
 		</member>
 		<member name="distance_fade_min_distance" type="float" setter="set_distance_fade_min_distance" getter="get_distance_fade_min_distance">
-			Distance at which the object starts to become visible. If the object is less than this distance away, it will be invisible.
-			[b]Note:[/b] If [code]distance_fade_min_distance[/code] is greater than [code]distance_fade_max_distance[/code], the behavior will be reversed. The object will start to fade away at [code]distance_fade_max_distance[/code] and will fully disappear once it reaches [code]distance_fade_min_distance[/code].
+			Расстояние, на котором объект начинает становиться видимым. Если объект находится на расстоянии меньше этого значения, он будет невидим.
+			[b]Примечание:[/b] Если [code]distance_fade_min_distance[/code] больше, чем [code]distance_fade_max_distance[/code], поведение будет обратным. Объект начнет исчезать на [code]distance_fade_max_distance[/code] и полностью исчезнет, когда достигнет [code]distance_fade_min_distance[/code].
 		</member>
-		<member name="distance_fade_mode" type="int" setter="set_distance_fade" getter="get_distance_fade" enum="Material3D.DistanceFadeMode" default="0">
-			Specifies which type of fade to use. Can be any of the [enum DistanceFadeMode]s.
+		<member name="distance_fade_mode" type="int" setter="set_distance_fade" getter="get_distance_fade" enum="SpatialMaterial.DistanceFadeMode" default="0">
+			Указывает, какой тип затухания следует использовать. Может быть любым из [enum DistanceFadeMode].
 		</member>
 		<member name="emission" type="Color" setter="set_emission" getter="get_emission">
-			The emitted light's color. See [member emission_enabled].
+			Цвет излучаемого света. См. [member emission_enabled].
 		</member>
 		<member name="emission_enabled" type="bool" setter="set_feature" getter="get_feature" default="false">
-			If [code]true[/code], the body emits light. Emitting light makes the object appear brighter. The object can also cast light on other objects if a [GIProbe] or [BakedLightmap] is used and this object is used in baked lighting.
+			Если [code]true[/code], тело излучает свет. Излучая свет, объект выглядит ярче. Объект также может отбрасывать свет на другие объекты, если используется [GIProbe] или [BakedLightmap] и этот объект используется в запеченном освещении.
 		</member>
 		<member name="emission_energy" type="float" setter="set_emission_energy" getter="get_emission_energy">
-			The emitted light's strength. See [member emission_enabled].
+			Сила излучаемого света. См. [member emission_enabled].
 		</member>
 		<member name="emission_on_uv2" type="bool" setter="set_flag" getter="get_flag">
-			Use [code]UV2[/code] to read from the [member emission_texture].
+			Используйте [code]UV2[/code] для чтения из [member emission_texture].
 		</member>
-		<member name="emission_operator" type="int" setter="set_emission_operator" getter="get_emission_operator" enum="Material3D.EmissionOperator">
-			Sets how [member emission] interacts with [member emission_texture]. Can either add or multiply. See [enum EmissionOperator] for options.
+		<member name="emission_operator" type="int" setter="set_emission_operator" getter="get_emission_operator" enum="SpatialMaterial.EmissionOperator">
+			Устанавливает, как [member emission] взаимодействует с [member emission_texture]. Может либо складывать, либо умножать. Варианты см. в [enum EmissionOperator].
 		</member>
 		<member name="emission_texture" type="Texture" setter="set_texture" getter="get_texture">
-			Texture that specifies how much surface emits light at a given point.
+			Текстура, определяющая, насколько сильно поверхность излучает свет в данной точке.
 		</member>
 		<member name="flags_albedo_tex_force_srgb" type="bool" setter="set_flag" getter="get_flag" default="false">
-			Forces a conversion of the [member albedo_texture] from sRGB space to linear space.
+			Принудительное преобразование [member albedo_texture] из пространства sRGB в линейное пространство.
 		</member>
 		<member name="flags_albedo_tex_msdf" type="bool" setter="set_flag" getter="get_flag" default="false">
-			Enables signed distance field rendering shader.
+			Включает шейдер рендеринга поля расстояния с подписью.
 		</member>
 		<member name="flags_disable_ambient_light" type="bool" setter="set_flag" getter="get_flag" default="false">
-			If [code]true[/code], the object receives no ambient light.
+			Если [code]true[/code], объект не получает окружающего света.
 		</member>
 		<member name="flags_do_not_receive_shadows" type="bool" setter="set_flag" getter="get_flag" default="false">
-			If [code]true[/code], the object receives no shadow that would otherwise be cast onto it.
+			Если [code]true[/code], объект не получает тени, которая в противном случае была бы отброшена на него.
 		</member>
 		<member name="flags_ensure_correct_normals" type="bool" setter="set_flag" getter="get_flag" default="false">
-			If [code]true[/code], the shader will compute extra operations to make sure the normal stays correct when using a non-uniform scale. Only enable if using non-uniform scaling.
+			Если [code]true[/code], шейдер будет вычислять дополнительные операции, чтобы нормали оставались правильными при использовании неравномерного масштаба. Включать только при использовании неравномерного масштабирования.
 		</member>
 		<member name="flags_fixed_size" type="bool" setter="set_flag" getter="get_flag" default="false">
-			If [code]true[/code], the object is rendered at the same size regardless of distance.
+			Если [code]true[/code], то объект будет отрисовываться в одном и том же размере независимо от расстояния.
 		</member>
 		<member name="flags_no_depth_test" type="bool" setter="set_flag" getter="get_flag" default="false">
-			If [code]true[/code], depth testing is disabled and the object will be drawn in render order.
+			Если [code]true[/code], тестирование глубины отключено, и объект будет отрисовываться в порядке рендеринга.
 		</member>
 		<member name="flags_transparent" type="bool" setter="set_feature" getter="get_feature" default="false">
-			If [code]true[/code], transparency is enabled on the body. See also [member params_blend_mode].
+			Если [code]true[/code], то для тела включена прозрачность. См. также [member params_blend_mode].
 		</member>
 		<member name="flags_unshaded" type="bool" setter="set_flag" getter="get_flag" default="false">
-			If [code]true[/code], the object is unaffected by lighting.
+			Если [code]true[/code], то на объект не влияет освещение.
 		</member>
 		<member name="flags_use_point_size" type="bool" setter="set_flag" getter="get_flag" default="false">
-			If [code]true[/code], render point size can be changed.
-			[b]Note:[/b] This is only effective for objects whose geometry is point-based rather than triangle-based. See also [member params_point_size].
+			Если [code]true[/code], размер точки рендеринга может быть изменен.
+			[b]Примечание:[/b] Это эффективно только для объектов, геометрия которых основана на точках, а не на треугольниках. См. также [member params_point_size].
 		</member>
 		<member name="flags_use_shadow_to_opacity" type="bool" setter="set_flag" getter="get_flag" default="false">
-			If [code]true[/code], enables the "shadow to opacity" render mode where lighting modifies the alpha so shadowed areas are opaque and non-shadowed areas are transparent. Useful for overlaying shadows onto a camera feed in AR.
+			Если [code]true[/code], включается режим рендеринга "от тени к непрозрачности", при котором освещение изменяет альфа-канал так, что затененные области становятся непрозрачными, а незатененные - прозрачными. Полезно для наложения теней на камеру в AR.
 		</member>
 		<member name="flags_vertex_lighting" type="bool" setter="set_flag" getter="get_flag" default="false">
-			If [code]true[/code], lighting is calculated per vertex rather than per pixel. This may increase performance on low-end devices, especially for meshes with a lower polygon count. The downside is that shading becomes much less accurate, with visible linear interpolation between vertices that are joined together. This can be compensated by ensuring meshes have a sufficient level of subdivision (but not too much, to avoid reducing performance). Some material features are also not supported when vertex shading is enabled.
-			See also [member ProjectSettings.rendering/quality/shading/force_vertex_shading] which can globally enable vertex shading on all materials.
-			[b]Note:[/b] By default, vertex shading is enforced on mobile platforms by [member ProjectSettings.rendering/quality/shading/force_vertex_shading]'s [code]mobile[/code] override.
-			[b]Note:[/b] [member flags_vertex_lighting] has no effect if [member flags_unshaded] is [code]true[/code].
+			Если [code]true[/code], освещение рассчитывается на вершину, а не на пиксель. Это может повысить производительность на низкопроизводительных устройствах, особенно для сеток с меньшим количеством полигонов. Недостатком является то, что затенение становится гораздо менее точным, с заметной линейной интерполяцией между вершинами, которые соединяются вместе. Это можно компенсировать, обеспечив сеткам достаточный уровень деления (но не слишком большой, чтобы не снижать производительность). Некоторые свойства материалов также не поддерживаются, если включено вершинное затенение.
+			См. также [member ProjectSettings.rendering/quality/shading/force_vertex_shading], который может глобально включить вершинное затенение для всех материалов.
+			[b]Примечание:[/b] По умолчанию вершинное затенение на мобильных платформах обеспечивается переопределением [code]mobile[/code] в [member ProjectSettings.rendering/quality/shading/force_vertex_shading].
+			[b]Примечание:[/b] [member flags_vertex_lighting] не имеет эффекта, если [member flags_unshaded] имеет значение [code]true[/code].
 		</member>
 		<member name="flags_world_triplanar" type="bool" setter="set_flag" getter="get_flag" default="false">
-			If [code]true[/code], triplanar mapping is calculated in world space rather than object local space. See also [member uv1_triplanar].
+			Если [code]true[/code], трипланарное отображение рассчитывается в мировом пространстве, а не в локальном пространстве объекта. См. также [member uv1_triplanar].
 		</member>
 		<member name="metallic" type="float" setter="set_metallic" getter="get_metallic" default="0.0">
-			A high value makes the material appear more like a metal. Non-metals use their albedo as the diffuse color and add diffuse to the specular reflection. With non-metals, the reflection appears on top of the albedo color. Metals use their albedo as a multiplier to the specular reflection and set the diffuse color to black resulting in a tinted reflection. Materials work better when fully metal or fully non-metal, values between [code]0[/code] and [code]1[/code] should only be used for blending between metal and non-metal sections. To alter the amount of reflection use [member roughness].
+			Высокое значение делает материал более похожим на металл. Неметаллы используют альбедо в качестве цвета рассеивания и добавляют рассеивание к зеркальному отражению. У неметаллов отражение появляется поверх цвета альбедо. Металлы используют свое альбедо как множитель к зеркальному отражению и устанавливают диффузный цвет на черный, в результате чего отражение получается тонированным. Материалы лучше работают, когда они полностью металлические или полностью неметаллические, значения между [code]0[/code] и [code]1[/code] следует использовать только для смешивания металлических и неметаллических секций. Для изменения степени отражения используйте [шероховатость члена].
 		</member>
 		<member name="metallic_specular" type="float" setter="set_specular" getter="get_specular" default="0.5">
-			Sets the size of the specular lobe. The specular lobe is the bright spot that is reflected from light sources.
-			[b]Note:[/b] Unlike [member metallic], this is not energy-conserving, so it should be left at [code]0.5[/code] in most cases. See also [member roughness].
+			Устанавливает размер лепестка спекуляции. Зеркальный лепесток - это яркое пятно, которое отражается от источников света.
+			[b]Примечание:[/b] В отличие от [member metallic], этот параметр не является энергосберегающим, поэтому в большинстве случаев его следует оставлять равным [code]0.5[/code]. См. также [member roughness].
 		</member>
 		<member name="metallic_texture" type="Texture" setter="set_texture" getter="get_texture">
-			Texture used to specify metallic for an object. This is multiplied by [member metallic].
+			Текстура, используемая для задания металлического цвета для объекта. Это значение умножается на [member metallic].
 		</member>
-		<member name="metallic_texture_channel" type="int" setter="set_metallic_texture_channel" getter="get_metallic_texture_channel" enum="Material3D.TextureChannel" default="0">
-			Specifies the channel of the [member metallic_texture] in which the metallic information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use.
+		<member name="metallic_texture_channel" type="int" setter="set_metallic_texture_channel" getter="get_metallic_texture_channel" enum="SpatialMaterial.TextureChannel" default="0">
+			Указывает канал [member metallic_texture], в котором хранится информация о металлике. Это полезно, когда вы храните информацию для нескольких эффектов в одной текстуре. Например, если вы сохраните металлический цвет в красном канале, шероховатость - в синем, а окружающую окклюзию - в зеленом, вы сможете сократить количество используемых текстур.
 		</member>
 		<member name="normal_enabled" type="bool" setter="set_feature" getter="get_feature" default="false">
-			If [code]true[/code], normal mapping is enabled.
+			Если [code]true[/code], нормальное отображение включено.
 		</member>
 		<member name="normal_scale" type="float" setter="set_normal_scale" getter="get_normal_scale">
-			The strength of the normal map's effect.
+			Сила эффекта карты нормалей.
 		</member>
 		<member name="normal_texture" type="Texture" setter="set_texture" getter="get_texture">
-			Texture used to specify the normal at a given pixel. The [code]normal_texture[/code] only uses the red and green channels; the blue and alpha channels are ignored. The normal read from [code]normal_texture[/code] is oriented around the surface normal provided by the [Mesh].
-			[b]Note:[/b] The mesh must have both normals and tangents defined in its vertex data. Otherwise, the normal map won't render correctly and will only appear to darken the whole surface. If creating geometry with [SurfaceTool], you can use [method SurfaceTool.generate_normals] and [method SurfaceTool.generate_tangents] to automatically generate normals and tangents respectively.
-			[b]Note:[/b] Godot expects the normal map to use X+, Y+, and Z+ coordinates. See [url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates]this page[/url] for a comparison of normal map coordinates expected by popular engines.
-		</member>
-		<member name="orm_texture" type="Texture" setter="set_texture" getter="get_texture">
-			A single texture that combines information about AO, roughness and metallic. AO is stored in the red channel, roughness in the green channel and metallic in the blue channel.
+			Текстура, используемая для задания нормали в данном пикселе. В [code]normal_texture[/code] используются только красный и зеленый каналы; синий и альфа-каналы игнорируются. Нормаль, считанная из [code]normal_texture[/code], ориентирована вокруг нормали поверхности, заданной [Mesh].
+			[b]Примечание:[/b] В вершинных данных сетки должны быть определены как нормали, так и касательные. В противном случае карта нормалей не будет отображаться корректно и будет казаться, что затемнена только вся поверхность. Если вы создаете геометрию с помощью [SurfaceTool], вы можете использовать [method SurfaceTool.generate_normals] и [method SurfaceTool.generate_tangents] для автоматической генерации нормалей и касательных соответственно.
+			[b]Примечание:[/b] Godot ожидает, что карта нормалей будет использовать координаты X+, Y+ и Z+. Сравнение координат карты нормалей, ожидаемых популярными движками, приведено на [url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates]этой странице[/url].
 		</member>
 		<member name="params_alpha_scissor_threshold" type="float" setter="set_alpha_scissor_threshold" getter="get_alpha_scissor_threshold">
-			Threshold at which the alpha scissor will discard values.
+			Порог, при котором альфа-ножницы будут отбрасывать значения.
 		</member>
 		<member name="params_billboard_keep_scale" type="bool" setter="set_flag" getter="get_flag" default="false">
-			If [code]true[/code], the shader will keep the scale set for the mesh. Otherwise the scale is lost when billboarding. Only applies when [member params_billboard_mode] is [constant BILLBOARD_ENABLED].
+			Если [code]true[/code], шейдер сохранит масштаб, установленный для сетки. В противном случае масштаб будет потерян при билбординге. Применяется только в том случае, если [member params_billboard_mode] - [constant BILLBOARD_ENABLED].
 		</member>
-		<member name="params_billboard_mode" type="int" setter="set_billboard_mode" getter="get_billboard_mode" enum="Material3D.BillboardMode" default="0">
-			Controls how the object faces the camera. See [enum BillboardMode].
-			[b]Note:[/b] Billboard mode is not suitable for VR because the left-right vector of the camera is not horizontal when the screen is attached to your head instead of on the table. See [url=https://github.com/godotengine/godot/issues/41567]GitHub issue #41567[/url] for details.
+		<member name="params_billboard_mode" type="int" setter="set_billboard_mode" getter="get_billboard_mode" enum="SpatialMaterial.BillboardMode" default="0">
+			Управляет тем, как объект обращен к камере. Смотрите [enum BillboardMode].
+			[b]Примечание:[/b] Режим Billboard не подходит для VR, поскольку вектор камеры влево-вправо не является горизонтальным, когда экран прикреплен к голове, а не к столу. Подробности см. в [url=https://github.com/godotengine/godot/issues/41567]GitHub issue #41567[/url].
 		</member>
-		<member name="params_blend_mode" type="int" setter="set_blend_mode" getter="get_blend_mode" enum="Material3D.BlendMode" default="0">
-			The material's blend mode.
-			[b]Note:[/b] Values other than [code]Mix[/code] force the object into the transparent pipeline. See [enum BlendMode].
+		<member name="params_blend_mode" type="int" setter="set_blend_mode" getter="get_blend_mode" enum="SpatialMaterial.BlendMode" default="0">
+			Режим наложения материала.
+			[b]Примечание:[/b] Значения, отличные от [code]Mix[/code], заставляют объект переходить в прозрачный режим. Смотрите [enum BlendMode].
 		</member>
-		<member name="params_cull_mode" type="int" setter="set_cull_mode" getter="get_cull_mode" enum="Material3D.CullMode" default="0">
-			Which side of the object is not drawn when backfaces are rendered. See [enum CullMode].
+		<member name="params_cull_mode" type="int" setter="set_cull_mode" getter="get_cull_mode" enum="SpatialMaterial.CullMode" default="0">
+			Какая сторона объекта не рисуется при отрисовке задних граней. См. раздел [enum CullMode].
 		</member>
-		<member name="params_depth_draw_mode" type="int" setter="set_depth_draw_mode" getter="get_depth_draw_mode" enum="Material3D.DepthDrawMode" default="0">
-			Determines when depth rendering takes place. See [enum DepthDrawMode]. See also [member flags_transparent].
+		<member name="params_depth_draw_mode" type="int" setter="set_depth_draw_mode" getter="get_depth_draw_mode" enum="SpatialMaterial.DepthDrawMode" default="0">
+			Определяет, когда происходит рендеринг глубины. См. [enum DepthDrawMode]. См. также [member flags_transparent].
 		</member>
-		<member name="params_diffuse_mode" type="int" setter="set_diffuse_mode" getter="get_diffuse_mode" enum="Material3D.DiffuseMode" default="0">
-			The algorithm used for diffuse light scattering. See [enum DiffuseMode].
+		<member name="params_diffuse_mode" type="int" setter="set_diffuse_mode" getter="get_diffuse_mode" enum="SpatialMaterial.DiffuseMode" default="0">
+			Алгоритм, используемый для диффузного рассеивания света. См. [enum DiffuseMode].
 		</member>
 		<member name="params_grow" type="bool" setter="set_grow_enabled" getter="is_grow_enabled" default="false">
-			If [code]true[/code], enables the vertex grow setting. See [member params_grow_amount].
+			Если [code]true[/code], включает настройку роста вершин. См. раздел [member params_grow_amount].
 		</member>
 		<member name="params_grow_amount" type="float" setter="set_grow" getter="get_grow">
-			Grows object vertices in the direction of their normals.
+			Увеличивает вершины объекта в направлении их нормалей.
 		</member>
 		<member name="params_line_width" type="float" setter="set_line_width" getter="get_line_width" default="1.0">
-			Currently unimplemented in Godot.
+			В настоящее время не реализована в Godot.
 		</member>
 		<member name="params_point_size" type="float" setter="set_point_size" getter="get_point_size" default="1.0">
-			The point size in pixels. See [member flags_use_point_size].
+			Размер точки в пикселях. См. раздел [member flags_use_point_size].
 		</member>
-		<member name="params_specular_mode" type="int" setter="set_specular_mode" getter="get_specular_mode" enum="Material3D.SpecularMode" default="0">
-			The method for rendering the specular blob. See [enum SpecularMode].
+		<member name="params_specular_mode" type="int" setter="set_specular_mode" getter="get_specular_mode" enum="SpatialMaterial.SpecularMode" default="0">
+			Метод рендеринга спекулярного пятна. См. [enum SpecularMode].
 		</member>
 		<member name="params_use_alpha_scissor" type="bool" setter="set_flag" getter="get_flag" default="false">
-			If [code]true[/code], the shader will discard all pixels that have an alpha value less than [member params_alpha_scissor_threshold].
+			Если [code]true[/code], шейдер отбрасывает все пиксели, альфа-значение которых меньше, чем [member params_alpha_scissor_threshold].
 		</member>
 		<member name="particles_anim_h_frames" type="int" setter="set_particles_anim_h_frames" getter="get_particles_anim_h_frames">
-			The number of horizontal frames in the particle sprite sheet. Only enabled when using [constant BILLBOARD_PARTICLES]. See [member params_billboard_mode].
+			Количество горизонтальных кадров в спрайтовом листе частиц. Включается только при использовании [константы BILLBOARD_PARTICLES]. См. [member params_billboard_mode].
 		</member>
 		<member name="particles_anim_loop" type="bool" setter="set_particles_anim_loop" getter="get_particles_anim_loop">
-			If [code]true[/code], particle animations are looped. Only enabled when using [constant BILLBOARD_PARTICLES]. See [member params_billboard_mode].
+			Если [code]true[/code], анимация частиц зацикливается. Включается только при использовании [константы BILLBOARD_PARTICLES]. См. раздел [member params_billboard_mode].
 		</member>
 		<member name="particles_anim_v_frames" type="int" setter="set_particles_anim_v_frames" getter="get_particles_anim_v_frames">
-			The number of vertical frames in the particle sprite sheet. Only enabled when using [constant BILLBOARD_PARTICLES]. See [member params_billboard_mode].
+			Количество вертикальных кадров в спрайтовом листе частиц. Включается только при использовании [константы BILLBOARD_PARTICLES]. См. [member params_billboard_mode].
 		</member>
 		<member name="proximity_fade_distance" type="float" setter="set_proximity_fade_distance" getter="get_proximity_fade_distance">
-			Distance over which the fade effect takes place. The larger the distance the longer it takes for an object to fade.
+			Расстояние, на котором происходит эффект затухания. Чем больше расстояние, тем дольше объект будет затухать.
 		</member>
 		<member name="proximity_fade_enable" type="bool" setter="set_proximity_fade" getter="is_proximity_fade_enabled" default="false">
-			If [code]true[/code], the proximity fade effect is enabled. The proximity fade effect fades out each pixel based on its distance to another object.
+			Если [code]true[/code], то эффект затухания близости включен. Эффект затухания при приближении затухает для каждого пикселя в зависимости от расстояния до другого объекта.
 		</member>
 		<member name="refraction_enabled" type="bool" setter="set_feature" getter="get_feature" default="false">
-			If [code]true[/code], the refraction effect is enabled. Refraction distorts transparency based on light from behind the object. When using the GLES3 backend, the material's roughness value will affect the blurriness of the refraction. Higher roughness values will make the refraction look blurrier.
+			Если [code]true[/code], то эффект преломления включен. Преломление искажает прозрачность, основываясь на свете, проходящем сзади объекта. При использовании бэкенда GLES3 значение шероховатости материала влияет на размытость преломления. При более высоких значениях шероховатости преломление будет выглядеть более размытым.
 		</member>
 		<member name="refraction_scale" type="float" setter="set_refraction" getter="get_refraction">
-			The strength of the refraction effect. Higher values result in a more distorted appearance for the refraction.
+			Сила эффекта преломления. Более высокие значения приводят к более искаженному виду преломления.
 		</member>
 		<member name="refraction_texture" type="Texture" setter="set_texture" getter="get_texture">
-			Texture that controls the strength of the refraction per-pixel. Multiplied by [member refraction_scale].
+			Текстура, управляющая силой преломления на пиксель. Умножается на [member refraction_scale].
 		</member>
-		<member name="refraction_texture_channel" type="int" setter="set_refraction_texture_channel" getter="get_refraction_texture_channel" enum="Material3D.TextureChannel">
-			Specifies the channel of the [member refraction_texture] in which the refraction information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use.
+		<member name="refraction_texture_channel" type="int" setter="set_refraction_texture_channel" getter="get_refraction_texture_channel" enum="SpatialMaterial.TextureChannel">
+			Указывает канал [member refraction_texture], в котором хранится информация о преломлении. Это полезно, когда вы храните информацию для нескольких эффектов в одной текстуре. Например, если вы храните металлический цвет в красном канале, шероховатость - в синем, а окружающую окклюзию - в зеленом, вы можете сократить количество используемых текстур.
 		</member>
 		<member name="rim" type="float" setter="set_rim" getter="get_rim">
-			Sets the strength of the rim lighting effect.
+			Устанавливает силу эффекта освещения ободка.
 		</member>
 		<member name="rim_enabled" type="bool" setter="set_feature" getter="get_feature" default="false">
-			If [code]true[/code], rim effect is enabled. Rim lighting increases the brightness at glancing angles on an object.
-			[b]Note:[/b] Rim lighting is not visible if the material has [member flags_unshaded] set to [code]true[/code].
+			Если [code]true[/code], эффект ободка включен. Окантовочное освещение увеличивает яркость под углами падения света на объект.
+			[b]Примечание:[/b] Подсветка обода не видна, если для материала [member flags_unshaded] установлено значение [code]true[/code].
 		</member>
 		<member name="rim_texture" type="Texture" setter="set_texture" getter="get_texture">
-			Texture used to set the strength of the rim lighting effect per-pixel. Multiplied by [member rim].
+			Текстура, используемая для установки силы эффекта освещения обода на пиксель. Умножается на [member rim].
 		</member>
 		<member name="rim_tint" type="float" setter="set_rim_tint" getter="get_rim_tint">
-			The amount of to blend light and albedo color when rendering rim effect. If [code]0[/code] the light color is used, while [code]1[/code] means albedo color is used. An intermediate value generally works best.
+			Количество смешивания цвета света и цвета альбедо при рендеринге эффекта ободка. Если [code]0[/code], то используется светлый цвет, а [code]1[/code] означает, что используется цвет альбедо. Обычно лучше всего работает промежуточное значение.
 		</member>
 		<member name="roughness" type="float" setter="set_roughness" getter="get_roughness" default="1.0">
-			Surface reflection. A value of [code]0[/code] represents a perfect mirror while a value of [code]1[/code] completely blurs the reflection. See also [member metallic].
+			Отражение поверхности. Значение [code]0[/code] представляет собой идеальное зеркало, а значение [code]1[/code] полностью размывает отражение. См. также [member metallic].
 		</member>
 		<member name="roughness_texture" type="Texture" setter="set_texture" getter="get_texture">
-			Texture used to control the roughness per-pixel. Multiplied by [member roughness].
+			Текстура, используемая для управления шероховатостью на пиксель. Умножается на [member roughness].
 		</member>
-		<member name="roughness_texture_channel" type="int" setter="set_roughness_texture_channel" getter="get_roughness_texture_channel" enum="Material3D.TextureChannel" default="0">
-			Specifies the channel of the [member ao_texture] in which the ambient occlusion information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use.
+		<member name="roughness_texture_channel" type="int" setter="set_roughness_texture_channel" getter="get_roughness_texture_channel" enum="SpatialMaterial.TextureChannel" default="0">
+			Указывает канал [member ao_texture], в котором хранится информация об окклюзии окружения. Это полезно, когда вы храните информацию о нескольких эффектах в одной текстуре. Например, если вы сохраните металлический цвет в красном канале, шероховатость - в синем, а окружающую окклюзию - в зеленом, вы сможете сократить количество используемых текстур.
 		</member>
 		<member name="subsurf_scatter_enabled" type="bool" setter="set_feature" getter="get_feature" default="false">
-			If [code]true[/code], subsurface scattering is enabled. Emulates light that penetrates an object's surface, is scattered, and then emerges.
+			Если [code]true[/code], включается подповерхностное рассеивание. Эмулирует свет, который проникает через поверхность объекта, рассеивается и затем выходит наружу.
 		</member>
 		<member name="subsurf_scatter_strength" type="float" setter="set_subsurface_scattering_strength" getter="get_subsurface_scattering_strength">
-			The strength of the subsurface scattering effect.
+			Сила эффекта подповерхностного рассеяния.
 		</member>
 		<member name="subsurf_scatter_texture" type="Texture" setter="set_texture" getter="get_texture">
-			Texture used to control the subsurface scattering strength. Stored in the red texture channel. Multiplied by [member subsurf_scatter_strength].
+			Текстура, используемая для управления силой подповерхностного рассеивания. Хранится в красном канале текстуры. Умножается на [member subsurf_scatter_strength].
 		</member>
 		<member name="transmission" type="Color" setter="set_transmission" getter="get_transmission">
-			The color used by the transmission effect. Represents the light passing through an object.
+			Цвет, используемый в эффекте передачи. Представляет собой свет, проходящий через объект.
 		</member>
 		<member name="transmission_enabled" type="bool" setter="set_feature" getter="get_feature" default="false">
-			If [code]true[/code], the transmission effect is enabled.
+			Если [code]true[/code], эффект передачи включен.
 		</member>
 		<member name="transmission_texture" type="Texture" setter="set_texture" getter="get_texture">
-			Texture used to control the transmission effect per-pixel. Added to [member transmission].
+			Текстура, используемая для управления эффектом передачи на пиксель. Добавлена в [member transmission].
 		</member>
 		<member name="uv1_offset" type="Vector3" setter="set_uv1_offset" getter="get_uv1_offset" default="Vector3( 0, 0, 0 )">
-			How much to offset the [code]UV[/code] coordinates. This amount will be added to [code]UV[/code] in the vertex function. This can be used to offset a texture.
+			На сколько смещать [code]UV[/code] координаты. Эта величина будет добавлена к [code]UV[/code] в функции вершин. Это можно использовать для смещения текстуры.
 		</member>
 		<member name="uv1_scale" type="Vector3" setter="set_uv1_scale" getter="get_uv1_scale" default="Vector3( 1, 1, 1 )">
-			How much to scale the [code]UV[/code] coordinates. This is multiplied by [code]UV[/code] in the vertex function.
+			На сколько масштабировать [code]UV[/code] координаты. Это значение умножается на [code]UV[/code] в функции вершины.
 		</member>
 		<member name="uv1_triplanar" type="bool" setter="set_flag" getter="get_flag" default="false">
-			If [code]true[/code], instead of using [code]UV[/code] textures will use a triplanar texture lookup to determine how to apply textures. Triplanar uses the orientation of the object's surface to blend between texture coordinates. It reads from the source texture 3 times, once for each axis and then blends between the results based on how closely the pixel aligns with each axis. This is often used for natural features to get a realistic blend of materials. Because triplanar texturing requires many more texture reads per-pixel it is much slower than normal UV texturing. Additionally, because it is blending the texture between the three axes, it is unsuitable when you are trying to achieve crisp texturing.
+			Если [code]true[/code], то вместо использования [code]UV[/code] текстуры будут использовать трипланарный поиск текстур для определения способа применения текстур. Трипланарный поиск использует ориентацию поверхности объекта для смешивания координат текстур. Он считывает данные из исходной текстуры 3 раза, по одному разу для каждой оси, а затем смешивает результаты, основываясь на том, насколько близко пиксель выровнен с каждой осью. Это часто используется для природных объектов, чтобы получить реалистичное смешение материалов. Поскольку трипланарное текстурирование требует гораздо большего количества считываний текстуры на пиксель, оно работает гораздо медленнее, чем обычное УФ-текстурирование. Кроме того, поскольку текстура смешивается между тремя осями, она не подходит для получения четкой текстуры.
 		</member>
-		<member name="uv1_triplanar_sharpness" type="float" setter="set_uv1_triplanar_blend_sharpness" getter="get_uv1_triplanar_blend_sharpness">
-			A lower number blends the texture more softly while a higher number blends the texture more sharply.
-			[b]Note:[/b] [member uv1_triplanar_sharpness] is clamped between [code]0.0[/code] and [code]150.0[/code] (inclusive) as values outside that range can look broken depending on the mesh.
+		<member name="uv1_triplanar_sharpness" type="float" setter="set_uv1_triplanar_blend_sharpness" getter="get_uv1_triplanar_blend_sharpness" default="1.0">
+			Меньшее число делает текстуру более мягкой, а большее - более резкой.
 		</member>
 		<member name="uv2_offset" type="Vector3" setter="set_uv2_offset" getter="get_uv2_offset" default="Vector3( 0, 0, 0 )">
-			How much to offset the [code]UV2[/code] coordinates. This amount will be added to [code]UV2[/code] in the vertex function. This can be used to offset a texture.
+			На сколько смещать координаты [code]UV2[/code]. Эта величина будет добавлена к [code]UV2[/code] в функции вершин. Это можно использовать для смещения текстуры.
 		</member>
 		<member name="uv2_scale" type="Vector3" setter="set_uv2_scale" getter="get_uv2_scale" default="Vector3( 1, 1, 1 )">
-			How much to scale the [code]UV2[/code] coordinates. This is multiplied by [code]UV2[/code] in the vertex function.
+			На сколько масштабировать координаты [code]UV2[/code]. Это умножается на [code]UV2[/code] в функции вершины.
 		</member>
 		<member name="uv2_triplanar" type="bool" setter="set_flag" getter="get_flag" default="false">
-			If [code]true[/code], instead of using [code]UV2[/code] textures will use a triplanar texture lookup to determine how to apply textures. Triplanar uses the orientation of the object's surface to blend between texture coordinates. It reads from the source texture 3 times, once for each axis and then blends between the results based on how closely the pixel aligns with each axis. This is often used for natural features to get a realistic blend of materials. Because triplanar texturing requires many more texture reads per-pixel it is much slower than normal UV texturing. Additionally, because it is blending the texture between the three axes, it is unsuitable when you are trying to achieve crisp texturing.
+			Если [code]true[/code], то вместо использования [code]UV2[/code] текстуры будут использовать трипланарный поиск текстур для определения способа применения текстур. Трипланарный поиск использует ориентацию поверхности объекта для смешивания координат текстур. Он считывает данные из исходной текстуры 3 раза, по одному разу для каждой оси, а затем смешивает результаты, основываясь на том, насколько близко пиксель выровнен с каждой осью. Это часто используется для природных объектов, чтобы получить реалистичное смешение материалов. Поскольку трипланарное текстурирование требует гораздо большего количества считываний текстуры на пиксель, оно работает гораздо медленнее, чем обычное UV-текстурирование. Кроме того, поскольку текстура смешивается между тремя осями, она не подходит для получения четкой текстуры.
 		</member>
-		<member name="uv2_triplanar_sharpness" type="float" setter="set_uv2_triplanar_blend_sharpness" getter="get_uv2_triplanar_blend_sharpness">
-			A lower number blends the texture more softly while a higher number blends the texture more sharply.
-			[b]Note:[/b] [member uv2_triplanar_sharpness] is clamped between [code]0.0[/code] and [code]150.0[/code] (inclusive) as values outside that range can look broken depending on the mesh.
+		<member name="uv2_triplanar_sharpness" type="float" setter="set_uv2_triplanar_blend_sharpness" getter="get_uv2_triplanar_blend_sharpness" default="1.0">
+			Меньшее число делает текстуру более мягкой, а большее - более резкой.
 		</member>
 		<member name="vertex_color_is_srgb" type="bool" setter="set_flag" getter="get_flag" default="false">
-			If [code]true[/code], the model's vertex colors are processed as sRGB mode.
+			Если [code]true[/code], то цвета вершин модели обрабатываются в режиме sRGB.
 		</member>
 		<member name="vertex_color_use_as_albedo" type="bool" setter="set_flag" getter="get_flag" default="false">
-			If [code]true[/code], the vertex color is used as albedo color.
+			Если [code]true[/code], цвет вершины используется как цвет альбедо.
 		</member>
 	</members>
 	<constants>
 		<constant name="TEXTURE_ALBEDO" value="0" enum="TextureParam">
-			Texture specifying per-pixel color.
+			Текстура, задающая пиксельный цвет (Per-pixel).
 		</constant>
 		<constant name="TEXTURE_METALLIC" value="1" enum="TextureParam">
-			Texture specifying per-pixel metallic value.
+			Текстура, задающая пиксельное значение металлика (Per-pixel).
 		</constant>
 		<constant name="TEXTURE_ROUGHNESS" value="2" enum="TextureParam">
-			Texture specifying per-pixel roughness value.
+			Текстура, задающая пиксельное значение шероховатости (Per-pixel).
 		</constant>
 		<constant name="TEXTURE_EMISSION" value="3" enum="TextureParam">
-			Texture specifying per-pixel emission color.
+			Текстура, задающая пиксельный цвет излучения (Per-pixel).
 		</constant>
 		<constant name="TEXTURE_NORMAL" value="4" enum="TextureParam">
-			Texture specifying per-pixel normal vector.
+			Текстура, задающая вектор нормали на пиксель (Per-pixel).
 		</constant>
 		<constant name="TEXTURE_RIM" value="5" enum="TextureParam">
-			Texture specifying per-pixel rim value.
+			Текстура, задающая пиксельное значение обода (Per-pixel).
 		</constant>
 		<constant name="TEXTURE_CLEARCOAT" value="6" enum="TextureParam">
-			Texture specifying per-pixel clearcoat value.
+			Текстура с указанием пиксельного значения прозрачного покрытия (Per-pixel).
 		</constant>
 		<constant name="TEXTURE_FLOWMAP" value="7" enum="TextureParam">
-			Texture specifying per-pixel flowmap direction for use with [member anisotropy].
+			Текстура, определяющая направление пиксельной карты потока, для использования с [member anisotropy] (Per-pixel).
 		</constant>
 		<constant name="TEXTURE_AMBIENT_OCCLUSION" value="8" enum="TextureParam">
-			Texture specifying per-pixel ambient occlusion value.
+			Текстура, определяющая пиксельное значение окклюзии окружающего мира (Per-pixel).
 		</constant>
 		<constant name="TEXTURE_DEPTH" value="9" enum="TextureParam">
-			Texture specifying per-pixel depth.
+			Текстура с указанием пиксельной глубины (Per-pixel).
 		</constant>
 		<constant name="TEXTURE_SUBSURFACE_SCATTERING" value="10" enum="TextureParam">
-			Texture specifying per-pixel subsurface scattering.
+			Текстура, определяющая подповерхностное рассеяние на пиксель (Per-pixel).
 		</constant>
 		<constant name="TEXTURE_TRANSMISSION" value="11" enum="TextureParam">
-			Texture specifying per-pixel transmission color.
+			Текстура, определяющая цвет передачи на пиксель (Per-pixel).
 		</constant>
 		<constant name="TEXTURE_REFRACTION" value="12" enum="TextureParam">
-			Texture specifying per-pixel refraction strength.
+			Текстура, определяющая силу преломления на пиксель (Per-pixel).
 		</constant>
 		<constant name="TEXTURE_DETAIL_MASK" value="13" enum="TextureParam">
-			Texture specifying per-pixel detail mask blending value.
+			Текстура, определяющая значение смешивания маски деталей на пиксель (Per-pixel).
 		</constant>
 		<constant name="TEXTURE_DETAIL_ALBEDO" value="14" enum="TextureParam">
-			Texture specifying per-pixel detail color.
+			Текстура, определяющая цвет деталей на пиксель (Per-pixel).
 		</constant>
 		<constant name="TEXTURE_DETAIL_NORMAL" value="15" enum="TextureParam">
-			Texture specifying per-pixel detail normal.
+			Текстура, задающая нормальную детализацию на пиксель(Per-pixel).
 		</constant>
-		<constant name="TEXTURE_MAX" value="17" enum="TextureParam">
-			Represents the size of the [enum TextureParam] enum.
+		<constant name="TEXTURE_MAX" value="16" enum="TextureParam">
+			Представляет собой размер перечисления [enum TextureParam].
 		</constant>
 		<constant name="DETAIL_UV_1" value="0" enum="DetailUV">
-			Use [code]UV[/code] with the detail texture.
+			Используйте [code]UV[/code] с текстурой деталей.
 		</constant>
 		<constant name="DETAIL_UV_2" value="1" enum="DetailUV">
-			Use [code]UV2[/code] with the detail texture.
+			Используйте [code]UV2[/code] с текстурой деталей.
 		</constant>
 		<constant name="FEATURE_TRANSPARENT" value="0" enum="Feature">
-			Constant for setting [member flags_transparent].
+			Константа для установки [member flags_transparent].
 		</constant>
 		<constant name="FEATURE_EMISSION" value="1" enum="Feature">
-			Constant for setting [member emission_enabled].
+			Константа для установки [member emission_enabled].
 		</constant>
 		<constant name="FEATURE_NORMAL_MAPPING" value="2" enum="Feature">
-			Constant for setting [member normal_enabled].
+			Константа для установки [member normal_enabled].
 		</constant>
 		<constant name="FEATURE_RIM" value="3" enum="Feature">
-			Constant for setting [member rim_enabled].
+			Константа для установки [member rim_enabled].
 		</constant>
 		<constant name="FEATURE_CLEARCOAT" value="4" enum="Feature">
-			Constant for setting [member clearcoat_enabled].
+			Константа для установки [member clearcoat_enabled].
 		</constant>
 		<constant name="FEATURE_ANISOTROPY" value="5" enum="Feature">
-			Constant for setting [member anisotropy_enabled].
+			Константа для установки [member anisotropy_enabled].
 		</constant>
 		<constant name="FEATURE_AMBIENT_OCCLUSION" value="6" enum="Feature">
-			Constant for setting [member ao_enabled].
+			Константа для установки [member ao_enabled].
 		</constant>
 		<constant name="FEATURE_DEPTH_MAPPING" value="7" enum="Feature">
-			Constant for setting [member depth_enabled].
+			Константа для установки [member depth_enabled].
 		</constant>
 		<constant name="FEATURE_SUBSURACE_SCATTERING" value="8" enum="Feature">
-			Constant for setting [member subsurf_scatter_enabled].
+			Константа для установки [member subsurf_scatter_enabled].
 		</constant>
 		<constant name="FEATURE_TRANSMISSION" value="9" enum="Feature">
-			Constant for setting [member transmission_enabled].
+			Константа для настройки [member transmission_enabled].
 		</constant>
 		<constant name="FEATURE_REFRACTION" value="10" enum="Feature">
-			Constant for setting [member refraction_enabled].
+			Константа для установки [member refraction_enabled].
 		</constant>
 		<constant name="FEATURE_DETAIL" value="11" enum="Feature">
-			Constant for setting [member detail_enabled].
+			Константа для установки [member detail_enabled].
 		</constant>
 		<constant name="FEATURE_MAX" value="12" enum="Feature">
-			Represents the size of the [enum Feature] enum.
+			Представляет размер перечисления [enum Feature].
 		</constant>
 		<constant name="BLEND_MODE_MIX" value="0" enum="BlendMode">
-			Default blend mode. The color of the object is blended over the background based on the object's alpha value.
+			Режим наложения по умолчанию. Цвет объекта смешивается с фоном на основе альфа-значения объекта.
 		</constant>
 		<constant name="BLEND_MODE_ADD" value="1" enum="BlendMode">
-			The color of the object is added to the background.
+			Цвет объекта добавляется к фону.
 		</constant>
 		<constant name="BLEND_MODE_SUB" value="2" enum="BlendMode">
-			The color of the object is subtracted from the background.
+			Цвет объекта вычитается из цвета фона.
 		</constant>
 		<constant name="BLEND_MODE_MUL" value="3" enum="BlendMode">
-			The color of the object is multiplied by the background.
+			Цвет объекта умножается на цвет фона.
 		</constant>
 		<constant name="DEPTH_DRAW_OPAQUE_ONLY" value="0" enum="DepthDrawMode">
-			Default depth draw mode. Depth is drawn only for opaque objects.
+			Режим отрисовки глубины по умолчанию. Глубина прорисовывается только для непрозрачных объектов.
 		</constant>
 		<constant name="DEPTH_DRAW_ALWAYS" value="1" enum="DepthDrawMode">
-			Depth draw is calculated for both opaque and transparent objects.
+			Глубинная прорисовка рассчитывается как для непрозрачных, так и для прозрачных объектов.
 		</constant>
 		<constant name="DEPTH_DRAW_DISABLED" value="2" enum="DepthDrawMode">
-			No depth draw.
+			Прорисовка глубины отсутствует
 		</constant>
 		<constant name="DEPTH_DRAW_ALPHA_OPAQUE_PREPASS" value="3" enum="DepthDrawMode">
-			For transparent objects, an opaque pass is made first with the opaque parts, then transparency is drawn.
+			Для прозрачных объектов сначала выполняется проход по непрозрачным частям, а затем прорисовывается прозрачность.
 		</constant>
 		<constant name="CULL_BACK" value="0" enum="CullMode">
-			Default cull mode. The back of the object is culled when not visible.
+			Режим обрезки по умолчанию. Задняя часть объекта обрезается, если она не видна.
 		</constant>
 		<constant name="CULL_FRONT" value="1" enum="CullMode">
-			The front of the object is culled when not visible.
+			Передняя часть объекта удаляется, если она не видна.
 		</constant>
 		<constant name="CULL_DISABLED" value="2" enum="CullMode">
-			No culling is performed.
+			Выбраковка не производится.
 		</constant>
 		<constant name="FLAG_UNSHADED" value="0" enum="Flags">
-			No lighting is used on the object. Color comes directly from [code]ALBEDO[/code].
+			На объекте не используется освещение. Цвет берется непосредственно из [code]ALBEDO[/code].
 		</constant>
 		<constant name="FLAG_USE_VERTEX_LIGHTING" value="1" enum="Flags">
-			Lighting is calculated per-vertex rather than per-pixel. This can be used to increase the speed of the shader at the cost of quality.
+			Освещение рассчитывается на вершину, а не на пиксель. Это может быть использовано для увеличения скорости работы шейдера за счет снижения качества.
 		</constant>
 		<constant name="FLAG_DISABLE_DEPTH_TEST" value="2" enum="Flags">
-			Disables the depth test, so this object is drawn on top of all others. However, objects drawn after it in the draw order may cover it.
+			Отключает проверку глубины, поэтому данный объект рисуется поверх всех остальных. Однако объекты, нарисованные после него в порядке рисования, могут перекрыть его.
 		</constant>
 		<constant name="FLAG_ALBEDO_FROM_VERTEX_COLOR" value="3" enum="Flags">
-			Set [code]ALBEDO[/code] to the per-vertex color specified in the mesh.
+			Установите [code]ALBEDO[/code] на цвет каждой вершины, указанный в сетке.
 		</constant>
 		<constant name="FLAG_SRGB_VERTEX_COLOR" value="4" enum="Flags">
-			Vertex color is in sRGB space and needs to be converted to linear. Only applies in the GLES3 renderer.
+			Цвет вершин находится в пространстве sRGB и должен быть преобразован в линейный. Применяется только в рендере GLES3.
 		</constant>
 		<constant name="FLAG_USE_POINT_SIZE" value="5" enum="Flags">
-			Uses point size to alter the size of primitive points. Also changes the albedo texture lookup to use [code]POINT_COORD[/code] instead of [code]UV[/code].
+			Использует размер точки для изменения размера примитивных точек. Также изменяет поиск текстуры альбедо, чтобы использовать [code]POINT_COORD[/code] вместо [code]UV[/code].
 		</constant>
 		<constant name="FLAG_FIXED_SIZE" value="6" enum="Flags">
-			Object is scaled by depth so that it always appears the same size on screen.
+			Объект масштабируется по глубине, поэтому на экране он всегда выглядит одинакового размера.
 		</constant>
 		<constant name="FLAG_BILLBOARD_KEEP_SCALE" value="7" enum="Flags">
-			Shader will keep the scale set for the mesh. Otherwise the scale is lost when billboarding. Only applies when [member params_billboard_mode] is [constant BILLBOARD_ENABLED].
+			Шейдер сохранит масштаб, установленный для сетки. В противном случае масштаб будет потерян при создании билборда. Применяется только в том случае, если [member params_billboard_mode] - [constant BILLBOARD_ENABLED].
 		</constant>
 		<constant name="FLAG_UV1_USE_TRIPLANAR" value="8" enum="Flags">
-			Use triplanar texture lookup for all texture lookups that would normally use [code]UV[/code].
+			Используйте трипланарный поиск текстур для всех поисков текстур, которые обычно используют [code]UV[/code].
 		</constant>
 		<constant name="FLAG_UV2_USE_TRIPLANAR" value="9" enum="Flags">
-			Use triplanar texture lookup for all texture lookups that would normally use [code]UV2[/code].
+			Используйте трипланарный поиск текстур для всех поисков текстур, которые обычно используют [code]UV2[/code].
 		</constant>
 		<constant name="FLAG_AO_ON_UV2" value="11" enum="Flags">
-			Use [code]UV2[/code] coordinates to look up from the [member ao_texture].
+			Используйте координаты [code]UV2[/code], чтобы смотреть вверх от [member ao_texture].
 		</constant>
 		<constant name="FLAG_EMISSION_ON_UV2" value="12" enum="Flags">
-			Use [code]UV2[/code] coordinates to look up from the [member emission_texture].
+			Используйте координаты [code]UV2[/code], чтобы смотреть вверх от [member emission_texture].
 		</constant>
 		<constant name="FLAG_USE_ALPHA_SCISSOR" value="13" enum="Flags">
-			Use alpha scissor. Set by [member params_use_alpha_scissor].
+			Использовать альфа-ножницы. Устанавливается [member params_use_alpha_scissor].
 		</constant>
 		<constant name="FLAG_TRIPLANAR_USE_WORLD" value="10" enum="Flags">
-			Use world coordinates in the triplanar texture lookup instead of local coordinates.
+			Используйте мировые координаты при поиске трипланарных текстур вместо локальных.
 		</constant>
 		<constant name="FLAG_ALBEDO_TEXTURE_FORCE_SRGB" value="14" enum="Flags">
-			Forces the shader to convert albedo from sRGB space to linear space.
+			Заставляет шейдер преобразовать альбедо из пространства sRGB в линейное пространство.
 		</constant>
 		<constant name="FLAG_DONT_RECEIVE_SHADOWS" value="15" enum="Flags">
-			Disables receiving shadows from other objects.
+			Отключает получение теней от других объектов.
 		</constant>
 		<constant name="FLAG_DISABLE_AMBIENT_LIGHT" value="17" enum="Flags">
-			Disables receiving ambient light.
+			Отключает прием окружающего света.
 		</constant>
 		<constant name="FLAG_ENSURE_CORRECT_NORMALS" value="16" enum="Flags">
-			Ensures that normals appear correct, even with non-uniform scaling.
+			Обеспечивает корректное отображение нормалей даже при неравномерном масштабировании.
 		</constant>
 		<constant name="FLAG_USE_SHADOW_TO_OPACITY" value="18" enum="Flags">
-			Enables the shadow to opacity feature.
+			Включает функцию изменения непрозрачности тени.
 		</constant>
 		<constant name="FLAG_ALBEDO_TEXTURE_SDF" value="19" enum="Flags">
-			Enables signed distance field rendering shader.
+			Включает шейдер рендеринга поля расстояния с подписью.
 		</constant>
 		<constant name="FLAG_MAX" value="20" enum="Flags">
-			Represents the size of the [enum Flags] enum.
+			Представляет размер перечисления [enum Flags].
 		</constant>
 		<constant name="DIFFUSE_BURLEY" value="0" enum="DiffuseMode">
-			Default diffuse scattering algorithm.
+			Алгоритм диффузного рассеяния по умолчанию.
 		</constant>
 		<constant name="DIFFUSE_LAMBERT" value="1" enum="DiffuseMode">
-			Diffuse scattering ignores roughness.
+			Диффузное рассеяние не учитывает шероховатости.
 		</constant>
 		<constant name="DIFFUSE_LAMBERT_WRAP" value="2" enum="DiffuseMode">
-			Extends Lambert to cover more than 90 degrees when roughness increases.
+			Расширение Ламберта для охвата более 90 градусов при увеличении шероховатости.
 		</constant>
 		<constant name="DIFFUSE_OREN_NAYAR" value="3" enum="DiffuseMode">
-			Attempts to use roughness to emulate microsurfacing.
+			Попытка использовать шероховатость для эмуляции микрошлифов.
 		</constant>
 		<constant name="DIFFUSE_TOON" value="4" enum="DiffuseMode">
-			Uses a hard cut for lighting, with smoothing affected by roughness.
+			Для освещения используется жесткий срез, а сглаживание зависит от шероховатости.
 		</constant>
 		<constant name="SPECULAR_SCHLICK_GGX" value="0" enum="SpecularMode">
-			Default specular blob.
+			Спекулярный блоб по умолчанию.
 		</constant>
 		<constant name="SPECULAR_BLINN" value="1" enum="SpecularMode">
-			Older specular algorithm, included for compatibility.
+			Старый алгоритм спекуляции, включенный для совместимости.
 		</constant>
 		<constant name="SPECULAR_PHONG" value="2" enum="SpecularMode">
-			Older specular algorithm, included for compatibility.
+			Старый алгоритм спекуляции, включенный для совместимости.
 		</constant>
 		<constant name="SPECULAR_TOON" value="3" enum="SpecularMode">
-			Toon blob which changes size based on roughness.
+			Toon blob, который меняет размер в зависимости от шероховатости.
 		</constant>
 		<constant name="SPECULAR_DISABLED" value="4" enum="SpecularMode">
-			No specular blob.
+			Нет спекулярного пятна.
 		</constant>
 		<constant name="BILLBOARD_DISABLED" value="0" enum="BillboardMode">
-			Billboard mode is disabled.
+			Режим билборда отключен.
 		</constant>
 		<constant name="BILLBOARD_ENABLED" value="1" enum="BillboardMode">
-			The object's Z axis will always face the camera.
+			Ось Z объекта всегда будет обращена к камере.
 		</constant>
 		<constant name="BILLBOARD_FIXED_Y" value="2" enum="BillboardMode">
-			The object's X axis will always face the camera.
+			Ось X объекта всегда будет обращена к камере.
 		</constant>
 		<constant name="BILLBOARD_PARTICLES" value="3" enum="BillboardMode">
-			Used for particle systems when assigned to [Particles] and [CPUParticles] nodes. Enables [code]particles_anim_*[/code] properties.
-			The [member ParticlesMaterial.anim_speed] or [member CPUParticles.anim_speed] should also be set to a positive value for the animation to play.
+			Используется для систем частиц, когда назначается узлам [Particles] и [CPUParticles]. Включает свойства [code]particles_anim_*[/code].
+			Для воспроизведения анимации [member ParticlesMaterial.anim_speed] или [member CPUParticles.anim_speed] также должно быть установлено положительное значение.
 		</constant>
 		<constant name="TEXTURE_CHANNEL_RED" value="0" enum="TextureChannel">
-			Used to read from the red channel of a texture.
+			Используется для считывания данных из красного канала текстуры.
 		</constant>
 		<constant name="TEXTURE_CHANNEL_GREEN" value="1" enum="TextureChannel">
-			Used to read from the green channel of a texture.
+			Используется для считывания данных из зеленого канала текстуры.
 		</constant>
 		<constant name="TEXTURE_CHANNEL_BLUE" value="2" enum="TextureChannel">
-			Used to read from the blue channel of a texture.
+			Используется для считывания данных из синего канала текстуры.
 		</constant>
 		<constant name="TEXTURE_CHANNEL_ALPHA" value="3" enum="TextureChannel">
-			Used to read from the alpha channel of a texture.
+			Используется для чтения из альфа-канала текстуры.
 		</constant>
 		<constant name="TEXTURE_CHANNEL_GRAYSCALE" value="4" enum="TextureChannel">
-			Currently unused.
+			В настоящее время не используется.
 		</constant>
 		<constant name="EMISSION_OP_ADD" value="0" enum="EmissionOperator">
-			Adds the emission color to the color from the emission texture.
+			Добавляет цвет эмиссии к цвету из текстуры эмиссии.
 		</constant>
 		<constant name="EMISSION_OP_MULTIPLY" value="1" enum="EmissionOperator">
-			Multiplies the emission color by the color from the emission texture.
+			Умножает цвет излучения на цвет из текстуры излучения.
 		</constant>
 		<constant name="DISTANCE_FADE_DISABLED" value="0" enum="DistanceFadeMode">
-			Do not use distance fade.
+			Не используйте затухание расстояния.
 		</constant>
 		<constant name="DISTANCE_FADE_PIXEL_ALPHA" value="1" enum="DistanceFadeMode">
-			Smoothly fades the object out based on each pixel's distance from the camera using the alpha channel.
+			Плавное затухание объекта в зависимости от расстояния каждого пикселя от камеры с использованием альфа-канала.
 		</constant>
 		<constant name="DISTANCE_FADE_PIXEL_DITHER" value="2" enum="DistanceFadeMode">
-			Smoothly fades the object out based on each pixel's distance from the camera using a dither approach. Dithering discards pixels based on a set pattern to smoothly fade without enabling transparency. On certain hardware this can be faster than [constant DISTANCE_FADE_PIXEL_ALPHA].
+			Плавное затухание объекта на основе расстояния каждого пикселя от камеры с использованием метода дизеринга. При дизеринге пиксели отбрасываются по заданному шаблону для плавного затухания без включения прозрачности. На определенном оборудовании это может быть быстрее, чем [constant DISTANCE_FADE_PIXEL_ALPHA].
 		</constant>
 		<constant name="DISTANCE_FADE_OBJECT_DITHER" value="3" enum="DistanceFadeMode">
-			Smoothly fades the object out based on the object's distance from the camera using a dither approach. Dithering discards pixels based on a set pattern to smoothly fade without enabling transparency. On certain hardware this can be faster than [constant DISTANCE_FADE_PIXEL_ALPHA].
+			Плавное затухание объекта в зависимости от его расстояния до камеры с использованием метода дизеринга. При дизеринге пиксели отбрасываются по заданному шаблону для плавного затухания без включения прозрачности. На определенном оборудовании это может быть быстрее, чем [constant DISTANCE_FADE_PIXEL_ALPHA].
 		</constant>
 		<constant name="ASYNC_MODE_VISIBLE" value="0" enum="AsyncMode">
-			The real conditioned shader needed on each situation will be sent for background compilation. In the meantime, a very complex shader that adapts to every situation will be used ("ubershader"). This ubershader is much slower to render, but will keep the game running without stalling to compile. Once shader compilation is done, the ubershader is replaced by the traditional optimized shader.
+			Реальный условный шейдер, необходимый для каждой ситуации, будет отправлен на фоновую компиляцию. Тем временем будет использоваться очень сложный шейдер, адаптирующийся к каждой ситуации ("ubershader"). Этот ubershader намного медленнее рендерится, но позволяет поддерживать игру, не задерживаясь на компиляции. Как только компиляция шейдера будет завершена, убершейдер будет заменен традиционным оптимизированным шейдером.
 		</constant>
 		<constant name="ASYNC_MODE_HIDDEN" value="1" enum="AsyncMode">
-			Anything with this material applied won't be rendered while this material's shader is being compiled.
-			This is useful for optimization, in cases where the visuals won't suffer from having certain non-essential elements missing during the short time their shaders are being compiled.
+			Все, к чему применен этот материал, не будет отрисовываться, пока шейдер этого материала компилируется.
+			Это полезно для оптимизации, когда визуальные эффекты не будут страдать от отсутствия некоторых несущественных элементов в течение короткого времени, пока компилируются их шейдеры.
 		</constant>
 	</constants>
 </class>

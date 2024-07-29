@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Control" inherits="CanvasItem" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Control" inherits="CanvasItem" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		All user interface nodes inherit from Control. A control's anchors and margins adapt its position and size relative to its parent.
+		Все узлы пользовательского интерфейса наследуются от Control. Якоря и поля элемента управления определяют его положение и размер относительно родителя.
 	</brief_description>
 	<description>
-		Base class for all UI-related nodes. [Control] features a bounding rectangle that defines its extents, an anchor position relative to its parent control or the current viewport, and margins that represent an offset to the anchor. The margins update automatically when the node, any of its parents, or the screen size change.
-		For more information on Godot's UI system, anchors, margins, and containers, see the related tutorials in the manual. To build flexible UIs, you'll need a mix of UI elements that inherit from [Control] and [Container] nodes.
-		[b]User Interface nodes and input[/b]
-		Godot sends input events to the scene's root node first, by calling [method Node._input]. [method Node._input] forwards the event down the node tree to the nodes under the mouse cursor, or in focus. To do so, it calls [method MainLoop._input_event]. Call [method accept_event] so no other node receives the event. Once you accept an input, it becomes handled so [method Node._unhandled_input] will not process it.
-		Only one [Control] node can be in focus. Only the node in focus will receive events. To get the focus, call [method grab_focus]. [Control] nodes lose focus when another node grabs it, or if you hide the node in focus.
-		Sets [member mouse_filter] to [constant MOUSE_FILTER_IGNORE] to tell a [Control] node to ignore mouse or touch events. You'll need it if you place an icon on top of a button.
-		[Theme] resources change the Control's appearance. If you change the [Theme] on a [Control] node, it affects all of its children. To override some of the theme's parameters, call one of the [code]add_*_override[/code] methods, like [method add_font_override]. You can override the theme with the inspector.
-		[b]Note:[/b] Theme items are [i]not[/i] [Object] properties. This means you can't access their values using [method Object.get] and [method Object.set]. Instead, use [method get_color], [method get_constant], [method get_font], [method get_icon], [method get_stylebox], and the [code]add_*_override[/code] methods provided by this class.
+		Базовый класс для всех узлов, связанных с пользовательским интерфейсом. Узел [Control] имеет ограничивающий прямоугольник, определяющий его границы, положение якоря относительно родительского элемента управления или текущего пространства просмотра, а также поля, представляющие собой смещение относительно якоря. Поля автоматически обновляются при изменении узла, его родителей или размера экрана.
+		Более подробную информацию о системе пользовательского интерфейса Godot, якорях, полях и контейнерах можно найти в соответствующих разделах руководства. Для создания гибкого пользовательского интерфейса вам понадобится набор элементов пользовательского интерфейса, которые наследуются от узлов [Control] и [Container].
+		[b]Узлы пользовательского интерфейса и ввод[/b]
+		Сначала Godot отправляет события ввода в корневой узел сцены, вызывая [method Node._input]. [method Node._input] направляет событие вниз по дереву узлов к узлам, находящимся под курсором мыши или в фокусе клавиатуры. Для этого он вызывает [метод MainLoop._input_event]. Вызовите [метод accept_event], чтобы ни один другой узел не получил событие. Как только вы принимаете ввод, он становится обработанным, поэтому [метод Node._unhandled_input] не будет его обрабатывать.
+		В фокусе клавиатуры может находиться только один узел [Control]. Только узел, находящийся в фокусе, будет получать события клавиатуры. Чтобы получить фокус, вызовите [метод grab_focus]. Узлы [Control] теряют фокус, когда другой узел захватывает его, или если вы скрываете узел в фокусе.
+		Устанавливает [member mouse_filter] в [constant MOUSE_FILTER_IGNORE], чтобы указать узлу [Control] игнорировать события от мыши или прикосновения. Он понадобится, если вы поместите иконку поверх кнопки.
+		Ресурсы [Theme] изменяют внешний вид элемента управления. Если вы измените тему [Theme] на узле [Control], это повлияет на все его дочерние узлы. Чтобы переопределить некоторые параметры темы, вызовите один из методов [code]add_*_override[/code], например [method add_font_override]. Вы можете переопределить тему с помощью инспектора.
+		[b]Примечание:[/b] Элементы темы - это [i]не[/i] [объектные] свойства. Это означает, что вы не можете получить доступ к их значениям с помощью [method Object.get] и [method Object.set]. Вместо этого используйте [метод get_color], [метод get_constant], [метод get_font], [метод get_icon], [метод get_stylebox], а также методы [code]add_*_override[/code], предоставляемые этим классом.
 	</description>
 	<tutorials>
 		<link title="GUI tutorial index">$DOCS_URL/tutorials/ui/index.html</link>
@@ -23,55 +23,55 @@
 		<method name="_clips_input" qualifiers="virtual">
 			<return type="bool" />
 			<description>
-				Virtual method to be implemented by the user. Returns whether [method _gui_input] should not be called for children controls outside this control's rectangle. Input will be clipped to the Rect of this [Control]. Similar to [member rect_clip_content], but doesn't affect visibility.
-				If not overridden, defaults to [code]false[/code].
+				Виртуальный метод, который должен быть реализован пользователем. Возвращает, должен ли [метод _gui_input] не вызываться для дочерних элементов управления за пределами прямоугольника этого элемента управления. Ввод будет обрезан по Rect этого [Control]. Аналогично [члену rect_clip_content], но не влияет на видимость.
+				Если не переопределено, по умолчанию принимает значение [code]false[/code].
 			</description>
 		</method>
 		<method name="_get_minimum_size" qualifiers="virtual">
 			<return type="Vector2" />
 			<description>
-				Virtual method to be implemented by the user. Returns the minimum size for this control. Alternative to [member rect_min_size] for controlling minimum size via code. The actual minimum size will be the max value of these two (in each axis separately).
-				If not overridden, defaults to [constant Vector2.ZERO].
-				[b]Note:[/b] This method will not be called when the script is attached to a [Control] node that already overrides its minimum size (e.g. [Label], [Button], [PanelContainer] etc.). It can only be used with most basic GUI nodes, like [Control], [Container], [Panel] etc.
+				Виртуальный метод, который должен быть реализован пользователем. Возвращает минимальный размер для данного элемента управления. Альтернатива [member rect_min_size] для управления минимальным размером через код. Фактический минимальный размер будет равен максимальному значению из этих двух (по каждой оси отдельно).
+				Если не переопределено, по умолчанию принимает значение [constant Vector2.ZERO].
+				[b]Примечание:[/b] Этот метод не будет вызван, если скрипт прикреплен к узлу [Control], который уже переопределяет свой минимальный размер (например, [Label], [Button], [PanelContainer] и т.д.). Его можно использовать только с самыми основными узлами GUI, такими как [Control], [Container], [Panel] и т. д.
 			</description>
 		</method>
 		<method name="_gui_input" qualifiers="virtual">
 			<return type="void" />
 			<argument index="0" name="event" type="InputEvent" />
 			<description>
-				Virtual method to be implemented by the user. Use this method to process and accept inputs on UI elements. See [method accept_event].
-				Example: clicking a control.
+				Виртуальный метод, который должен быть реализован пользователем. Используйте этот метод для обработки и приема входных данных на элементах пользовательского интерфейса. См. раздел [method accept_event].
+				Пример: щелчок по элементу управления.
 				[codeblock]
 				func _gui_input(event):
 				    if event is InputEventMouseButton:
 				        if event.button_index == BUTTON_LEFT and event.pressed:
-				            print("I've been clicked D:")
+				            print("На меня нажали D:")
 				[/codeblock]
-				The event won't trigger if:
-				* clicking outside the control (see [method has_point]);
-				* control has [member mouse_filter] set to [constant MOUSE_FILTER_IGNORE];
-				* control is obstructed by another [Control] on top of it, which doesn't have [member mouse_filter] set to [constant MOUSE_FILTER_IGNORE];
-				* control's parent has [member mouse_filter] set to [constant MOUSE_FILTER_STOP] or has accepted the event;
-				* it happens outside the parent's rectangle and the parent has either [member rect_clip_content] or [method _clips_input] enabled.
-				[b]Note:[/b] Event position is relative to the control origin.
+				Событие не сработает, если:
+				* щелчок за пределами элемента управления (см. [метод has_point]);
+				* элемент управления имеет [member mouse_filter], установленный на [constant MOUSE_FILTER_IGNORE];
+				* контролу мешает другой [Control], расположенный поверх него, у которого [member mouse_filter] не установлен на [constant MOUSE_FILTER_IGNORE];
+				* родитель элемента управления имеет [member mouse_filter], установленный на [constant MOUSE_FILTER_STOP] или принял событие;
+				* это происходит за пределами прямоугольника родителя, и у родителя включен либо [член rect_clip_content], либо [метод _clips_input].
+				[b]Примечание:[/b] Положение события относительно начала элемента управления.
 			</description>
 		</method>
 		<method name="_make_custom_tooltip" qualifiers="virtual">
 			<return type="Control" />
 			<argument index="0" name="for_text" type="String" />
 			<description>
-				Virtual method to be implemented by the user. Returns a [Control] node that should be used as a tooltip instead of the default one. The [code]for_text[/code] includes the contents of the [member hint_tooltip] property.
-				The returned node must be of type [Control] or Control-derived. It can have child nodes of any type. It is freed when the tooltip disappears, so make sure you always provide a new instance (if you want to use a pre-existing node from your scene tree, you can duplicate it and pass the duplicated instance). When [code]null[/code] or a non-Control node is returned, the default tooltip will be used instead.
-				The returned node will be added as child to a [PopupPanel], so you should only provide the contents of that panel. That [PopupPanel] can be themed using [method Theme.set_stylebox] for the type [code]"TooltipPanel"[/code] (see [member hint_tooltip] for an example).
-				[b]Note:[/b] The tooltip is shrunk to minimal size. If you want to ensure it's fully visible, you might want to set its [member rect_min_size] to some non-zero value.
-				Example of usage with a custom-constructed node:
+				Виртуальный метод, который должен быть реализован пользователем. Возвращает узел [Control], который должен быть использован в качестве всплывающей подсказки вместо стандартной. В [code]for_text[/code] входит содержимое свойства [member hint_tooltip].
+				Возвращаемый узел должен быть типа [Control] или производным от Control. Он может иметь дочерние узлы любого типа. Он освобождается, когда подсказка исчезает, поэтому убедитесь, что вы всегда предоставляете новый экземпляр (если вы хотите использовать уже существующий узел из дерева сцены, вы можете продублировать его и передать продублированный экземпляр). Если возвращается [code]null[/code] или неконтрольный узел, вместо него будет использована всплывающая подсказка по умолчанию.
+				Возвращаемый узел будет добавлен в качестве дочернего в [PopupPanel], поэтому вы должны предоставить только содержимое этой панели. Эта [PopupPanel] может быть оформлена с помощью [метод Theme.set_stylebox] для типа [code]"TooltipPanel"[/code] (см. пример в [member hint_tooltip]).
+				[b]Примечание:[/b] Всплывающая подсказка уменьшается до минимального размера. Если вы хотите, чтобы она была видна полностью, вам следует установить для ее [member rect_min_size] ненулевое значение.
+				Пример использования с пользовательским узлом:
 				[codeblock]
 				func _make_custom_tooltip(for_text):
 				    var label = Label.new()
 				    label.text = for_text
 				    return label
 				[/codeblock]
-				Example of usage with a custom scene instance:
+				Пример использования с пользовательским экземпляром сцены:
 				[codeblock]
 				func _make_custom_tooltip(for_text):
 				    var tooltip = preload("res://SomeTooltipScene.tscn").instance()
@@ -83,7 +83,7 @@
 		<method name="accept_event">
 			<return type="void" />
 			<description>
-				Marks an input event as handled. Once you accept an input event, it stops propagating, even to nodes listening to [method Node._unhandled_input] or [method Node._unhandled_key_input].
+				Помечает событие ввода как обработанное. Как только вы принимаете событие ввода, оно перестает распространяться, даже на узлы, слушающие [метод Node._unhandled_input] или [метод Node._unhandled_key_input].
 			</description>
 		</method>
 		<method name="add_color_override">
@@ -91,13 +91,13 @@
 			<argument index="0" name="name" type="String" />
 			<argument index="1" name="color" type="Color" />
 			<description>
-				Creates a local override for a theme [Color] with the specified [code]name[/code]. Local overrides always take precedence when fetching theme items for the control.
-				See also [method get_color], [method remove_color_override].
-				[b]Example of overriding a label's color and resetting it later:[/b]
+				Создает локальное переопределение для темы [Color] с указанным [code]именем[/code]. Локальные переопределения всегда имеют приоритет при получении элементов темы для элемента управления.
+				См. также [метод get_color], [метод remove_color_override].
+				[b]Пример переопределения цвета метки и его последующего сброса:[/b]
 				[codeblock]
-				# Given the child Label node "MyLabel", override its font color with a custom value.
+				# Получив дочерний узел Label "MyLabel", переопределите цвет его шрифта с помощью пользовательского значения.
 				$MyLabel.add_color_override("font_color", Color(1, 0.5, 0))
-				# Reset the font color of the child label.
+				# Сбросьте цвет шрифта дочерней метки.
 				$MyLabel.add_color_override("font_color", get_color("font_color", "Label"))
 				[/codeblock]
 			</description>
@@ -107,8 +107,8 @@
 			<argument index="0" name="name" type="String" />
 			<argument index="1" name="constant" type="int" />
 			<description>
-				Creates a local override for a theme constant with the specified [code]name[/code]. Local overrides always take precedence when fetching theme items for the control.
-				See also [method get_constant], [method remove_constant_override].
+				Создает локальное переопределение для константы темы с указанным [code]именем[/code]. Локальные переопределения всегда имеют приоритет при получении элементов темы для элемента управления.
+				См. также [метод get_constant], [метод remove_constant_override].
 			</description>
 		</method>
 		<method name="add_font_override">
@@ -116,9 +116,9 @@
 			<argument index="0" name="name" type="String" />
 			<argument index="1" name="font" type="Font" />
 			<description>
-				Creates a local override for a theme [Font] with the specified [code]name[/code]. Local overrides always take precedence when fetching theme items for the control.
-				[b]Note:[/b] An override can be removed by assigning it a [code]null[/code] value. This behavior is deprecated and will be removed in 4.0, use [method remove_font_override] instead.
-				See also [method get_font].
+				Создает локальное переопределение для темы [Font] с указанным [code]именем[/code]. Локальные переопределения всегда имеют приоритет при получении элементов темы для элемента управления.
+				[b]Примечание:[/b] Переопределение можно удалить, присвоив ему значение [code]null[/code]. Это поведение устарело и будет удалено в версии 4.0, используйте вместо этого [метод remove_font_override].
+				См. также [метод get_font].
 			</description>
 		</method>
 		<method name="add_icon_override">
@@ -126,9 +126,9 @@
 			<argument index="0" name="name" type="String" />
 			<argument index="1" name="texture" type="Texture" />
 			<description>
-				Creates a local override for a theme icon with the specified [code]name[/code]. Local overrides always take precedence when fetching theme items for the control.
-				[b]Note:[/b] An override can be removed by assigning it a [code]null[/code] value. This behavior is deprecated and will be removed in 4.0, use [method remove_icon_override] instead.
-				See also [method get_icon].
+				Создает локальное переопределение для значка темы с указанным [code]именем[/code]. Локальные переопределения всегда имеют приоритет при получении элементов темы для элемента управления.
+				[b]Примечание:[/b] Переопределение можно удалить, присвоив ему значение [code]null[/code]. Это поведение устарело и будет удалено в версии 4.0, используйте вместо этого [метод remove_icon_override].
+				См. также [метод get_icon].
 			</description>
 		</method>
 		<method name="add_shader_override">
@@ -136,8 +136,8 @@
 			<argument index="0" name="name" type="String" />
 			<argument index="1" name="shader" type="Shader" />
 			<description>
-				Creates a local override for a theme shader with the specified [code]name[/code]. Local overrides always take precedence when fetching theme items for the control.
-				[b]Note:[/b] An override can be removed by assigning it a [code]null[/code] value. This behavior is deprecated and will be removed in 4.0, use [method remove_shader_override] instead.
+				Создает локальное переопределение для шейдера темы с указанным [code]именем[/code]. Локальные переопределения всегда имеют приоритет при получении элементов темы для элемента управления.
+				[b]Примечание:[/b] Переопределение можно удалить, присвоив ему значение [code]null[/code]. Это поведение устарело и будет удалено в 4.0, используйте вместо этого [метод remove_shader_override].
 			</description>
 		</method>
 		<method name="add_stylebox_override">
@@ -145,19 +145,19 @@
 			<argument index="0" name="name" type="String" />
 			<argument index="1" name="stylebox" type="StyleBox" />
 			<description>
-				Creates a local override for a theme [StyleBox] with the specified [code]name[/code]. Local overrides always take precedence when fetching theme items for the control.
-				[b]Note:[/b] An override can be removed by assigning it a [code]null[/code] value. This behavior is deprecated and will be removed in 4.0, use [method remove_stylebox_override] instead.
-				See also [method get_stylebox].
-				[b]Example of modifying a property in a StyleBox by duplicating it:[/b]
+				Создает локальное переопределение для темы [StyleBox] с указанным [code]именем[/code]. Локальные переопределения всегда имеют приоритет при получении элементов темы для элемента управления.
+				[b]Примечание:[/b] Переопределение можно удалить, присвоив ему значение [code]null[/code]. Это поведение устарело и будет удалено в версии 4.0, используйте вместо этого [метод remove_stylebox_override].
+				См. также [метод get_stylebox].
+				[b]Пример изменения свойства в StyleBox путем его дублирования:[/b]
 				[codeblock]
-				# The snippet below assumes the child node MyButton has a StyleBoxFlat assigned.
-				# Resources are shared across instances, so we need to duplicate it
-				# to avoid modifying the appearance of all other buttons.
+				# В приведенном ниже фрагменте предполагается, что дочернему узлу MyButton назначен StyleBoxFlat.
+				# Ресурсы разделяются между экземплярами, поэтому нам нужно продублировать его.
+				# чтобы избежать изменения внешнего вида всех остальных кнопок.
 				var new_stylebox_normal = $MyButton.get_stylebox("normal").duplicate()
 				new_stylebox_normal.border_width_top = 3
 				new_stylebox_normal.border_color = Color(0, 1, 0.5)
 				$MyButton.add_stylebox_override("normal", new_stylebox_normal)
-				# Remove the stylebox override.
+				# Удалите переопределение стилей.
 				$MyButton.add_stylebox_override("normal", null)
 				[/codeblock]
 			</description>
@@ -167,12 +167,12 @@
 			<argument index="0" name="position" type="Vector2" />
 			<argument index="1" name="data" type="Variant" />
 			<description>
-				Godot calls this method to test if [code]data[/code] from a control's [method get_drag_data] can be dropped at [code]position[/code]. [code]position[/code] is local to this control.
-				This method should only be used to test the data. Process the data in [method drop_data].
+				Godot вызывает этот метод, чтобы проверить, могут ли [code]данные[/code] из [метода get_drag_data] элемента управления быть сброшены в [code]позицию[/code]. [code]позиция[/code] является локальной для данного элемента управления.
+				Этот метод следует использовать только для проверки данных. Обработайте данные в [методе drop_data].
 				[codeblock]
 				func can_drop_data(position, data):
-				    # Check position if it is relevant to you
-				    # Otherwise, just check data
+				    # Проверьте позицию, если она имеет для вас значение.
+				    # В противном случае просто проверьте данные
 				    return typeof(data) == TYPE_DICTIONARY and data.has("expected")
 				[/codeblock]
 			</description>
@@ -182,7 +182,7 @@
 			<argument index="0" name="position" type="Vector2" />
 			<argument index="1" name="data" type="Variant" />
 			<description>
-				Godot calls this method to pass you the [code]data[/code] from a control's [method get_drag_data] result. Godot first calls [method can_drop_data] to test if [code]data[/code] is allowed to drop at [code]position[/code] where [code]position[/code] is local to this control.
+				Godot вызывает этот метод, чтобы передать вам [code]данные[/code] из результата [method get_drag_data] элемента управления. Сначала Godot вызывает [метод can_drop_data], чтобы проверить, разрешено ли падение [code]data[/code] в [code]position[/code], где [code]position[/code] является локальным для данного элемента управления.
 				[codeblock]
 				func can_drop_data(position, data):
 				    return typeof(data) == TYPE_DICTIONARY and data.has("color")
@@ -195,13 +195,13 @@
 		<method name="find_next_valid_focus" qualifiers="const">
 			<return type="Control" />
 			<description>
-				Finds the next (below in the tree) [Control] that can receive the focus.
+				Находит следующий (ниже в дереве) [Control], который может получить фокус.
 			</description>
 		</method>
 		<method name="find_prev_valid_focus" qualifiers="const">
 			<return type="Control" />
 			<description>
-				Finds the previous (above in the tree) [Control] that can receive the focus.
+				Находит предыдущий (выше в дереве) [Control], который может получить фокус.
 			</description>
 		</method>
 		<method name="force_drag">
@@ -209,21 +209,21 @@
 			<argument index="0" name="data" type="Variant" />
 			<argument index="1" name="preview" type="Control" />
 			<description>
-				Forces drag and bypasses [method get_drag_data] and [method set_drag_preview] by passing [code]data[/code] and [code]preview[/code]. Drag will start even if the mouse is neither over nor pressed on this control.
-				The methods [method can_drop_data] and [method drop_data] must be implemented on controls that want to receive drop data.
+				Принуждает к перетаскиванию и обходит [метод get_drag_data] и [метод set_drag_preview], передавая [code]data[/code] и [code]preview[/code]. Перетаскивание начнется, даже если мышь не наведена и не нажата на этом элементе управления.
+				Методы [method can_drop_data] и [method drop_data] должны быть реализованы в элементах управления, которые хотят получать данные о перетаскивании.
 			</description>
 		</method>
 		<method name="get_anchor" qualifiers="const">
 			<return type="float" />
 			<argument index="0" name="margin" type="int" enum="Margin" />
 			<description>
-				Returns the anchor identified by [code]margin[/code] constant from [enum Margin] enum. A getter method for [member anchor_bottom], [member anchor_left], [member anchor_right] and [member anchor_top].
+				Возвращает якорь, идентифицированный константой [code]margin[/code] из перечисления [enum Margin]. Метод получения для [member anchor_bottom], [member anchor_left], [member anchor_right] и [member anchor_top].
 			</description>
 		</method>
 		<method name="get_begin" qualifiers="const">
 			<return type="Vector2" />
 			<description>
-				Returns [member margin_left] and [member margin_top]. See also [member rect_position].
+				Возвращает значения [member margin_left] и [member margin_top]. См. также [member rect_position].
 			</description>
 		</method>
 		<method name="get_color" qualifiers="const">
@@ -231,13 +231,13 @@
 			<argument index="0" name="name" type="String" />
 			<argument index="1" name="theme_type" type="String" default="&quot;&quot;" />
 			<description>
-				Returns a [Color] from the first matching [Theme] in the tree if that [Theme] has a color item with the specified [code]name[/code] and [code]theme_type[/code]. If [code]theme_type[/code] is omitted the class name of the current control is used as the type, or [member theme_type_variation] if it is defined. If the type is a class name its parent classes are also checked, in order of inheritance.
-				For the current control its local overrides are considered first (see [method add_color_override]), then its assigned [member theme]. After the current control, each parent control and its assigned [member theme] are considered; controls without a [member theme] assigned are skipped. If no matching [Theme] is found in the tree, a custom project [Theme] (see [member ProjectSettings.gui/theme/custom]) and the default [Theme] are used.
+				Возвращает [Color] из первой подходящей [Theme] в дереве, если в этой [Theme] есть элемент цвета с указанными [code]name[/code] и [code]theme_type[/code]. Если [code]theme_type[/code] опущен, в качестве типа используется имя класса текущего элемента управления или [member theme_type_variation], если он определен. Если тип является именем класса, проверяются также его родительские классы в порядке наследования.
+				Для текущего элемента управления сначала рассматриваются его локальные переопределения (см. [метод add_color_override]), затем назначенная ему [member Theme]. После текущего элемента управления рассматривается каждый родительский элемент управления и назначенная ему [member Theme]; элементы управления без назначенной [member Theme] пропускаются. Если в дереве не найдена подходящая [Theme], используется пользовательская [Theme] проекта (см. [member ProjectSettings.gui/theme/custom]) и [Theme] по умолчанию.
 				[codeblock]
 				func _ready():
-				    # Get the font color defined for the current Control's class, if it exists.
+				    # Получает цвет шрифта, определенный для класса текущего Control, если он существует.
 				    modulate = get_color("font_color")
-				    # Get the font color defined for the Button class.
+				    # Получение цвета шрифта, определенного для класса Button.
 				    modulate = get_color("font_color", "Button")
 				[/codeblock]
 			</description>
@@ -245,7 +245,7 @@
 		<method name="get_combined_minimum_size" qualifiers="const">
 			<return type="Vector2" />
 			<description>
-				Returns combined minimum size from [member rect_min_size] and [method get_minimum_size].
+				Возвращает комбинированный минимальный размер из [member rect_min_size] и [method get_minimum_size].
 			</description>
 		</method>
 		<method name="get_constant" qualifiers="const">
@@ -253,23 +253,23 @@
 			<argument index="0" name="name" type="String" />
 			<argument index="1" name="theme_type" type="String" default="&quot;&quot;" />
 			<description>
-				Returns a constant from the first matching [Theme] in the tree if that [Theme] has a constant item with the specified [code]name[/code] and [code]theme_type[/code].
-				See [method get_color] for details.
+				Возвращает константу из первой подходящей [Theme] в дереве, если в этой [Theme] есть элемент константы с указанными [code]name[/code] и [code]theme_type[/code].
+				Подробности см. в [методе get_color].
 			</description>
 		</method>
 		<method name="get_cursor_shape" qualifiers="const">
 			<return type="int" enum="Control.CursorShape" />
 			<argument index="0" name="position" type="Vector2" default="Vector2( 0, 0 )" />
 			<description>
-				Returns the mouse cursor shape the control displays on mouse hover. See [enum CursorShape].
+				Возвращает форму курсора мыши, которую элемент управления отображает при наведении мыши. См. раздел [enum CursorShape].
 			</description>
 		</method>
 		<method name="get_drag_data" qualifiers="virtual">
 			<return type="Variant" />
 			<argument index="0" name="position" type="Vector2" />
 			<description>
-				Godot calls this method to get data that can be dragged and dropped onto controls that expect drop data. Returns [code]null[/code] if there is no data to drag. Controls that want to receive drop data should implement [method can_drop_data] and [method drop_data]. [code]position[/code] is local to this control. Drag may be forced with [method force_drag].
-				A preview that will follow the mouse that should represent the data can be set with [method set_drag_preview]. A good time to set the preview is in this method.
+				Godot вызывает этот метод, чтобы получить данные, которые можно перетащить на элементы управления, ожидающие данных для перетаскивания. Возвращает [code]null[/code], если нет данных для перетаскивания. Элементы управления, которые хотят получать данные для перетаскивания, должны реализовать [метод can_drop_data] и [метод drop_data]. [code]position[/code] является локальным для данного элемента управления. Перетаскивание может быть принудительным с помощью [method force_drag].
+				Предварительный просмотр, который будет следовать за мышью и представлять данные, может быть установлен с помощью [method set_drag_preview]. Самое подходящее время для установки предварительного просмотра - этот метод.
 				[codeblock]
 				func get_drag_data(position):
 				    var mydata = make_data()
@@ -281,20 +281,20 @@
 		<method name="get_end" qualifiers="const">
 			<return type="Vector2" />
 			<description>
-				Returns [member margin_right] and [member margin_bottom].
+				Возвращает [member margin_right] и [member margin_bottom].
 			</description>
 		</method>
 		<method name="get_focus_neighbour" qualifiers="const">
 			<return type="NodePath" />
 			<argument index="0" name="margin" type="int" enum="Margin" />
 			<description>
-				Returns the focus neighbour identified by [code]margin[/code] constant from [enum Margin] enum. A getter method for [member focus_neighbour_bottom], [member focus_neighbour_left], [member focus_neighbour_right] and [member focus_neighbour_top].
+				Возвращает соседа по фокусу, идентифицированного константой [code]margin[/code] из перечисления [enum Margin]. Метод получения для [member focus_neighbour_bottom], [member focus_neighbour_left], [member focus_neighbour_right] и [member focus_neighbour_top].
 			</description>
 		</method>
 		<method name="get_focus_owner" qualifiers="const">
 			<return type="Control" />
 			<description>
-				Returns the control that has focus or [code]null[/code] if none.
+				Возвращает элемент управления, имеющий фокус клавиатуры, или [code]null[/code], если он отсутствует.
 			</description>
 		</method>
 		<method name="get_font" qualifiers="const">
@@ -302,14 +302,14 @@
 			<argument index="0" name="name" type="String" />
 			<argument index="1" name="theme_type" type="String" default="&quot;&quot;" />
 			<description>
-				Returns a [Font] from the first matching [Theme] in the tree if that [Theme] has a font item with the specified [code]name[/code] and [code]theme_type[/code].
-				See [method get_color] for details.
+				Возвращает [Font] из первой подходящей [Theme] в дереве, если в этой [Theme] есть элемент шрифта с указанными [code]name[/code] и [code]theme_type[/code].
+				Подробности см. в [методе get_color].
 			</description>
 		</method>
 		<method name="get_global_rect" qualifiers="const">
 			<return type="Rect2" />
 			<description>
-				Returns the position and size of the control relative to the top-left corner of the screen. See [member rect_position] and [member rect_size].
+				Возвращает положение и размер элемента управления относительно левого верхнего угла экрана. См. [член rect_position] и [член rect_size].
 			</description>
 		</method>
 		<method name="get_icon" qualifiers="const">
@@ -317,45 +317,45 @@
 			<argument index="0" name="name" type="String" />
 			<argument index="1" name="theme_type" type="String" default="&quot;&quot;" />
 			<description>
-				Returns an icon from the first matching [Theme] in the tree if that [Theme] has an icon item with the specified [code]name[/code] and [code]theme_type[/code].
-				See [method get_color] for details.
+				Возвращает иконку из первой подходящей [Theme] в дереве, если в этой [Theme] есть элемент иконки с указанными [code]name[/code] и [code]theme_type[/code].
+				Подробности см. в [методе get_color].
 			</description>
 		</method>
 		<method name="get_margin" qualifiers="const">
 			<return type="float" />
 			<argument index="0" name="margin" type="int" enum="Margin" />
 			<description>
-				Returns the anchor identified by [code]margin[/code] constant from [enum Margin] enum. A getter method for [member margin_bottom], [member margin_left], [member margin_right] and [member margin_top].
+				Возвращает якорь, идентифицированный константой [code]margin[/code] из перечисления [enum Margin]. Метод получения для [member margin_bottom], [member margin_left], [member margin_right] и [member margin_top].
 			</description>
 		</method>
 		<method name="get_minimum_size" qualifiers="const">
 			<return type="Vector2" />
 			<description>
-				Returns the minimum size for this control. See [member rect_min_size].
+				Возвращает минимальный размер для этого элемента управления. См. раздел [member rect_min_size].
 			</description>
 		</method>
 		<method name="get_parent_area_size" qualifiers="const">
 			<return type="Vector2" />
 			<description>
-				Returns the width/height occupied in the parent control.
+				Возвращает ширину/высоту, занимаемую в родительском элементе управления.
 			</description>
 		</method>
 		<method name="get_parent_control" qualifiers="const">
 			<return type="Control" />
 			<description>
-				Returns the parent control node.
+				Возвращает родительский узел управления.
 			</description>
 		</method>
 		<method name="get_rect" qualifiers="const">
 			<return type="Rect2" />
 			<description>
-				Returns the position and size of the control relative to the top-left corner of the parent Control. See [member rect_position] and [member rect_size].
+				Возвращает положение и размер элемента управления относительно левого верхнего угла родительского элемента управления. См. [член rect_position] и [член rect_size].
 			</description>
 		</method>
 		<method name="get_rotation" qualifiers="const">
 			<return type="float" />
 			<description>
-				Returns the rotation (in radians).
+				Возвращает вращение (в радианах).
 			</description>
 		</method>
 		<method name="get_stylebox" qualifiers="const">
@@ -363,39 +363,39 @@
 			<argument index="0" name="name" type="String" />
 			<argument index="1" name="theme_type" type="String" default="&quot;&quot;" />
 			<description>
-				Returns a [StyleBox] from the first matching [Theme] in the tree if that [Theme] has a stylebox item with the specified [code]name[/code] and [code]theme_type[/code].
-				See [method get_color] for details.
+				Возвращает [StyleBox] из первой подходящей [Theme] в дереве, если в этой [Theme] есть элемент stylebox с указанными [code]name[/code] и [code]theme_type[/code].
+				Подробности см. в [методе get_color].
 			</description>
 		</method>
 		<method name="get_theme_default_font" qualifiers="const">
 			<return type="Font" />
 			<description>
-				Returns the default font from the first matching [Theme] in the tree if that [Theme] has a valid [member Theme.default_font] value.
-				See [method get_color] for details.
+				Возвращает шрифт по умолчанию из первой подходящей [Theme] в дереве, если эта [Theme] имеет действительное значение [member Theme.default_font].
+				Подробности см. в [методе get_color].
 			</description>
 		</method>
 		<method name="get_tooltip" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="at_position" type="Vector2" default="Vector2( 0, 0 )" />
 			<description>
-				Returns the tooltip, which will appear when the cursor is resting over this control. See [member hint_tooltip].
+				Возвращает подсказку, которая будет появляться при наведении курсора на этот элемент управления. Смотрите [член hint_tooltip].
 			</description>
 		</method>
 		<method name="grab_click_focus">
 			<return type="void" />
 			<description>
-				Creates an [InputEventMouseButton] that attempts to click the control. If the event is received, the control acquires focus.
+				Создает событие [InputEventMouseButton], которое пытается щелкнуть элемент управления. Если событие получено, элемент управления получает фокус.
 				[codeblock]
 				func _process(delta):
-				    grab_click_focus() #when clicking another Control node, this node will be clicked instead
+				    grab_click_focus() #При щелчке на другом узле управления вместо него будет щелкнут этот узел
 				[/codeblock]
 			</description>
 		</method>
 		<method name="grab_focus">
 			<return type="void" />
 			<description>
-				Steal the focus from another control and become the focused control (see [member focus_mode]).
-				[b]Note[/b]: Using this method together with [method Object.call_deferred] makes it more reliable, especially when called inside [method Node._ready].
+				Перехватывает фокус у другого элемента управления и становится фокусируемым элементом управления (см. [member focus_mode]).
+				[b]Примечание[/b]: Использование этого метода вместе с [метод Object.call_deferred] делает его более надежным, особенно когда он вызывается внутри [метод Node._ready].
 			</description>
 		</method>
 		<method name="has_color" qualifiers="const">
@@ -403,16 +403,16 @@
 			<argument index="0" name="name" type="String" />
 			<argument index="1" name="theme_type" type="String" default="&quot;&quot;" />
 			<description>
-				Returns [code]true[/code] if there is a matching [Theme] in the tree that has a color item with the specified [code]name[/code] and [code]theme_type[/code].
-				See [method get_color] for details.
+				Возвращает [code]true[/code], если в дереве есть подходящая [Theme], в которой есть элемент цвета с указанными [code]name[/code] и [code]theme_type[/code].
+				Подробности см. в разделе [метод get_color].
 			</description>
 		</method>
 		<method name="has_color_override" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Returns [code]true[/code] if there is a local override for a theme [Color] with the specified [code]name[/code] in this [Control] node.
-				See [method add_color_override].
+				Возвращает [code]true[/code], если в данном узле [Control] существует локальное переопределение темы [Color] с указанным [code]именем[/code].
+				Смотрите [метод add_color_override].
 			</description>
 		</method>
 		<method name="has_constant" qualifiers="const">
@@ -420,22 +420,22 @@
 			<argument index="0" name="name" type="String" />
 			<argument index="1" name="theme_type" type="String" default="&quot;&quot;" />
 			<description>
-				Returns [code]true[/code] if there is a matching [Theme] in the tree that has a constant item with the specified [code]name[/code] and [code]theme_type[/code].
-				See [method get_color] for details.
+				Возвращает [code]true[/code], если в дереве есть подходящая [Theme], которая имеет константный элемент с указанными [code]именем[/code] и [code]theme_type[/code].
+				Подробности см. в [методе get_color].
 			</description>
 		</method>
 		<method name="has_constant_override" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Returns [code]true[/code] if there is a local override for a theme constant with the specified [code]name[/code] in this [Control] node.
-				See [method add_constant_override].
+				Возвращает [code]true[/code], если в данном узле [Control] существует локальное переопределение константы темы с указанным [code]именем[/code].
+				Смотрите [метод add_constant_override].
 			</description>
 		</method>
 		<method name="has_focus" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if this is the current focused control. See [member focus_mode].
+				Возвращает [code]true[/code], если этот элемент управления сфокусирован в данный момент. См. раздел [member focus_mode].
 			</description>
 		</method>
 		<method name="has_font" qualifiers="const">
@@ -443,16 +443,16 @@
 			<argument index="0" name="name" type="String" />
 			<argument index="1" name="theme_type" type="String" default="&quot;&quot;" />
 			<description>
-				Returns [code]true[/code] if there is a matching [Theme] in the tree that has a font item with the specified [code]name[/code] and [code]theme_type[/code].
-				See [method get_color] for details.
+				Возвращает [code]true[/code], если в дереве есть подходящая [Theme], в которой есть элемент шрифта с указанными [code]name[/code] и [code]theme_type[/code].
+				Подробности см. в [методе get_color].
 			</description>
 		</method>
 		<method name="has_font_override" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Returns [code]true[/code] if there is a local override for a theme [Font] with the specified [code]name[/code] in this [Control] node.
-				See [method add_font_override].
+				Возвращает [code]true[/code], если в данном узле [Control] существует локальное переопределение темы [Font] с указанным [code]именем[/code].
+				Смотрите [метод add_font_override].
 			</description>
 		</method>
 		<method name="has_icon" qualifiers="const">
@@ -460,33 +460,33 @@
 			<argument index="0" name="name" type="String" />
 			<argument index="1" name="theme_type" type="String" default="&quot;&quot;" />
 			<description>
-				Returns [code]true[/code] if there is a matching [Theme] in the tree that has an icon item with the specified [code]name[/code] and [code]theme_type[/code].
-				See [method get_color] for details.
+				Возвращает [code]true[/code], если в дереве есть подходящая [Theme], которая имеет элемент иконки с указанными [code]именем[/code] и [code]theme_type[/code].
+				Подробности см. в [методе get_color].
 			</description>
 		</method>
 		<method name="has_icon_override" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Returns [code]true[/code] if there is a local override for a theme icon with the specified [code]name[/code] in this [Control] node.
-				See [method add_icon_override].
+				Возвращает [code]true[/code], если в данном узле [Control] существует локальное переопределение для иконки темы с указанным [code]именем[/code].
+				Смотрите [метод add_icon_override].
 			</description>
 		</method>
 		<method name="has_point" qualifiers="virtual">
 			<return type="bool" />
 			<argument index="0" name="point" type="Vector2" />
 			<description>
-				Virtual method to be implemented by the user. Returns whether the given [code]point[/code] is inside this control.
-				If not overridden, default behavior is checking if the point is within control's Rect.
-				[b]Note:[/b] If you want to check if a point is inside the control, you can use [code]get_rect().has_point(point)[/code].
+				Виртуальный метод, который должен быть реализован пользователем. Возвращает, находится ли заданная [code]точка[/code] внутри данного элемента управления.
+				Если метод не переопределен, то по умолчанию проверяется, находится ли точка внутри Rect элемента управления.
+				[b]Примечание:[/b] Если вы хотите проверить, находится ли точка внутри элемента управления, вы можете использовать [code]get_rect().has_point(point)[/code].
 			</description>
 		</method>
 		<method name="has_shader_override" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Returns [code]true[/code] if there is a local override for a theme shader with the specified [code]name[/code] in this [Control] node.
-				See [method add_shader_override].
+				Возвращает [code]true[/code], если в данном узле [Control] существует локальное переопределение шейдера темы с указанным [code]именем[/code].
+				Смотрите [метод add_shader_override].
 			</description>
 		</method>
 		<method name="has_stylebox" qualifiers="const">
@@ -494,77 +494,77 @@
 			<argument index="0" name="name" type="String" />
 			<argument index="1" name="theme_type" type="String" default="&quot;&quot;" />
 			<description>
-				Returns [code]true[/code] if there is a matching [Theme] in the tree that has a stylebox item with the specified [code]name[/code] and [code]theme_type[/code].
-				See [method get_color] for details.
+				Возвращает [code]true[/code], если в дереве есть подходящая [Theme], у которой есть элемент stylebox с указанными [code]name[/code] и [code]theme_type[/code].
+				Подробности см. в [методе get_color].
 			</description>
 		</method>
 		<method name="has_stylebox_override" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Returns [code]true[/code] if there is a local override for a theme [StyleBox] with the specified [code]name[/code] in this [Control] node.
-				See [method add_stylebox_override].
+				Возвращает [code]true[/code], если в данном узле [Control] существует локальное переопределение темы [StyleBox] с указанным [code]именем[/code].
+				Смотрите [метод add_stylebox_override].
 			</description>
 		</method>
 		<method name="is_drag_successful" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if a drag operation is successful. Alternative to [method Viewport.gui_is_drag_successful].
-				Best used with [constant Node.NOTIFICATION_DRAG_END].
+				Возвращает [code]true[/code], если операция перетаскивания прошла успешно. Альтернатива [методу Viewport.gui_is_drag_successful].
+				Лучше всего использовать с [константой Node.NOTIFICATION_DRAG_END].
 			</description>
 		</method>
 		<method name="minimum_size_changed">
 			<return type="void" />
 			<description>
-				Invalidates the size cache in this node and in parent nodes up to toplevel. Intended to be used with [method get_minimum_size] when the return value is changed. Setting [member rect_min_size] directly calls this method automatically.
+				Аннулирует кэш размеров в этом узле и в родительских узлах до верхнего уровня. Предназначен для использования с [методом get_minimum_size], когда возвращаемое значение изменяется. Установка [member rect_min_size] напрямую вызывает этот метод автоматически.
 			</description>
 		</method>
 		<method name="release_focus">
 			<return type="void" />
 			<description>
-				Give up the focus. No other control will be able to receive keyboard or gamepad input.
+				Передайте фокус. Ни один элемент управления не сможет получать ввод с клавиатуры.
 			</description>
 		</method>
 		<method name="remove_color_override">
 			<return type="void" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Removes a theme override for a [Color] with the given [code]name[/code].
+				Удаляет переопределение темы для [Color] с заданным [code]именем[/code].
 			</description>
 		</method>
 		<method name="remove_constant_override">
 			<return type="void" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Removes a theme override for a constant with the given [code]name[/code].
+				Удаляет переопределение темы для константы с заданным [code]именем[/code].
 			</description>
 		</method>
 		<method name="remove_font_override">
 			<return type="void" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Removes a theme override for a [Font] with the given [code]name[/code].
+				Удаляет переопределение темы для [Font] с заданным [code]именем[/code].
 			</description>
 		</method>
 		<method name="remove_icon_override">
 			<return type="void" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Removes a theme override for an icon with the given [code]name[/code].
+				Удаляет переопределение темы для иконки с заданным [code]именем[/code].
 			</description>
 		</method>
 		<method name="remove_shader_override">
 			<return type="void" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Removes a theme override for a shader with the given [code]name[/code].
+				Удаляет переопределение темы для шейдера с заданным [code]именем[/code].
 			</description>
 		</method>
 		<method name="remove_stylebox_override">
 			<return type="void" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Removes a theme override for a [StyleBox] with the given [code]name[/code].
+				Удаляет переопределение темы для [StyleBox] с заданным [code]именем[/code].
 			</description>
 		</method>
 		<method name="set_anchor">
@@ -574,9 +574,9 @@
 			<argument index="2" name="keep_margin" type="bool" default="false" />
 			<argument index="3" name="push_opposite_anchor" type="bool" default="true" />
 			<description>
-				Sets the anchor identified by [code]margin[/code] constant from [enum Margin] enum to value [code]anchor[/code]. A setter method for [member anchor_bottom], [member anchor_left], [member anchor_right] and [member anchor_top].
-				If [code]keep_margin[/code] is [code]true[/code], margins aren't updated after this operation.
-				If [code]push_opposite_anchor[/code] is [code]true[/code] and the opposite anchor overlaps this anchor, the opposite one will have its value overridden. For example, when setting left anchor to 1 and the right anchor has value of 0.5, the right anchor will also get value of 1. If [code]push_opposite_anchor[/code] was [code]false[/code], the left anchor would get value 0.5.
+				Устанавливает якорь, идентифицированный константой [code]margin[/code] из перечисления [enum Margin], в значение [code]anchor[/code]. Метод-установщик для [member anchor_bottom], [member anchor_left], [member anchor_right] и [member anchor_top].
+				Если [code]keep_margin[/code] имеет значение [code]true[/code], поля не обновляются после этой операции.
+				Если [code]push_opposite_anchor[/code] имеет значение [code]true[/code] и противоположный якорь перекрывает этот якорь, то его значение будет переопределено. Например, при установке левого якоря в 1, а правый якорь имеет значение 0,5, правый якорь также получит значение 1. Если бы [code]push_opposite_anchor[/code] был [code]false[/code], левый якорь получил бы значение 0,5.
 			</description>
 		</method>
 		<method name="set_anchor_and_margin">
@@ -586,7 +586,7 @@
 			<argument index="2" name="offset" type="float" />
 			<argument index="3" name="push_opposite_anchor" type="bool" default="false" />
 			<description>
-				Works the same as [method set_anchor], but instead of [code]keep_margin[/code] argument and automatic update of margin, it allows to set the margin offset yourself (see [method set_margin]).
+				Работает так же, как и [method set_anchor], но вместо аргумента [code]keep_margin[/code] и автоматического обновления margin, позволяет самостоятельно задать смещение margin (см. [method set_margin]).
 			</description>
 		</method>
 		<method name="set_anchors_and_margins_preset">
@@ -595,7 +595,7 @@
 			<argument index="1" name="resize_mode" type="int" enum="Control.LayoutPresetMode" default="0" />
 			<argument index="2" name="margin" type="int" default="0" />
 			<description>
-				Sets both anchor preset and margin preset. See [method set_anchors_preset] and [method set_margins_preset].
+				Устанавливает предустановку якорей и предустановку полей. См. [метод set_anchors_preset] и [метод set_margins_preset].
 			</description>
 		</method>
 		<method name="set_anchors_preset">
@@ -603,25 +603,25 @@
 			<argument index="0" name="preset" type="int" enum="Control.LayoutPreset" />
 			<argument index="1" name="keep_margins" type="bool" default="false" />
 			<description>
-				Sets the anchors to a [code]preset[/code] from [enum Control.LayoutPreset] enum. This is the code equivalent to using the Layout menu in the 2D editor.
-				If [code]keep_margins[/code] is [code]true[/code], control's position will also be updated.
+				Устанавливает якоря на [code]предустановку[/code] из перечня [enum Control.LayoutPreset]. Это код, эквивалентный использованию меню Layout в 2D-редакторе.
+				Если [code]keep_margins[/code] имеет значение [code]true[/code], положение контрола также будет обновлено.
 			</description>
 		</method>
 		<method name="set_begin">
 			<return type="void" />
 			<argument index="0" name="position" type="Vector2" />
 			<description>
-				Sets [member margin_left] and [member margin_top] at the same time. Equivalent of changing [member rect_position].
+				Устанавливает [member margin_left] и [member margin_top] одновременно. Эквивалентно изменению [member rect_position].
 			</description>
 		</method>
 		<method name="set_drag_forwarding">
 			<return type="void" />
 			<argument index="0" name="target" type="Control" />
 			<description>
-				Forwards the handling of this control's drag and drop to [code]target[/code] control.
-				Forwarding can be implemented in the target control similar to the methods [method get_drag_data], [method can_drop_data], and [method drop_data] but with two differences:
-				1. The function name must be suffixed with [b]_fw[/b]
-				2. The function must take an extra argument that is the control doing the forwarding
+				Перенаправляет обработку перетаскивания этого элемента управления на [code]target[/code] элемент управления.
+				Переадресация может быть реализована в целевом элементе управления аналогично методам [method get_drag_data], [method can_drop_data] и [method drop_data], но с двумя отличиями:
+				1. Имя функции должно иметь суффикс [b]_fw[/b].
+				2. Функция должна принимать дополнительный аргумент, которым является элемент управления, выполняющий пересылку
 				[codeblock]
 				# ThisControl.gd
 				extends Control
@@ -646,12 +646,12 @@
 			<return type="void" />
 			<argument index="0" name="control" type="Control" />
 			<description>
-				Shows the given control at the mouse pointer. A good time to call this method is in [method get_drag_data]. The control must not be in the scene tree. You should not free the control, and you should not keep a reference to the control beyond the duration of the drag. It will be deleted automatically after the drag has ended.
+				Показывает заданный элемент управления на указателе мыши. Хорошее время для вызова этого метода - [метод get_drag_data]. Элемент управления не должен находиться в дереве сцены. Не следует освобождать элемент управления и хранить ссылку на него дольше, чем длится перетаскивание. Она будет удалена автоматически после завершения перетаскивания.
 				[codeblock]
 				export (Color, RGBA) var color = Color(1, 0, 0, 1)
 
 				func get_drag_data(position):
-				    # Use a control that is not in the tree
+				    # Используйте элемент управления, которого нет в дереве
 				    var cpb = ColorPickerButton.new()
 				    cpb.color = color
 				    cpb.rect_size = Vector2(50, 50)
@@ -664,7 +664,7 @@
 			<return type="void" />
 			<argument index="0" name="position" type="Vector2" />
 			<description>
-				Sets [member margin_right] and [member margin_bottom] at the same time.
+				Одновременно устанавливает [member margin_right] и [member margin_bottom].
 			</description>
 		</method>
 		<method name="set_focus_neighbour">
@@ -672,7 +672,7 @@
 			<argument index="0" name="margin" type="int" enum="Margin" />
 			<argument index="1" name="neighbour" type="NodePath" />
 			<description>
-				Sets the anchor identified by [code]margin[/code] constant from [enum Margin] enum to [Control] at [code]neighbor[/code] node path. A setter method for [member focus_neighbour_bottom], [member focus_neighbour_left], [member focus_neighbour_right] and [member focus_neighbour_top].
+				Устанавливает якорь, идентифицированный константой [code]margin[/code] из перечисления [enum Margin] в [Control] на пути [code]neighbor[/code] узла. Метод-установщик для [member focus_neighbour_bottom], [member focus_neighbour_left], [member focus_neighbour_right] и [member focus_neighbour_top].
 			</description>
 		</method>
 		<method name="set_global_position">
@@ -680,8 +680,8 @@
 			<argument index="0" name="position" type="Vector2" />
 			<argument index="1" name="keep_margins" type="bool" default="false" />
 			<description>
-				Sets the [member rect_global_position] to given [code]position[/code].
-				If [code]keep_margins[/code] is [code]true[/code], control's anchors will be updated instead of margins.
+				Устанавливает [член rect_global_position] на заданную [code]позицию[/code].
+				Если [code]keep_margins[/code] имеет значение [code]true[/code], то вместо полей будут обновлены якоря элемента управления.
 			</description>
 		</method>
 		<method name="set_margin">
@@ -689,7 +689,7 @@
 			<argument index="0" name="margin" type="int" enum="Margin" />
 			<argument index="1" name="offset" type="float" />
 			<description>
-				Sets the margin identified by [code]margin[/code] constant from [enum Margin] enum to given [code]offset[/code]. A setter method for [member margin_bottom], [member margin_left], [member margin_right] and [member margin_top].
+				Устанавливает поле, определяемое константой [code]margin[/code] из перечисления [enum Margin], на заданное [code]смещение[/code]. Метод-установщик для [member margin_bottom], [member margin_left], [member margin_right] и [member margin_top].
 			</description>
 		</method>
 		<method name="set_margins_preset">
@@ -698,9 +698,9 @@
 			<argument index="1" name="resize_mode" type="int" enum="Control.LayoutPresetMode" default="0" />
 			<argument index="2" name="margin" type="int" default="0" />
 			<description>
-				Sets the margins to a [code]preset[/code] from [enum Control.LayoutPreset] enum. This is the code equivalent to using the Layout menu in the 2D editor.
-				Use parameter [code]resize_mode[/code] with constants from [enum Control.LayoutPresetMode] to better determine the resulting size of the [Control]. Constant size will be ignored if used with presets that change size, e.g. [code]PRESET_LEFT_WIDE[/code].
-				Use parameter [code]margin[/code] to determine the gap between the [Control] and the edges.
+				Устанавливает поля на [code]предустановку[/code] из перечня [enum Control.LayoutPreset]. Это код, эквивалентный использованию меню Layout в 2D-редакторе.
+				Используйте параметр [code]resize_mode[/code] с константами из [enum Control.LayoutPresetMode], чтобы лучше определить результирующий размер [Control]. Постоянный размер будет игнорироваться, если используется с пресетами, изменяющими размер, например [code]PRESET_LEFT_WIDE[/code].
+				Используйте параметр [code]margin[/code] для определения зазора между [Control] и краями.
 			</description>
 		</method>
 		<method name="set_position">
@@ -708,15 +708,15 @@
 			<argument index="0" name="position" type="Vector2" />
 			<argument index="1" name="keep_margins" type="bool" default="false" />
 			<description>
-				Sets the [member rect_position] to given [code]position[/code].
-				If [code]keep_margins[/code] is [code]true[/code], control's anchors will be updated instead of margins.
+				Устанавливает [член rect_position] в заданную [code]позицию[/code].
+				Если [code]keep_margins[/code] имеет значение [code]true[/code], то вместо полей будут обновлены якоря элемента управления.
 			</description>
 		</method>
 		<method name="set_rotation">
 			<return type="void" />
 			<argument index="0" name="radians" type="float" />
 			<description>
-				Sets the rotation (in radians).
+				Устанавливает вращение (в радианах).
 			</description>
 		</method>
 		<method name="set_size">
@@ -724,395 +724,394 @@
 			<argument index="0" name="size" type="Vector2" />
 			<argument index="1" name="keep_margins" type="bool" default="false" />
 			<description>
-				Sets the size (see [member rect_size]).
-				If [code]keep_margins[/code] is [code]true[/code], control's anchors will be updated instead of margins.
+				Устанавливает размер (см. [member rect_size]).
+				Если [code]keep_margins[/code] имеет значение [code]true[/code], то вместо полей будут обновляться якоря элемента управления.
 			</description>
 		</method>
 		<method name="show_modal">
 			<return type="void" />
 			<argument index="0" name="exclusive" type="bool" default="false" />
 			<description>
-				Displays a control as modal. Control must be a subwindow. Modal controls capture the input signals until closed or the area outside them is accessed. When a modal control loses focus, or the ESC key is pressed, they automatically hide. Modal controls are used extensively for popup dialogs and menus.
-				If [code]exclusive[/code] is [code]true[/code], other controls will not receive input and clicking outside this control will not close it.
+				Отображает элемент управления как модальный. Элемент управления должен быть вложенным окном. Модальные элементы управления фиксируют входные сигналы до тех пор, пока не будут закрыты или пока не будет получен доступ к области за их пределами. Когда модальный элемент управления теряет фокус или нажимается клавиша ESC, он автоматически скрывается. Модальные элементы управления широко используются для всплывающих диалогов и меню.
+				Если [code]exclusive[/code] имеет значение [code]true[/code], другие элементы управления не будут получать входные данные, а щелчок за пределами этого элемента управления не приведет к его закрытию.
 			</description>
 		</method>
 		<method name="warp_mouse">
 			<return type="void" />
 			<argument index="0" name="to_position" type="Vector2" />
 			<description>
-				Moves the mouse cursor to [code]to_position[/code], relative to [member rect_position] of this [Control].
+				Перемещает курсор мыши в [code]to_position[/code], относительно [member rect_position] данного [Control].
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="anchor_bottom" type="float" setter="_set_anchor" getter="get_anchor" default="0.0">
-			Anchors the bottom edge of the node to the origin, the center, or the end of its parent control. It changes how the bottom margin updates when the node moves or changes size. You can use one of the [enum Anchor] constants for convenience.
+			Привязывает нижний край узла к началу, центру или концу его родительского элемента управления. От этого зависит, как обновляется нижняя граница при перемещении или изменении размера узла. Для удобства можно использовать одну из констант [enum Anchor].
 		</member>
 		<member name="anchor_left" type="float" setter="_set_anchor" getter="get_anchor" default="0.0">
-			Anchors the left edge of the node to the origin, the center or the end of its parent control. It changes how the left margin updates when the node moves or changes size. You can use one of the [enum Anchor] constants for convenience.
+			Привязывает левый край узла к началу, центру или концу его родительского элемента управления. От этого зависит, как обновляется левая граница при перемещении или изменении размера узла. Для удобства можно использовать одну из констант [enum Anchor].
 		</member>
 		<member name="anchor_right" type="float" setter="_set_anchor" getter="get_anchor" default="0.0">
-			Anchors the right edge of the node to the origin, the center or the end of its parent control. It changes how the right margin updates when the node moves or changes size. You can use one of the [enum Anchor] constants for convenience.
+			Привязывает правый край узла к началу, центру или концу его родительского элемента управления. От этого зависит, как обновляется правый край при перемещении или изменении размера узла. Для удобства можно использовать одну из констант [enum Anchor].
 		</member>
 		<member name="anchor_top" type="float" setter="_set_anchor" getter="get_anchor" default="0.0">
-			Anchors the top edge of the node to the origin, the center or the end of its parent control. It changes how the top margin updates when the node moves or changes size. You can use one of the [enum Anchor] constants for convenience.
+			Привязывает верхний край узла к началу, центру или концу его родительского элемента управления. От этого зависит, как обновляется верхняя граница при перемещении или изменении размера узла. Для удобства можно использовать одну из констант [enum Anchor].
 		</member>
 		<member name="focus_mode" type="int" setter="set_focus_mode" getter="get_focus_mode" enum="Control.FocusMode" default="0">
-			The focus access mode for the control (None, Click or All). Only one Control can be focused at the same time, and it will receive keyboard, gamepad, and mouse signals.
+			Режим доступа к фокусу для элемента управления (None, Click или All). Одновременно в фокусе может находиться только один элемент управления, и он будет принимать сигналы клавиатуры.
 		</member>
 		<member name="focus_neighbour_bottom" type="NodePath" setter="set_focus_neighbour" getter="get_focus_neighbour" default="NodePath(&quot;&quot;)">
-			Tells Godot which node it should give focus to if the user presses the down arrow on the keyboard or down on a gamepad by default. You can change the key by editing the [code]ui_down[/code] input action. The node must be a [Control]. If this property is not set, Godot will give focus to the closest [Control] to the bottom of this one.
+			Указывает Godot, какому узлу он должен передать фокус клавиатуры, если пользователь нажмет стрелку вниз на клавиатуре или вниз на геймпаде по умолчанию. Вы можете изменить клавишу, отредактировав действие ввода [code]ui_down[/code]. Узел должен быть [Control]. Если это свойство не задано, Godot передаст фокус ближайшему [Control], расположенному снизу от этого.
 		</member>
 		<member name="focus_neighbour_left" type="NodePath" setter="set_focus_neighbour" getter="get_focus_neighbour" default="NodePath(&quot;&quot;)">
-			Tells Godot which node it should give focus to if the user presses the left arrow on the keyboard or left on a gamepad by default. You can change the key by editing the [code]ui_left[/code] input action. The node must be a [Control]. If this property is not set, Godot will give focus to the closest [Control] to the left of this one.
+			Указывает Godot, какому узлу он должен передать фокус клавиатуры, если пользователь по умолчанию нажимает стрелку влево на клавиатуре или влево на геймпаде. Вы можете изменить клавишу, отредактировав действие ввода [code]ui_left[/code]. Узел должен быть [Control]. Если это свойство не задано, Godot передаст фокус ближайшему [Control] слева от этого.
 		</member>
 		<member name="focus_neighbour_right" type="NodePath" setter="set_focus_neighbour" getter="get_focus_neighbour" default="NodePath(&quot;&quot;)">
-			Tells Godot which node it should give focus to if the user presses the right arrow on the keyboard or right on a gamepad by default. You can change the key by editing the [code]ui_right[/code] input action. The node must be a [Control]. If this property is not set, Godot will give focus to the closest [Control] to the bottom of this one.
+			Указывает Godot, какому узлу он должен передать фокус клавиатуры, если пользователь нажмет стрелку вправо на клавиатуре или вправо на геймпаде по умолчанию. Вы можете изменить клавишу, отредактировав действие ввода [code]ui_right[/code]. Узел должен быть [Control]. Если это свойство не задано, Godot передаст фокус ближайшему [Control], расположенному снизу от этого.
 		</member>
 		<member name="focus_neighbour_top" type="NodePath" setter="set_focus_neighbour" getter="get_focus_neighbour" default="NodePath(&quot;&quot;)">
-			Tells Godot which node it should give focus to if the user presses the top arrow on the keyboard or top on a gamepad by default. You can change the key by editing the [code]ui_top[/code] input action. The node must be a [Control]. If this property is not set, Godot will give focus to the closest [Control] to the bottom of this one.
+			Указывает Godot, какому узлу он должен передать фокус клавиатуры, если пользователь нажмет стрелку top на клавиатуре или top на геймпаде по умолчанию. Вы можете изменить клавишу, отредактировав действие ввода [code]ui_top[/code]. Узел должен быть [Control]. Если это свойство не задано, Godot передаст фокус ближайшему [Control], расположенному снизу от этого узла.
 		</member>
 		<member name="focus_next" type="NodePath" setter="set_focus_next" getter="get_focus_next" default="NodePath(&quot;&quot;)">
-			Tells Godot which node it should give focus to if the user presses [kbd]Tab[/kbd] on a keyboard by default. You can change the key by editing the [code]ui_focus_next[/code] input action.
-			If this property is not set, Godot will select a "best guess" based on surrounding nodes in the scene tree.
+			Указывает Godot, какому узлу он должен передать фокус клавиатуры, если пользователь по умолчанию нажимает Tab на клавиатуре. Вы можете изменить клавишу, отредактировав входное действие [code]ui_focus_next[/code].
+			Если это свойство не задано, Godot выберет "наилучшее предположение" на основе окружающих узлов в дереве сцены.
 		</member>
 		<member name="focus_previous" type="NodePath" setter="set_focus_previous" getter="get_focus_previous" default="NodePath(&quot;&quot;)">
-			Tells Godot which node it should give focus to if the user presses [kbd]Shift + Tab[/kbd] on a keyboard by default. You can change the key by editing the [code]ui_focus_prev[/code] input action.
-			If this property is not set, Godot will select a "best guess" based on surrounding nodes in the scene tree.
+			Указывает Godot, какому узлу он должен передать фокус клавиатуры, если пользователь по умолчанию нажимает Shift+Tab на клавиатуре. Вы можете изменить клавишу, отредактировав входное действие [code]ui_focus_prev[/code].
+			Если это свойство не задано, Godot будет выбирать "лучшее предположение" на основе окружающих узлов в дереве сцены.
 		</member>
 		<member name="grow_horizontal" type="int" setter="set_h_grow_direction" getter="get_h_grow_direction" enum="Control.GrowDirection" default="1">
-			Controls the direction on the horizontal axis in which the control should grow if its horizontal minimum size is changed to be greater than its current size, as the control always has to be at least the minimum size.
+			Управляет направлением горизонтальной оси, в котором должен расти элемент управления, если его минимальный размер по горизонтали изменяется на больший, чем текущий, так как элемент всегда должен быть не меньше минимального размера.
 		</member>
 		<member name="grow_vertical" type="int" setter="set_v_grow_direction" getter="get_v_grow_direction" enum="Control.GrowDirection" default="1">
-			Controls the direction on the vertical axis in which the control should grow if its vertical minimum size is changed to be greater than its current size, as the control always has to be at least the minimum size.
+			Управляет направлением вертикальной оси, в котором должен расти элемент управления, если его минимальный размер по вертикали изменяется на больший, чем текущий, так как элемент всегда должен быть не меньше минимального размера.
 		</member>
 		<member name="hint_tooltip" type="String" setter="set_tooltip" getter="_get_tooltip" default="&quot;&quot;">
-			Changes the tooltip text. The tooltip appears when the user's mouse cursor stays idle over this control for a few moments, provided that the [member mouse_filter] property is not [constant MOUSE_FILTER_IGNORE]. You can change the time required for the tooltip to appear with [code]gui/timers/tooltip_delay_sec[/code] option in Project Settings.
-			The tooltip popup will use either a default implementation, or a custom one that you can provide by overriding [method _make_custom_tooltip]. The default tooltip includes a [PopupPanel] and [Label] whose theme properties can be customized using [Theme] methods with the [code]"TooltipPanel"[/code] and [code]"TooltipLabel"[/code] respectively. For example:
+			Изменяет текст всплывающей подсказки. Подсказка появляется, когда курсор мыши пользователя остается незадействованным над этим элементом управления в течение нескольких мгновений, при условии, что свойство [member mouse_filter] не является [constant MOUSE_FILTER_IGNORE]. Вы можете изменить время появления всплывающей подсказки с помощью опции [code]gui/timers/tooltip_delay_sec[/code] в Настройках проекта.
+			Всплывающая подсказка будет использовать либо реализацию по умолчанию, либо пользовательскую, которую вы можете создать, переопределив [метод _make_custom_tooltip]. Всплывающая подсказка по умолчанию включает в себя [PopupPanel] и [Label], свойства темы которых могут быть настроены с помощью методов [Theme] с [code]"TooltipPanel"[/code] и [code]"TooltipLabel"[/code] соответственно. Например:
 			[codeblock]
 			var style_box = StyleBoxFlat.new()
 			style_box.set_bg_color(Color(1, 1, 0))
 			style_box.set_border_width_all(2)
-			# We assume here that the `theme` property has been assigned a custom Theme beforehand.
+			# Здесь мы предполагаем, что свойству `theme` заранее назначена пользовательская тема.
 			theme.set_stylebox("panel", "TooltipPanel", style_box)
 			theme.set_color("font_color", "TooltipLabel", Color(0, 1, 1))
 			[/codeblock]
 		</member>
 		<member name="input_pass_on_modal_close_click" type="bool" setter="set_pass_on_modal_close_click" getter="get_pass_on_modal_close_click" default="true">
-			Enables whether input should propagate when you close the control as modal.
-			If [code]false[/code], stops event handling at the viewport input event handling. The viewport first hides the modal and after marks the input as handled.
+			Включает, должен ли вход распространяться при закрытии элемента управления как модального.
+			Если [code]false[/code], прекращается обработка событий ввода на вьюпорте. Сначала область просмотра скрывает модальный элемент, а затем отмечает вход как обработанный.
 		</member>
 		<member name="margin_bottom" type="float" setter="set_margin" getter="get_margin" default="0.0">
-			Distance between the node's bottom edge and its parent control, based on [member anchor_bottom].
-			Margins are often controlled by one or multiple parent [Container] nodes, so you should not modify them manually if your node is a direct child of a [Container]. Margins update automatically when you move or resize the node.
+			Расстояние между нижним краем узла и его родительским элементом управления, основанное на [member anchor_bottom].
+			Отступы часто контролируются одним или несколькими родительскими узлами [Container], поэтому не следует изменять их вручную, если ваш узел является прямым дочерним узлом [Container]. Отступы обновляются автоматически при перемещении или изменении размера узла.
 		</member>
 		<member name="margin_left" type="float" setter="set_margin" getter="get_margin" default="0.0">
-			Distance between the node's left edge and its parent control, based on [member anchor_left].
-			Margins are often controlled by one or multiple parent [Container] nodes, so you should not modify them manually if your node is a direct child of a [Container]. Margins update automatically when you move or resize the node.
+			Расстояние между левым краем узла и его родительским элементом управления, основанное на [member anchor_left].
+			Отступы часто контролируются одним или несколькими родительскими узлами [Container], поэтому не следует изменять их вручную, если ваш узел является прямым дочерним узлом [Container]. Отступы обновляются автоматически при перемещении или изменении размера узла.
 		</member>
 		<member name="margin_right" type="float" setter="set_margin" getter="get_margin" default="0.0">
-			Distance between the node's right edge and its parent control, based on [member anchor_right].
-			Margins are often controlled by one or multiple parent [Container] nodes, so you should not modify them manually if your node is a direct child of a [Container]. Margins update automatically when you move or resize the node.
+			Расстояние между правым краем узла и его родительским элементом управления, основанное на [member anchor_right].
+			Отступы часто контролируются одним или несколькими родительскими узлами [Container], поэтому не следует изменять их вручную, если ваш узел является прямым дочерним узлом [Container]. Отступы обновляются автоматически при перемещении или изменении размера узла.
 		</member>
 		<member name="margin_top" type="float" setter="set_margin" getter="get_margin" default="0.0">
-			Distance between the node's top edge and its parent control, based on [member anchor_top].
-			Margins are often controlled by one or multiple parent [Container] nodes, so you should not modify them manually if your node is a direct child of a [Container]. Margins update automatically when you move or resize the node.
+			Расстояние между верхним краем узла и его родительским элементом управления, основанное на [member anchor_top].
+			Отступы часто контролируются одним или несколькими родительскими узлами [Container], поэтому не следует изменять их вручную, если ваш узел является прямым дочерним узлом [Container]. Отступы обновляются автоматически при перемещении или изменении размера узла.
 		</member>
 		<member name="mouse_default_cursor_shape" type="int" setter="set_default_cursor_shape" getter="get_default_cursor_shape" enum="Control.CursorShape" default="0">
-			The default cursor shape for this control. Useful for Godot plugins and applications or games that use the system's mouse cursors.
-			[b]Note:[/b] On Linux, shapes may vary depending on the cursor theme of the system.
+			Форма курсора по умолчанию для этого элемента управления. Пригодится для плагинов Godot и приложений или игр, использующих курсоры мыши в системе.
+			[b]Примечание:[/b] В Linux форма курсора может отличаться в зависимости от темы курсора в системе.
 		</member>
 		<member name="mouse_filter" type="int" setter="set_mouse_filter" getter="get_mouse_filter" enum="Control.MouseFilter" default="0">
-			Controls whether the control will be able to receive mouse button input events through [method _gui_input] and how these events should be handled. Also controls whether the control can receive the [signal mouse_entered], and [signal mouse_exited] signals. See the constants to learn what each does.
+			Определяет, будет ли элемент управления получать события ввода кнопок мыши через [метод _gui_input] и как эти события должны обрабатываться. Также управляет тем, может ли элемент управления принимать сигналы [signal mouse_entered] и [signal mouse_exited]. Чтобы узнать, что делает каждая из констант, смотрите константы.
 		</member>
-		<member name="physics_interpolation_mode" type="int" setter="set_physics_interpolation_mode" getter="get_physics_interpolation_mode" overrides="Node" enum="Node.PhysicsInterpolationMode" default="1" />
 		<member name="rect_clip_content" type="bool" setter="set_clip_contents" getter="is_clipping_contents" default="false">
-			Enables whether rendering of [CanvasItem] based children should be clipped to this control's rectangle. If [code]true[/code], parts of a child which would be visibly outside of this control's rectangle will not be rendered.
+			Разрешает, чтобы рендеринг дочерних элементов [CanvasItem] был обрезан до прямоугольника этого элемента управления. Если [code]true[/code], то части дочернего элемента, которые будут находиться за пределами прямоугольника этого элемента управления, не будут отрисовываться.
 		</member>
 		<member name="rect_global_position" type="Vector2" setter="_set_global_position" getter="get_global_position">
-			The node's global position, relative to the world (usually to the top-left corner of the window).
+			Глобальная позиция узла относительно мира (обычно в левом верхнем углу окна).
 		</member>
 		<member name="rect_min_size" type="Vector2" setter="set_custom_minimum_size" getter="get_custom_minimum_size" default="Vector2( 0, 0 )">
-			The minimum size of the node's bounding rectangle. If you set it to a value greater than (0, 0), the node's bounding rectangle will always have at least this size, even if its content is smaller. If it's set to (0, 0), the node sizes automatically to fit its content, be it a texture or child nodes.
+			Минимальный размер ограничивающего прямоугольника узла. Если вы зададите значение больше (0, 0), то ограничивающий прямоугольник узла всегда будет иметь как минимум этот размер, даже если его содержимое меньше. Если установить значение (0, 0), узел будет автоматически подгонять размеры под свое содержимое, будь то текстура или дочерние узлы.
 		</member>
 		<member name="rect_pivot_offset" type="Vector2" setter="set_pivot_offset" getter="get_pivot_offset" default="Vector2( 0, 0 )">
-			By default, the node's pivot is its top-left corner. When you change its [member rect_rotation] or [member rect_scale], it will rotate or scale around this pivot. Set this property to [member rect_size] / 2 to pivot around the Control's center.
+			По умолчанию шарниром узла является его левый верхний угол. Когда вы изменяете [member rect_rotation] или [member rect_scale], он будет вращаться или масштабироваться вокруг этой точки опоры. Установите это свойство на [member rect_size] / 2, чтобы поворачивать узел вокруг центра элемента управления.
 		</member>
 		<member name="rect_position" type="Vector2" setter="_set_position" getter="get_position" default="Vector2( 0, 0 )">
-			The node's position, relative to its parent. It corresponds to the rectangle's top-left corner. The property is not affected by [member rect_pivot_offset].
+			Положение узла относительно его родителя. Она соответствует левому верхнему углу прямоугольника. На это свойство не влияет [member rect_pivot_offset].
 		</member>
 		<member name="rect_rotation" type="float" setter="set_rotation_degrees" getter="get_rotation_degrees" default="0.0">
-			The node's rotation around its pivot, in degrees. See [member rect_pivot_offset] to change the pivot's position.
+			Поворот узла вокруг точки вращения, в градусах. Для изменения положения шарнира смотрите [member rect_pivot_offset].
 		</member>
 		<member name="rect_scale" type="Vector2" setter="set_scale" getter="get_scale" default="Vector2( 1, 1 )">
-			The node's scale, relative to its [member rect_size]. Change this property to scale the node around its [member rect_pivot_offset]. The Control's [member hint_tooltip] will also scale according to this value.
-			[b]Note:[/b] This property is mainly intended to be used for animation purposes. Text inside the Control will look pixelated or blurry when the Control is scaled. To support multiple resolutions in your project, use an appropriate viewport stretch mode as described in the [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html]documentation[/url] instead of scaling Controls individually.
-			[b]Note:[/b] If the Control node is a child of a [Container] node, the scale will be reset to [code]Vector2(1, 1)[/code] when the scene is instanced. To set the Control's scale when it's instanced, wait for one frame using [code]yield(get_tree(), "idle_frame")[/code] then set its [member rect_scale] property.
+			Масштаб узла относительно его [member rect_size]. Измените это свойство, чтобы масштабировать узел вокруг его [член rect_pivot_offset]. В соответствии с этим значением будет масштабироваться и [член hint_tooltip] элемента управления.
+			[b]Примечание:[/b] Это свойство в основном предназначено для использования в целях анимации. Текст внутри элемента управления будет выглядеть пикселизированным или размытым при масштабировании элемента управления. Для поддержки нескольких разрешений в вашем проекте используйте соответствующий режим растяжения области просмотра, как описано в [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html]документации[/url], вместо того чтобы масштабировать Controls по отдельности.
+			[b]Примечание:[/b] Если узел Control является дочерним узлом узла [Container], то при инстанцировании сцены масштаб будет сброшен на [code]Vector2(1, 1)[/code]. Чтобы установить масштаб Control при инстансе, подождите один кадр, используя [code]yield(get_tree(), "idle_frame")[/code], а затем установите его свойство [member rect_scale].
 		</member>
 		<member name="rect_size" type="Vector2" setter="_set_size" getter="get_size" default="Vector2( 0, 0 )">
-			The size of the node's bounding rectangle, in pixels. [Container] nodes update this property automatically.
+			Размер ограничивающего прямоугольника узла, в пикселях. Узлы [Container] обновляют это свойство автоматически.
 		</member>
 		<member name="size_flags_horizontal" type="int" setter="set_h_size_flags" getter="get_h_size_flags" default="1">
-			Tells the parent [Container] nodes how they should resize and place the node on the X axis. Use one of the [enum SizeFlags] constants to change the flags. See the constants to learn what each does.
+			Сообщает родительским узлам [Container], как они должны изменить размер и разместить узел по оси X. Для изменения флагов используйте одну из констант [enum SizeFlags]. Ознакомьтесь с константами, чтобы узнать, что каждая из них делает.
 		</member>
 		<member name="size_flags_stretch_ratio" type="float" setter="set_stretch_ratio" getter="get_stretch_ratio" default="1.0">
-			If the node and at least one of its neighbours uses the [constant SIZE_EXPAND] size flag, the parent [Container] will let it take more or less space depending on this property. If this node has a stretch ratio of 2 and its neighbour a ratio of 1, this node will take two thirds of the available space.
+			Если узел и хотя бы один из его соседей используют флаг размера [constant SIZE_EXPAND], родительский [Container] позволит ему занять больше или меньше места в зависимости от этого свойства. Если этот узел имеет коэффициент растяжения 2, а его сосед - коэффициент 1, то этот узел займет две трети доступного пространства.
 		</member>
 		<member name="size_flags_vertical" type="int" setter="set_v_size_flags" getter="get_v_size_flags" default="1">
-			Tells the parent [Container] nodes how they should resize and place the node on the Y axis. Use one of the [enum SizeFlags] constants to change the flags. See the constants to learn what each does.
+			Сообщает родительским узлам [Container], как они должны изменить размер и разместить узел по оси Y. Для изменения флагов используйте одну из констант [enum SizeFlags]. Ознакомьтесь с константами, чтобы узнать, что каждая из них делает.
 		</member>
 		<member name="theme" type="Theme" setter="set_theme" getter="get_theme">
-			Changing this property replaces the current [Theme] resource this node and all its [Control] children use.
+			Изменение этого свойства заменяет текущий ресурс [Theme], используемый этим узлом и всеми его дочерними узлами [Control].
 		</member>
 		<member name="theme_type_variation" type="String" setter="set_theme_type_variation" getter="get_theme_type_variation" default="&quot;&quot;">
-			The name of a theme type variation used by this [Control] to look up its own theme items. When empty, the class name of the node is used (e.g. [code]Button[/code] for the [Button] control), as well as the class names of all parent classes (in order of inheritance).
-			When set, this property gives the highest priority to the type of the specified name. This type can in turn extend another type, forming a dependency chain. See [method Theme.set_type_variation]. If the theme item cannot be found using this type or its base types, lookup falls back on the class names.
-			[b]Note:[/b] To look up [Control]'s own items use various [code]get_*[/code] methods without specifying [code]theme_type[/code].
-			[b]Note:[/b] Theme items are looked for in the tree order, from branch to root, where each [Control] node is checked for its [member theme] property. The earliest match against any type/class name is returned. The project-level Theme and the default Theme are checked last.
+			Имя вариации типа темы, используемой данным элементом [Control] для поиска собственных элементов темы. Если свойство пустое, используется имя класса узла (например, [code]Button[/code] для элемента управления [Button]), а также имена классов всех родительских классов (в порядке наследования).
+			Когда это свойство установлено, оно дает наивысший приоритет типу с указанным именем. Этот тип, в свою очередь, может расширять другой тип, образуя цепочку зависимостей. Смотрите [метод Theme.set_type_variation]. Если элемент темы не может быть найден с помощью этого типа или его базовых типов, поиск возвращается к именам классов.
+			[b]Примечание:[/b] Для поиска собственных элементов [Control] используйте различные методы [code]get_*[/code], не указывая [code]theme_type[/code].
+			[b]Примечание:[/b] Элементы темы ищутся в порядке дерева, от ветви к корню, где каждый узел [Control] проверяется на наличие свойства [member theme]. Возвращается самое раннее совпадение с именем любого типа/класса. Тема уровня проекта и тема по умолчанию проверяются в последнюю очередь.
 		</member>
 	</members>
 	<signals>
 		<signal name="focus_entered">
 			<description>
-				Emitted when the node gains focus.
+				Выдается, когда узел получает фокус клавиатуры.
 			</description>
 		</signal>
 		<signal name="focus_exited">
 			<description>
-				Emitted when the node loses focus.
+				Выдается, когда узел теряет фокус клавиатуры.
 			</description>
 		</signal>
 		<signal name="gui_input">
 			<argument index="0" name="event" type="InputEvent" />
 			<description>
-				Emitted when the node receives an [InputEvent].
+				Выдается, когда узел получает событие [InputEvent].
 			</description>
 		</signal>
 		<signal name="minimum_size_changed">
 			<description>
-				Emitted when the node's minimum size changes.
+				Выдается при изменении минимального размера узла.
 			</description>
 		</signal>
 		<signal name="modal_closed">
 			<description>
-				Emitted when a modal [Control] is closed. See [method show_modal].
+				Выдается при закрытии модального элемента [Control]. См. [метод show_modal].
 			</description>
 		</signal>
 		<signal name="mouse_entered">
 			<description>
-				Emitted when the mouse enters the control's [code]Rect[/code] area, provided its [member mouse_filter] lets the event reach it.
-				[b]Note:[/b] [signal mouse_entered] will not be emitted if the mouse enters a child [Control] node before entering the parent's [code]Rect[/code] area, at least until the mouse is moved to reach the parent's [code]Rect[/code] area.
+				Выдается, когда мышь попадает в область [code]Rect[/code] элемента управления, если его [member mouse_filter] позволяет событию достичь его.
+				[b]Примечание:[/b] [сигнал mouse_entered] не будет выдан, если мышь попадает в дочерний узел [Control] до того, как попадет в область [code]Rect[/code] родительского элемента управления, по крайней мере до тех пор, пока мышь не будет перемещена, чтобы достичь области [code]Rect[/code] родительского элемента управления.
 			</description>
 		</signal>
 		<signal name="mouse_exited">
 			<description>
-				Emitted when the mouse leaves the control's [code]Rect[/code] area, provided its [member mouse_filter] lets the event reach it.
-				[b]Note:[/b] [signal mouse_exited] will be emitted if the mouse enters a child [Control] node, even if the mouse cursor is still inside the parent's [code]Rect[/code] area.
-				If you want to check whether the mouse truly left the area, ignoring any top nodes, you can use code like this:
+				Выдается, когда мышь покидает область [code]Rect[/code] элемента управления, если его [member mouse_filter] позволяет событию достичь ее.
+				[b]Примечание:[/b] [сигнал mouse_exited] будет выдан, если мышь войдет в дочерний узел [Control], даже если курсор мыши все еще находится внутри области [code]Rect[/code] родительского элемента.
+				Если вы хотите проверить, действительно ли мышь покинула область, игнорируя все верхние узлы, вы можете использовать код, подобный этому:
 				[codeblock]
 				func _on_mouse_exited():
 				    if not Rect2(Vector2(), rect_size).has_point(get_local_mouse_position()):
-				        # Not hovering over area.
+				        # Не парит над территорией.
 				[/codeblock]
 			</description>
 		</signal>
 		<signal name="resized">
 			<description>
-				Emitted when the control changes size.
+				Выдается при изменении размера элемента управления.
 			</description>
 		</signal>
 		<signal name="size_flags_changed">
 			<description>
-				Emitted when one of the size flags changes. See [member size_flags_horizontal] and [member size_flags_vertical].
+				Выдается при изменении одного из флагов размера. См. [member size_flags_horizontal] и [member size_flags_vertical].
 			</description>
 		</signal>
 	</signals>
 	<constants>
 		<constant name="FOCUS_NONE" value="0" enum="FocusMode">
-			The node cannot grab focus. Use with [member focus_mode].
+			Узел не может захватить фокус. Используется с [member focus_mode].
 		</constant>
 		<constant name="FOCUS_CLICK" value="1" enum="FocusMode">
-			The node can only grab focus on mouse clicks. Use with [member focus_mode].
+			Узел может захватить фокус только при щелчке мыши. Используется с [member focus_mode].
 		</constant>
 		<constant name="FOCUS_ALL" value="2" enum="FocusMode">
-			The node can grab focus on mouse click, using the arrows and the Tab keys on the keyboard, or using the D-pad buttons on a gamepad. Use with [member focus_mode].
+			Узел может захватить фокус по щелчку мыши или с помощью стрелок и клавиш Tab на клавиатуре. Используется с [member focus_mode].
 		</constant>
 		<constant name="NOTIFICATION_RESIZED" value="40">
-			Sent when the node changes size. Use [member rect_size] to get the new size.
+			Отправляется при изменении размера узла. Используйте [member rect_size], чтобы получить новый размер.
 		</constant>
 		<constant name="NOTIFICATION_MOUSE_ENTER" value="41">
-			Sent when the mouse pointer enters the node.
+			Отправляется, когда указатель мыши попадает в узел.
 		</constant>
 		<constant name="NOTIFICATION_MOUSE_EXIT" value="42">
-			Sent when the mouse pointer exits the node.
+			Отправляется, когда указатель мыши выходит из узла.
 		</constant>
 		<constant name="NOTIFICATION_FOCUS_ENTER" value="43">
-			Sent when the node grabs focus.
+			Отправляется, когда узел захватывает фокус.
 		</constant>
 		<constant name="NOTIFICATION_FOCUS_EXIT" value="44">
-			Sent when the node loses focus.
+			Отправляется, когда узел теряет фокус.
 		</constant>
 		<constant name="NOTIFICATION_THEME_CHANGED" value="45">
-			Sent when the node's [member theme] changes, right before Godot redraws the control. Happens when you call one of the [code]add_*_override[/code] methods.
+			Отправляется при изменении [member theme] узла, непосредственно перед тем, как Godot перерисовывает элемент управления. Происходит при вызове одного из методов [code]add_*_override[/code].
 		</constant>
 		<constant name="NOTIFICATION_MODAL_CLOSE" value="46">
-			Sent when an open modal dialog closes. See [method show_modal].
+			Отправляется при закрытии открытого модального диалога. См. раздел [метод show_modal].
 		</constant>
 		<constant name="NOTIFICATION_SCROLL_BEGIN" value="47">
-			Sent when this node is inside a [ScrollContainer] which has begun being scrolled.
+			Отправляется, когда этот узел находится внутри [ScrollContainer], который начал прокручиваться.
 		</constant>
 		<constant name="NOTIFICATION_SCROLL_END" value="48">
-			Sent when this node is inside a [ScrollContainer] which has stopped being scrolled.
+			Отправляется, когда этот узел находится внутри [ScrollContainer], который перестал прокручиваться.
 		</constant>
 		<constant name="CURSOR_ARROW" value="0" enum="CursorShape">
-			Show the system's arrow mouse cursor when the user hovers the node. Use with [member mouse_default_cursor_shape].
+			Показывает системный курсор мыши со стрелкой, когда пользователь наводит курсор на узел. Используется с [member mouse_default_cursor_shape].
 		</constant>
 		<constant name="CURSOR_IBEAM" value="1" enum="CursorShape">
-			Show the system's I-beam mouse cursor when the user hovers the node. The I-beam pointer has a shape similar to "I". It tells the user they can highlight or insert text.
+			Показывает двутавровый курсор мыши системы, когда пользователь наводит курсор на узел. I-образный указатель имеет форму, похожую на букву "I". Он указывает пользователю, что он может выделить или вставить текст.
 		</constant>
 		<constant name="CURSOR_POINTING_HAND" value="2" enum="CursorShape">
-			Show the system's pointing hand mouse cursor when the user hovers the node.
+			Показывает курсор мыши системы, когда пользователь наводит курсор на узел.
 		</constant>
 		<constant name="CURSOR_CROSS" value="3" enum="CursorShape">
-			Show the system's cross mouse cursor when the user hovers the node.
+			Показывает крестообразный курсор мыши системы, когда пользователь наводит курсор на узел.
 		</constant>
 		<constant name="CURSOR_WAIT" value="4" enum="CursorShape">
-			Show the system's wait mouse cursor when the user hovers the node. Often an hourglass.
+			Показывает ожидающий курсор мыши системы, когда пользователь наводит курсор на узел. Часто это песочные часы.
 		</constant>
 		<constant name="CURSOR_BUSY" value="5" enum="CursorShape">
-			Show the system's busy mouse cursor when the user hovers the node. Often an arrow with a small hourglass.
+			Показывает занятый системой курсор мыши, когда пользователь наводит курсор на узел. Часто это стрелка с маленькими песочными часами.
 		</constant>
 		<constant name="CURSOR_DRAG" value="6" enum="CursorShape">
-			Show the system's drag mouse cursor, often a closed fist or a cross symbol, when the user hovers the node. It tells the user they're currently dragging an item, like a node in the Scene dock.
+			Показывайте системный курсор мыши, часто в виде закрытого кулака или символа креста, когда пользователь наводит курсор на узел. Это говорит пользователю о том, что в данный момент он перетаскивает элемент, например узел в доке сцены.
 		</constant>
 		<constant name="CURSOR_CAN_DROP" value="7" enum="CursorShape">
-			Show the system's drop mouse cursor when the user hovers the node. It can be an open hand. It tells the user they can drop an item they're currently grabbing, like a node in the Scene dock.
+			Показывайте падающий курсор мыши системы, когда пользователь наводит курсор на узел. Это может быть открытая рука. Это говорит пользователю, что он может бросить элемент, который он в данный момент захватывает, например узел в доке сцены.
 		</constant>
 		<constant name="CURSOR_FORBIDDEN" value="8" enum="CursorShape">
-			Show the system's forbidden mouse cursor when the user hovers the node. Often a crossed circle.
+			Показывает запрещенный системой курсор мыши, когда пользователь наводит курсор на узел. Часто это перечеркнутый круг.
 		</constant>
 		<constant name="CURSOR_VSIZE" value="9" enum="CursorShape">
-			Show the system's vertical resize mouse cursor when the user hovers the node. A double-headed vertical arrow. It tells the user they can resize the window or the panel vertically.
+			Показывает вертикальный курсор мыши системы для изменения размера, когда пользователь наводит курсор на узел. Двуглавая вертикальная стрелка. Она указывает пользователю, что он может изменить размер окна или панели по вертикали.
 		</constant>
 		<constant name="CURSOR_HSIZE" value="10" enum="CursorShape">
-			Show the system's horizontal resize mouse cursor when the user hovers the node. A double-headed horizontal arrow. It tells the user they can resize the window or the panel horizontally.
+			Показывает горизонтальный курсор мыши системы для изменения размера, когда пользователь наводит курсор на узел. Двуглавая горизонтальная стрелка. Она указывает пользователю, что он может изменить размер окна или панели по горизонтали.
 		</constant>
 		<constant name="CURSOR_BDIAGSIZE" value="11" enum="CursorShape">
-			Show the system's window resize mouse cursor when the user hovers the node. The cursor is a double-headed arrow that goes from the bottom left to the top right. It tells the user they can resize the window or the panel both horizontally and vertically.
+			Показывает курсор мыши для изменения размера окна системы, когда пользователь наводит курсор на узел. Курсор представляет собой двунаправленную стрелку, идущую от левого нижнего угла к правому верхнему. Она сообщает пользователю, что он может изменять размеры окна или панели как по горизонтали, так и по вертикали.
 		</constant>
 		<constant name="CURSOR_FDIAGSIZE" value="12" enum="CursorShape">
-			Show the system's window resize mouse cursor when the user hovers the node. The cursor is a double-headed arrow that goes from the top left to the bottom right, the opposite of [constant CURSOR_BDIAGSIZE]. It tells the user they can resize the window or the panel both horizontally and vertically.
+			Показывать курсор мыши для изменения размера окна системы, когда пользователь наводит курсор на узел. Курсор представляет собой двунаправленную стрелку, идущую от левого верхнего края к правому нижнему, противоположную [constant CURSOR_BDIAGSIZE]. Она сообщает пользователю, что он может изменять размеры окна или панели как по горизонтали, так и по вертикали.
 		</constant>
 		<constant name="CURSOR_MOVE" value="13" enum="CursorShape">
-			Show the system's move mouse cursor when the user hovers the node. It shows 2 double-headed arrows at a 90 degree angle. It tells the user they can move a UI element freely.
+			Показывает перемещение курсора мыши системы, когда пользователь наводит курсор на узел. Показывает 2 двуглавые стрелки под углом 90 градусов. Это говорит пользователю о том, что он может свободно перемещать элемент пользовательского интерфейса.
 		</constant>
 		<constant name="CURSOR_VSPLIT" value="14" enum="CursorShape">
-			Show the system's vertical split mouse cursor when the user hovers the node. On Windows, it's the same as [constant CURSOR_VSIZE].
+			Показывает вертикальное разделение курсора мыши в системе, когда пользователь наводит курсор на узел. В Windows это то же самое, что и [constant CURSOR_VSIZE].
 		</constant>
 		<constant name="CURSOR_HSPLIT" value="15" enum="CursorShape">
-			Show the system's horizontal split mouse cursor when the user hovers the node. On Windows, it's the same as [constant CURSOR_HSIZE].
+			Показывает системное горизонтальное разделение курсора мыши, когда пользователь наводит курсор на узел. В Windows это то же самое, что и [constant CURSOR_HSIZE].
 		</constant>
 		<constant name="CURSOR_HELP" value="16" enum="CursorShape">
-			Show the system's help mouse cursor when the user hovers the node, a question mark.
+			Показывает курсор мыши системы помощи, когда пользователь наводит курсор на узел, в виде вопросительного знака.
 		</constant>
 		<constant name="PRESET_TOP_LEFT" value="0" enum="LayoutPreset">
-			Snap all 4 anchors to the top-left of the parent control's bounds. Use with [method set_anchors_preset].
+			Привязывает все 4 якоря к левому верхнему углу границ родительского элемента управления. Используется с [методом set_anchors_preset].
 		</constant>
 		<constant name="PRESET_TOP_RIGHT" value="1" enum="LayoutPreset">
-			Snap all 4 anchors to the top-right of the parent control's bounds. Use with [method set_anchors_preset].
+			Привязывает все 4 якоря к верхнему правому краю границ родительского элемента управления. Используется с [методом set_anchors_preset].
 		</constant>
 		<constant name="PRESET_BOTTOM_LEFT" value="2" enum="LayoutPreset">
-			Snap all 4 anchors to the bottom-left of the parent control's bounds. Use with [method set_anchors_preset].
+			Привязывает все 4 якоря к левому нижнему краю границ родительского элемента управления. Используется с [методом set_anchors_preset].
 		</constant>
 		<constant name="PRESET_BOTTOM_RIGHT" value="3" enum="LayoutPreset">
-			Snap all 4 anchors to the bottom-right of the parent control's bounds. Use with [method set_anchors_preset].
+			Привязывает все 4 якоря к правому нижнему краю границ родительского элемента управления. Используется с [методом set_anchors_preset].
 		</constant>
 		<constant name="PRESET_CENTER_LEFT" value="4" enum="LayoutPreset">
-			Snap all 4 anchors to the center of the left edge of the parent control's bounds. Use with [method set_anchors_preset].
+			Привязывает все 4 якоря к центру левого края границ родительского элемента управления. Используется с [методом set_anchors_preset].
 		</constant>
 		<constant name="PRESET_CENTER_TOP" value="5" enum="LayoutPreset">
-			Snap all 4 anchors to the center of the top edge of the parent control's bounds. Use with [method set_anchors_preset].
+			Привязывает все 4 якоря к центру верхнего края границ родительского элемента управления. Используется с [методом set_anchors_preset].
 		</constant>
 		<constant name="PRESET_CENTER_RIGHT" value="6" enum="LayoutPreset">
-			Snap all 4 anchors to the center of the right edge of the parent control's bounds. Use with [method set_anchors_preset].
+			Привязывает все 4 якоря к центру правого края границ родительского элемента управления. Используется с [методом set_anchors_preset].
 		</constant>
 		<constant name="PRESET_CENTER_BOTTOM" value="7" enum="LayoutPreset">
-			Snap all 4 anchors to the center of the bottom edge of the parent control's bounds. Use with [method set_anchors_preset].
+			Привязывает все 4 якоря к центру нижнего края границ родительского элемента управления. Используется с [методом set_anchors_preset].
 		</constant>
 		<constant name="PRESET_CENTER" value="8" enum="LayoutPreset">
-			Snap all 4 anchors to the center of the parent control's bounds. Use with [method set_anchors_preset].
+			Привязывает все 4 якоря к центру границ родительского элемента управления. Используется с [методом set_anchors_preset].
 		</constant>
 		<constant name="PRESET_LEFT_WIDE" value="9" enum="LayoutPreset">
-			Snap all 4 anchors to the left edge of the parent control. The left margin becomes relative to the left edge and the top margin relative to the top left corner of the node's parent. Use with [method set_anchors_preset].
+			Привяжите все 4 якоря к левому краю родительского элемента управления. Левое поле становится относительным к левому краю, а верхнее поле - к левому верхнему углу родительского узла. Используйте с [методом set_anchors_preset].
 		</constant>
 		<constant name="PRESET_TOP_WIDE" value="10" enum="LayoutPreset">
-			Snap all 4 anchors to the top edge of the parent control. The left margin becomes relative to the top left corner, the top margin relative to the top edge, and the right margin relative to the top right corner of the node's parent. Use with [method set_anchors_preset].
+			Привяжите все 4 якоря к верхнему краю родительского элемента управления. Левое поле становится относительно левого верхнего угла, верхнее поле - относительно верхнего края, а правое поле - относительно правого верхнего угла родительского узла. Используйте с [методом set_anchors_preset].
 		</constant>
 		<constant name="PRESET_RIGHT_WIDE" value="11" enum="LayoutPreset">
-			Snap all 4 anchors to the right edge of the parent control. The right margin becomes relative to the right edge and the top margin relative to the top right corner of the node's parent. Use with [method set_anchors_preset].
+			Привяжите все 4 якоря к правому краю родительского элемента управления. Правое поле становится относительным к правому краю, а верхнее поле - к правому верхнему углу родительского узла. Используйте с [методом set_anchors_preset].
 		</constant>
 		<constant name="PRESET_BOTTOM_WIDE" value="12" enum="LayoutPreset">
-			Snap all 4 anchors to the bottom edge of the parent control. The left margin becomes relative to the bottom left corner, the bottom margin relative to the bottom edge, and the right margin relative to the bottom right corner of the node's parent. Use with [method set_anchors_preset].
+			Привяжите все 4 якоря к нижнему краю родительского элемента управления. Левое поле становится относительно левого нижнего угла, нижнее поле - относительно нижнего края, а правое поле - относительно правого нижнего угла родительского узла. Используйте с [методом set_anchors_preset].
 		</constant>
 		<constant name="PRESET_VCENTER_WIDE" value="13" enum="LayoutPreset">
-			Snap all 4 anchors to a vertical line that cuts the parent control in half. Use with [method set_anchors_preset].
+			Привяжите все 4 якоря к вертикальной линии, которая разрезает родительский элемент управления пополам. Используйте с [методом set_anchors_preset].
 		</constant>
 		<constant name="PRESET_HCENTER_WIDE" value="14" enum="LayoutPreset">
-			Snap all 4 anchors to a horizontal line that cuts the parent control in half. Use with [method set_anchors_preset].
+			Привяжите все 4 якоря к горизонтальной линии, которая разрезает родительский элемент управления пополам. Используйте с [методом set_anchors_preset].
 		</constant>
 		<constant name="PRESET_WIDE" value="15" enum="LayoutPreset">
-			Snap all 4 anchors to the respective corners of the parent control. Set all 4 margins to 0 after you applied this preset and the [Control] will fit its parent control. This is equivalent to the "Full Rect" layout option in the editor. Use with [method set_anchors_preset].
+			Привяжите все 4 якоря к соответствующим углам родительского элемента управления. Установите все 4 поля на 0 после применения этой предустановки, и [Control] будет соответствовать своему родительскому элементу управления. Это эквивалентно опции макета "Полный прямоугольник" в редакторе. Используйте с [методом set_anchors_preset].
 		</constant>
 		<constant name="PRESET_MODE_MINSIZE" value="0" enum="LayoutPresetMode">
-			The control will be resized to its minimum size.
+			Размер элемента управления будет изменен до минимального.
 		</constant>
 		<constant name="PRESET_MODE_KEEP_WIDTH" value="1" enum="LayoutPresetMode">
-			The control's width will not change.
+			Ширина элемента управления не изменится.
 		</constant>
 		<constant name="PRESET_MODE_KEEP_HEIGHT" value="2" enum="LayoutPresetMode">
-			The control's height will not change.
+			Высота элемента управления не изменится.
 		</constant>
 		<constant name="PRESET_MODE_KEEP_SIZE" value="3" enum="LayoutPresetMode">
-			The control's size will not change.
+			Размер элемента управления не изменится.
 		</constant>
 		<constant name="SIZE_FILL" value="1" enum="SizeFlags">
-			Tells the parent [Container] to expand the bounds of this node to fill all the available space without pushing any other node. Use with [member size_flags_horizontal] and [member size_flags_vertical].
+			Приказывает родительскому узлу [Container] расширить границы этого узла, чтобы заполнить все доступное пространство, не вытесняя другие узлы. Используется с [member size_flags_horizontal] и [member size_flags_vertical].
 		</constant>
 		<constant name="SIZE_EXPAND" value="2" enum="SizeFlags">
-			Tells the parent [Container] to let this node take all the available space on the axis you flag. If multiple neighboring nodes are set to expand, they'll share the space based on their stretch ratio. See [member size_flags_stretch_ratio]. Use with [member size_flags_horizontal] and [member size_flags_vertical].
+			Сообщает родительскому узлу [Container], чтобы этот узел занял все свободное пространство на указанной вами оси. Если несколько соседних узлов настроены на расширение, они разделят пространство в соответствии с их коэффициентом растяжения. Смотрите [член size_flags_stretch_ratio]. Используется вместе с [member size_flags_horizontal] и [member size_flags_vertical].
 		</constant>
 		<constant name="SIZE_EXPAND_FILL" value="3" enum="SizeFlags">
-			Sets the node's size flags to both fill and expand. See the 2 constants above for more information.
+			Устанавливает флаги размера узла для заполнения и расширения. Дополнительную информацию см. в 2 константах выше.
 		</constant>
 		<constant name="SIZE_SHRINK_CENTER" value="4" enum="SizeFlags">
-			Tells the parent [Container] to center the node in itself. It centers the control based on its bounding box, so it doesn't work with the fill or expand size flags. Use with [member size_flags_horizontal] and [member size_flags_vertical].
+			Указывает родительскому элементу [Container] центрировать узел в себе. Он центрирует элемент управления на основе его ограничительной рамки, поэтому не работает с флагами заполнения или расширения размера. Используется с [member size_flags_horizontal] и [member size_flags_vertical].
 		</constant>
 		<constant name="SIZE_SHRINK_END" value="8" enum="SizeFlags">
-			Tells the parent [Container] to align the node with its end, either the bottom or the right edge. It doesn't work with the fill or expand size flags. Use with [member size_flags_horizontal] and [member size_flags_vertical].
+			Указывает родительскому [Container] выровнять узел по его концу, либо по нижнему, либо по правому краю. Не работает с флагами заполнения или расширения размера. Используйте с [member size_flags_horizontal] и [member size_flags_vertical].
 		</constant>
 		<constant name="MOUSE_FILTER_STOP" value="0" enum="MouseFilter">
-			The control will receive mouse button input events through [method _gui_input] if clicked on. And the control will receive the [signal mouse_entered] and [signal mouse_exited] signals. These events are automatically marked as handled, and they will not propagate further to other controls. This also results in blocking signals in other controls.
+			При нажатии на кнопку мыши элемент управления будет получать события ввода через [метод _gui_input]. Также элемент управления будет получать сигналы [signal mouse_entered] и [signal mouse_exited]. Эти события автоматически помечаются как обработанные, и они не будут распространяться дальше на другие элементы управления. Это также приводит к блокировке сигналов в других элементах управления.
 		</constant>
 		<constant name="MOUSE_FILTER_PASS" value="1" enum="MouseFilter">
-			The control will receive mouse button input events through [method _gui_input] if clicked on. And the control will receive the [signal mouse_entered] and [signal mouse_exited] signals. If this control does not handle the event, the parent control (if any) will be considered, and so on until there is no more parent control to potentially handle it. This also allows signals to fire in other controls. Even if no control handled it at all, the event will still be handled automatically, so unhandled input will not be fired.
+			При нажатии на кнопку мыши элемент управления будет получать события ввода через [метод _gui_input]. Также элемент управления будет получать сигналы [signal mouse_entered] и [signal mouse_exited]. Если этот элемент управления не обработает событие, будет рассмотрен родительский элемент управления (если таковой имеется), и так далее, пока не останется родительского элемента управления, который потенциально мог бы его обработать. Это также позволяет подавать сигналы в другие элементы управления. Даже если ни один элемент управления не обработал событие, оно все равно будет обработано автоматически, так что необработанный ввод не произойдет.
 		</constant>
 		<constant name="MOUSE_FILTER_IGNORE" value="2" enum="MouseFilter">
-			The control will not receive mouse button input events through [method _gui_input]. The control will also not receive the [signal mouse_entered] nor [signal mouse_exited] signals. This will not block other controls from receiving these events or firing the signals. Ignored events will not be handled automatically.
+			Элемент управления не будет получать события ввода кнопок мыши через [метод _gui_input]. Элемент управления также не будет получать сигналы [signal mouse_entered] и [signal mouse_exited]. Это не блокирует получение этих событий другими элементами управления или подачу сигналов. Игнорируемые события не будут обрабатываться автоматически.
 		</constant>
 		<constant name="GROW_DIRECTION_BEGIN" value="0" enum="GrowDirection">
-			The control will grow to the left or top to make up if its minimum size is changed to be greater than its current size on the respective axis.
+			Элемент управления будет расти влево или вверх, если его минимальный размер по соответствующей оси будет больше текущего.
 		</constant>
 		<constant name="GROW_DIRECTION_END" value="1" enum="GrowDirection">
-			The control will grow to the right or bottom to make up if its minimum size is changed to be greater than its current size on the respective axis.
+			Элемент управления будет расти вправо или вниз, если его минимальный размер на соответствующей оси будет больше текущего.
 		</constant>
 		<constant name="GROW_DIRECTION_BOTH" value="2" enum="GrowDirection">
-			The control will grow in both directions equally to make up if its minimum size is changed to be greater than its current size.
+			Элемент управления будет расти в обоих направлениях одинаково, чтобы компенсировать, если его минимальный размер изменится на больший, чем текущий.
 		</constant>
 		<constant name="ANCHOR_BEGIN" value="0" enum="Anchor">
-			Snaps one of the 4 anchor's sides to the origin of the node's [code]Rect[/code], in the top left. Use it with one of the [code]anchor_*[/code] member variables, like [member anchor_left]. To change all 4 anchors at once, use [method set_anchors_preset].
+			Привязывает одну из 4 сторон якоря к началу [code]Rect[/code] узла, в левом верхнем углу. Используйте его с одной из переменных-членов [code]anchor_*[/code], например [member anchor_left]. Чтобы изменить все 4 якоря сразу, используйте [метод set_anchors_preset].
 		</constant>
 		<constant name="ANCHOR_END" value="1" enum="Anchor">
-			Snaps one of the 4 anchor's sides to the end of the node's [code]Rect[/code], in the bottom right. Use it with one of the [code]anchor_*[/code] member variables, like [member anchor_left]. To change all 4 anchors at once, use [method set_anchors_preset].
+			Привязывает одну из 4 сторон якоря к концу [code]Rect[/code] узла в правом нижнем углу. Используйте его с одной из переменных-членов [code]anchor_*[/code], например [member anchor_left]. Чтобы изменить все 4 якоря сразу, используйте [метод set_anchors_preset].
 		</constant>
 	</constants>
 </class>

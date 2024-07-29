@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Time" inherits="Object" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Time" inherits="Object" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Time singleton for working with time.
+		Синглтон Time для работы с временем.
 	</brief_description>
 	<description>
-		The Time singleton allows converting time between various formats and also getting time information from the system.
-		This class conforms with as many of the ISO 8601 standards as possible. All dates follow the Proleptic Gregorian calendar. As such, the day before [code]1582-10-15[/code] is [code]1582-10-14[/code], not [code]1582-10-04[/code]. The year before 1 AD (aka 1 BC) is number [code]0[/code], with the year before that (2 BC) being [code]-1[/code], etc.
-		Conversion methods assume "the same timezone", and do not handle timezone conversions or DST automatically. Leap seconds are also not handled, they must be done manually if desired. Suffixes such as "Z" are not handled, you need to strip them away manually.
-		When getting time information from the system, the time can either be in the local timezone or UTC depending on the [code]utc[/code] parameter. However, the [method get_unix_time_from_system] method always returns the time in UTC.
-		[b]Important:[/b] The [code]_from_system[/code] methods use the system clock that the user can manually set. [b]Never use[/b] this method for precise time calculation since its results are subject to automatic adjustments by the user or the operating system. [b]Always use[/b] [method get_ticks_usec] or [method get_ticks_msec] for precise time calculation instead, since they are guaranteed to be monotonic (i.e. never decrease).
+		Синглтон Time позволяет конвертировать время между различными форматами, а также получать информацию о времени из системы.
+		Этот класс соответствует максимально возможному количеству стандартов ISO 8601. Все даты следуют за пролептическим григорианским календарем. Таким образом, день до [code]1582-10-15[/code] - это [code]1582-10-14[/code], а не [code]1582-10-04[/code]. Год до 1 года нашей эры (он же 1 год до н.э.) - это [code]0[/code], а год до этого (2 год до н.э.) - [code]-1[/code] и т.д.
+		Методы конвертации предполагают "тот же часовой пояс" и не обрабатывают конвертацию часовых поясов или DST автоматически. Високосные секунды также не обрабатываются, при желании их нужно делать вручную. Суффиксы, такие как "Z", не обрабатываются, их нужно удалять вручную.
+		При получении информации о времени из системы, время может быть либо в местном часовом поясе, либо в UTC, в зависимости от параметра [code]utc[/code]. Однако метод [method get_unix_time_from_system] всегда возвращает время в UTC.
+		[b]Важно:[/b] Методы [code]_from_system[/code] используют системные часы, которые пользователь может установить вручную. [b]Никогда не используйте[/b] этот метод для точного расчета времени, так как его результаты могут быть автоматически скорректированы пользователем или операционной системой. [b]Всегда используйте [/b] [метод get_ticks_usec] или [метод get_ticks_msec] для вычисления точного времени, так как они гарантированно монотонны (т.е. никогда не уменьшаются).
 	</description>
 	<tutorials>
 	</tutorials>
@@ -17,30 +17,30 @@
 			<return type="Dictionary" />
 			<argument index="0" name="utc" type="bool" default="false" />
 			<description>
-				Returns the current date as a dictionary of keys: [code]year[/code], [code]month[/code], [code]day[/code], [code]weekday[/code], and [code]dst[/code] (Daylight Savings Time).
-				The returned values are in the system's local time when [code]utc[/code] is false, otherwise they are in UTC.
+				Возвращает текущую дату в виде словаря с ключами: [code]year[/code], [code]month[/code], [code]day[/code], [code]weekday[/code] и [code]dst[/code] (Daylight Savings Time).
+				Если значение [code]utc[/code] равно false, возвращаемые значения будут соответствовать местному времени системы, в противном случае - UTC.
 			</description>
 		</method>
 		<method name="get_date_dict_from_unix_time" qualifiers="const">
 			<return type="Dictionary" />
 			<argument index="0" name="unix_time_val" type="int" />
 			<description>
-				Converts the given Unix timestamp to a dictionary of keys: [code]year[/code], [code]month[/code], [code]day[/code], and [code]weekday[/code].
+				Преобразует заданную временную метку Unix в словарь с ключами: [code]year[/code], [code]month[/code], [code]day[/code] и [code]weekday[/code].
 			</description>
 		</method>
 		<method name="get_date_string_from_system" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="utc" type="bool" default="false" />
 			<description>
-				Returns the current date as an ISO 8601 date string (YYYY-MM-DD).
-				The returned values are in the system's local time when [code]utc[/code] is false, otherwise they are in UTC.
+				Возвращает текущую дату в виде строки даты ISO 8601 (YYYY-MM-DD).
+				Если значение [code]utc[/code] равно false, то возвращаемые значения будут в местном времени системы, в противном случае - в UTC.
 			</description>
 		</method>
 		<method name="get_date_string_from_unix_time" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="unix_time_val" type="int" />
 			<description>
-				Converts the given Unix timestamp to an ISO 8601 date string (YYYY-MM-DD).
+				Преобразует заданную временную метку Unix в строку даты ISO 8601 (YYYY-MM-DD).
 			</description>
 		</method>
 		<method name="get_datetime_dict_from_datetime_string" qualifiers="const">
@@ -48,24 +48,24 @@
 			<argument index="0" name="datetime" type="String" />
 			<argument index="1" name="weekday" type="bool" />
 			<description>
-				Converts the given ISO 8601 date and time string (YYYY-MM-DDTHH:MM:SS) to a dictionary of keys: [code]year[/code], [code]month[/code], [code]day[/code], [code]weekday[/code], [code]hour[/code], [code]minute[/code], and [code]second[/code].
-				If [code]weekday[/code] is false, then the [code]weekday[/code] entry is excluded (the calculation is relatively expensive).
-				[b]Note:[/b] Any decimal fraction in the time string will be ignored silently.
+				Преобразует заданную строку даты и времени ISO 8601 (YYYY-MM-DDTHH:MM:SS) в словарь с ключами: [code]year[/code], [code]month[/code], [code]day[/code], [code]weekday[/code], [code]hour[/code], [code]minute[/code], и [code]second[/code].
+				Если [code]weekday[/code] равен false, то запись [code]weekday[/code] исключается (вычисление относительно дорого).
+				[b]Примечание:[/b] Любые десятичные дроби в строке времени будут молча игнорироваться.
 			</description>
 		</method>
 		<method name="get_datetime_dict_from_system" qualifiers="const">
 			<return type="Dictionary" />
 			<argument index="0" name="utc" type="bool" default="false" />
 			<description>
-				Returns the current date as a dictionary of keys: [code]year[/code], [code]month[/code], [code]day[/code], [code]weekday[/code], [code]hour[/code], [code]minute[/code], and [code]second[/code].
+				Возвращает текущую дату в виде словаря с ключами: [code]year[/code], [code]month[/code], [code]day[/code], [code]weekday[/code], [code]hour[/code], [code]minute[/code], и [code]second[/code].
 			</description>
 		</method>
 		<method name="get_datetime_dict_from_unix_time" qualifiers="const">
 			<return type="Dictionary" />
 			<argument index="0" name="unix_time_val" type="int" />
 			<description>
-				Converts the given Unix timestamp to a dictionary of keys: [code]year[/code], [code]month[/code], [code]day[/code], and [code]weekday[/code].
-				The returned Dictionary's values will be the same as the [method get_datetime_dict_from_system] if the Unix timestamp is the current time, with the exception of Daylight Savings Time as it cannot be determined from the epoch.
+				Преобразует заданную временную метку Unix в словарь с ключами: [code]year[/code], [code]month[/code], [code]day[/code] и [code]weekday[/code].
+				Значения возвращаемого словаря будут такими же, как и в [методе get_datetime_dict_from_system], если временная метка Unix является текущим временем, за исключением летнего времени, так как оно не может быть определено из эпохи.
 			</description>
 		</method>
 		<method name="get_datetime_string_from_datetime_dict" qualifiers="const">
@@ -73,10 +73,10 @@
 			<argument index="0" name="datetime" type="Dictionary" />
 			<argument index="1" name="use_space" type="bool" />
 			<description>
-				Converts the given dictionary of keys to an ISO 8601 date and time string (YYYY-MM-DDTHH:MM:SS).
-				The given dictionary can be populated with the following keys: [code]year[/code], [code]month[/code], [code]day[/code], [code]hour[/code], [code]minute[/code], and [code]second[/code]. Any other entries (including [code]dst[/code]) are ignored.
-				If the dictionary is empty, [code]0[/code] is returned. If some keys are omitted, they default to the equivalent values for the Unix epoch timestamp 0 (1970-01-01 at 00:00:00).
-				If [code]use_space[/code] is true, use a space instead of the letter T in the middle.
+				Преобразует заданный словарь ключей в строку даты и времени ISO 8601 (YYYY-MM-DDTHH:MM:SS).
+				Данный словарь может быть заполнен следующими ключами: [code]год[/code], [code]месяц[/code], [code]день[/code], [code]час[/code], [code]минута[/code] и [code]секунда[/code]. Любые другие записи (включая [code]dst[/code]) игнорируются.
+				Если словарь пуст, возвращается [code]0[/code]. Если некоторые ключи опущены, то по умолчанию они принимают эквивалентные значения для временной метки эпохи Unix 0 (1970-01-01 в 00:00:00).
+				Если [code]use_space[/code] равен true, то вместо буквы T в середине используется пробел.
 			</description>
 		</method>
 		<method name="get_datetime_string_from_system" qualifiers="const">
@@ -84,9 +84,9 @@
 			<argument index="0" name="utc" type="bool" default="false" />
 			<argument index="1" name="use_space" type="bool" default="false" />
 			<description>
-				Returns the current date and time as an ISO 8601 date and time string (YYYY-MM-DDTHH:MM:SS).
-				The returned values are in the system's local time when [code]utc[/code] is false, otherwise they are in UTC.
-				If [code]use_space[/code] is true, use a space instead of the letter T in the middle.
+				Возвращает текущие дату и время в виде строки даты и времени ISO 8601 (YYYY-MM-DDTHH:MM:SS).
+				Если [code]utc[/code] имеет значение false, возвращаемые значения будут в местном времени системы, в противном случае - в UTC.
+				Если [code]use_space[/code] равен true, вместо буквы T в середине используется пробел.
 			</description>
 		</method>
 		<method name="get_datetime_string_from_unix_time" qualifiers="const">
@@ -94,152 +94,152 @@
 			<argument index="0" name="unix_time_val" type="int" />
 			<argument index="1" name="use_space" type="bool" default="false" />
 			<description>
-				Converts the given Unix timestamp to an ISO 8601 date and time string (YYYY-MM-DDTHH:MM:SS).
-				If [code]use_space[/code] is true, use a space instead of the letter T in the middle.
+				Преобразует заданную временную метку Unix в строку даты и времени ISO 8601 (YYYY-MM-DDTHH:MM:SS).
+				Если [code]use_space[/code] равен true, вместо буквы T в середине используется пробел.
 			</description>
 		</method>
 		<method name="get_offset_string_from_offset_minutes" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="offset_minutes" type="int" />
 			<description>
-				Converts the given timezone offset in minutes to a timezone offset string. For example, -480 returns "-08:00", 345 returns "+05:45", and 0 returns "+00:00".
+				Преобразует заданное смещение часового пояса в минутах в строку смещения часового пояса. Например, -480 возвращает "-08:00", 345 возвращает "+05:45", а 0 возвращает "+00:00".
 			</description>
 		</method>
 		<method name="get_ticks_msec" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the amount of time passed in milliseconds since the engine started.
-				Will always be positive or 0 and uses a 64-bit value (it will wrap after roughly 500 million years).
+				Возвращает количество времени, прошедшего в миллисекундах с момента запуска двигателя.
+				Всегда будет положительным или 0 и использует 64-битное значение (оно завершается примерно через 500 миллионов лет).
 			</description>
 		</method>
 		<method name="get_ticks_usec" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the amount of time passed in microseconds since the engine started.
-				Will always be positive or 0 and uses a 64-bit value (it will wrap after roughly half a million years).
+				Возвращает количество времени, прошедшего в микросекундах с момента запуска двигателя.
+				Всегда будет положительным или 0 и использует 64-битное значение (завершается примерно через полмиллиона лет).
 			</description>
 		</method>
 		<method name="get_time_dict_from_system" qualifiers="const">
 			<return type="Dictionary" />
 			<argument index="0" name="utc" type="bool" default="false" />
 			<description>
-				Returns the current time as a dictionary of keys: [code]hour[/code], [code]minute[/code], and [code]second[/code].
-				The returned values are in the system's local time when [code]utc[/code] is false, otherwise they are in UTC.
+				Возвращает текущее время в виде словаря, состоящего из ключей: [code]hour[/code], [code]minute[/code] и [code]second[/code].
+				Если значение [code]utc[/code] равно false, то возвращается локальное время системы, в противном случае - UTC.
 			</description>
 		</method>
 		<method name="get_time_dict_from_unix_time" qualifiers="const">
 			<return type="Dictionary" />
 			<argument index="0" name="unix_time_val" type="int" />
 			<description>
-				Converts the given time to a dictionary of keys: [code]hour[/code], [code]minute[/code], and [code]second[/code].
+				Преобразует заданное время в словарь, состоящий из ключей: [code]hour[/code], [code]minute[/code] и [code]second[/code].
 			</description>
 		</method>
 		<method name="get_time_string_from_system" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="utc" type="bool" default="false" />
 			<description>
-				Returns the current time as an ISO 8601 time string (HH:MM:SS).
-				The returned values are in the system's local time when [code]utc[/code] is false, otherwise they are in UTC.
+				Возвращает текущее время в виде строки времени ISO 8601 (HH:MM:SS).
+				Если значение [code]utc[/code] равно false, возвращаемые значения будут соответствовать местному времени системы, в противном случае они будут соответствовать UTC.
 			</description>
 		</method>
 		<method name="get_time_string_from_unix_time" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="unix_time_val" type="int" />
 			<description>
-				Converts the given Unix timestamp to an ISO 8601 time string (HH:MM:SS).
+				Преобразует заданную временную метку Unix в строку времени ISO 8601 (HH:MM:SS).
 			</description>
 		</method>
 		<method name="get_time_zone_from_system" qualifiers="const">
 			<return type="Dictionary" />
 			<description>
-				Returns the current time zone as a dictionary of keys: [code]bias[/code] and [code]name[/code]. The [code]bias[/code] value is the offset from UTC in minutes, since not all time zones are multiples of an hour from UTC.
+				Возвращает текущий часовой пояс в виде словаря с ключами: [code]bias[/code] и [code]name[/code]. Значение [code]bias[/code] - это смещение от UTC в минутах, поскольку не все часовые пояса кратны часу от UTC.
 			</description>
 		</method>
 		<method name="get_unix_time_from_datetime_dict" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="datetime" type="Dictionary" />
 			<description>
-				Converts a dictionary of time values to a Unix timestamp.
-				The given dictionary can be populated with the following keys: [code]year[/code], [code]month[/code], [code]day[/code], [code]hour[/code], [code]minute[/code], and [code]second[/code]. Any other entries (including [code]dst[/code]) are ignored.
-				If the dictionary is empty, [code]0[/code] is returned. If some keys are omitted, they default to the equivalent values for the Unix epoch timestamp 0 (1970-01-01 at 00:00:00).
-				You can pass the output from [method get_datetime_dict_from_unix_time] directly into this function and get the same as what was put in.
-				[b]Note:[/b] Unix timestamps are often in UTC. This method does not do any timezone conversion, so the timestamp will be in the same timezone as the given datetime dictionary.
+				Преобразует словарь значений времени в временные метки Unix.
+				Данный словарь может быть заполнен следующими ключами: [code]year[/code], [code]month[/code], [code]day[/code], [code]hour[/code], [code]minute[/code] и [code]second[/code]. Любые другие записи (включая [code]dst[/code]) игнорируются.
+				Если словарь пуст, возвращается [code]0[/code]. Если некоторые ключи опущены, то по умолчанию они принимают эквивалентные значения для временной метки эпохи Unix 0 (1970-01-01 в 00:00:00).
+				Вы можете передать вывод из [метода get_datetime_dict_from_unix_time] непосредственно в эту функцию и получить то же самое, что было введено.
+				[b]Примечание:[/b] Временные метки Unix часто указываются в UTC. Этот метод не делает никаких преобразований часовых поясов, поэтому временная метка будет в том же часовом поясе, что и заданный словарь времени.
 			</description>
 		</method>
 		<method name="get_unix_time_from_datetime_string" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="datetime" type="String" />
 			<description>
-				Converts the given ISO 8601 date and/or time string to a Unix timestamp. The string can contain a date only, a time only, or both.
-				[b]Note:[/b] Unix timestamps are often in UTC. This method does not do any timezone conversion, so the timestamp will be in the same timezone as the given datetime string.
-				[b]Note:[/b] Any decimal fraction in the time string will be ignored silently.
+				Преобразует заданную строку даты и/или времени ISO 8601 в временную метку Unix. Строка может содержать только дату, только время или и то, и другое.
+				[b]Примечание:[/b] Временные метки Unix часто находятся в UTC. Этот метод не производит преобразования часовых поясов, поэтому временная метка будет находиться в том же часовом поясе, что и заданная строка времени.
+				[b]Примечание:[/b] Любые десятичные дроби в строке времени будут молча игнорироваться.
 			</description>
 		</method>
 		<method name="get_unix_time_from_system" qualifiers="const">
 			<return type="float" />
 			<description>
-				Returns the current Unix timestamp in seconds based on the system time in UTC. This method is implemented by the operating system and always returns the time in UTC.
-				[b]Note:[/b] Unlike other methods that use integer timestamps, this method returns the timestamp as a [float] for sub-second precision.
+				Возвращает текущую временную метку Unix в секундах, основанную на системном времени в UTC. Этот метод реализуется операционной системой и всегда возвращает время в UTC.
+				[b]Примечание:[/b] В отличие от других методов, использующих целочисленные временные метки, этот метод возвращает временную метку в виде [float] для субсекундной точности.
 			</description>
 		</method>
 	</methods>
 	<constants>
 		<constant name="MONTH_JANUARY" value="1" enum="Month">
-			The month of January, represented numerically as [code]01[/code].
+			Месяц январь, представленный в цифровом виде как [code]01[/code].
 		</constant>
 		<constant name="MONTH_FEBRUARY" value="2" enum="Month">
-			The month of February, represented numerically as [code]02[/code].
+			Месяц февраль, представленный в цифровом виде как [code]02[/code].
 		</constant>
 		<constant name="MONTH_MARCH" value="3" enum="Month">
-			The month of March, represented numerically as [code]03[/code].
+			Месяц март, представленный в цифровом виде как [code]03[/code].
 		</constant>
 		<constant name="MONTH_APRIL" value="4" enum="Month">
-			The month of April, represented numerically as [code]04[/code].
+			Месяц апрель, представленный в цифровом виде как [code]04[/code].
 		</constant>
 		<constant name="MONTH_MAY" value="5" enum="Month">
-			The month of May, represented numerically as [code]05[/code].
+			Месяц май, представленный в цифровом виде как [code]05[/code].
 		</constant>
 		<constant name="MONTH_JUNE" value="6" enum="Month">
-			The month of June, represented numerically as [code]06[/code].
+			Месяц июнь, представленный в цифровом виде как [code]06[/code].
 		</constant>
 		<constant name="MONTH_JULY" value="7" enum="Month">
-			The month of July, represented numerically as [code]07[/code].
+			Месяц июль, представленный в цифровом виде как [code]07[/code].
 		</constant>
 		<constant name="MONTH_AUGUST" value="8" enum="Month">
-			The month of August, represented numerically as [code]08[/code].
+			Месяц август, представленный в цифровом виде как [code]08[/code].
 		</constant>
 		<constant name="MONTH_SEPTEMBER" value="9" enum="Month">
-			The month of September, represented numerically as [code]09[/code].
+			Месяц сентябрь, представленный в цифровом виде как [code]09[/code].
 		</constant>
 		<constant name="MONTH_OCTOBER" value="10" enum="Month">
-			The month of October, represented numerically as [code]10[/code].
+			Месяц октябрь, представленный в цифровом виде как [code]10[/code].
 		</constant>
 		<constant name="MONTH_NOVEMBER" value="11" enum="Month">
-			The month of November, represented numerically as [code]11[/code].
+			Месяц ноябрь, представленный в цифровом выражении как [code]11[/code].
 		</constant>
 		<constant name="MONTH_DECEMBER" value="12" enum="Month">
-			The month of December, represented numerically as [code]12[/code].
+			Месяц декабрь, представленный в цифровом виде как [code]12[/code].
 		</constant>
 		<constant name="WEEKDAY_SUNDAY" value="0" enum="Weekday">
-			The day of the week Sunday, represented numerically as [code]0[/code].
+			День недели воскресенье, представленный в цифровом виде как [code]0[/code].
 		</constant>
 		<constant name="WEEKDAY_MONDAY" value="1" enum="Weekday">
-			The day of the week Monday, represented numerically as [code]1[/code].
+			День недели понедельник, представленный в цифровом виде как [code]1[/code].
 		</constant>
 		<constant name="WEEKDAY_TUESDAY" value="2" enum="Weekday">
-			The day of the week Tuesday, represented numerically as [code]2[/code].
+			День недели вторник, представленный в цифровом виде как [code]2[/code].
 		</constant>
 		<constant name="WEEKDAY_WEDNESDAY" value="3" enum="Weekday">
-			The day of the week Wednesday, represented numerically as [code]3[/code].
+			День недели среда, представленный в цифровом виде как [code]3[/code].
 		</constant>
 		<constant name="WEEKDAY_THURSDAY" value="4" enum="Weekday">
-			The day of the week Thursday, represented numerically as [code]4[/code].
+			День недели четверг, представленный в цифровом виде как [code]4[/code].
 		</constant>
 		<constant name="WEEKDAY_FRIDAY" value="5" enum="Weekday">
-			The day of the week Friday, represented numerically as [code]5[/code].
+			День недели пятница, представленный в цифровом виде как [code]5[/code].
 		</constant>
 		<constant name="WEEKDAY_SATURDAY" value="6" enum="Weekday">
-			The day of the week Saturday, represented numerically as [code]6[/code].
+			День недели суббота, представленный в цифровом виде как [code]6[/code].
 		</constant>
 	</constants>
 </class>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="AStar" inherits="Reference" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="AStar" inherits="Reference" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		An implementation of A* to find the shortest paths among connected points in space.
+		Реализация A* для поиска кратчайших путей между связными точками в пространстве.
 	</brief_description>
 	<description>
-		A* (A star) is a computer algorithm that is widely used in pathfinding and graph traversal, the process of plotting short paths among vertices (points), passing through a given set of edges (segments). It enjoys widespread use due to its performance and accuracy. Godot's A* implementation uses points in three-dimensional space and Euclidean distances by default.
-		You must add points manually with [method add_point] and create segments manually with [method connect_points]. Then you can test if there is a path between two points with the [method are_points_connected] function, get a path containing indices by [method get_id_path], or one containing actual coordinates with [method get_point_path].
-		It is also possible to use non-Euclidean distances. To do so, create a class that extends [code]AStar[/code] and override methods [method _compute_cost] and [method _estimate_cost]. Both take two indices and return a length, as is shown in the following example.
+		A* (A star) - компьютерный алгоритм, широко используемый для поиска путей и обхода графов, т.е. построения коротких путей между вершинами (точками), проходящих через заданное множество ребер (сегментов). Широкое распространение он получил благодаря своей производительности и точности. Реализация A* в Godot по умолчанию использует точки в трехмерном пространстве и евклидовы расстояния.
+		Необходимо вручную добавить точки с помощью [method add_point] и вручную создать сегменты с помощью [method connect_points]. Затем можно проверить наличие пути между двумя точками с помощью функции [method are_points_connected], получить путь, содержащий индексы, с помощью [method get_id_path] или путь, содержащий фактические координаты, с помощью [method get_point_path].
+		Также можно использовать неевклидовы расстояния. Для этого создайте класс, расширяющий [code]AStar[/code], и переопределите методы [method _compute_cost] и [method _estimate_cost]. Оба метода принимают два индекса и возвращают длину, как показано в следующем примере.
 		[codeblock]
 		class MyAStar:
 		    extends AStar
@@ -17,8 +17,8 @@
 		    func _estimate_cost(u, v):
 		        return min(0, abs(u - v) - 1)
 		[/codeblock]
-		[method _estimate_cost] should return a lower bound of the distance, i.e. [code]_estimate_cost(u, v) &lt;= _compute_cost(u, v)[/code]. This serves as a hint to the algorithm because the custom [code]_compute_cost[/code] might be computation-heavy. If this is not the case, make [method _estimate_cost] return the same value as [method _compute_cost] to provide the algorithm with the most accurate information.
-		If the default [method _estimate_cost] and [method _compute_cost] methods are used, or if the supplied [method _estimate_cost] method returns a lower bound of the cost, then the paths returned by A* will be the lowest-cost paths. Here, the cost of a path equals the sum of the [method _compute_cost] results of all segments in the path multiplied by the [code]weight_scale[/code]s of the endpoints of the respective segments. If the default methods are used and the [code]weight_scale[/code]s of all points are set to [code]1.0[/code], then this equals the sum of Euclidean distances of all segments in the path.
+		[method _estimate_cost] должен возвращать нижнюю границу расстояния, т.е. [code]_estimate_cost(u, v) &lt;= _compute_cost(u, v)[/code]. Это служит подсказкой для алгоритма, поскольку пользовательский [code]_compute_cost[/code] может оказаться тяжелым для вычислений. Если это не так, сделайте так, чтобы [method _estimate_cost] возвращал то же значение, что и [method _compute_cost], чтобы предоставить алгоритму наиболее точную информацию.
+		Если используются методы по умолчанию [method _estimate_cost] и [method _compute_cost], или если поставляемый метод [method _estimate_cost] возвращает нижнюю границу стоимости, то пути, возвращаемые A*, будут путями с наименьшей стоимостью. Здесь стоимость пути равна сумме результатов [method _compute_cost] всех сегментов пути, умноженной на [code]weight_scale[/code] конечных точек соответствующих сегментов. Если используются методы по умолчанию и [code]weight_scale[/code]s всех точек установлен на [code]1.0[/code], то это равно сумме евклидовых расстояний всех отрезков пути.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -28,8 +28,8 @@
 			<argument index="0" name="from_id" type="int" />
 			<argument index="1" name="to_id" type="int" />
 			<description>
-				Called when computing the cost between two connected points.
-				Note that this function is hidden in the default [code]AStar[/code] class.
+				Вызывается при вычислении стоимости между двумя соединенными точками.
+				Обратите внимание, что в классе [code]AStar[/code] по умолчанию эта функция скрыта.
 			</description>
 		</method>
 		<method name="_estimate_cost" qualifiers="virtual">
@@ -37,8 +37,8 @@
 			<argument index="0" name="from_id" type="int" />
 			<argument index="1" name="to_id" type="int" />
 			<description>
-				Called when estimating the cost between a point and the path's ending point.
-				Note that this function is hidden in the default [code]AStar[/code] class.
+				Вызывается при оценке стоимости пути между точкой и конечной точкой маршрута.
+				Обратите внимание, что в классе [code]AStar[/code] по умолчанию эта функция скрыта.
 			</description>
 		</method>
 		<method name="add_point">
@@ -47,13 +47,13 @@
 			<argument index="1" name="position" type="Vector3" />
 			<argument index="2" name="weight_scale" type="float" default="1.0" />
 			<description>
-				Adds a new point at the given position with the given identifier. The [code]id[/code] must be 0 or larger, and the [code]weight_scale[/code] must be 0.0 or greater.
-				The [code]weight_scale[/code] is multiplied by the result of [method _compute_cost] when determining the overall cost of traveling across a segment from a neighboring point to this point. Thus, all else being equal, the algorithm prefers points with lower [code]weight_scale[/code]s to form a path.
+				Добавляет новую точку в заданную позицию с заданным идентификатором. [code]id[/code] должен быть 0 или больше, а [code]weight_scale[/code] должен быть 0.0 или больше.
+				Значение [code]weight_scale[/code] умножается на результат работы [method _compute_cost] при определении общей стоимости проезда по отрезку от соседней точки до данной точки. Таким образом, при прочих равных условиях алгоритм предпочитает для формирования пути точки с меньшим [code]weight_scale[/code].
 				[codeblock]
 				var astar = AStar.new()
-				astar.add_point(1, Vector3(1, 0, 0), 4) # Adds the point (1, 0, 0) with weight_scale 4 and id 1
+				astar.add_point(1, Vector3(1, 0, 0), 4) # Добавляет точку (1, 0, 0) с weight_scale 4 и id 1
 				[/codeblock]
-				If there already exists a point for the given [code]id[/code], its position and weight scale are updated to the given values.
+				Если для заданного [code]id[/code] уже существует точка, то ее положение и весовая шкала обновляются до заданных значений.
 			</description>
 		</method>
 		<method name="are_points_connected" qualifiers="const">
@@ -62,13 +62,13 @@
 			<argument index="1" name="to_id" type="int" />
 			<argument index="2" name="bidirectional" type="bool" default="true" />
 			<description>
-				Returns whether the two given points are directly connected by a segment. If [code]bidirectional[/code] is [code]false[/code], returns whether movement from [code]id[/code] to [code]to_id[/code] is possible through this segment.
+				Возвращает, соединены ли две заданные точки отрезком напрямую. Если [code]bidirectional[/code] равно [code]false[/code], то возвращается, возможно ли движение от [code]id[/code] к [code]to_id[/code] через данный отрезок.
 			</description>
 		</method>
 		<method name="clear">
 			<return type="void" />
 			<description>
-				Clears all the points and segments.
+				Очищает все точки и сегменты.
 			</description>
 		</method>
 		<method name="connect_points">
@@ -77,7 +77,7 @@
 			<argument index="1" name="to_id" type="int" />
 			<argument index="2" name="bidirectional" type="bool" default="true" />
 			<description>
-				Creates a segment between the given points. If [code]bidirectional[/code] is [code]false[/code], only movement from [code]id[/code] to [code]to_id[/code] is allowed, not the reverse direction.
+				Создает отрезок между заданными точками. Если [code]bidirectional[/code] имеет значение [code]false[/code], то разрешено только движение от [code]id[/code] к [code]to_id[/code], а не в обратном направлении.
 				[codeblock]
 				var astar = AStar.new()
 				astar.add_point(1, Vector3(1, 1, 0))
@@ -92,13 +92,13 @@
 			<argument index="1" name="to_id" type="int" />
 			<argument index="2" name="bidirectional" type="bool" default="true" />
 			<description>
-				Deletes the segment between the given points. If [code]bidirectional[/code] is [code]false[/code], only movement from [code]id[/code] to [code]to_id[/code] is prevented, and a unidirectional segment possibly remains.
+				Удаляет отрезок между заданными точками. Если [code]bidirectional[/code] имеет значение [code]false[/code], то предотвращается только движение от [code]id[/code] к [code]to_id[/code], а однонаправленный сегмент, возможно, остается.
 			</description>
 		</method>
 		<method name="get_available_point_id" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the next available point ID with no point associated to it.
+				Возвращает следующий доступный идентификатор точки, с которой не связано ни одной точки.
 			</description>
 		</method>
 		<method name="get_closest_point" qualifiers="const">
@@ -106,23 +106,23 @@
 			<argument index="0" name="to_position" type="Vector3" />
 			<argument index="1" name="include_disabled" type="bool" default="false" />
 			<description>
-				Returns the ID of the closest point to [code]to_position[/code], optionally taking disabled points into account. Returns [code]-1[/code] if there are no points in the points pool.
-				[b]Note:[/b] If several points are the closest to [code]to_position[/code], the one with the smallest ID will be returned, ensuring a deterministic result.
+				Возвращает идентификатор ближайшей точки к [code]to_position[/code], опционально учитывая отключенные точки. Возвращает [code]-1[/code], если в пуле точек нет.
+				[b]Примечание:[/b] Если несколько точек находятся ближе всего к [code]to_position[/code], то возвращается точка с наименьшим ID, что обеспечивает детерминированный результат.
 			</description>
 		</method>
 		<method name="get_closest_position_in_segment" qualifiers="const">
 			<return type="Vector3" />
 			<argument index="0" name="to_position" type="Vector3" />
 			<description>
-				Returns the closest position to [code]to_position[/code] that resides inside a segment between two connected points.
+				Возвращает ближайшую к [code]to_position[/code] позицию, находящуюся внутри отрезка между двумя соединенными точками.
 				[codeblock]
 				var astar = AStar.new()
 				astar.add_point(1, Vector3(0, 0, 0))
 				astar.add_point(2, Vector3(0, 5, 0))
 				astar.connect_points(1, 2)
-				var res = astar.get_closest_position_in_segment(Vector3(3, 3, 0)) # Returns (0, 3, 0)
+				var res = astar.get_closest_position_in_segment(Vector3(3, 3, 0)) # Возвращает (0, 3, 0)
 				[/codeblock]
-				The result is in the segment that goes from [code]y = 0[/code] to [code]y = 5[/code]. It's the closest position in the segment to the given point.
+				Результат находится в сегменте, который идет от [code]y = 0[/code] до [code]y = 5[/code]. Это ближайшая к заданной точке позиция на отрезке.
 			</description>
 		</method>
 		<method name="get_id_path">
@@ -130,11 +130,11 @@
 			<argument index="0" name="from_id" type="int" />
 			<argument index="1" name="to_id" type="int" />
 			<description>
-				Returns an array with the IDs of the points that form the path found by AStar between the given points. The array is ordered from the starting point to the ending point of the path.
+				Возвращает массив с идентификаторами точек, образующих путь, найденный AStar между заданными точками. Массив упорядочен от начальной точки до конечной точки пути.
 				[codeblock]
 				var astar = AStar.new()
 				astar.add_point(1, Vector3(0, 0, 0))
-				astar.add_point(2, Vector3(0, 1, 0), 1) # Default weight is 1
+				astar.add_point(2, Vector3(0, 1, 0), 1) # Вес по умолчанию равен 1
 				astar.add_point(3, Vector3(1, 1, 0))
 				astar.add_point(4, Vector3(2, 0, 0))
 
@@ -143,22 +143,22 @@
 				astar.connect_points(4, 3, false)
 				astar.connect_points(1, 4, false)
 
-				var res = astar.get_id_path(1, 3) # Returns [1, 2, 3]
+				var res = astar.get_id_path(1, 3) # Возвращает [1, 2, 3]
 				[/codeblock]
-				If you change the 2nd point's weight to 3, then the result will be [code][1, 4, 3][/code] instead, because now even though the distance is longer, it's "easier" to get through point 4 than through point 2.
+				Если изменить вес второй точки на 3, то результатом будет [code][1, 4, 3][/code], так как теперь, несмотря на то, что расстояние больше, пройти через точку 4 "легче", чем через точку 2.
 			</description>
 		</method>
 		<method name="get_point_capacity" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the capacity of the structure backing the points, useful in conjunction with [code]reserve_space[/code].
+				Возвращает емкость структуры, резервирующей точки, что полезно в сочетании с [code]reserve_space[/code].
 			</description>
 		</method>
 		<method name="get_point_connections">
 			<return type="PoolIntArray" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns an array with the IDs of the points that form the connection with the given point.
+				Возвращает массив с идентификаторами точек, образующих соединение с заданной точкой.
 				[codeblock]
 				var astar = AStar.new()
 				astar.add_point(1, Vector3(0, 0, 0))
@@ -169,14 +169,14 @@
 				astar.connect_points(1, 2, true)
 				astar.connect_points(1, 3, true)
 
-				var neighbors = astar.get_point_connections(1) # Returns [2, 3]
+				var neighbors = astar.get_point_connections(1) # Возвращает [2, 3]
 				[/codeblock]
 			</description>
 		</method>
 		<method name="get_point_count" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the number of points currently in the points pool.
+				Возвращает количество очков, находящихся в данный момент в пуле очков.
 			</description>
 		</method>
 		<method name="get_point_path">
@@ -184,56 +184,56 @@
 			<argument index="0" name="from_id" type="int" />
 			<argument index="1" name="to_id" type="int" />
 			<description>
-				Returns an array with the points that are in the path found by AStar between the given points. The array is ordered from the starting point to the ending point of the path.
-				[b]Note:[/b] This method is not thread-safe. If called from a [Thread], it will return an empty [PoolVector3Array] and will print an error message.
+				Возвращает массив с точками, которые находятся на пути, найденном AStar между заданными точками. Массив упорядочен от начальной точки до конечной точки пути.
+				[b]Примечание:[/b] Этот метод не является потокобезопасным. Если его вызвать из [Thread], то он вернет пустой [PoolVector3Array] и выведет сообщение об ошибке.
 			</description>
 		</method>
 		<method name="get_point_position" qualifiers="const">
 			<return type="Vector3" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns the position of the point associated with the given [code]id[/code].
+				Возвращает положение точки, связанной с заданным [code]id[/code].
 			</description>
 		</method>
 		<method name="get_point_weight_scale" qualifiers="const">
 			<return type="float" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns the weight scale of the point associated with the given [code]id[/code].
+				Возвращает весовую шкалу точки, связанной с заданным [code]id[/code].
 			</description>
 		</method>
 		<method name="get_points">
 			<return type="Array" />
 			<description>
-				Returns an array of all points.
+				Возвращает массив всех точек.
 			</description>
 		</method>
 		<method name="has_point" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns whether a point associated with the given [code]id[/code] exists.
+				Возвращает, существует ли точка, связанная с заданным [code]id[/code].
 			</description>
 		</method>
 		<method name="is_point_disabled" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns whether a point is disabled or not for pathfinding. By default, all points are enabled.
+				Возвращает, отключена или нет точка для поиска пути. По умолчанию все точки включены.
 			</description>
 		</method>
 		<method name="remove_point">
 			<return type="void" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Removes the point associated with the given [code]id[/code] from the points pool.
+				Удаляет точку, связанную с заданным [code]id[/code], из пула точек.
 			</description>
 		</method>
 		<method name="reserve_space">
 			<return type="void" />
 			<argument index="0" name="num_nodes" type="int" />
 			<description>
-				Reserves space internally for [code]num_nodes[/code] points, useful if you're adding a known large number of points at once, for a grid for instance. New capacity must be greater or equals to old capacity.
+				Резервирует внутреннее пространство для [code]num_nodes[/code] точек, что полезно при одновременном добавлении заведомо большого количества точек, например, для сетки. Новая емкость должна быть больше или равна старой.
 			</description>
 		</method>
 		<method name="set_point_disabled">
@@ -241,7 +241,7 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="disabled" type="bool" default="true" />
 			<description>
-				Disables or enables the specified point for pathfinding. Useful for making a temporary obstacle.
+				Отключает или включает указанную точку для поиска пути. Полезно для создания временного препятствия.
 			</description>
 		</method>
 		<method name="set_point_position">
@@ -249,7 +249,7 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="position" type="Vector3" />
 			<description>
-				Sets the [code]position[/code] for the point with the given [code]id[/code].
+				Устанавливает [code]position[/code] для точки с заданным [code]id[/code].
 			</description>
 		</method>
 		<method name="set_point_weight_scale">
@@ -257,7 +257,7 @@
 			<argument index="0" name="id" type="int" />
 			<argument index="1" name="weight_scale" type="float" />
 			<description>
-				Sets the [code]weight_scale[/code] for the point with the given [code]id[/code]. The [code]weight_scale[/code] is multiplied by the result of [method _compute_cost] when determining the overall cost of traveling across a segment from a neighboring point to this point.
+				Устанавливает [code]weight_scale[/code] для точки с заданным [code]id[/code]. [code]weight_scale[/code] умножается на результат работы [method _compute_cost] при определении общей стоимости проезда по отрезку от соседней точки до этой точки.
 			</description>
 		</method>
 	</methods>

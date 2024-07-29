@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="OS" inherits="Object" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="OS" inherits="Object" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Operating System functions.
+		Функции операционной системы.
 	</brief_description>
 	<description>
-		Operating System functions. OS wraps the most common functionality to communicate with the host operating system, such as the clipboard, video driver, date and time, timers, environment variables, execution of binaries, command line, etc.
+		Функции операционной системы. В ОС упакованы наиболее распространенные функции для взаимодействия с операционной системой хоста, такие как буфер обмена, видеодрайвер, дата и время, таймеры, переменные окружения, выполнение двоичных файлов, командная строка и т.д.
 	</description>
 	<tutorials>
 		<link title="OS Test Demo">https://godotengine.org/asset-library/asset/677</link>
@@ -15,74 +15,74 @@
 			<argument index="0" name="text" type="String" />
 			<argument index="1" name="title" type="String" default="&quot;Alert!&quot;" />
 			<description>
-				Displays a modal dialog box using the host OS' facilities. Execution is blocked until the dialog is closed.
+				Отображает модальное диалоговое окно, используя средства хостовой ОС. Выполнение блокируется до тех пор, пока диалог не будет закрыт.
 			</description>
 		</method>
 		<method name="can_draw" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the host OS allows drawing.
+				Возвращает [code]true[/code], если ОС хоста разрешает рисование.
 			</description>
 		</method>
 		<method name="can_use_threads" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the current host platform is using multiple threads.
+				Возвращает [code]true[/code], если текущая хост-платформа использует несколько потоков.
 			</description>
 		</method>
 		<method name="center_window">
 			<return type="void" />
 			<description>
-				Centers the window on the screen if in windowed mode.
+				Центрирует окно на экране в оконном режиме.
 			</description>
 		</method>
 		<method name="close_midi_inputs">
 			<return type="void" />
 			<description>
-				Shuts down system MIDI driver.
-				[b]Note:[/b] This method is implemented on Linux, macOS and Windows.
+				Отключает системный MIDI-драйвер.
+				[b]Примечание:[/b] Этот метод реализован в Linux, macOS и Windows.
 			</description>
 		</method>
 		<method name="crash">
 			<return type="void" />
 			<argument index="0" name="message" type="String" />
 			<description>
-				Crashes the engine (or the editor if called within a [code]tool[/code] script). This should [i]only[/i] be used for testing the system's crash handler, not for any other purpose. For general error reporting, use (in order of preference) [method @GDScript.assert], [method @GDScript.push_error] or [method alert]. See also [method kill].
+				Вызывает краш движка (или редактора, если он вызывается в [code]tool[/code] скрипте). Это должно использоваться [i]только[/i] для тестирования обработчика сбоев системы, а не для каких-либо других целей. Для общего сообщения об ошибках используйте (в порядке предпочтения) [метод @GDScript.assert], [метод @GDScript.push_error] или [метод alert]. См. также [method kill].
 			</description>
 		</method>
 		<method name="delay_msec" qualifiers="const">
 			<return type="void" />
 			<argument index="0" name="msec" type="int" />
 			<description>
-				Delays execution of the current thread by [code]msec[/code] milliseconds. [code]msec[/code] must be greater than or equal to [code]0[/code]. Otherwise, [method delay_msec] will do nothing and will print an error message.
-				[b]Note:[/b] [method delay_msec] is a [i]blocking[/i] way to delay code execution. To delay code execution in a non-blocking way, see [method SceneTree.create_timer]. Yielding with [method SceneTree.create_timer] will delay the execution of code placed below the [code]yield[/code] without affecting the rest of the project (or editor, for [EditorPlugin]s and [EditorScript]s).
-				[b]Note:[/b] When [method delay_msec] is called on the main thread, it will freeze the project and will prevent it from redrawing and registering input until the delay has passed. When using [method delay_msec] as part of an [EditorPlugin] or [EditorScript], it will freeze the editor but won't freeze the project if it is currently running (since the project is an independent child process).
+				Задерживает выполнение текущего потока на [code]msec[/code] миллисекунд. [code]msec[/code] должно быть больше или равно [code]0[/code]. В противном случае [метод delay_msec] ничего не сделает и выведет сообщение об ошибке.
+				[b]Примечание:[/b] [метод delay_msec] - это [i]блокирующий[/i] способ задержки выполнения кода. Чтобы задержать выполнение кода неблокирующим способом, смотрите [method SceneTree.create_timer]. Уступка с помощью [method SceneTree.create_timer] задержит выполнение кода, расположенного ниже [code]yield[/code], не влияя на остальную часть проекта (или редактора, для [EditorPlugin]ов и [EditorScript]ов).
+				[b]Примечание:[/b] Если [метод delay_msec] вызывается в главном потоке, он замораживает проект и не позволяет ему перерисовывать и регистрировать ввод, пока не пройдет задержка. При использовании [method delay_msec] как части [EditorPlugin] или [EditorScript], он заморозит редактор, но не заморозит проект, если он запущен в данный момент (поскольку проект является независимым дочерним процессом).
 			</description>
 		</method>
 		<method name="delay_usec" qualifiers="const">
 			<return type="void" />
 			<argument index="0" name="usec" type="int" />
 			<description>
-				Delays execution of the current thread by [code]usec[/code] microseconds. [code]usec[/code] must be greater than or equal to [code]0[/code]. Otherwise, [method delay_usec] will do nothing and will print an error message.
-				[b]Note:[/b] [method delay_usec] is a [i]blocking[/i] way to delay code execution. To delay code execution in a non-blocking way, see [method SceneTree.create_timer]. Yielding with [method SceneTree.create_timer] will delay the execution of code placed below the [code]yield[/code] without affecting the rest of the project (or editor, for [EditorPlugin]s and [EditorScript]s).
-				[b]Note:[/b] When [method delay_usec] is called on the main thread, it will freeze the project and will prevent it from redrawing and registering input until the delay has passed. When using [method delay_usec] as part of an [EditorPlugin] or [EditorScript], it will freeze the editor but won't freeze the project if it is currently running (since the project is an independent child process).
+				Задерживает выполнение текущего потока на [code]usec[/code] микросекунд. [code]usec[/code] должно быть больше или равно [code]0[/code]. В противном случае [метод delay_usec] ничего не сделает и выведет сообщение об ошибке.
+				[b]Примечание:[/b] [метод delay_usec] - это [i]блокирующий[/i] способ отложить выполнение кода. Чтобы задержать выполнение кода неблокирующим способом, смотрите [method SceneTree.create_timer]. Уступка с помощью [method SceneTree.create_timer] задержит выполнение кода, расположенного ниже [code]yield[/code], не влияя на остальную часть проекта (или редактора, для [EditorPlugin]ов и [EditorScript]ов).
+				[b]Примечание:[/b] Когда [метод delay_usec] вызывается в главном потоке, он замораживает проект и не позволяет ему перерисовывать и регистрировать ввод, пока не пройдет задержка. При использовании [method delay_usec] как части [EditorPlugin] или [EditorScript], он заморозит редактор, но не заморозит проект, если он запущен в данный момент (поскольку проект является независимым дочерним процессом).
 			</description>
 		</method>
 		<method name="dump_memory_to_file">
 			<return type="void" />
 			<argument index="0" name="file" type="String" />
 			<description>
-				Dumps the memory allocation ringlist to a file (only works in debug).
-				Entry format per line: "Address - Size - Description".
+				Выгружает кольцевой список распределения памяти в файл (работает только в режиме отладки).
+				Формат записи в строке: "Адрес - Размер - Описание".
 			</description>
 		</method>
 		<method name="dump_resources_to_file">
 			<return type="void" />
 			<argument index="0" name="file" type="String" />
 			<description>
-				Dumps all used resources to file (only works in debug).
-				Entry format per line: "Resource Type : Resource Location".
-				At the end of the file is a statistic of all used Resource Types.
+				Сбрасывает все использованные ресурсы в файл (работает только в режиме отладки).
+				Формат записи в строке: "Тип ресурса : Расположение ресурса".
+				В конце файла приводится статистика всех использованных типов ресурсов.
 			</description>
 		</method>
 		<method name="execute">
@@ -94,67 +94,67 @@
 			<argument index="4" name="read_stderr" type="bool" default="false" />
 			<argument index="5" name="open_console" type="bool" default="false" />
 			<description>
-				Execute the file at the given path with the arguments passed as an array of strings. Platform path resolution will take place. The resolved file must exist and be executable.
-				The arguments are used in the given order and separated by a space, so [code]OS.execute("ping", ["-w", "3", "godotengine.org"], false)[/code] will resolve to [code]ping -w 3 godotengine.org[/code] in the system's shell.
-				This method has slightly different behavior based on whether the [code]blocking[/code] mode is enabled.
-				If [code]blocking[/code] is [code]true[/code], the Godot thread will pause its execution while waiting for the process to terminate. The shell output of the process will be written to the [code]output[/code] array as a single string. When the process terminates, the Godot thread will resume execution.
-				If [code]blocking[/code] is [code]false[/code], the Godot thread will continue while the new process runs. It is not possible to retrieve the shell output in non-blocking mode, so [code]output[/code] will be empty.
-				On Windows, if [code]open_console[/code] is [code]true[/code] and process is console app, new terminal window will be opened, it's ignored on other platforms.
-				The return value also depends on the blocking mode. When blocking, the method will return an exit code of the process. When non-blocking, the method returns a process ID, which you can use to monitor the process (and potentially terminate it with [method kill]). If the process forking (non-blocking) or opening (blocking) fails, the method will return [code]-1[/code] or another exit code.
-				Example of blocking mode and retrieving the shell output:
+				Выполняет файл по указанному пути с аргументами, переданными в виде массива строк. Будет выполнено разрешение пути платформы. Разрешенный файл должен существовать и быть исполняемым.
+				Аргументы используются в указанном порядке и разделяются пробелом, поэтому [code]OS.execute("ping", ["-w", "3", "godotengine.org"], false)[/code] разрешит [code]ping -w 3 godotengine.org[/code] в оболочке системы.
+				Этот метод ведет себя несколько иначе в зависимости от того, включен ли режим [code]блокировки[/code].
+				Если [code]blocking[/code] - [code]true[/code], поток Godot приостановит свое выполнение в ожидании завершения процесса. Вывод оболочки процесса будет записан в массив [code]output[/code] в виде одной строки. Когда процесс завершится, поток Godot возобновит выполнение.
+				Если [code]blocking[/code] равен [code]false[/code], поток Godot продолжит выполнение, пока выполняется новый процесс. В неблокирующем режиме невозможно получить вывод оболочки, поэтому [code]output[/code] будет пустым.
+				В Windows, если [code]open_console[/code] имеет значение [code]true[/code] и процесс является консольным приложением, будет открыто новое окно терминала, на других платформах это игнорируется.
+				Возвращаемое значение также зависит от режима блокировки. В блокирующем режиме метод возвращает код завершения процесса. В неблокирующем режиме метод возвращает идентификатор процесса, который вы можете использовать для мониторинга процесса (и потенциального завершения его с помощью [method kill]). Если форкинг (неблокирующий) или открытие (блокирующий) процесса завершились неудачно, метод вернет [code]-1[/code] или другой код выхода.
+				Пример блокирующего режима и получения вывода оболочки:
 				[codeblock]
 				var output = []
 				var exit_code = OS.execute("ls", ["-l", "/tmp"], true, output)
 				[/codeblock]
-				Example of non-blocking mode, running another instance of the project and storing its process ID:
+				Пример неблокирующего режима, когда запускается другой экземпляр проекта и сохраняется идентификатор/ID его процесса:
 				[codeblock]
 				var pid = OS.execute(OS.get_executable_path(), [], false)
 				[/codeblock]
-				If you wish to access a shell built-in or perform a composite command, a platform-specific shell can be invoked. For example:
+				Если вы хотите получить доступ к встроенной оболочке или выполнить составную команду, можно вызвать оболочку, специфичную для данной платформы. Например:
 				[codeblock]
 				OS.execute("CMD.exe", ["/C", "cd %TEMP% &amp;&amp; dir"], true, output)
 				[/codeblock]
-				[b]Note:[/b] This method is implemented on Android, iOS, Linux, macOS and Windows.
-				[b]Note:[/b] To execute a Windows command interpreter built-in command, specify [code]cmd.exe[/code] in [code]path[/code], [code]/c[/code] as the first argument, and the desired command as the second argument.
-				[b]Note:[/b] To execute a PowerShell built-in command, specify [code]powershell.exe[/code] in [code]path[/code], [code]-Command[/code] as the first argument, and the desired command as the second argument.
-				[b]Note:[/b] To execute a Unix shell built-in command, specify shell executable name in [code]path[/code], [code]-c[/code] as the first argument, and the desired command as the second argument.
+				[b]Примечание:[/b] Этот метод реализован на Android, iOS, Linux, macOS и Windows.
+				[b]Примечание:[/b] Чтобы выполнить встроенную команду командного интерпретатора Windows, укажите [code]cmd.exe[/code] в [code]path[/code], [code]/c[/code] в качестве первого аргумента и желаемую команду в качестве второго аргумента.
+				[b]Примечание:[/b] Чтобы выполнить встроенную команду PowerShell, укажите [code]powershell.exe[/code] в [code]path[/code], [code]-Command[/code] в качестве первого аргумента и желаемую команду в качестве второго аргумента.
+				[b]Примечание:[/b] Чтобы выполнить встроенную команду оболочки Unix, укажите имя исполняемого файла оболочки в [code]path[/code], [code]-c[/code] в качестве первого аргумента, а желаемую команду - в качестве второго аргумента.
 			</description>
 		</method>
 		<method name="find_scancode_from_string" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="string" type="String" />
 			<description>
-				Returns the scancode of the given string (e.g. "Escape").
+				Возвращает сканкод заданной строки (например, "Escape").
 			</description>
 		</method>
 		<method name="get_audio_driver_count" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the total number of available audio drivers.
+				Возвращает общее количество доступных аудиодрайверов.
 			</description>
 		</method>
 		<method name="get_audio_driver_name" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="driver" type="int" />
 			<description>
-				Returns the audio driver name for the given index.
+				Возвращает имя аудиодрайвера для заданного индекса.
 			</description>
 		</method>
 		<method name="get_cache_dir" qualifiers="const">
 			<return type="String" />
 			<description>
-				Returns the [i]global[/i] cache data directory according to the operating system's standards. On Linux, this path can be overridden by setting the [code]XDG_CACHE_HOME[/code] environment variable before starting the project. See [url=$DOCS_URL/tutorials/io/data_paths.html]File paths in Godot projects[/url] in the documentation for more information. See also [method get_config_dir] and [method get_data_dir].
-				Not to be confused with [method get_user_data_dir], which returns the [i]project-specific[/i] user data path.
+				Возвращает каталог [i]глобального[/i] кэша данных в соответствии со стандартами операционной системы. В Linux этот путь можно переопределить, установив переменную окружения [code]XDG_CACHE_HOME[/code] перед запуском проекта. Дополнительную информацию см. в документации [url=$DOCS_URL/tutorials/io/data_paths.html]Пути к файлам в проектах Godot[/url]. См. также [method get_config_dir] и [method get_data_dir].
+				Не путать с [method get_user_data_dir], который возвращает [i]специфический для проекта[/i] путь к пользовательским данным.
 			</description>
 		</method>
 		<method name="get_cmdline_args">
 			<return type="PoolStringArray" />
 			<description>
-				Returns the command-line arguments passed to the engine.
-				Command-line arguments can be written in any form, including both [code]--key value[/code] and [code]--key=value[/code] forms so they can be properly parsed, as long as custom command-line arguments do not conflict with engine arguments.
-				You can also incorporate environment variables using the [method get_environment] method.
-				You can set [member ProjectSettings.editor/main_run_args] to define command-line arguments to be passed by the editor when running the project.
-				Here's a minimal example on how to parse command-line arguments into a dictionary using the [code]--key=value[/code] form for arguments:
+				Возвращает аргументы командной строки, переданные движку.
+				Аргументы командной строки могут быть записаны в любой форме, включая [code]--key value[/code] и [code]--key=value[/code], чтобы они могли быть правильно разобраны, при условии, что пользовательские аргументы командной строки не конфликтуют с аргументами движка.
+				Вы также можете включить переменные окружения, используя метод [method get_environment].
+				Вы можете установить [member ProjectSettings.editor/main_run_args], чтобы определить аргументы командной строки, которые будут передаваться редактору при запуске проекта.
+				Вот минимальный пример того, как разобрать аргументы командной строки в словарь, используя форму [code]--key=value[/code] для аргументов:
 				[codeblock]
 				var arguments = {}
 				for argument in OS.get_cmdline_args():
@@ -162,8 +162,8 @@
 				        var key_value = argument.split("=")
 				        arguments[key_value[0].lstrip("--")] = key_value[1]
 				    else:
-				        # Options without an argument will be present in the dictionary,
-				        # with the value set to an empty string.
+				        # Опции без аргумента будут присутствовать в словаре,
+				        # со значением, установленным в пустую строку.
 				        arguments[argument.lstrip("--")] = ""
 				[/codeblock]
 			</description>
@@ -171,234 +171,228 @@
 		<method name="get_config_dir" qualifiers="const">
 			<return type="String" />
 			<description>
-				Returns the [i]global[/i] user configuration directory according to the operating system's standards. On Linux, this path can be overridden by setting the [code]XDG_CONFIG_HOME[/code] environment variable before starting the project. See [url=$DOCS_URL/tutorials/io/data_paths.html]File paths in Godot projects[/url] in the documentation for more information. See also [method get_cache_dir] and [method get_data_dir].
-				Not to be confused with [method get_user_data_dir], which returns the [i]project-specific[/i] user data path.
+				Возвращает [i]глобальный[/i] каталог конфигурации пользователя в соответствии со стандартами операционной системы. В Linux этот путь можно переопределить, установив переменную окружения [code]XDG_CONFIG_HOME[/code] перед запуском проекта. Дополнительную информацию см. в документации [url=$DOCS_URL/tutorials/io/data_paths.html]Пути к файлам в проектах Godot[/url]. См. также [method get_cache_dir] и [method get_data_dir].
+				Не путать с [method get_user_data_dir], который возвращает [i]специфический для проекта[/i] путь к пользовательским данным.
 			</description>
 		</method>
 		<method name="get_connected_midi_inputs">
 			<return type="PoolStringArray" />
 			<description>
-				Returns an array of MIDI device names.
-				The returned array will be empty if the system MIDI driver has not previously been initialised with [method open_midi_inputs].
-				[b]Note:[/b] This method is implemented on Linux, macOS and Windows.
+				Возвращает массив имен MIDI-устройств.
+				Возвращаемый массив будет пустым, если системный MIDI-драйвер не был ранее инициализирован с помощью [метода open_midi_inputs].
+				[b]Примечание:[/b] Этот метод реализован в Linux, macOS и Windows.
 			</description>
 		</method>
 		<method name="get_current_video_driver" qualifiers="const">
 			<return type="int" enum="OS.VideoDriver" />
 			<description>
-				Returns the currently used video driver, using one of the values from [enum VideoDriver].
+				Возвращает текущий используемый видеодрайвер, используя одно из значений из [enum VideoDriver].
 			</description>
 		</method>
 		<method name="get_data_dir" qualifiers="const">
 			<return type="String" />
 			<description>
-				Returns the [i]global[/i] user data directory according to the operating system's standards. On Linux, this path can be overridden by setting the [code]XDG_DATA_HOME[/code] environment variable before starting the project. See [url=$DOCS_URL/tutorials/io/data_paths.html]File paths in Godot projects[/url] in the documentation for more information. See also [method get_cache_dir] and [method get_config_dir].
-				Not to be confused with [method get_user_data_dir], which returns the [i]project-specific[/i] user data path.
+				Возвращает [i]глобальный[/i] каталог пользовательских данных в соответствии со стандартами операционной системы. В Linux этот путь можно переопределить, установив переменную окружения [code]XDG_DATA_HOME[/code] перед запуском проекта. Дополнительную информацию см. в документации [url=$DOCS_URL/tutorials/io/data_paths.html]Пути к файлам в проектах Godot[/url]. См. также [method get_cache_dir] и [method get_config_dir].
+				Не путать с [method get_user_data_dir], который возвращает [i]специфический для проекта[/i] путь к пользовательским данным.
 			</description>
 		</method>
 		<method name="get_date" qualifiers="const">
 			<return type="Dictionary" />
 			<argument index="0" name="utc" type="bool" default="false" />
 			<description>
-				Deprecated, use [method Time.get_date_dict_from_system] instead.
-				Returns current date as a dictionary of keys: [code]year[/code], [code]month[/code], [code]day[/code], [code]weekday[/code], [code]dst[/code] (Daylight Savings Time).
+				Утратил актуальность, вместо него используйте [метод Time.get_date_dict_from_system].
+				Возвращает текущую дату в виде словаря с ключами: [code]year[/code], [code]month[/code], [code]day[/code], [code]weekday[/code], [code]dst[/code] (Daylight Savings Time).
 			</description>
 		</method>
 		<method name="get_datetime" qualifiers="const">
 			<return type="Dictionary" />
 			<argument index="0" name="utc" type="bool" default="false" />
 			<description>
-				Deprecated, use [method Time.get_datetime_dict_from_system] instead.
-				Returns current datetime as a dictionary of keys: [code]year[/code], [code]month[/code], [code]day[/code], [code]weekday[/code], [code]dst[/code] (Daylight Savings Time), [code]hour[/code], [code]minute[/code], [code]second[/code].
+				Утратил актуальность, вместо него используйте [метод Time.get_datetime_dict_from_system].
+				Возвращает текущее время даты в виде словаря с ключами: [code]year[/code], [code]month[/code], [code]day[/code], [code]weekday[/code], [code]dst[/code] (летнее время), [code]hour[/code], [code]minute[/code], [code]second[/code].
 			</description>
 		</method>
 		<method name="get_datetime_from_unix_time" qualifiers="const">
 			<return type="Dictionary" />
 			<argument index="0" name="unix_time_val" type="int" />
 			<description>
-				Deprecated, use [method Time.get_datetime_dict_from_unix_time] instead.
-				Gets a dictionary of time values corresponding to the given UNIX epoch time (in seconds).
-				The returned Dictionary's values will be the same as [method get_datetime], with the exception of Daylight Savings Time as it cannot be determined from the epoch.
+				Утратил актуальность, вместо него используйте [метод Time.get_datetime_dict_from_unix_time].
+				Получает словарь значений времени, соответствующих заданному времени эпохи UNIX (в секундах).
+				Возвращаемый словарь будет содержать те же значения, что и [метод get_datetime], за исключением летнего времени, так как оно не может быть определено из эпохи.
 			</description>
 		</method>
 		<method name="get_display_cutouts" qualifiers="const">
 			<return type="Array" />
 			<description>
-				Returns an [Array] of [Rect2], each of which is the bounding rectangle for a display cutout or notch. These are non-functional areas on edge-to-edge screens used by cameras and sensors. Returns an empty array if the device does not have cutouts. See also [method get_window_safe_area].
-				[b]Note:[/b] Currently only implemented on Android. Other platforms will return an empty array even if they do have display cutouts or notches.
+				Возвращает [Массив] из [Rect2], каждый из которых является ограничивающим прямоугольником для выреза дисплея или выемки. Это нефункциональные области на экранах, расположенных от края до края, используемые камерами и датчиками. Возвращает пустой массив, если устройство не имеет вырезов. См. также [метод get_window_safe_area].
+				[b]Примечание:[/b] В настоящее время реализовано только на Android. Другие платформы вернут пустой массив, даже если у них есть вырезы или выемки на дисплее.
 			</description>
 		</method>
 		<method name="get_dynamic_memory_usage" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the total amount of dynamic memory used (only works in debug).
+				Возвращает общий объем используемой динамической памяти (работает только в режиме отладки).
 			</description>
 		</method>
 		<method name="get_environment" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="variable" type="String" />
 			<description>
-				Returns the value of an environment variable. Returns an empty string if the environment variable doesn't exist.
-				[b]Note:[/b] Double-check the casing of [code]variable[/code]. Environment variable names are case-sensitive on all platforms except Windows.
+				Возвращает значение переменной окружения. Возвращает пустую строку, если переменная окружения не существует.
+				[b]Примечание:[/b] Дважды проверьте регистр [code]variable[/code]. Имена переменных окружения чувствительны к регистру на всех платформах, кроме Windows.
 			</description>
 		</method>
 		<method name="get_executable_path" qualifiers="const">
 			<return type="String" />
 			<description>
-				Returns the path to the current engine executable.
+				Возвращает путь к текущему исполняемому файлу движка.
 			</description>
 		</method>
 		<method name="get_granted_permissions" qualifiers="const">
 			<return type="PoolStringArray" />
 			<description>
-				With this function, you can get the list of dangerous permissions that have been granted to the Android application.
-				[b]Note:[/b] This method is implemented on Android.
+				С помощью этой функции можно получить список опасных разрешений, которые были предоставлены приложению Android.
+				[b]Примечание:[/b] Этот метод реализован на Android.
 			</description>
 		</method>
 		<method name="get_ime_selection" qualifiers="const">
 			<return type="Vector2" />
 			<description>
-				Returns the IME cursor position (the currently-edited portion of the string) relative to the characters in the composition string.
-				[constant MainLoop.NOTIFICATION_OS_IME_UPDATE] is sent to the application to notify it of changes to the IME cursor position.
-				[b]Note:[/b] This method is implemented on macOS.
+				Возвращает позицию курсора IME (редактируемой в данный момент части строки) относительно символов в композиционной строке.
+				[constant MainLoop.NOTIFICATION_OS_IME_UPDATE] отправляется приложению, чтобы уведомить его об изменении позиции курсора IME.
+				[b]Примечание:[/b] Этот метод реализован на macOS.
 			</description>
 		</method>
 		<method name="get_ime_text" qualifiers="const">
 			<return type="String" />
 			<description>
-				Returns the IME intermediate composition string.
-				[constant MainLoop.NOTIFICATION_OS_IME_UPDATE] is sent to the application to notify it of changes to the IME composition string.
-				[b]Note:[/b] This method is implemented on macOS.
+				Возвращает промежуточную композиционную строку IME.
+				[constant MainLoop.NOTIFICATION_OS_IME_UPDATE] отправляется приложению, чтобы уведомить его об изменениях в строке состава IME.
+				[b]Примечание:[/b] Этот метод реализован на macOS.
 			</description>
 		</method>
 		<method name="get_latin_keyboard_variant" qualifiers="const">
 			<return type="String" />
 			<description>
-				Returns the current latin keyboard variant as a String.
-				Possible return values are: [code]"QWERTY"[/code], [code]"AZERTY"[/code], [code]"QZERTY"[/code], [code]"DVORAK"[/code], [code]"NEO"[/code], [code]"COLEMAK"[/code] or [code]"ERROR"[/code].
-				[b]Note:[/b] This method is implemented on Linux, macOS and Windows. Returns [code]"QWERTY"[/code] on unsupported platforms.
+				Возвращает текущий вариант латинской клавиатуры в виде строки.
+				Возможные возвращаемые значения: [code]"QWERTY"[/code], [code]"AZERTY"[/code], [code]"QZERTY"[/code], [code]"DVORAK"[/code], [code]"NEO"[/code], [code]"COLEMAK"[/code] или [code]"ERROR"[/code].
+				[b]Примечание:[/b] Этот метод реализован в Linux, macOS и Windows. На неподдерживаемых платформах возвращает [code]"QWERTY"[/code].
 			</description>
 		</method>
 		<method name="get_locale" qualifiers="const">
 			<return type="String" />
 			<description>
-				Returns the host OS locale as a string of the form [code]language_Script_COUNTRY_VARIANT@extra[/code]. If you want only the language code and not the fully specified locale from the OS, you can use [method get_locale_language].
-				[code]language[/code] - 2 or 3-letter [url=https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes]language code[/url], in lower case.
-				[code]Script[/code] - optional, 4-letter [url=https://en.wikipedia.org/wiki/ISO_15924]script code[/url], in title case.
-				[code]COUNTRY[/code] - optional, 2 or 3-letter [url=https://en.wikipedia.org/wiki/ISO_3166-1]country code[/url], in upper case.
-				[code]VARIANT[/code] - optional, language variant, region and sort order. Variant can have any number of underscored keywords.
-				[code]extra[/code] - optional, semicolon separated list of additional key words. Currency, calendar, sort order and numbering system information.
+				Возвращает локаль хостовой ОС в виде строки вида [code]language_Script_COUNTRY_VARIANT@extra[/code]. Если вам нужен только код языка, а не полностью указанная локаль ОС, вы можете использовать [метод get_locale_language].
+				[code]language[/code] - 2-х или 3-х буквенный [url=https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes]код языка[/url], в нижнем регистре.
+				[code]Script[/code] - необязательно, 4-буквенный [url=https://en.wikipedia.org/wiki/ISO_15924]код скрипта[/url], в заглавном регистре.
+				[code]COUNTRY[/code] - необязательно, 2- или 3-буквенный [url=https://en.wikipedia.org/wiki/ISO_3166-1]код страны[/url], в верхнем регистре.
+				[code]VARIANT[/code] - опционально, вариант языка, регион и порядок сортировки. Вариант может содержать любое количество подчеркнутых ключевых слов.
+				[code]extra[/code] - опционально, список дополнительных ключевых слов, разделенных точкой с запятой. Информация о валюте, календаре, порядке сортировки и системе нумерации.
 			</description>
 		</method>
 		<method name="get_locale_language" qualifiers="const">
 			<return type="String" />
 			<description>
-				Returns the host OS locale's 2 or 3-letter [url=https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes]language code[/url] as a string which should be consistent on all platforms. This is equivalent to extracting the [code]language[/code] part of the [method get_locale] string.
-				This can be used to narrow down fully specified locale strings to only the "common" language code, when you don't need the additional information about country code or variants. For example, for a French Canadian user with [code]fr_CA[/code] locale, this would return [code]fr[/code].
+				Возвращает двух- или трехбуквенный [url=https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes]код языка[/url] локали хостовой ОС в виде строки, которая должна быть последовательной на всех платформах. Это эквивалентно извлечению части [code]language[/code] из строки [method get_locale].
+				Это можно использовать для сужения полностью заданных строк локалей только до "общего" кода языка, когда вам не нужна дополнительная информация о коде страны или вариантах. Например, для пользователя из Французской Канады с локалью [code]fr_CA[/code] это вернет [code]fr[/code].
 			</description>
 		</method>
 		<method name="get_main_thread_id" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the ID of the main thread. See [method get_thread_caller_id].
-				[b]Note:[/b] Thread IDs are not deterministic and may be reused across application restarts.
+				Возвращает идентификатор(ID) главного потока. Смотрите [метод get_thread_caller_id].
+				[b]Примечание:[/b] Идентификаторы(ID) потоков не являются детерминированными и могут использоваться повторно при перезапуске приложения.
 			</description>
 		</method>
 		<method name="get_model_name" qualifiers="const">
 			<return type="String" />
 			<description>
-				Returns the model name of the current device.
-				[b]Note:[/b] This method is implemented on Android and iOS. Returns [code]"GenericDevice"[/code] on unsupported platforms.
+				Возвращает название модели текущего устройства.
+				[b]Примечание:[/b] Этот метод реализован на Android и iOS. На неподдерживаемых платформах возвращается [code]"GenericDevice"[/code].
 			</description>
 		</method>
 		<method name="get_name" qualifiers="const">
 			<return type="String" />
 			<description>
-				Returns the name of the host OS. Possible values are: [code]"Android"[/code], [code]"iOS"[/code], [code]"HTML5"[/code], [code]"OSX"[/code], [code]"Server"[/code], [code]"Windows"[/code], [code]"UWP"[/code], [code]"X11"[/code].
+				Возвращает имя операционной системы хоста. Возможные значения: [code]"Android"[/code], [code]"iOS"[/code], [code]"HTML5"[/code], [code]"OSX"[/code], [code]"Server"[/code], [code]"Windows"[/code], [code]"UWP"[/code], [code]"X11"[/code].
 			</description>
 		</method>
 		<method name="get_native_handle">
 			<return type="int" />
 			<argument index="0" name="handle_type" type="int" enum="OS.HandleType" />
 			<description>
-				Returns internal structure pointers for use in GDNative plugins.
-				[b]Note:[/b] This method is implemented on Linux and Windows (other OSs will soon be supported).
+				Возвращает указатели внутренних структур для использования в плагинах GDNative.
+				[b]Примечание:[/b] Этот метод реализован в Linux и Windows (другие ОС скоро будут поддерживаться).
 			</description>
 		</method>
 		<method name="get_power_percent_left">
 			<return type="int" />
 			<description>
-				Returns the amount of battery left in the device as a percentage. Returns [code]-1[/code] if power state is unknown.
-				[b]Note:[/b] This method is implemented on Linux, macOS and Windows.
+				Возвращает количество оставшегося в устройстве заряда батареи в процентах. Возвращает [code]-1[/code], если состояние питания неизвестно.
+				[b]Примечание:[/b] Этот метод реализован в Linux, macOS и Windows.
 			</description>
 		</method>
 		<method name="get_power_seconds_left">
 			<return type="int" />
 			<description>
-				Returns an estimate of the time left in seconds before the device runs out of battery. Returns [code]-1[/code] if power state is unknown.
-				[b]Note:[/b] This method is implemented on Linux, macOS and Windows.
+				Возвращает оценку времени в секундах, оставшегося до того, как устройство разрядит батарею. Возвращает [code]-1[/code], если состояние питания неизвестно.
+				[b]Примечание:[/b] Этот метод реализован в Linux, macOS и Windows.
 			</description>
 		</method>
 		<method name="get_power_state">
 			<return type="int" enum="OS.PowerState" />
 			<description>
-				Returns the current state of the device regarding battery and power. See [enum PowerState] constants.
-				[b]Note:[/b] This method is implemented on Linux, macOS and Windows.
+				Возвращает текущее состояние устройства относительно батареи и питания. См. константы [enum PowerState].
+				[b]Примечание:[/b] Этот метод реализован в Linux, macOS и Windows.
 			</description>
 		</method>
 		<method name="get_process_id" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the project's process ID.
-				[b]Note:[/b] This method is implemented on Android, iOS, Linux, macOS and Windows.
+				Возвращает идентификатор процесса проекта.
+				[b]Примечание:[/b] Этот метод реализован на Android, iOS, Linux, macOS и Windows.
 			</description>
 		</method>
 		<method name="get_processor_count" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the number of [i]logical[/i] CPU cores available on the host machine. On CPUs with HyperThreading enabled, this number will be greater than the number of [i]physical[/i] CPU cores.
+				Возвращает количество [i]логических[/i] ядер процессора, доступных на хост-машине. На процессорах с включенной технологией HyperThreading это число будет больше, чем число [i]физических[/i] ядер процессора.
 			</description>
 		</method>
 		<method name="get_processor_name" qualifiers="const">
 			<return type="String" />
 			<description>
-				Returns the name of the CPU model on the host machine (e.g. "Intel(R) Core(TM) i7-6700K CPU @ 4.00GHz").
-				[b]Note:[/b] This method is only implemented on Windows, macOS, Linux and iOS. On Android, HTML5 and UWP, [method get_processor_name] returns an empty string.
+				Возвращает название модели процессора на хост-машине (например, "Intel(R) Core(TM) i7-6700K CPU @ 4.00GHz").
+				[b]Примечание:[/b] Этот метод реализован только в Windows, macOS, Linux и iOS. В Android, HTML5 и UWP [метод get_processor_name] возвращает пустую строку.
 			</description>
 		</method>
 		<method name="get_real_window_size" qualifiers="const">
 			<return type="Vector2" />
 			<description>
-				Returns the window size including decorations like window borders.
-			</description>
-		</method>
-		<method name="get_restart_on_exit_arguments" qualifiers="const">
-			<return type="PoolStringArray" />
-			<description>
-				Returns the list of command line arguments that will be used when the project automatically restarts using [method set_restart_on_exit]. See also [method is_restart_on_exit_set].
+				Возвращает размер окна с учетом декоративных элементов, таких как границы окна.
 			</description>
 		</method>
 		<method name="get_scancode_string" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="code" type="int" />
 			<description>
-				Returns the given scancode as a string (e.g. Return values: [code]"Escape"[/code], [code]"Shift+Escape"[/code]).
-				See also [member InputEventKey.scancode] and [method InputEventKey.get_scancode_with_modifiers].
+				Возвращает заданный сканкод в виде строки (например, возвращаемые значения: [code]"Escape"[/code], [code]"Shift+Escape"[/code]).
+				См. также [member InputEventKey.scancode] и [method InputEventKey.get_scancode_with_modifiers].
 			</description>
 		</method>
 		<method name="get_screen_count" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the number of displays attached to the host machine.
+				Возвращает количество дисплеев, подключенных к хост-машине.
 			</description>
 		</method>
 		<method name="get_screen_dpi" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="screen" type="int" default="-1" />
 			<description>
-				Returns the dots per inch density of the specified screen. If [code]screen[/code] is [code]-1[/code] (the default value), the current screen will be used.
-				[b]Note:[/b] On macOS, returned value is inaccurate if fractional display scaling mode is used.
-				[b]Note:[/b] On Android devices, the actual screen densities are grouped into six generalized densities:
+				Возвращает плотность точек на дюйм для указанного экрана. Если [code]screen[/code] равен [code]-1[/code] (значение по умолчанию), будет использоваться текущий экран.
+				[b]Примечание:[/b] В macOS возвращаемое значение будет неточным, если используется режим дробного масштабирования дисплея.
+				[b]Примечание:[/b] На устройствах Android фактические плотности экрана сгруппированы в шесть обобщенных плотностей:
 				[codeblock]
 				   ldpi - 120 dpi
 				   mdpi - 160 dpi
@@ -407,34 +401,34 @@
 				 xxhdpi - 480 dpi
 				xxxhdpi - 640 dpi
 				[/codeblock]
-				[b]Note:[/b] This method is implemented on Android, Linux, macOS and Windows. Returns [code]72[/code] on unsupported platforms.
+				[b]Примечание:[/b] Этот метод реализован на Android, Linux, macOS и Windows. На неподдерживаемых платформах возвращается [code]72[/code].
 			</description>
 		</method>
 		<method name="get_screen_max_scale" qualifiers="const">
 			<return type="float" />
 			<description>
-				Return the greatest scale factor of all screens.
-				[b]Note:[/b] On macOS returned value is [code]2.0[/code] if there is at least one hiDPI (Retina) screen in the system, and [code]1.0[/code] in all other cases.
-				[b]Note:[/b] This method is implemented on macOS.
+				Возвращает наибольший масштабный коэффициент для всех экранов.
+				[b]Примечание:[/b] В macOS возвращаемое значение равно [code]2.0[/code], если в системе есть хотя бы один экран hiDPI (Retina), и [code]1.0[/code] во всех остальных случаях.
+				[b]Примечание:[/b] Этот метод реализован на macOS.
 			</description>
 		</method>
 		<method name="get_screen_position" qualifiers="const">
 			<return type="Vector2" />
 			<argument index="0" name="screen" type="int" default="-1" />
 			<description>
-				Returns the position of the specified screen by index. If [code]screen[/code] is [code]-1[/code] (the default value), the current screen will be used.
+				Возвращает позицию указанного экрана по индексу. Если [code]screen[/code] равен [code]-1[/code] (значение по умолчанию), будет использоваться текущий экран.
 			</description>
 		</method>
 		<method name="get_screen_refresh_rate" qualifiers="const">
 			<return type="float" />
 			<argument index="0" name="screen" type="int" default="-1" />
 			<description>
-				Returns the current refresh rate of the specified screen. If [code]screen[/code] is [code]-1[/code] (the default value), the current screen will be used.
-				[b]Note:[/b] Returns [code]-1.0[/code] if Godot fails to find the refresh rate for the specified screen. On HTML5, [method get_screen_refresh_rate] will always return [code]-1.0[/code] as there is no way to retrieve the refresh rate on that platform.
-				To fallback to a default refresh rate if the method fails, try:
-				[codeblock]
+				Возвращает текущую частоту обновления указанного экрана. Если [code]screen[/code] равен [code]-1[/code] (значение по умолчанию), будет использоваться текущий экран.
+				[b]Примечание:[/b] Возвращает [code]-1.0[/code], если Godot не смог найти частоту обновления для указанного экрана. На HTML5 [метод get_screen_refresh_rate] всегда будет возвращать [code]-1.0[/code], так как на этой платформе нет возможности получить частоту обновления.
+				Чтобы вернуться к частоте обновления по умолчанию, если метод не сработал, попробуйте:
+				[codeblock].
 				var refresh_rate = OS.get_screen_refresh_rate()
-				if refresh_rate &lt; 0:
+				если refresh_rate < 0:
 				    refresh_rate = 60.0
 				[/codeblock]
 			</description>
@@ -443,34 +437,34 @@
 			<return type="float" />
 			<argument index="0" name="screen" type="int" default="-1" />
 			<description>
-				Return the scale factor of the specified screen by index. If [code]screen[/code] is [code]-1[/code] (the default value), the current screen will be used.
-				[b]Note:[/b] On macOS returned value is [code]2.0[/code] for hiDPI (Retina) screen, and [code]1.0[/code] for all other cases.
-				[b]Note:[/b] This method is implemented on macOS.
+				Возвращает масштабный коэффициент указанного экрана по индексу. Если [code]screen[/code] равен [code]-1[/code] (значение по умолчанию), то будет использоваться текущий экран.
+				[b]Примечание:[/b] В macOS возвращаемое значение равно [code]2.0[/code] для экрана hiDPI (Retina) и [code]1.0[/code] для всех остальных случаев.
+				[b]Примечание:[/b] Этот метод реализован на macOS.
 			</description>
 		</method>
 		<method name="get_screen_size" qualifiers="const">
 			<return type="Vector2" />
 			<argument index="0" name="screen" type="int" default="-1" />
 			<description>
-				Returns the dimensions in pixels of the specified screen. If [code]screen[/code] is [code]-1[/code] (the default value), the current screen will be used.
+				Возвращает размеры в пикселях указанного экрана. Если [code]screen[/code] равен [code]-1[/code] (значение по умолчанию), будет использоваться текущий экран.
 			</description>
 		</method>
 		<method name="get_splash_tick_msec" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the amount of time in milliseconds it took for the boot logo to appear.
+				Возвращает количество времени в миллисекундах, которое потребовалось для появления логотипа загрузки.
 			</description>
 		</method>
 		<method name="get_static_memory_peak_usage" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the maximum amount of static memory used (only works in debug).
+				Возвращает максимальный объем используемой статической памяти (работает только в режиме отладки).
 			</description>
 		</method>
 		<method name="get_static_memory_usage" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the amount of static memory being used by the program in bytes (only works in debug).
+				Возвращает объем статической памяти, используемой программой, в байтах (работает только в режиме отладки).
 			</description>
 		</method>
 		<method name="get_system_dir" qualifiers="const">
@@ -478,133 +472,133 @@
 			<argument index="0" name="dir" type="int" enum="OS.SystemDir" />
 			<argument index="1" name="shared_storage" type="bool" default="true" />
 			<description>
-				Returns the actual path to commonly used folders across different platforms. Available locations are specified in [enum SystemDir].
-				[b]Note:[/b] This method is implemented on Android, Linux, macOS and Windows.
-				[b]Note:[/b] Shared storage is implemented on Android and allows to differentiate between app specific and shared directories. Shared directories have additional restrictions on Android.
+				Возвращает фактический путь к часто используемым папкам на разных платформах. Доступные расположения указаны в [enum SystemDir].
+				[b]Примечание:[/b] Этот метод реализован в Android, Linux, macOS и Windows.
+				[b]Примечание:[/b] Общее хранилище реализовано в Android и позволяет различать каталоги, предназначенные только для приложений, и общие каталоги. Общие каталоги имеют дополнительные ограничения в Android.
 			</description>
 		</method>
 		<method name="get_system_time_msecs" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the epoch time of the operating system in milliseconds.
+				Возвращает время эпохи операционной системы в миллисекундах.
 			</description>
 		</method>
 		<method name="get_system_time_secs" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the epoch time of the operating system in seconds.
+				Возвращает время эпохи операционной системы в секундах.
 			</description>
 		</method>
 		<method name="get_tablet_driver_count" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the total number of available tablet drivers.
-				[b]Note:[/b] This method is implemented on Windows.
+				Возвращает общее количество доступных драйверов для планшетов.
+				[b]Примечание:[/b] Этот метод реализован на Windows.
 			</description>
 		</method>
 		<method name="get_tablet_driver_name" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="idx" type="int" />
 			<description>
-				Returns the tablet driver name for the given index.
-				[b]Note:[/b] This method is implemented on Windows.
+				Возвращает имя драйвера планшета для заданного индекса.
+				[b]Примечание:[/b] Этот метод реализован в Windows.
 			</description>
 		</method>
 		<method name="get_thread_caller_id" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the ID of the current thread. This can be used in logs to ease debugging of multi-threaded applications.
-				[b]Note:[/b] Thread IDs are not deterministic and may be reused across application restarts.
+				Возвращает идентификатор текущего потока. Это может быть использовано в логах для облегчения отладки многопоточных приложений.
+				[b]Примечание:[/b] Идентификаторы потоков не являются детерминированными и могут использоваться повторно при перезапуске приложения.
 			</description>
 		</method>
 		<method name="get_ticks_msec" qualifiers="const">
 			<return type="int" />
 			<description>
-				Deprecated, use [method Time.get_ticks_msec] instead.
-				Returns the amount of time passed in milliseconds since the engine started.
+				Утратил актуальность, вместо него используйте [метод Time.get_ticks_msec].
+				Возвращает количество времени, прошедшего в миллисекундах с момента запуска двигателя.
 			</description>
 		</method>
 		<method name="get_ticks_usec" qualifiers="const">
 			<return type="int" />
 			<description>
-				Deprecated, use [method Time.get_ticks_usec] instead.
-				Returns the amount of time passed in microseconds since the engine started.
+				Утратил актуальность, вместо него используйте [метод Time.get_ticks_usec].
+				Возвращает количество времени, прошедшего в микросекундах с момента запуска двигателя.
 			</description>
 		</method>
 		<method name="get_time" qualifiers="const">
 			<return type="Dictionary" />
 			<argument index="0" name="utc" type="bool" default="false" />
 			<description>
-				Deprecated, use [method Time.get_time_dict_from_system] instead.
-				Returns current time as a dictionary of keys: hour, minute, second.
+				Утратил актуальность, вместо него используйте [метод Time.get_time_dict_from_system].
+				Возвращает текущее время в виде словаря с ключами: час, минута, секунда.
 			</description>
 		</method>
 		<method name="get_time_zone_info" qualifiers="const">
 			<return type="Dictionary" />
 			<description>
-				Returns the current time zone as a dictionary with the keys: bias and name.
+				Возвращает текущий часовой пояс в виде словаря с ключами: bias и name.
 			</description>
 		</method>
 		<method name="get_unique_id" qualifiers="const">
 			<return type="String" />
 			<description>
-				Returns a string that is unique to the device.
-				[b]Note:[/b] This string may change without notice if the user reinstalls/upgrades their operating system or changes their hardware. This means it should generally not be used to encrypt persistent data as the data saved before an unexpected ID change would become inaccessible. The returned string may also be falsified using external programs, so do not rely on the string returned by [method get_unique_id] for security purposes.
-				[b]Note:[/b] Returns an empty string and prints an error on HTML5, as this method cannot be implemented on this platform.
+				Возвращает строку, уникальную для данного устройства.
+				[b]Примечание:[/b] Эта строка может измениться без предупреждения, если пользователь переустановит/обновит свою операционную систему или изменит аппаратное обеспечение. Это означает, что ее не следует использовать для шифрования постоянных данных, поскольку данные, сохраненные до неожиданного изменения идентификатора, станут недоступными. Возвращаемая строка также может быть подделана с помощью внешних программ, поэтому не стоит полагаться на строку, возвращаемую [методом get_unique_id], в целях безопасности.
+				[b]Примечание:[/b] Возвращает пустую строку на HTML5 и UWP, так как этот метод еще не реализован на этих платформах.
 			</description>
 		</method>
 		<method name="get_unix_time" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the current UNIX epoch timestamp in seconds.
-				[b]Important:[/b] This is the system clock that the user can manually set. [b]Never use[/b] this method for precise time calculation since its results are also subject to automatic adjustments by the operating system. [b]Always use[/b] [method get_ticks_usec] or [method get_ticks_msec] for precise time calculation instead, since they are guaranteed to be monotonic (i.e. never decrease).
-				[b]Note:[/b] To get a floating point timestamp with sub-second precision, use [method Time.get_unix_time_from_system].
+				Возвращает текущую временную метку эпохи UNIX в секундах.
+				[b]Важно:[/b] Это системные часы, которые пользователь может установить вручную. [b]Никогда не используйте[/b] этот метод для вычисления точного времени, поскольку его результаты также подвержены автоматической корректировке операционной системой. [b]Всегда используйте[/b] [метод get_ticks_usec] или [метод get_ticks_msec] для расчета точного времени, поскольку они гарантированно монотонны (т.е. никогда не уменьшаются).
+				[b]Примечание:[/b] Чтобы получить временную метку с плавающей точкой с субсекундной точностью, используйте [метод Time.get_unix_time_from_system].
 			</description>
 		</method>
 		<method name="get_unix_time_from_datetime" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="datetime" type="Dictionary" />
 			<description>
-				Gets an epoch time value from a dictionary of time values.
-				[code]datetime[/code] must be populated with the following keys: [code]year[/code], [code]month[/code], [code]day[/code], [code]hour[/code], [code]minute[/code], [code]second[/code].
-				If the dictionary is empty [code]0[/code] is returned. If some keys are omitted, they default to the equivalent values for the UNIX epoch timestamp 0 (1970-01-01 at 00:00:00 UTC).
-				You can pass the output from [method get_datetime_from_unix_time] directly into this function. Daylight Savings Time ([code]dst[/code]), if present, is ignored.
+				Получает значение эпохального времени из словаря временных значений.
+				[code]datetime[/code] должен быть заполнен следующими ключами: [code]year[/code], [code]month[/code], [code]day[/code], [code]hour[/code], [code]minute[/code], [code]second[/code].
+				Если словарь пуст, возвращается [code]0[/code]. Если некоторые ключи опущены, то по умолчанию они принимают эквивалентные значения для временной метки эпохи UNIX 0 (1970-01-01 в 00:00:00 UTC).
+				Вы можете передать вывод из [метода get_datetime_from_unix_time] непосредственно в эту функцию. Летнее время ([code]dst[/code]), если оно присутствует, игнорируется.
 			</description>
 		</method>
 		<method name="get_user_data_dir" qualifiers="const">
 			<return type="String" />
 			<description>
-				Returns the absolute directory path where user data is written ([code]user://[/code]).
-				On Linux, this is [code]~/.local/share/godot/app_userdata/[project_name][/code], or [code]~/.local/share/[custom_name][/code] if [code]use_custom_user_dir[/code] is set.
-				On macOS, this is [code]~/Library/Application Support/Godot/app_userdata/[project_name][/code], or [code]~/Library/Application Support/[custom_name][/code] if [code]use_custom_user_dir[/code] is set.
-				On Windows, this is [code]%APPDATA%\Godot\app_userdata\[project_name][/code], or [code]%APPDATA%\[custom_name][/code] if [code]use_custom_user_dir[/code] is set. [code]%APPDATA%[/code] expands to [code]%USERPROFILE%\AppData\Roaming[/code].
-				If the project name is empty, [code]user://[/code] falls back to [code]res://[/code].
-				Not to be confused with [method get_data_dir], which returns the [i]global[/i] (non-project-specific) user data directory.
+				Возвращает абсолютный путь к каталогу, в котором записаны данные пользователя ([code]user://[/code]).
+				В Linux это [code]~/.local/share/godot/app_userdata/[имя_проекта][/code], или [code]~/.local/share/[имя_пользователя][/code], если установлено [code]use_custom_user_dir[/code].
+				В macOS это [code]~/Library/Application Support/Godot/app_userdata/[project_name][/code], или [code]~/Library/Application Support/[custom_name][/code], если [code]use_custom_user_dir[/code] установлен.
+				В Windows это [code]%APPDATA%\Godot\app_userdata\[имя_проекта][/code], или [code]%APPDATA%\[имя_настройки][/code], если задан [code]use_custom_user_dir[/code]. [code]%APPDATA%[/code] расширяется до [code]%USERPROFILE%\AppData\Roaming[/code].
+				Если имя проекта пустое, [code]user://[/code] возвращается к [code]res://[/code].
+				Не следует путать с [методом get_data_dir], который возвращает [i]глобальный[/i] (не зависящий от проекта) каталог данных пользователя.
 			</description>
 		</method>
 		<method name="get_video_driver_count" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the number of video drivers supported on the current platform.
+				Возвращает количество видеодрайверов, поддерживаемых на текущей платформе.
 			</description>
 		</method>
 		<method name="get_video_driver_name" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="driver" type="int" enum="OS.VideoDriver" />
 			<description>
-				Returns the name of the video driver matching the given [code]driver[/code] index. This index is a value from [enum VideoDriver], and you can use [method get_current_video_driver] to get the current backend's index.
+				Возвращает имя видеодрайвера, соответствующего заданному [code]driver[/code] индексу. Этот индекс является значением из [enum VideoDriver], и вы можете использовать [метод get_current_video_driver], чтобы получить индекс текущего бэкенда.
 			</description>
 		</method>
 		<method name="get_virtual_keyboard_height">
 			<return type="int" />
 			<description>
-				Returns the on-screen keyboard's height in pixels. Returns 0 if there is no keyboard or if it is currently hidden.
+				Возвращает высоту экранной клавиатуры в пикселях. Возвращает 0, если клавиатура отсутствует или если она в данный момент скрыта.
 			</description>
 		</method>
 		<method name="get_window_safe_area" qualifiers="const">
 			<return type="Rect2" />
 			<description>
-				Returns unobscured area of the window where interactive controls should be rendered.
+				Возвращает незатененную область окна, в которой должны быть отображены интерактивные элементы управления.
 			</description>
 		</method>
 		<method name="global_menu_add_item">
@@ -614,24 +608,24 @@
 			<argument index="2" name="id" type="Variant" />
 			<argument index="3" name="meta" type="Variant" />
 			<description>
-				Add a new item with text "label" to global menu. Use "_dock" menu to add item to the macOS dock icon menu.
-				[b]Note:[/b] This method is implemented on macOS.
+				Добавьте новый пункт с текстом "label" в глобальное меню. Используйте меню "_dock", чтобы добавить пункт в меню значка дока macOS.
+				[b]Примечание:[/b] Этот метод реализован на macOS.
 			</description>
 		</method>
 		<method name="global_menu_add_separator">
 			<return type="void" />
 			<argument index="0" name="menu" type="String" />
 			<description>
-				Add a separator between items. Separators also occupy an index.
-				[b]Note:[/b] This method is implemented on macOS.
+				Добавьте разделитель между элементами. Разделители также занимают индекс.
+				[b]Примечание:[/b] Этот метод реализован на macOS.
 			</description>
 		</method>
 		<method name="global_menu_clear">
 			<return type="void" />
 			<argument index="0" name="menu" type="String" />
 			<description>
-				Clear the global menu, in effect removing all items.
-				[b]Note:[/b] This method is implemented on macOS.
+				Очистить глобальное меню, фактически удалив все пункты.
+				[b]Примечание:[/b] Этот метод реализован на macOS.
 			</description>
 		</method>
 		<method name="global_menu_remove_item">
@@ -639,173 +633,167 @@
 			<argument index="0" name="menu" type="String" />
 			<argument index="1" name="idx" type="int" />
 			<description>
-				Removes the item at index "idx" from the global menu. Note that the indexes of items after the removed item are going to be shifted by one.
-				[b]Note:[/b] This method is implemented on macOS.
+				Удаляет пункт с индексом "idx" из глобального меню. Обратите внимание, что индексы пунктов после удаленного будут сдвинуты на единицу.
+				[b]Примечание:[/b] Этот метод реализован на macOS.
 			</description>
 		</method>
 		<method name="has_clipboard" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if there is content on the clipboard.
+				Возвращает [code]true[/code], если в буфере обмена есть содержимое.
 			</description>
 		</method>
 		<method name="has_environment" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="variable" type="String" />
 			<description>
-				Returns [code]true[/code] if the environment variable with the name [code]variable[/code] exists.
-				[b]Note:[/b] Double-check the casing of [code]variable[/code]. Environment variable names are case-sensitive on all platforms except Windows.
+				Возвращает [code]true[/code], если переменная окружения с именем [code]variable[/code] существует.
+				[b]Примечание:[/b] Дважды проверьте регистр [code]variable[/code]. Имена переменных окружения чувствительны к регистру на всех платформах, кроме Windows.
 			</description>
 		</method>
 		<method name="has_feature" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="tag_name" type="String" />
 			<description>
-				Returns [code]true[/code] if the feature for the given feature tag is supported in the currently running instance, depending on the platform, build etc. Can be used to check whether you're currently running a debug build, on a certain platform or arch, etc. Refer to the [url=$DOCS_URL/tutorials/export/feature_tags.html]Feature Tags[/url] documentation for more details.
-				[b]Note:[/b] Tag names are case-sensitive.
+				Возвращает [code]true[/code], если функция для заданного тега feature поддерживается в текущем запущенном экземпляре, в зависимости от платформы, сборки и т. д. Может использоваться для проверки того, запущена ли в данный момент отладочная сборка, на определенной платформе или арке и т. д. Более подробную информацию см. в документации [url=$DOCS_URL/tutorials/export/feature_tags.html]Feature Tags[/url].
+				[b]Примечание:[/b] Имена тегов чувствительны к регистру.
 			</description>
 		</method>
 		<method name="has_touchscreen_ui_hint" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the device has a touchscreen or emulates one.
+				Возвращает [code]true[/code], если устройство имеет сенсорный экран или эмулирует его.
 			</description>
 		</method>
 		<method name="has_virtual_keyboard" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the platform has a virtual keyboard, [code]false[/code] otherwise.
+				Возвращает [code]true[/code], если платформа имеет виртуальную клавиатуру, [code]false[/code] - в противном случае.
 			</description>
 		</method>
 		<method name="hide_virtual_keyboard">
 			<return type="void" />
 			<description>
-				Hides the virtual keyboard if it is shown, does nothing otherwise.
+				Скрывает виртуальную клавиатуру, если она отображается, в противном случае ничего не делает.
 			</description>
 		</method>
 		<method name="is_debug_build" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the Godot binary used to run the project is a [i]debug[/i] export template, or when running in the editor.
-				Returns [code]false[/code] if the Godot binary used to run the project is a [i]release[/i] export template.
-				To check whether the Godot binary used to run the project is an export template (debug or release), use [code]OS.has_feature("standalone")[/code] instead.
+				Возвращает [code]true[/code], если двоичный файл Godot, используемый для запуска проекта, является экспортным шаблоном [i]debug[/i], или при запуске в редакторе.
+				Возвращает [code]false[/code], если двоичный файл Godot, используемый для запуска проекта, является экспортным шаблоном [i]release[/i].
+				Чтобы проверить, является ли двоичный файл Godot, используемый для запуска проекта, экспортным шаблоном (отладочным или релизным), используйте [code]OS.has_feature("standalone")[/code] вместо этого.
 			</description>
 		</method>
 		<method name="is_ok_left_and_cancel_right" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the [b]OK[/b] button should appear on the left and [b]Cancel[/b] on the right.
+				Возвращает [code]true[/code], если кнопка [b]OK[/b] должна отображаться слева, а [b]Cancel[/b] - справа.
 			</description>
 		</method>
 		<method name="is_process_running" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="pid" type="int" />
 			<description>
-				Returns [code]true[/code] if the child process ID ([code]pid[/code]) is still running or [code]false[/code] if it has terminated.
-				Must be a valid ID generated from [method execute].
-				[b]Note:[/b] This method is implemented on Android, iOS, Linux, macOS and Windows.
-			</description>
-		</method>
-		<method name="is_restart_on_exit_set" qualifiers="const">
-			<return type="bool" />
-			<description>
-				Returns [code]true[/code] if the project will automatically restart when it exits for any reason, [code]false[/code] otherwise. See also [method set_restart_on_exit] and [method get_restart_on_exit_arguments].
+				Возвращает [code]true[/code], если идентификатор дочернего процесса ([code]pid[/code]) все еще работает, или [code]false[/code], если он завершился.
+				Должен быть действительный идентификатор, сгенерированный из [метода execute].
+				[b]Примечание:[/b] Этот метод реализован на Android, iOS, Linux, macOS и Windows.
 			</description>
 		</method>
 		<method name="is_scancode_unicode" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="code" type="int" />
 			<description>
-				Returns [code]true[/code] if the input scancode corresponds to a Unicode character.
+				Возвращает [code]true[/code], если введенный сканкод соответствует символу Юникода.
 			</description>
 		</method>
 		<method name="is_stdout_verbose" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the engine was executed with [code]-v[/code] (verbose stdout).
+				Возвращает [code]true[/code], если движок был выполнен с [code]-v[/code] (verbose stdout).
 			</description>
 		</method>
 		<method name="is_userfs_persistent" qualifiers="const">
 			<return type="bool" />
 			<description>
-				If [code]true[/code], the [code]user://[/code] file system is persistent, so that its state is the same after a player quits and starts the game again. Relevant to the HTML5 platform, where this persistence may be unavailable.
+				Если [code]true[/code], то файловая система [code]user://[/code] является постоянной, так что ее состояние не изменится после того, как игрок выйдет из игры и начнет ее заново. Актуально для платформы HTML5, где такое постоянство может быть недоступно.
 			</description>
 		</method>
 		<method name="is_window_always_on_top" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the window should always be on top of other windows.
+				Возвращает [code]true[/code], если окно всегда должно быть поверх других окон.
 			</description>
 		</method>
 		<method name="is_window_focused" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the window is currently focused.
-				[b]Note:[/b] Only implemented on desktop platforms. On other platforms, it will always return [code]true[/code].
+				Возвращает [code]true[/code], если окно в данный момент сфокусировано.
+				[b]Примечание:[/b] Реализовано только на настольных платформах. На других платформах он всегда будет возвращать [code]true[/code].
 			</description>
 		</method>
 		<method name="keyboard_get_current_layout" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns active keyboard layout index.
-				[b]Note:[/b] This method is implemented on Linux, macOS and Windows.
+				Возвращает индекс активной раскладки клавиатуры.
+				[b]Примечание:[/b] Этот метод реализован в Linux, macOS и Windows.
 			</description>
 		</method>
 		<method name="keyboard_get_layout_count" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the number of keyboard layouts.
-				[b]Note:[/b] This method is implemented on Linux, macOS and Windows.
+				Возвращает количество раскладок клавиатуры.
+				[b]Примечание:[/b] Этот метод реализован в Linux, macOS и Windows.
 			</description>
 		</method>
 		<method name="keyboard_get_layout_language" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="index" type="int" />
 			<description>
-				Returns the ISO-639/BCP-47 language code of the keyboard layout at position [code]index[/code].
-				[b]Note:[/b] This method is implemented on Linux, macOS and Windows.
+				Возвращает код языка ISO-639/BCP-47 раскладки клавиатуры в позиции [code]index[/code].
+				[b]Примечание:[/b] Этот метод реализован в Linux, macOS и Windows.
 			</description>
 		</method>
 		<method name="keyboard_get_layout_name" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="index" type="int" />
 			<description>
-				Returns the localized name of the keyboard layout at position [code]index[/code].
-				[b]Note:[/b] This method is implemented on Linux, macOS and Windows.
+				Возвращает локализованное название раскладки клавиатуры в позиции [code]index[/code].
+				[b]Примечание:[/b] Этот метод реализован в Linux, macOS и Windows.
 			</description>
 		</method>
 		<method name="keyboard_get_scancode_from_physical" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="scancode" type="int" />
 			<description>
-				Converts a physical (US QWERTY) [code]scancode[/code] to one in the active keyboard layout.
-				[b]Note:[/b] This method is implemented on Linux, macOS and Windows.
+				Преобразует физический (US QWERTY) [code]scancode[/code] в таковой в активной раскладке клавиатуры.
+				[b]Примечание:[/b] Этот метод реализован в Linux, macOS и Windows.
 			</description>
 		</method>
 		<method name="keyboard_set_current_layout">
 			<return type="void" />
 			<argument index="0" name="index" type="int" />
 			<description>
-				Sets active keyboard layout.
-				[b]Note:[/b] This method is implemented on Linux, macOS and Windows.
+				Устанавливает активную раскладку клавиатуры.
+				[b]Примечание:[/b] Этот метод реализован в Linux, macOS и Windows.
 			</description>
 		</method>
 		<method name="kill">
 			<return type="int" enum="Error" />
 			<argument index="0" name="pid" type="int" />
 			<description>
-				Kill (terminate) the process identified by the given process ID ([code]pid[/code]), e.g. the one returned by [method execute] in non-blocking mode. See also [method crash].
-				[b]Note:[/b] This method can also be used to kill processes that were not spawned by the game.
-				[b]Note:[/b] This method is implemented on Android, iOS, Linux, macOS and Windows.
+				Убить (завершить) процесс, идентифицируемый заданным идентификатором процесса ([code]pid[/code]), например, процесс, возвращаемый [method execute] в неблокирующем режиме. См. также [method crash].
+				[b]Примечание:[/b] Этот метод также может быть использован для уничтожения процессов, которые не были порождены игрой.
+				[b]Примечание:[/b] Этот метод реализован на Android, iOS, Linux, macOS и Windows.
 			</description>
 		</method>
 		<method name="move_to_trash" qualifiers="const">
 			<return type="int" enum="Error" />
 			<argument index="0" name="path" type="String" />
 			<description>
-				Moves the file or directory to the system's recycle bin. See also [method Directory.remove].
-				The method takes only global paths, so you may need to use [method ProjectSettings.globalize_path]. Do not use it for files in [code]res://[/code] as it will not work in exported project.
-				[b]Note:[/b] If the user has disabled the recycle bin on their system, the file will be permanently deleted instead.
+				Перемещает файл или каталог в системную корзину. См. также [метод Directory.remove].
+				Метод принимает только глобальные пути, поэтому вам может понадобиться использовать [метод ProjectSettings.globalize_path]. Не используйте его для файлов в [code]res://[/code], так как он не будет работать в экспортированном проекте.
+				[b]Примечание:[/b] Если в системе пользователя отключена корзина, файл будет удален навсегда.
 				[codeblock]
 				var file_to_remove = "user://slot1.sav"
 				OS.move_to_trash(ProjectSettings.globalize_path(file_to_remove))
@@ -815,22 +803,22 @@
 		<method name="move_window_to_foreground">
 			<return type="void" />
 			<description>
-				Moves the window to the front.
-				[b]Note:[/b] This method is implemented on Linux, macOS and Windows.
+				Перемещает окно на передний план.
+				[b]Примечание:[/b] Этот метод реализован в Linux, macOS и Windows.
 			</description>
 		</method>
 		<method name="native_video_is_playing">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if native video is playing.
-				[b]Note:[/b] This method is only implemented on iOS.
+				Возвращает [code]true[/code], если воспроизводится родное видео.
+				[b]Примечание:[/b] Этот метод реализован только на iOS.
 			</description>
 		</method>
 		<method name="native_video_pause">
 			<return type="void" />
 			<description>
-				Pauses native video playback.
-				[b]Note:[/b] This method is only implemented on iOS.
+				Приостанавливает воспроизведение родного видео.
+				[b]Примечание:[/b] Этот метод реализован только на iOS.
 			</description>
 		</method>
 		<method name="native_video_play">
@@ -840,84 +828,77 @@
 			<argument index="2" name="audio_track" type="String" />
 			<argument index="3" name="subtitle_track" type="String" />
 			<description>
-				Plays native video from the specified path, at the given volume and with audio and subtitle tracks.
-				[b]Note:[/b] This method is only implemented on iOS.
+				Воспроизводит родное видео с указанного пути, с заданной громкостью, с аудио и субтитрами.
+				[b]Примечание:[/b] Этот метод реализован только на iOS.
 			</description>
 		</method>
 		<method name="native_video_stop">
 			<return type="void" />
 			<description>
-				Stops native video playback.
-				[b]Note:[/b] This method is implemented on iOS.
+				Остановка воспроизведения встроенного видео.
+				[b]Примечание:[/b] Этот метод реализован на iOS.
 			</description>
 		</method>
 		<method name="native_video_unpause">
 			<return type="void" />
 			<description>
-				Resumes native video playback.
-				[b]Note:[/b] This method is implemented on iOS.
+				Возобновляет воспроизведение родного видео.
+				[b]Примечание:[/b] Этот метод реализован на iOS.
 			</description>
 		</method>
 		<method name="open_midi_inputs">
 			<return type="void" />
 			<description>
-				Initialises the singleton for the system MIDI driver.
-				[b]Note:[/b] This method is implemented on Linux, macOS and Windows.
+				Инициализирует синглтон для системного MIDI-драйвера.
+				[b]Примечание:[/b] Этот метод реализован в Linux, macOS и Windows.
 			</description>
 		</method>
 		<method name="print_all_resources">
 			<return type="void" />
 			<argument index="0" name="tofile" type="String" default="&quot;&quot;" />
 			<description>
-				Shows all resources in the game. Optionally, the list can be written to a file by specifying a file path in [code]tofile[/code].
+				Показывает все ресурсы в игре. По желанию список можно записать в файл, указав путь к файлу в [code]tofile[/code].
 			</description>
 		</method>
 		<method name="print_all_textures_by_size">
 			<return type="void" />
 			<description>
-				Shows the list of loaded textures sorted by size in memory.
+				Показывает список загруженных текстур, отсортированных по размеру в памяти.
 			</description>
 		</method>
 		<method name="print_resources_by_type">
 			<return type="void" />
 			<argument index="0" name="types" type="PoolStringArray" />
 			<description>
-				Shows the number of resources loaded by the game of the given types.
+				Показывает количество загруженных игрой ресурсов заданных типов.
 			</description>
 		</method>
 		<method name="print_resources_in_use">
 			<return type="void" />
 			<argument index="0" name="short" type="bool" default="false" />
 			<description>
-				Shows all resources currently used by the game.
-			</description>
-		</method>
-		<method name="read_string_from_stdin">
-			<return type="String" />
-			<description>
-				Reads a user input string from the standard input (usually the terminal). This operation is [i]blocking[/i], which causes the window to freeze if [method read_string_from_stdin] is called on the main thread. The thread calling [method read_string_from_stdin] will block until the program receives a line break in standard input (usually by the user pressing [kbd]Enter[/kbd]).
-				[b]Note:[/b] This method is implemented on Linux, macOS and Windows.
+				Показывает все ресурсы, используемые игрой в данный момент.
 			</description>
 		</method>
 		<method name="request_attention">
 			<return type="void" />
 			<description>
-				Request the user attention to the window. It'll flash the taskbar button on Windows or bounce the dock icon on OSX.
-				[b]Note:[/b] This method is implemented on Linux, macOS and Windows.
+				Привлеките внимание пользователя к окну. Это будет мигающая кнопка панели задач в Windows или прыгающий значок дока в OSX.
+				[b]Примечание:[/b] Этот метод реализован в Linux, macOS и Windows.
 			</description>
 		</method>
 		<method name="request_permission">
 			<return type="bool" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				At the moment this function is only used by [code]AudioDriverOpenSL[/code] to request permission for [code]RECORD_AUDIO[/code] on Android.
+				На данный момент эта функция используется только [code]AudioDriverOpenSL[/code] для запроса разрешения на [code]RECORD_AUDIO[/code] на Android.
 			</description>
 		</method>
 		<method name="request_permissions">
 			<return type="bool" />
 			<description>
-				With this function, you can request dangerous permissions since normal permissions are automatically granted at install time in Android applications.
-				[b]Note:[/b] This method is implemented on Android.
+				С помощью этой функции вы можете запрашивать опасные разрешения, поскольку обычные разрешения автоматически предоставляются при установке в приложениях Android.
+				[b]Примечание:[/b] Этот метод реализован на Android.
 			</description>
 		</method>
 		<method name="set_environment" qualifiers="const">
@@ -925,120 +906,109 @@
 			<argument index="0" name="variable" type="String" />
 			<argument index="1" name="value" type="String" />
 			<description>
-				Sets the value of the environment variable [code]variable[/code] to [code]value[/code]. The environment variable will be set for the Godot process and any process executed with [method execute] after running [method set_environment]. The environment variable will [i]not[/i] persist to processes run after the Godot process was terminated.
-				[b]Note:[/b] Double-check the casing of [code]variable[/code]. Environment variable names are case-sensitive on all platforms except Windows.
+				Устанавливает значение переменной окружения [code]variable[/code] в [code]value[/code]. Переменная окружения будет установлена для процесса Godot и любого процесса, выполняемого с помощью [method execute] после выполнения [method set_environment]. Переменная окружения [i]не[/i] сохранится для процессов, запущенных после завершения процесса Godot.
+				[b]Примечание:[/b] Дважды проверьте регистр [code]переменной[/code]. Имена переменных окружения чувствительны к регистру на всех платформах, кроме Windows.
 			</description>
 		</method>
 		<method name="set_icon">
 			<return type="void" />
 			<argument index="0" name="icon" type="Image" />
 			<description>
-				Sets the game's icon using an [Image] resource.
-				The same image is used for window caption, taskbar/dock and window selection dialog. Image is scaled as needed.
-				[b]Note:[/b] This method is implemented on HTML5, Linux, macOS and Windows.
+				Устанавливает иконку игры, используя ресурс [Image].
+				Одно и то же изображение используется для надписи окна, панели задач/дока и диалога выбора окна. Изображение масштабируется по мере необходимости.
+				[b]Примечание:[/b] Этот метод реализован на HTML5, Linux, macOS и Windows.
 			</description>
 		</method>
 		<method name="set_ime_active">
 			<return type="void" />
 			<argument index="0" name="active" type="bool" />
 			<description>
-				Sets whether IME input mode should be enabled.
-				If active IME handles key events before the application and creates an composition string and suggestion list.
-				Application can retrieve the composition status by using [method get_ime_selection] and [method get_ime_text] functions.
-				Completed composition string is committed when input is finished.
-				[b]Note:[/b] This method is implemented on Linux, macOS and Windows.
+				Устанавливает, должен ли быть включен режим ввода IME.
+				Если режим активен, IME обрабатывает ключевые события раньше приложения и создает строку композиции и список предложений.
+				Приложение может получить статус композиции с помощью функций [method get_ime_selection] и [method get_ime_text].
+				Завершенная композиционная строка фиксируется по окончании ввода.
+				[b]Примечание:[/b] Этот метод реализован в Linux, macOS и Windows.
 			</description>
 		</method>
 		<method name="set_ime_position">
 			<return type="void" />
 			<argument index="0" name="position" type="Vector2" />
 			<description>
-				Sets position of IME suggestion list popup (in window coordinates).
-				[b]Note:[/b] This method is implemented on Linux, macOS and Windows.
+				Устанавливает позицию всплывающего списка предложений IME (в координатах окна).
+				[b]Примечание:[/b] Этот метод реализован в Linux, macOS и Windows.
 			</description>
 		</method>
 		<method name="set_native_icon">
 			<return type="void" />
 			<argument index="0" name="filename" type="String" />
 			<description>
-				Sets the game's icon using a multi-size platform-specific icon file ([code]*.ico[/code] on Windows and [code]*.icns[/code] on macOS).
-				Appropriate size sub-icons are used for window caption, taskbar/dock and window selection dialog.
-				[b]Note:[/b] This method is implemented on macOS and Windows.
-			</description>
-		</method>
-		<method name="set_restart_on_exit">
-			<return type="void" />
-			<argument index="0" name="restart" type="bool" />
-			<argument index="1" name="arguments" type="PoolStringArray" default="PoolStringArray(  )" />
-			<description>
-				If [code]restart[/code] is [code]true[/code], restarts the project automatically when it is exited with [method SceneTree.quit] or [constant Node.NOTIFICATION_WM_QUIT_REQUEST]. Command line [code]arguments[/code] can be supplied. To restart the project with the same command line arguments as originally used to run the project, pass [method get_cmdline_args] as the value for [code]arguments[/code].
-				[method set_restart_on_exit] can be used to apply setting changes that require a restart. See also [method is_restart_on_exit_set] and [method get_restart_on_exit_arguments].
-				[b]Note:[/b] This method is only effective on desktop platforms, and only when the project isn't started from the editor. It will have no effect on mobile and Web platforms, or when the project is started from the editor.
-				[b]Note:[/b] If the project process crashes or is [i]killed[/i] by the user (by sending [code]SIGKILL[/code] instead of the usual [code]SIGTERM[/code]), the project won't restart automatically.
+				Устанавливает иконку игры, используя многоразмерный файл иконок для конкретной платформы ([code]*.ico[/code] для Windows и [code]*.icns[/code] для macOS).
+				Для надписи окна, панели задач/дока и диалога выбора окна используются суб-иконы соответствующего размера.
+				[b]Примечание:[/b] Этот метод реализован на macOS и Windows.
 			</description>
 		</method>
 		<method name="set_thread_name">
 			<return type="int" enum="Error" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Sets the name of the current thread.
+				Устанавливает имя текущего потока.
 			</description>
 		</method>
 		<method name="set_use_file_access_save_and_swap">
 			<return type="void" />
 			<argument index="0" name="enabled" type="bool" />
 			<description>
-				Enables backup saves if [code]enabled[/code] is [code]true[/code].
+				Включает сохранение резервных копий, если [code]enabled[/code] имеет значение [code]true[/code].
 			</description>
 		</method>
 		<method name="set_window_always_on_top">
 			<return type="void" />
 			<argument index="0" name="enabled" type="bool" />
 			<description>
-				Sets whether the window should always be on top.
-				[b]Note:[/b] This method is implemented on Linux, macOS and Windows.
+				Устанавливает, должно ли окно всегда находиться сверху.
+				[b]Примечание:[/b] Этот метод реализован в Linux, macOS и Windows.
 			</description>
 		</method>
 		<method name="set_window_mouse_passthrough">
 			<return type="void" />
 			<argument index="0" name="region" type="PoolVector2Array" />
 			<description>
-				Sets a polygonal region of the window which accepts mouse events. Mouse events outside the region will be passed through.
-				Passing an empty array will disable passthrough support (all mouse events will be intercepted by the window, which is the default behavior).
+				Задает полигональную область окна, принимающую события мыши. События мыши за пределами области будут пропускаться.
+				Передача пустого массива отключит поддержку прохода (все события мыши будут перехватываться окном, что является поведением по умолчанию).
 				[codeblock]
-				# Set region, using Path2D node.
+				# Устанавливаем регион, используя узел Path2D.
 				OS.set_window_mouse_passthrough($Path2D.curve.get_baked_points())
 
-				# Set region, using Polygon2D node.
+				# Установите регион, используя узел Polygon2D.
 				OS.set_window_mouse_passthrough($Polygon2D.polygon)
 
-				# Reset region to default.
+				# Сбросьте регион на значение по умолчанию.
 				OS.set_window_mouse_passthrough([])
 				[/codeblock]
-				[b]Note:[/b] On Windows, the portion of a window that lies outside the region is not drawn, while on Linux and macOS it is.
-				[b]Note:[/b] This method is implemented on Linux, macOS and Windows.
+				[b]Примечание:[/b] В Windows часть окна, находящаяся за пределами региона, не отрисовывается, а в Linux и macOS - отрисовывается.
+				[b]Примечание:[/b] Этот метод реализован в Linux, macOS и Windows.
 			</description>
 		</method>
 		<method name="set_window_title">
 			<return type="void" />
 			<argument index="0" name="title" type="String" />
 			<description>
-				Sets the window title to the specified string.
-				[b]Note:[/b] This should be used sporadically. Don't set this every frame, as that will negatively affect performance on some window managers.
-				[b]Note:[/b] This method is implemented on HTML5, Linux, macOS and Windows.
+				Устанавливает заголовок окна в указанную строку.
+				[b]Примечание:[/b] Этот параметр следует использовать эпизодически. Не устанавливайте его каждый кадр, так как это негативно скажется на производительности некоторых оконных менеджеров.
+				[b]Примечание:[/b] Этот метод реализован на HTML5, Linux, macOS и Windows.
 			</description>
 		</method>
 		<method name="shell_open">
 			<return type="int" enum="Error" />
 			<argument index="0" name="uri" type="String" />
 			<description>
-				Requests the OS to open a resource with the most appropriate program. For example:
-				- [code]OS.shell_open("C:\\Users\name\Downloads")[/code] on Windows opens the file explorer at the user's Downloads folder.
-				- [code]OS.shell_open("https://godotengine.org")[/code] opens the default web browser on the official Godot website.
-				- [code]OS.shell_open("mailto:example@example.com")[/code] opens the default email client with the "To" field set to [code]example@example.com[/code]. See [url=https://datatracker.ietf.org/doc/html/rfc2368]RFC 2368 - The [code]mailto[/code] URL scheme[/url] for a list of fields that can be added.
-				Use [method ProjectSettings.globalize_path] to convert a [code]res://[/code] or [code]user://[/code] path into a system path for use with this method.
-				[b]Note:[/b] Use [method String.percent_encode] to encode characters within URLs in a URL-safe, portable way. This is especially required for line breaks. Otherwise, [method shell_open] may not work correctly in a project exported to the Web platform.
-				[b]Note:[/b] This method is implemented on Android, iOS, HTML5, Linux, macOS and Windows.
+				Просит ОС открыть ресурс с помощью наиболее подходящей программы. Например:
+				- [code]OS.shell_open("C:\\Users\name\Downloads")[/code] в Windows открывает проводник файлов в папке Downloads пользователя.
+				- [code]OS.shell_open("https://godotengine.org")[/code] открывает веб-браузер по умолчанию на официальном сайте Godot.
+				- [code]OS.shell_open("mailto:example@example.com")[/code] открывает почтовый клиент по умолчанию с полем "Кому", установленным на [code]example@example.com[/code]. Список полей, которые можно добавить, см. в [url=https://datatracker.ietf.org/doc/html/rfc2368]RFC 2368 - The [code]mailto[/code] URL scheme[/url].
+				Используйте [метод ProjectSettings.globalize_path] для преобразования пути [code]res://[/code] или [code]user://[/code] в системный путь для использования с этим методом.
+				[b]Примечание:[/b] Используйте [метод String.percent_encode] для кодирования символов в URL безопасным для URL переносимым способом. Это особенно необходимо для переноса строк. В противном случае [метод shell_open] может работать некорректно в проекте, экспортируемом на веб-платформу.
+				[b]Примечание:[/b] Этот метод реализован на Android, iOS, HTML5, Linux, macOS и Windows.
 			</description>
 		</method>
 		<method name="show_virtual_keyboard">
@@ -1046,383 +1016,237 @@
 			<argument index="0" name="existing_text" type="String" default="&quot;&quot;" />
 			<argument index="1" name="multiline" type="bool" default="false" />
 			<description>
-				Shows the virtual keyboard if the platform has one.
-				The [code]existing_text[/code] parameter is useful for implementing your own [LineEdit] or [TextEdit], as it tells the virtual keyboard what text has already been typed (the virtual keyboard uses it for auto-correct and predictions).
-				The [code]multiline[/code] parameter needs to be set to [code]true[/code] to be able to enter multiple lines of text, as in [TextEdit].
-				[b]Note:[/b] This method is equivalent to calling [method show_virtual_keyboard_type] with either default or multiline keyboard type. It is kept for compatibility with previous Godot releases and should be considered [i]deprecated[/i] and replaced by [method show_virtual_keyboard_type].
-				[b]Note:[/b] This method is implemented on Android, iOS, UWP, and HTML5.
-			</description>
-		</method>
-		<method name="show_virtual_keyboard_type">
-			<return type="void" />
-			<argument index="0" name="existing_text" type="String" default="&quot;&quot;" />
-			<argument index="1" name="type" type="int" enum="OS.VirtualKeyboardType" default="0" />
-			<description>
-				Shows the virtual keyboard if the platform has one.
-				The [code]existing_text[/code] parameter is useful for implementing your own [LineEdit] or [TextEdit], as it tells the virtual keyboard what text has already been typed (the virtual keyboard uses it for auto-correct and predictions).
-				The [code]type[/code] parameter allows selecting which virtual keyboard to show.
-				[b]Note:[/b] This method is implemented on Android, iOS, UWP, and HTML5.
-			</description>
-		</method>
-		<method name="tts_get_voices" qualifiers="const">
-			<return type="Array" />
-			<description>
-				Returns an [Array] of voice information dictionaries.
-				Each [Dictionary] contains two [String] entries:
-				- [code]name[/code] is voice name.
-				- [code]id[/code] is voice identifier.
-				- [code]language[/code] is language code in [code]lang_Variant[/code] format. [code]lang[/code] part is a 2 or 3-letter code based on the ISO-639 standard, in lowercase. And [code]Variant[/code] part is an engine dependent string describing country, region or/and dialect.
-				[b]Note:[/b] This method is implemented on Android, iOS, HTML5, Linux, macOS, and Windows.
-				[b]Note:[/b] [member ProjectSettings.audio/general/text_to_speech] should be [code]true[/code] to use text-to-speech.
-			</description>
-		</method>
-		<method name="tts_get_voices_for_language" qualifiers="const">
-			<return type="PoolStringArray" />
-			<argument index="0" name="language" type="String" />
-			<description>
-				Returns an [PoolStringArray] of voice identifiers for the [code]language[/code].
-				[b]Note:[/b] This method is implemented on Android, iOS, HTML5, Linux, macOS, and Windows.
-				[b]Note:[/b] [member ProjectSettings.audio/general/text_to_speech] should be [code]true[/code] to use text-to-speech.
-			</description>
-		</method>
-		<method name="tts_is_paused" qualifiers="const">
-			<return type="bool" />
-			<description>
-				Returns [code]true[/code] if the synthesizer is in a paused state.
-				[b]Note:[/b] This method is implemented on Android, iOS, HTML5, Linux, macOS, and Windows.
-				[b]Note:[/b] [member ProjectSettings.audio/general/text_to_speech] should be [code]true[/code] to use text-to-speech.
-			</description>
-		</method>
-		<method name="tts_is_speaking" qualifiers="const">
-			<return type="bool" />
-			<description>
-				Returns [code]true[/code] if the synthesizer is generating speech, or have utterance waiting in the queue.
-				[b]Note:[/b] This method is implemented on Android, iOS, HTML5, Linux, macOS, and Windows.
-				[b]Note:[/b] [member ProjectSettings.audio/general/text_to_speech] should be [code]true[/code] to use text-to-speech.
-			</description>
-		</method>
-		<method name="tts_pause">
-			<return type="void" />
-			<description>
-				Puts the synthesizer into a paused state.
-				[b]Note:[/b] This method is implemented on Android, iOS, HTML5, Linux, macOS, and Windows.
-				[b]Note:[/b] [member ProjectSettings.audio/general/text_to_speech] should be [code]true[/code] to use text-to-speech.
-			</description>
-		</method>
-		<method name="tts_resume">
-			<return type="void" />
-			<description>
-				Resumes the synthesizer if it was paused.
-				[b]Note:[/b] This method is implemented on Android, iOS, HTML5, Linux, macOS, and Windows.
-				[b]Note:[/b] [member ProjectSettings.audio/general/text_to_speech] should be [code]true[/code] to use text-to-speech.
-			</description>
-		</method>
-		<method name="tts_set_utterance_callback">
-			<return type="void" />
-			<argument index="0" name="event" type="int" enum="OS.TTSUtteranceEvent" />
-			<argument index="1" name="object" type="Object" />
-			<argument index="2" name="callback" type="String" />
-			<description>
-				Adds a callback, which is called when the utterance has started, finished, canceled or reached a text boundary.
-				- [code]TTS_UTTERANCE_STARTED[/code], [code]TTS_UTTERANCE_ENDED[/code], and [code]TTS_UTTERANCE_CANCELED[/code] callable's method should take one [int] parameter, the utterance id.
-				- [code]TTS_UTTERANCE_BOUNDARY[/code] callable's method should take two [int] parameters, the index of the character and the utterance id.
-				[b]Note:[/b] The granularity of the boundary callbacks is engine dependent.
-				[b]Note:[/b] This method is implemented on Android, iOS, HTML5, Linux, macOS, and Windows.
-				[b]Note:[/b] [member ProjectSettings.audio/general/text_to_speech] should be [code]true[/code] to use text-to-speech.
-			</description>
-		</method>
-		<method name="tts_speak">
-			<return type="void" />
-			<argument index="0" name="text" type="String" />
-			<argument index="1" name="voice" type="String" />
-			<argument index="2" name="volume" type="int" default="50" />
-			<argument index="3" name="pitch" type="float" default="1.0" />
-			<argument index="4" name="rate" type="float" default="1.0" />
-			<argument index="5" name="utterance_id" type="int" default="0" />
-			<argument index="6" name="interrupt" type="bool" default="false" />
-			<description>
-				Adds an utterance to the queue. If [code]interrupt[/code] is [code]true[/code], the queue is cleared first.
-				- [code]voice[/code] identifier is one of the [code]"id"[/code] values returned by [method tts_get_voices] or one of the values returned by [method tts_get_voices_for_language].
-				- [code]volume[/code] ranges from [code]0[/code] (lowest) to [code]100[/code] (highest).
-				- [code]pitch[/code] ranges from [code]0.0[/code] (lowest) to [code]2.0[/code] (highest), [code]1.0[/code] is default pitch for the current voice.
-				- [code]rate[/code] ranges from [code]0.1[/code] (lowest) to [code]10.0[/code] (highest), [code]1.0[/code] is a normal speaking rate. Other values act as a percentage relative.
-				- [code]utterance_id[/code] is passed as a parameter to the callback functions.
-				[b]Note:[/b] On Windows and Linux, utterance [code]text[/code] can use SSML markup. SSML support is engine and voice dependent. If the engine does not support SSML, you should strip out all XML markup before calling [method tts_speak].
-				[b]Note:[/b] The granularity of pitch, rate, and volume is engine and voice dependent. Values may be truncated.
-				[b]Note:[/b] This method is implemented on Android, iOS, HTML5, Linux, macOS, and Windows.
-				[b]Note:[/b] [member ProjectSettings.audio/general/text_to_speech] should be [code]true[/code] to use text-to-speech.
-			</description>
-		</method>
-		<method name="tts_stop">
-			<return type="void" />
-			<description>
-				Stops synthesis in progress and removes all utterances from the queue.
-				[b]Note:[/b] This method is implemented on Android, iOS, HTML5, Linux, macOS, and Windows.
-				[b]Note:[/b] [member ProjectSettings.audio/general/text_to_speech] should be [code]true[/code] to use text-to-speech.
+				Показывает виртуальную клавиатуру, если она есть на платформе.
+				Параметр [code]existing_text[/code] полезен при реализации собственных [LineEdit] или [TextEdit], так как он сообщает виртуальной клавиатуре, какой текст уже был набран (виртуальная клавиатура использует его для автокоррекции и предсказания).
+				Параметр [code]multiline[/code] должен быть установлен в [code]true[/code], чтобы иметь возможность вводить несколько строк текста, как в [TextEdit].
+				[b]Примечание:[/b] Этот метод реализован на Android, iOS и UWP.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="clipboard" type="String" setter="set_clipboard" getter="get_clipboard" default="&quot;&quot;">
-			The clipboard from the host OS. Might be unavailable on some platforms.
+			Буфер обмена из основной ОС. Может быть недоступен на некоторых платформах.
 		</member>
 		<member name="current_screen" type="int" setter="set_current_screen" getter="get_current_screen" default="0">
-			The current screen index (starting from 0).
+			Текущий индекс экрана (начиная с 0).
 		</member>
 		<member name="delta_smoothing" type="bool" setter="set_delta_smoothing" getter="is_delta_smoothing_enabled" default="true">
-			If [code]true[/code], the engine filters the time delta measured between each frame, and attempts to compensate for random variation. This will only operate on systems where V-Sync is active.
+			Если [code]true[/code], движок фильтрует временную дельту, измеренную между каждым кадром, и пытается компенсировать случайные отклонения. Это будет работать только в системах, где активна функция V-Sync.
 		</member>
 		<member name="exit_code" type="int" setter="set_exit_code" getter="get_exit_code" default="0">
-			The exit code passed to the OS when the main loop exits. By convention, an exit code of [code]0[/code] indicates success whereas a non-zero exit code indicates an error. For portability reasons, the exit code should be set between 0 and 125 (inclusive).
-			[b]Note:[/b] This value will be ignored if using [method SceneTree.quit] with an [code]exit_code[/code] argument passed.
+			Код выхода, передаваемый ОС при выходе из главного цикла. По условию, код выхода, равный [code]0[/code], означает успех, в то время как ненулевой код выхода означает ошибку. По соображениям переносимости код выхода должен быть установлен в диапазоне от 0 до 125 (включительно).
+			[b]Примечание:[/b] Это значение будет игнорироваться при использовании [метода SceneTree.quit] с переданным аргументом [code]exit_code[/code].
 		</member>
 		<member name="keep_screen_on" type="bool" setter="set_keep_screen_on" getter="is_keep_screen_on" default="true">
-			If [code]true[/code], the engine tries to keep the screen on while the game is running. Useful on mobile.
+			Если [code]true[/code], движок пытается удержать экран включенным во время игры. Полезно для мобильных устройств.
 		</member>
 		<member name="low_processor_usage_mode" type="bool" setter="set_low_processor_usage_mode" getter="is_in_low_processor_usage_mode" default="false">
-			If [code]true[/code], the engine optimizes for low processor usage by only refreshing the screen if needed. Can improve battery consumption on mobile.
+			Если [code]true[/code], движок оптимизирует использование процессора, обновляя экран только при необходимости. Это может улучшить расход батареи на мобильных устройствах.
 		</member>
 		<member name="low_processor_usage_mode_sleep_usec" type="int" setter="set_low_processor_usage_mode_sleep_usec" getter="get_low_processor_usage_mode_sleep_usec" default="6900">
-			The amount of sleeping between frames when the low-processor usage mode is enabled (in microseconds). Higher values will result in lower CPU usage.
+			Время сна между кадрами при включенном режиме низкого использования процессора (в микросекундах). Более высокие значения приводят к снижению использования процессора.
 		</member>
 		<member name="max_window_size" type="Vector2" setter="set_max_window_size" getter="get_max_window_size" default="Vector2( 0, 0 )">
-			The maximum size of the window (without counting window manager decorations). Does not affect fullscreen mode. Set to [code](0, 0)[/code] to reset to the system default value.
+			Максимальный размер окна (без учета украшений оконного менеджера). Не влияет на полноэкранный режим. Установите значение [code](0, 0)[/code] для сброса к системному значению по умолчанию.
 		</member>
 		<member name="min_window_size" type="Vector2" setter="set_min_window_size" getter="get_min_window_size" default="Vector2( 0, 0 )">
-			The minimum size of the window in pixels (without counting window manager decorations). Does not affect fullscreen mode. Set to [code](0, 0)[/code] to reset to the system's default value.
-			[b]Note:[/b] By default, the project window has a minimum size of [code]Vector2(64, 64)[/code]. This prevents issues that can arise when the window is resized to a near-zero size.
+			Минимальный размер окна в пикселях (без учета украшений оконного менеджера). Не влияет на полноэкранный режим. Установите значение [code](0, 0)[/code] для сброса к значению системы по умолчанию.
+			[b]Примечание:[/b] По умолчанию окно проекта имеет минимальный размер [code]Vector2(64, 64)[/code]. Это предотвращает проблемы, которые могут возникнуть при изменении размера окна до почти нулевого.
 		</member>
 		<member name="screen_orientation" type="int" setter="set_screen_orientation" getter="get_screen_orientation" enum="OS.ScreenOrientation" default="0">
-			The current screen orientation.
+			Текущая ориентация экрана.
 		</member>
 		<member name="tablet_driver" type="String" setter="set_current_tablet_driver" getter="get_current_tablet_driver" default="&quot;&quot;">
-			The current tablet driver in use.
+			Текущий используемый драйвер планшета.
 		</member>
 		<member name="vsync_enabled" type="bool" setter="set_use_vsync" getter="is_vsync_enabled" default="true">
-			If [code]true[/code], vertical synchronization (Vsync) is enabled.
+			Если [code]true[/code], вертикальная синхронизация (Vsync) включена.
 		</member>
 		<member name="vsync_via_compositor" type="bool" setter="set_vsync_via_compositor" getter="is_vsync_via_compositor_enabled" default="false">
-			If [code]true[/code] and [code]vsync_enabled[/code] is true, the operating system's window compositor will be used for vsync when the compositor is enabled and the game is in windowed mode.
-			[b]Note:[/b] This option is experimental and meant to alleviate stutter experienced by some users. However, some users have experienced a Vsync framerate halving (e.g. from 60 FPS to 30 FPS) when using it.
-			[b]Note:[/b] This property is only implemented on Windows.
+			Если [code]true[/code] и [code]vsync_enabled[/code] равны true, то для vsync будет использоваться оконный композитор операционной системы, когда композитор включен и игра находится в оконном режиме.
+			[b]Примечание:[/b] Эта опция является экспериментальной и предназначена для уменьшения заикания, с которым сталкиваются некоторые пользователи. Однако у некоторых пользователей при ее использовании наблюдается снижение частоты кадров Vsync вдвое (например, с 60 FPS до 30 FPS).
+			[b]Примечание:[/b] Это свойство реализовано только в Windows.
 		</member>
 		<member name="window_borderless" type="bool" setter="set_borderless_window" getter="get_borderless_window" default="false">
-			If [code]true[/code], removes the window frame.
-			[b]Note:[/b] Setting [code]window_borderless[/code] to [code]false[/code] disables per-pixel transparency.
+			Если [code]true[/code], убирает рамку окна.
+			[b]Примечание:[/b] Установка [code]window_borderless[/code] в [code]false[/code] отключает попиксельную прозрачность.
 		</member>
 		<member name="window_fullscreen" type="bool" setter="set_window_fullscreen" getter="is_window_fullscreen" default="false">
-			If [code]true[/code], the window is fullscreen.
+			Если [code]true[/code], то окно будет полноэкранным.
 		</member>
 		<member name="window_maximized" type="bool" setter="set_window_maximized" getter="is_window_maximized" default="false">
-			If [code]true[/code], the window is maximized.
+			Если [code]true[/code], окно будет максимизировано.
 		</member>
 		<member name="window_minimized" type="bool" setter="set_window_minimized" getter="is_window_minimized" default="false">
-			If [code]true[/code], the window is minimized.
+			Если [code]true[/code], окно сворачивается.
 		</member>
 		<member name="window_per_pixel_transparency_enabled" type="bool" setter="set_window_per_pixel_transparency_enabled" getter="get_window_per_pixel_transparency_enabled" default="false">
-			If [code]true[/code], the window background is transparent and the window frame is removed.
-			Enable [member ProjectSettings.rendering/viewport/transparent_background] or call [code]get_tree().get_root().set_transparent_background(true)[/code] to disable background rendering on the root [Viewport].
-			[b]Note:[/b] This property has no effect if [member ProjectSettings.display/window/per_pixel_transparency/allowed] setting is disabled.
-			[b]Note:[/b] This property is implemented on HTML5, Linux, macOS, Windows, and Android. It can't be changed at runtime for Android. Use [member ProjectSettings.display/window/per_pixel_transparency/enabled] to set it at startup instead.
+			Если [code]true[/code], фон окна становится прозрачным, а рамка окна удаляется.
+			Используйте [code]get_tree().get_root().set_transparent_background(true)[/code], чтобы отключить отрисовку фона главного окна просмотра.
+			[b]Примечание:[/b] Это свойство не имеет эффекта, если параметр [member ProjectSettings.display/window/per_pixel_transparency/allowed] отключен.
+			[b]Примечание:[/b] Это свойство реализовано в HTML5, Linux, macOS, Windows и Android. Для Android оно не может быть изменено во время выполнения. Вместо этого используйте [member ProjectSettings.display/window/per_pixel_transparency/enabled], чтобы установить его при запуске.
 		</member>
 		<member name="window_position" type="Vector2" setter="set_window_position" getter="get_window_position" default="Vector2( 0, 0 )">
-			The window position relative to the screen, the origin is the top left corner, +Y axis goes to the bottom and +X axis goes to the right.
+			Положение окна относительно экрана, начало координат - левый верхний угол, ось +Y идет вниз, а ось +X - вправо.
 		</member>
 		<member name="window_resizable" type="bool" setter="set_window_resizable" getter="is_window_resizable" default="true">
-			If [code]true[/code], the window is resizable by the user.
+			Если [code]true[/code], то окно может быть изменено пользователем по размеру.
 		</member>
 		<member name="window_size" type="Vector2" setter="set_window_size" getter="get_window_size" default="Vector2( 0, 0 )">
-			The size of the window (without counting window manager decorations).
+			Размер окна (без учета украшений оконного менеджера).
 		</member>
 	</members>
 	<constants>
 		<constant name="VIDEO_DRIVER_GLES2" value="1" enum="VideoDriver">
-			The GLES2 rendering backend. It uses OpenGL ES 2.0 on mobile devices, OpenGL 2.1 on desktop platforms and WebGL 1.0 on the web.
+			Бэкэнд рендеринга GLES2. Он использует OpenGL ES 2.0 на мобильных устройствах, OpenGL 2.1 на настольных платформах и WebGL 1.0 в Интернете.
 		</constant>
 		<constant name="VIDEO_DRIVER_GLES3" value="0" enum="VideoDriver">
-			The GLES3 rendering backend. It uses OpenGL ES 3.0 on mobile devices, OpenGL 3.3 on desktop platforms and WebGL 2.0 on the web.
+			Бэкэнд рендеринга GLES3. Он использует OpenGL ES 3.0 на мобильных устройствах, OpenGL 3.3 на настольных платформах и WebGL 2.0 в Интернете.
 		</constant>
 		<constant name="DAY_SUNDAY" value="0" enum="Weekday">
-			Sunday.
+			Воскресенье.
 		</constant>
 		<constant name="DAY_MONDAY" value="1" enum="Weekday">
-			Monday.
+			Понедельник.
 		</constant>
 		<constant name="DAY_TUESDAY" value="2" enum="Weekday">
-			Tuesday.
+			Вторник.
 		</constant>
 		<constant name="DAY_WEDNESDAY" value="3" enum="Weekday">
-			Wednesday.
+			Среда.
 		</constant>
 		<constant name="DAY_THURSDAY" value="4" enum="Weekday">
-			Thursday.
+			Четверг.
 		</constant>
 		<constant name="DAY_FRIDAY" value="5" enum="Weekday">
-			Friday.
+			Пятница.
 		</constant>
 		<constant name="DAY_SATURDAY" value="6" enum="Weekday">
-			Saturday.
+			Суббота.
 		</constant>
 		<constant name="MONTH_JANUARY" value="1" enum="Month">
-			January.
+			Январь.
 		</constant>
 		<constant name="MONTH_FEBRUARY" value="2" enum="Month">
-			February.
+			Февраль.
 		</constant>
 		<constant name="MONTH_MARCH" value="3" enum="Month">
-			March.
+			Март.
 		</constant>
 		<constant name="MONTH_APRIL" value="4" enum="Month">
-			April.
+			Апрель.
 		</constant>
 		<constant name="MONTH_MAY" value="5" enum="Month">
-			May.
+			Май.
 		</constant>
 		<constant name="MONTH_JUNE" value="6" enum="Month">
-			June.
+			Июнь.
 		</constant>
 		<constant name="MONTH_JULY" value="7" enum="Month">
-			July.
+			Июль.
 		</constant>
 		<constant name="MONTH_AUGUST" value="8" enum="Month">
-			August.
+			Август.
 		</constant>
 		<constant name="MONTH_SEPTEMBER" value="9" enum="Month">
-			September.
+			Сентябрь.
 		</constant>
 		<constant name="MONTH_OCTOBER" value="10" enum="Month">
-			October.
+			Октябрь.
 		</constant>
 		<constant name="MONTH_NOVEMBER" value="11" enum="Month">
-			November.
+			Ноябрь.
 		</constant>
 		<constant name="MONTH_DECEMBER" value="12" enum="Month">
-			December.
+			Декабрь.
 		</constant>
 		<constant name="APPLICATION_HANDLE" value="0" enum="HandleType">
-			Application handle:
-			- Windows: [code]HINSTANCE[/code] of the application
-			- MacOS: [code]NSApplication*[/code] of the application (not yet implemented)
-			- Android: [code]JNIEnv*[/code] of the application (not yet implemented)
+			Ручка приложения:
+			- Windows: [code]HINSTANCE[/code] приложения
+			- MacOS: [code]NSApplication*[/code] приложения (пока не реализовано)
+			- Android: [code]JNIEnv*[/code] приложения (пока не реализовано)
 		</constant>
 		<constant name="DISPLAY_HANDLE" value="1" enum="HandleType">
-			Display handle:
-			- Linux: [code]X11::Display*[/code] for the display
+			Ручка дисплея:
+			- Linux: [code]X11::Display*[/code] для дисплея
 		</constant>
 		<constant name="WINDOW_HANDLE" value="2" enum="HandleType">
-			Window handle:
-			- Windows: [code]HWND[/code] of the main window
-			- Linux: [code]X11::Window*[/code] of the main window
-			- MacOS: [code]NSWindow*[/code] of the main window (not yet implemented)
-			- Android: [code]jObject[/code] the main android activity (not yet implemented)
+			Оконная ручка:
+			- Windows: [code]HWND[/code] главного окна
+			- Linux: [code]X11::Window*[/code] главного окна
+			- MacOS: [code]NSWindow*[/code] главного окна (пока не реализовано)
+			- Android: [code]jObject[/code] основной активности андроида (пока не реализовано)
 		</constant>
 		<constant name="WINDOW_VIEW" value="3" enum="HandleType">
-			Window view:
-			- Windows: [code]HDC[/code] of the main window drawing context
-			- MacOS: [code]NSView*[/code] of the main windows view (not yet implemented)
+			Вид из окна:
+			- Окна: [code]HDC[/code] контекста рисования главного окна
+			- MacOS: [code]NSView*[/code] представления главного окна (пока не реализовано)
 		</constant>
 		<constant name="OPENGL_CONTEXT" value="4" enum="HandleType">
-			OpenGL Context:
+			Контекст OpenGL:
 			- Windows: [code]HGLRC[/code]
 			- Linux: [code]X11::GLXContext[/code]
-			- MacOS: [code]NSOpenGLContext*[/code] (not yet implemented)
+			- MacOS: [code]NSOpenGLContext*[/code] (пока не реализовано)
 		</constant>
 		<constant name="SCREEN_ORIENTATION_LANDSCAPE" value="0" enum="ScreenOrientation">
 			Landscape screen orientation.
 		</constant>
 		<constant name="SCREEN_ORIENTATION_PORTRAIT" value="1" enum="ScreenOrientation">
-			Portrait screen orientation.
+			Портретная ориентация экрана.
 		</constant>
 		<constant name="SCREEN_ORIENTATION_REVERSE_LANDSCAPE" value="2" enum="ScreenOrientation">
-			Reverse landscape screen orientation.
+			Обратная альбомная ориентация экрана.
 		</constant>
 		<constant name="SCREEN_ORIENTATION_REVERSE_PORTRAIT" value="3" enum="ScreenOrientation">
-			Reverse portrait screen orientation.
+			Обратная портретная ориентация экрана.
 		</constant>
 		<constant name="SCREEN_ORIENTATION_SENSOR_LANDSCAPE" value="4" enum="ScreenOrientation">
-			Uses landscape or reverse landscape based on the hardware sensor.
+			Используется пейзаж или обратный пейзаж в зависимости от аппаратного датчика.
 		</constant>
 		<constant name="SCREEN_ORIENTATION_SENSOR_PORTRAIT" value="5" enum="ScreenOrientation">
-			Uses portrait or reverse portrait based on the hardware sensor.
+			Используется портрет или обратный портрет в зависимости от аппаратного датчика.
 		</constant>
 		<constant name="SCREEN_ORIENTATION_SENSOR" value="6" enum="ScreenOrientation">
-			Uses most suitable orientation based on the hardware sensor.
-		</constant>
-		<constant name="KEYBOARD_TYPE_DEFAULT" value="0" enum="VirtualKeyboardType">
-			Default text virtual keyboard.
-		</constant>
-		<constant name="KEYBOARD_TYPE_MULTILINE" value="1" enum="VirtualKeyboardType">
-			Multiline virtual keyboard.
-		</constant>
-		<constant name="KEYBOARD_TYPE_NUMBER" value="2" enum="VirtualKeyboardType">
-			Virtual number keypad, useful for PIN entry.
-		</constant>
-		<constant name="KEYBOARD_TYPE_NUMBER_DECIMAL" value="3" enum="VirtualKeyboardType">
-			Virtual number keypad, useful for entering fractional numbers.
-		</constant>
-		<constant name="KEYBOARD_TYPE_PHONE" value="4" enum="VirtualKeyboardType">
-			Virtual phone number keypad.
-		</constant>
-		<constant name="KEYBOARD_TYPE_EMAIL_ADDRESS" value="5" enum="VirtualKeyboardType">
-			Virtual keyboard with additional keys to assist with typing email addresses.
-		</constant>
-		<constant name="KEYBOARD_TYPE_PASSWORD" value="6" enum="VirtualKeyboardType">
-			Virtual keyboard for entering a password. On most platforms, this should disable autocomplete and autocapitalization.
-			[b]Note:[/b] This is not supported on HTML5 or below iOS version 11.0. Instead, this will behave identically to [constant KEYBOARD_TYPE_DEFAULT].
-		</constant>
-		<constant name="KEYBOARD_TYPE_URL" value="7" enum="VirtualKeyboardType">
-			Virtual keyboard with additional keys to assist with typing URLs.
+			Использует наиболее подходящую ориентацию на основе аппаратного датчика.
 		</constant>
 		<constant name="SYSTEM_DIR_DESKTOP" value="0" enum="SystemDir">
-			Desktop directory path.
+			Путь к каталогу рабочего стола.
 		</constant>
 		<constant name="SYSTEM_DIR_DCIM" value="1" enum="SystemDir">
-			DCIM (Digital Camera Images) directory path.
+			Путь к каталогу DCIM (изображения с цифровой камеры).
 		</constant>
 		<constant name="SYSTEM_DIR_DOCUMENTS" value="2" enum="SystemDir">
-			Documents directory path.
+			Путь к каталогу документов.
 		</constant>
 		<constant name="SYSTEM_DIR_DOWNLOADS" value="3" enum="SystemDir">
 			Downloads directory path.
 		</constant>
 		<constant name="SYSTEM_DIR_MOVIES" value="4" enum="SystemDir">
-			Movies directory path.
+			Путь к каталогу фильмов.
 		</constant>
 		<constant name="SYSTEM_DIR_MUSIC" value="5" enum="SystemDir">
-			Music directory path.
+			Путь к музыкальному каталогу.
 		</constant>
 		<constant name="SYSTEM_DIR_PICTURES" value="6" enum="SystemDir">
-			Pictures directory path.
+			Путь к каталогу изображений.
 		</constant>
 		<constant name="SYSTEM_DIR_RINGTONES" value="7" enum="SystemDir">
-			Ringtones directory path.
+			Путь к каталогу рингтонов.
 		</constant>
 		<constant name="POWERSTATE_UNKNOWN" value="0" enum="PowerState">
-			Unknown powerstate.
+			Неизвестное состояние питания.
 		</constant>
 		<constant name="POWERSTATE_ON_BATTERY" value="1" enum="PowerState">
-			Unplugged, running on battery.
+			Отключен от сети, работает от аккумулятора.
 		</constant>
 		<constant name="POWERSTATE_NO_BATTERY" value="2" enum="PowerState">
-			Plugged in, no battery available.
+			Подключен к сети, батарея отсутствует.
 		</constant>
 		<constant name="POWERSTATE_CHARGING" value="3" enum="PowerState">
-			Plugged in, battery charging.
+			Подключен к сети, аккумулятор заряжается.
 		</constant>
 		<constant name="POWERSTATE_CHARGED" value="4" enum="PowerState">
-			Plugged in, battery fully charged.
-		</constant>
-		<constant name="TTS_UTTERANCE_STARTED" value="0" enum="TTSUtteranceEvent">
-			Utterance has begun to be spoken.
-		</constant>
-		<constant name="TTS_UTTERANCE_ENDED" value="1" enum="TTSUtteranceEvent">
-			Utterance was successfully finished.
-		</constant>
-		<constant name="TTS_UTTERANCE_CANCELED" value="2" enum="TTSUtteranceEvent">
-			Utterance was canceled, or TTS service was unable to process it.
-		</constant>
-		<constant name="TTS_UTTERANCE_BOUNDARY" value="3" enum="TTSUtteranceEvent">
-			Utterance reached a word or sentence boundary.
+			Подключен к сети, аккумулятор полностью заряжен.
 		</constant>
 	</constants>
 </class>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="StreamPeerTCP" inherits="StreamPeer" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="StreamPeerTCP" inherits="StreamPeer" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		TCP stream peer.
+		Одноранговый TCP-поток.
 	</brief_description>
 	<description>
-		TCP stream peer. This object can be used to connect to TCP servers, or also is returned by a TCP server.
+		Пир TCP-потока. Этот объект может быть использован для подключения к TCP-серверам, а также возвращен TCP-сервером.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -14,60 +14,60 @@
 			<argument index="0" name="host" type="String" />
 			<argument index="1" name="port" type="int" />
 			<description>
-				Connects to the specified [code]host:port[/code] pair. A hostname will be resolved if valid. Returns [constant OK] on success or [constant FAILED] on failure.
+				Подключается к указанной паре [code]хост:порт[/code]. Имя хоста будет разрешено, если оно действительно. Возвращает [константу OK] в случае успеха или [константу FAILED] в случае неудачи.
 			</description>
 		</method>
 		<method name="disconnect_from_host">
 			<return type="void" />
 			<description>
-				Disconnects from host.
+				Отключается от хоста.
 			</description>
 		</method>
 		<method name="get_connected_host" qualifiers="const">
 			<return type="String" />
 			<description>
-				Returns the IP of this peer.
+				Возвращает IP-адрес этого пира.
 			</description>
 		</method>
 		<method name="get_connected_port" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the port of this peer.
+				Возвращает порт этого пира.
 			</description>
 		</method>
 		<method name="get_status">
 			<return type="int" enum="StreamPeerTCP.Status" />
 			<description>
-				Returns the status of the connection, see [enum Status].
+				Возвращает статус соединения, см. [enum Status].
 			</description>
 		</method>
 		<method name="is_connected_to_host" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if this peer is currently connected or is connecting to a host, [code]false[/code] otherwise.
+				Возвращает [code]true[/code], если этот пир в данный момент подключен или подключается к хосту, [code]false[/code] в противном случае.
 			</description>
 		</method>
 		<method name="set_no_delay">
 			<return type="void" />
 			<argument index="0" name="enabled" type="bool" />
 			<description>
-				If [code]enabled[/code] is [code]true[/code], packets will be sent immediately. If [code]enabled[/code] is [code]false[/code] (the default), packet transfers will be delayed and combined using [url=https://en.wikipedia.org/wiki/Nagle%27s_algorithm]Nagle's algorithm[/url].
-				[b]Note:[/b] It's recommended to leave this disabled for applications that send large packets or need to transfer a lot of data, as enabling this can decrease the total available bandwidth.
+				Если [code]enabled[/code] - [code]true[/code], пакеты будут отправляться немедленно. Если [code]enabled[/code] равно [code]false[/code] (по умолчанию), передача пакетов будет отложена и объединена с помощью [url=https://en.wikipedia.org/wiki/Nagle%27s_algorithm]алгоритма Нагла[/url].
+				[b]Примечание:[/b] Для приложений, отправляющих большие пакеты или нуждающихся в передаче большого количества данных, рекомендуется оставить этот параметр отключенным, так как его включение может снизить общую доступную пропускную способность.
 			</description>
 		</method>
 	</methods>
 	<constants>
 		<constant name="STATUS_NONE" value="0" enum="Status">
-			The initial status of the [StreamPeerTCP]. This is also the status after disconnecting.
+			Начальное состояние [StreamPeerTCP]. Это также состояние после отключения.
 		</constant>
 		<constant name="STATUS_CONNECTING" value="1" enum="Status">
-			A status representing a [StreamPeerTCP] that is connecting to a host.
+			Статус, представляющий [StreamPeerTCP], который подключается к хосту.
 		</constant>
 		<constant name="STATUS_CONNECTED" value="2" enum="Status">
-			A status representing a [StreamPeerTCP] that is connected to a host.
+			Статус, представляющий [StreamPeerTCP], который подключен к хосту.
 		</constant>
 		<constant name="STATUS_ERROR" value="3" enum="Status">
-			A status representing a [StreamPeerTCP] in error state.
+			Статус, представляющий [StreamPeerTCP] в состоянии ошибки.
 		</constant>
 	</constants>
 </class>

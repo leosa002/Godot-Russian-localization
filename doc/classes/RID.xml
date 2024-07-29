@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="RID" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="RID" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Handle for a [Resource]'s unique ID.
+		Обращение к уникальному ID [Resource]ов.
 	</brief_description>
 	<description>
-		The RID type is used to access the unique integer ID of a resource. They are opaque, which means they do not grant access to the associated resource by themselves. They are used by and with the low-level Server classes such as [VisualServer].
+		Тип RID используется для доступа к уникальному целочисленному идентификатору/ID ресурса. Они непрозрачны, что означает, что сами по себе они не предоставляют доступ к связанному ресурсу. Они используются низкоуровневыми классами Server, такими как [VisualServer].
 	</description>
 	<tutorials>
 	</tutorials>
@@ -13,13 +13,13 @@
 			<return type="RID" />
 			<argument index="0" name="from" type="Object" />
 			<description>
-				Creates a new RID instance with the ID of a given resource. When not handed a valid resource, silently stores the unused ID 0.
+				Создает новый экземпляр RID с идентификатором заданного ресурса. Если ресурс не передан, сохраняет неиспользуемый идентификатор/ID 0.
 			</description>
 		</method>
 		<method name="get_id">
 			<return type="int" />
 			<description>
-				Returns the ID of the referenced resource.
+				Возвращает идентификатор/ID ресурса, на который ссылается.
 			</description>
 		</method>
 	</methods>

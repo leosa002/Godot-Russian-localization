@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Image" inherits="Resource" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Image" inherits="Resource" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Image datatype.
+		Тип данных изображения.
 	</brief_description>
 	<description>
-		Native image datatype. Contains image data which can be converted to an [ImageTexture] and provides commonly used [i]image processing[/i] methods. The maximum width and height for an [Image] are [constant MAX_WIDTH] and [constant MAX_HEIGHT].
-		An [Image] cannot be assigned to a [code]texture[/code] property of an object directly (such as [Sprite]), and has to be converted manually to an [ImageTexture] first.
-		[b]Note:[/b] The maximum image size is 16384×16384 pixels due to graphics hardware limitations. Larger images may fail to import.
+		Родной тип данных изображения. Содержит данные изображения, которые могут быть преобразованы в [ImageTexture], и предоставляет широко используемые методы [i]обработки изображений[/i]. Максимальные ширина и высота [Image] равны [constant MAX_WIDTH] и [constant MAX_HEIGHT].
+		Изображение [Image] не может быть присвоено свойству [code]texture[/code] объекта напрямую (например, [Sprite]), его необходимо сначала вручную преобразовать в [ImageTexture].
+		[b]Примечание:[/b] Максимальный размер изображения составляет 16384×16384 пикселей из-за ограничений графического оборудования. Более крупные изображения могут не импортироваться.
 	</description>
 	<tutorials>
 		<link title="Importing images">$DOCS_URL/tutorials/assets_pipeline/importing_images.html</link>
@@ -18,7 +18,7 @@
 			<argument index="1" name="src_rect" type="Rect2" />
 			<argument index="2" name="dst" type="Vector2" />
 			<description>
-				Alpha-blends [code]src_rect[/code] from [code]src[/code] image to this image at coordinates [code]dest[/code], clipped accordingly to both image bounds. This image and [code]src[/code] image [b]must[/b] have the same format. [code]src_rect[/code] with not positive size is treated as empty.
+				Альфа-смешивание [code]src_rect[/code] с изображения [code]src[/code] на это изображение в координатах [code]dest[/code], обрезанных соответствующим образом по границам обоих изображений. Это изображение и изображение [code]src[/code] [b]должны[/b] иметь одинаковый формат. [code]src_rect[/code] с неположительным размером считается пустым.
 			</description>
 		</method>
 		<method name="blend_rect_mask">
@@ -28,7 +28,7 @@
 			<argument index="2" name="src_rect" type="Rect2" />
 			<argument index="3" name="dst" type="Vector2" />
 			<description>
-				Alpha-blends [code]src_rect[/code] from [code]src[/code] image to this image using [code]mask[/code] image at coordinates [code]dst[/code], clipped accordingly to both image bounds. Alpha channels are required for both [code]src[/code] and [code]mask[/code]. [code]dst[/code] pixels and [code]src[/code] pixels will blend if the corresponding mask pixel's alpha value is not 0. This image and [code]src[/code] image [b]must[/b] have the same format. [code]src[/code] image and [code]mask[/code] image [b]must[/b] have the same size (width and height) but they can have different formats. [code]src_rect[/code] with not positive size is treated as empty.
+				Альфа-смешивание [code]src_rect[/code] из изображения [code]src[/code] с этим изображением, используя изображение [code]mask[/code] в координатах [code]dst[/code], обрезанное соответствующим образом по границам обоих изображений. Альфа-каналы необходимы как для [code]src[/code], так и для [code]mask[/code]. Пиксели [code]dst[/code] и [code]src[/code] будут смешиваться, если альфа-значение соответствующего пикселя маски не равно 0. Это изображение и изображение [code]src[/code] [b]должны[/b] иметь одинаковый формат. Изображение [code]src[/code] и изображение [code]mask[/code] [b]должны[/b] иметь одинаковый размер (ширину и высоту), но могут иметь разные форматы. [code]src_rect[/code] с неположительным размером считается пустым.
 			</description>
 		</method>
 		<method name="blit_rect">
@@ -37,7 +37,7 @@
 			<argument index="1" name="src_rect" type="Rect2" />
 			<argument index="2" name="dst" type="Vector2" />
 			<description>
-				Copies [code]src_rect[/code] from [code]src[/code] image to this image at coordinates [code]dst[/code], clipped accordingly to both image bounds. This image and [code]src[/code] image [b]must[/b] have the same format. [code]src_rect[/code] with not positive size is treated as empty.
+				Копирует [code]src_rect[/code] из изображения [code]src[/code] в это изображение по координатам [code]dst[/code], обрезая соответствующим образом границы обоих изображений. Это изображение и изображение [code]src[/code] [b]должны[/b] иметь одинаковый формат. [code]src_rect[/code] с неположительным размером считается пустым.
 			</description>
 		</method>
 		<method name="blit_rect_mask">
@@ -47,20 +47,20 @@
 			<argument index="2" name="src_rect" type="Rect2" />
 			<argument index="3" name="dst" type="Vector2" />
 			<description>
-				Blits [code]src_rect[/code] area from [code]src[/code] image to this image at the coordinates given by [code]dst[/code], clipped accordingly to both image bounds. [code]src[/code] pixel is copied onto [code]dst[/code] if the corresponding [code]mask[/code] pixel's alpha value is not 0. This image and [code]src[/code] image [b]must[/b] have the same format. [code]src[/code] image and [code]mask[/code] image [b]must[/b] have the same size (width and height) but they can have different formats. [code]src_rect[/code] with not positive size is treated as empty.
+				Перемещает область [code]src_rect[/code] с изображения [code]src[/code] на это изображение в координатах, заданных [code]dst[/code], обрезая их соответственно границам обоих изображений. Пиксель [code]src[/code] копируется на [code]dst[/code], если альфа-значение соответствующего пикселя [code]mask[/code] не равно 0. Это изображение и изображение [code]src[/code] [b]должны[/b] иметь одинаковый формат. Изображение [code]src[/code] и изображение [code]mask[/code] [b]должны[/b] иметь одинаковый размер (ширину и высоту), но могут иметь разные форматы. [code]src_rect[/code] с неположительным размером считается пустым.
 			</description>
 		</method>
 		<method name="bumpmap_to_normalmap">
 			<return type="void" />
 			<argument index="0" name="bump_scale" type="float" default="1.0" />
 			<description>
-				Converts a bumpmap to a normalmap. A bumpmap provides a height offset per-pixel, while a normalmap provides a normal direction per pixel.
+				Преобразует карту неровностей в карту нормалей. Бампмап предоставляет смещение по высоте на пиксель, а нормальная карта - направление нормали на пиксель.
 			</description>
 		</method>
 		<method name="clear_mipmaps">
 			<return type="void" />
 			<description>
-				Removes the image's mipmaps.
+				Удаляет мипмапы изображения.
 			</description>
 		</method>
 		<method name="compress">
@@ -69,21 +69,21 @@
 			<argument index="1" name="source" type="int" enum="Image.CompressSource" />
 			<argument index="2" name="lossy_quality" type="float" />
 			<description>
-				Compresses the image to use less memory. Can not directly access pixel data while the image is compressed. Returns error if the chosen compression mode is not available. See [enum CompressMode] and [enum CompressSource] constants.
+				Сжимает изображение, чтобы использовать меньше памяти. Невозможно получить прямой доступ к пиксельным данным, пока изображение сжато. Возвращает ошибку, если выбранный режим сжатия недоступен. См. константы [enum CompressMode] и [enum CompressSource].
 			</description>
 		</method>
 		<method name="convert">
 			<return type="void" />
 			<argument index="0" name="format" type="int" enum="Image.Format" />
 			<description>
-				Converts the image's format. See [enum Format] constants.
+				Преобразует формат изображения. См. константы [enum Format].
 			</description>
 		</method>
 		<method name="copy_from">
 			<return type="void" />
 			<argument index="0" name="src" type="Image" />
 			<description>
-				Copies [code]src[/code] image to this image.
+				Копирует [code]src[/code] изображение в это изображение.
 			</description>
 		</method>
 		<method name="create">
@@ -93,7 +93,7 @@
 			<argument index="2" name="use_mipmaps" type="bool" />
 			<argument index="3" name="format" type="int" enum="Image.Format" />
 			<description>
-				Creates an empty image of given size and format. See [enum Format] constants. If [code]use_mipmaps[/code] is [code]true[/code] then generate mipmaps for this image. See the [method generate_mipmaps].
+				Создает пустое изображение заданного размера и формата. См. константы [enum Format]. Если [code]use_mipmaps[/code] равно [code]true[/code], то генерирует mipmaps для этого изображения. Смотрите [метод generate_mipmaps].
 			</description>
 		</method>
 		<method name="create_from_data">
@@ -104,7 +104,7 @@
 			<argument index="3" name="format" type="int" enum="Image.Format" />
 			<argument index="4" name="data" type="PoolByteArray" />
 			<description>
-				Creates a new image of given size and format. See [enum Format] constants. Fills the image with the given raw data. If [code]use_mipmaps[/code] is [code]true[/code] then loads mipmaps for this image from [code]data[/code]. See [method generate_mipmaps].
+				Создает новое изображение заданного размера и формата. См. константы [enum Format]. Заполняет изображение заданными исходными данными. Если [code]use_mipmaps[/code] равно [code]true[/code], то загружает mipmaps для этого изображения из [code]data[/code]. Смотрите [метод generate_mipmaps].
 			</description>
 		</method>
 		<method name="crop">
@@ -112,32 +112,32 @@
 			<argument index="0" name="width" type="int" />
 			<argument index="1" name="height" type="int" />
 			<description>
-				Crops the image to the given [code]width[/code] and [code]height[/code]. If the specified size is larger than the current size, the extra area is filled with black pixels.
+				Обрезает изображение до заданных [code]ширины[/code] и [code]высоты[/code]. Если указанный размер больше текущего, дополнительная область заполняется черными пикселями.
 			</description>
 		</method>
 		<method name="decompress">
 			<return type="int" enum="Error" />
 			<description>
-				Decompresses the image if it is compressed. Returns an error if decompress function is not available.
+				Декомпрессирует изображение, если оно сжато. Возвращает ошибку, если функция decompress недоступна.
 			</description>
 		</method>
 		<method name="detect_alpha" qualifiers="const">
 			<return type="int" enum="Image.AlphaMode" />
 			<description>
-				Returns [constant ALPHA_BLEND] if the image has data for alpha values. Returns [constant ALPHA_BIT] if all the alpha values are stored in a single bit. Returns [constant ALPHA_NONE] if no data for alpha values is found.
+				Возвращает [константу ALPHA_BLEND], если в изображении есть данные для альфа-значений. Возвращает [константа ALPHA_BIT], если все альфа-значения хранятся в одном бите. Возвращает [константа ALPHA_NONE], если данные для альфа-значений не найдены.
 			</description>
 		</method>
 		<method name="expand_x2_hq2x">
 			<return type="void" />
 			<description>
-				Stretches the image and enlarges it by a factor of 2. No interpolation is done.
+				Растягивает изображение и увеличивает его в 2 раза. Интерполяция не производится.
 			</description>
 		</method>
 		<method name="fill">
 			<return type="void" />
 			<argument index="0" name="color" type="Color" />
 			<description>
-				Fills the image with [code]color[/code].
+				Заливает изображение [code]цветом[/code].
 			</description>
 		</method>
 		<method name="fill_rect">
@@ -145,58 +145,58 @@
 			<argument index="0" name="rect" type="Rect2" />
 			<argument index="1" name="color" type="Color" />
 			<description>
-				Fills [code]rect[/code] with [code]color[/code].
+				Заливает [code]rect[/code] цветом [code]color[/code].
 			</description>
 		</method>
 		<method name="fix_alpha_edges">
 			<return type="void" />
 			<description>
-				Blends low-alpha pixels with nearby pixels.
+				Смешивает пиксели с низким альфа-балансом с соседними пикселями.
 			</description>
 		</method>
 		<method name="flip_x">
 			<return type="void" />
 			<description>
-				Flips the image horizontally.
+				Переворачивает изображение по горизонтали.
 			</description>
 		</method>
 		<method name="flip_y">
 			<return type="void" />
 			<description>
-				Flips the image vertically.
+				Переворачивает изображение по вертикали.
 			</description>
 		</method>
 		<method name="generate_mipmaps">
 			<return type="int" enum="Error" />
 			<argument index="0" name="renormalize" type="bool" default="false" />
 			<description>
-				Generates mipmaps for the image. Mipmaps are precalculated lower-resolution copies of the image that are automatically used if the image needs to be scaled down when rendered. They help improve image quality and performance when rendering. This method returns an error if the image is compressed, in a custom format, or if the image's width/height is [code]0[/code].
-				[b]Note:[/b] Mipmap generation is done on the CPU, is single-threaded and is [i]always[/i] done on the main thread. This means generating mipmaps will result in noticeable stuttering during gameplay, even if [method generate_mipmaps] is called from a [Thread].
+				Генерирует мипмапы для изображения. Mipmaps - это предварительно вычисленные копии изображения с более низким разрешением, которые автоматически используются, если изображение нужно уменьшить при рендеринге. Они помогают улучшить качество и производительность изображения при рендеринге. Этот метод возвращает ошибку, если изображение сжато, имеет пользовательский формат или если ширина/высота изображения равна [code]0[/code].
+				[b]Примечание:[/b] Генерация мипмапов выполняется на процессоре, является однопоточной и [i]всегда[/i] выполняется в главном потоке. Это означает, что генерация мипмапов будет приводить к заметным заиканиям во время игры, даже если [метод generate_mipmaps] вызывается из [Thread].
 			</description>
 		</method>
 		<method name="get_data" qualifiers="const">
 			<return type="PoolByteArray" />
 			<description>
-				Returns a copy of the image's raw data.
+				Возвращает копию исходных данных изображения.
 			</description>
 		</method>
 		<method name="get_format" qualifiers="const">
 			<return type="int" enum="Image.Format" />
 			<description>
-				Returns the image's format. See [enum Format] constants.
+				Возвращает формат изображения. См. константы [enum Format].
 			</description>
 		</method>
 		<method name="get_height" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the image's height.
+				Возвращает высоту изображения.
 			</description>
 		</method>
 		<method name="get_mipmap_offset" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="mipmap" type="int" />
 			<description>
-				Returns the offset where the image's mipmap with index [code]mipmap[/code] is stored in the [code]data[/code] dictionary.
+				Возвращает смещение, по которому mipmap изображения с индексом [code]mipmap[/code] хранится в словаре [code]data[/code].
 			</description>
 		</method>
 		<method name="get_pixel" qualifiers="const">
@@ -204,126 +204,126 @@
 			<argument index="0" name="x" type="int" />
 			<argument index="1" name="y" type="int" />
 			<description>
-				Returns the color of the pixel at [code](x, y)[/code] if the image is locked. If the image is unlocked, it always returns a [Color] with the value [code](0, 0, 0, 1.0)[/code]. This is the same as [method get_pixelv], but two integer arguments instead of a Vector2 argument.
+				Возвращает цвет пикселя в точке [code](x, y)[/code], если изображение заблокировано. Если изображение разблокировано, то всегда возвращается [Color] со значением [code](0, 0, 0, 1.0)[/code]. Это то же самое, что и [метод get_pixelv], но с двумя целочисленными аргументами вместо аргумента Vector2.
 			</description>
 		</method>
 		<method name="get_pixelv" qualifiers="const">
 			<return type="Color" />
 			<argument index="0" name="src" type="Vector2" />
 			<description>
-				Returns the color of the pixel at [code]src[/code] if the image is locked. If the image is unlocked, it always returns a [Color] with the value [code](0, 0, 0, 1.0)[/code]. This is the same as [method get_pixel], but with a Vector2 argument instead of two integer arguments.
+				Возвращает цвет пикселя по адресу [code]src[/code], если изображение заблокировано. Если изображение разблокировано, то всегда возвращается [Color] со значением [code](0, 0, 0, 1.0)[/code]. Это то же самое, что и [метод get_pixel], но с аргументом Vector2 вместо двух целочисленных аргументов.
 			</description>
 		</method>
 		<method name="get_rect" qualifiers="const">
 			<return type="Image" />
 			<argument index="0" name="rect" type="Rect2" />
 			<description>
-				Returns a new image that is a copy of the image's area specified with [code]rect[/code].
+				Возвращает новое изображение, которое является копией области изображения, указанной с помощью [code]rect[/code].
 			</description>
 		</method>
 		<method name="get_size" qualifiers="const">
 			<return type="Vector2" />
 			<description>
-				Returns the image's size (width and height).
+				Возвращает размер изображения (ширину и высоту).
 			</description>
 		</method>
 		<method name="get_used_rect" qualifiers="const">
 			<return type="Rect2" />
 			<description>
-				Returns a [Rect2] enclosing the visible portion of the image, considering each pixel with a non-zero alpha channel as visible.
+				Возвращает [Rect2], заключающий в себе видимую часть изображения, считая видимым каждый пиксель с ненулевым альфа-каналом.
 			</description>
 		</method>
 		<method name="get_width" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the image's width.
+				Возвращает ширину изображения.
 			</description>
 		</method>
 		<method name="has_mipmaps" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the image has generated mipmaps.
+				Возвращает [code]true[/code], если изображение сгенерировало mipmaps.
 			</description>
 		</method>
 		<method name="is_compressed" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the image is compressed.
+				Возвращает [code]true[/code], если изображение сжато.
 			</description>
 		</method>
 		<method name="is_empty" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the image has no data.
+				Возвращает [code]true[/code], если изображение не содержит данных.
 			</description>
 		</method>
 		<method name="is_invisible" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if all the image's pixels have an alpha value of 0. Returns [code]false[/code] if any pixel has an alpha value higher than 0.
+				Возвращает [code]true[/code], если все пиксели изображения имеют альфа-значение 0. Возвращает [code]false[/code], если любой пиксель имеет альфа-значение больше 0.
 			</description>
 		</method>
 		<method name="load">
 			<return type="int" enum="Error" />
 			<argument index="0" name="path" type="String" />
 			<description>
-				Loads an image from file [code]path[/code]. See [url=$DOCS_URL/tutorials/assets_pipeline/importing_images.html#supported-image-formats]Supported image formats[/url] for a list of supported image formats and limitations.
-				[b]Warning:[/b] This method should only be used in the editor or in cases when you need to load external images at run-time, such as images located at the [code]user://[/code] directory, and may not work in exported projects.
-				See also [ImageTexture] description for usage examples.
+				Загружает изображение из файла [code]path[/code]. Список поддерживаемых форматов изображений и ограничения см. в [url=$DOCS_URL/tutorials/assets_pipeline/importing_images.html#supported-image-formats]Поддерживаемые форматы изображений[/url].
+				[b]Предупреждение:[/b] Этот метод следует использовать только в редакторе или в случаях, когда необходимо загрузить внешние изображения во время выполнения, например изображения, расположенные в директории [code]user://[/code], и может не работать в экспортированных проектах.
+				Примеры использования см. также в описании [ImageTexture].
 			</description>
 		</method>
 		<method name="load_bmp_from_buffer">
 			<return type="int" enum="Error" />
 			<argument index="0" name="buffer" type="PoolByteArray" />
 			<description>
-				Loads an image from the binary contents of a BMP file.
-				[b]Note:[/b] Godot's BMP module doesn't support 16-bit per pixel images. Only 1-bit, 4-bit, 8-bit, 24-bit, and 32-bit per pixel images are supported.
+				Загружает изображение из двоичного содержимого BMP-файла.
+				[b]Примечание:[/b] BMP-модуль Godot не поддерживает 16-битные пиксельные изображения. Поддерживаются только 1-битные, 4-битные, 8-битные, 24-битные и 32-битные пиксельные изображения.
 			</description>
 		</method>
 		<method name="load_jpg_from_buffer">
 			<return type="int" enum="Error" />
 			<argument index="0" name="buffer" type="PoolByteArray" />
 			<description>
-				Loads an image from the binary contents of a JPEG file.
+				Загружает изображение из двоичного содержимого файла JPEG.
 			</description>
 		</method>
 		<method name="load_png_from_buffer">
 			<return type="int" enum="Error" />
 			<argument index="0" name="buffer" type="PoolByteArray" />
 			<description>
-				Loads an image from the binary contents of a PNG file.
+				Загружает изображение из двоичного содержимого файла PNG.
 			</description>
 		</method>
 		<method name="load_tga_from_buffer">
 			<return type="int" enum="Error" />
 			<argument index="0" name="buffer" type="PoolByteArray" />
 			<description>
-				Loads an image from the binary contents of a TGA file.
+				Загружает изображение из двоичного содержимого файла TGA.
 			</description>
 		</method>
 		<method name="load_webp_from_buffer">
 			<return type="int" enum="Error" />
 			<argument index="0" name="buffer" type="PoolByteArray" />
 			<description>
-				Loads an image from the binary contents of a WebP file.
+				Загружает изображение из двоичного содержимого файла WebP.
 			</description>
 		</method>
 		<method name="lock">
 			<return type="void" />
 			<description>
-				Locks the data for reading and writing access. Sends an error to the console if the image is not locked when reading or writing a pixel.
+				Блокирует данные для доступа на чтение и запись. Отправляет ошибку в консоль, если изображение не заблокировано при чтении или записи пикселя.
 			</description>
 		</method>
 		<method name="normalmap_to_xy">
 			<return type="void" />
 			<description>
-				Converts the image's data to represent coordinates on a 3D plane. This is used when the image represents a normalmap. A normalmap can add lots of detail to a 3D surface without increasing the polygon count.
+				Преобразует данные изображения для представления координат на 3D-плоскости. Это используется, когда изображение представляет собой карту нормалей. Карта нормалей может добавить много деталей к 3D-поверхности без увеличения количества полигонов.
 			</description>
 		</method>
 		<method name="premultiply_alpha">
 			<return type="void" />
 			<description>
-				Multiplies color values with alpha values. Resulting color values for a pixel are [code](color * alpha)/256[/code].
+				Умножает значения цвета на значения альфа. Результирующее значение цвета для пикселя - [code](color * alpha)/256[/code].
 			</description>
 		</method>
 		<method name="resize">
@@ -332,7 +332,7 @@
 			<argument index="1" name="height" type="int" />
 			<argument index="2" name="interpolation" type="int" enum="Image.Interpolation" default="1" />
 			<description>
-				Resizes the image to the given [code]width[/code] and [code]height[/code]. New pixels are calculated using the [code]interpolation[/code] mode defined via [enum Interpolation] constants.
+				Изменяет размер изображения до заданных [code]ширины[/code] и [code]высоты[/code]. Новые пиксели вычисляются с использованием режима [code]интерполяции[/code], заданного через константы [enum Interpolation].
 			</description>
 		</method>
 		<method name="resize_to_po2">
@@ -340,13 +340,13 @@
 			<argument index="0" name="square" type="bool" default="false" />
 			<argument index="1" name="interpolation" type="int" enum="Image.Interpolation" default="1" />
 			<description>
-				Resizes the image to the nearest power of 2 for the width and height. If [code]square[/code] is [code]true[/code] then set width and height to be the same. New pixels are calculated using the [code]interpolation[/code] mode defined via [enum Interpolation] constants.
+				Изменяет размер изображения до ближайшей степени 2 для ширины и высоты. Если [code]square[/code] имеет значение [code]true[/code], то ширина и высота должны быть одинаковыми. Новые пиксели вычисляются с использованием режима [code]интерполяции[/code], заданного через константы [enum Interpolation].
 			</description>
 		</method>
 		<method name="rgbe_to_srgb">
 			<return type="Image" />
 			<description>
-				Converts a standard RGBE (Red Green Blue Exponent) image to an sRGB image.
+				Преобразует стандартное изображение RGBE (Red Green Blue Exponent) в изображение sRGB.
 			</description>
 		</method>
 		<method name="save_exr" qualifiers="const">
@@ -354,15 +354,15 @@
 			<argument index="0" name="path" type="String" />
 			<argument index="1" name="grayscale" type="bool" default="false" />
 			<description>
-				Saves the image as an EXR file to [code]path[/code]. If [code]grayscale[/code] is [code]true[/code] and the image has only one channel, it will be saved explicitly as monochrome rather than one red channel. This function will return [constant ERR_UNAVAILABLE] if Godot was compiled without the TinyEXR module.
-				[b]Note:[/b] The TinyEXR module is disabled in non-editor builds, which means [method save_exr] will return [constant ERR_UNAVAILABLE] when it is called from an exported project.
+				Сохраняет изображение в виде EXR-файла по [code]пути[/code]. Если [code]grayscale[/code] имеет значение [code]true[/code] и изображение имеет только один канал, оно будет сохранено явно как монохромное, а не с одним красным каналом. Эта функция вернет [константу ERR_UNAVAILABLE], если Godot был скомпилирован без модуля TinyEXR.
+				[b]Примечание:[/b] Модуль TinyEXR отключен в сборках без редактора, поэтому [метод save_exr] вернет [константу ERR_UNAVAILABLE] при вызове его из экспортированного проекта.
 			</description>
 		</method>
 		<method name="save_png" qualifiers="const">
 			<return type="int" enum="Error" />
 			<argument index="0" name="path" type="String" />
 			<description>
-				Saves the image as a PNG file to [code]path[/code].
+				Сохраняет изображение в виде PNG-файла по [code]пути[/code].
 			</description>
 		</method>
 		<method name="save_png_to_buffer" qualifiers="const">
@@ -376,21 +376,14 @@
 			<argument index="1" name="y" type="int" />
 			<argument index="2" name="color" type="Color" />
 			<description>
-				Sets the [Color] of the pixel at [code](x, y)[/code] if the image is locked. Example:
+				Устанавливает [Color] пикселя в точке [code](x, y)[/code], если изображение заблокировано. Пример:
 				[codeblock]
 				var img = Image.new()
 				img.create(img_width, img_height, false, Image.FORMAT_RGBA8)
 				img.lock()
-				img.set_pixel(x, y, color) # Works
+				img.set_pixel(x, y, color) # Работает
 				img.unlock()
-				img.set_pixel(x, y, color) # Does not have an effect
-				[/codeblock]
-				[b]Note:[/b] Some image methods can leave the image unlocked, making subsequent [method set_pixel] calls fail unless the image is locked again. Methods potentially unlocking the image: [method blend_rect], [method blend_rect_mask], [method blit_rect_mask], [method convert], [method fill], [method fill_rect], [method get_used_rect], and [method rgbe_to_srgb].
-				[codeblock]
-				img.lock()
-				img.set_pixel(x, y, color) # Works
-				img.fill(color) # Unlocks the image
-				img.set_pixel(x, y, color) # Does not have an effect
+				img.set_pixel(x, y, color) # Не оказывает эффекта
 				[/codeblock]
 			</description>
 		</method>
@@ -399,240 +392,227 @@
 			<argument index="0" name="dst" type="Vector2" />
 			<argument index="1" name="color" type="Color" />
 			<description>
-				Sets the [Color] of the pixel at [code](dst.x, dst.y)[/code] if the image is locked. Note that the [code]dst[/code] values must be integers. Example:
+				Устанавливает [Color] пикселя по адресу [code](dst.x, dst.y)[/code], если изображение заблокировано. Обратите внимание, что значения [code]dst[/code] должны быть целыми числами. Пример:
 				[codeblock]
 				var img = Image.new()
 				img.create(img_width, img_height, false, Image.FORMAT_RGBA8)
 				img.lock()
-				img.set_pixelv(Vector2(x, y), color) # Works
+				img.set_pixelv(Vector2(x, y), color) # Работает
 				img.unlock()
-				img.set_pixelv(Vector2(x, y), color) # Does not have an effect
-				[/codeblock]
-				[b]Note:[/b] Some image methods can leave the image unlocked, making subsequent [method set_pixelv] calls fail unless the image is locked again. Methods potentially unlocking the image: [method blend_rect], [method blend_rect_mask], [method blit_rect_mask], [method convert], [method fill], [method fill_rect], [method get_used_rect], and [method rgbe_to_srgb].
-				[codeblock]
-				img.lock()
-				img.set_pixelv(Vector2(x, y), color) # Works
-				img.fill(dcolor) # Unlocks the image
-				img.set_pixelv(Vector2(x, y), color) # Does not have an effect
+				img.set_pixelv(Vector2(x, y), color) # Не оказывает эффекта
 				[/codeblock]
 			</description>
 		</method>
 		<method name="shrink_x2">
 			<return type="void" />
 			<description>
-				Shrinks the image by a factor of 2.
+				Уменьшает изображение в 2 раза.
 			</description>
 		</method>
 		<method name="srgb_to_linear">
 			<return type="void" />
 			<description>
-				Converts the raw data from the sRGB colorspace to a linear scale.
+				Преобразует исходные данные из цветового пространства sRGB в линейную шкалу.
 			</description>
 		</method>
 		<method name="unlock">
 			<return type="void" />
 			<description>
-				Unlocks the data and prevents changes.
+				Разблокирует данные и предотвращает их изменение.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="data" type="Dictionary" setter="_set_data" getter="_get_data" default="{&quot;data&quot;: PoolByteArray(  ),&quot;format&quot;: &quot;Lum8&quot;,&quot;height&quot;: 0,&quot;mipmaps&quot;: false,&quot;width&quot;: 0}">
-			Holds all the image's color data in a given format. See [enum Format] constants.
+			Содержит все цветовые данные изображения в заданном формате. См. константы [enum Format].
 		</member>
 	</members>
 	<constants>
 		<constant name="MAX_WIDTH" value="16384">
-			The maximal width allowed for [Image] resources.
+			Максимальная ширина, допустимая для ресурсов [Image].
 		</constant>
 		<constant name="MAX_HEIGHT" value="16384">
-			The maximal height allowed for [Image] resources.
+			Максимальная высота, допустимая для ресурсов [Image].
 		</constant>
 		<constant name="FORMAT_L8" value="0" enum="Format">
-			Texture format with a single 8-bit depth representing luminance.
+			Формат текстуры с одной 8-битной глубиной, представляющей яркость.
 		</constant>
 		<constant name="FORMAT_LA8" value="1" enum="Format">
-			OpenGL texture format with two values, luminance and alpha each stored with 8 bits.
+			Формат текстур OpenGL с двумя значениями, яркостью и альфой, каждое из которых хранится в 8 битах.
 		</constant>
 		<constant name="FORMAT_R8" value="2" enum="Format">
-			OpenGL texture format [code]RED[/code] with a single component and a bitdepth of 8.
-			[b]Note:[/b] When using the GLES2 backend, this uses the alpha channel instead of the red channel for storage.
+			Текстура OpenGL формата [code]RED[/code] с одним компонентом и битовой глубиной 8.
+			[b]Примечание:[/b] При использовании бэкенда GLES2 для хранения используется альфа-канал, а не красный канал.
 		</constant>
 		<constant name="FORMAT_RG8" value="3" enum="Format">
-			OpenGL texture format [code]RG[/code] with two components and a bitdepth of 8 for each.
+			Формат текстуры OpenGL [code]RG[/code] с двумя компонентами и битовой глубиной 8 для каждого.
 		</constant>
 		<constant name="FORMAT_RGB8" value="4" enum="Format">
-			OpenGL texture format [code]RGB[/code] with three components, each with a bitdepth of 8.
-			[b]Note:[/b] When creating an [ImageTexture], an sRGB to linear color space conversion is performed.
+			Текстура OpenGL формата [code]RGB[/code] с тремя компонентами, каждый из которых имеет битовую глубину 8.
+			[b]Примечание:[/b] При создании [ImageTexture] выполняется преобразование цветового пространства sRGB в линейное.
 		</constant>
 		<constant name="FORMAT_RGBA8" value="5" enum="Format">
-			OpenGL texture format [code]RGBA[/code] with four components, each with a bitdepth of 8.
-			[b]Note:[/b] When creating an [ImageTexture], an sRGB to linear color space conversion is performed.
+			Текстура формата OpenGL [code]RGBA[/code] с четырьмя компонентами, каждый из которых имеет битовую глубину 8.
+			[b]Примечание:[/b] При создании [ImageTexture] выполняется преобразование цветового пространства sRGB в линейное.
 		</constant>
 		<constant name="FORMAT_RGBA4444" value="6" enum="Format">
-			OpenGL texture format [code]RGBA[/code] with four components, each with a bitdepth of 4.
+			Формат текстуры OpenGL [code]RGBA[/code] с четырьмя компонентами, каждый из которых имеет битовую глубину 4.
 		</constant>
 		<constant name="FORMAT_RGBA5551" value="7" enum="Format">
-			OpenGL texture format [code]GL_RGB5_A1[/code] where 5 bits of depth for each component of RGB and one bit for alpha.
+			Формат текстур OpenGL [code]GL_RGB5_A1[/code], в котором 5 бит глубины для каждого компонента RGB и один бит для альфы.
 		</constant>
 		<constant name="FORMAT_RF" value="8" enum="Format">
-			OpenGL texture format [code]GL_R32F[/code] where there's one component, a 32-bit floating-point value.
+			Формат текстур OpenGL [code]GL_R32F[/code], в котором есть один компонент - 32-битное значение с плавающей точкой.
 		</constant>
 		<constant name="FORMAT_RGF" value="9" enum="Format">
-			OpenGL texture format [code]GL_RG32F[/code] where there are two components, each a 32-bit floating-point values.
+			Формат текстур OpenGL [code]GL_RG32F[/code], в котором есть два компонента, каждый из которых представляет собой 32-битное значение с плавающей точкой.
 		</constant>
 		<constant name="FORMAT_RGBF" value="10" enum="Format">
-			OpenGL texture format [code]GL_RGB32F[/code] where there are three components, each a 32-bit floating-point values.
+			Формат текстур OpenGL [code]GL_RGB32F[/code], в котором есть три компонента, каждый из которых представляет собой 32-битное значение с плавающей точкой.
 		</constant>
 		<constant name="FORMAT_RGBAF" value="11" enum="Format">
-			OpenGL texture format [code]GL_RGBA32F[/code] where there are four components, each a 32-bit floating-point values.
+			Формат текстур OpenGL [code]GL_RGBA32F[/code], в котором есть четыре компонента, каждый из которых представляет собой 32-битное значение с плавающей точкой.
 		</constant>
 		<constant name="FORMAT_RH" value="12" enum="Format">
-			OpenGL texture format [code]GL_R32F[/code] where there's one component, a 16-bit "half-precision" floating-point value.
+			Формат текстур OpenGL [code]GL_R32F[/code], в котором есть один компонент - 16-битное значение с плавающей точкой "половинной точности".
 		</constant>
 		<constant name="FORMAT_RGH" value="13" enum="Format">
-			OpenGL texture format [code]GL_RG32F[/code] where there are two components, each a 16-bit "half-precision" floating-point value.
+			Формат текстур OpenGL [code]GL_RG32F[/code], в котором есть два компонента, каждый из которых представляет собой 16-битное значение с плавающей точкой "половинной точности".
 		</constant>
 		<constant name="FORMAT_RGBH" value="14" enum="Format">
-			OpenGL texture format [code]GL_RGB32F[/code] where there are three components, each a 16-bit "half-precision" floating-point value.
+			Формат текстур OpenGL [code]GL_RGB32F[/code], в котором есть три компонента, каждый из которых представляет собой 16-битное значение с плавающей точкой "половинной точности".
 		</constant>
 		<constant name="FORMAT_RGBAH" value="15" enum="Format">
-			OpenGL texture format [code]GL_RGBA32F[/code] where there are four components, each a 16-bit "half-precision" floating-point value.
+			Формат текстур OpenGL [code]GL_RGBA32F[/code], в котором есть четыре компонента, каждый из которых представляет собой 16-битное значение с плавающей точкой "половинной точности".
 		</constant>
 		<constant name="FORMAT_RGBE9995" value="16" enum="Format">
-			A special OpenGL texture format where the three color components have 9 bits of precision and all three share a single 5-bit exponent.
+			Специальный формат текстур OpenGL, в котором три цветовые компоненты имеют точность 9 бит, и все три имеют одну 5-битную экспоненту.
 		</constant>
 		<constant name="FORMAT_DXT1" value="17" enum="Format">
-			The [url=https://en.wikipedia.org/wiki/S3_Texture_Compression]S3TC[/url] texture format that uses Block Compression 1, and is the smallest variation of S3TC, only providing 1 bit of alpha and color data being premultiplied with alpha.
-			[b]Note:[/b] When creating an [ImageTexture], an sRGB to linear color space conversion is performed.
+			Текстурный формат [url=https://en.wikipedia.org/wiki/S3_Texture_Compression]S3TC[/url], использующий блочное сжатие 1, является наименьшей разновидностью S3TC, предоставляя только 1 бит альфы и цветовые данные, предварительно умноженные на альфу.
+			[b]Примечание:[/b] При создании [ImageTexture] выполняется преобразование цветового пространства sRGB в линейное.
 		</constant>
 		<constant name="FORMAT_DXT3" value="18" enum="Format">
-			The [url=https://en.wikipedia.org/wiki/S3_Texture_Compression]S3TC[/url] texture format that uses Block Compression 2, and color data is interpreted as not having been premultiplied by alpha. Well suited for images with sharp alpha transitions between translucent and opaque areas.
-			[b]Note:[/b] When creating an [ImageTexture], an sRGB to linear color space conversion is performed.
+			Формат текстур [url=https://en.wikipedia.org/wiki/S3_Texture_Compression]S3TC[/url], в котором используется блочное сжатие 2, а данные о цвете интерпретируются как не подвергавшиеся предварительному умножению на альфу. Хорошо подходит для изображений с резкими альфа-переходами между полупрозрачными и непрозрачными областями.
+			[b]Примечание:[/b] При создании [ImageTexture] выполняется преобразование цветового пространства sRGB в линейное.
 		</constant>
 		<constant name="FORMAT_DXT5" value="19" enum="Format">
-			The [url=https://en.wikipedia.org/wiki/S3_Texture_Compression]S3TC[/url] texture format also known as Block Compression 3 or BC3 that contains 64 bits of alpha channel data followed by 64 bits of DXT1-encoded color data. Color data is not premultiplied by alpha, same as DXT3. DXT5 generally produces superior results for transparent gradients compared to DXT3.
-			[b]Note:[/b] When creating an [ImageTexture], an sRGB to linear color space conversion is performed.
+			Формат текстур [url=https://en.wikipedia.org/wiki/S3_Texture_Compression]S3TC[/url], также известный как Block Compression 3 или BC3, содержит 64 бита данных альфа-канала, за которыми следуют 64 бита данных цвета, закодированных в DXT1. Цветные данные не умножаются на альфа-канал, как в DXT3. DXT5 обычно дает лучшие результаты для прозрачных градиентов по сравнению с DXT3.
+			[b]Примечание:[/b] При создании [ImageTexture] выполняется преобразование sRGB в линейное цветовое пространство.
 		</constant>
 		<constant name="FORMAT_RGTC_R" value="20" enum="Format">
-			Texture format that uses [url=https://www.khronos.org/opengl/wiki/Red_Green_Texture_Compression]Red Green Texture Compression[/url], normalizing the red channel data using the same compression algorithm that DXT5 uses for the alpha channel.
+			Формат текстур, использующий [url=https://www.khronos.org/opengl/wiki/Red_Green_Texture_Compression]Red Green Texture Compression[/url], нормализующий данные красного канала с помощью того же алгоритма сжатия, который DXT5 использует для альфа-канала.
 		</constant>
 		<constant name="FORMAT_RGTC_RG" value="21" enum="Format">
-			Texture format that uses [url=https://www.khronos.org/opengl/wiki/Red_Green_Texture_Compression]Red Green Texture Compression[/url], normalizing the red and green channel data using the same compression algorithm that DXT5 uses for the alpha channel.
+			Формат текстур, использующий [url=https://www.khronos.org/opengl/wiki/Red_Green_Texture_Compression]Red Green Texture Compression[/url], нормализующий данные красного и зеленого каналов с помощью того же алгоритма сжатия, который DXT5 использует для альфа-канала.
 		</constant>
 		<constant name="FORMAT_BPTC_RGBA" value="22" enum="Format">
-			Texture format that uses [url=https://www.khronos.org/opengl/wiki/BPTC_Texture_Compression]BPTC[/url] compression with unsigned normalized RGBA components.
-			[b]Note:[/b] When creating an [ImageTexture], an sRGB to linear color space conversion is performed.
+			Формат текстур, использующий [url=https://www.khronos.org/opengl/wiki/BPTC_Texture_Compression]BPTC[/url] сжатие с беззнаковыми нормализованными RGBA-компонентами.
+			[b]Примечание:[/b] При создании [ImageTexture] выполняется преобразование цветового пространства sRGB в линейное.
 		</constant>
 		<constant name="FORMAT_BPTC_RGBF" value="23" enum="Format">
-			Texture format that uses [url=https://www.khronos.org/opengl/wiki/BPTC_Texture_Compression]BPTC[/url] compression with signed floating-point RGB components.
+			Формат текстур, использующий [url=https://www.khronos.org/opengl/wiki/BPTC_Texture_Compression]BPTC[/url] сжатие со знаковыми RGB-компонентами с плавающей точкой.
 		</constant>
 		<constant name="FORMAT_BPTC_RGBFU" value="24" enum="Format">
-			Texture format that uses [url=https://www.khronos.org/opengl/wiki/BPTC_Texture_Compression]BPTC[/url] compression with unsigned floating-point RGB components.
+			Формат текстур, использующий [url=https://www.khronos.org/opengl/wiki/BPTC_Texture_Compression]BPTC[/url] сжатие с беззнаковыми RGB-компонентами с плавающей точкой.
 		</constant>
 		<constant name="FORMAT_PVRTC2" value="25" enum="Format">
-			Texture format used on PowerVR-supported mobile platforms, uses 2-bit color depth with no alpha. More information can be found [url=https://en.wikipedia.org/wiki/PVRTC]here[/url].
-			[b]Note:[/b] When creating an [ImageTexture], an sRGB to linear color space conversion is performed.
+			Формат текстур, используемый на мобильных платформах с поддержкой PowerVR, использует 2-битную глубину цвета без альфы. Более подробную информацию можно найти [url=https://en.wikipedia.org/wiki/PVRTC]здесь[/url].
+			[b]Примечание:[/b] При создании [ImageTexture] выполняется преобразование цветового пространства sRGB в линейное.
 		</constant>
 		<constant name="FORMAT_PVRTC2A" value="26" enum="Format">
-			Same as [url=https://en.wikipedia.org/wiki/PVRTC]PVRTC2[/url], but with an alpha component.
+			То же, что и [url=https://en.wikipedia.org/wiki/PVRTC]PVRTC2[/url], но с альфа-компонентом.
 		</constant>
 		<constant name="FORMAT_PVRTC4" value="27" enum="Format">
-			Similar to [url=https://en.wikipedia.org/wiki/PVRTC]PVRTC2[/url], but with 4-bit color depth and no alpha.
+			Аналогичен [url=https://en.wikipedia.org/wiki/PVRTC]PVRTC2[/url], но с 4-битной глубиной цвета и без альфы.
 		</constant>
 		<constant name="FORMAT_PVRTC4A" value="28" enum="Format">
-			Same as [url=https://en.wikipedia.org/wiki/PVRTC]PVRTC4[/url], but with an alpha component.
+			То же, что и [url=https://en.wikipedia.org/wiki/PVRTC]PVRTC4[/url], но с альфа-компонентом.
 		</constant>
 		<constant name="FORMAT_ETC" value="29" enum="Format">
-			[url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC1]Ericsson Texture Compression format 1[/url], also referred to as "ETC1", and is part of the OpenGL ES graphics standard. This format cannot store an alpha channel.
+			[url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC1]Ericsson Texture Compression format 1[/url], также называемый "ETC1", и является частью графического стандарта OpenGL ES. Этот формат не может хранить альфа-канал.
 		</constant>
 		<constant name="FORMAT_ETC2_R11" value="30" enum="Format">
-			[url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] ([code]R11_EAC[/code] variant), which provides one channel of unsigned data.
+			[url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (вариант [code]R11_EAC[/code]), который обеспечивает один канал беззнаковых данных.
 		</constant>
 		<constant name="FORMAT_ETC2_R11S" value="31" enum="Format">
-			[url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] ([code]SIGNED_R11_EAC[/code] variant), which provides one channel of signed data.
+			[url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (вариант [code]SIGNED_R11_EAC[/code]), который обеспечивает один канал подписанных данных.
 		</constant>
 		<constant name="FORMAT_ETC2_RG11" value="32" enum="Format">
-			[url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] ([code]RG11_EAC[/code] variant), which provides two channels of unsigned data.
+			[url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (вариант [code]RG11_EAC[/code]), который обеспечивает два канала беззнаковых данных.
 		</constant>
 		<constant name="FORMAT_ETC2_RG11S" value="33" enum="Format">
-			[url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] ([code]SIGNED_RG11_EAC[/code] variant), which provides two channels of signed data.
+			[url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] (вариант [code]SIGNED_RG11_EAC[/code]), который обеспечивает два канала подписанных данных.
 		</constant>
 		<constant name="FORMAT_ETC2_RGB8" value="34" enum="Format">
-			[url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] ([code]RGB8[/code] variant), which is a follow-up of ETC1 and compresses RGB888 data.
-			[b]Note:[/b] When creating an [ImageTexture], an sRGB to linear color space conversion is performed.
+			[url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] ([code]RGB8[/code] вариант), который является продолжением ETC1 и сжимает данные RGB888.
+			[b]Примечание:[/b] При создании [ImageTexture] выполняется преобразование цветового пространства sRGB в линейное.
 		</constant>
 		<constant name="FORMAT_ETC2_RGBA8" value="35" enum="Format">
-			[url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] ([code]RGBA8[/code]variant), which compresses RGBA8888 data with full alpha support.
-			[b]Note:[/b] When creating an [ImageTexture], an sRGB to linear color space conversion is performed.
+			[url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] ([code]RGBA8[/code]вариант), который сжимает данные RGBA8888 с полной поддержкой альфы.
+			[b]Примечание:[/b] При создании [ImageTexture] выполняется преобразование цветового пространства sRGB в линейное.
 		</constant>
 		<constant name="FORMAT_ETC2_RGB8A1" value="36" enum="Format">
-			[url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] ([code]RGB8_PUNCHTHROUGH_ALPHA1[/code] variant), which compresses RGBA data to make alpha either fully transparent or fully opaque.
-			[b]Note:[/b] When creating an [ImageTexture], an sRGB to linear color space conversion is performed.
+			[url=https://en.wikipedia.org/wiki/Ericsson_Texture_Compression#ETC2_and_EAC]Ericsson Texture Compression format 2[/url] ([code]RGB8_PUNCHTHROUGH_ALPHA1[/code] вариант), который сжимает RGBA-данные, чтобы сделать альфу либо полностью прозрачной, либо полностью непрозрачной.
+			[b]Примечание:[/b] При создании [ImageTexture] выполняется преобразование цветового пространства sRGB в линейное.
 		</constant>
 		<constant name="FORMAT_MAX" value="37" enum="Format">
-			Represents the size of the [enum Format] enum.
+			Представляет размер перечисления [enum Format].
 		</constant>
 		<constant name="INTERPOLATE_NEAREST" value="0" enum="Interpolation">
-			Performs nearest-neighbor interpolation. If the image is resized, it will be pixelated.
+			Выполняет интерполяцию ближайших соседей. При изменении размера изображения оно будет пикселизировано.
 		</constant>
 		<constant name="INTERPOLATE_BILINEAR" value="1" enum="Interpolation">
-			Performs bilinear interpolation. If the image is resized, it will be blurry. This mode is faster than [constant INTERPOLATE_CUBIC], but it results in lower quality.
+			Выполняет билинейную интерполяцию. При изменении размера изображения оно будет размытым. Этот режим быстрее, чем [constant INTERPOLATE_CUBIC], но его качество ниже.
 		</constant>
 		<constant name="INTERPOLATE_CUBIC" value="2" enum="Interpolation">
-			Performs cubic interpolation. If the image is resized, it will be blurry. This mode often gives better results compared to [constant INTERPOLATE_BILINEAR], at the cost of being slower.
+			Выполняет кубическую интерполяцию. При изменении размера изображения оно будет размытым. Этот режим часто дает лучшие результаты по сравнению с [constant INTERPOLATE_BILINEAR], но при этом работает медленнее.
 		</constant>
 		<constant name="INTERPOLATE_TRILINEAR" value="3" enum="Interpolation">
-			Performs bilinear separately on the two most-suited mipmap levels, then linearly interpolates between them.
-			It's slower than [constant INTERPOLATE_BILINEAR], but produces higher-quality results with far fewer aliasing artifacts.
-			If the image does not have mipmaps, they will be generated and used internally, but no mipmaps will be generated on the resulting image.
-			[b]Note:[/b] If you intend to scale multiple copies of the original image, it's better to call [method generate_mipmaps]] on it in advance, to avoid wasting processing power in generating them again and again.
-			On the other hand, if the image already has mipmaps, they will be used, and a new set will be generated for the resulting image.
+			Выполняет билинейную раздельную интерполяцию на двух наиболее подходящих уровнях mipmap, а затем линейно интерполирует между ними.
+			Это медленнее, чем [constant INTERPOLATE_BILINEAR], но дает более качественные результаты с гораздо меньшим количеством артефактов алиасинга.
+			Если изображение не имеет мипмапов, они будут сгенерированы и использованы внутренне, но на результирующем изображении мипмапы генерироваться не будут.
+			[b]Примечание:[/b] Если вы собираетесь масштабировать несколько копий исходного изображения, лучше вызвать [метод generate_mipmaps]] на нем заранее, чтобы не тратить вычислительную мощность на их генерацию снова и снова.
+			С другой стороны, если изображение уже содержит mipmaps, они будут использованы, а для результирующего изображения будет сгенерирован новый набор.
 		</constant>
 		<constant name="INTERPOLATE_LANCZOS" value="4" enum="Interpolation">
-			Performs Lanczos interpolation. This is the slowest image resizing mode, but it typically gives the best results, especially when downscalng images.
+			Выполняет интерполяцию Ланцоша. Это самый медленный режим изменения размера изображения, но он обычно дает наилучшие результаты, особенно при уменьшении изображений.
 		</constant>
 		<constant name="ALPHA_NONE" value="0" enum="AlphaMode">
-			Image does not have alpha.
+			Изображение не имеет альфа-канала.
 		</constant>
 		<constant name="ALPHA_BIT" value="1" enum="AlphaMode">
-			Image stores alpha in a single bit.
+			Изображение хранит альфу в одном бите.
 		</constant>
 		<constant name="ALPHA_BLEND" value="2" enum="AlphaMode">
-			Image uses alpha.
+			Изображение использует альфу.
 		</constant>
 		<constant name="COMPRESS_S3TC" value="0" enum="CompressMode">
-			Use S3TC compression.
+			Используйте сжатие S3TC.
 		</constant>
 		<constant name="COMPRESS_PVRTC2" value="1" enum="CompressMode">
-			Use PVRTC2 compression.
+			Используйте сжатие PVRTC2.
 		</constant>
 		<constant name="COMPRESS_PVRTC4" value="2" enum="CompressMode">
-			Use PVRTC4 compression.
+			Используйте сжатие PVRTC4.
 		</constant>
 		<constant name="COMPRESS_ETC" value="3" enum="CompressMode">
-			Use ETC compression.
+			Используйте сжатие ETC.
 		</constant>
 		<constant name="COMPRESS_ETC2" value="4" enum="CompressMode">
-			Use ETC2 compression.
-		</constant>
-		<constant name="COMPRESS_BPTC" value="5" enum="CompressMode">
-			Use BPTC compression.
-		</constant>
-		<constant name="COMPRESS_MAX" value="6" enum="CompressMode">
-			Represents the size of the [enum CompressMode] enum.
+			Используйте сжатие ETC2.
 		</constant>
 		<constant name="COMPRESS_SOURCE_GENERIC" value="0" enum="CompressSource">
-			Source texture (before compression) is a regular texture. Default for all textures.
+			Исходная текстура (до сжатия) - обычная текстура. По умолчанию для всех текстур.
 		</constant>
 		<constant name="COMPRESS_SOURCE_SRGB" value="1" enum="CompressSource">
-			Source texture (before compression) is in sRGB space.
+			Исходная текстура (до сжатия) находится в пространстве sRGB.
 		</constant>
 		<constant name="COMPRESS_SOURCE_NORMAL" value="2" enum="CompressSource">
-			Source texture (before compression) is a normal texture (e.g. it can be compressed into two channels).
+			Исходная текстура (до сжатия) - это обычная текстура (например, она может быть сжата в два канала).
 		</constant>
 		<constant name="COMPRESS_SOURCE_LAYERED" value="3" enum="CompressSource">
-			Source texture (before compression) is a [TextureLayered].
+			Исходная текстура (до сжатия) представляет собой [TextureLayered].
 		</constant>
 	</constants>
 </class>

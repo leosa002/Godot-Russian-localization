@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="TileMap" inherits="Node2D" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="TileMap" inherits="Node2D" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Node for 2D tile-based maps.
+		Узел для 2D карт на основе плиток.
 	</brief_description>
 	<description>
-		Node for 2D tile-based maps. Tilemaps use a [TileSet] which contain a list of tiles (textures plus optional collision, navigation, and/or occluder shapes) which are used to create grid-based maps.
-		When doing physics queries against the tilemap, the cell coordinates are encoded as [code]metadata[/code] for each detected collision shape returned by methods such as [method Physics2DDirectSpaceState.intersect_shape], [method Physics2DDirectBodyState.get_contact_collider_shape_metadata], etc.
+		Узел для двухмерных карт на основе тайлов. Плиточные карты используют [TileSet], содержащий список плиток (текстуры плюс необязательные формы столкновений, навигации и/или окклюдеров), которые используются для создания карт на основе сетки.
+		При выполнении запросов физики к тайлмапу координаты ячеек кодируются как [code]метаданные[/code] для каждой обнаруженной формы столкновения, возвращаемые такими методами, как [method Physics2DDirectSpaceState.intersect_shape], [method Physics2DDirectBodyState.get_contact_collider_shape_metadata] и т. д.
 	</description>
 	<tutorials>
 		<link title="Using Tilemaps">$DOCS_URL/tutorials/2d/using_tilemaps.html</link>
@@ -20,13 +20,13 @@
 		<method name="clear">
 			<return type="void" />
 			<description>
-				Clears all cells.
+				Очищает все ячейки.
 			</description>
 		</method>
 		<method name="fix_invalid_tiles">
 			<return type="void" />
 			<description>
-				Clears cells that do not exist in the tileset.
+				Очищает ячейки, которых нет в наборе тайлов.
 			</description>
 		</method>
 		<method name="get_cell" qualifiers="const">
@@ -34,7 +34,7 @@
 			<argument index="0" name="x" type="int" />
 			<argument index="1" name="y" type="int" />
 			<description>
-				Returns the tile index of the given cell. If no tile exists in the cell, returns [constant INVALID_CELL].
+				Возвращает индекс плитки в данной ячейке. Если в ячейке нет плитки, возвращается [константа INVALID_CELL].
 			</description>
 		</method>
 		<method name="get_cell_autotile_coord" qualifiers="const">
@@ -42,47 +42,47 @@
 			<argument index="0" name="x" type="int" />
 			<argument index="1" name="y" type="int" />
 			<description>
-				Returns the coordinate (subtile column and row) of the autotile variation in the tileset. Returns a zero vector if the cell doesn't have autotiling.
+				Возвращает координату (столбец и строка субтиля) вариации автотиля в наборе тайлов. Возвращает нулевой вектор, если в ячейке нет автоплитки.
 			</description>
 		</method>
 		<method name="get_cellv" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="position" type="Vector2" />
 			<description>
-				Returns the tile index of the cell given by a Vector2. If no tile exists in the cell, returns [constant INVALID_CELL].
+				Возвращает индекс плитки в ячейке, заданной вектором2. Если в ячейке нет плитки, возвращается [константа INVALID_CELL].
 			</description>
 		</method>
 		<method name="get_collision_layer_bit" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="bit" type="int" />
 			<description>
-				Returns [code]true[/code] if the given collision layer bit is set.
+				Возвращает [code]true[/code], если заданный бит слоя столкновений установлен.
 			</description>
 		</method>
 		<method name="get_collision_mask_bit" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="bit" type="int" />
 			<description>
-				Returns [code]true[/code] if the given collision mask bit is set.
+				Возвращает [code]true[/code], если заданный бит маски столкновений установлен.
 			</description>
 		</method>
 		<method name="get_used_cells" qualifiers="const">
 			<return type="Array" />
 			<description>
-				Returns a [Vector2] array with the positions of all cells containing a tile from the tileset (i.e. a tile index different from [code]-1[/code]).
+				Возвращает массив [Vector2] с позициями всех ячеек, содержащих плитку из набора плиток (т.е. с индексом плитки, отличным от [code]-1[/code]).
 			</description>
 		</method>
 		<method name="get_used_cells_by_id" qualifiers="const">
 			<return type="Array" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns an array of all cells with the given tile index specified in [code]id[/code].
+				Возвращает массив всех ячеек с заданным индексом плитки, указанным в [code]id[/code].
 			</description>
 		</method>
 		<method name="get_used_rect">
 			<return type="Rect2" />
 			<description>
-				Returns a rectangle enclosing the used (non-empty) tiles of the map.
+				Возвращает прямоугольник, заключающий в себе используемые (непустые) тайлы карты.
 			</description>
 		</method>
 		<method name="is_cell_transposed" qualifiers="const">
@@ -90,7 +90,7 @@
 			<argument index="0" name="x" type="int" />
 			<argument index="1" name="y" type="int" />
 			<description>
-				Returns [code]true[/code] if the given cell is transposed, i.e. the X and Y axes are swapped.
+				Возвращает [code]true[/code], если данная ячейка транспонирована, т.е. оси X и Y поменялись местами.
 			</description>
 		</method>
 		<method name="is_cell_x_flipped" qualifiers="const">
@@ -98,7 +98,7 @@
 			<argument index="0" name="x" type="int" />
 			<argument index="1" name="y" type="int" />
 			<description>
-				Returns [code]true[/code] if the given cell is flipped in the X axis.
+				Возвращает [code]true[/code], если данная ячейка перевернута по оси X.
 			</description>
 		</method>
 		<method name="is_cell_y_flipped" qualifiers="const">
@@ -106,7 +106,7 @@
 			<argument index="0" name="x" type="int" />
 			<argument index="1" name="y" type="int" />
 			<description>
-				Returns [code]true[/code] if the given cell is flipped in the Y axis.
+				Возвращает [code]true[/code], если данная ячейка перевернута по оси Y.
 			</description>
 		</method>
 		<method name="map_to_world" qualifiers="const">
@@ -114,13 +114,13 @@
 			<argument index="0" name="map_position" type="Vector2" />
 			<argument index="1" name="ignore_half_ofs" type="bool" default="false" />
 			<description>
-				Returns the local position of the top left corner of the cell corresponding to the given tilemap (grid-based) coordinates.
-				To get the global position, use [method Node2D.to_global]:
+				Возвращает локальную позицию левого верхнего угла ячейки, соответствующей заданным координатам tilemap (на основе сетки).
+				Чтобы получить глобальную позицию, используйте [метод Node2D.to_global]:
 				[codeblock]
 				var local_position = my_tilemap.map_to_world(map_position)
 				var global_position = my_tilemap.to_global(local_position)
 				[/codeblock]
-				Optionally, the tilemap's half offset can be ignored.
+				В качестве опции можно игнорировать половинное смещение карты плиток.
 			</description>
 		</method>
 		<method name="set_cell">
@@ -133,16 +133,16 @@
 			<argument index="5" name="transpose" type="bool" default="false" />
 			<argument index="6" name="autotile_coord" type="Vector2" default="Vector2( 0, 0 )" />
 			<description>
-				Sets the tile index for the given cell.
-				An index of [code]-1[/code] clears the cell.
-				Optionally, the tile can also be flipped, transposed, or given autotile coordinates. The autotile coordinate refers to the column and row of the subtile.
-				[b]Note:[/b] Data such as navigation polygons and collision shapes are not immediately updated for performance reasons.
-				If you need these to be immediately updated, you can call [method update_dirty_quadrants].
-				Overriding this method also overrides it internally, allowing custom logic to be implemented when tiles are placed/removed:
+				Устанавливает индекс плитки для данной ячейки.
+				Индекс, равный [code]-1[/code], очищает ячейку.
+				По желанию тайл может быть перевернут, транспонирован или ему могут быть заданы координаты автотайла. Автокоординаты относятся к столбцу и строке субтайла.
+				[b]Примечание:[/b] Такие данные, как навигационные полигоны и фигуры столкновений, не обновляются немедленно по соображениям производительности.
+				Если вам нужно, чтобы они обновлялись немедленно, вы можете вызвать [метод update_dirty_quadrants].
+				Переопределение этого метода также переопределяет его внутри, позволяя реализовать пользовательскую логику при размещении/удалении тайлов:
 				[codeblock]
 				func set_cell(x, y, tile, flip_x=false, flip_y=false, transpose=false, autotile_coord=Vector2()):
-				    # Write your custom logic here.
-				    # To call the default method:
+				    # Напишите здесь свою пользовательскую логику.
+				    # Вызов метода по умолчанию:
 				    .set_cell(x, y, tile, flip_x, flip_y, transpose, autotile_coord)
 				[/codeblock]
 			</description>
@@ -156,11 +156,11 @@
 			<argument index="4" name="transpose" type="bool" default="false" />
 			<argument index="5" name="autotile_coord" type="Vector2" default="Vector2( 0, 0 )" />
 			<description>
-				Sets the tile index for the cell given by a Vector2.
-				An index of [code]-1[/code] clears the cell.
-				Optionally, the tile can also be flipped, transposed, or given autotile coordinates. The autotile coordinate refers to the column and row of the subtile.
-				[b]Note:[/b] Data such as navigation polygons and collision shapes are not immediately updated for performance reasons.
-				If you need these to be immediately updated, you can call [method update_dirty_quadrants].
+				Устанавливает индекс плитки для ячейки, заданной вектором2.
+				Индекс, равный [code]-1[/code], очищает ячейку.
+				По желанию тайл может быть перевернут, транспонирован или ему могут быть заданы координаты автотайла. Автокоординаты указывают на столбец и строку субтайла.
+				[b]Примечание:[/b] Такие данные, как навигационные полигоны и фигуры столкновений, не обновляются немедленно по соображениям производительности.
+				Если вам нужно, чтобы они обновлялись немедленно, вы можете вызвать [метод update_dirty_quadrants].
 			</description>
 		</method>
 		<method name="set_collision_layer_bit">
@@ -168,7 +168,7 @@
 			<argument index="0" name="bit" type="int" />
 			<argument index="1" name="value" type="bool" />
 			<description>
-				Sets the given collision layer bit.
+				Устанавливает заданный бит уровня столкновений.
 			</description>
 		</method>
 		<method name="set_collision_mask_bit">
@@ -176,14 +176,14 @@
 			<argument index="0" name="bit" type="int" />
 			<argument index="1" name="value" type="bool" />
 			<description>
-				Sets the given collision mask bit.
+				Устанавливает заданный бит маски столкновений.
 			</description>
 		</method>
 		<method name="update_bitmask_area">
 			<return type="void" />
 			<argument index="0" name="position" type="Vector2" />
 			<description>
-				Applies autotiling rules to the cell (and its adjacent cells) referenced by its grid-based X and Y coordinates.
+				Применяет правила автосклейки к ячейке (и соседним с ней ячейкам), на которую ссылаются ее координаты X и Y на основе сетки.
 			</description>
 		</method>
 		<method name="update_bitmask_region">
@@ -191,22 +191,22 @@
 			<argument index="0" name="start" type="Vector2" default="Vector2( 0, 0 )" />
 			<argument index="1" name="end" type="Vector2" default="Vector2( 0, 0 )" />
 			<description>
-				Applies autotiling rules to the cells in the given region (specified by grid-based X and Y coordinates).
-				Calling with invalid (or missing) parameters applies autotiling rules for the entire tilemap.
+				Применяет правила автоплитки к ячейкам в заданной области (заданной координатами X и Y на основе сетки).
+				Вызов с неверными (или отсутствующими) параметрами применяет правила автоскейлинга для всей карты плиток.
 			</description>
 		</method>
 		<method name="update_dirty_quadrants">
 			<return type="void" />
 			<description>
-				Updates the tile map's quadrants, allowing things such as navigation and collision shapes to be immediately used if modified.
+				Обновляет квадранты карты тайлов, что позволяет немедленно использовать такие вещи, как навигация и формы столкновений, если они были изменены.
 			</description>
 		</method>
 		<method name="world_to_map" qualifiers="const">
 			<return type="Vector2" />
 			<argument index="0" name="world_position" type="Vector2" />
 			<description>
-				Returns the tilemap (grid-based) coordinates corresponding to the given local position.
-				To use this with a global position, first determine the local position with [method Node2D.to_local]:
+				Возвращает координаты tilemap (на основе сетки), соответствующие заданной локальной позиции.
+				Чтобы использовать этот метод с глобальной позицией, сначала определите локальную позицию с помощью [метода Node2D.to_local]:
 				[codeblock]
 				var local_position = my_tilemap.to_local(global_position)
 				var map_position = my_tilemap.world_to_map(local_position)
@@ -216,115 +216,115 @@
 	</methods>
 	<members>
 		<member name="bake_navigation" type="bool" setter="set_bake_navigation" getter="is_baking_navigation" default="false">
-			If [code]true[/code], this TileMap bakes a navigation region.
+			Если [code]true[/code], то этот TileMap запекает навигационный регион.
 		</member>
 		<member name="cell_clip_uv" type="bool" setter="set_clip_uv" getter="get_clip_uv" default="false">
-			If [code]true[/code], the cell's UVs will be clipped.
+			Если [code]true[/code], то UVs ячейки будут обрезаны.
 		</member>
 		<member name="cell_custom_transform" type="Transform2D" setter="set_custom_transform" getter="get_custom_transform" default="Transform2D( 64, 0, 0, 64, 0, 0 )">
-			The custom [Transform2D] to be applied to the TileMap's cells.
+			Пользовательское [Transform2D], которое будет применено к ячейкам карты TileMap.
 		</member>
 		<member name="cell_half_offset" type="int" setter="set_half_offset" getter="get_half_offset" enum="TileMap.HalfOffset" default="2">
-			Amount to offset alternating tiles. See [enum HalfOffset] for possible values.
+			Величина смещения чередующихся плиток. Возможные значения см. в [enum HalfOffset].
 		</member>
 		<member name="cell_quadrant_size" type="int" setter="set_quadrant_size" getter="get_quadrant_size" default="16">
-			The TileMap's quadrant size. Optimizes drawing by batching, using chunks of this size.
+			Размер квадранта карты TileMap. Оптимизирует отрисовку путем пакетной обработки, используя куски этого размера.
 		</member>
 		<member name="cell_size" type="Vector2" setter="set_cell_size" getter="get_cell_size" default="Vector2( 64, 64 )">
-			The TileMap's cell size.
+			Размер ячейки карты TileMap.
 		</member>
 		<member name="cell_tile_origin" type="int" setter="set_tile_origin" getter="get_tile_origin" enum="TileMap.TileOrigin" default="0">
-			Position for tile origin. See [enum TileOrigin] for possible values.
+			Позиция для начала плитки. Возможные значения см. в [enum TileOrigin].
 		</member>
 		<member name="cell_y_sort" type="bool" setter="set_y_sort_mode" getter="is_y_sort_mode_enabled" default="false">
-			If [code]true[/code], the TileMap's direct children will be drawn in order of their Y coordinate.
+			Если [code]true[/code], то прямые дочерние элементы TileMap будут отрисовываться в порядке возрастания их координаты Y.
 		</member>
 		<member name="centered_textures" type="bool" setter="set_centered_textures" getter="is_centered_textures_enabled" default="false">
-			If [code]true[/code], the textures will be centered in the middle of each tile. This is useful for certain isometric or top-down modes when textures are made larger or smaller than the tiles (e.g. to avoid flickering on tile edges). The offset is still applied, but from the center of the tile. If used, [member compatibility_mode] is ignored.
-			If [code]false[/code], the texture position start in the top-left corner unless [member compatibility_mode] is enabled.
+			Если [code]true[/code], текстуры будут центрироваться по центру каждой плитки. Это полезно для некоторых изометрических режимов или режимов "сверху вниз", когда текстуры делаются больше или меньше тайлов (например, чтобы избежать мерцания на краях тайлов). Смещение по-прежнему применяется, но от центра плитки. Если используется, [member compatibility_mode] игнорируется.
+			Если [code]false[/code], то позиция текстуры начинается с левого верхнего угла, если не включен [member compatibility_mode].
 		</member>
 		<member name="collision_bounce" type="float" setter="set_collision_bounce" getter="get_collision_bounce" default="0.0">
-			Bounce value for static body collisions (see [code]collision_use_kinematic[/code]).
+			Значение отскока для статических столкновений тел (см. [code]collision_use_kinematic[/code]).
 		</member>
 		<member name="collision_friction" type="float" setter="set_collision_friction" getter="get_collision_friction" default="1.0">
-			Friction value for static body collisions (see [code]collision_use_kinematic[/code]).
+			Значение трения для статических столкновений тел (см. [code]collision_use_kinematic[/code]).
 		</member>
 		<member name="collision_layer" type="int" setter="set_collision_layer" getter="get_collision_layer" default="1">
-			The collision layer(s) for all colliders in the TileMap. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.
+			Слой(и) столкновений для всех коллайдеров в TileMap. Дополнительные сведения см. в документации [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url].
 		</member>
 		<member name="collision_mask" type="int" setter="set_collision_mask" getter="get_collision_mask" default="1">
-			The collision mask(s) for all colliders in the TileMap. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.
+			Маска(и) столкновений для всех коллайдеров в TileMap. Дополнительные сведения см. в документации [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url].
 		</member>
 		<member name="collision_use_kinematic" type="bool" setter="set_collision_use_kinematic" getter="get_collision_use_kinematic" default="false">
-			If [code]true[/code], TileMap collisions will be handled as a kinematic body. If [code]false[/code], collisions will be handled as static body.
+			Если [code]true[/code], столкновения TileMap будут обрабатываться как кинематическое тело. Если [code]false[/code], столкновения будут обрабатываться как статическое тело.
 		</member>
 		<member name="collision_use_parent" type="bool" setter="set_collision_use_parent" getter="get_collision_use_parent" default="false">
-			If [code]true[/code], this tilemap's collision shape will be added to the collision shape of the parent. The parent has to be a [CollisionObject2D].
+			Если [code]true[/code], то форма столкновения этого тайлмапа будет добавлена к форме столкновения родителя. Родитель должен быть [CollisionObject2D].
 		</member>
 		<member name="compatibility_mode" type="bool" setter="set_compatibility_mode" getter="is_compatibility_mode_enabled" default="false">
-			If [code]true[/code], the compatibility with the tilemaps made in Godot 3.1 or earlier is maintained (textures move when the tile origin changes and rotate if the texture size is not homogeneous). This mode presents problems when doing [code]flip_h[/code], [code]flip_v[/code] and [code]transpose[/code] tile operations on non-homogeneous isometric tiles (e.g. 2:1), in which the texture could not coincide with the collision, thus it is not recommended for isometric or non-square tiles.
-			If [code]false[/code], the textures do not move when doing [code]flip_h[/code], [code]flip_v[/code] operations if no offset is used, nor when changing the tile origin.
-			The compatibility mode doesn't work with the [member centered_textures] option, because displacing textures with the [member cell_tile_origin] option or in irregular tiles is not relevant when centering those textures.
+			Если [code]true[/code], то сохраняется совместимость с тайлмапами, сделанными в Godot 3.1 или более ранних версиях (текстуры перемещаются при изменении начала тайла и поворачиваются, если размер текстуры неоднороден). В этом режиме возникают проблемы при выполнении операций [code]flip_h[/code], [code]flip_v[/code] и [code]transpose[/code] на неоднородных изометрических тайлах (например, 2:1), при которых текстура не может совпасть с коллизией, поэтому он не рекомендуется для изометрических или неквадратных тайлов.
+			Если [code]false[/code], то текстуры не перемещаются при выполнении операций [code]flip_h[/code], [code]flip_v[/code], если не используется смещение, а также при изменении начала тайла.
+			Режим совместимости не работает с опцией [member centered_textures], потому что смещение текстур с опцией [member cell_tile_origin] или в нерегулярных плитках не имеет значения при центрировании этих текстур.
 		</member>
 		<member name="mode" type="int" setter="set_mode" getter="get_mode" enum="TileMap.Mode" default="0">
-			The TileMap orientation mode. See [enum Mode] for possible values.
+			Режим ориентации карты TileMap. Возможные значения см. в [enum Mode].
 		</member>
 		<member name="navigation_layers" type="int" setter="set_navigation_layers" getter="get_navigation_layers" default="1">
-			The navigation layers the TileMap generates its navigation regions in.
+			Навигационные слои, в которых TileMap генерирует свои навигационные регионы.
 		</member>
 		<member name="occluder_light_mask" type="int" setter="set_occluder_light_mask" getter="get_occluder_light_mask" default="1">
-			The light mask assigned to all light occluders in the TileMap. The TileSet's light occluders will cast shadows only from Light2D(s) that have the same light mask(s).
+			Маска света, назначенная всем световым окклюдерам в TileMap. Световые окклюдеры набора TileSet будут отбрасывать тени только от Light2D, у которых такая же световая маска.
 		</member>
 		<member name="show_collision" type="bool" setter="set_show_collision" getter="is_show_collision_enabled" default="false">
-			If [code]true[/code], collision shapes are visible in the editor. Doesn't affect collision shapes visibility at runtime. To show collision shapes at runtime, enable [b]Visible Collision Shapes[/b] in the [b]Debug[/b] menu instead.
+			Если [code]true[/code], то фигуры столкновений видны в редакторе. Не влияет на видимость фигур столкновений во время выполнения. Чтобы показать формы столкновений во время выполнения, включите [b]Visible Collision Shapes[/b] в меню [b]Debug[/b].
 		</member>
 		<member name="tile_set" type="TileSet" setter="set_tileset" getter="get_tileset">
-			The assigned [TileSet].
+			Назначенный набор [TileSet].
 		</member>
 	</members>
 	<signals>
 		<signal name="settings_changed">
 			<description>
-				Emitted when a tilemap setting has changed.
+				Выдается при изменении настроек карты плиток.
 			</description>
 		</signal>
 	</signals>
 	<constants>
 		<constant name="INVALID_CELL" value="-1">
-			Returned when a cell doesn't exist.
+			Возвращается, если ячейка не существует.
 		</constant>
 		<constant name="MODE_SQUARE" value="0" enum="Mode">
-			Orthogonal orientation mode.
+			Режим ортогональной ориентации.
 		</constant>
 		<constant name="MODE_ISOMETRIC" value="1" enum="Mode">
-			Isometric orientation mode.
+			Режим изометрической ориентации.
 		</constant>
 		<constant name="MODE_CUSTOM" value="2" enum="Mode">
-			Custom orientation mode.
+			Пользовательский режим ориентации.
 		</constant>
 		<constant name="HALF_OFFSET_X" value="0" enum="HalfOffset">
-			Half offset on the X coordinate.
+			Половинное смещение по координате X.
 		</constant>
 		<constant name="HALF_OFFSET_Y" value="1" enum="HalfOffset">
-			Half offset on the Y coordinate.
+			Половинное смещение по координате Y.
 		</constant>
 		<constant name="HALF_OFFSET_DISABLED" value="2" enum="HalfOffset">
-			Half offset disabled.
+			Половинное смещение отключено.
 		</constant>
 		<constant name="HALF_OFFSET_NEGATIVE_X" value="3" enum="HalfOffset">
-			Half offset on the X coordinate (negative).
+			Половинное смещение по координате X (отрицательное).
 		</constant>
 		<constant name="HALF_OFFSET_NEGATIVE_Y" value="4" enum="HalfOffset">
-			Half offset on the Y coordinate (negative).
+			Половинное смещение по координате Y (отрицательное).
 		</constant>
 		<constant name="TILE_ORIGIN_TOP_LEFT" value="0" enum="TileOrigin">
-			Tile origin at its top-left corner.
+			Начало плитки в ее левом верхнем углу.
 		</constant>
 		<constant name="TILE_ORIGIN_CENTER" value="1" enum="TileOrigin">
-			Tile origin at its center.
+			Начало плитки находится в ее центре.
 		</constant>
 		<constant name="TILE_ORIGIN_BOTTOM_LEFT" value="2" enum="TileOrigin">
-			Tile origin at its bottom-left corner.
+			Начало плитки в ее левом нижнем углу.
 		</constant>
 	</constants>
 </class>

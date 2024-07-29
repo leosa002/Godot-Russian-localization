@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Spatial" inherits="Node" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Spatial" inherits="Node" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Most basic 3D game object, parent of all 3D-related nodes.
+		Самый основной объект 3D-игры, родитель всех узлов, связанных с 3D.
 	</brief_description>
 	<description>
-		Most basic 3D game object, with a 3D [Transform] and visibility settings. All other 3D game objects inherit from Spatial. Use [Spatial] as a parent node to move, scale, rotate and show/hide children in a 3D project.
-		Affine operations (rotate, scale, translate) happen in parent's local coordinate system, unless the [Spatial] object is set as top-level. Affine operations in this coordinate system correspond to direct affine operations on the [Spatial]'s transform. The word local below refers to this coordinate system. The coordinate system that is attached to the [Spatial] object itself is referred to as object-local coordinate system.
-		[b]Note:[/b] Unless otherwise specified, all methods that have angle parameters must have angles specified as [i]radians[/i]. To convert degrees to radians, use [method @GDScript.deg2rad].
+		Самый базовый игровой 3D-объект, с 3D [Transform] и настройками видимости. Все остальные игровые 3D-объекты наследуют от Spatial. Используйте [Spatial] в качестве родительского узла для перемещения, масштабирования, поворота и показа/скрытия дочерних объектов в 3D-проекте.
+		Аффинные операции (поворот, масштабирование, перевод) происходят в локальной системе координат родителя, если только объект [Spatial] не установлен как верхнеуровневый. Аффинные операции в этой системе координат соответствуют прямым аффинным операциям над преобразованием [Spatial]. Слово "локальная" ниже относится к этой системе координат. Система координат, привязанная к самому объекту [Spatial], называется объектно-локальной системой координат.
+		[b]Примечание:[/b] Если не указано иное, во всех методах, имеющих параметры угла, углы должны быть заданы в [i]радианах[/i]. Чтобы преобразовать градусы в радианы, используйте [метод @GDScript.deg2rad].
 	</description>
 	<tutorials>
 		<link title="Introduction to 3D">$DOCS_URL/tutorials/3d/introduction_to_3d.html</link>
@@ -16,27 +16,26 @@
 		<method name="force_update_transform">
 			<return type="void" />
 			<description>
-				Forces the transform to update. Transform changes in physics are not instant for performance reasons. Transforms are accumulated and then set. Use this if you need an up-to-date transform when doing physics operations.
+				Заставляет трансформацию обновляться. По соображениям производительности изменения трансформации в физике не происходят мгновенно. Трансформации накапливаются, а затем устанавливаются. Используйте эту функцию, если вам нужна актуальная трансформация при выполнении операций с физикой.
 			</description>
 		</method>
 		<method name="get_global_transform_interpolated">
 			<return type="Transform" />
 			<description>
-				When using physics interpolation, there will be circumstances in which you want to know the interpolated (displayed) transform of a node rather than the standard transform (which may only be accurate to the most recent physics tick).
-				This is particularly important for frame-based operations that take place in [method Node._process], rather than [method Node._physics_process]. Examples include [Camera]s focusing on a node, or finding where to fire lasers from on a frame rather than physics tick.
-				[b]Note:[/b] This function creates an interpolation pump on the [Spatial] the first time it is called, which can respond to physics interpolation resets. If you get problems with "streaking" when initially following a [Spatial], be sure to call [method get_global_transform_interpolated] at least once [i]before[/i] resetting the [Spatial] physics interpolation.
+				При использовании интерполяции физики могут возникнуть обстоятельства, при которых вы захотите знать интерполированное (отображаемое) преобразование узла, а не стандартное преобразование (которое может быть точным только до последнего тика физики).
+				Это особенно важно для операций, основанных на кадрах, которые происходят в [method Node._process], а не в [method Node._physics_process]. Примерами могут служить фокусировка [Camera]s на узле или поиск места, откуда стрелять лазерами, на основе кадра, а не тика физики.
 			</description>
 		</method>
 		<method name="get_parent_spatial" qualifiers="const">
 			<return type="Spatial" />
 			<description>
-				Returns the parent [Spatial], or an empty [Object] if no parent exists or parent is not of type [Spatial].
+				Возвращает родителя [Spatial], или пустой [Object], если родитель не существует или родитель не имеет типа [Spatial].
 			</description>
 		</method>
 		<method name="get_world" qualifiers="const">
 			<return type="World" />
 			<description>
-				Returns the current [World] resource this [Spatial] node is registered to.
+				Возвращает текущий ресурс [World], в котором зарегистрирован данный узел [Spatial].
 			</description>
 		</method>
 		<method name="global_rotate">
@@ -44,57 +43,57 @@
 			<argument index="0" name="axis" type="Vector3" />
 			<argument index="1" name="angle" type="float" />
 			<description>
-				Rotates the global (world) transformation around axis, a unit [Vector3], by specified angle in radians. The rotation axis is in global coordinate system.
+				Поворачивает глобальное (мировое) преобразование вокруг оси, единицы [Vector3], на указанный угол в радианах. Ось вращения находится в глобальной системе координат.
 			</description>
 		</method>
 		<method name="global_scale">
 			<return type="void" />
 			<argument index="0" name="scale" type="Vector3" />
 			<description>
-				Scales the global (world) transformation by the given [Vector3] scale factors.
+				Масштабирует глобальное (мировое) преобразование по заданным [Vector3] масштабным коэффициентам.
 			</description>
 		</method>
 		<method name="global_translate">
 			<return type="void" />
 			<argument index="0" name="offset" type="Vector3" />
 			<description>
-				Moves the global (world) transformation by [Vector3] offset. The offset is in global coordinate system.
+				Перемещает глобальное (мировое) преобразование на [Vector3] смещение. Смещение задается в глобальной системе координат.
 			</description>
 		</method>
 		<method name="hide">
 			<return type="void" />
 			<description>
-				Disables rendering of this node. Changes [member visible] to [code]false[/code].
+				Отключает рендеринг этого узла. Изменяет [member visible] на [code]false[/code].
 			</description>
 		</method>
 		<method name="is_local_transform_notification_enabled" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns whether node notifies about its local transformation changes. [Spatial] will not propagate this by default.
+				Возвращает, уведомляет ли узел о своих локальных изменениях трансформации. По умолчанию [Spatial] не будет распространять это.
 			</description>
 		</method>
 		<method name="is_scale_disabled" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns whether this node uses a scale of [code](1, 1, 1)[/code] or its local transformation scale.
+				Возвращает, использует ли этот узел масштаб [code](1, 1, 1)[/code] или свой локальный масштаб трансформации.
 			</description>
 		</method>
 		<method name="is_set_as_toplevel" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns whether this node is set as Toplevel, that is whether it ignores its parent nodes transformations.
+				Возвращает, установлен ли этот узел как Toplevel, то есть игнорирует ли он преобразования своих родительских узлов.
 			</description>
 		</method>
 		<method name="is_transform_notification_enabled" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns whether the node notifies about its global and local transformation changes. [Spatial] will not propagate this by default.
+				Возвращает, уведомляет ли узел о своих глобальных и локальных изменениях трансформации. По умолчанию [Spatial] не будет распространять это.
 			</description>
 		</method>
 		<method name="is_visible_in_tree" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the node is present in the [SceneTree], its [member visible] property is [code]true[/code] and all its ancestors are also visible. If any ancestor is hidden, this node will not be visible in the scene tree.
+				Возвращает [code]true[/code], если узел присутствует в [SceneTree], его свойство [member visible] равно [code]true[/code] и все его предки также видны. Если какой-либо предок скрыт, этот узел не будет виден в дереве сцены.
 			</description>
 		</method>
 		<method name="look_at">
@@ -102,10 +101,10 @@
 			<argument index="0" name="target" type="Vector3" />
 			<argument index="1" name="up" type="Vector3" />
 			<description>
-				Rotates the node so that the local forward axis (-Z) points toward the [code]target[/code] position.
-				The local up axis (+Y) points as close to the [code]up[/code] vector as possible while staying perpendicular to the local forward axis. The resulting transform is orthogonal, and the scale is preserved. Non-uniform scaling may not work correctly.
-				The [code]target[/code] position cannot be the same as the node's position, the [code]up[/code] vector cannot be zero, and the direction from the node's position to the [code]target[/code] vector cannot be parallel to the [code]up[/code] vector.
-				Operations take place in global space.
+				Поворачивает узел так, чтобы локальная передняя ось (-Z) была направлена в сторону [code]target[/code] позиции.
+				Локальная ось вверх (+Y) направлена как можно ближе к вектору [code]up[/code], оставаясь перпендикулярной локальной передней оси. Полученное преобразование ортогонально, и масштаб сохраняется. Неравномерное масштабирование может работать некорректно.
+				Позиция [code]target[/code] не может быть такой же, как позиция узла, вектор [code]up[/code] не может быть нулевым, а направление от позиции узла к вектору [code]target[/code] не может быть параллельно вектору [code]up[/code].
+				Операции происходят в глобальном пространстве.
 			</description>
 		</method>
 		<method name="look_at_from_position">
@@ -114,13 +113,13 @@
 			<argument index="1" name="target" type="Vector3" />
 			<argument index="2" name="up" type="Vector3" />
 			<description>
-				Moves the node to the specified [code]position[/code], and then rotates itself to point toward the [code]target[/code] as per [method look_at]. Operations take place in global space.
+				Перемещает узел в указанную [code]позицию[/code], а затем поворачивает его, чтобы направить к [code]цели[/code] в соответствии с [method look_at]. Операции выполняются в глобальном пространстве.
 			</description>
 		</method>
 		<method name="orthonormalize">
 			<return type="void" />
 			<description>
-				Resets this node's transformations (like scale, skew and taper) preserving its rotation and translation by performing Gram-Schmidt orthonormalization on this node's [Transform].
+				Сбрасывает преобразования этого узла (такие как масштаб, перекос и сужение) с сохранением его вращения и перевода, выполняя ортонормировку по Граму-Шмидту для [Transform] этого узла.
 			</description>
 		</method>
 		<method name="rotate">
@@ -128,7 +127,7 @@
 			<argument index="0" name="axis" type="Vector3" />
 			<argument index="1" name="angle" type="float" />
 			<description>
-				Rotates the local transformation around axis, a unit [Vector3], by specified angle in radians.
+				Поворачивает локальное преобразование вокруг оси, единицы [Vector3], на указанный угол в радианах.
 			</description>
 		</method>
 		<method name="rotate_object_local">
@@ -136,216 +135,204 @@
 			<argument index="0" name="axis" type="Vector3" />
 			<argument index="1" name="angle" type="float" />
 			<description>
-				Rotates the local transformation around axis, a unit [Vector3], by specified angle in radians. The rotation axis is in object-local coordinate system.
+				Поворачивает локальное преобразование вокруг оси, единицы [Vector3], на указанный угол в радианах. Ось вращения находится в объектно-локальной системе координат.
 			</description>
 		</method>
 		<method name="rotate_x">
 			<return type="void" />
 			<argument index="0" name="angle" type="float" />
 			<description>
-				Rotates the local transformation around the X axis by angle in radians.
+				Поворачивает локальное преобразование вокруг оси X на угол в радианах.
 			</description>
 		</method>
 		<method name="rotate_y">
 			<return type="void" />
 			<argument index="0" name="angle" type="float" />
 			<description>
-				Rotates the local transformation around the Y axis by angle in radians.
+				Поворачивает локальное преобразование вокруг оси Y на угол в радианах.
 			</description>
 		</method>
 		<method name="rotate_z">
 			<return type="void" />
 			<argument index="0" name="angle" type="float" />
 			<description>
-				Rotates the local transformation around the Z axis by angle in radians.
+				Поворачивает локальное преобразование вокруг оси Z на угол в радианах.
 			</description>
 		</method>
 		<method name="scale_object_local">
 			<return type="void" />
 			<argument index="0" name="scale" type="Vector3" />
 			<description>
-				Scales the local transformation by given 3D scale factors in object-local coordinate system.
+				Масштабирует локальное преобразование по заданным 3D масштабным коэффициентам в объектно-локальной системе координат.
 			</description>
 		</method>
 		<method name="set_as_toplevel">
 			<return type="void" />
 			<argument index="0" name="enable" type="bool" />
 			<description>
-				Makes the node ignore its parents transformations. Node transformations are only in global space.
+				Заставляет узел игнорировать преобразования его родителей. Трансформации узла происходят только в глобальном пространстве.
 			</description>
 		</method>
 		<method name="set_disable_scale">
 			<return type="void" />
 			<argument index="0" name="disable" type="bool" />
 			<description>
-				Sets whether the node uses a scale of [code](1, 1, 1)[/code] or its local transformation scale. Changes to the local transformation scale are preserved.
+				Устанавливает, будет ли узел использовать масштаб [code](1, 1, 1)[/code] или свой локальный масштаб трансформации. Изменения локального масштаба преобразования сохраняются.
 			</description>
 		</method>
 		<method name="set_identity">
 			<return type="void" />
 			<description>
-				Reset all transformations for this node (sets its [Transform] to the identity matrix).
+				Сбрасывает все преобразования для этого узла (устанавливает его [Transform] в матрицу тождества).
 			</description>
 		</method>
 		<method name="set_ignore_transform_notification">
 			<return type="void" />
 			<argument index="0" name="enabled" type="bool" />
 			<description>
-				Sets whether the node ignores notification that its transformation (global or local) changed.
+				Устанавливает, игнорировать ли узлу уведомления о том, что его трансформация (глобальная или локальная) изменилась.
 			</description>
 		</method>
 		<method name="set_notify_local_transform">
 			<return type="void" />
 			<argument index="0" name="enable" type="bool" />
 			<description>
-				Sets whether the node notifies about its local transformation changes. [Spatial] will not propagate this by default.
+				Устанавливает, будет ли узел уведомлять о своих локальных изменениях трансформации. По умолчанию [Spatial] не будет распространять это.
 			</description>
 		</method>
 		<method name="set_notify_transform">
 			<return type="void" />
 			<argument index="0" name="enable" type="bool" />
 			<description>
-				Sets whether the node notifies about its global and local transformation changes. [Spatial] will not propagate this by default, unless it is in the editor context and it has a valid gizmo.
+				Устанавливает, уведомлять ли узел о его глобальных и локальных изменениях трансформации. По умолчанию [Spatial] не будет распространять это, если только узел не находится в контексте редактора и у него нет действительного gizmo(Гизмо).
 			</description>
 		</method>
 		<method name="show">
 			<return type="void" />
 			<description>
-				Enables rendering of this node. Changes [member visible] to [code]true[/code].
+				Включает рендеринг этого узла. Изменяет [member visible] на [code]true[/code].
 			</description>
 		</method>
 		<method name="to_global" qualifiers="const">
 			<return type="Vector3" />
 			<argument index="0" name="local_point" type="Vector3" />
 			<description>
-				Transforms [code]local_point[/code] from this node's local space to world space.
+				Преобразовывает [code]local_point[/code] из локального пространства этого узла в мировое пространство.
 			</description>
 		</method>
 		<method name="to_local" qualifiers="const">
 			<return type="Vector3" />
 			<argument index="0" name="global_point" type="Vector3" />
 			<description>
-				Transforms [code]global_point[/code] from world space to this node's local space.
+				Преобразовывает [code]global_point[/code] из мирового пространства в локальное пространство этого узла.
 			</description>
 		</method>
 		<method name="translate">
 			<return type="void" />
 			<argument index="0" name="offset" type="Vector3" />
 			<description>
-				Changes the node's position by the given offset [Vector3].
-				Note that the translation [code]offset[/code] is affected by the node's scale, so if scaled by e.g. [code](10, 1, 1)[/code], a translation by an offset of [code](2, 0, 0)[/code] would actually add 20 ([code]2 * 10[/code]) to the X coordinate.
+				Изменяет положение узла на заданное смещение [Vector3].
+				Обратите внимание, что на перевод [code]смещения[/code] влияет масштаб узла, поэтому при масштабировании, например, на [code](10, 1, 1)[/code], перевод на смещение [code](2, 0, 0)[/code] фактически добавит 20 ([code]2 * 10[/code]) к координате X.
 			</description>
 		</method>
 		<method name="translate_object_local">
 			<return type="void" />
 			<argument index="0" name="offset" type="Vector3" />
 			<description>
-				Changes the node's position by the given offset [Vector3] in local space.
+				Изменяет положение узла на заданное смещение [Vector3] в локальном пространстве.
 			</description>
 		</method>
 		<method name="update_gizmo">
 			<return type="void" />
 			<description>
-				Updates the [SpatialGizmo] of this node.
+				Обновляет [SpatialGizmo] этого узла.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="gizmo" type="SpatialGizmo" setter="set_gizmo" getter="get_gizmo">
-			The [SpatialGizmo] for this node. Used for example in [EditorSpatialGizmo] as custom visualization and editing handles in Editor.
-		</member>
-		<member name="global_position" type="Vector3" setter="set_global_translation" getter="get_global_translation">
-			Global position of this node. This is a forward-compatible alias for [member global_translation].
+			[SpatialGizmo] для этого узла. Используется, например, в [EditorSpatialGizmo] в качестве пользовательских ручек визуализации и редактирования в редакторе.
 		</member>
 		<member name="global_rotation" type="Vector3" setter="set_global_rotation" getter="get_global_rotation">
-			Rotation part of the global transformation in radians, specified in terms of YXZ-Euler angles in the format (X angle, Y angle, Z angle).
-			[b]Note:[/b] In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector, but only because [Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
+			Часть вращения глобального преобразования в радианах, заданная в терминах углов YXZ-Эйлера в формате (угол X, угол Y, угол Z).
+			[b]Примечание:[/b] В математическом смысле поворот - это матрица, а не вектор. Три угла Эйлера, которые являются тремя независимыми параметрами параметризации угла Эйлера матрицы вращения, хранятся в структуре данных [Vector3] не потому, что вращение - это вектор, а только потому, что [Vector3] существует как удобная структура данных для хранения 3 чисел с плавающей точкой. Поэтому применение аффинных операций к "вектору" вращения не имеет смысла.
 		</member>
 		<member name="global_transform" type="Transform" setter="set_global_transform" getter="get_global_transform">
-			World space (global) [Transform] of this node.
+			Мировое пространство (глобальный) [Transform] этого узла.
 		</member>
 		<member name="global_translation" type="Vector3" setter="set_global_translation" getter="get_global_translation">
-			Global position of this node. This is equivalent to [code]global_transform.origin[/code].
+			Глобальная позиция этого узла. Это эквивалентно [code]global_transform.origin[/code].
 		</member>
 		<member name="lod_range" type="float" setter="set_lod_range" getter="get_lod_range" default="10.0">
-			Determines the threshold distance at which this node will be shown or hidden when this node is parented by a [LOD] node.
-			For example, a first child with a range of [code]2[/code] will be shown from distance 0 to 2. A second child with a range of [code]5[/code] will be shown from distance 2 to 7, etc.
+			Определяет пороговое расстояние, на котором этот узел будет показан или скрыт, если его родителем является узел [LOD].
+			Например, первый ребенок с диапазоном [code]2[/code] будет показан на расстоянии от 0 до 2. Второй ребенок с диапазоном [code]5[/code] будет показан на расстоянии от 2 до 7 и т. д.
 		</member>
 		<member name="merging_mode" type="int" setter="set_merging_mode" getter="get_merging_mode" enum="Spatial.MergingMode" default="0">
-			The merging mode determines whether merging features of the engine ([MergeGroup] and [RoomManager]) will attempt to operate on branches of the scene tree.
-			The default mode inherited from the scene tree root is [constant MERGING_MODE_ON].
-			[b]Note:[/b] Merging mode determines whether the merging is [b]allowed[/b] to be performed. It does not guarantee that merging will occur, which depends on whether there are suitable matching objects.
+			Режим слияния определяет, будут ли функции слияния движка ([MergeGroup] и [RoomManager]) пытаться работать с ветвями дерева сцены.
+			Режим по умолчанию, наследуемый от корня дерева сцены, - [constant MERGING_MODE_ON].
+			[b]Примечание:[/b] Режим слияния определяет, будет ли [b]разрешено[/b] слияние. Он не гарантирует, что слияние произойдет, это зависит от того, есть ли подходящие совпадающие объекты.
 		</member>
 		<member name="position" type="Vector3" setter="set_translation" getter="get_translation">
-			Local position of this node. This is a forward-compatible alias for [member translation].
+			Локальная позиция этого узла. Это совместимый с пересылкой псевдоним для [member translation].
 		</member>
 		<member name="rotation" type="Vector3" setter="set_rotation" getter="get_rotation">
-			Rotation part of the local transformation in radians, specified in terms of YXZ-Euler angles in the format (X angle, Y angle, Z angle).
-			[b]Note:[/b] In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector, but only because [Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
+			Часть вращения локального преобразования в радианах, заданная в терминах углов YXZ-Эйлера в формате (угол X, угол Y, угол Z).
+			[b]Примечание:[/b] В математическом смысле поворот - это матрица, а не вектор. Три угла Эйлера, которые являются тремя независимыми параметрами параметризации угла Эйлера матрицы вращения, хранятся в структуре данных [Vector3] не потому, что вращение - это вектор, а только потому, что [Vector3] существует как удобная структура данных для хранения 3 чисел с плавающей точкой. Поэтому применение аффинных операций к "вектору" вращения не имеет смысла.
 		</member>
 		<member name="rotation_degrees" type="Vector3" setter="set_rotation_degrees" getter="get_rotation_degrees" default="Vector3( 0, 0, 0 )">
-			Rotation part of the local transformation in degrees, specified in terms of YXZ-Euler angles in the format (X angle, Y angle, Z angle).
+			Вращательная часть локального преобразования в градусах, заданная в терминах углов YXZ-Эйлера в формате (угол X, угол Y, угол Z).
 		</member>
 		<member name="scale" type="Vector3" setter="set_scale" getter="get_scale" default="Vector3( 1, 1, 1 )">
-			Scale part of the local transformation.
-			[b]Note:[/b] Mixed negative scales in 3D are not decomposable from the transformation matrix. Due to the way scale is represented with transformation matrices in Godot, the scale values will either be all positive or all negative.
-			[b]Note:[/b] Not all nodes are visually scaled by the [member scale] property. For example, [Light]s are not visually affected by [member scale].
+			Масштабная часть локального преобразования.
+			[b]Примечание:[/b] Смешанные отрицательные масштабы в 3D не разлагаются из матрицы трансформации. Из-за того, как масштаб представлен в матрицах трансформации в Godot, значения масштаба будут либо все положительными, либо все отрицательными.
+			[b]Примечание:[/b] Не все узлы визуально масштабируются свойством [member scale]. Например, [Light]ы не подвержены визуальному влиянию [member scale].
 		</member>
 		<member name="transform" type="Transform" setter="set_transform" getter="get_transform" default="Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )">
-			Local space [Transform] of this node, with respect to the parent node.
+			Локальное пространство [Transform] этого узла по отношению к родительскому узлу.
 		</member>
 		<member name="translation" type="Vector3" setter="set_translation" getter="get_translation" default="Vector3( 0, 0, 0 )">
-			Local translation of this node.
+			Локальный перевод этого узла.
 		</member>
 		<member name="visible" type="bool" setter="set_visible" getter="is_visible" default="true">
-			If [code]true[/code], this node is drawn. The node is only visible if all of its ancestors are visible as well (in other words, [method is_visible_in_tree] must return [code]true[/code]).
+			Если [code]true[/code], то этот узел будет нарисован. Узел будет виден только в том случае, если все его предки также видны (другими словами, [метод is_visible_in_tree] должен возвращать [code]true[/code]).
 		</member>
 	</members>
 	<signals>
 		<signal name="gameplay_entered">
 			<description>
-				Emitted by portal system gameplay monitor when a node enters the gameplay area.
+				Выдается монитором игрового процесса портальной системы, когда узел входит в игровую зону.
 			</description>
 		</signal>
 		<signal name="gameplay_exited">
 			<description>
-				Emitted by portal system gameplay monitor when a node exits the gameplay area.
+				Выдается монитором игрового процесса портальной системы, когда узел покидает игровую зону.
 			</description>
 		</signal>
 		<signal name="visibility_changed">
 			<description>
-				Emitted when node visibility changes.
+				Выдается при изменении видимости узла.
 			</description>
 		</signal>
 	</signals>
 	<constants>
 		<constant name="NOTIFICATION_TRANSFORM_CHANGED" value="2000">
-			Spatial nodes receives this notification when their global transform changes. This means that either the current or a parent node changed its transform.
-			In order for [constant NOTIFICATION_TRANSFORM_CHANGED] to work, users first need to ask for it, with [method set_notify_transform]. The notification is also sent if the node is in the editor context and it has a valid gizmo.
+			Пространственные узлы получают это уведомление, когда их глобальная трансформация изменяется. Это означает, что либо текущий, либо родительский узел изменил свою трансформацию.
+			Чтобы [constant NOTIFICATION_TRANSFORM_CHANGED] сработало, пользователи должны сначала попросить об этом, используя [method set_notify_transform]. Уведомление также отправляется, если узел находится в контексте редактора и у него есть действительный gizmo(Гизмо).
 		</constant>
 		<constant name="NOTIFICATION_ENTER_WORLD" value="41">
-			Spatial nodes receives this notification when they are registered to new [World] resource.
+			Пространственные узлы получают это уведомление, когда они зарегистрированы на новом ресурсе [World].
 		</constant>
 		<constant name="NOTIFICATION_EXIT_WORLD" value="42">
-			Spatial nodes receives this notification when they are unregistered from current [World] resource.
+			Пространственные узлы получают это уведомление, когда они не зарегистрированы в текущем ресурсе [World].
 		</constant>
 		<constant name="NOTIFICATION_VISIBILITY_CHANGED" value="43">
-			Spatial nodes receives this notification when their visibility changes.
+			Пространственные узлы получают это уведомление при изменении их видимости.
 		</constant>
 		<constant name="NOTIFICATION_ENTER_GAMEPLAY" value="45">
-			Spatial nodes receives this notification if the portal system gameplay monitor detects they have entered the gameplay area.
+			Пространственные узлы получают это уведомление, если монитор игрового процесса портальной системы обнаруживает, что они вошли в игровую зону.
 		</constant>
 		<constant name="NOTIFICATION_EXIT_GAMEPLAY" value="46">
-			Spatial nodes receives this notification if the portal system gameplay monitor detects they have exited the gameplay area.
-		</constant>
-		<constant name="MERGING_MODE_INHERIT" value="0" enum="MergingMode">
-			Inherits merging mode from the node's parent. For the root node, it is equivalent to [constant MERGING_MODE_ON]. Default.
-		</constant>
-		<constant name="MERGING_MODE_OFF" value="1" enum="MergingMode">
-			Turn off merging in this node and children set to [constant MERGING_MODE_INHERIT].
-		</constant>
-		<constant name="MERGING_MODE_ON" value="2" enum="MergingMode">
-			Turn on merging in this node and children set to [constant MERGING_MODE_INHERIT].
+			Пространственные узлы получают это уведомление, если монитор игрового процесса портальной системы обнаруживает, что они покинули игровую зону.
 		</constant>
 	</constants>
 </class>

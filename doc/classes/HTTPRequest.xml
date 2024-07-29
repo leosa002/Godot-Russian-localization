@@ -1,56 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="HTTPRequest" inherits="Node" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="HTTPRequest" inherits="Node" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		A node with the ability to send HTTP(S) requests.
+		Узел, способный отправлять запросы HTTP(S).
 	</brief_description>
 	<description>
-		A node with the ability to send HTTP requests. Uses [HTTPClient] internally.
-		Can be used to make HTTP requests, i.e. download or upload files or web content via HTTP.
-		[b]Warning:[/b] See the notes and warnings on [HTTPClient] for limitations, especially regarding SSL security.
-		[b]Example of contacting a REST API and printing one of its returned fields:[/b]
+		Узел, способный отправлять HTTP-запросы. Внутри использует [HTTPClient].
+
+		Может использоваться для выполнения HTTP-запросов, т. е. загрузки или выгрузки файлов или веб-контента по HTTP.
+
+		[b]Предупреждение:[/b] См. примечания и предупреждения по [HTTPClient] для ограничений, особенно в отношении безопасности SSL.
+
+		[b]Пример обращения к REST API и печати одного из возвращаемых полей:[/b]
 		[codeblock]
 		func _ready():
-		    # Create an HTTP request node and connect its completion signal.
+		    # Создайте узел HTTP-запроса и подключите его сигнал завершения.
 		    var http_request = HTTPRequest.new()
 		    add_child(http_request)
 		    http_request.connect("request_completed", self, "_http_request_completed")
 
-		    # Perform a GET request. The URL below returns JSON as of writing.
+		    # Выполните GET-запрос. Нижеприведенный URL-адрес возвращает JSON.
 		    var error = http_request.request("https://httpbin.org/get")
 		    if error != OK:
 		        push_error("An error occurred in the HTTP request.")
 
-		    # Perform a POST request. The URL below returns JSON as of writing.
-		    # Note: Don't make simultaneous requests using a single HTTPRequest node.
-		    # The snippet below is provided for reference only.
+		    # Выполните POST-запрос. Приведенный ниже URL возвращает JSON.
+		    # Примечание: Не делайте одновременных запросов с помощью одного узла HTTPRequest.
+		    # Сниппет ниже приведен только для справки.
 		    var body = to_json({"name": "Godette"})
 		    error = http_request.request("https://httpbin.org/post", [], true, HTTPClient.METHOD_POST, body)
 		    if error != OK:
 		        push_error("An error occurred in the HTTP request.")
 
 
-		# Called when the HTTP request is completed.
+		# Вызывается, когда HTTP-запрос завершен.
 		func _http_request_completed(result, response_code, headers, body):
 		    var response = parse_json(body.get_string_from_utf8())
 
-		    # Will print the user agent string used by the HTTPRequest node (as recognized by httpbin.org).
+		    # Выводит строку агента пользователя, используемого узлом HTTPRequest (как это распознается httpbin.org).
 		    print(response.headers["User-Agent"])
 		[/codeblock]
-		[b]Example of loading and displaying an image using HTTPRequest:[/b]
+		[b]Пример загрузки и отображения изображения с помощью HTTPRequest:[/b]
 		[codeblock]
 		func _ready():
-		    # Create an HTTP request node and connect its completion signal.
+		    # Создайте узел HTTP-запроса и подключите его сигнал завершения.
 		    var http_request = HTTPRequest.new()
 		    add_child(http_request)
 		    http_request.connect("request_completed", self, "_http_request_completed")
 
-		    # Perform the HTTP request. The URL below returns a PNG image as of writing.
+		    # Выполните HTTP-запрос. Нижеприведенный URL-адрес возвращает изображение в формате PNG:
 		    var error = http_request.request("https://via.placeholder.com/512")
 		    if error != OK:
 		        push_error("An error occurred in the HTTP request.")
 
 
-		# Called when the HTTP request is completed.
+		# Вызывается, когда HTTP-запрос завершен:
 		func _http_request_completed(result, response_code, headers, body):
 		    var image = Image.new()
 		    var error = image.load_png_from_buffer(body)
@@ -60,7 +63,7 @@
 		    var texture = ImageTexture.new()
 		    texture.create_from_image(image)
 
-		    # Display the image in a TextureRect node.
+		    # Отобразите изображение в узле TextureRect:
 		    var texture_rect = TextureRect.new()
 		    add_child(texture_rect)
 		    texture_rect.texture = texture
@@ -74,26 +77,26 @@
 		<method name="cancel_request">
 			<return type="void" />
 			<description>
-				Cancels the current request.
+				Отменяет текущий запрос.
 			</description>
 		</method>
 		<method name="get_body_size" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the response body length.
-				[b]Note:[/b] Some Web servers may not send a body length. In this case, the value returned will be [code]-1[/code]. If using chunked transfer encoding, the body length will also be [code]-1[/code].
+				Возвращает длину тела ответа.
+				[b]Примечание:[/b] Некоторые веб-серверы могут не отправлять длину тела. В этом случае возвращаемое значение будет [code]-1[/code]. При использовании кодировки chunked длина тела также будет равна [code]-1[/code].
 			</description>
 		</method>
 		<method name="get_downloaded_bytes" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the amount of bytes this HTTPRequest downloaded.
+				Возвращает количество байт, загруженных этим HTTPRequest.
 			</description>
 		</method>
 		<method name="get_http_client_status" qualifiers="const">
 			<return type="int" enum="HTTPClient.Status" />
 			<description>
-				Returns the current status of the underlying [HTTPClient]. See [enum HTTPClient.Status].
+				Возвращает текущее состояние базового [HTTPClient]. См. раздел [enum HTTPClient.Status].
 			</description>
 		</method>
 		<method name="request">
@@ -104,9 +107,9 @@
 			<argument index="3" name="method" type="int" enum="HTTPClient.Method" default="0" />
 			<argument index="4" name="request_data" type="String" default="&quot;&quot;" />
 			<description>
-				Creates request on the underlying [HTTPClient]. If there is no configuration errors, it tries to connect using [method HTTPClient.connect_to_host] and passes parameters onto [method HTTPClient.request].
-				Returns [constant OK] if request is successfully created. (Does not imply that the server has responded), [constant ERR_UNCONFIGURED] if not in the tree, [constant ERR_BUSY] if still processing previous request, [constant ERR_INVALID_PARAMETER] if given string is not a valid URL format, or [constant ERR_CANT_CONNECT] if not using thread and the [HTTPClient] cannot connect to host.
-				[b]Note:[/b] When [code]method[/code] is [constant HTTPClient.METHOD_GET], the payload sent via [code]request_data[/code] might be ignored by the server or even cause the server to reject the request (check [url=https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.1]RFC 7231 section 4.3.1[/url] for more details). As a workaround, you can send data as a query string in the URL. See [method String.http_escape] for an example.
+				Создает запрос к базовому [HTTPClient]. Если нет ошибок конфигурации, пытается подключиться с помощью [метода HTTPClient.connect_to_host] и передает параметры в [метод HTTPClient.request].
+				Возвращает [константу OK], если запрос успешно создан. (Не означает, что сервер ответил), [константа ERR_UNCONFIGURED], если его нет в дереве, [константа ERR_BUSY], если все еще обрабатывается предыдущий запрос, [константа ERR_INVALID_PARAMETER], если заданная строка не является правильным форматом URL, или [константа ERR_CANT_CONNECT], если не используется поток и [HTTPClient] не может подключиться к хосту.
+				[b]Примечание:[/b] Если [code]method[/code] имеет значение [constant HTTPClient.METHOD_GET], полезная нагрузка, отправленная через [code]request_data[/code], может быть проигнорирована сервером или даже привести к отклонению запроса (подробнее см. [url=https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.1]RFC 7231 раздел 4.3.1[/url]). В качестве обходного пути можно отправлять данные в виде строки запроса в URL. Пример смотрите в [метод String.http_escape].
 			</description>
 		</method>
 		<method name="request_raw">
@@ -117,8 +120,8 @@
 			<argument index="3" name="method" type="int" enum="HTTPClient.Method" default="0" />
 			<argument index="4" name="request_data_raw" type="PoolByteArray" default="PoolByteArray(  )" />
 			<description>
-				Creates request on the underlying [HTTPClient] using a raw array of bytes for the request body. If there is no configuration errors, it tries to connect using [method HTTPClient.connect_to_host] and passes parameters onto [method HTTPClient.request].
-				Returns [constant OK] if request is successfully created. (Does not imply that the server has responded), [constant ERR_UNCONFIGURED] if not in the tree, [constant ERR_BUSY] if still processing previous request, [constant ERR_INVALID_PARAMETER] if given string is not a valid URL format, or [constant ERR_CANT_CONNECT] if not using thread and the [HTTPClient] cannot connect to host.
+				Создает запрос к базовому [HTTPClient], используя для тела запроса необработанный массив байтов. Если нет ошибок конфигурации, пытается подключиться с помощью [метода HTTPClient.connect_to_host] и передает параметры в [метод HTTPClient.request].
+				Возвращает [константу OK], если запрос успешно создан. (Не означает, что сервер ответил), [константа ERR_UNCONFIGURED], если его нет в дереве, [константа ERR_BUSY], если все еще обрабатывается предыдущий запрос, [константа ERR_INVALID_PARAMETER], если заданная строка не является правильным форматом URL, или [константа ERR_CANT_CONNECT], если не используется поток и [HTTPClient] не может подключиться к хосту.
 			</description>
 		</method>
 		<method name="set_http_proxy">
@@ -126,8 +129,8 @@
 			<argument index="0" name="host" type="String" />
 			<argument index="1" name="port" type="int" />
 			<description>
-				Sets the proxy server for HTTP requests.
-				The proxy server is unset if [code]host[/code] is empty or [code]port[/code] is -1.
+				Устанавливает прокси-сервер для HTTP-запросов.
+				Прокси-сервер не задается, если [code]host[/code] пуст или [code]port[/code] равен -1.
 			</description>
 		</method>
 		<method name="set_https_proxy">
@@ -135,31 +138,33 @@
 			<argument index="0" name="host" type="String" />
 			<argument index="1" name="port" type="int" />
 			<description>
-				Sets the proxy server for HTTPS requests.
-				The proxy server is unset if [code]host[/code] is empty or [code]port[/code] is -1.
+				Устанавливает прокси-сервер для запросов HTTPS.
+				Прокси-сервер не задается, если [code]host[/code] пуст или [code]port[/code] равен -1.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="body_size_limit" type="int" setter="set_body_size_limit" getter="get_body_size_limit" default="-1">
-			Maximum allowed size for response bodies ([code]-1[/code] means no limit). When only small files are expected, this can be used to prevent disallow receiving files that are too large, preventing potential denial of service attacks.
+			Максимально допустимый размер тела ответа ([code]-1[/code] означает отсутствие ограничений). Если ожидаются только небольшие файлы, это может быть использовано для запрета получения слишком больших файлов, предотвращая потенциальные атаки типа "отказ в обслуживании".
 		</member>
 		<member name="download_chunk_size" type="int" setter="set_download_chunk_size" getter="get_download_chunk_size" default="65536">
-			The size of the buffer used and maximum bytes to read per iteration. See [member HTTPClient.read_chunk_size].
-			Set this to a lower value (e.g. 4096 for 4 KiB) when downloading small files to decrease memory usage at the cost of download speeds.
+			Размер используемого буфера и максимальное количество байт для чтения за итерацию. См. раздел [member HTTPClient.read_chunk_size].
+
+			Установите меньшее значение (например, 4096 для 4 килобайт) при загрузке небольших файлов, чтобы уменьшить использование памяти за счет снижения скорости загрузки.
 		</member>
 		<member name="download_file" type="String" setter="set_download_file" getter="get_download_file" default="&quot;&quot;">
-			The file to download into. If set to a non-empty string, the request output will be written to the file located at the path. If a file already exists at the specified location, it will be overwritten as soon as body data begins to be received.
-			[b]Note:[/b] Folders are not automatically created when the file is created. If [member download_file] points to a subfolder, it's recommended to create the necessary folders beforehand using [method Directory.make_dir_recursive] to ensure the file can be written.
+			Файл, в который будет производиться загрузка. Если задана непустая строка, то выходные данные запроса будут записаны в файл, расположенный по указанному пути. Если в указанном месте уже существует файл, он будет перезаписан, как только начнется прием данных тела.
+
+			[b]Примечание:[/b] Папки не создаются автоматически при создании файла. Если [member download_file] указывает на вложенную папку, рекомендуется предварительно создать необходимые папки с помощью [method Directory.make_dir_recursive], чтобы обеспечить возможность записи файла.
 		</member>
 		<member name="max_redirects" type="int" setter="set_max_redirects" getter="get_max_redirects" default="8">
-			Maximum number of allowed redirects. This is used to prevent endless redirect loops.
+			Максимальное количество разрешенных перенаправлений. Используется для предотвращения бесконечных циклов перенаправления.
 		</member>
 		<member name="timeout" type="float" setter="set_timeout" getter="get_timeout" default="0.0">
-			If set to a value greater than [code]0.0[/code] before the request starts, the HTTP request will time out after [code]timeout[/code] seconds have passed and the request is not [i]completed[/i] yet. For small HTTP requests such as REST API usage, set [member timeout] to a value between [code]10.0[/code] and [code]30.0[/code] to prevent the application from getting stuck if the request fails to get a response in a timely manner. For file downloads, leave this to [code]0.0[/code] to prevent the download from failing if it takes too much time.
+			Если установить значение больше, чем [code]0.0[/code] до начала запроса, то HTTP-запрос завершится по истечении [code]timeout[/code] секунд, а запрос еще не [i]завершен[/i]. Для небольших HTTP-запросов, таких как использование REST API, установите [member timeout] в значение между [code]10.0[/code] и [code]30.0[/code], чтобы предотвратить застревание приложения, если запрос не получит своевременного ответа. Для загрузки файлов оставьте значение [code]0.0[/code], чтобы предотвратить неудачу загрузки, если она займет слишком много времени.
 		</member>
 		<member name="use_threads" type="bool" setter="set_use_threads" getter="is_using_threads" default="false">
-			If [code]true[/code], multithreading is used to improve performance.
+			Если [code]true[/code], то для повышения производительности используется многопоточность.
 		</member>
 	</members>
 	<signals>
@@ -169,45 +174,45 @@
 			<argument index="2" name="headers" type="PoolStringArray" />
 			<argument index="3" name="body" type="PoolByteArray" />
 			<description>
-				Emitted when a request is completed.
+				Выдается, когда запрос завершен.
 			</description>
 		</signal>
 	</signals>
 	<constants>
 		<constant name="RESULT_SUCCESS" value="0" enum="Result">
-			Request successful.
+			Запрос успешен.
 		</constant>
 		<constant name="RESULT_CHUNKED_BODY_SIZE_MISMATCH" value="1" enum="Result">
 		</constant>
 		<constant name="RESULT_CANT_CONNECT" value="2" enum="Result">
-			Request failed while connecting.
+			Запрос не прошел при подключении.
 		</constant>
 		<constant name="RESULT_CANT_RESOLVE" value="3" enum="Result">
-			Request failed while resolving.
+			Запрос не прошел при разрешении.
 		</constant>
 		<constant name="RESULT_CONNECTION_ERROR" value="4" enum="Result">
-			Request failed due to connection (read/write) error.
+			Запрос не прошел из-за ошибки соединения (чтение/запись).
 		</constant>
 		<constant name="RESULT_SSL_HANDSHAKE_ERROR" value="5" enum="Result">
-			Request failed on SSL handshake.
+			Запрос не удалось выполнить при квитировании SSL.
 		</constant>
 		<constant name="RESULT_NO_RESPONSE" value="6" enum="Result">
-			Request does not have a response (yet).
+			Запрос не имеет ответа (пока что).
 		</constant>
 		<constant name="RESULT_BODY_SIZE_LIMIT_EXCEEDED" value="7" enum="Result">
-			Request exceeded its maximum size limit, see [member body_size_limit].
+			Запрос превысил максимальный размер, см. [member body_size_limit].
 		</constant>
 		<constant name="RESULT_REQUEST_FAILED" value="8" enum="Result">
-			Request failed (currently unused).
+			Запрос не прошел (в настоящее время не используется).
 		</constant>
 		<constant name="RESULT_DOWNLOAD_FILE_CANT_OPEN" value="9" enum="Result">
-			HTTPRequest couldn't open the download file.
+			HTTPRequest не смог открыть файл загрузки.
 		</constant>
 		<constant name="RESULT_DOWNLOAD_FILE_WRITE_ERROR" value="10" enum="Result">
-			HTTPRequest couldn't write to the download file.
+			HTTPRequest не смог записать файл загрузки.
 		</constant>
 		<constant name="RESULT_REDIRECT_LIMIT_REACHED" value="11" enum="Result">
-			Request reached its maximum redirect limit, see [member max_redirects].
+			Запрос достиг максимального предела перенаправления, см. раздел [member max_redirects].
 		</constant>
 		<constant name="RESULT_TIMEOUT" value="12" enum="Result">
 		</constant>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="VisualShaderNodeBooleanConstant" inherits="VisualShaderNode" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="VisualShaderNodeBooleanConstant" inherits="VisualShaderNode" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		A boolean constant to be used within the visual shader graph.
+		Булевая константа для использования в графе визуальных шейдеров.
 	</brief_description>
 	<description>
-		Has only one output port and no inputs.
-		Translated to [code]bool[/code] in the shader language.
+		Имеет только один выходной порт и не имеет входов.
+		В языке шейдеров переводится как [code]bool[/code].
 	</description>
 	<tutorials>
 	</tutorials>
@@ -13,7 +13,7 @@
 	</methods>
 	<members>
 		<member name="constant" type="bool" setter="set_constant" getter="get_constant" default="false">
-			A boolean constant which represents a state of this node.
+			Булева константа, которая представляет состояние этого узла.
 		</member>
 	</members>
 	<constants>

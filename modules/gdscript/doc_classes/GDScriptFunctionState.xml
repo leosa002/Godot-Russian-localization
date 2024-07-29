@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="GDScriptFunctionState" inherits="Reference" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+<class name="GDScriptFunctionState" inherits="Reference" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
 	<brief_description>
-		State of a function call after yielding.
+		Состояние вызова функции после выхода из неё.
 	</brief_description>
 	<description>
-		Calling [method @GDScript.yield] within a function will cause that function to yield and return its current state as an object of this type. The yielded function call can then be resumed later by calling [method resume] on this state object.
+		Вызов [метода @GDScript.yield] внутри функции приведет к выходу этой функции и возврату ее текущего состояния в виде объекта этого типа. Вызов функции может быть возобновлен позже вызовом [метода resume] на этом объекте состояния.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -13,17 +13,17 @@
 			<return type="bool" />
 			<argument index="0" name="extended_check" type="bool" default="false" />
 			<description>
-				Check whether the function call may be resumed. This is not the case if the function state was already resumed.
-				If [code]extended_check[/code] is enabled, it also checks if the associated script and object still exist. The extended check is done in debug mode as part of [method GDScriptFunctionState.resume], but you can use this if you know you may be trying to resume without knowing for sure the object and/or script have survived up to that point.
+				Проверьте, можно ли возобновить вызов функции. Это не так, если состояние функции уже было возобновлено.
+				Если включена [code]extended_check[/code], то также проверяется, существуют ли еще связанные скрипт и объект. Расширенная проверка выполняется в режиме отладки как часть [метода GDScriptFunctionState.resume], но вы можете использовать этот метод, если знаете, что можете попытаться возобновить работу, не будучи уверенным, что объект и/или скрипт сохранились до этого момента.
 			</description>
 		</method>
 		<method name="resume">
 			<return type="Variant" />
 			<argument index="0" name="arg" type="Variant" default="null" />
 			<description>
-				Resume execution of the yielded function call.
-				If handed an argument, return the argument from the [method @GDScript.yield] call in the yielded function call. You can pass e.g. an [Array] to hand multiple arguments.
-				This function returns what the resumed function call returns, possibly another function state if yielded again.
+				Возобновите выполнение вызова уступленной функции.
+				Если аргумент передан, верните аргумент из вызова [метода @GDScript.yield] в вызове уступленной функции. Вы можете передать, например, [Array], чтобы передать несколько аргументов.
+				Эта функция возвращает то, что вернул возобновленный вызов функции, возможно, другое состояние функции, если она была передана снова.
 			</description>
 		</method>
 	</methods>

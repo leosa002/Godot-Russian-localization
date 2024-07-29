@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Navigation" inherits="Spatial" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Navigation" inherits="Spatial" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Mesh-based navigation and pathfinding node.
+		Узел навигации и поиска пути на основе сетки.
 	</brief_description>
 	<description>
-		[i]Deprecated.[/i] [Navigation] node and [method get_simple_path] are deprecated and will be removed in a future version. Use [method NavigationServer.map_get_path] instead.
-		Provides navigation and pathfinding within a collection of [NavigationMesh]es. By default, these will be automatically collected from child [NavigationMeshInstance] nodes. In addition to basic pathfinding, this class also assists with aligning navigation agents with the meshes they are navigating on.
+		[i]Устаревшие.[/i] [Navigation] node и [метод get_simple_path] устарели и будут удалены в будущей версии. Вместо них используйте [метод NavigationServer.map_get_path].
+		Обеспечивает навигацию и поиск пути в коллекции [NavigationMesh]. По умолчанию они будут автоматически собираться из дочерних узлов [NavigationMeshInstance]. В дополнение к базовому поиску пути этот класс также помогает выравнивать агентов навигации по сетке, по которой они перемещаются.
 	</description>
 	<tutorials>
 		<link title="3D Navmesh Demo">https://godotengine.org/asset-library/asset/124</link>
@@ -15,21 +15,21 @@
 			<return type="Vector3" />
 			<argument index="0" name="to_point" type="Vector3" />
 			<description>
-				Returns the navigation point closest to the point given. Points are in local coordinate space.
+				Возвращает навигационную точку, ближайшую к заданной точке. Точки находятся в локальном пространстве координат.
 			</description>
 		</method>
 		<method name="get_closest_point_normal" qualifiers="const">
 			<return type="Vector3" />
 			<argument index="0" name="to_point" type="Vector3" />
 			<description>
-				Returns the surface normal at the navigation point closest to the point given. Useful for rotating a navigation agent according to the navigation mesh it moves on.
+				Возвращает нормаль к поверхности в точке навигации, ближайшей к заданной точке. Полезно для поворота навигационного агента в соответствии с навигационной сеткой, по которой он движется.
 			</description>
 		</method>
 		<method name="get_closest_point_owner" qualifiers="const">
 			<return type="RID" />
 			<argument index="0" name="to_point" type="Vector3" />
 			<description>
-				Returns the owner of the [NavigationMesh] which contains the navigation point closest to the point given. This is usually a [NavigationMeshInstance].
+				Возвращает владельца [NavigationMesh], который содержит навигационную точку, ближайшую к заданной точке. Обычно это [NavigationMeshInstance].
 			</description>
 		</method>
 		<method name="get_closest_point_to_segment" qualifiers="const">
@@ -38,13 +38,13 @@
 			<argument index="1" name="end" type="Vector3" />
 			<argument index="2" name="use_collision" type="bool" default="false" />
 			<description>
-				Returns the navigation point closest to the given line segment. When enabling [code]use_collision[/code], only considers intersection points between segment and navigation meshes. If multiple intersection points are found, the one closest to the segment start point is returned.
+				Возвращает точку навигации, ближайшую к заданному сегменту линии. При включении [code]use_collision[/code] учитываются только точки пересечения между сетками сегмента и навигации. Если найдено несколько точек пересечения, возвращается ближайшая к начальной точке отрезка.
 			</description>
 		</method>
 		<method name="get_rid" qualifiers="const">
 			<return type="RID" />
 			<description>
-				Returns the [RID] of the navigation map on the [NavigationServer].
+				Возвращает [RID] навигационной карты на [NavigationServer].
 			</description>
 		</method>
 		<method name="get_simple_path" qualifiers="const">
@@ -53,33 +53,33 @@
 			<argument index="1" name="end" type="Vector3" />
 			<argument index="2" name="optimize" type="bool" default="true" />
 			<description>
-				[i]Deprecated.[/i] [Navigation] node and [method get_simple_path] are deprecated and will be removed in a future version. Use [method NavigationServer.map_get_path] instead.
-				Returns the path between two given points. Points are in local coordinate space. If [code]optimize[/code] is [code]true[/code] (the default), the agent properties associated with each [NavigationMesh] (radius, height, etc.) are considered in the path calculation, otherwise they are ignored.
+				[i]Устаревшие.[/i] [Navigation] node и [метод get_simple_path] устарели и будут удалены в будущей версии. Вместо них используйте [метод NavigationServer.map_get_path].
+				Возвращает путь между двумя заданными точками. Точки находятся в локальном пространстве координат. Если [code]optimize[/code] имеет значение [code]true[/code] (по умолчанию), то свойства агента, связанные с каждой [NavigationMesh] (радиус, высота и т. д.), учитываются при расчете пути, в противном случае они игнорируются.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="cell_height" type="float" setter="set_cell_height" getter="get_cell_height" default="0.25">
-			The cell height to use for fields.
+			Высота ячейки, используемая для полей.
 		</member>
 		<member name="cell_size" type="float" setter="set_cell_size" getter="get_cell_size" default="0.25">
-			The XZ plane cell size to use for fields.
+			Размер ячейки плоскости XZ, используемый для полей.
 		</member>
 		<member name="edge_connection_margin" type="float" setter="set_edge_connection_margin" getter="get_edge_connection_margin" default="0.25">
-			This value is used to detect the near edges to connect compatible regions.
+			Это значение используется для определения ближних краев, соединяющих совместимые области.
 		</member>
 		<member name="navigation_layers" type="int" setter="set_navigation_layers" getter="get_navigation_layers" default="1">
-			A bitfield determining all navigation map layers the navigation can use on a [method Navigation.get_simple_path] path query.
+			Битовое поле, определяющее все слои навигационной карты, которые навигация может использовать при запросе пути [метод Navigation.get_simple_path].
 		</member>
 		<member name="up_vector" type="Vector3" setter="set_up_vector" getter="get_up_vector" default="Vector3( 0, 1, 0 )">
-			Defines which direction is up. By default, this is [code](0, 1, 0)[/code], which is the world's "up" direction.
+			Определяет, какое направление является верхним. По умолчанию это [code](0, 1, 0)[/code], то есть направление мира "вверх".
 		</member>
 	</members>
 	<signals>
 		<signal name="map_changed">
 			<argument index="0" name="map" type="RID" />
 			<description>
-				Emitted when a navigation map is updated, when a region moves or is modified.
+				Выдается при обновлении навигационной карты, при перемещении или изменении региона.
 			</description>
 		</signal>
 	</signals>

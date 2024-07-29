@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="ScriptEditor" inherits="PanelContainer" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="ScriptEditor" inherits="PanelContainer" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Godot editor's script editor.
+		Редактор Godot, редактор скриптов Godot.
 	</brief_description>
 	<description>
-		[b]Note:[/b] This class shouldn't be instantiated directly. Instead, access the singleton using [method EditorInterface.get_script_editor].
+		[b]Примечание:[/b] Этот класс не следует инстанцировать напрямую. Вместо этого обращайтесь к синглтону с помощью [метода EditorInterface.get_script_editor].
 	</description>
 	<tutorials>
 	</tutorials>
@@ -25,16 +25,10 @@
 			<description>
 			</description>
 		</method>
-		<method name="get_base_editor" qualifiers="const">
-			<return type="Control" />
-			<description>
-				Returns the underlying [Control] used for editing scripts. For text scripts, this is a [TextEdit].
-			</description>
-		</method>
 		<method name="get_current_script">
 			<return type="Script" />
 			<description>
-				Returns a [Script] that is currently active in editor.
+				Возвращает [Script], который в данный момент активен в редакторе.
 			</description>
 		</method>
 		<method name="get_drag_data_fw">
@@ -47,14 +41,14 @@
 		<method name="get_open_scripts" qualifiers="const">
 			<return type="Array" />
 			<description>
-				Returns an array with all [Script] objects which are currently open in editor.
+				Возвращает массив со всеми объектами [Script], которые в данный момент открыты в редакторе.
 			</description>
 		</method>
 		<method name="goto_line">
 			<return type="void" />
 			<argument index="0" name="line_number" type="int" />
 			<description>
-				Goes to the specified line in the current script.
+				Переходит к указанной строке в текущем сценарии.
 			</description>
 		</method>
 		<method name="open_script_create_dialog">
@@ -62,13 +56,13 @@
 			<argument index="0" name="base_name" type="String" />
 			<argument index="1" name="base_path" type="String" />
 			<description>
-				Opens the script create dialog. The script will extend [code]base_name[/code]. The file extension can be omitted from [code]base_path[/code]. It will be added based on the selected scripting language.
+				Открывает диалог создания скрипта. Скрипт будет расширять [code]base_name[/code]. Расширение файла можно не указывать в [code]base_path[/code]. Оно будет добавлено в зависимости от выбранного языка сценариев.
 			</description>
 		</method>
 		<method name="reload_scripts">
 			<return type="void" />
 			<description>
-				Reload all currently opened scripts from disk in case the file contents are newer.
+				Перезагрузите все открытые в данный момент скрипты с диска, если содержимое файла изменилось.
 			</description>
 		</method>
 	</methods>
@@ -76,13 +70,13 @@
 		<signal name="editor_script_changed">
 			<argument index="0" name="script" type="Script" />
 			<description>
-				Emitted when user changed active script. Argument is a freshly activated [Script].
+				Выдается при смене пользователем активного скрипта. Аргумент - только что активированный [Script].
 			</description>
 		</signal>
 		<signal name="script_close">
 			<argument index="0" name="script" type="Script" />
 			<description>
-				Emitted when editor is about to close the active script. Argument is a [Script] that is going to be closed.
+				Выдается, когда редактор собирается закрыть активный скрипт. Аргумент - [Скрипт], который будет закрыт.
 			</description>
 		</signal>
 	</signals>

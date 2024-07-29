@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="UndoRedo" inherits="Object" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="UndoRedo" inherits="Object" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Helper to manage undo/redo operations in the editor or custom tools.
+		Помощник для управления операциями отмены/повтора в редакторе или пользовательских инструментах.
 	</brief_description>
 	<description>
-		Helper to manage undo/redo operations in the editor or custom tools. It works by registering methods and property changes inside "actions".
-		Common behavior is to create an action, then add do/undo calls to functions or property changes, then committing the action.
-		Here's an example on how to add an action to the Godot editor's own [UndoRedo], from a plugin:
+		Помощник для управления операциями отмены/повтора в редакторе или пользовательских инструментах. Он работает путем регистрации методов и изменений свойств внутри "действий".
+		Обычное поведение - создать действие, затем добавить вызовы do/undo к функциям или изменениям свойств, а затем зафиксировать действие.
+		Вот пример того, как добавить действие в собственный [UndoRedo] редактора Godot из плагина:
 		[codeblock]
-		var undo_redo = get_undo_redo() # Method of EditorPlugin.
+		var undo_redo = get_undo_redo() # Метод EditorPlugin.
 
 		func do_something():
-		    pass # Put your code here.
+		    pass # Вставьте сюда свой код.
 
 		func undo_something():
-		    pass # Put here the code that reverts what's done by "do_something()".
+		    pass # Поместите сюда код, который отменяет действие, выполненное командой "do_something()".
 
 		func _on_MyButton_pressed():
 		    var node = get_node("MyNode2D")
@@ -25,8 +25,8 @@
 		    undo_redo.add_undo_property(node, "position", node.position)
 		    undo_redo.commit_action()
 		[/codeblock]
-		[method create_action], [method add_do_method], [method add_undo_method], [method add_do_property], [method add_undo_property], and [method commit_action] should be called one after the other, like in the example. Not doing so could lead to crashes.
-		If you don't need to register a method, you can leave [method add_do_method] and [method add_undo_method] out; the same goes for properties. You can also register more than one method/property.
+		[method create_action], [method add_do_method], [method add_undo_method], [method add_do_property], [method add_undo_property] и [method commit_action] должны вызываться друг за другом, как в примере. Иначе это может привести к сбоям.
+		Если вам не нужно регистрировать метод, вы можете не вызывать [method add_do_method] и [method add_undo_method]; то же самое относится и к свойствам. Вы также можете зарегистрировать более одного метода/свойства.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -36,7 +36,7 @@
 			<argument index="0" name="object" type="Object" />
 			<argument index="1" name="method" type="String" />
 			<description>
-				Register a method that will be called when the action is committed.
+				Зарегистрируйте метод, который будет вызываться при выполнении действия.
 			</description>
 		</method>
 		<method name="add_do_property">
@@ -45,14 +45,14 @@
 			<argument index="1" name="property" type="String" />
 			<argument index="2" name="value" type="Variant" />
 			<description>
-				Register a property value change for "do".
+				Зарегистрируйте изменение значения свойства для "do".
 			</description>
 		</method>
 		<method name="add_do_reference">
 			<return type="void" />
 			<argument index="0" name="object" type="Object" />
 			<description>
-				Register a reference for "do" that will be erased if the "do" history is lost. This is useful mostly for new nodes created for the "do" call. Do not use for resources.
+				Зарегистрируйте ссылку для "do", которая будет стерта, если история "do" будет потеряна. Это полезно в основном для новых узлов, созданных для вызова "do". Не используйте для ресурсов.
 			</description>
 		</method>
 		<method name="add_undo_method" qualifiers="vararg">
@@ -60,7 +60,7 @@
 			<argument index="0" name="object" type="Object" />
 			<argument index="1" name="method" type="String" />
 			<description>
-				Register a method that will be called when the action is undone.
+				Зарегистрируйте метод, который будет вызываться, когда действие будет отменено.
 			</description>
 		</method>
 		<method name="add_undo_property">
@@ -69,28 +69,28 @@
 			<argument index="1" name="property" type="String" />
 			<argument index="2" name="value" type="Variant" />
 			<description>
-				Register a property value change for "undo".
+				Зарегистрируйте изменение значения свойства для "отмены".
 			</description>
 		</method>
 		<method name="add_undo_reference">
 			<return type="void" />
 			<argument index="0" name="object" type="Object" />
 			<description>
-				Register a reference for "undo" that will be erased if the "undo" history is lost. This is useful mostly for nodes removed with the "do" call (not the "undo" call!).
+				Зарегистрируйте ссылку на "undo", которая будет стерта, если история "undo" будет потеряна. Это полезно в основном для узлов, удаленных вызовом "do" (не вызовом "undo"!).
 			</description>
 		</method>
 		<method name="clear_history">
 			<return type="void" />
 			<argument index="0" name="increase_version" type="bool" default="true" />
 			<description>
-				Clear the undo/redo history and associated references.
-				Passing [code]false[/code] to [code]increase_version[/code] will prevent the version number to be increased from this.
+				Очищает историю отмены/повтора и связанные с ней ссылки.
+				Передача [code]false[/code] в [code]increase_version[/code] предотвратит увеличение номера версии после этого.
 			</description>
 		</method>
 		<method name="commit_action">
 			<return type="void" />
 			<description>
-				Commit the action. All "do" methods/properties are called/set when this function is called.
+				Зафиксировать действие. Все методы/свойства "do" вызываются/устанавливаются при вызове этой функции.
 			</description>
 		</method>
 		<method name="create_action">
@@ -98,70 +98,70 @@
 			<argument index="0" name="name" type="String" />
 			<argument index="1" name="merge_mode" type="int" enum="UndoRedo.MergeMode" default="0" />
 			<description>
-				Create a new action. After this is called, do all your calls to [method add_do_method], [method add_undo_method], [method add_do_property], and [method add_undo_property], then commit the action with [method commit_action].
-				The way actions are merged is dictated by the [code]merge_mode[/code] argument. See [enum MergeMode] for details.
+				Создайте новое действие. После его вызова выполните все вызовы [method add_do_method], [method add_undo_method], [method add_do_property] и [method add_undo_property], а затем зафиксируйте действие с помощью [method commit_action].
+				Способ объединения действий диктуется аргументом [code]merge_mode[/code]. Подробности см. в [enum MergeMode].
 			</description>
 		</method>
 		<method name="get_current_action_name" qualifiers="const">
 			<return type="String" />
 			<description>
-				Gets the name of the current action.
+				Получает имя текущего действия.
 			</description>
 		</method>
 		<method name="get_version" qualifiers="const">
 			<return type="int" />
 			<description>
-				Gets the version. Every time a new action is committed, the [UndoRedo]'s version number is increased automatically.
-				This is useful mostly to check if something changed from a saved version.
+				Получает версию. Каждый раз, когда фиксируется новое действие, номер версии [UndoRedo] автоматически увеличивается.
+				Это полезно в основном для проверки того, изменилось ли что-то по сравнению с сохраненной версией.
 			</description>
 		</method>
 		<method name="has_redo" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if a "redo" action is available.
+				Возвращает [code]true[/code], если доступно действие "повторить".
 			</description>
 		</method>
 		<method name="has_undo" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if an "undo" action is available.
+				Возвращает [code]true[/code], если доступно действие "отмена".
 			</description>
 		</method>
 		<method name="is_commiting_action" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the [UndoRedo] is currently committing the action, i.e. running its "do" method or property change (see [method commit_action]).
+				Возвращает [code]true[/code], если [UndoRedo] в данный момент совершает действие, т.е. выполняет свой метод "do" или изменяет свойство (см. [method commit_action]).
 			</description>
 		</method>
 		<method name="redo">
 			<return type="bool" />
 			<description>
-				Redo the last action.
+				Повторите последнее действие.
 			</description>
 		</method>
 		<method name="undo">
 			<return type="bool" />
 			<description>
-				Undo the last action.
+				Отменить последнее действие.
 			</description>
 		</method>
 	</methods>
 	<signals>
 		<signal name="version_changed">
 			<description>
-				Called when [method undo] or [method redo] was called.
+				Вызывается, когда был вызван [метод undo] или [метод redo].
 			</description>
 		</signal>
 	</signals>
 	<constants>
 		<constant name="MERGE_DISABLE" value="0" enum="MergeMode">
-			Makes "do"/"undo" operations stay in separate actions.
+			Заставляет операции "сделать"/"отменить" оставаться в отдельных действиях.
 		</constant>
 		<constant name="MERGE_ENDS" value="1" enum="MergeMode">
-			Makes so that the action's "do" operation is from the first action created and the "undo" operation is from the last subsequent action with the same name.
+			Делается так, что операция "сделать" действия происходит от первого созданного действия, а операция "отменить" - от последнего последующего действия с тем же именем.
 		</constant>
 		<constant name="MERGE_ALL" value="2" enum="MergeMode">
-			Makes subsequent actions with the same name be merged into one.
+			Заставляет объединять последующие действия с одинаковым именем в одно.
 		</constant>
 	</constants>
 </class>

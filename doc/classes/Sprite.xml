@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Sprite" inherits="Node2D" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Sprite" inherits="Node2D" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		General-purpose sprite node.
+		Узел/Нода спрайта общего назначения.
 	</brief_description>
 	<description>
-		A node that displays a 2D texture. The texture displayed can be a region from a larger atlas texture, or a frame from a sprite sheet animation.
+		Узел, отображающий 2D текстуру. Отображаемая текстура может быть областью из большого атласа текстур или кадром из анимации спрайтового листа.
 	</description>
 	<tutorials>
 		<link title="Instancing Demo">https://godotengine.org/asset-library/asset/148</link>
@@ -13,7 +13,7 @@
 		<method name="get_rect" qualifiers="const">
 			<return type="Rect2" />
 			<description>
-				Returns a [Rect2] representing the Sprite's boundary in local coordinates. Can be used to detect if the Sprite was clicked. Example:
+				Возвращает [Rect2], представляющий границу спрайта в локальных координатах. Может использоваться для определения того, был ли кликнут спрайт. Пример:
 				[codeblock]
 				func _input(event):
 				    if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
@@ -26,62 +26,62 @@
 			<return type="bool" />
 			<argument index="0" name="pos" type="Vector2" />
 			<description>
-				Returns [code]true[/code], if the pixel at the given position is opaque and [code]false[/code] in other case.
-				[b]Note:[/b] It also returns [code]false[/code], if the sprite's texture is [code]null[/code] or if the given position is invalid.
+				Возвращает [code]true[/code], если пиксель в заданной позиции непрозрачен, и [code]false[/code] в других случаях.
+				[b]Примечание:[/b] Также возвращается [code]false[/code], если текстура спрайта [code]null[/code] или если заданная позиция недопустима.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="centered" type="bool" setter="set_centered" getter="is_centered" default="true">
-			If [code]true[/code], texture is centered.
+			Если [code]true[/code], текстура центрируется.
 		</member>
 		<member name="flip_h" type="bool" setter="set_flip_h" getter="is_flipped_h" default="false">
-			If [code]true[/code], texture is flipped horizontally.
+			Если [code]true[/code], то текстура переворачивается по горизонтали.
 		</member>
 		<member name="flip_v" type="bool" setter="set_flip_v" getter="is_flipped_v" default="false">
-			If [code]true[/code], texture is flipped vertically.
+			Если [code]true[/code], то текстура переворачивается по вертикали.
 		</member>
 		<member name="frame" type="int" setter="set_frame" getter="get_frame" default="0">
-			Current frame to display from sprite sheet. [member hframes] or [member vframes] must be greater than 1.
+			Текущий кадр для отображения из спрайтового листа. [member hframes] или [member vframes] должны быть больше 1.
 		</member>
 		<member name="frame_coords" type="Vector2" setter="set_frame_coords" getter="get_frame_coords" default="Vector2( 0, 0 )">
-			Coordinates of the frame to display from sprite sheet. This is as an alias for the [member frame] property. [member hframes] or [member vframes] must be greater than 1.
+			Координаты рамки для отображения из спрайтового листа. Это псевдоним для свойства [member frame]. [member hframes] или [member vframes] должно быть больше 1.
 		</member>
 		<member name="hframes" type="int" setter="set_hframes" getter="get_hframes" default="1">
-			The number of columns in the sprite sheet.
+			Количество столбцов в листе спрайта.
 		</member>
 		<member name="normal_map" type="Texture" setter="set_normal_map" getter="get_normal_map">
-			The normal map gives depth to the Sprite.
-			[b]Note:[/b] Godot expects the normal map to use X+, Y-, and Z+ coordinates. See [url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates]this page[/url] for a comparison of normal map coordinates expected by popular engines.
+			Карта нормалей придает спрайту глубину.
+			[b]Примечание:[/b] Godot ожидает, что карта нормалей будет использовать координаты X+, Y- и Z+. Сравнение координат карты нормалей, ожидаемых популярными движками, приведено на [url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates]этой странице[/url].
 		</member>
 		<member name="offset" type="Vector2" setter="set_offset" getter="get_offset" default="Vector2( 0, 0 )">
-			The texture's drawing offset.
+			Смещение отрисовки текстуры.
 		</member>
 		<member name="region_enabled" type="bool" setter="set_region" getter="is_region" default="false">
-			If [code]true[/code], texture is cut from a larger atlas texture. See [member region_rect].
+			Если [code]true[/code], то текстура вырезается из более крупной текстуры атласа. См. раздел [member region_rect].
 		</member>
 		<member name="region_filter_clip" type="bool" setter="set_region_filter_clip" getter="is_region_filter_clip_enabled" default="false">
-			If [code]true[/code], the outermost pixels get blurred out.
+			Если [code]true[/code], крайние пиксели будут размыты.
 		</member>
 		<member name="region_rect" type="Rect2" setter="set_region_rect" getter="get_region_rect" default="Rect2( 0, 0, 0, 0 )">
-			The region of the atlas texture to display. [member region_enabled] must be [code]true[/code].
+			Область текстуры атласа для отображения. [member region_enabled] должно быть [code]true[/code].
 		</member>
 		<member name="texture" type="Texture" setter="set_texture" getter="get_texture">
-			[Texture] object to draw.
+			Объект [Texture] для рисования.
 		</member>
 		<member name="vframes" type="int" setter="set_vframes" getter="get_vframes" default="1">
-			The number of rows in the sprite sheet.
+			Количество строк в листе спрайта.
 		</member>
 	</members>
 	<signals>
 		<signal name="frame_changed">
 			<description>
-				Emitted when the [member frame] changes.
+				Выдается при изменении [member frame].
 			</description>
 		</signal>
 		<signal name="texture_changed">
 			<description>
-				Emitted when the [member texture] changes.
+				Выдается при изменении [member texture].
 			</description>
 		</signal>
 	</signals>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="VisualShaderNodeIs" inherits="VisualShaderNode" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="VisualShaderNodeIs" inherits="VisualShaderNode" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		A boolean comparison operator to be used within the visual shader graph.
+		Булевский оператор сравнения, который будет использоваться в графе визуального шейдера.
 	</brief_description>
 	<description>
-		Returns the boolean result of the comparison between [code]INF[/code] or [code]NaN[/code] and a scalar parameter.
+		Возвращает логический результат сравнения между [code]INF[/code] или [code]NaN[/code] и скалярным параметром.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -12,15 +12,15 @@
 	</methods>
 	<members>
 		<member name="function" type="int" setter="set_function" getter="get_function" enum="VisualShaderNodeIs.Function" default="0">
-			The comparison function. See [enum Function] for options.
+			Функция сравнения. Варианты см. в [enum Function].
 		</member>
 	</members>
 	<constants>
 		<constant name="FUNC_IS_INF" value="0" enum="Function">
-			Comparison with [code]INF[/code] (Infinity).
+			Сравнение с [code]INF[/code] (Бесконечность).
 		</constant>
 		<constant name="FUNC_IS_NAN" value="1" enum="Function">
-			Comparison with [code]NaN[/code] (Not a Number; denotes invalid numeric results, e.g. division by zero).
+			Сравнение с [code]NaN[/code] (Not a Number; обозначает недопустимые числовые результаты, например, деление на ноль).
 		</constant>
 	</constants>
 </class>

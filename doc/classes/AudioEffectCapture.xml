@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="AudioEffectCapture" inherits="AudioEffect" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="AudioEffectCapture" inherits="AudioEffect" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Captures audio from an audio bus in real-time.
+		Захват звука с аудиошины в режиме реального времени.
 	</brief_description>
 	<description>
-		AudioEffectCapture is an AudioEffect which copies all audio frames from the attached audio effect bus into its internal ring buffer.
-		Application code should consume these audio frames from this ring buffer using [method get_buffer] and process it as needed, for example to capture data from an [AudioStreamMicrophone], implement application-defined effects, or to transmit audio over the network. When capturing audio data from a microphone, the format of the samples will be stereo 32-bit floating point PCM.
-		[b]Note:[/b] [member ProjectSettings.audio/enable_audio_input] must be [code]true[/code] for audio input to work. See also that setting's description for caveats related to permissions and operating system privacy settings.
+		AudioEffectCapture - это аудиоэффект, который копирует все аудиокадры с подключенной шины аудиоэффекта в свой внутренний кольцевой буфер.
+		Прикладной код должен получать эти аудиокадры из кольцевого буфера с помощью [method get_buffer] и обрабатывать их по мере необходимости, например, для захвата данных с [AudioStreamMicrophone], реализации эффектов, определяемых приложением, или для передачи звука по сети. При захвате аудиоданных с микрофона формат сэмплов будет стерео 32-битным PCM с плавающей точкой.
+		[b]Примечание:[/b] [member ProjectSettings.audio/enable_audio_input] для работы аудиоввода должен иметь значение [code]true[/code]. См. также описание этого параметра для получения информации о разрешениях и настройках конфиденциальности операционной системы.
 	</description>
 	<tutorials>
 		<link title="Audio buses">$DOCS_URL/tutorials/audio/audio_buses.html</link>
@@ -17,51 +17,51 @@
 			<return type="bool" />
 			<argument index="0" name="frames" type="int" />
 			<description>
-				Returns [code]true[/code] if at least [code]frames[/code] audio frames are available to read in the internal ring buffer.
+				Возвращает [code]true[/code], если во внутреннем кольцевом буфере доступно для чтения не менее [code]frames[/code] аудиокадров.
 			</description>
 		</method>
 		<method name="clear_buffer">
 			<return type="void" />
 			<description>
-				Clears the internal ring buffer.
+				Очищает внутренний кольцевой буфер.
 			</description>
 		</method>
 		<method name="get_buffer">
 			<return type="PoolVector2Array" />
 			<argument index="0" name="frames" type="int" />
 			<description>
-				Gets the next [code]frames[/code] audio samples from the internal ring buffer.
-				Returns a [PoolVector2Array] containing exactly [code]frames[/code] audio samples if available, or an empty [PoolVector2Array] if insufficient data was available.
+				Получает следующие [code]frames[/code] аудиосэмплов из внутреннего кольцевого буфера.
+				Возвращает массив [PoolVector2Array], содержащий ровно [code]frames[/code] аудиосэмплов, если они доступны, или пустой [PoolVector2Array], если данных недостаточно.
 			</description>
 		</method>
 		<method name="get_buffer_length_frames" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the total size of the internal ring buffer in frames.
+				Возвращает общий размер внутреннего кольцевого буфера в кадрах.
 			</description>
 		</method>
 		<method name="get_discarded_frames" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the number of audio frames discarded from the audio bus due to full buffer.
+				Возвращает количество аудиокадров, отброшенных с аудиошины по причине переполнения буфера.
 			</description>
 		</method>
 		<method name="get_frames_available" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the number of frames available to read using [method get_buffer].
+				Возвращает количество кадров, доступных для чтения с помощью [method get_buffer].
 			</description>
 		</method>
 		<method name="get_pushed_frames" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the number of audio frames inserted from the audio bus.
+				Возвращает количество аудиокадров, вставленных с аудиошины.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="buffer_length" type="float" setter="set_buffer_length" getter="get_buffer_length" default="0.1">
-			Length of the internal ring buffer, in seconds. Setting the buffer length will have no effect if already initialized.
+			Длина внутреннего кольцевого буфера, в секундах. Установка длины буфера не оказывает никакого влияния, если он уже инициализирован.
 		</member>
 	</members>
 	<constants>

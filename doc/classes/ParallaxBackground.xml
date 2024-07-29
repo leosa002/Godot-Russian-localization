@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="ParallaxBackground" inherits="CanvasLayer" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="ParallaxBackground" inherits="CanvasLayer" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		A node used to create a parallax scrolling background.
+		Узел(Нода), используемый для создания параллаксного прокручивающегося фона.
 	</brief_description>
 	<description>
-		A ParallaxBackground uses one or more [ParallaxLayer] child nodes to create a parallax effect. Each [ParallaxLayer] can move at a different speed using [member ParallaxLayer.motion_offset]. This creates an illusion of depth in a 2D game. If not used with a [Camera2D], you must manually calculate the [member scroll_offset].
+		ParallaxBackground использует один или несколько дочерних узлов [ParallaxLayer] для создания эффекта параллакса. Каждый [ParallaxLayer] может двигаться с разной скоростью с помощью [member ParallaxLayer.motion_offset]. Это создает иллюзию глубины в 2D-игре. Если не использовать [Camera2D], то необходимо вручную рассчитать [member scroll_offset].
 	</description>
 	<tutorials>
 	</tutorials>
@@ -13,22 +13,22 @@
 	<members>
 		<member name="layer" type="int" setter="set_layer" getter="get_layer" overrides="CanvasLayer" default="-100" />
 		<member name="scroll_base_offset" type="Vector2" setter="set_scroll_base_offset" getter="get_scroll_base_offset" default="Vector2( 0, 0 )">
-			The base position offset for all [ParallaxLayer] children.
+			Базовое смещение позиции для всех дочерних [ParallaxLayer].
 		</member>
 		<member name="scroll_base_scale" type="Vector2" setter="set_scroll_base_scale" getter="get_scroll_base_scale" default="Vector2( 1, 1 )">
-			The base motion scale for all [ParallaxLayer] children.
+			Базовая шкала движения для всех дочерних [ParallaxLayer].
 		</member>
 		<member name="scroll_ignore_camera_zoom" type="bool" setter="set_ignore_camera_zoom" getter="is_ignore_camera_zoom" default="false">
-			If [code]true[/code], elements in [ParallaxLayer] child aren't affected by the zoom level of the camera.
+			Если [code]true[/code], элементы в дочернем [ParallaxLayer] не зависят от уровня зума(zoom) камеры.
 		</member>
 		<member name="scroll_limit_begin" type="Vector2" setter="set_limit_begin" getter="get_limit_begin" default="Vector2( 0, 0 )">
-			Top-left limits for scrolling to begin. If the camera is outside of this limit, the background will stop scrolling. Must be lower than [member scroll_limit_end] to work.
+			Верхняя левая граница для начала прокрутки. Если камера находится за пределами этого предела, прокрутка фона прекратится. Для работы должно быть ниже, чем [member scroll_limit_end].
 		</member>
 		<member name="scroll_limit_end" type="Vector2" setter="set_limit_end" getter="get_limit_end" default="Vector2( 0, 0 )">
-			Bottom-right limits for scrolling to end. If the camera is outside of this limit, the background will stop scrolling. Must be higher than [member scroll_limit_begin] to work.
+			Нижняя правая граница для окончания прокрутки. Если камера выходит за эти пределы, фон перестанет прокручиваться. Для работы должно быть больше, чем [member scroll_limit_begin].
 		</member>
 		<member name="scroll_offset" type="Vector2" setter="set_scroll_offset" getter="get_scroll_offset" default="Vector2( 0, 0 )">
-			The ParallaxBackground's scroll value. Calculated automatically when using a [Camera2D], but can be used to manually manage scrolling when no camera is present.
+			Значение прокрутки ParallaxBackground. Вычисляется автоматически при использовании [Camera2D], но может быть использовано для ручного управления прокруткой при отсутствии камеры.
 		</member>
 	</members>
 	<constants>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="VisibilityNotifier" inherits="CullInstance" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="VisibilityNotifier" inherits="CullInstance" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Detects approximately when the node is visible on screen.
+		Определяет, когда узел примерно виден на экране.
 	</brief_description>
 	<description>
-		The VisibilityNotifier detects when it is visible on the screen. It also notifies when its bounding rectangle enters or exits the screen or a [Camera]'s view.
-		If you want nodes to be disabled automatically when they exit the screen, use [VisibilityEnabler] instead.
-		[b]Note:[/b] VisibilityNotifier uses an approximate heuristic for performance reasons. It doesn't take walls and other occlusion into account (unless you are using [Portal]s). The heuristic is an implementation detail and may change in future versions. If you need precise visibility checking, use another method such as adding an [Area] node as a child of a [Camera] node and/or [method Vector3.dot].
+		VisibilityNotifier определяет, когда он виден на экране. Он также уведомляет, когда его ограничивающий прямоугольник входит или выходит из экрана или из поля зрения [Camera].
+		Если вы хотите, чтобы узлы автоматически отключались при выходе за пределы экрана, используйте вместо этого [VisibilityEnabler].
+		[b]Примечание:[/b] VisibilityNotifier использует приблизительную эвристику по соображениям производительности. Он не учитывает стены и другие окклюзии (если только вы не используете [Portal]ы). Эвристика является деталью реализации и может измениться в будущих версиях. Если вам нужна точная проверка видимости, используйте другой метод, например добавьте узел [Area] в качестве дочернего узла узла [Camera] и/или [метод Vector3.dot].
 	</description>
 	<tutorials>
 	</tutorials>
@@ -14,41 +14,41 @@
 		<method name="is_on_screen" qualifiers="const">
 			<return type="bool" />
 			<description>
-				If [code]true[/code], the bounding box is on the screen.
-				[b]Note:[/b] It takes one frame for the node's visibility to be assessed once added to the scene tree, so this method will return [code]false[/code] right after it is instantiated, even if it will be on screen in the draw pass.
+				Если [code]true[/code], то ограничивающая рамка находится на экране.
+				[b]Примечание:[/b] Для оценки видимости узла после его добавления в дерево сцены требуется один кадр, поэтому этот метод вернет [code]false[/code] сразу после его инстанцирования, даже если он окажется на экране во время прохода рисования.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="aabb" type="AABB" setter="set_aabb" getter="get_aabb" default="AABB( -1, -1, -1, 2, 2, 2 )">
-			The VisibilityNotifier's bounding box.
+			Граничное поле VisibilityNotifier.
 		</member>
 		<member name="max_distance" type="float" setter="set_max_distance" getter="get_max_distance" default="0.0">
-			In addition to checking whether a node is on screen or within a [Camera]'s view, VisibilityNotifier can also optionally check whether a node is within a specified maximum distance when using a [Camera] with perspective projection. This is useful for throttling the performance requirements of nodes that are far away.
-			[b]Note:[/b] This feature will be disabled if set to 0.0.
+			Помимо проверки того, находится ли узел на экране или в поле зрения [Camera], VisibilityNotifier может также опционально проверять, находится ли узел в пределах указанного максимального расстояния при использовании [Camera] с перспективной проекцией. Это полезно для снижения требований к производительности узлов, находящихся на большом расстоянии.
+			[b]Примечание:[/b] Эта функция будет отключена, если установить значение 0.0.
 		</member>
 	</members>
 	<signals>
 		<signal name="camera_entered">
 			<argument index="0" name="camera" type="Camera" />
 			<description>
-				Emitted when the VisibilityNotifier enters a [Camera]'s view.
+				Выдается, когда VisibilityNotifier попадает в поле зрения [Camera].
 			</description>
 		</signal>
 		<signal name="camera_exited">
 			<argument index="0" name="camera" type="Camera" />
 			<description>
-				Emitted when the VisibilityNotifier exits a [Camera]'s view.
+				Выдается, когда VisibilityNotifier выходит из вида [Camera].
 			</description>
 		</signal>
 		<signal name="screen_entered">
 			<description>
-				Emitted when the VisibilityNotifier enters the screen.
+				Выдается, когда VisibilityNotifier входит в экран.
 			</description>
 		</signal>
 		<signal name="screen_exited">
 			<description>
-				Emitted when the VisibilityNotifier exits the screen.
+				Выдается, когда VisibilityNotifier покидает экран.
 			</description>
 		</signal>
 	</signals>

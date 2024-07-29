@@ -1,21 +1,21 @@
 <?xml version="1.0"?>
 <mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
   <mime-type type="application/x-godot-project">
-    <comment>Godot Engine project</comment>
+    <comment>Проект Godot Engine</comment>
     <sub-class-of type="text/plain"/>
     <icon name="x-godot-project"/>
     <glob pattern="project.godot"/>
   </mime-type>
 
   <mime-type type="application/x-godot-resource">
-    <comment>Godot Engine resource</comment>
+    <comment>Ресурс Godot Engine</comment>
     <icon name="x-godot-resource"/>
     <glob pattern="*.res"/>
     <glob pattern="*.tres"/>
   </mime-type>
 
   <mime-type type="application/x-godot-scene">
-    <comment>Godot Engine scene</comment>
+    <comment>Godot Engine сцена</comment>
     <icon name="x-godot-scene"/>
     <glob pattern="*.scn"/>
     <glob pattern="*.tscn"/>
@@ -23,14 +23,14 @@
   </mime-type>
 
   <mime-type type="application/x-godot-shader">
-    <comment>Godot Engine shader</comment>
+    <comment>Godot Engine шейдер</comment>
     <sub-class-of type="text/plain"/>
     <icon name="x-godot-shader"/>
     <glob pattern="*.gdshader"/>
   </mime-type>
 
   <mime-type type="application/x-gdscript">
-    <comment>GDScript script</comment>
+    <comment>GDScript скрипт</comment>
     <sub-class-of type="text/plain"/>
     <icon name="x-gdscript"/>
     <glob pattern="*.gd"/>

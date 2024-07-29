@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="BackBufferCopy" inherits="Node2D" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="BackBufferCopy" inherits="Node2D" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Copies a region of the screen (or the whole screen) to a buffer so it can be accessed in your shader scripts through the [code]texture(SCREEN_TEXTURE, ...)[/code] function.
+		Копирует область экрана (или весь экран) в буфер, чтобы к ней можно было обращаться в шейдерных скриптах через функцию [code]texture(SCREEN_TEXTURE, ...)[/code]
 	</brief_description>
 	<description>
-		Node for back-buffering the currently-displayed screen. The region defined in the [BackBufferCopy] node is buffered with the content of the screen it covers, or the entire screen according to the copy mode set. Use the [code]texture(SCREEN_TEXTURE, ...)[/code] function in your shader scripts to access the buffer.
-		[b]Note:[/b] Since this node inherits from [Node2D] (and not [Control]), anchors and margins won't apply to child [Control]-derived nodes. This can be problematic when resizing the window. To avoid this, add [Control]-derived nodes as [i]siblings[/i] to the [BackBufferCopy] node instead of adding them as children.
+		Узел для обратной буферизации отображаемого в данный момент экрана. В область, заданную в узле [BackBufferCopy], буферизуется содержимое экрана, который он покрывает, или весь экран в зависимости от установленного режима копирования. Для доступа к буферу используйте функцию [code]texture(SCREEN_TEXTURE, ...)[/code] в своих шейдерных скриптах.
+		[b]Замечание:[/b] Поскольку этот узел наследуется от [Node2D] (а не от [Control]), якоря и поля не будут применяться к дочерним узлам, производным от [Control]. Это может вызвать проблемы при изменении размеров окна. Чтобы избежать этого, добавьте узлы, производные от [Control], в качестве [i]братьев и сестер[/i] к узлу [BackBufferCopy], а не добавляйте их в качестве дочерних узлов.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -13,21 +13,21 @@
 	</methods>
 	<members>
 		<member name="copy_mode" type="int" setter="set_copy_mode" getter="get_copy_mode" enum="BackBufferCopy.CopyMode" default="1">
-			Buffer mode. See [enum CopyMode] constants.
+			Режим работы буфера. См. константы [enum CopyMode].
 		</member>
 		<member name="rect" type="Rect2" setter="set_rect" getter="get_rect" default="Rect2( -100, -100, 200, 200 )">
-			The area covered by the [BackBufferCopy]. Only used if [member copy_mode] is [constant COPY_MODE_RECT].
+			Область, занимаемая копией [BackBufferCopy]. Используется только в том случае, если [member copy_mode] - [constant COPY_MODE_RECT].
 		</member>
 	</members>
 	<constants>
 		<constant name="COPY_MODE_DISABLED" value="0" enum="CopyMode">
-			Disables the buffering mode. This means the [BackBufferCopy] node will directly use the portion of screen it covers.
+			Отключает режим буферизации. Это означает, что узел [BackBufferCopy] будет напрямую использовать ту часть экрана, которую он покрывает.
 		</constant>
 		<constant name="COPY_MODE_RECT" value="1" enum="CopyMode">
-			[BackBufferCopy] buffers a rectangular region.
+			[BackBufferCopy] буферизирует прямоугольную область.
 		</constant>
 		<constant name="COPY_MODE_VIEWPORT" value="2" enum="CopyMode">
-			[BackBufferCopy] buffers the entire screen.
+			[BackBufferCopy] буферизирует весь экран.
 		</constant>
 	</constants>
 </class>

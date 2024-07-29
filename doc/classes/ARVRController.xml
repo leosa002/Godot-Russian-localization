@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="ARVRController" inherits="Spatial" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="ARVRController" inherits="Spatial" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		A spatial node representing a spatially-tracked controller.
+		Пространственный узел, представляющий пространственно отслеживаемый контроллер.
 	</brief_description>
 	<description>
-		This is a helper spatial node that is linked to the tracking of controllers. It also offers several handy passthroughs to the state of buttons and such on the controllers.
-		Controllers are linked by their ID. You can create controller nodes before the controllers are available. If your game always uses two controllers (one for each hand), you can predefine the controllers with ID 1 and 2; they will become active as soon as the controllers are identified. If you expect additional controllers to be used, you should react to the signals and add ARVRController nodes to your scene.
-		The position of the controller node is automatically updated by the [ARVRServer]. This makes this node ideal to add child nodes to visualize the controller.
+		Это вспомогательный пространственный узел, связанный с отслеживанием контроллеров. Он также предлагает несколько удобных переходов к состоянию кнопок и т.п. на контроллерах.
+		Контроллеры связаны между собой по их ID. Узлы контроллеров можно создавать до того, как контроллеры станут доступны. Если в игре всегда используются два контроллера (по одному на каждую руку), то можно заранее определить контроллеры с ID 1 и 2; они станут активными, как только контроллеры будут определены. Если предполагается использование дополнительных контроллеров, то следует отреагировать на сигналы и добавить в сцену узлы ARVRController.
+		Положение узла контроллера автоматически обновляется сервером [ARVRServer]. Это делает данный узел идеальным для добавления дочерних узлов для визуализации контроллера.
 	</description>
 	<tutorials>
 		<link>$DOCS_URL/tutorials/vr/index.html</link>
@@ -15,77 +15,77 @@
 		<method name="get_controller_name" qualifiers="const">
 			<return type="String" />
 			<description>
-				If active, returns the name of the associated controller if provided by the AR/VR SDK used.
+				Если он активен, возвращается имя связанного с ним контроллера, если оно предусмотрено используемым AR/VR SDK.
 			</description>
 		</method>
 		<method name="get_hand" qualifiers="const">
 			<return type="int" enum="ARVRPositionalTracker.TrackerHand" />
 			<description>
-				Returns the hand holding this controller, if known. See [enum ARVRPositionalTracker.TrackerHand].
+				Возвращает руку, держащую данный контроллер, если она известна. См. раздел [enum ARVRPositionalTracker.TrackerHand].
 			</description>
 		</method>
 		<method name="get_is_active" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the bound controller is active. ARVR systems attempt to track active controllers.
+				Возвращает [code]true[/code], если привязанный контроллер активен. Системы ARVR пытаются отслеживать активные контроллеры.
 			</description>
 		</method>
 		<method name="get_joystick_axis" qualifiers="const">
 			<return type="float" />
 			<argument index="0" name="axis" type="int" />
 			<description>
-				Returns the value of the given axis for things like triggers, touchpads, etc. that are embedded into the controller.
+				Возвращает значение заданной оси для таких встроенных в контроллер устройств, как триггеры, тачпады и т.д.
 			</description>
 		</method>
 		<method name="get_joystick_id" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the ID of the joystick object bound to this. Every controller tracked by the [ARVRServer] that has buttons and axis will also be registered as a joystick within Godot. This means that all the normal joystick tracking and input mapping will work for buttons and axis found on the AR/VR controllers. This ID is purely offered as information so you can link up the controller with its joystick entry.
+				Возвращает идентификатор объекта джойстика, привязанного к данному. Каждый контроллер, отслеживаемый [ARVRServer] и имеющий кнопки и оси, будет также зарегистрирован как джойстик в Godot. Это означает, что все обычные функции отслеживания джойстиков и отображения ввода будут работать для кнопок и осей, имеющихся на контроллерах AR/VR. Этот идентификатор предлагается исключительно в качестве информации для того, чтобы вы могли связать контроллер с его джойстиком.
 			</description>
 		</method>
 		<method name="get_mesh" qualifiers="const">
 			<return type="Mesh" />
 			<description>
-				If provided by the [ARVRInterface], this returns a mesh associated with the controller. This can be used to visualize the controller.
+				Если он предоставлен [ARVRInterface], то возвращается сетка, связанная с контроллером. Это может быть использовано для визуализации контроллера.
 			</description>
 		</method>
 		<method name="is_button_pressed" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="button" type="int" />
 			<description>
-				Returns [code]true[/code] if the button at index [code]button[/code] is pressed. See [enum JoystickList], in particular the [code]JOY_VR_*[/code] constants.
+				Возвращает [code]true[/code], если кнопка с индексом [code]button[/code] нажата. См. раздел [enum JoystickList], в частности, константы [code]JOY_VR_*[/code].
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="controller_id" type="int" setter="set_controller_id" getter="get_controller_id" default="1">
-			The controller's ID.
-			A controller ID of 0 is unbound and will always result in an inactive node. Controller ID 1 is reserved for the first controller that identifies itself as the left-hand controller and ID 2 is reserved for the first controller that identifies itself as the right-hand controller.
-			For any other controller that the [ARVRServer] detects, we continue with controller ID 3.
-			When a controller is turned off, its slot is freed. This ensures controllers will keep the same ID even when controllers with lower IDs are turned off.
+			Идентификатор контроллера.
+			Идентификатор контроллера, равный 0, является несвязанным и всегда приводит к неактивному узлу. ID контроллера 1 резервируется для первого контроллера, который идентифицирует себя как левый контроллер, а ID 2 - для первого контроллера, который идентифицирует себя как правый контроллер.
+			Для любого другого контроллера, обнаруженного сервером [ARVRServer], мы продолжаем использовать идентификатор контроллера 3.
+			При выключении контроллера его слот освобождается. Таким образом, контроллеры будут сохранять один и тот же ID даже при отключении контроллеров с более низкими ID.
 		</member>
 		<member name="rumble" type="float" setter="set_rumble" getter="get_rumble" default="0.0">
-			The degree to which the controller vibrates. Ranges from [code]0.0[/code] to [code]1.0[/code]. If changed, updates [member ARVRPositionalTracker.rumble] accordingly.
-			This is a useful property to animate if you want the controller to vibrate for a limited duration.
+			Степень вибрации контроллера. Варьируется от [code]0.0[/code] до [code]1.0[/code]. При изменении обновляется [member ARVRPositionalTracker.rumble].
+			Это свойство полезно использовать для анимации, если требуется, чтобы контроллер вибрировал в течение ограниченного времени.
 		</member>
 	</members>
 	<signals>
 		<signal name="button_pressed">
 			<argument index="0" name="button" type="int" />
 			<description>
-				Emitted when a button on this controller is pressed.
+				Выдается при нажатии кнопки на данном контроллере.
 			</description>
 		</signal>
 		<signal name="button_release">
 			<argument index="0" name="button" type="int" />
 			<description>
-				Emitted when a button on this controller is released.
+				Выдается при отпускании кнопки на данном контроллереed.
 			</description>
 		</signal>
 		<signal name="mesh_updated">
 			<argument index="0" name="mesh" type="Mesh" />
 			<description>
-				Emitted when the mesh associated with the controller changes or when one becomes available. Generally speaking this will be a static mesh after becoming available.
+				Выдается, когда меняется сетка, связанная с контроллером, или когда она становится доступной. В общем случае это будет статическая сетка после того, как она станет доступной.
 			</description>
 		</signal>
 	</signals>

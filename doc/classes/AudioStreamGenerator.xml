@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="AudioStreamGenerator" inherits="AudioStream" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="AudioStreamGenerator" inherits="AudioStream" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Audio stream that generates sounds procedurally.
+		Аудиопоток, процедурно генерирующий звуки.
 	</brief_description>
 	<description>
-		This audio stream does not play back sounds, but expects a script to generate audio data for it instead. See also [AudioStreamGeneratorPlayback].
-		See also [AudioEffectSpectrumAnalyzer] for performing real-time audio spectrum analysis.
-		[b]Note:[/b] Due to performance constraints, this class is best used from C# or from a compiled language via GDNative. If you still want to use this class from GDScript, consider using a lower [member mix_rate] such as 11,025 Hz or 22,050 Hz.
+		Этот аудиопоток не воспроизводит звуки, а ожидает, что скрипт сгенерирует для него аудиоданные. См. также [AudioStreamGeneratorPlayback].
+		См. также [AudioEffectSpectrumAnalyzer] для проведения спектрального анализа звука в реальном времени.
+		[b]Примечание:[/b] Из-за ограничений производительности этот класс лучше всего использовать из C# или из компилируемого языка через GDNative. Если вы все же хотите использовать этот класс из GDScript, подумайте о том, чтобы использовать более низкое значение [member mix_rate], например 11 025 Hz или 22 050 Hz.
 	</description>
 	<tutorials>
 		<link title="Audio Generator Demo">https://godotengine.org/asset-library/asset/526</link>
@@ -16,12 +16,12 @@
 	</methods>
 	<members>
 		<member name="buffer_length" type="float" setter="set_buffer_length" getter="get_buffer_length" default="0.5">
-			The length of the buffer to generate (in seconds). Lower values result in less latency, but require the script to generate audio data faster, resulting in increased CPU usage and more risk for audio cracking if the CPU can't keep up.
+			Длина генерируемого буфера (в секундах). Меньшие значения приводят к уменьшению задержки, но требуют от скрипта более быстрой генерации аудиоданных, что приводит к увеличению загрузки процессора и риску возникновения трещин в звуке, если процессор не справляется.
 		</member>
 		<member name="mix_rate" type="float" setter="set_mix_rate" getter="get_mix_rate" default="44100.0">
-			The sample rate to use (in Hz). Higher values are more demanding for the CPU to generate, but result in better quality.
-			In games, common sample rates in use are [code]11025[/code], [code]16000[/code], [code]22050[/code], [code]32000[/code], [code]44100[/code], and [code]48000[/code].
-			According to the [url=https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem]Nyquist-Shannon sampling theorem[/url], there is no quality difference to human hearing when going past 40,000 Hz (since most humans can only hear up to ~20,000 Hz, often less). If you are generating lower-pitched sounds such as voices, lower sample rates such as [code]32000[/code] or [code]22050[/code] may be usable with no loss in quality.
+			Частота дискретизации (в Hz). Более высокие значения более требовательны к процессору, но обеспечивают лучшее качество.
+			В играх обычно используются следующие частоты дискретизации: [code]11025[/code], [code]16000[/code], [code]22050[/code], [code]32000[/code], [code]44100[/code] и [code]48000[/code].
+			Согласно теореме [url=https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem]Найквиста-Шеннона о дискретизации[/url], при переходе через 40 000 Hz качественных различий для человеческого слуха не существует (поскольку большинство людей способны слышать только до ~20 000 Hz, а часто и меньше). Если вы генерируете низкочастотные звуки, например, голоса, то более низкие частоты дискретизации, такие как [code]32000[/code] или [code]22050[/code], могут быть использованы без потери качества.
 		</member>
 	</members>
 	<constants>

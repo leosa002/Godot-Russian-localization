@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="InputEvent" inherits="Resource" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="InputEvent" inherits="Resource" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Generic input event.
+		Общее событие ввода.
 	</brief_description>
 	<description>
-		Base class of all sort of input event. See [method Node._input].
+		Базовый класс всех видов событий ввода. Смотрите [метод Node._input].
 	</description>
 	<tutorials>
 		<link title="InputEvent">$DOCS_URL/tutorials/inputs/inputevent.html</link>
@@ -17,14 +17,14 @@
 			<return type="bool" />
 			<argument index="0" name="with_event" type="InputEvent" />
 			<description>
-				Returns [code]true[/code] if the given input event and this input event can be added together (only for events of type [InputEventMouseMotion]).
-				The given input event's position, global position and speed will be copied. The resulting [code]relative[/code] is a sum of both events. Both events' modifiers have to be identical.
+				Возвращает [code]true[/code], если данное входное событие и это входное событие могут быть сложены вместе (только для событий типа [InputEventMouseMotion]).
+				Позиция, глобальная позиция и скорость данного входного события будут скопированы. Результирующий [code]relative[/code] является суммой обоих событий. Модификаторы обоих событий должны быть одинаковыми.
 			</description>
 		</method>
 		<method name="as_text" qualifiers="const">
 			<return type="String" />
 			<description>
-				Returns a [String] representation of the event.
+				Возвращает [String] представление события.
 			</description>
 		</method>
 		<method name="get_action_strength" qualifiers="const">
@@ -32,8 +32,8 @@
 			<argument index="0" name="action" type="String" />
 			<argument index="1" name="exact_match" type="bool" default="false" />
 			<description>
-				Returns a value between 0.0 and 1.0 depending on the given actions' state. Useful for getting the value of events of type [InputEventJoypadMotion].
-				If [code]exact_match[/code] is [code]false[/code], it ignores additional input modifiers for [InputEventKey] and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+				Возвращает значение от 0,0 до 1,0 в зависимости от состояния данного действия. Полезно для получения значения событий типа [InputEventJoypadMotion].
+				Если [code]exact_match[/code] равно [code]false[/code], то игнорируются дополнительные модификаторы ввода для событий [InputEventKey] и [InputEventMouseButton], а также направление для событий [InputEventJoypadMotion].
 			</description>
 		</method>
 		<method name="is_action" qualifiers="const">
@@ -41,8 +41,8 @@
 			<argument index="0" name="action" type="String" />
 			<argument index="1" name="exact_match" type="bool" default="false" />
 			<description>
-				Returns [code]true[/code] if this input event matches a pre-defined action of any type.
-				If [code]exact_match[/code] is [code]false[/code], it ignores additional input modifiers for [InputEventKey] and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+				Возвращает [code]true[/code], если данное событие ввода соответствует предопределенному действию любого типа.
+				Если [code]exact_match[/code] равен [code]false[/code], то игнорируются дополнительные модификаторы ввода для событий [InputEventKey] и [InputEventMouseButton], а также направление для событий [InputEventJoypadMotion].
 			</description>
 		</method>
 		<method name="is_action_pressed" qualifiers="const">
@@ -51,9 +51,9 @@
 			<argument index="1" name="allow_echo" type="bool" default="false" />
 			<argument index="2" name="exact_match" type="bool" default="false" />
 			<description>
-				Returns [code]true[/code] if the given action is being pressed (and is not an echo event for [InputEventKey] events, unless [code]allow_echo[/code] is [code]true[/code]). Not relevant for events of type [InputEventMouseMotion] or [InputEventScreenDrag].
-				If [code]exact_match[/code] is [code]false[/code], it ignores additional input modifiers for [InputEventKey] and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
-				[b]Note:[/b] Due to keyboard ghosting, [method is_action_pressed] may return [code]false[/code] even if one of the action's keys is pressed. See [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the documentation for more information.
+				Возвращает [code]true[/code], если данное действие нажато (и не является эхо-событием для событий [InputEventKey], если [code]allow_echo[/code] не [code]true[/code]). Не относится к событиям типа [InputEventMouseMotion] или [InputEventScreenDrag].
+				Если [code]exact_match[/code] равно [code]false[/code], то игнорируются дополнительные модификаторы ввода для событий [InputEventKey] и [InputEventMouseButton], а также направление для событий [InputEventJoypadMotion].
+				[b]Примечание:[/b] Из-за призрачности клавиатуры [метод is_action_pressed] может возвращать [code]false[/code], даже если одна из клавиш действия нажата. Дополнительную информацию см. в документации [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Примеры ввода[/url].
 			</description>
 		</method>
 		<method name="is_action_released" qualifiers="const">
@@ -61,39 +61,27 @@
 			<argument index="0" name="action" type="String" />
 			<argument index="1" name="exact_match" type="bool" default="false" />
 			<description>
-				Returns [code]true[/code] if the given action is released (i.e. not pressed). Not relevant for events of type [InputEventMouseMotion] or [InputEventScreenDrag].
-				If [code]exact_match[/code] is [code]false[/code], it ignores additional input modifiers for [InputEventKey] and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+				Возвращает [code]true[/code], если данное действие отпущено (т.е. не нажато). Не относится к событиям типа [InputEventMouseMotion] или [InputEventScreenDrag].
+				Если [code]exact_match[/code] равен [code]false[/code], то игнорируются дополнительные модификаторы ввода для событий [InputEventKey] и [InputEventMouseButton], а также направление для событий [InputEventJoypadMotion].
 			</description>
 		</method>
 		<method name="is_action_type" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if this input event's type is one that can be assigned to an input action.
-			</description>
-		</method>
-		<method name="is_canceled" qualifiers="const">
-			<return type="bool" />
-			<description>
-				Returns [code]true[/code] if this input event has been canceled.
+				Возвращает [code]true[/code], если тип этого события ввода является таким, который может быть назначен действию ввода.
 			</description>
 		</method>
 		<method name="is_echo" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if this input event is an echo event (only for events of type [InputEventKey]).
+				Возвращает [code]true[/code], если это событие ввода является событием эха (только для событий типа [InputEventKey]).
 			</description>
 		</method>
 		<method name="is_pressed" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if this input event is pressed. Not relevant for events of type [InputEventMouseMotion] or [InputEventScreenDrag].
-				[b]Note:[/b] Due to keyboard ghosting, [method is_action_pressed] may return [code]false[/code] even if one of the action's keys is pressed. See [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the documentation for more information.
-			</description>
-		</method>
-		<method name="is_released" qualifiers="const">
-			<return type="bool" />
-			<description>
-				Returns [code]true[/code] if this input event is released. Not relevant for events of type [InputEventMouseMotion] or [InputEventScreenDrag].
+				Возвращает [code]true[/code], если это событие ввода нажато. Не относится к событиям типа [InputEventMouseMotion] или [InputEventScreenDrag].
+				[b]Примечание:[/b] Из-за призрачности клавиатуры [метод is_action_pressed] может возвращать [code]false[/code], даже если одна из клавиш действия нажата. Дополнительные сведения см. в документации [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Примеры ввода[/url].
 			</description>
 		</method>
 		<method name="shortcut_match" qualifiers="const">
@@ -101,8 +89,8 @@
 			<argument index="0" name="event" type="InputEvent" />
 			<argument index="1" name="exact_match" type="bool" default="true" />
 			<description>
-				Returns [code]true[/code] if the specified [code]event[/code] matches this event. Only valid for action events i.e key ([InputEventKey]), button ([InputEventMouseButton] or [InputEventJoypadButton]), axis [InputEventJoypadMotion] or action ([InputEventAction]) events.
-				If [code]exact_match[/code] is [code]false[/code], it ignores additional input modifiers for [InputEventKey] and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+				Возвращает [code]true[/code], если указанное [code]событие[/code] совпадает с этим событием. Действует только для событий действия, т. е. для событий клавиши ([InputEventKey]), кнопки ([InputEventMouseButton] или [InputEventJoypadButton]), оси [InputEventJoypadMotion] или действия ([InputEventAction]).
+				Если [code]exact_match[/code] равно [code]false[/code], то игнорируются дополнительные модификаторы ввода для событий [InputEventKey] и [InputEventMouseButton], а также направление для событий [InputEventJoypadMotion].
 			</description>
 		</method>
 		<method name="xformed_by" qualifiers="const">
@@ -110,14 +98,14 @@
 			<argument index="0" name="xform" type="Transform2D" />
 			<argument index="1" name="local_ofs" type="Vector2" default="Vector2( 0, 0 )" />
 			<description>
-				Returns a copy of the given input event which has been offset by [code]local_ofs[/code] and transformed by [code]xform[/code]. Relevant for events of type [InputEventMouseButton], [InputEventMouseMotion], [InputEventScreenTouch], [InputEventScreenDrag], [InputEventMagnifyGesture] and [InputEventPanGesture].
+				Возвращает копию заданного входного события, смещенную на [code]local_ofs[/code] и преобразованную с помощью [code]xform[/code]. Актуально для событий типа [InputEventMouseButton], [InputEventMouseMotion], [InputEventScreenTouch], [InputEventScreenDrag], [InputEventMagnifyGesture] и [InputEventPanGesture].
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="device" type="int" setter="set_device" getter="get_device" default="0">
-			The event's device ID.
-			[b]Note:[/b] This device ID will always be [code]-1[/code] for emulated mouse input from a touchscreen. This can be used to distinguish emulated mouse input from physical mouse input.
+			Идентификатор устройства события.
+			[b]Примечание:[/b] Этот идентификатор устройства всегда будет [code]-1[/code] для эмулированного ввода мыши с сенсорного экрана. Это может быть использовано для отличия эмулированного ввода мыши от физического ввода мыши.
 		</member>
 	</members>
 	<constants>

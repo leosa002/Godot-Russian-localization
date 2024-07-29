@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="GridContainer" inherits="Container" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="GridContainer" inherits="Container" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Grid container used to arrange Control-derived children in a grid like layout.
+		Контейнер сетки, используемый для расположения дочерних элементов Control в виде сетки.
 	</brief_description>
 	<description>
-		GridContainer will arrange its Control-derived children in a grid like structure, the grid columns are specified using the [member columns] property and the number of rows will be equal to the number of children in the container divided by the number of columns. For example, if the container has 5 children, and 2 columns, there will be 3 rows in the container.
-		Notice that grid layout will preserve the columns and rows for every size of the container, and that empty columns will be expanded automatically.
-		[b]Note:[/b] GridContainer only works with child nodes inheriting from Control. It won't rearrange child nodes inheriting from Node2D.
+		GridContainer организует дочерние элементы Control в структуру, похожую на сетку, столбцы сетки задаются с помощью свойства [member columns], а количество строк будет равно количеству дочерних элементов в контейнере, деленному на количество столбцов. Например, если у контейнера 5 детей и 2 столбца, то в контейнере будет 3 ряда.
+		Обратите внимание, что сетчатая раскладка сохраняет столбцы и строки при любом размере контейнера, а пустые столбцы будут автоматически расширяться.
+		[b]Примечание:[/b] GridContainer работает только с дочерними узлами, наследующими от Control. Он не будет переставлять дочерние узлы, наследующие от Node2D.
 	</description>
 	<tutorials>
 		<link title="GUI containers">$DOCS_URL/tutorials/ui/gui_containers.html</link>
@@ -16,7 +16,7 @@
 	</methods>
 	<members>
 		<member name="columns" type="int" setter="set_columns" getter="get_columns" default="1">
-			The number of columns in the [GridContainer]. If modified, [GridContainer] reorders its Control-derived children to accommodate the new layout.
+			Количество столбцов в [GridContainer]. При изменении [GridContainer] переупорядочивает свои дочерние элементы Control, чтобы приспособить их к новому расположению.
 		</member>
 		<member name="mouse_filter" type="int" setter="set_mouse_filter" getter="get_mouse_filter" overrides="Control" enum="Control.MouseFilter" default="1" />
 	</members>
@@ -24,10 +24,10 @@
 	</constants>
 	<theme_items>
 		<theme_item name="hseparation" data_type="constant" type="int" default="4">
-			The horizontal separation of children nodes.
+			Горизонтальное разделение дочерних узлов.
 		</theme_item>
 		<theme_item name="vseparation" data_type="constant" type="int" default="4">
-			The vertical separation of children nodes.
+			Вертикальное разделение дочерних узлов.
 		</theme_item>
 	</theme_items>
 </class>

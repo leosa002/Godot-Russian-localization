@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="ConfigFile" inherits="Reference" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="ConfigFile" inherits="Reference" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Helper class to handle INI-style files.
+		Класс-помощник для работы с файлами в стиле INI.
 	</brief_description>
 	<description>
-		This helper class can be used to store [Variant] values on the filesystem using INI-style formatting. The stored values are identified by a section and a key:
+		Этот вспомогательный класс можно использовать для хранения значений [Variant] в файловой системе с использованием форматирования в стиле INI. Хранимые значения идентифицируются секцией и ключом:
 		[codeblock]
 		[section]
 		some_key=42
 		string_example="Hello World!"
 		a_vector=Vector3( 1, 0, 2 )
 		[/codeblock]
-		The stored data can be saved to or parsed from a file, though ConfigFile objects can also be used directly without accessing the filesystem.
-		The following example shows how to create a simple [ConfigFile] and save it on disk:
+		Сохраненные данные могут быть записаны в файл или разобраны из него, однако объекты ConfigFile можно использовать и напрямую, без обращения к файловой системе.
+		В следующем примере показано, как создать простой [ConfigFile] и сохранить его на диске:
 		[codeblock]
-		# Create new ConfigFile object.
+		# Создайте новый объект ConfigFile.
 		var config = ConfigFile.new()
 
-		# Store some values.
+		# Храните некоторые значения.
 		config.set_value("Player1", "player_name", "Steve")
 		config.set_value("Player1", "best_score", 10)
 		config.set_value("Player2", "player_name", "V3geta")
 		config.set_value("Player2", "best_score", 9001)
 
-		# Save it to a file (overwrite if already exists).
+		# Сохраните его в файл (перезапишите, если он уже существует).
 		config.save("user://scores.cfg")
 		[/codeblock]
-		This example shows how the above file could be loaded:
+		В этом примере показано, как может быть загружен вышеупомянутый файл:
 		[codeblock]
 		var score_data = {}
 		var config = ConfigFile.new()
 
-		# Load data from a file.
+		# Загрузка данных из файла.
 		var err = config.load("user://scores.cfg")
 
-		# If the file didn't load, ignore it.
+		# Если файл не загрузился, проигнорируйте его.
 		if err != OK:
 		    return
 
-		# Iterate over all sections.
+		# Итерация по всем секциям.
 		for player in config.get_sections():
-		    # Fetch the data for each section.
+		    # Получите данные для каждого раздела.
 		    var player_name = config.get_value(player, "player_name")
 		    var player_score = config.get_value(player, "best_score")
 		    score_data[player_name] = player_score
 		[/codeblock]
-		Any operation that mutates the ConfigFile such as [method set_value], [method clear], or [method erase_section], only changes what is loaded in memory. If you want to write the change to a file, you have to save the changes with [method save], [method save_encrypted], or [method save_encrypted_pass].
-		Keep in mind that section and property names can't contain spaces. Anything after a space will be ignored on save and on load.
-		ConfigFiles can also contain manually written comment lines starting with a semicolon ([code];[/code]). Those lines will be ignored when parsing the file. Note that comments will be lost when saving the ConfigFile. This can still be useful for dedicated server configuration files, which are typically never overwritten without explicit user action.
-		[b]Note:[/b] The file extension given to a ConfigFile does not have any impact on its formatting or behavior. By convention, the [code].cfg[/code] extension is used here, but any other extension such as [code].ini[/code] is also valid. Since neither [code].cfg[/code] nor [code].ini[/code] are standardized, Godot's ConfigFile formatting may differ from files written by other programs.
+		Любая операция, изменяющая ConfigFile, например [method set_value], [method clear] или [method erase_section], изменяет только то, что загружено в память. Если вы хотите записать изменения в файл, необходимо сохранить их с помощью [method save], [method save_encrypted] или [method save_encrypted_pass].
+		Помните, что имена секций и свойств не могут содержать пробелов. Все, что находится после пробела, будет проигнорировано при сохранении и загрузке.
+		Конфигурационные файлы также могут содержать строки комментариев, написанные вручную и начинающиеся с точки с запятой ([code];[/code]). Эти строки будут игнорироваться при разборе файла. Обратите внимание, что комментарии будут потеряны при сохранении ConfigFile. Это может быть полезно для конфигурационных файлов выделенных серверов, которые обычно никогда не перезаписываются без явных действий пользователя.
+		[b]Примечание:[/b] Расширение файла, заданное ConfigFile, не влияет на его форматирование или поведение. По традиции здесь используется расширение [code].cfg[/code], но любое другое расширение, например [code].ini[/code], также подходит. Поскольку ни [code].cfg[/code], ни [code].ini[/code] не являются стандартными, форматирование ConfigFile программы Godot может отличаться от файлов, написанных другими программами.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -56,14 +56,14 @@
 		<method name="clear">
 			<return type="void" />
 			<description>
-				Removes the entire contents of the config.
+				Удаляет все содержимое конфигурации.
 			</description>
 		</method>
 		<method name="erase_section">
 			<return type="void" />
 			<argument index="0" name="section" type="String" />
 			<description>
-				Deletes the specified section along with all the key-value pairs inside. Raises an error if the section does not exist.
+				Удаляет указанную секцию вместе со всеми содержащимися в ней парами ключ-значение. Вызывает ошибку, если раздел не существует.
 			</description>
 		</method>
 		<method name="erase_section_key">
@@ -71,20 +71,20 @@
 			<argument index="0" name="section" type="String" />
 			<argument index="1" name="key" type="String" />
 			<description>
-				Deletes the specified key in a section. Raises an error if either the section or the key do not exist.
+				Удаляет указанный ключ в разделе. Вызывает ошибку, если раздел или ключ не существуют.
 			</description>
 		</method>
 		<method name="get_section_keys" qualifiers="const">
 			<return type="PoolStringArray" />
 			<argument index="0" name="section" type="String" />
 			<description>
-				Returns an array of all defined key identifiers in the specified section. Raises an error and returns an empty array if the section does not exist.
+				Возвращает массив всех определенных идентификаторов ключей в указанном разделе. Вызывает ошибку и возвращает пустой массив, если раздел не существует.
 			</description>
 		</method>
 		<method name="get_sections" qualifiers="const">
 			<return type="PoolStringArray" />
 			<description>
-				Returns an array of all defined section identifiers.
+				Возвращает массив всех определенных идентификаторов секций.
 			</description>
 		</method>
 		<method name="get_value" qualifiers="const">
@@ -93,14 +93,14 @@
 			<argument index="1" name="key" type="String" />
 			<argument index="2" name="default" type="Variant" default="null" />
 			<description>
-				Returns the current value for the specified section and key. If either the section or the key do not exist, the method returns the fallback [code]default[/code] value. If [code]default[/code] is not specified or set to [code]null[/code], an error is also raised.
+				Возвращает текущее значение для указанной секции и ключа. Если секция или ключ не существуют, метод возвращает резервное значение [code]default[/code]. Если [code]default[/code] не указан или установлен в [code]null[/code], также будет выдана ошибка.
 			</description>
 		</method>
 		<method name="has_section" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="section" type="String" />
 			<description>
-				Returns [code]true[/code] if the specified section exists.
+				Возвращает [code]true[/code], если указанный раздел существует.
 			</description>
 		</method>
 		<method name="has_section_key" qualifiers="const">
@@ -108,15 +108,15 @@
 			<argument index="0" name="section" type="String" />
 			<argument index="1" name="key" type="String" />
 			<description>
-				Returns [code]true[/code] if the specified section-key pair exists.
+				Возвращает [code]true[/code], если указанная пара секция-ключ существует.
 			</description>
 		</method>
 		<method name="load">
 			<return type="int" enum="Error" />
 			<argument index="0" name="path" type="String" />
 			<description>
-				Loads the config file specified as a parameter. The file's contents are parsed and loaded in the [ConfigFile] object which the method was called on.
-				Returns one of the [enum Error] code constants ([code]OK[/code] on success).
+				Загружает файл конфигурации, указанный в качестве параметра. Содержимое файла разбирается и загружается в объект [ConfigFile], для которого был вызван метод.
+				Возвращает одну из констант кода [enum Error] ([code]OK[/code] при успехе).
 			</description>
 		</method>
 		<method name="load_encrypted">
@@ -124,8 +124,8 @@
 			<argument index="0" name="path" type="String" />
 			<argument index="1" name="key" type="PoolByteArray" />
 			<description>
-				Loads the encrypted config file specified as a parameter, using the provided [code]key[/code] to decrypt it. The file's contents are parsed and loaded in the [ConfigFile] object which the method was called on.
-				Returns one of the [enum Error] code constants ([code]OK[/code] on success).
+				Загружает файл конфигурации, указанный в качестве параметра. Содержимое файла разбирается и загружается в объект [ConfigFile], для которого был вызван метод.
+				Возвращает одну из констант кода [enum Error] ([code]OK[/code] при успехе).
 			</description>
 		</method>
 		<method name="load_encrypted_pass">
@@ -133,24 +133,24 @@
 			<argument index="0" name="path" type="String" />
 			<argument index="1" name="password" type="String" />
 			<description>
-				Loads the encrypted config file specified as a parameter, using the provided [code]password[/code] to decrypt it. The file's contents are parsed and loaded in the [ConfigFile] object which the method was called on.
-				Returns one of the [enum Error] code constants ([code]OK[/code] on success).
+				Загружает зашифрованный файл конфигурации, указанный в качестве параметра, используя предоставленный [code]пароль[/code] для его расшифровки. Содержимое файла разбирается и загружается в объект [ConfigFile], для которого был вызван метод.
+				Возвращает одну из констант кода [enum Error] ([code]OK[/code] при успехе).
 			</description>
 		</method>
 		<method name="parse">
 			<return type="int" enum="Error" />
 			<argument index="0" name="data" type="String" />
 			<description>
-				Parses the passed string as the contents of a config file. The string is parsed and loaded in the ConfigFile object which the method was called on.
-				Returns one of the [enum Error] code constants ([code]OK[/code] on success).
+				Разбирает переданную строку как содержимое файла конфигурации. Строка разбирается и загружается в объект ConfigFile, для которого был вызван метод.
+				Возвращает одну из констант кода [enum Error] ([code]OK[/code] при успехе).
 			</description>
 		</method>
 		<method name="save">
 			<return type="int" enum="Error" />
 			<argument index="0" name="path" type="String" />
 			<description>
-				Saves the contents of the [ConfigFile] object to the file specified as a parameter. The output file uses an INI-style structure.
-				Returns one of the [enum Error] code constants ([code]OK[/code] on success).
+				Сохраняет содержимое объекта [ConfigFile] в файл, указанный в качестве параметра. В качестве выходного файла используется структура в стиле INI.
+				Возвращает одну из констант кода [enum Error] ([code]OK[/code] при успехе).
 			</description>
 		</method>
 		<method name="save_encrypted">
@@ -158,8 +158,8 @@
 			<argument index="0" name="path" type="String" />
 			<argument index="1" name="key" type="PoolByteArray" />
 			<description>
-				Saves the contents of the [ConfigFile] object to the AES-256 encrypted file specified as a parameter, using the provided [code]key[/code] to encrypt it. The output file uses an INI-style structure.
-				Returns one of the [enum Error] code constants ([code]OK[/code] on success).
+				Сохраняет содержимое объекта [ConfigFile] в файл с шифрованием AES-256, указанный в качестве параметра, используя предоставленный [code]ключ[/code] для шифрования. Для выходного файла используется структура в стиле INI.
+				Возвращает одну из констант кода [enum Error] ([code]OK[/code] при успехе).
 			</description>
 		</method>
 		<method name="save_encrypted_pass">
@@ -167,8 +167,8 @@
 			<argument index="0" name="path" type="String" />
 			<argument index="1" name="password" type="String" />
 			<description>
-				Saves the contents of the [ConfigFile] object to the AES-256 encrypted file specified as a parameter, using the provided [code]password[/code] to encrypt it. The output file uses an INI-style structure.
-				Returns one of the [enum Error] code constants ([code]OK[/code] on success).
+				Сохраняет содержимое объекта [ConfigFile] в файл с шифрованием AES-256, указанный в качестве параметра, используя для шифрования предоставленный [code]пароль[/code]. Для выходного файла используется структура в стиле INI.
+				Возвращает одну из констант кода [enum Error] ([code]OK[/code] при успехе).
 			</description>
 		</method>
 		<method name="set_value">
@@ -177,7 +177,7 @@
 			<argument index="1" name="key" type="String" />
 			<argument index="2" name="value" type="Variant" />
 			<description>
-				Assigns a value to the specified key of the specified section. If either the section or the key do not exist, they are created. Passing a [code]null[/code] value deletes the specified key if it exists, and deletes the section if it ends up empty once the key has been removed.
+				Присваивает значение указанному ключу указанной секции. Если ни раздел, ни ключ не существуют, они создаются. Передача значения [code]null[/code] удаляет указанный ключ, если он существует, и удаляет секцию, если она оказывается пустой после удаления ключа.
 			</description>
 		</method>
 	</methods>

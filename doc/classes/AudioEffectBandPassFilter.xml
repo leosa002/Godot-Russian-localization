@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="AudioEffectBandPassFilter" inherits="AudioEffectFilter" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="AudioEffectBandPassFilter" inherits="AudioEffectFilter" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Adds a band pass filter to the audio bus.
+		Добавляет к аудиошине полосовой фильтр.
 	</brief_description>
 	<description>
-		Attenuates the frequencies inside of a range around the [member AudioEffectFilter.cutoff_hz] and cuts frequencies outside of this band.
+		Ослабляет частоты в диапазоне вокруг [member AudioEffectFilter.cutoff_hz] и обрезает частоты вне этого диапазона.
 	</description>
 	<tutorials>
 	</tutorials>

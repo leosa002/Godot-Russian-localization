@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="CameraServer" inherits="Object" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="CameraServer" inherits="Object" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Server keeping track of different cameras accessible in Godot.
+		Сервер, отслеживающий различные камеры, доступные в Godot.
 	</brief_description>
 	<description>
-		The [CameraServer] keeps track of different cameras accessible in Godot. These are external cameras such as webcams or the cameras on your phone.
-		It is notably used to provide AR modules with a video feed from the camera.
-		[b]Note:[/b] This class is currently only implemented on macOS and iOS. On other platforms, no [CameraFeed]s will be available.
+		Сервер [CameraServer] отслеживает различные камеры, доступные в Godot. Это внешние камеры, такие как веб-камеры или камеры на телефоне.
+		В частности, он используется для предоставления AR-модулям видеосигнала с камеры.
+		[b]Примечание:[/b] В настоящее время этот класс реализован только на macOS и iOS. На других платформах [CameraFeed]ы будут недоступны.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -15,33 +15,33 @@
 			<return type="void" />
 			<argument index="0" name="feed" type="CameraFeed" />
 			<description>
-				Adds the camera [code]feed[/code] to the camera server.
+				Добавляет камеру [code]feed[/code] на сервер камер.
 			</description>
 		</method>
 		<method name="feeds">
 			<return type="Array" />
 			<description>
-				Returns an array of [CameraFeed]s.
+				Возвращает массив [CameraFeed].
 			</description>
 		</method>
 		<method name="get_feed">
 			<return type="CameraFeed" />
 			<argument index="0" name="index" type="int" />
 			<description>
-				Returns the [CameraFeed] corresponding to the camera with the given [code]index[/code].
+				Возвращает [CameraFeed], соответствующий камере с заданным [code]index[/code].
 			</description>
 		</method>
 		<method name="get_feed_count">
 			<return type="int" />
 			<description>
-				Returns the number of [CameraFeed]s registered.
+				Возвращает количество зарегистрированных [CameraFeed].
 			</description>
 		</method>
 		<method name="remove_feed">
 			<return type="void" />
 			<argument index="0" name="feed" type="CameraFeed" />
 			<description>
-				Removes the specified camera [code]feed[/code].
+				Удаляет указанную камеру [code]feed[/code].
 			</description>
 		</method>
 	</methods>
@@ -49,28 +49,28 @@
 		<signal name="camera_feed_added">
 			<argument index="0" name="id" type="int" />
 			<description>
-				Emitted when a [CameraFeed] is added (e.g. a webcam is plugged in).
+				Выдается при добавлении [CameraFeed] (например, при подключении веб-камеры).
 			</description>
 		</signal>
 		<signal name="camera_feed_removed">
 			<argument index="0" name="id" type="int" />
 			<description>
-				Emitted when a [CameraFeed] is removed (e.g. a webcam is unplugged).
+				Выдается при удалении [CameraFeed] (например, при отключении веб-камеры).
 			</description>
 		</signal>
 	</signals>
 	<constants>
 		<constant name="FEED_RGBA_IMAGE" value="0" enum="FeedImage">
-			The RGBA camera image.
+			RGBA-изображение камеры.
 		</constant>
 		<constant name="FEED_YCBCR_IMAGE" value="0" enum="FeedImage">
-			The [url=https://en.wikipedia.org/wiki/YCbCr]YCbCr[/url] camera image.
+			Изображение с камеры [url=https://en.wikipedia.org/wiki/YCbCr]YCbCr[/url].
 		</constant>
 		<constant name="FEED_Y_IMAGE" value="0" enum="FeedImage">
-			The Y component camera image.
+			Изображение камеры с компонентом Y.
 		</constant>
 		<constant name="FEED_CBCR_IMAGE" value="1" enum="FeedImage">
-			The CbCr component camera image.
+			Компонентное изображение камеры в формате CbCr.
 		</constant>
 	</constants>
 </class>

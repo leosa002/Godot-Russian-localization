@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="VisualShaderNodeTransformConstant" inherits="VisualShaderNode" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="VisualShaderNodeTransformConstant" inherits="VisualShaderNode" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		A [Transform] constant for use within the visual shader graph.
+		Константа [Transform] для использования в графе визуального шейдера.
 	</brief_description>
 	<description>
-		A constant [Transform], which can be used as an input node.
+		Константа [Transform], которая может быть использована в качестве входного узла.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -12,7 +12,7 @@
 	</methods>
 	<members>
 		<member name="constant" type="Transform" setter="set_constant" getter="get_constant" default="Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )">
-			A [Transform] constant which represents the state of this node.
+			Константа [Transform], которая представляет состояние этого узла.
 		</member>
 	</members>
 	<constants>

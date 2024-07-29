@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="VisualShaderNodeColorConstant" inherits="VisualShaderNode" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="VisualShaderNodeColorConstant" inherits="VisualShaderNode" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		A [Color] constant to be used within the visual shader graph.
+		Константа [Color] для использования в графике визуального шейдера.
 	</brief_description>
 	<description>
-		Has two output ports representing RGB and alpha channels of [Color].
-		Translated to [code]vec3 rgb[/code] and [code]float alpha[/code] in the shader language.
+		Имеет два выходных порта, представляющих RGB и альфа-каналы [Color].
+		В языке шейдеров они преобразуются в [code]vec3 rgb[/code] и [code]float alpha[/code].
 	</description>
 	<tutorials>
 	</tutorials>
@@ -13,7 +13,7 @@
 	</methods>
 	<members>
 		<member name="constant" type="Color" setter="set_constant" getter="get_constant" default="Color( 1, 1, 1, 1 )">
-			A [Color] constant which represents a state of this node.
+			Константа [Color], которая представляет состояние этого узла.
 		</member>
 	</members>
 	<constants>

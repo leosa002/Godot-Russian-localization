@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="GDScript" inherits="Script" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
+<class name="GDScript" inherits="Script" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../doc/class.xsd">
 	<brief_description>
-		A script implemented in the GDScript programming language.
+		Сценарий, реализованный на языке программирования GDScript.
 	</brief_description>
 	<description>
-		A script implemented in the GDScript programming language. The script extends the functionality of all objects that instance it.
-		[method new] creates a new instance of the script. [method Object.set_script] extends an existing object, if that object's class matches one of the script's base classes.
+		Скрипт, реализованный на языке программирования GDScript. Скрипт расширяет функциональность всех объектов, являющихся его экземплярами.
+		[метод new] создает новый экземпляр скрипта. [метод Object.set_script] расширяет существующий объект, если класс этого объекта совпадает с одним из базовых классов скрипта.
 	</description>
 	<tutorials>
 		<link>$DOCS_URL/tutorials/scripting/gdscript/index.html</link>
@@ -14,14 +14,14 @@
 		<method name="get_as_byte_code" qualifiers="const">
 			<return type="PoolByteArray" />
 			<description>
-				Returns byte code for the script source code.
+				Возвращает байт-код исходного кода сценария.
 			</description>
 		</method>
 		<method name="new" qualifiers="vararg">
 			<return type="Variant" />
 			<description>
-				Returns a new instance of the script.
-				For example:
+				Возвращает новый экземпляр скрипта.
+				Например:
 				[codeblock]
 				var MyClass = load("myclass.gd")
 				var instance = MyClass.new()

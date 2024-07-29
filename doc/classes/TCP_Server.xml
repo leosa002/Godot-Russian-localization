@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="TCP_Server" inherits="Reference" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="TCP_Server" inherits="Reference" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		A TCP server.
+		Сервер TCP.
 	</brief_description>
 	<description>
-		A TCP server. Listens to connections on a port and returns a [StreamPeerTCP] when it gets an incoming connection.
+		Сервер TCP. Слушает соединения на порту и возвращает [StreamPeerTCP], когда получает входящее соединение.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -12,13 +12,13 @@
 		<method name="is_connection_available" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if a connection is available for taking.
+				Возвращает [code]true[/code], если соединение доступно для приема.
 			</description>
 		</method>
 		<method name="is_listening" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the server is currently listening for connections.
+				Возвращает [code]true[/code], если сервер в данный момент прослушивает соединения.
 			</description>
 		</method>
 		<method name="listen">
@@ -26,22 +26,22 @@
 			<argument index="0" name="port" type="int" />
 			<argument index="1" name="bind_address" type="String" default="&quot;*&quot;" />
 			<description>
-				Listen on the [code]port[/code] binding to [code]bind_address[/code].
-				If [code]bind_address[/code] is set as [code]"*"[/code] (default), the server will listen on all available addresses (both IPv4 and IPv6).
-				If [code]bind_address[/code] is set as [code]"0.0.0.0"[/code] (for IPv4) or [code]"::"[/code] (for IPv6), the server will listen on all available addresses matching that IP type.
-				If [code]bind_address[/code] is set to any valid address (e.g. [code]"192.168.1.101"[/code], [code]"::1"[/code], etc), the server will only listen on the interface with that addresses (or fail if no interface with the given address exists).
+				Слушать на [code]порту[/code], привязанном к [code]bind_address[/code].
+				Если [code]bind_address[/code] имеет значение [code]"*"[/code] (по умолчанию), сервер будет слушать все доступные адреса (как IPv4, так и IPv6).
+				Если [code]bind_address[/code] имеет значение [code]"0.0.0.0"[/code] (для IPv4) или [code]"::"[/code] (для IPv6), сервер будет прослушивать все доступные адреса, соответствующие данному типу IP.
+				Если [code]bind_address[/code] задан любым допустимым адресом (например, [code]"192.168.1.101"[/code], [code]"::1"[/code] и т. д.), сервер будет прослушивать только интерфейс с этим адресом (или потерпит неудачу, если интерфейса с данным адресом не существует).
 			</description>
 		</method>
 		<method name="stop">
 			<return type="void" />
 			<description>
-				Stops listening.
+				Перестает слушать.
 			</description>
 		</method>
 		<method name="take_connection">
 			<return type="StreamPeerTCP" />
 			<description>
-				If a connection is available, returns a StreamPeerTCP with the connection.
+				Если соединение доступно, возвращает StreamPeerTCP с соединением.
 			</description>
 		</method>
 	</methods>

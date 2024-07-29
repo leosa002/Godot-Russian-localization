@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="AnimationNodeAdd2" inherits="AnimationNode" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="AnimationNodeAdd2" inherits="AnimationNode" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Blends two animations additively inside of an [AnimationNodeBlendTree].
+		Аддитивно смешивает две анимации внутри дерева [AnimationNodeBlendTree].
 	</brief_description>
 	<description>
-		A resource to add to an [AnimationNodeBlendTree]. Blends two animations additively based on an amount value in the [code][0.0, 1.0][/code] range.
+		Ресурс для добавления к [AnimationNodeBlendTree]. Смешивает две анимации аддитивно на основе значения количества в диапазоне [code][0.0, 1.0][/code].
 	</description>
 	<tutorials>
 		<link>$DOCS_URL/tutorials/animation/animation_tree.html</link>
@@ -13,7 +13,7 @@
 	</methods>
 	<members>
 		<member name="sync" type="bool" setter="set_use_sync" getter="is_using_sync" default="false">
-			If [code]true[/code], sets the [code]optimization[/code] to [code]false[/code] when calling [method AnimationNode.blend_input], forcing the blended animations to update every frame.
+			Если [code]true[/code], то при вызове [method AnimationNode.blend_input] устанавливается [code]optimization[/code] в [code]false[/code], заставляя смешанные анимации обновляться каждый кадр.
 		</member>
 	</members>
 	<constants>

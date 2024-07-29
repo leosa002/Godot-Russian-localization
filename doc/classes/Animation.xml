@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Animation" inherits="Resource" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Animation" inherits="Resource" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Contains data used to animate everything in the engine.
+		Содержит данные, используемые для анимирования всего в движке.
 	</brief_description>
 	<description>
-		An Animation resource contains data used to animate everything in the engine. Animations are divided into tracks, and each track must be linked to a node. The state of that node can be changed through time, by adding timed keys (events) to the track.
+		Ресурс Animation содержит данные, используемые для анимации всех объектов в движке. Анимации делятся на дорожки, и каждая дорожка должна быть связана с узлом. Состояние этого узла можно изменять во времени, добавляя к треку ключи (события) с таймером.
 		[codeblock]
-		# This creates an animation that makes the node "Enemy" move to the right by
-		# 100 pixels in 0.5 seconds.
+		# Это создает анимацию, которая заставляет узел "Враг" перемещаться вправо на
+		# 100 пикселей за 0,5 секунды.
 		var animation = Animation.new()
 		var track_index = animation.add_track(Animation.TYPE_VALUE)
 		animation.track_set_path(track_index, "Enemy:position:x")
 		animation.track_insert_key(track_index, 0.0, 0)
 		animation.track_insert_key(track_index, 0.5, 100)
 		[/codeblock]
-		Animations are just data containers, and must be added to nodes such as an [AnimationPlayer] or [AnimationTreePlayer] to be played back. Animation tracks have different types, each with its own set of dedicated methods. Check [enum TrackType] to see available types.
+		Анимации - это просто контейнеры данных, и для воспроизведения их необходимо добавить в узлы, такие как [AnimationPlayer] или [AnimationTreePlayer]. Дорожки анимации имеют различные типы, каждый из которых имеет свой набор специальных методов. Для просмотра доступных типов обратитесь к [enum TrackType].
 	</description>
 	<tutorials>
 		<link>$DOCS_URL/tutorials/animation/index.html</link>
@@ -25,7 +25,7 @@
 			<argument index="0" name="type" type="int" enum="Animation.TrackType" />
 			<argument index="1" name="at_position" type="int" default="-1" />
 			<description>
-				Adds a track to the Animation.
+				Добавляет дорожку в анимацию.
 			</description>
 		</method>
 		<method name="animation_track_get_key_animation" qualifiers="const">
@@ -33,7 +33,7 @@
 			<argument index="0" name="track_idx" type="int" />
 			<argument index="1" name="key_idx" type="int" />
 			<description>
-				Returns the animation name at the key identified by [code]key_idx[/code]. The [code]track_idx[/code] must be the index of an Animation Track.
+				Возвращает имя анимации по ключу, идентифицированному [code]key_idx[/code]. [code]track_idx[/code] должен быть индексом дорожки анимации.
 			</description>
 		</method>
 		<method name="animation_track_insert_key">
@@ -42,7 +42,7 @@
 			<argument index="1" name="time" type="float" />
 			<argument index="2" name="animation" type="String" />
 			<description>
-				Inserts a key with value [code]animation[/code] at the given [code]time[/code] (in seconds). The [code]track_idx[/code] must be the index of an Animation Track.
+				Вставляет ключ со значением [code]animation[/code] в заданное [code]time[/code] (в секундах). В качестве [code]track_idx[/code] должен быть указан индекс трека анимации.
 			</description>
 		</method>
 		<method name="animation_track_set_key_animation">
@@ -51,7 +51,7 @@
 			<argument index="1" name="key_idx" type="int" />
 			<argument index="2" name="animation" type="String" />
 			<description>
-				Sets the key identified by [code]key_idx[/code] to value [code]animation[/code]. The [code]track_idx[/code] must be the index of an Animation Track.
+				Устанавливает ключ, обозначенный [code]key_idx[/code], в значение [code]animation[/code]. Индекс [code]track_idx[/code] должен быть индексом дорожки анимации.
 			</description>
 		</method>
 		<method name="audio_track_get_key_end_offset" qualifiers="const">
@@ -59,8 +59,8 @@
 			<argument index="0" name="track_idx" type="int" />
 			<argument index="1" name="key_idx" type="int" />
 			<description>
-				Returns the end offset of the key identified by [code]key_idx[/code]. The [code]track_idx[/code] must be the index of an Audio Track.
-				End offset is the number of seconds cut off at the ending of the audio stream.
+				Возвращает конечное смещение ключа, идентифицированного [code]key_idx[/code]. [code]track_idx[/code] должен быть индексом звуковой дорожки.
+				Конечное смещение - это количество секунд, отрезанных при завершении аудиопотока.
 			</description>
 		</method>
 		<method name="audio_track_get_key_start_offset" qualifiers="const">
@@ -68,8 +68,8 @@
 			<argument index="0" name="track_idx" type="int" />
 			<argument index="1" name="key_idx" type="int" />
 			<description>
-				Returns the start offset of the key identified by [code]key_idx[/code]. The [code]track_idx[/code] must be the index of an Audio Track.
-				Start offset is the number of seconds cut off at the beginning of the audio stream.
+				Возвращает начальное смещение ключа, идентифицированного [code]key_idx[/code]. [code]track_idx[/code] должен быть индексом звуковой дорожки.
+				Стартовое смещение - это количество секунд, отрезанных в начале аудиопотока.
 			</description>
 		</method>
 		<method name="audio_track_get_key_stream" qualifiers="const">
@@ -77,7 +77,7 @@
 			<argument index="0" name="track_idx" type="int" />
 			<argument index="1" name="key_idx" type="int" />
 			<description>
-				Returns the audio stream of the key identified by [code]key_idx[/code]. The [code]track_idx[/code] must be the index of an Audio Track.
+				Возвращает аудиопоток ключа, идентифицированного [code]key_idx[/code]. [code]track_idx[/code] должен быть индексом звуковой дорожки.
 			</description>
 		</method>
 		<method name="audio_track_insert_key">
@@ -88,8 +88,8 @@
 			<argument index="3" name="start_offset" type="float" default="0" />
 			<argument index="4" name="end_offset" type="float" default="0" />
 			<description>
-				Inserts an Audio Track key at the given [code]time[/code] in seconds. The [code]track_idx[/code] must be the index of an Audio Track.
-				[code]stream[/code] is the [AudioStream] resource to play. [code]start_offset[/code] is the number of seconds cut off at the beginning of the audio stream, while [code]end_offset[/code] is at the ending.
+				Вставляет ключ аудиодорожки в заданное [code]time[/code] в секундах. [code]track_idx[/code] должен быть индексом аудиодорожки.
+				[code]stream[/code] - ресурс [AudioStream] для воспроизведения. [code]start_offset[/code] - это количество секунд, отрезанных в начале аудиопотока, а [code]end_offset[/code] - в конце.
 			</description>
 		</method>
 		<method name="audio_track_set_key_end_offset">
@@ -98,7 +98,7 @@
 			<argument index="1" name="key_idx" type="int" />
 			<argument index="2" name="offset" type="float" />
 			<description>
-				Sets the end offset of the key identified by [code]key_idx[/code] to value [code]offset[/code]. The [code]track_idx[/code] must be the index of an Audio Track.
+				Устанавливает конечное смещение ключа, идентифицированного [code]key_idx[/code], на значение [code]offset[/code]. [code]track_idx[/code] должен быть индексом звуковой дорожки.
 			</description>
 		</method>
 		<method name="audio_track_set_key_start_offset">
@@ -107,7 +107,7 @@
 			<argument index="1" name="key_idx" type="int" />
 			<argument index="2" name="offset" type="float" />
 			<description>
-				Sets the start offset of the key identified by [code]key_idx[/code] to value [code]offset[/code]. The [code]track_idx[/code] must be the index of an Audio Track.
+				Устанавливает начальное смещение ключа, идентифицированного [code]key_idx[/code], на значение [code]offset[/code]. [code]track_idx[/code] должен быть индексом аудиодорожки.
 			</description>
 		</method>
 		<method name="audio_track_set_key_stream">
@@ -116,7 +116,7 @@
 			<argument index="1" name="key_idx" type="int" />
 			<argument index="2" name="stream" type="Resource" />
 			<description>
-				Sets the stream of the key identified by [code]key_idx[/code] to value [code]stream[/code]. The [code]track_idx[/code] must be the index of an Audio Track.
+				Устанавливает поток ключа, идентифицированного [code]key_idx[/code], в значение [code]stream[/code]. Индекс [code]track_idx[/code] должен быть индексом аудиодорожки.
 			</description>
 		</method>
 		<method name="bezier_track_get_key_in_handle" qualifiers="const">
@@ -124,7 +124,7 @@
 			<argument index="0" name="track_idx" type="int" />
 			<argument index="1" name="key_idx" type="int" />
 			<description>
-				Returns the in handle of the key identified by [code]key_idx[/code]. The [code]track_idx[/code] must be the index of a Bezier Track.
+				Возвращает "ручку" ключа, идентифицированного [code]key_idx[/code]. [code]track_idx[/code] должен быть индексом дорожки Безье.
 			</description>
 		</method>
 		<method name="bezier_track_get_key_out_handle" qualifiers="const">
@@ -132,7 +132,7 @@
 			<argument index="0" name="track_idx" type="int" />
 			<argument index="1" name="key_idx" type="int" />
 			<description>
-				Returns the out handle of the key identified by [code]key_idx[/code]. The [code]track_idx[/code] must be the index of a Bezier Track.
+				Возвращает "ручку" выхода ключа, идентифицированного [code]key_idx[/code]. [code]track_idx[/code] должен быть индексом дорожки Безье.
 			</description>
 		</method>
 		<method name="bezier_track_get_key_value" qualifiers="const">
@@ -140,7 +140,7 @@
 			<argument index="0" name="track_idx" type="int" />
 			<argument index="1" name="key_idx" type="int" />
 			<description>
-				Returns the value of the key identified by [code]key_idx[/code]. The [code]track_idx[/code] must be the index of a Bezier Track.
+				Возвращает значение ключа, обозначенного [code]key_idx[/code]. [code]track_idx[/code] должен быть индексом дорожки Безье.
 			</description>
 		</method>
 		<method name="bezier_track_insert_key">
@@ -151,8 +151,8 @@
 			<argument index="3" name="in_handle" type="Vector2" default="Vector2( 0, 0 )" />
 			<argument index="4" name="out_handle" type="Vector2" default="Vector2( 0, 0 )" />
 			<description>
-				Inserts a Bezier Track key at the given [code]time[/code] in seconds. The [code]track_idx[/code] must be the index of a Bezier Track.
-				[code]in_handle[/code] is the left-side weight of the added Bezier curve point, [code]out_handle[/code] is the right-side one, while [code]value[/code] is the actual value at this point.
+				Вставляет ключ Bezier Track в заданное [code]time[/code] в секундах. [code]track_idx[/code] должен быть индексом дорожки Безье.
+				[code]in_handle[/code] - это левый вес добавляемой точки кривой Безье, [code]out_handle[/code] - правый, а [code]value[/code] - фактическое значение в этой точке.
 			</description>
 		</method>
 		<method name="bezier_track_interpolate" qualifiers="const">
@@ -160,7 +160,7 @@
 			<argument index="0" name="track_idx" type="int" />
 			<argument index="1" name="time" type="float" />
 			<description>
-				Returns the interpolated value at the given [code]time[/code] (in seconds). The [code]track_idx[/code] must be the index of a Bezier Track.
+				Возвращает интерполированное значение в заданное [code]time[/code] (в секундах). [code]track_idx[/code] должен быть индексом дорожки Безье.
 			</description>
 		</method>
 		<method name="bezier_track_set_key_in_handle">
@@ -169,7 +169,7 @@
 			<argument index="1" name="key_idx" type="int" />
 			<argument index="2" name="in_handle" type="Vector2" />
 			<description>
-				Sets the in handle of the key identified by [code]key_idx[/code] to value [code]in_handle[/code]. The [code]track_idx[/code] must be the index of a Bezier Track.
+				Устанавливает значение [code]in_handle[/code] для ключа, идентифицированного [code]key_idx[/code]. [code]track_idx[/code] должен быть индексом дорожки Безье.
 			</description>
 		</method>
 		<method name="bezier_track_set_key_out_handle">
@@ -178,7 +178,7 @@
 			<argument index="1" name="key_idx" type="int" />
 			<argument index="2" name="out_handle" type="Vector2" />
 			<description>
-				Sets the out handle of the key identified by [code]key_idx[/code] to value [code]out_handle[/code]. The [code]track_idx[/code] must be the index of a Bezier Track.
+				Устанавливает out handle ключа, идентифицированного [code]key_idx[/code], в значение [code]out_handle[/code]. [code]track_idx[/code] должен быть индексом дорожки Безье.
 			</description>
 		</method>
 		<method name="bezier_track_set_key_value">
@@ -187,13 +187,13 @@
 			<argument index="1" name="key_idx" type="int" />
 			<argument index="2" name="value" type="float" />
 			<description>
-				Sets the value of the key identified by [code]key_idx[/code] to the given value. The [code]track_idx[/code] must be the index of a Bezier Track.
+				Устанавливает значение ключа, обозначенного [code]key_idx[/code], в заданное значение. [code]track_idx[/code] должен быть индексом дорожки Безье.
 			</description>
 		</method>
 		<method name="clear">
 			<return type="void" />
 			<description>
-				Clear the animation (clear all tracks and reset all).
+				Очистите анимацию (очистите все дорожки и сбросьте все).
 			</description>
 		</method>
 		<method name="copy_track">
@@ -201,20 +201,20 @@
 			<argument index="0" name="track_idx" type="int" />
 			<argument index="1" name="to_animation" type="Animation" />
 			<description>
-				Adds a new track that is a copy of the given track from [code]to_animation[/code].
+				Добавляет новую дорожку, являющуюся копией заданной дорожки из [code]to_animation[/code].
 			</description>
 		</method>
 		<method name="find_track" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="path" type="NodePath" />
 			<description>
-				Returns the index of the specified track. If the track is not found, return -1.
+				Возвращает индекс указанной дорожки. Если дорожка не найдена, возвращается -1.
 			</description>
 		</method>
 		<method name="get_track_count" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the amount of tracks in the animation.
+				Возвращает количество дорожек в анимации.
 			</description>
 		</method>
 		<method name="method_track_get_key_indices" qualifiers="const">
@@ -223,7 +223,7 @@
 			<argument index="1" name="time_sec" type="float" />
 			<argument index="2" name="delta" type="float" />
 			<description>
-				Returns all the key indices of a method track, given a position and delta time.
+				Возвращает все ключевые индексы дорожки метода, заданной позицией и дельта-временем.
 			</description>
 		</method>
 		<method name="method_track_get_name" qualifiers="const">
@@ -231,7 +231,7 @@
 			<argument index="0" name="track_idx" type="int" />
 			<argument index="1" name="key_idx" type="int" />
 			<description>
-				Returns the method name of a method track.
+				Возвращает имя метода для дорожки методов.
 			</description>
 		</method>
 		<method name="method_track_get_params" qualifiers="const">
@@ -239,14 +239,14 @@
 			<argument index="0" name="track_idx" type="int" />
 			<argument index="1" name="key_idx" type="int" />
 			<description>
-				Returns the arguments values to be called on a method track for a given key in a given track.
+				Возвращает значения аргументов, которые должны быть вызваны на дорожке метода для заданнового ключа в заданной дорожке.
 			</description>
 		</method>
 		<method name="remove_track">
 			<return type="void" />
 			<argument index="0" name="track_idx" type="int" />
 			<description>
-				Removes a track by specifying the track index.
+				Удаление дорожки с указанием индекса дорожки.
 			</description>
 		</method>
 		<method name="track_find_key" qualifiers="const">
@@ -255,28 +255,28 @@
 			<argument index="1" name="time" type="float" />
 			<argument index="2" name="exact" type="bool" default="false" />
 			<description>
-				Finds the key index by time in a given track. Optionally, only find it if the exact time is given.
+				Находит индекс ключа по времени в заданном треке. Опционально можно найти его, только если указано точное время.
 			</description>
 		</method>
 		<method name="track_get_interpolation_loop_wrap" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="track_idx" type="int" />
 			<description>
-				Returns [code]true[/code] if the track at [code]idx[/code] wraps the interpolation loop. New tracks wrap the interpolation loop by default.
+				Возвращает [code]true[/code], если дорожка по адресу [code]idx[/code] оборачивает петлю интерполяции. Новые дорожки по умолчанию оборачивают цикл интерполяции.
 			</description>
 		</method>
 		<method name="track_get_interpolation_type" qualifiers="const">
 			<return type="int" enum="Animation.InterpolationType" />
 			<argument index="0" name="track_idx" type="int" />
 			<description>
-				Returns the interpolation type of a given track.
+				Возвращает тип интерполяции заданной дорожки.
 			</description>
 		</method>
 		<method name="track_get_key_count" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="track_idx" type="int" />
 			<description>
-				Returns the amount of keys in a given track.
+				Возвращает количество ключей в заданном треке.
 			</description>
 		</method>
 		<method name="track_get_key_time" qualifiers="const">
@@ -284,7 +284,7 @@
 			<argument index="0" name="track_idx" type="int" />
 			<argument index="1" name="key_idx" type="int" />
 			<description>
-				Returns the time at which the key is located.
+				Возвращает время, в котором находится ключ.
 			</description>
 		</method>
 		<method name="track_get_key_transition" qualifiers="const">
@@ -292,7 +292,7 @@
 			<argument index="0" name="track_idx" type="int" />
 			<argument index="1" name="key_idx" type="int" />
 			<description>
-				Returns the transition curve (easing) for a specific key (see the built-in math function [method @GDScript.ease]).
+				Возвращает кривую перехода (easing) для конкретного ключа (см. встроенную математическую функцию [method @GDScript.ease]).
 			</description>
 		</method>
 		<method name="track_get_key_value" qualifiers="const">
@@ -300,21 +300,21 @@
 			<argument index="0" name="track_idx" type="int" />
 			<argument index="1" name="key_idx" type="int" />
 			<description>
-				Returns the value of a given key in a given track.
+				Возвращает значение заданного ключа в заданной дорожке.
 			</description>
 		</method>
 		<method name="track_get_path" qualifiers="const">
 			<return type="NodePath" />
 			<argument index="0" name="track_idx" type="int" />
 			<description>
-				Gets the path of a track. For more information on the path format, see [method track_set_path].
+				Получает путь к дорожке. Более подробная информация о формате пути приведена в [method track_set_path].
 			</description>
 		</method>
 		<method name="track_get_type" qualifiers="const">
 			<return type="int" enum="Animation.TrackType" />
 			<argument index="0" name="track_idx" type="int" />
 			<description>
-				Gets the type of a track.
+				Получает тип дорожки.
 			</description>
 		</method>
 		<method name="track_insert_key">
@@ -324,28 +324,28 @@
 			<argument index="2" name="key" type="Variant" />
 			<argument index="3" name="transition" type="float" default="1" />
 			<description>
-				Insert a generic key in a given track.
+				Вставляет общий ключ в заданную дорожку.
 			</description>
 		</method>
 		<method name="track_is_enabled" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="track_idx" type="int" />
 			<description>
-				Returns [code]true[/code] if the track at index [code]idx[/code] is enabled.
+				Возвращает [code]true[/code], если дорожка по индексу [code]idx[/code] включена.
 			</description>
 		</method>
 		<method name="track_is_imported" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="track_idx" type="int" />
 			<description>
-				Returns [code]true[/code] if the given track is imported. Else, return [code]false[/code].
+				Возвращает [code]true[/code], если данная дорожка импортирована. В противном случае возвращается [code]false[/code].
 			</description>
 		</method>
 		<method name="track_move_down">
 			<return type="void" />
 			<argument index="0" name="track_idx" type="int" />
 			<description>
-				Moves a track down.
+				Перемещает дорожку вниз.
 			</description>
 		</method>
 		<method name="track_move_to">
@@ -353,14 +353,14 @@
 			<argument index="0" name="track_idx" type="int" />
 			<argument index="1" name="to_idx" type="int" />
 			<description>
-				Changes the index position of track [code]idx[/code] to the one defined in [code]to_idx[/code].
+				Изменяет индексную позицию дорожки [code]idx[/code] на ту, которая определена в [code]to_idx[/code].
 			</description>
 		</method>
 		<method name="track_move_up">
 			<return type="void" />
 			<argument index="0" name="track_idx" type="int" />
 			<description>
-				Moves a track up.
+				Перемещает дорожку вверх.
 			</description>
 		</method>
 		<method name="track_remove_key">
@@ -368,7 +368,7 @@
 			<argument index="0" name="track_idx" type="int" />
 			<argument index="1" name="key_idx" type="int" />
 			<description>
-				Removes a key by index in a given track.
+				Удаляет ключ по индексу в заданной дорожке.
 			</description>
 		</method>
 		<method name="track_remove_key_at_position">
@@ -376,7 +376,7 @@
 			<argument index="0" name="track_idx" type="int" />
 			<argument index="1" name="position" type="float" />
 			<description>
-				Removes a key by position (seconds) in a given track.
+				Удаляет ключ по позиции (секундам) в заданном треке.
 			</description>
 		</method>
 		<method name="track_set_enabled">
@@ -384,7 +384,7 @@
 			<argument index="0" name="track_idx" type="int" />
 			<argument index="1" name="enabled" type="bool" />
 			<description>
-				Enables/disables the given track. Tracks are enabled by default.
+				Включает/выключает заданную дорожку. По умолчанию дорожки включены.
 			</description>
 		</method>
 		<method name="track_set_imported">
@@ -392,7 +392,7 @@
 			<argument index="0" name="track_idx" type="int" />
 			<argument index="1" name="imported" type="bool" />
 			<description>
-				Sets the given track as imported or not.
+				Устанавливает заданный трек как импортированный или нет.
 			</description>
 		</method>
 		<method name="track_set_interpolation_loop_wrap">
@@ -400,7 +400,7 @@
 			<argument index="0" name="track_idx" type="int" />
 			<argument index="1" name="interpolation" type="bool" />
 			<description>
-				If [code]true[/code], the track at [code]idx[/code] wraps the interpolation loop.
+				Если [code]true[/code], то дорожка по адресу [code]idx[/code] оборачивает цикл интерполяции.
 			</description>
 		</method>
 		<method name="track_set_interpolation_type">
@@ -408,7 +408,7 @@
 			<argument index="0" name="track_idx" type="int" />
 			<argument index="1" name="interpolation" type="int" enum="Animation.InterpolationType" />
 			<description>
-				Sets the interpolation type of a given track.
+				Устанавливает тип интерполяции для данной дорожки.
 			</description>
 		</method>
 		<method name="track_set_key_time">
@@ -417,7 +417,7 @@
 			<argument index="1" name="key_idx" type="int" />
 			<argument index="2" name="time" type="float" />
 			<description>
-				Sets the time of an existing key.
+				Устанавливает время существующего ключа.
 			</description>
 		</method>
 		<method name="track_set_key_transition">
@@ -426,7 +426,7 @@
 			<argument index="1" name="key_idx" type="int" />
 			<argument index="2" name="transition" type="float" />
 			<description>
-				Sets the transition curve (easing) for a specific key (see the built-in math function [method @GDScript.ease]).
+				Устанавливает кривую перехода (easing) для конкретной клавиши (см. встроенную математическую функцию [method @GDScript.ease]).
 			</description>
 		</method>
 		<method name="track_set_key_value">
@@ -435,7 +435,7 @@
 			<argument index="1" name="key" type="int" />
 			<argument index="2" name="value" type="Variant" />
 			<description>
-				Sets the value of an existing key.
+				Устанавливает значение существующего ключа.
 			</description>
 		</method>
 		<method name="track_set_path">
@@ -443,8 +443,8 @@
 			<argument index="0" name="track_idx" type="int" />
 			<argument index="1" name="path" type="NodePath" />
 			<description>
-				Sets the path of a track. Paths must be valid scene-tree paths to a node and must be specified starting from the parent node of the node that will reproduce the animation. Tracks that control properties or bones must append their name after the path, separated by [code]":"[/code].
-				For example, [code]"character/skeleton:ankle"[/code] or [code]"character/mesh:transform/local"[/code].
+				Задает путь дорожки. Пути должны быть действительными путями дерева сцены к узлу и должны быть указаны, начиная с родительского узла узла, который будет воспроизводить анимацию. Пути, управляющие свойствами или костями, должны добавлять свое имя после пути, разделяя его символами [code]":"[/code].
+				Например, [code]"character/skeleton:ankle"[/code] или [code]"character/mesh:transform/local"[/code].
 			</description>
 		</method>
 		<method name="track_swap">
@@ -452,7 +452,7 @@
 			<argument index="0" name="track_idx" type="int" />
 			<argument index="1" name="with_idx" type="int" />
 			<description>
-				Swaps the track [code]idx[/code]'s index position with the track [code]with_idx[/code].
+				Меняет индексную позицию дорожки [code]idx[/code] на дорожку [code]with_idx[/code].
 			</description>
 		</method>
 		<method name="transform_track_insert_key">
@@ -463,7 +463,7 @@
 			<argument index="3" name="rotation" type="Quat" />
 			<argument index="4" name="scale" type="Vector3" />
 			<description>
-				Insert a transform key for a transform track.
+				Вставьте ключ преобразования для дорожки преобразования.
 			</description>
 		</method>
 		<method name="transform_track_interpolate" qualifiers="const">
@@ -471,7 +471,7 @@
 			<argument index="0" name="track_idx" type="int" />
 			<argument index="1" name="time_sec" type="float" />
 			<description>
-				Returns the interpolated value of a transform track at a given time (in seconds). An array consisting of 3 elements: position ([Vector3]), rotation ([Quat]) and scale ([Vector3]).
+				Возвращает интерполированное значение дорожки преобразований в заданное время (в секундах). Массив, состоящий из 3 элементов: position ([Vector3]), rotation ([Quat]) и scale ([Vector3]).
 			</description>
 		</method>
 		<method name="value_track_get_key_indices" qualifiers="const">
@@ -480,14 +480,14 @@
 			<argument index="1" name="time_sec" type="float" />
 			<argument index="2" name="delta" type="float" />
 			<description>
-				Returns all the key indices of a value track, given a position and delta time.
+				Возвращает все ключевые индексы дорожки значений, заданной позицией и дельта-временем.
 			</description>
 		</method>
 		<method name="value_track_get_update_mode" qualifiers="const">
 			<return type="int" enum="Animation.UpdateMode" />
 			<argument index="0" name="track_idx" type="int" />
 			<description>
-				Returns the update mode of a value track.
+				Возвращает режим обновления дорожки значений.
 			</description>
 		</method>
 		<method name="value_track_interpolate" qualifiers="const">
@@ -495,7 +495,7 @@
 			<argument index="0" name="track_idx" type="int" />
 			<argument index="1" name="time_sec" type="float" />
 			<description>
-				Returns the interpolated value at the given time (in seconds). The [code]track_idx[/code] must be the index of a value track.
+				Возвращает интерполированное значение в заданное время (в секундах). [code]track_idx[/code] должен быть индексом дорожки значений.
 			</description>
 		</method>
 		<method name="value_track_set_update_mode">
@@ -503,68 +503,68 @@
 			<argument index="0" name="track_idx" type="int" />
 			<argument index="1" name="mode" type="int" enum="Animation.UpdateMode" />
 			<description>
-				Sets the update mode (see [enum UpdateMode]) of a value track.
+				Устанавливает режим обновления (см. [enum UpdateMode]) дорожки значений.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="length" type="float" setter="set_length" getter="get_length" default="1.0">
-			The total length of the animation (in seconds).
-			[b]Note:[/b] Length is not delimited by the last key, as this one may be before or after the end to ensure correct interpolation and looping.
+			Общая длина анимации (в секундах).
+			[b]Примечание:[/b] Длина не ограничивается последней клавишей, так как она может быть до или после конца для обеспечения корректной интерполяции и зацикливания.
 		</member>
 		<member name="loop" type="bool" setter="set_loop" getter="has_loop" default="false">
-			A flag indicating that the animation must loop. This is used for correct interpolation of animation cycles, and for hinting the player that it must restart the animation.
+			Флаг, указывающий на то, что анимация должна зацикливаться. Это используется для корректной интерполяции циклов анимации, а также для подсказки игроку о необходимости перезапуска анимации.
 		</member>
 		<member name="step" type="float" setter="set_step" getter="get_step" default="0.1">
-			The animation step value.
+			Значение шага анимации.
 		</member>
 	</members>
 	<signals>
 		<signal name="tracks_changed">
 			<description>
-				Emitted when there's a change in the list of tracks, e.g. tracks are added, moved or have changed paths.
+				Выдается, когда в списке дорожек происходят изменения, например, дорожки добавляются, перемещаются или меняют путь.
 			</description>
 		</signal>
 	</signals>
 	<constants>
 		<constant name="TYPE_VALUE" value="0" enum="TrackType">
-			Value tracks set values in node properties, but only those which can be Interpolated.
+			Value отслеживает установленные значения в свойствах узла, но только те, которые могут быть интерполированы.
 		</constant>
 		<constant name="TYPE_TRANSFORM" value="1" enum="TrackType">
-			Transform tracks are used to change node local transforms or skeleton pose bones. Transitions are interpolated.
+			Дорожки преобразований используются для изменения локальных преобразований узлов или костей позы скелета. Переходы интерполируются.
 		</constant>
 		<constant name="TYPE_METHOD" value="2" enum="TrackType">
-			Method tracks call functions with given arguments per key.
+			Метод отслеживает вызов функций с заданными аргументами для каждого ключа.
 		</constant>
 		<constant name="TYPE_BEZIER" value="3" enum="TrackType">
-			Bezier tracks are used to interpolate a value using custom curves. They can also be used to animate sub-properties of vectors and colors (e.g. alpha value of a [Color]).
+			Дорожки Безье используются для интерполяции значений с помощью пользовательских кривых. Они также могут использоваться для анимирования вложенных свойств векторов и цветов (например, альфа-значения [Color]).
 		</constant>
 		<constant name="TYPE_AUDIO" value="4" enum="TrackType">
-			Audio tracks are used to play an audio stream with either type of [AudioStreamPlayer]. The stream can be trimmed and previewed in the animation.
+			Аудиодорожки используются для воспроизведения аудиопотока с помощью любого типа [AudioStreamPlayer]. Поток может быть обрезан и просмотрен в анимации.
 		</constant>
 		<constant name="TYPE_ANIMATION" value="5" enum="TrackType">
-			Animation tracks play animations in other [AnimationPlayer] nodes.
+			Дорожки анимации воспроизводят анимацию в других узлах [AnimationPlayer].
 		</constant>
 		<constant name="INTERPOLATION_NEAREST" value="0" enum="InterpolationType">
-			No interpolation (nearest value).
+			Интерполяция отсутствует (ближайшее значение).
 		</constant>
 		<constant name="INTERPOLATION_LINEAR" value="1" enum="InterpolationType">
-			Linear interpolation.
+			Линейная интерполяция.
 		</constant>
 		<constant name="INTERPOLATION_CUBIC" value="2" enum="InterpolationType">
-			Cubic interpolation.
+			Кубическая интерполяция.
 		</constant>
 		<constant name="UPDATE_CONTINUOUS" value="0" enum="UpdateMode">
-			Update between keyframes.
+			Обновление между ключевыми кадрами.
 		</constant>
 		<constant name="UPDATE_DISCRETE" value="1" enum="UpdateMode">
-			Update at the keyframes and hold the value.
+			Обновление на ключевых кадрах и удержание значения.
 		</constant>
 		<constant name="UPDATE_TRIGGER" value="2" enum="UpdateMode">
-			Update at the keyframes.
+			Обновление на ключевых кадрах.
 		</constant>
 		<constant name="UPDATE_CAPTURE" value="3" enum="UpdateMode">
-			Same as linear interpolation, but also interpolates from the current value (i.e. dynamically at runtime) if the first key isn't at 0 seconds.
+			Аналогично линейной интерполяции, но также интерполируется от текущего значения (т.е. динамически во время выполнения), если первый ключ не находится в 0 секунд.
 		</constant>
 	</constants>
 </class>

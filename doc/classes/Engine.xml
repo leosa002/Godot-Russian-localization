@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Engine" inherits="Object" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Engine" inherits="Object" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Access to engine properties.
+		Доступ к свойствам Движка.
 	</brief_description>
 	<description>
-		The [Engine] singleton allows you to query and modify the project's run-time parameters, such as frames per second, time scale, and others.
+		Синглтон [Engine] позволяет запрашивать и изменять параметры времени выполнения проекта, такие как количество кадров в секунду, масштаб времени и другие.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -12,114 +12,114 @@
 		<method name="get_author_info" qualifiers="const">
 			<return type="Dictionary" />
 			<description>
-				Returns engine author information in a Dictionary.
-				[code]lead_developers[/code]    - Array of Strings, lead developer names
-				[code]founders[/code]           - Array of Strings, founder names
-				[code]project_managers[/code]   - Array of Strings, project manager names
-				[code]developers[/code]         - Array of Strings, developer names
+				Возвращает информацию об авторе движка в виде словаря.
+				[code]lead_developers[/code] - Массив строк, имена ведущих разработчиков
+				[code]founders[/code] - Массив строк, имена основателей
+				[code]project_managers[/code] - массив строк, имена менеджеров проектов
+				[code]developers[/code] - Массив строк, имена разработчиков
 			</description>
 		</method>
 		<method name="get_copyright_info" qualifiers="const">
 			<return type="Array" />
 			<description>
-				Returns an Array of copyright information Dictionaries.
-				[code]name[/code]    - String, component name
-				[code]parts[/code]   - Array of Dictionaries {[code]files[/code], [code]copyright[/code], [code]license[/code]} describing subsections of the component
+				Возвращает массив словарей информации об авторских правах.
+				[code]name[/code] - Строка, имя компонента.
+				[code]parts[/code] - Массив словарей {[code]files[/code], [code]copyright[/code], [code]license[/code]}, описывающих подразделы компонента
 			</description>
 		</method>
 		<method name="get_donor_info" qualifiers="const">
 			<return type="Dictionary" />
 			<description>
-				Returns a Dictionary of Arrays of donor names.
+				Возвращает словарь массивов имен Донатеров.
 				{[code]platinum_sponsors[/code], [code]gold_sponsors[/code], [code]silver_sponsors[/code], [code]bronze_sponsors[/code], [code]mini_sponsors[/code], [code]gold_donors[/code], [code]silver_donors[/code], [code]bronze_donors[/code]}
 			</description>
 		</method>
 		<method name="get_frames_drawn">
 			<return type="int" />
 			<description>
-				Returns the total number of frames drawn. On headless platforms, or if the render loop is disabled with [code]--disable-render-loop[/code] via command line, [method get_frames_drawn] always returns [code]0[/code]. See [method get_idle_frames].
+				Возвращает общее количество отрисованных кадров. На безголовых платформах или если цикл рендеринга отключен командой [code]--disable-render-loop[/code] через командную строку, [метод get_frames_drawn] всегда возвращает [code]0[/code]. Смотрите [метод get_idle_frames].
 			</description>
 		</method>
 		<method name="get_frames_per_second" qualifiers="const">
 			<return type="float" />
 			<description>
-				Returns the frames per second of the running game.
+				Возвращает количество кадров в секунду в беговой игре.
 			</description>
 		</method>
 		<method name="get_idle_frames" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the total number of frames passed since engine initialization which is advanced on each [b]idle frame[/b], regardless of whether the render loop is enabled. See also [method get_frames_drawn] and [method get_physics_frames].
-				[method get_idle_frames] can be used to run expensive logic less often without relying on a [Timer]:
+				Возвращает общее количество кадров, прошедших с момента инициализации движка, которое продвигается на каждом [b]холостом кадре[/b], независимо от того, включен ли цикл рендеринга. См. также [метод get_frames_drawn] и [метод get_physics_frames].
+				Метод [method get_idle_frames] можно использовать, чтобы реже запускать дорогостоящую логику, не полагаясь на [Timer]:
 				[codeblock]
 				func _process(_delta):
 				    if Engine.get_idle_frames() % 2 == 0:
-				        pass  # Run expensive logic only once every 2 idle (render) frames here.
+				        pass  # Здесь дорогостоящая логика запускается только раз в 2 холостых (рендерных) кадра.
 				[/codeblock]
 			</description>
 		</method>
 		<method name="get_license_info" qualifiers="const">
 			<return type="Dictionary" />
 			<description>
-				Returns Dictionary of licenses used by Godot and included third party components.
+				Возвращает словарь лицензий, используемых Godot и включенными в него компонентами сторонних производителей.
 			</description>
 		</method>
 		<method name="get_license_text" qualifiers="const">
 			<return type="String" />
 			<description>
-				Returns Godot license text.
+				Возвращает текст лицензии Godot.
 			</description>
 		</method>
 		<method name="get_main_loop" qualifiers="const">
 			<return type="MainLoop" />
 			<description>
-				Returns the main loop object (see [MainLoop] and [SceneTree]).
+				Возвращает объект главного цикла (см. [MainLoop] и [SceneTree]).
 			</description>
 		</method>
 		<method name="get_physics_frames" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the total number of frames passed since engine initialization which is advanced on each [b]physics frame[/b]. See also [method get_idle_frames].
-				[method get_physics_frames] can be used to run expensive logic less often without relying on a [Timer]:
+				Возвращает общее количество кадров, прошедших с момента инициализации движка, которое увеличивается на каждом [b]физическом кадре[/b]. См. также [метод get_idle_frames].
+				Метод [get_physics_frames] можно использовать, чтобы реже запускать дорогостоящую логику, не полагаясь на [Timer]:
 				[codeblock]
 				func _physics_process(_delta):
 				    if Engine.get_physics_frames() % 2 == 0:
-				        pass  # Run expensive logic only once every 2 physics frames here.
+				        pass  # Здесь дорогостоящая логика запускается только раз в 2 кадра физики.
 				[/codeblock]
 			</description>
 		</method>
 		<method name="get_physics_interpolation_fraction" qualifiers="const">
 			<return type="float" />
 			<description>
-				Returns the fraction through the current physics tick we are at the time of rendering the frame. This can be used to implement fixed timestep interpolation.
+				Возвращает долю текущего тика физики, на которой мы находимся во время рендеринга кадра. Это может быть использовано для реализации интерполяции с фиксированным временным шагом.
 			</description>
 		</method>
 		<method name="get_singleton" qualifiers="const">
 			<return type="Object" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Returns a global singleton with given [code]name[/code]. Often used for plugins, e.g. [code]GodotPayment[/code] on Android.
+				Возвращает глобальный синглтон с заданным [code]именем[/code]. Часто используется для плагинов, например [code]GodotPayment[/code] на Android.
 			</description>
 		</method>
 		<method name="get_version_info" qualifiers="const">
 			<return type="Dictionary" />
 			<description>
-				Returns the current engine version information in a Dictionary.
-				[code]major[/code]    - Holds the major version number as an int
-				[code]minor[/code]    - Holds the minor version number as an int
-				[code]patch[/code]    - Holds the patch version number as an int
-				[code]hex[/code]      - Holds the full version number encoded as a hexadecimal int with one byte (2 places) per number (see example below)
-				[code]status[/code]   - Holds the status (e.g. "beta", "rc1", "rc2", ... "stable") as a String
-				[code]build[/code]    - Holds the build name (e.g. "custom_build") as a String
-				[code]hash[/code]     - Holds the full Git commit hash as a String
-				[code]year[/code]     - Holds the year the version was released in as an int
-				[code]string[/code]   - [code]major[/code] + [code]minor[/code] + [code]patch[/code] + [code]status[/code] + [code]build[/code] in a single String
-				The [code]hex[/code] value is encoded as follows, from left to right: one byte for the major, one byte for the minor, one byte for the patch version. For example, "3.1.12" would be [code]0x03010C[/code]. [b]Note:[/b] It's still an int internally, and printing it will give you its decimal representation, which is not particularly meaningful. Use hexadecimal literals for easy version comparisons from code:
+				Возвращает информацию о текущей версии движка в виде словаря.
+				[code]major[/code] - содержит номер основной версии в виде int
+				[code]minor[/code] - содержит номер минорной версии в виде int
+				[code]patch[/code] - содержит номер версии патча в виде int
+				[code]hex[/code] - содержит полный номер версии в шестнадцатеричном формате int с одним байтом (2 места) на число (см. пример ниже)
+				[code]status[/code] - Хранит статус (например, "beta", "rc1", "rc2", ... "stable") в виде строки
+				[code]build[/code] - Имя сборки (например, "custom_build") в виде строки.
+				[code]hash[/code] - хранит полный хэш Git-коммита в виде строки
+				[code]year[/code] - хранит год выпуска версии в виде int
+				[code]string[/code] - [code]major[/code] + [code]minor[/code] + [code]patch[/code] + [code]status[/code] + [code]build[/code] в одной String
+				Значение [code]hex[/code] кодируется следующим образом, слева направо: один байт - мажор, один байт - минор, один байт - версия патча. Например, "3.1.12" будет [code]0x03010C[/code]. [b]Примечание:[/b] Внутри это все еще int, и при печати вы получите его десятичное представление, которое не имеет особого смысла. Для удобства сравнения версий в коде используйте шестнадцатеричные литералы:
 				[codeblock]
 				if Engine.get_version_info().hex &gt;= 0x030200:
-				    # Do things specific to version 3.2 or later
+				    # Выполняйте действия, характерные для версии 3.2 или более поздней.
 				else:
-				    # Do things specific to versions before 3.2
+				    # Выполняйте действия, характерные для версий до 3.2
 				[/codeblock]
 			</description>
 		</method>
@@ -127,46 +127,46 @@
 			<return type="bool" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Returns [code]true[/code] if a singleton with given [code]name[/code] exists in global scope.
+				Возвращает [code]true[/code], если синглтон с заданным [code]именем[/code] существует в глобальной области видимости.
 			</description>
 		</method>
 		<method name="is_in_physics_frame" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the game is inside the fixed process and physics phase of the game loop.
+				Возвращает [code]true[/code], если игра находится внутри фиксированного процесса и фазы физики игрового цикла.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="editor_hint" type="bool" setter="set_editor_hint" getter="is_editor_hint" default="true">
-			If [code]true[/code], the script is currently running inside the editor. This is useful for [code]tool[/code] scripts to conditionally draw editor helpers, or prevent accidentally running "game" code that would affect the scene state while in the editor:
+			Если [code]true[/code], то скрипт в данный момент выполняется в редакторе. Это полезно для [code]инструментальных[/code] скриптов для условного рисования помощников редактора или предотвращения случайного запуска "игрового" кода, который может повлиять на состояние сцены, находясь в редакторе:
 			[codeblock]
 			if Engine.editor_hint:
 			    draw_gizmos()
 			else:
 			    simulate_physics()
 			[/codeblock]
-			See [url=$DOCS_URL/tutorials/plugins/running_code_in_the_editor.html]Running code in the editor[/url] in the documentation for more information.
-			[b]Note:[/b] To detect whether the script is run from an editor [i]build[/i] (e.g. when pressing [code]F5[/code]), use [method OS.has_feature] with the [code]"editor"[/code] argument instead. [code]OS.has_feature("editor")[/code] will evaluate to [code]true[/code] both when the code is running in the editor and when running the project from the editor, but it will evaluate to [code]false[/code] when the code is run from an exported project.
+			Дополнительную информацию см. в документации [url=$DOCS_URL/tutorials/plugins/running_code_in_the_editor.html]Запуск кода в редакторе[/url].
+			[b]Примечание:[/b] Чтобы определить, запускается ли скрипт из [i]сборки[/i] редактора (например, при нажатии [code]F5[/code]), используйте вместо этого [метод OS.has_feature] с аргументом [code]"editor"[/code]. [code]OS.has_feature("editor")[/code] будет иметь значение [code]true[/code] как при запуске кода в редакторе, так и при запуске проекта из редактора, но будет иметь значение [code]false[/code] при запуске кода из экспортированного проекта.
 		</member>
 		<member name="iterations_per_second" type="int" setter="set_iterations_per_second" getter="get_iterations_per_second" default="60">
-			The number of fixed iterations per second. This controls how often physics simulation and [method Node._physics_process] methods are run. This value should generally always be set to [code]60[/code] or above, as Godot doesn't interpolate the physics step. As a result, values lower than [code]60[/code] will look stuttery. This value can be increased to make input more reactive or work around collision tunneling issues, but keep in mind doing so will increase CPU usage. See also [member target_fps] and [member ProjectSettings.physics/common/physics_fps].
-			[b]Note:[/b] Only 8 physics ticks may be simulated per rendered frame at most. If more than 8 physics ticks have to be simulated per rendered frame to keep up with rendering, the game will appear to slow down (even if [code]delta[/code] is used consistently in physics calculations). Therefore, it is recommended not to increase [member Engine.iterations_per_second] above 240. Otherwise, the game will slow down when the rendering framerate goes below 30 FPS.
+			Количество фиксированных итераций в секунду. Оно управляет тем, как часто запускаются методы симуляции физики и [метод Node._physics_process]. Это значение, как правило, всегда должно быть установлено на [code]60[/code] или выше, так как Godot не интерполирует шаг физики. В результате значения ниже [code]60[/code] будут выглядеть заикающимися. Это значение можно увеличить, чтобы сделать ввод более реактивным или решить проблемы с туннелированием столкновений, но имейте в виду, что это приведет к увеличению использования процессора. См. также [member target_fps] и [member ProjectSettings.physics/common/physics_fps].
+			[b]Примечание:[/b] На один рендерный кадр может быть смоделировано не более 8 физических тиков. Если на один кадр рендеринга приходится более 8 тиков физики, чтобы успевать за рендерингом, игра будет выглядеть замедленной (даже если [code]delta[/code] постоянно используется в расчетах физики). Поэтому рекомендуется не увеличивать [member Engine.iterations_per_second] выше 240. В противном случае игра будет тормозить, когда частота кадров рендеринга опустится ниже 30 FPS.
 		</member>
 		<member name="physics_jitter_fix" type="float" setter="set_physics_jitter_fix" getter="get_physics_jitter_fix" default="0.5">
-			Controls how much physics ticks are synchronized with real time. For 0 or less, the ticks are synchronized. Such values are recommended for network games, where clock synchronization matters. Higher values cause higher deviation of the in-game clock and real clock but smooth out framerate jitters. The default value of 0.5 should be fine for most; values above 2 could cause the game to react to dropped frames with a noticeable delay and are not recommended.
-			[b]Note:[/b] For best results, when using a custom physics interpolation solution, the physics jitter fix should be disabled by setting [member physics_jitter_fix] to [code]0[/code].
+			Контролирует, насколько тики физики синхронизированы с реальным временем. При значении 0 или меньше тики синхронизируются. Такие значения рекомендуются для сетевых игр, где синхронизация часов имеет значение. Большие значения приводят к большему отклонению внутриигровых часов от реальных, но сглаживают дрожание кадров. Значение по умолчанию 0,5 должно устраивать большинство; значения выше 2 могут привести к тому, что игра будет реагировать на выпадение кадров с заметной задержкой, поэтому их использовать не рекомендуется.
+			[b]Примечание:[/b] Для достижения наилучших результатов при использовании пользовательского решения интерполяции физики следует отключить исправление джиттера физики, установив [member physics_jitter_fix] в [code]0[/code].
 		</member>
 		<member name="print_error_messages" type="bool" setter="set_print_error_messages" getter="is_printing_error_messages" default="true">
-			If [code]false[/code], stops printing error and warning messages to the console and editor Output log. This can be used to hide error and warning messages during unit test suite runs. This property is equivalent to the [member ProjectSettings.application/run/disable_stderr] project setting.
-			[b]Warning:[/b] If you set this to [code]false[/code] anywhere in the project, important error messages may be hidden even if they are emitted from other scripts. If this is set to [code]false[/code] in a [code]tool[/code] script, this will also impact the editor itself. Do [i]not[/i] report bugs before ensuring error messages are enabled (as they are by default).
-			[b]Note:[/b] This property does not impact the editor's Errors tab when running a project from the editor.
+			Если [code]false[/code], то прекращается печать сообщений об ошибках и предупреждениях в консоль и выходной журнал редактора. Это свойство можно использовать для скрытия сообщений об ошибках и предупреждениях во время выполнения набора модульных тестов. Это свойство эквивалентно настройке проекта [member ProjectSettings.application/run/disable_stderr].
+			[b]Предупреждение:[/b] Если установить значение [code]false[/code] в любом месте проекта, важные сообщения об ошибках могут быть скрыты, даже если они выдаются другими скриптами. Если установить значение [code]false[/code] в скрипте [code]tool[/code], это также повлияет на сам редактор. Не [i]сообщайте[/i] об ошибках, прежде чем убедитесь, что сообщения об ошибках включены (по умолчанию они включены).
+			[b]Примечание:[/b] Это свойство не влияет на вкладку Errors редактора при запуске проекта из редактора.
 		</member>
 		<member name="target_fps" type="int" setter="set_target_fps" getter="get_target_fps" default="0">
-			The desired frames per second. If the hardware cannot keep up, this setting may not be respected. A value of 0 means no limit.
+			Желаемая частота кадров в секунду. Если аппаратное обеспечение не справляется, эта настройка может не соблюдаться. Значение 0 означает отсутствие ограничений.
 		</member>
 		<member name="time_scale" type="float" setter="set_time_scale" getter="get_time_scale" default="1.0">
-			Controls how fast or slow the in-game clock ticks versus the real life one. It defaults to 1.0. A value of 2.0 means the game moves twice as fast as real life, whilst a value of 0.5 means the game moves at half the regular speed. This also affects [Timer] and [SceneTreeTimer] (see [method SceneTree.create_timer] for how to control this).
+			Контролирует, насколько быстро или медленно тикают внутриигровые часы по сравнению с реальными. По умолчанию установлено значение 1,0. Значение 2.0 означает, что игра движется в два раза быстрее, чем реальная жизнь, а значение 0.5 означает, что игра движется в два раза медленнее, чем обычно. Это также влияет на [Timer] и [SceneTreeTimer] (как управлять этим параметром, смотрите в [метод SceneTree.create_timer]).
 		</member>
 	</members>
 	<constants>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="StreamPeer" inherits="Reference" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="StreamPeer" inherits="Reference" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Abstraction and base class for stream-based protocols.
+		Абстракция и базовый класс для протоколов на основе потоков.
 	</brief_description>
 	<description>
-		StreamPeer is an abstraction and base class for stream-based protocols (such as TCP). It provides an API for sending and receiving data through streams as raw data or strings.
+		StreamPeer - это абстракция и базовый класс для протоколов, основанных на потоках (таких как TCP). Он предоставляет API для отправки и получения данных через потоки в виде необработанных данных или строк.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -12,167 +12,167 @@
 		<method name="get_16">
 			<return type="int" />
 			<description>
-				Gets a signed 16-bit value from the stream.
+				Получает из потока знаковое 16-битное значение.
 			</description>
 		</method>
 		<method name="get_32">
 			<return type="int" />
 			<description>
-				Gets a signed 32-bit value from the stream.
+				Получает из потока знаковое 32-битное значение.
 			</description>
 		</method>
 		<method name="get_64">
 			<return type="int" />
 			<description>
-				Gets a signed 64-bit value from the stream.
+				Получает из потока знаковое 64-битное значение.
 			</description>
 		</method>
 		<method name="get_8">
 			<return type="int" />
 			<description>
-				Gets a signed byte from the stream.
+				Получает подписанный байт из потока.
 			</description>
 		</method>
 		<method name="get_available_bytes" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the amount of bytes this [StreamPeer] has available.
+				Возвращает количество байтов, доступных этому [StreamPeer].
 			</description>
 		</method>
 		<method name="get_data">
 			<return type="Array" />
 			<argument index="0" name="bytes" type="int" />
 			<description>
-				Returns a chunk data with the received bytes. The amount of bytes to be received can be requested in the [code]bytes[/code] argument. If not enough bytes are available, the function will block until the desired amount is received. This function returns two values, an [enum @GlobalScope.Error] code and a data array.
+				Возвращает чанк данных с полученными байтами. Количество байтов, которые необходимо получить, можно запросить в аргументе [code]bytes[/code]. Если байтов недостаточно, функция будет блокироваться до тех пор, пока не будет получено нужное количество. Эта функция возвращает два значения - код [enum @GlobalScope.Error] и массив данных.
 			</description>
 		</method>
 		<method name="get_double">
 			<return type="float" />
 			<description>
-				Gets a double-precision float from the stream.
+				Получает из потока число с двойной точностью float.
 			</description>
 		</method>
 		<method name="get_float">
 			<return type="float" />
 			<description>
-				Gets a single-precision float from the stream.
+				Получает из потока число с одинарной точностью.
 			</description>
 		</method>
 		<method name="get_partial_data">
 			<return type="Array" />
 			<argument index="0" name="bytes" type="int" />
 			<description>
-				Returns a chunk data with the received bytes. The amount of bytes to be received can be requested in the "bytes" argument. If not enough bytes are available, the function will return how many were actually received. This function returns two values, an [enum @GlobalScope.Error] code, and a data array.
+				Возвращает чанк данных с полученными байтами. Количество получаемых байтов можно запросить в аргументе "bytes". Если байтов недостаточно, функция вернет, сколько байтов было получено на самом деле. Эта функция возвращает два значения, код [enum @GlobalScope.Error] и массив данных.
 			</description>
 		</method>
 		<method name="get_string">
 			<return type="String" />
 			<argument index="0" name="bytes" type="int" default="-1" />
 			<description>
-				Gets an ASCII string with byte-length [code]bytes[/code] from the stream. If [code]bytes[/code] is negative (default) the length will be read from the stream using the reverse process of [method put_string].
+				Получает из потока ASCII-строку с длиной [code]bytes[/code]. Если [code]bytes[/code] отрицательный (по умолчанию), длина будет считана из потока с помощью обратного процесса [method put_string].
 			</description>
 		</method>
 		<method name="get_u16">
 			<return type="int" />
 			<description>
-				Gets an unsigned 16-bit value from the stream.
+				Получает беззнаковое 16-битное значение из потока.
 			</description>
 		</method>
 		<method name="get_u32">
 			<return type="int" />
 			<description>
-				Gets an unsigned 32-bit value from the stream.
+				Получает беззнаковое 32-битное значение из потока.
 			</description>
 		</method>
 		<method name="get_u64">
 			<return type="int" />
 			<description>
-				Gets an unsigned 64-bit value from the stream.
+				Получает беззнаковое 64-битное значение из потока.
 			</description>
 		</method>
 		<method name="get_u8">
 			<return type="int" />
 			<description>
-				Gets an unsigned byte from the stream.
+				Получает беззнаковый байт из потока.
 			</description>
 		</method>
 		<method name="get_utf8_string">
 			<return type="String" />
 			<argument index="0" name="bytes" type="int" default="-1" />
 			<description>
-				Gets an UTF-8 string with byte-length [code]bytes[/code] from the stream (this decodes the string sent as UTF-8). If [code]bytes[/code] is negative (default) the length will be read from the stream using the reverse process of [method put_utf8_string].
+				Получает из потока строку UTF-8 с длиной байта [code]bytes[/code] (декодирует строку, отправленную в формате UTF-8). Если [code]bytes[/code] отрицательный (по умолчанию), длина будет считана из потока с помощью обратного процесса [method put_utf8_string].
 			</description>
 		</method>
 		<method name="get_var">
 			<return type="Variant" />
 			<argument index="0" name="allow_objects" type="bool" default="false" />
 			<description>
-				Gets a Variant from the stream. If [code]allow_objects[/code] is [code]true[/code], decoding objects is allowed.
-				[b]Warning:[/b] Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
+				Получает вариант из потока. Если [code]allow_objects[/code] равно [code]true[/code], декодирование объектов разрешено.
+				[b]Предупреждение:[/b] Десериализованные объекты могут содержать код, который будет выполнен. Не используйте эту опцию, если сериализованный объект получен из ненадежных источников, чтобы избежать потенциальных угроз безопасности, таких как удаленное выполнение кода.
 			</description>
 		</method>
 		<method name="put_16">
 			<return type="void" />
 			<argument index="0" name="value" type="int" />
 			<description>
-				Puts a signed 16-bit value into the stream.
+				Помещает в поток знаковое 16-битное значение.
 			</description>
 		</method>
 		<method name="put_32">
 			<return type="void" />
 			<argument index="0" name="value" type="int" />
 			<description>
-				Puts a signed 32-bit value into the stream.
+				Помещает в поток знаковое 32-битное значение.
 			</description>
 		</method>
 		<method name="put_64">
 			<return type="void" />
 			<argument index="0" name="value" type="int" />
 			<description>
-				Puts a signed 64-bit value into the stream.
+				Помещает в поток знаковое 64-битное значение.
 			</description>
 		</method>
 		<method name="put_8">
 			<return type="void" />
 			<argument index="0" name="value" type="int" />
 			<description>
-				Puts a signed byte into the stream.
+				Помещает в поток подписанный байт.
 			</description>
 		</method>
 		<method name="put_data">
 			<return type="int" enum="Error" />
 			<argument index="0" name="data" type="PoolByteArray" />
 			<description>
-				Sends a chunk of data through the connection, blocking if necessary until the data is done sending. This function returns an [enum @GlobalScope.Error] code.
+				Отправляет фрагмент данных через соединение, при необходимости блокируя его до завершения отправки. Эта функция возвращает код [enum @GlobalScope.Error].
 			</description>
 		</method>
 		<method name="put_double">
 			<return type="void" />
 			<argument index="0" name="value" type="float" />
 			<description>
-				Puts a double-precision float into the stream.
+				Помещает в поток число с двойной точностью float.
 			</description>
 		</method>
 		<method name="put_float">
 			<return type="void" />
 			<argument index="0" name="value" type="float" />
 			<description>
-				Puts a single-precision float into the stream.
+				Помещает в поток число с одинарной точностью float.
 			</description>
 		</method>
 		<method name="put_partial_data">
 			<return type="Array" />
 			<argument index="0" name="data" type="PoolByteArray" />
 			<description>
-				Sends a chunk of data through the connection. If all the data could not be sent at once, only part of it will. This function returns two values, an [enum @GlobalScope.Error] code and an integer, describing how much data was actually sent.
+				Отправляет фрагмент данных через соединение. Если все данные не могут быть отправлены сразу, будет отправлена только их часть. Эта функция возвращает два значения - код [enum @GlobalScope.Error] и целое число, описывающее, сколько данных было отправлено на самом деле.
 			</description>
 		</method>
 		<method name="put_string">
 			<return type="void" />
 			<argument index="0" name="value" type="String" />
 			<description>
-				Puts a zero-terminated ASCII string into the stream prepended by a 32-bit unsigned integer representing its size.
-				[b]Note:[/b] To put an ASCII string without prepending its size, you can use [method put_data]:
+				Помещает в поток ASCII-строку с нулевой концовкой, дополненную 32-битным беззнаковым целым числом, обозначающим ее размер.
+				[b]Примечание:[/b] Чтобы поместить ASCII-строку без указания ее размера, можно использовать [метод put_data]:
 				[codeblock]
 				put_data("Hello world".to_ascii())
 				[/codeblock]
@@ -182,36 +182,36 @@
 			<return type="void" />
 			<argument index="0" name="value" type="int" />
 			<description>
-				Puts an unsigned 16-bit value into the stream.
+				Помещает в поток 16-битное значение без знака.
 			</description>
 		</method>
 		<method name="put_u32">
 			<return type="void" />
 			<argument index="0" name="value" type="int" />
 			<description>
-				Puts an unsigned 32-bit value into the stream.
+				Помещает в поток 32-битное значение без знака.
 			</description>
 		</method>
 		<method name="put_u64">
 			<return type="void" />
 			<argument index="0" name="value" type="int" />
 			<description>
-				Puts an unsigned 64-bit value into the stream.
+				Помещает в поток 64-битное значение без знака.
 			</description>
 		</method>
 		<method name="put_u8">
 			<return type="void" />
 			<argument index="0" name="value" type="int" />
 			<description>
-				Puts an unsigned byte into the stream.
+				Помещает в поток байт без знака.
 			</description>
 		</method>
 		<method name="put_utf8_string">
 			<return type="void" />
 			<argument index="0" name="value" type="String" />
 			<description>
-				Puts a zero-terminated UTF-8 string into the stream prepended by a 32 bits unsigned integer representing its size.
-				[b]Note:[/b] To put an UTF-8 string without prepending its size, you can use [method put_data]:
+				Помещает в поток строку UTF-8 с нулевой концовкой, дополненную 32-битным беззнаковым целым числом, обозначающим ее размер.
+				[b]Примечание:[/b] Чтобы поместить строку UTF-8 без префиксации ее размера, можно использовать [метод put_data]:
 				[codeblock]
 				put_data("Hello world".to_utf8())
 				[/codeblock]
@@ -222,13 +222,13 @@
 			<argument index="0" name="value" type="Variant" />
 			<argument index="1" name="full_objects" type="bool" default="false" />
 			<description>
-				Puts a Variant into the stream. If [code]full_objects[/code] is [code]true[/code] encoding objects is allowed (and can potentially include code).
+				Помещает вариант в поток. Если [code]full_objects[/code] имеет значение [code]true[/code], кодирование объектов разрешено (и потенциально может включать код).
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="big_endian" type="bool" setter="set_big_endian" getter="is_big_endian_enabled" default="false">
-			If [code]true[/code], this [StreamPeer] will using big-endian format for encoding and decoding.
+			Если [code]true[/code], то этот [StreamPeer] будет использовать формат big-endian для кодирования и декодирования.
 		</member>
 	</members>
 	<constants>

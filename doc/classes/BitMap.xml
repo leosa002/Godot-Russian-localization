@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="BitMap" inherits="Resource" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="BitMap" inherits="Resource" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Boolean matrix.
+		Булева матрица.
 	</brief_description>
 	<description>
-		A two-dimensional array of boolean values, can be used to efficiently store a binary matrix (every matrix element takes only one bit) and query the values using natural cartesian coordinates.
+		Двумерный массив логических значений, может быть использован для эффективного хранения двоичной матрицы (каждый элемент матрицы занимает только один бит) и запроса значений с использованием естественных декартовых координат.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -12,14 +12,14 @@
 		<method name="convert_to_image" qualifiers="const">
 			<return type="Image" />
 			<description>
-				Returns an image of the same size as the bitmap and with a [enum Image.Format] of type [code]FORMAT_L8[/code]. [code]true[/code] bits of the bitmap are being converted into white pixels, and [code]false[/code] bits into black.
+				Возвращает изображение того же размера, что и растровая карта, с [enum Image.Format] типа [code]FORMAT_L8[/code]. [code]true[/code] биты растрового изображения преобразуются в белые пиксели, а [code]false[/code] биты - в черные.
 			</description>
 		</method>
 		<method name="create">
 			<return type="void" />
 			<argument index="0" name="size" type="Vector2" />
 			<description>
-				Creates a bitmap with the specified size, filled with [code]false[/code].
+				Создает растровое изображение указанного размера, заполненное [code]false[/code].
 			</description>
 		</method>
 		<method name="create_from_image_alpha">
@@ -27,26 +27,26 @@
 			<argument index="0" name="image" type="Image" />
 			<argument index="1" name="threshold" type="float" default="0.1" />
 			<description>
-				Creates a bitmap that matches the given image dimensions, every element of the bitmap is set to [code]false[/code] if the alpha value of the image at that position is equal to [code]threshold[/code] or less, and [code]true[/code] in other case.
+				Создает растровое изображение, соответствующее заданным размерам изображения, каждый элемент которого устанавливается в значение [code]false[/code], если альфа-значение изображения в данной позиции равно [code]threshold[/code] или меньше, и [code]true[/code] в остальных случаях.
 			</description>
 		</method>
 		<method name="get_bit" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="position" type="Vector2" />
 			<description>
-				Returns bitmap's value at the specified position.
+				Возвращает значение растрового изображения в указанной позиции.
 			</description>
 		</method>
 		<method name="get_size" qualifiers="const">
 			<return type="Vector2" />
 			<description>
-				Returns bitmap's dimensions.
+				Возвращает размеры растрового изображения.
 			</description>
 		</method>
 		<method name="get_true_bit_count" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the amount of bitmap elements that are set to [code]true[/code].
+				Возвращает количество элементов растрового изображения, для которых установлено значение [code]true[/code].
 			</description>
 		</method>
 		<method name="grow_mask">
@@ -54,7 +54,7 @@
 			<argument index="0" name="pixels" type="int" />
 			<argument index="1" name="rect" type="Rect2" />
 			<description>
-				Applies morphological dilation or erosion to the bitmap. If [code]pixels[/code] is positive, dilation is applied to the bitmap. If [code]pixels[/code] is negative, erosion is applied to the bitmap. [code]rect[/code] defines the area where the morphological operation is applied. Pixels located outside the [code]rect[/code] are unaffected by [method grow_mask].
+				Применяет к растровому изображению морфологическое расширение или эрозию. Если значение [code]pixels[/code] положительное, то к растровому изображению применяется расширение. Если [code]pixels[/code] отрицательный, то к растровому изображению применяется эрозия. [code]rect[/code] определяет область, к которой применяется морфологическая операция. Пиксели, расположенные за пределами [code]rect[/code], не подвергаются воздействию [method grow_mask].
 			</description>
 		</method>
 		<method name="opaque_to_polygons" qualifiers="const">
@@ -68,7 +68,7 @@
 			<return type="void" />
 			<argument index="0" name="new_size" type="Vector2" />
 			<description>
-				Resizes the image to [code]new_size[/code].
+				Изменяет размер изображения до [code]new_size[/code].
 			</description>
 		</method>
 		<method name="set_bit">
@@ -76,7 +76,7 @@
 			<argument index="0" name="position" type="Vector2" />
 			<argument index="1" name="bit" type="bool" />
 			<description>
-				Sets the bitmap's element at the specified position, to the specified value.
+				Устанавливает элемент растрового изображения в указанной позиции на указанное значение.
 			</description>
 		</method>
 		<method name="set_bit_rect">
@@ -84,7 +84,7 @@
 			<argument index="0" name="rect" type="Rect2" />
 			<argument index="1" name="bit" type="bool" />
 			<description>
-				Sets a rectangular portion of the bitmap to the specified value.
+				Устанавливает прямоугольную часть растрового изображения на указанное значение.
 			</description>
 		</method>
 	</methods>

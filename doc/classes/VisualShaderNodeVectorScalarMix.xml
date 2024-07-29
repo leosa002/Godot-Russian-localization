@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="VisualShaderNodeVectorScalarMix" inherits="VisualShaderNode" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="VisualShaderNodeVectorScalarMix" inherits="VisualShaderNode" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Linearly interpolates between two vectors using a scalar. For use within the visual shader graph.
+		Линейно интерполирует между двумя векторами с помощью скаляра. Используется в визуальном шейдерном графе.
 	</brief_description>
 	<description>
-		Translates to [code]mix(a, b, weight)[/code] in the shader language, where [code]a[/code] and [code]b[/code] are vectors and [code]weight[/code] is a scalar.
+		Переводится как [code]mix(a, b, weight)[/code] на языке шейдеров, где [code]a[/code] и [code]b[/code] - векторы, а [code]weight[/code] - скаляр.
 	</description>
 	<tutorials>
 	</tutorials>

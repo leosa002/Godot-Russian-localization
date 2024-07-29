@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="MultiMesh" inherits="Resource" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="MultiMesh" inherits="Resource" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Provides high-performance mesh instancing.
+		Обеспечивает высокопроизводительную инстанцирование сетки.
 	</brief_description>
 	<description>
-		MultiMesh provides low-level mesh instancing. Drawing thousands of [MeshInstance] nodes can be slow, since each object is submitted to the GPU then drawn individually.
-		MultiMesh is much faster as it can draw thousands of instances with a single draw call, resulting in less API overhead.
-		As a drawback, if the instances are too far away from each other, performance may be reduced as every single instance will always render (they are spatially indexed as one, for the whole object).
-		Since instances may have any behavior, the AABB used for visibility must be provided by the user.
+		MultiMesh обеспечивает низкоуровневое инстансирование сетки. Отрисовка тысяч узлов [MeshInstance] может быть медленной, поскольку каждый объект передается на GPU, а затем отрисовывается по отдельности.
+		MultiMesh работает гораздо быстрее, поскольку может отрисовывать тысячи экземпляров одним вызовом рисования, что приводит к меньшим накладным расходам API.
+		Как недостаток, если экземпляры находятся слишком далеко друг от друга, производительность может снизиться, поскольку каждый отдельный экземпляр всегда будет отрисовываться (они пространственно индексируются как один, для всего объекта).
+		Поскольку экземпляры могут иметь любое поведение, AABB, используемый для видимости, должен быть предоставлен пользователем.
 	</description>
 	<tutorials>
 		<link>$DOCS_URL/tutorials/performance/vertex_animation/animating_thousands_of_fish.html</link>
@@ -17,52 +17,52 @@
 		<method name="get_aabb" qualifiers="const">
 			<return type="AABB" />
 			<description>
-				Returns the visibility axis-aligned bounding box in local space. See also [method VisualInstance.get_transformed_aabb].
+				Возвращает выровненную по оси видимости ограничительную рамку в локальном пространстве. См. также [метод VisualInstance.get_transformed_aabb].
 			</description>
 		</method>
 		<method name="get_instance_color" qualifiers="const">
 			<return type="Color" />
 			<argument index="0" name="instance" type="int" />
 			<description>
-				Gets a specific instance's color.
+				Получает цвет определенного экземпляра.
 			</description>
 		</method>
 		<method name="get_instance_custom_data" qualifiers="const">
 			<return type="Color" />
 			<argument index="0" name="instance" type="int" />
 			<description>
-				Returns the custom data that has been set for a specific instance.
+				Возвращает пользовательские данные, установленные для конкретного экземпляра.
 			</description>
 		</method>
 		<method name="get_instance_transform" qualifiers="const">
 			<return type="Transform" />
 			<argument index="0" name="instance" type="int" />
 			<description>
-				Returns the [Transform] of a specific instance.
+				Возвращает [Transform] конкретного экземпляра.
 			</description>
 		</method>
 		<method name="get_instance_transform_2d" qualifiers="const">
 			<return type="Transform2D" />
 			<argument index="0" name="instance" type="int" />
 			<description>
-				Returns the [Transform2D] of a specific instance.
+				Возвращает [Transform2D] конкретного экземпляра.
 			</description>
 		</method>
 		<method name="reset_instance_physics_interpolation">
 			<return type="void" />
 			<argument index="0" name="instance" type="int" />
 			<description>
-				When using [i]physics interpolation[/i], this function allows you to prevent interpolation on an instance in the current physics tick.
-				This allows you to move instances instantaneously, and should usually be used when initially placing an instance such as a bullet to prevent graphical glitches.
+				При использовании [i]интерполяции физики[/i] эта функция позволяет запретить интерполяцию для экземпляра в текущем тике физики.
+				Это позволяет перемещать экземпляры мгновенно и обычно используется при первоначальном размещении экземпляра, например пули, для предотвращения графических глюков.
 			</description>
 		</method>
 		<method name="set_as_bulk_array">
 			<return type="void" />
 			<argument index="0" name="array" type="PoolRealArray" />
 			<description>
-				Sets all data related to the instances in one go. This is especially useful when loading the data from disk or preparing the data from GDNative.
-				All data is packed in one large float array. An array may look like this: Transform for instance 1, color data for instance 1, custom data for instance 1, transform for instance 2, color data for instance 2, etc...
-				[Transform] is stored as 12 floats, [Transform2D] is stored as 8 floats, [code]COLOR_8BIT[/code] / [code]CUSTOM_DATA_8BIT[/code] is stored as 1 float (4 bytes as is) and [code]COLOR_FLOAT[/code] / [code]CUSTOM_DATA_FLOAT[/code] is stored as 4 floats.
+				Устанавливает все данные, относящиеся к экземплярам, за один раз. Это особенно полезно при загрузке данных с диска или подготовке данных из GDNative.
+				Все данные упаковываются в один большой массив с плавающей точкой. Массив может выглядеть следующим образом: Трансформация для экземпляра 1, данные о цвете для экземпляра 1, пользовательские данные для экземпляра 1, трансформация для экземпляра 2, данные о цвете для экземпляра 2 и т. д...
+				[Transform] хранится как 12 float, [Transform2D] хранится как 8 float, [code]COLOR_8BIT[/code] / [code]CUSTOM_DATA_8BIT[/code] хранится как 1 float (4 байта как есть) и [code]COLOR_FLOAT[/code] / [code]CUSTOM_DATA_FLOAT[/code] хранится как 4 float.
 			</description>
 		</method>
 		<method name="set_as_bulk_array_interpolated">
@@ -70,9 +70,9 @@
 			<argument index="0" name="array_current" type="PoolRealArray" />
 			<argument index="1" name="array_previous" type="PoolRealArray" />
 			<description>
-				An alternative version of [method MultiMesh.set_as_bulk_array] which can be used with [i]physics interpolation[/i]. This method takes two arrays, and can set the data for the current and previous tick in one go. The renderer will automatically interpolate the data at each frame.
-				This is useful for situations where the order of instances may change from physics tick to tick, such as particle systems.
-				When the order of instances is coherent, the simpler [method MultiMesh.set_as_bulk_array] can still be used with interpolation.
+				Альтернативная версия [метода MultiMesh.set_as_bulk_array], которая может быть использована с [i]физической интерполяцией[/i]. Этот метод принимает два массива и может установить данные для текущего и предыдущего тика за один раз. Рендерер будет автоматически интерполировать данные в каждом кадре.
+				Это полезно в ситуациях, когда порядок следования объектов может меняться от тика к тику физики, например в системах частиц.
+				Если порядок экземпляров неизменен, можно использовать более простой [метод MultiMesh.set_as_bulk_array] с интерполяцией.
 			</description>
 		</method>
 		<method name="set_instance_color">
@@ -80,8 +80,8 @@
 			<argument index="0" name="instance" type="int" />
 			<argument index="1" name="color" type="Color" />
 			<description>
-				Sets the color of a specific instance by [i]multiplying[/i] the mesh's existing vertex colors.
-				For the color to take effect, ensure that [member color_format] is non-[code]null[/code] on the [MultiMesh] and [member Material3D.vertex_color_use_as_albedo] is [code]true[/code] on the material. If the color doesn't look as expected, make sure the material's albedo color is set to pure white ([code]Color(1, 1, 1)[/code]).
+				Устанавливает цвет конкретного экземпляра путем [i]умножения[/i] существующих цветов вершин сетки.
+				Чтобы цвет вступил в силу, убедитесь, что [member color_format] не является [code]null[/code] на [MultiMesh] и [member SpatialMaterial.vertex_color_use_as_albedo] является [code]true[/code] на материале. Если цвет не соответствует ожидаемому, убедитесь, что цвет альбедо материала установлен на чисто белый ([code]Color(1, 1, 1)[/code]).
 			</description>
 		</method>
 		<method name="set_instance_custom_data">
@@ -89,7 +89,7 @@
 			<argument index="0" name="instance" type="int" />
 			<argument index="1" name="custom_data" type="Color" />
 			<description>
-				Sets custom data for a specific instance. Although [Color] is used, it is just a container for 4 floating point numbers. The format of the number can change depending on the [enum CustomDataFormat] used.
+				Устанавливает пользовательские данные для конкретного экземпляра. Хотя используется [Color], это просто контейнер для 4 чисел с плавающей точкой. Формат числа может меняться в зависимости от используемого [enum CustomDataFormat].
 			</description>
 		</method>
 		<method name="set_instance_transform">
@@ -97,7 +97,7 @@
 			<argument index="0" name="instance" type="int" />
 			<argument index="1" name="transform" type="Transform" />
 			<description>
-				Sets the [Transform] for a specific instance.
+				Устанавливает [Transform] для конкретного экземпляра.
 			</description>
 		</method>
 		<method name="set_instance_transform_2d">
@@ -105,65 +105,65 @@
 			<argument index="0" name="instance" type="int" />
 			<argument index="1" name="transform" type="Transform2D" />
 			<description>
-				Sets the [Transform2D] for a specific instance.
+				Устанавливает [Transform2D] для конкретного экземпляра.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="color_format" type="int" setter="set_color_format" getter="get_color_format" enum="MultiMesh.ColorFormat" default="0">
-			Format of colors in color array that gets passed to shader.
+			Формат цветов в массиве цветов, который передается в шейдер.
 		</member>
 		<member name="custom_data_format" type="int" setter="set_custom_data_format" getter="get_custom_data_format" enum="MultiMesh.CustomDataFormat" default="0">
-			Format of custom data in custom data array that gets passed to shader.
+			Формат пользовательских данных в массиве пользовательских данных, который передается в шейдер.
 		</member>
 		<member name="instance_count" type="int" setter="set_instance_count" getter="get_instance_count" default="0">
-			Number of instances that will get drawn. This clears and (re)sizes the buffers. By default, all instances are drawn but you can limit this with [member visible_instance_count].
+			Количество экземпляров, которые будут отрисованы. Это очищает и (восстанавливает) размеры буферов. По умолчанию отрисовываются все экземпляры, но вы можете ограничить это с помощью [member visible_instance_count].
 		</member>
 		<member name="mesh" type="Mesh" setter="set_mesh" getter="get_mesh">
-			Mesh to be drawn.
+			Сетка, которая будет нарисована.
 		</member>
 		<member name="physics_interpolation_quality" type="int" setter="set_physics_interpolation_quality" getter="get_physics_interpolation_quality" enum="MultiMesh.PhysicsInterpolationQuality" default="0">
-			Choose whether to use an interpolation method that favors speed or quality.
-			When using low physics tick rates (typically below 20) or high rates of object rotation, you may get better results from the high quality setting.
-			[b]Note:[/b] Fast quality does not equate to low quality. Except in the special cases mentioned above, the quality should be comparable to high quality.
+			Выберите, какому методу интерполяции отдать предпочтение - скорости или качеству.
+			При использовании низких частот тиков физики (обычно менее 20) или высокой скорости вращения объектов вы можете получить лучшие результаты от настройки высокого качества.
+			[b]Примечание:[/b] Быстрое качество не равно низкому качеству. За исключением особых случаев, упомянутых выше, качество должно быть сравнимо с высоким качеством.
 		</member>
 		<member name="transform_format" type="int" setter="set_transform_format" getter="get_transform_format" enum="MultiMesh.TransformFormat" default="0">
-			Format of transform used to transform mesh, either 2D or 3D.
+			Формат преобразования, используемый для трансформации сетки, 2D или 3D.
 		</member>
 		<member name="visible_instance_count" type="int" setter="set_visible_instance_count" getter="get_visible_instance_count" default="-1">
-			Limits the number of instances drawn, -1 draws all instances. Changing this does not change the sizes of the buffers.
+			Ограничивает количество отрисовываемых экземпляров, при -1 отрисовываются все экземпляры. Изменение этого параметра не изменяет размеры буферов.
 		</member>
 	</members>
 	<constants>
 		<constant name="TRANSFORM_2D" value="0" enum="TransformFormat">
-			Use this when using 2D transforms.
+			Используйте этот параметр при использовании 2D-трансформации.
 		</constant>
 		<constant name="TRANSFORM_3D" value="1" enum="TransformFormat">
-			Use this when using 3D transforms.
+			Используйте этот параметр при использовании 3D-трансформации.
 		</constant>
 		<constant name="COLOR_NONE" value="0" enum="ColorFormat">
-			Use when you are not using per-instance [Color]s.
+			Используется, когда вы не используете [Color]s для каждого экземпляра.
 		</constant>
 		<constant name="COLOR_8BIT" value="1" enum="ColorFormat">
-			Compress [Color] data into 8 bits when passing to shader. This uses less memory and can be faster, but the [Color] loses precision.
+			Сжимайте данные [Color] в 8 бит при передаче в шейдер. Это использует меньше памяти и может быть быстрее, но при этом [Color] теряет точность.
 		</constant>
 		<constant name="COLOR_FLOAT" value="2" enum="ColorFormat">
-			The [Color] passed into [method set_instance_color] will use 4 floats. Use this for highest precision [Color].
+			Цвет [Color], передаваемый в [метод set_instance_color], будет использовать 4 плавающих значения. Используйте это значение для максимальной точности [Color].
 		</constant>
 		<constant name="CUSTOM_DATA_NONE" value="0" enum="CustomDataFormat">
-			Use when you are not using per-instance custom data.
+			Используется, если вы не используете пользовательские данные для каждого экземпляра.
 		</constant>
 		<constant name="CUSTOM_DATA_8BIT" value="1" enum="CustomDataFormat">
-			Compress custom_data into 8 bits when passing to shader. This uses less memory and can be faster, but loses precision and range. Floats packed into 8 bits can only represent values between 0 and 1, numbers outside that range will be clamped.
+			Сжимайте пользовательские данные в 8 бит при передаче в шейдер. Это использует меньше памяти и может быть быстрее, но теряет точность и диапазон. Флоаты, упакованные в 8 бит, могут представлять только значения от 0 до 1, числа вне этого диапазона будут зажаты.
 		</constant>
 		<constant name="CUSTOM_DATA_FLOAT" value="2" enum="CustomDataFormat">
-			The [Color] passed into [method set_instance_custom_data] will use 4 floats. Use this for highest precision.
+			Цвет [Color], передаваемый в [метод set_instance_custom_data], будет использовать 4 плавающих числа. Используйте это значение для максимальной точности.
 		</constant>
 		<constant name="INTERP_QUALITY_FAST" value="0" enum="PhysicsInterpolationQuality">
-			Always interpolate using Basis lerping, which can produce warping artifacts in some situations.
+			Всегда интерполируйте с помощью Basis lerping, который в некоторых ситуациях может давать артефакты искажения.
 		</constant>
 		<constant name="INTERP_QUALITY_HIGH" value="1" enum="PhysicsInterpolationQuality">
-			Attempt to interpolate using Basis slerping (spherical linear interpolation) where possible, otherwise fall back to lerping.
+			Попытайтесь интерполировать с помощью Basis slerping (сферическая линейная интерполяция), если это возможно, в противном случае вернитесь к lerping.
 		</constant>
 	</constants>
 </class>

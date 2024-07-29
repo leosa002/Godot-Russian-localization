@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="KinematicCollision2D" inherits="Reference" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="KinematicCollision2D" inherits="Reference" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Collision data for [KinematicBody2D] collisions.
+		Данные о столкновениях для столкновений [KinematicBody2D].
 	</brief_description>
 	<description>
-		Contains collision data for [KinematicBody2D] collisions. When a [KinematicBody2D] is moved using [method KinematicBody2D.move_and_collide], it stops if it detects a collision with another body. If a collision is detected, a KinematicCollision2D object is returned.
-		This object contains information about the collision, including the colliding object, the remaining motion, and the collision position. This information can be used to calculate a collision response.
+		Содержит данные о столкновениях для [KinematicBody2D]. Когда тело [KinematicBody2D] перемещается с помощью [метода KinematicBody2D.move_and_collide], оно останавливается, если обнаруживает столкновение с другим телом. Если столкновение обнаружено, возвращается объект KinematicCollision2D.
+		Этот объект содержит информацию о столкновении, включая столкнувшийся объект, оставшееся движение и позицию столкновения. Эта информация может быть использована для расчета реакции на столкновение.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -14,46 +14,46 @@
 			<return type="float" />
 			<argument index="0" name="up_direction" type="Vector2" default="Vector2( 0, -1 )" />
 			<description>
-				The collision angle according to [code]up_direction[/code], which is [code]Vector2.UP[/code] by default. This value is always positive.
+				Угол столкновения в соответствии с [code]up_direction[/code], который по умолчанию равен [code]Vector2.UP[/code]. Это значение всегда положительно.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="collider" type="Object" setter="" getter="get_collider">
-			The colliding body.
+			Столкновение тел.
 		</member>
 		<member name="collider_id" type="int" setter="" getter="get_collider_id" default="0">
-			The colliding body's unique instance ID. See [method Object.get_instance_id].
+			Уникальный идентификатор экземпляра сталкивающегося тела. Смотрите [метод Object.get_instance_id].
 		</member>
 		<member name="collider_metadata" type="Variant" setter="" getter="get_collider_metadata">
-			The colliding body's metadata. See [Object].
+			Метаданные сталкивающегося тела. См. раздел [Object].
 		</member>
 		<member name="collider_rid" type="RID" setter="" getter="get_collider_rid">
-			The colliding body's [RID] used by the [Physics2DServer].
+			[RID] сталкивающегося тела, используемый [Physics2DServer].
 		</member>
 		<member name="collider_shape" type="Object" setter="" getter="get_collider_shape">
-			The colliding body's shape.
+			Форма столкнувшегося тела.
 		</member>
 		<member name="collider_shape_index" type="int" setter="" getter="get_collider_shape_index" default="0">
-			The colliding shape's index. See [CollisionObject2D].
+			Индекс сталкивающейся фигуры. См. раздел [CollisionObject2D].
 		</member>
 		<member name="collider_velocity" type="Vector2" setter="" getter="get_collider_velocity" default="Vector2( 0, 0 )">
-			The colliding object's velocity.
+			Скорость столкнувшегося объекта.
 		</member>
 		<member name="local_shape" type="Object" setter="" getter="get_local_shape">
-			The moving object's colliding shape.
+			Форма столкновения движущегося объекта.
 		</member>
 		<member name="normal" type="Vector2" setter="" getter="get_normal" default="Vector2( 0, 0 )">
-			The colliding body's shape's normal at the point of collision.
+			Нормаль формы сталкивающегося тела в точке столкновения.
 		</member>
 		<member name="position" type="Vector2" setter="" getter="get_position" default="Vector2( 0, 0 )">
-			The point of collision, in global coordinates.
+			Точка столкновения в глобальных координатах.
 		</member>
 		<member name="remainder" type="Vector2" setter="" getter="get_remainder" default="Vector2( 0, 0 )">
-			The moving object's remaining movement vector.
+			Вектор остаточного движения движущегося объекта.
 		</member>
 		<member name="travel" type="Vector2" setter="" getter="get_travel" default="Vector2( 0, 0 )">
-			The distance the moving object traveled before collision.
+			Расстояние, пройденное движущимся объектом до столкновения.
 		</member>
 	</members>
 	<constants>

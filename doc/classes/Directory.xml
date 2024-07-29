@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Directory" inherits="Reference" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Directory" inherits="Reference" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Type used to handle the filesystem.
+		Тип, используемый для работы с файловой системой.
 	</brief_description>
 	<description>
-		Directory type. It is used to manage directories and their content (not restricted to the project folder).
-		When creating a new [Directory], its default opened directory will be [code]res://[/code]. This may change in the future, so it is advised to always use [method open] to initialize your [Directory] where you want to operate, with explicit error checking.
-		[b]Note:[/b] Many resources types are imported (e.g. textures or sound files), and their source asset will not be included in the exported game, as only the imported version is used. Use [ResourceLoader] to access imported resources.
-		Here is an example on how to iterate through the files of a directory:
+		Тип каталога. Он используется для управления каталогами и их содержимым (не ограничиваясь папкой проекта).
+		При создании нового [Directory] его открытая директория по умолчанию будет [code]res://[/code]. Это может измениться в будущем, поэтому рекомендуется всегда использовать [method open] для инициализации [Directory] в том месте, где вы хотите работать, с явной проверкой ошибок.
+		[b]Примечание:[/b] Многие типы ресурсов импортируются (например, текстуры или звуковые файлы), и их исходный актив не будет включен в экспортированную игру, так как будет использоваться только импортированная версия. Для доступа к импортированным ресурсам используйте [ResourceLoader].
+		Вот пример того, как можно перебрать файлы в директории:
 		[codeblock]
 		func dir_contents(path):
 		    var dir = Directory.new()
@@ -16,12 +16,12 @@
 		        var file_name = dir.get_next()
 		        while file_name != "":
 		            if dir.current_is_dir():
-		                print("Found directory: " + file_name)
+		                print("Найденный каталог: " + file_name)
 		            else:
-		                print("Found file: " + file_name)
+		                print("Найденный файл: " + file_name)
 		            file_name = dir.get_next()
 		    else:
-		        print("An error occurred when trying to access the path.")
+		        print("При попытке получить доступ к пути произошла ошибка.")
 		[/codeblock]
 	</description>
 	<tutorials>
@@ -32,8 +32,8 @@
 			<return type="int" enum="Error" />
 			<argument index="0" name="todir" type="String" />
 			<description>
-				Changes the currently opened directory to the one passed as an argument. The argument can be relative to the current directory (e.g. [code]newdir[/code] or [code]../newdir[/code]), or an absolute path (e.g. [code]/tmp/newdir[/code] or [code]res://somedir/newdir[/code]).
-				Returns one of the [enum Error] code constants ([code]OK[/code] on success).
+				Изменяет текущий открытый каталог на каталог, переданный в качестве аргумента. Аргумент может быть относительным к текущему каталогу (например, [code]newdir[/code] или [code]../newdir[/code]) или абсолютным путем (например, [code]/tmp/newdir[/code] или [code]res://somedir/newdir[/code]).
+				Возвращает одну из констант кода [enum Error] ([code]OK[/code] при успехе).
 			</description>
 		</method>
 		<method name="copy">
@@ -41,72 +41,72 @@
 			<argument index="0" name="from" type="String" />
 			<argument index="1" name="to" type="String" />
 			<description>
-				Copies the [code]from[/code] file to the [code]to[/code] destination. Both arguments should be paths to files, either relative or absolute. If the destination file exists and is not access-protected, it will be overwritten.
-				Returns one of the [enum Error] code constants ([code]OK[/code] on success).
+				Копирует файл [code]from[/code] в место назначения [code]to[/code]. Оба аргумента должны быть путями к файлам, относительными или абсолютными. Если файл назначения существует и не защищен от доступа, он будет перезаписан.
+				Возвращает одну из констант кода [enum Error] ([code]OK[/code] при успехе).
 			</description>
 		</method>
 		<method name="current_is_dir" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns whether the current item processed with the last [method get_next] call is a directory ([code].[/code] and [code]..[/code] are considered directories).
+				Возвращает, является ли текущий элемент, обработанный последним вызовом [method get_next], каталогом ([code].[/code] и [code].[/code] считаются каталогами).
 			</description>
 		</method>
 		<method name="dir_exists">
 			<return type="bool" />
 			<argument index="0" name="path" type="String" />
 			<description>
-				Returns whether the target directory exists. The argument can be relative to the current directory, or an absolute path.
+				Возвращает, существует ли целевой каталог. Аргумент может быть относительным к текущему каталогу или абсолютным путем.
 			</description>
 		</method>
 		<method name="file_exists">
 			<return type="bool" />
 			<argument index="0" name="path" type="String" />
 			<description>
-				Returns whether the target file exists. The argument can be relative to the current directory, or an absolute path.
+				Возвращает, существует ли целевой файл. Аргумент может быть относительным к текущему каталогу или абсолютным путем.
 			</description>
 		</method>
 		<method name="get_current_dir">
 			<return type="String" />
 			<description>
-				Returns the absolute path to the currently opened directory (e.g. [code]res://folder[/code] or [code]C:\tmp\folder[/code]).
+				Возвращает абсолютный путь к открытому в данный момент каталогу (например, [code]res://folder[/code] или [code]C:\tmp\folder[/code]).
 			</description>
 		</method>
 		<method name="get_current_drive">
 			<return type="int" />
 			<description>
-				Returns the currently opened directory's drive index. See [method get_drive] to convert returned index to the name of the drive.
+				Возвращает индекс диска текущей открытой директории. Для преобразования возвращаемого индекса в имя диска смотрите [метод get_drive].
 			</description>
 		</method>
 		<method name="get_drive">
 			<return type="String" />
 			<argument index="0" name="idx" type="int" />
 			<description>
-				On Windows, returns the name of the drive (partition) passed as an argument (e.g. [code]C:[/code]).
-				On macOS, returns the path to the mounted volume passed as an argument.
-				On Linux, returns the path to the mounted volume or GTK 3 bookmark passed as an argument.
-				On other platforms, or if the requested drive does not exist, the method returns an empty String.
+				В Windows возвращает имя диска (раздела), переданного в качестве аргумента (например, [code]C:[/code]).
+				В macOS возвращает путь к смонтированному тому, переданному в качестве аргумента.
+				В Linux в качестве аргумента возвращается путь к смонтированному тому или закладке GTK 3.
+				На других платформах или если запрашиваемый диск не существует, метод возвращает пустую строку.
 			</description>
 		</method>
 		<method name="get_drive_count">
 			<return type="int" />
 			<description>
-				On Windows, returns the number of drives (partitions) mounted on the current filesystem.
-				On macOS, returns the number of mounted volumes.
-				On Linux, returns the number of mounted volumes and GTK 3 bookmarks.
-				On other platforms, the method returns 0.
+				В Windows возвращает количество дисков (разделов), смонтированных в текущей файловой системе.
+				В macOS возвращает количество смонтированных томов.
+				В Linux возвращает количество смонтированных томов и закладок GTK 3.
+				На других платформах метод возвращает 0.
 			</description>
 		</method>
 		<method name="get_next">
 			<return type="String" />
 			<description>
-				Returns the next element (file or directory) in the current directory (including [code].[/code] and [code]..[/code], unless [code]skip_navigational[/code] was given to [method list_dir_begin]).
-				The name of the file or directory is returned (and not its full path). Once the stream has been fully processed, the method returns an empty String and closes the stream automatically (i.e. [method list_dir_end] would not be mandatory in such a case).
+				Возвращает следующий элемент (файл или каталог) в текущем каталоге (включая [code].[/code] и [code].[/code], если [code]skip_navigational[/code] не был задан [методу list_dir_begin]).
+				Возвращается имя файла или каталога (а не полный путь к нему). После полной обработки потока метод возвращает пустую строку и автоматически закрывает поток (т. е. [метод list_dir_end] в этом случае не обязателен).
 			</description>
 		</method>
 		<method name="get_space_left">
 			<return type="int" />
 			<description>
-				On UNIX desktop systems, returns the available space on the current directory's disk. On other platforms, this information is not available and the method returns 0 or -1.
+				В настольных системах UNIX возвращает информацию о доступном пространстве на диске текущего каталога. На других платформах эта информация недоступна, и метод возвращает 0 или -1.
 			</description>
 		</method>
 		<method name="list_dir_begin">
@@ -114,48 +114,48 @@
 			<argument index="0" name="skip_navigational" type="bool" default="false" />
 			<argument index="1" name="skip_hidden" type="bool" default="false" />
 			<description>
-				Initializes the stream used to list all files and directories using the [method get_next] function, closing the currently opened stream if needed. Once the stream has been processed, it should typically be closed with [method list_dir_end].
-				If [code]skip_navigational[/code] is [code]true[/code], [code].[/code] and [code]..[/code] are filtered out.
-				If [code]skip_hidden[/code] is [code]true[/code], hidden files are filtered out.
+				Инициализирует поток, используемый для перечисления всех файлов и каталогов с помощью функции [method get_next], при необходимости закрывая текущий открытый поток. После обработки потока его обычно закрывают с помощью [method list_dir_end].
+				Если [code]skip_navigational[/code] имеет значение [code]true[/code], то [code].[/code] и [code].[/code] отфильтровываются.
+				Если [code]skip_hidden[/code] имеет значение [code]true[/code], скрытые файлы будут отфильтрованы.
 			</description>
 		</method>
 		<method name="list_dir_end">
 			<return type="void" />
 			<description>
-				Closes the current stream opened with [method list_dir_begin] (whether it has been fully processed with [method get_next] does not matter).
+				Закрывает текущий поток, открытый с помощью [method list_dir_begin] (был ли он полностью обработан с помощью [method get_next], не имеет значения).
 			</description>
 		</method>
 		<method name="make_dir">
 			<return type="int" enum="Error" />
 			<argument index="0" name="path" type="String" />
 			<description>
-				Creates a directory. The argument can be relative to the current directory, or an absolute path. The target directory should be placed in an already existing directory (to create the full path recursively, see [method make_dir_recursive]).
-				Returns one of the [enum Error] code constants ([code]OK[/code] on success).
+				Создает каталог. Аргумент может быть относительным к текущему каталогу или абсолютным путем. Целевой каталог должен быть помещен в уже существующий каталог (чтобы создать полный путь рекурсивно, смотрите [метод make_dir_recursive]).
+				Возвращает одну из констант кода [enum Error] ([code]OK[/code] при успехе).
 			</description>
 		</method>
 		<method name="make_dir_recursive">
 			<return type="int" enum="Error" />
 			<argument index="0" name="path" type="String" />
 			<description>
-				Creates a target directory and all necessary intermediate directories in its path, by calling [method make_dir] recursively. The argument can be relative to the current directory, or an absolute path.
-				Returns one of the [enum Error] code constants ([code]OK[/code] on success).
+				Создает целевой каталог и все необходимые промежуточные каталоги на его пути, рекурсивно вызывая [метод make_dir]. Аргумент может быть как относительным к текущему каталогу, так и абсолютным путем.
+				Возвращает одну из констант кода [enum Error] ([code]OK[/code] при успехе).
 			</description>
 		</method>
 		<method name="open">
 			<return type="int" enum="Error" />
 			<argument index="0" name="path" type="String" />
 			<description>
-				Opens an existing directory of the filesystem. The [code]path[/code] argument can be within the project tree ([code]res://folder[/code]), the user directory ([code]user://folder[/code]) or an absolute path of the user filesystem (e.g. [code]/tmp/folder[/code] or [code]C:\tmp\folder[/code]).
-				Returns one of the [enum Error] code constants ([code]OK[/code] on success).
+				Открывает существующий каталог в файловой системе. Аргумент [code]path[/code] может находиться в дереве проекта ([code]res://folder[/code]), в каталоге пользователя ([code]user://folder[/code]) или в абсолютном пути к файловой системе пользователя (например, [code]/tmp/folder[/code] или [code]C:\tmp\folder[/code]).
+				Возвращает одну из констант кода [enum Error] ([code]OK[/code] при успехе).
 			</description>
 		</method>
 		<method name="remove">
 			<return type="int" enum="Error" />
 			<argument index="0" name="path" type="String" />
 			<description>
-				Permanently deletes the target file or an empty directory. The argument can be relative to the current directory, or an absolute path. If the target directory is not empty, the operation will fail.
-				If you don't want to delete the file/directory permanently, use [method OS.move_to_trash] instead.
-				Returns one of the [enum Error] code constants ([code]OK[/code] on success).
+				Постоянно удаляет целевой файл или пустой каталог. Аргумент может быть относительным к текущему каталогу или абсолютным путем. Если целевой каталог не пуст, операция завершится неудачей.
+				Если вы не хотите удалять файл/каталог навсегда, используйте вместо этого [метод OS.move_to_trash].
+				Возвращает одну из констант кода [enum Error] ([code]OK[/code] при успехе).
 			</description>
 		</method>
 		<method name="rename">
@@ -163,8 +163,8 @@
 			<argument index="0" name="from" type="String" />
 			<argument index="1" name="to" type="String" />
 			<description>
-				Renames (move) the [code]from[/code] file or directory to the [code]to[/code] destination. Both arguments should be paths to files or directories, either relative or absolute. If the destination file or directory exists and is not access-protected, it will be overwritten.
-				Returns one of the [enum Error] code constants ([code]OK[/code] on success).
+				Переименование (перемещение) файла или каталога [code]from[/code] в каталог [code]to[/code]. Оба аргумента должны быть путями к файлам или каталогам, относительными или абсолютными. Если файл или каталог назначения существует и не защищен от доступа, он будет перезаписан.
+				Возвращает одну из констант кода [enum Error] ([code]OK[/code] при успехе).
 			</description>
 		</method>
 	</methods>

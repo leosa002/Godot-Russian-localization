@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="PacketPeer" inherits="Reference" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="PacketPeer" inherits="Reference" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Abstraction and base class for packet-based protocols.
+		Абстракция и базовый класс для протоколов на основе пакетов.
 	</brief_description>
 	<description>
-		PacketPeer is an abstraction and base class for packet-based protocols (such as UDP). It provides an API for sending and receiving packets both as raw data or variables. This makes it easy to transfer data over a protocol, without having to encode data as low-level bytes or having to worry about network ordering.
+		PacketPeer - это абстракция и базовый класс для протоколов, основанных на пакетах (таких как UDP). Он предоставляет API для отправки и получения пакетов как в виде необработанных данных, так и в виде переменных. Это позволяет легко передавать данные по протоколу, не кодируя их в низкоуровневые байты и не заботясь об упорядочивании сети.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -12,34 +12,34 @@
 		<method name="get_available_packet_count" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the number of packets currently available in the ring-buffer.
+				Возвращает количество пакетов, доступных в настоящее время в кольцевом буфере.
 			</description>
 		</method>
 		<method name="get_packet">
 			<return type="PoolByteArray" />
 			<description>
-				Gets a raw packet.
+				Получает пакет в необработанном виде.
 			</description>
 		</method>
 		<method name="get_packet_error" qualifiers="const">
 			<return type="int" enum="Error" />
 			<description>
-				Returns the error state of the last packet received (via [method get_packet] and [method get_var]).
+				Возвращает состояние ошибки последнего полученного пакета (через [метод get_packet] и [метод get_var]).
 			</description>
 		</method>
 		<method name="get_var">
 			<return type="Variant" />
 			<argument index="0" name="allow_objects" type="bool" default="false" />
 			<description>
-				Gets a Variant. If [code]allow_objects[/code] (or [member allow_object_decoding]) is [code]true[/code], decoding objects is allowed.
-				[b]Warning:[/b] Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
+				Получает вариант. Если [code]allow_objects[/code] (или [member allow_object_decoding]) имеет значение [code]true[/code], декодирование объектов разрешено.
+				[b]Предупреждение:[/b] Десериализованные объекты могут содержать код, который будет выполнен. Не используйте эту опцию, если сериализованный объект получен из ненадежных источников, чтобы избежать потенциальных угроз безопасности, таких как удаленное выполнение кода.
 			</description>
 		</method>
 		<method name="put_packet">
 			<return type="int" enum="Error" />
 			<argument index="0" name="buffer" type="PoolByteArray" />
 			<description>
-				Sends a raw packet.
+				Отправка необработанного пакета.
 			</description>
 		</method>
 		<method name="put_var">
@@ -47,19 +47,19 @@
 			<argument index="0" name="var" type="Variant" />
 			<argument index="1" name="full_objects" type="bool" default="false" />
 			<description>
-				Sends a [Variant] as a packet. If [code]full_objects[/code] (or [member allow_object_decoding]) is [code]true[/code], encoding objects is allowed (and can potentially include code).
+				Отправляет [Variant] в виде пакета. Если [code]full_objects[/code] (или [member allow_object_decoding]) имеет значение [code]true[/code], кодирование объектов разрешено (и потенциально может включать код).
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="allow_object_decoding" type="bool" setter="set_allow_object_decoding" getter="is_object_decoding_allowed" default="false">
-			[i]Deprecated.[/i] Use [code]get_var[/code] and [code]put_var[/code] parameters instead.
-			If [code]true[/code], the PacketPeer will allow encoding and decoding of object via [method get_var] and [method put_var].
-			[b]Warning:[/b] Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
+			[i]Утратил силу.[/i] Вместо этого используйте параметры [code]get_var[/code] и [code]put_var[/code].
+			Если [code]true[/code], PacketPeer позволит кодировать и декодировать объект с помощью [method get_var] и [method put_var].
+			[b]Предупреждение:[/b] Десериализованные объекты могут содержать код, который будет выполнен. Не используйте эту опцию, если сериализованный объект получен из ненадежных источников, чтобы избежать потенциальных угроз безопасности, таких как удаленное выполнение кода.
 		</member>
 		<member name="encode_buffer_max_size" type="int" setter="set_encode_buffer_max_size" getter="get_encode_buffer_max_size" default="8388608">
-			Maximum buffer size allowed when encoding [Variant]s. Raise this value to support heavier memory allocations.
-			The [method put_var] method allocates memory on the stack, and the buffer used will grow automatically to the closest power of two to match the size of the [Variant]. If the [Variant] is bigger than [code]encode_buffer_max_size[/code], the method will error out with [constant ERR_OUT_OF_MEMORY].
+			Максимальный размер буфера, допустимый при кодировании [Variant]ов. Увеличьте это значение, чтобы поддерживать большие объемы выделяемой памяти.
+			Метод [method put_var] выделяет память в стеке, и используемый буфер автоматически увеличивается до ближайшей степени двойки, чтобы соответствовать размеру [Variant]. Если [Variant] больше, чем [code]encode_buffer_max_size[/code], метод выдаст ошибку [constant ERR_OUT_OF_MEMORY].
 		</member>
 	</members>
 	<constants>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Label3D" inherits="GeometryInstance" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Label3D" inherits="GeometryInstance" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Displays plain text in a 3D world.
+		Отображает обычный текст в 3D мире.
 	</brief_description>
 	<description>
-		Label3D displays plain text in a 3D world. It gives you control over the horizontal and vertical alignment.
+		Label3D отображает обычный текст в 3D мире. Он позволяет контролировать горизонтальное и вертикальное выравнивание.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -12,14 +12,14 @@
 		<method name="generate_triangle_mesh" qualifiers="const">
 			<return type="TriangleMesh" />
 			<description>
-				Returns a [TriangleMesh] with the label's vertices following its current configuration (such as its [member pixel_size]).
+				Возвращает [TriangleMesh] с вершинами метки, следуя ее текущей конфигурации (например, ее [member pixel_size]).
 			</description>
 		</method>
 		<method name="get_draw_flag" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="flag" type="int" enum="Label3D.DrawFlags" />
 			<description>
-				Returns the value of the specified flag.
+				Возвращает значение указанного флага.
 			</description>
 		</method>
 		<method name="set_draw_flag">
@@ -27,130 +27,130 @@
 			<argument index="0" name="flag" type="int" enum="Label3D.DrawFlags" />
 			<argument index="1" name="enabled" type="bool" />
 			<description>
-				If [code]true[/code], the specified flag will be enabled. See [enum Label3D.DrawFlags] for a list of flags.
+				Если [code]true[/code], то указанный флаг будет включен. Список флагов см. в [enum Label3D.DrawFlags].
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="alpha_cut" type="int" setter="set_alpha_cut_mode" getter="get_alpha_cut_mode" enum="Label3D.AlphaCutMode" default="0">
-			The alpha cutting mode to use for the sprite. See [enum AlphaCutMode] for possible values.
+			Режим альфа-обрезки, который будет использоваться для спрайта. Возможные значения см. в [enum AlphaCutMode].
 		</member>
 		<member name="alpha_scissor_threshold" type="float" setter="set_alpha_scissor_threshold" getter="get_alpha_scissor_threshold" default="0.5">
-			Threshold at which the alpha scissor will discard values.
+			Порог, при котором альфа-ножницы будут отбрасывать значения.
 		</member>
 		<member name="autowrap" type="bool" setter="set_autowrap" getter="get_autowrap" default="false">
-			If [code]true[/code], wraps the text to the [member width].
+			Если [code]true[/code], то текст заворачивается на [member width].
 		</member>
-		<member name="billboard" type="int" setter="set_billboard_mode" getter="get_billboard_mode" enum="Material3D.BillboardMode" default="0">
-			The billboard mode to use for the label. See [enum Material3D.BillboardMode] for possible values.
+		<member name="billboard" type="int" setter="set_billboard_mode" getter="get_billboard_mode" enum="SpatialMaterial.BillboardMode" default="0">
+			Режим билборда, который будет использоваться для этикетки. Возможные значения см. в [enum SpatialMaterial.BillboardMode].
 		</member>
 		<member name="double_sided" type="bool" setter="set_draw_flag" getter="get_draw_flag" default="true">
-			If [code]true[/code], text can be seen from the back as well, if [code]false[/code], it is invisible when looking at it from behind.
+			Если [code]true[/code], то текст виден и со спины, если [code]false[/code], то он невидим при взгляде на него сзади.
 		</member>
 		<member name="fixed_size" type="bool" setter="set_draw_flag" getter="get_draw_flag" default="false">
-			If [code]true[/code], the label is rendered at the same size regardless of distance.
+			Если [code]true[/code], этикетка будет отображаться одинакового размера независимо от расстояния.
 		</member>
 		<member name="font" type="Font" setter="set_font" getter="get_font">
-			[Font] used for the [Label3D]'s text.
+			[Font], используемый для текста [Label3D].
 		</member>
 		<member name="horizontal_alignment" type="int" setter="set_horizontal_alignment" getter="get_horizontal_alignment" enum="Label3D.Align" default="1">
-			Controls the text's horizontal alignment. Supports left, center, right. Set it to one of the [enum Align] constants.
+			Управляет выравниванием текста по горизонтали. Поддерживает выравнивание по левому краю, по центру, по правому краю. Установите значение одной из констант [enum Align].
 		</member>
 		<member name="line_spacing" type="float" setter="set_line_spacing" getter="get_line_spacing" default="0.0">
-			Vertical space between lines in multiline [Label3D].
+			Вертикальное пространство между строками в многострочных [Label3D].
 		</member>
 		<member name="modulate" type="Color" setter="set_modulate" getter="get_modulate" default="Color( 1, 1, 1, 1 )">
-			Text [Color] of the [Label3D].
+			Текст [Color] надписи [Label3D].
 		</member>
 		<member name="no_depth_test" type="bool" setter="set_draw_flag" getter="get_draw_flag" default="false">
-			If [code]true[/code], depth testing is disabled and the object will be drawn in render order.
+			Если [code]true[/code], тестирование глубины отключено, и объект будет отрисовываться в порядке рендеринга.
 		</member>
 		<member name="offset" type="Vector2" setter="set_offset" getter="get_offset" default="Vector2( 0, 0 )">
-			The text drawing offset (in pixels).
+			Смещение отрисовки текста (в пикселях).
 		</member>
 		<member name="outline_modulate" type="Color" setter="set_outline_modulate" getter="get_outline_modulate" default="Color( 0, 0, 0, 1 )">
-			The tint of [Font]'s outline.
+			Оттенок контура [Font].
 		</member>
 		<member name="outline_render_priority" type="int" setter="set_outline_render_priority" getter="get_outline_render_priority" default="-1">
-			Sets the render priority for the text outline. Higher priority objects will be sorted in front of lower priority objects.
-			[b]Note:[/b] This only applies if [member alpha_cut] is set to [constant ALPHA_CUT_DISABLED] (default value).
-			[b]Note:[/b] This only applies to sorting of transparent objects. This will not impact how transparent objects are sorted relative to opaque objects. This is because opaque objects are not sorted, while transparent objects are sorted from back to front (subject to priority).
+			Устанавливает приоритет рендеринга для текстового контура. Объекты с более высоким приоритетом будут отсортированы перед объектами с более низким приоритетом.
+			[b]Примечание:[/b] Это применимо только в том случае, если для параметра [member alpha_cut] установлено значение [constant ALPHA_CUT_DISABLED] (значение по умолчанию).
+			[b]Примечание:[/b] Это относится только к сортировке прозрачных объектов. Это не влияет на то, как прозрачные объекты сортируются относительно непрозрачных. Это происходит потому, что непрозрачные объекты не сортируются, в то время как прозрачные объекты сортируются сзади наперед (с учетом приоритета).
 		</member>
 		<member name="pixel_size" type="float" setter="set_pixel_size" getter="get_pixel_size" default="0.01">
-			The size of one pixel's width on the label to scale it in 3D.
+			Размер ширины одного пикселя на этикетке для масштабирования ее в 3D.
 		</member>
 		<member name="render_priority" type="int" setter="set_render_priority" getter="get_render_priority" default="0">
-			Sets the render priority for the text. Higher priority objects will be sorted in front of lower priority objects.
-			[b]Note:[/b] This only applies if [member alpha_cut] is set to [constant ALPHA_CUT_DISABLED] (default value).
-			[b]Note:[/b] This only applies to sorting of transparent objects. This will not impact how transparent objects are sorted relative to opaque objects. This is because opaque objects are not sorted, while transparent objects are sorted from back to front (subject to priority).
+			Устанавливает приоритет рендеринга для текста. Объекты с более высоким приоритетом будут отсортированы перед объектами с более низким приоритетом.
+			[b]Примечание:[/b] Это применимо только в том случае, если для параметра [member alpha_cut] установлено значение [constant ALPHA_CUT_DISABLED] (значение по умолчанию).
+			[b]Примечание:[/b] Это относится только к сортировке прозрачных объектов. Это не влияет на то, как прозрачные объекты сортируются относительно непрозрачных. Это происходит потому, что непрозрачные объекты не сортируются, в то время как прозрачные объекты сортируются сзади наперед (с учетом приоритета).
 		</member>
 		<member name="shaded" type="bool" setter="set_draw_flag" getter="get_draw_flag" default="false">
-			If [code]true[/code], the [Light] in the [Environment] has effects on the label.
+			Если [code]true[/code], то [Light] в [Environment] влияет на метку.
 		</member>
 		<member name="text" type="String" setter="set_text" getter="get_text" default="&quot;&quot;">
-			The text to display on screen.
+			Текст, который будет отображаться на экране.
 		</member>
 		<member name="uppercase" type="bool" setter="set_uppercase" getter="is_uppercase" default="false">
-			If [code]true[/code], all the text displays as UPPERCASE.
+			Если [code]true[/code], весь текст отображается в формате UPPERCASE.
 		</member>
 		<member name="vertical_alignment" type="int" setter="set_vertical_alignment" getter="get_vertical_alignment" enum="Label3D.VAlign" default="1">
-			Controls the text's vertical alignment. Supports top, center, bottom. Set it to one of the [enum VAlign] constants.
+			Управляет вертикальным выравниванием текста. Поддерживаются верхнее, центральное, нижнее. Установите значение одной из констант [enum VAlign].
 		</member>
 		<member name="width" type="float" setter="set_width" getter="get_width" default="500.0">
-			Text width (in pixels), used for autowrap and fill alignment.
+			Ширина текста (в пикселях), используемая для автообводки и выравнивания заливки.
 		</member>
 	</members>
 	<constants>
 		<constant name="FLAG_SHADED" value="0" enum="DrawFlags">
-			If set, lights in the environment affect the label.
+			Если этот параметр установлен, освещение в окружающей среде влияет на этикетку.
 		</constant>
 		<constant name="FLAG_DOUBLE_SIDED" value="1" enum="DrawFlags">
-			If set, text can be seen from the back as well. If not, the text is invisible when looking at it from behind.
+			Если установлено, текст можно увидеть и со спины. Если нет, текст будет невидим при взгляде сзади.
 		</constant>
 		<constant name="FLAG_DISABLE_DEPTH_TEST" value="2" enum="DrawFlags">
-			Disables the depth test, so this object is drawn on top of all others. However, objects drawn after it in the draw order may cover it.
+			Отключает проверку глубины, поэтому данный объект рисуется поверх всех остальных. Однако объекты, нарисованные после него в порядке рисования, могут перекрыть его.
 		</constant>
 		<constant name="FLAG_FIXED_SIZE" value="3" enum="DrawFlags">
-			Label is scaled by depth so that it always appears the same size on screen.
+			Ярлык масштабируется по глубине, поэтому на экране он всегда будет одинакового размера.
 		</constant>
 		<constant name="FLAG_MAX" value="4" enum="DrawFlags">
-			Represents the size of the [enum DrawFlags] enum.
+			Представляет размер перечисления [enum DrawFlags].
 		</constant>
 		<constant name="ALPHA_CUT_DISABLED" value="0" enum="AlphaCutMode">
-			This mode performs standard alpha blending. It can display translucent areas, but transparency sorting issues may be visible when multiple transparent materials are overlapping.
+			Этот режим выполняет стандартное альфа-смешивание. Он может отображать полупрозрачные области, но при наложении нескольких прозрачных материалов могут возникнуть проблемы с сортировкой прозрачности.
 		</constant>
 		<constant name="ALPHA_CUT_DISCARD" value="1" enum="AlphaCutMode">
-			This mode only allows fully transparent or fully opaque pixels. This mode is also known as [i]alpha testing[/i] or [i]1-bit transparency[/i].
-			[b]Note:[/b] This mode might have issues with anti-aliased fonts and outlines, try adjusting [member alpha_scissor_threshold] or using SDF font.
-			[b]Note:[/b] When using text with overlapping glyphs (e.g., cursive scripts), this mode might have transparency sorting issues between the main text and the outline.
+			В этом режиме можно использовать только полностью прозрачные или полностью непрозрачные пиксели. Этот режим также известен как [i]альфа-тестирование[/i] или [i]1-битная прозрачность[/i].
+			[b]Примечание:[/b] В этом режиме могут возникать проблемы со сглаженными шрифтами и контурами, попробуйте настроить [member alpha_scissor_threshold] или использовать шрифт SDF.
+			[b]Примечание:[/b] При использовании текста с перекрывающимися глифами (например, скорописью) в этом режиме могут возникнуть проблемы с сортировкой прозрачности между основным текстом и контуром.
 		</constant>
 		<constant name="ALPHA_CUT_OPAQUE_PREPASS" value="2" enum="AlphaCutMode">
-			This mode draws fully opaque pixels in the depth prepass. This is slower than [constant ALPHA_CUT_DISABLED] or [constant ALPHA_CUT_DISCARD], but it allows displaying translucent areas and smooth edges while using proper sorting.
-			[b]Note:[/b] When using text with overlapping glyphs (e.g., cursive scripts), this mode might have transparency sorting issues between the main text and the outline.
+			Этот режим рисует полностью непрозрачные пиксели в препассе глубины. Это медленнее, чем [constant ALPHA_CUT_DISABLED] или [constant ALPHA_CUT_DISCARD], но позволяет отображать полупрозрачные области и гладкие края, используя при этом правильную сортировку.
+			[b]Примечание:[/b] При использовании текста с перекрывающимися глифами (например, скорописью) в этом режиме могут возникнуть проблемы с сортировкой прозрачности между основным текстом и контуром.
 		</constant>
 		<constant name="ALIGN_LEFT" value="0" enum="Align">
-			Align rows to the left (default).
+			Выравнивание строк по левому краю (по умолчанию).
 		</constant>
 		<constant name="ALIGN_CENTER" value="1" enum="Align">
-			Align rows centered.
+			Выровнять ряды по центру.
 		</constant>
 		<constant name="ALIGN_RIGHT" value="2" enum="Align">
-			Align rows to the right.
+			Выровнять строки в правую сторону.
 		</constant>
 		<constant name="ALIGN_FILL" value="3" enum="Align">
-			Expand row whitespaces to fit the width.
+			Раскройте пробел строки, чтобы оно соответствовало ширине.
 		</constant>
 		<constant name="VALIGN_TOP" value="0" enum="VAlign">
-			Align the whole text to the top.
+			Выровнять весь текст вверх.
 		</constant>
 		<constant name="VALIGN_CENTER" value="1" enum="VAlign">
-			Align the whole text to the center.
+			Выровнять весь текст по центру.
 		</constant>
 		<constant name="VALIGN_BOTTOM" value="2" enum="VAlign">
-			Align the whole text to the bottom.
+			Выровнять весь текст вниз.
 		</constant>
 		<constant name="VALIGN_FILL" value="3" enum="VAlign">
-			Align the whole text by spreading the rows.
+			Выравнивание всего текста путем распространения строк.
 		</constant>
 	</constants>
 </class>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="NetworkedMultiplayerCustom" inherits="NetworkedMultiplayerPeer" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="NetworkedMultiplayerCustom" inherits="NetworkedMultiplayerPeer" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		A [NetworkedMultiplayerPeer] implementation that can be controlled from a script.
+		Реализация [NetworkedMultiplayerPeer], которой можно управлять из скрипта.
 	</brief_description>
 	<description>
-		A [NetworkedMultiplayerPeer] implementation that can be used as a [member MultiplayerAPI.network_peer] and controlled from a script.
-		Its purpose is to allow adding a new backend for the high-Level multiplayer API without needing to use GDNative.
+		Реализация [NetworkedMultiplayerPeer], которая может быть использована как [member MultiplayerAPI.network_peer] и управляться из скрипта.
+		Ее цель - позволить добавить новый бэкенд для высокоуровневого многопользовательского API без необходимости использовать GDNative.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -15,32 +15,32 @@
 			<argument index="0" name="buffer" type="PoolByteArray" />
 			<argument index="1" name="from_peer_id" type="int" />
 			<description>
-				Deliver a packet to the local [MultiplayerAPI].
-				When your script receives a packet from other peers over the network (originating from the [signal packet_generated] signal on the sending peer), passing it to this method will deliver it locally.
+				Передача пакета в локальный [MultiplayerAPI].
+				Когда ваш скрипт получает пакет от других пиров по сети (исходящий от сигнала [signal packet_generated] на отправляющем пире), передача его в этот метод доставит его локально.
 			</description>
 		</method>
 		<method name="initialize">
 			<return type="void" />
 			<argument index="0" name="self_peer_id" type="int" />
 			<description>
-				Initialize the peer with the given [code]self_peer_id[/code] (must be between 1 and 2147483647).
-				Can only be called if the connection status is [constant NetworkedMultiplayerPeer.CONNECTION_CONNECTING]. See [method set_connection_status].
+				Инициализация пира с заданным [code]peer_id[/code] (должно быть от 1 до 2147483647).
+				Может быть вызвана только в том случае, если статус соединения равен [константа NetworkedMultiplayerPeer.CONNECTION_CONNECTING]. Смотрите [метод set_connection_status].
 			</description>
 		</method>
 		<method name="set_connection_status">
 			<return type="void" />
 			<argument index="0" name="connection_status" type="int" enum="NetworkedMultiplayerPeer.ConnectionStatus" />
 			<description>
-				Set the state of the connection. See [enum NetworkedMultiplayerPeer.ConnectionStatus].
-				This will emit the [signal NetworkedMultiplayerPeer.connection_succeeded], [signal NetworkedMultiplayerPeer.connection_failed] or [signal NetworkedMultiplayerPeer.server_disconnected] signals depending on the status and if the peer has the unique network id of [code]1[/code].
-				You can only change to [constant NetworkedMultiplayerPeer.CONNECTION_CONNECTING] from [constant NetworkedMultiplayerPeer.CONNECTION_DISCONNECTED] and to [constant NetworkedMultiplayerPeer.CONNECTION_CONNECTED] from [constant NetworkedMultiplayerPeer.CONNECTION_CONNECTING].
+				Устанавливает состояние соединения. Смотрите [enum NetworkedMultiplayerPeer.ConnectionStatus].
+				В зависимости от состояния и наличия у пира уникального сетевого идентификатора [code]1[/code] будет выдаваться сигнал [signal NetworkedMultiplayerPeer.connection_succeeded], [signal NetworkedMultiplayerPeer.connection_failed] или [signal NetworkedMultiplayerPeer.server_disconnected].
+				Вы можете изменить только на [constant NetworkedMultiplayerPeer.CONNECTION_CONNECTING] с [constant NetworkedMultiplayerPeer.CONNECTION_DISCONNECTED] и на [constant NetworkedMultiplayerPeer.CONNECTION_CONNECTED] с [constant NetworkedMultiplayerPeer.CONNECTION_CONNECTING].
 			</description>
 		</method>
 		<method name="set_max_packet_size">
 			<return type="void" />
 			<argument index="0" name="max_packet_size" type="int" />
 			<description>
-				Set the max packet size that this peer can handle.
+				Установите максимальный размер пакета, который может обрабатывать данный пир.
 			</description>
 		</method>
 	</methods>
@@ -50,8 +50,8 @@
 			<argument index="1" name="buffer" type="PoolByteArray" />
 			<argument index="2" name="transfer_mode" type="int" />
 			<description>
-				Emitted when the local [MultiplayerAPI] generates a packet (e.g. when calling [method Node.rpc]).
-				Your script should take this packet and send it to the requested peer over the network (which should call [method deliver_packet] with the data when it's received).
+				Выдается, когда локальный [MultiplayerAPI] генерирует пакет.
+				Ваш скрипт должен принять этот пакет и отправить его запрашиваемому пиру по сети (который должен вызвать [method deliver_packet] с данными, когда они будут получены).
 			</description>
 		</signal>
 	</signals>

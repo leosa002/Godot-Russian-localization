@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="AnimationNodeBlendSpace1D" inherits="AnimationRootNode" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="AnimationNodeBlendSpace1D" inherits="AnimationRootNode" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Blends linearly between two of any number of [AnimationNode] of any type placed on a virtual axis.
+		Линейно смешивает два из любого количества [AnimationNode] любого типа, расположенных на виртуальной оси.
 	</brief_description>
 	<description>
-		A resource to add to an [AnimationNodeBlendTree].
-		This is a virtual axis on which you can add any type of [AnimationNode] using [method add_blend_point].
-		Outputs the linear blend of the two [AnimationNode]s closest to the node's current value.
-		You can set the extents of the axis using the [member min_space] and [member max_space].
+		Ресурс для добавления в [AnimationNodeBlendTree].
+		Это виртуальная ось, на которую можно добавить любой тип [AnimationNode] с помощью [method add_blend_point].
+		Выводит линейное смешение двух [AnimationNode]ов, наиболее близких к текущему значению узла.
+		Экстенты оси можно задать с помощью членов [member min_space] и [member max_space]
 	</description>
 	<tutorials>
 		<link>$DOCS_URL/tutorials/animation/animation_tree.html</link>
@@ -19,34 +19,34 @@
 			<argument index="1" name="pos" type="float" />
 			<argument index="2" name="at_index" type="int" default="-1" />
 			<description>
-				Adds a new point that represents a [code]node[/code] on the virtual axis at a given position set by [code]pos[/code]. You can insert it at a specific index using the [code]at_index[/code] argument. If you use the default value for [code]at_index[/code], the point is inserted at the end of the blend points array.
+				Добавляет новую точку, представляющую собой [code]узел[/code] на виртуальной оси, в заданную позицию, заданную аргументом [code]pos[/code]. С помощью аргумента [code]at_index[/code] можно вставить ее в определенный индекс. Если использовать значение по умолчанию для [code]at_index[/code], то точка будет вставлена в конец массива точек смешивания.
 			</description>
 		</method>
 		<method name="get_blend_point_count" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the number of points on the blend axis.
+				Возвращает количество точек на оси смешивания.
 			</description>
 		</method>
 		<method name="get_blend_point_node" qualifiers="const">
 			<return type="AnimationRootNode" />
 			<argument index="0" name="point" type="int" />
 			<description>
-				Returns the [AnimationNode] referenced by the point at index [code]point[/code].
+				Возвращает узел [AnimationNode], на который ссылается точка с индексом [code]point[/code].
 			</description>
 		</method>
 		<method name="get_blend_point_position" qualifiers="const">
 			<return type="float" />
 			<argument index="0" name="point" type="int" />
 			<description>
-				Returns the position of the point at index [code]point[/code].
+				Возвращает положение точки по индексу [code]point[/code].
 			</description>
 		</method>
 		<method name="remove_blend_point">
 			<return type="void" />
 			<argument index="0" name="point" type="int" />
 			<description>
-				Removes the point at index [code]point[/code] from the blend axis.
+				Удаляет точку с индексом [code]point[/code] с оси смешивания.
 			</description>
 		</method>
 		<method name="set_blend_point_node">
@@ -54,7 +54,7 @@
 			<argument index="0" name="point" type="int" />
 			<argument index="1" name="node" type="AnimationRootNode" />
 			<description>
-				Changes the [AnimationNode] referenced by the point at index [code]point[/code].
+				Изменяет узел [AnimationNode], на который ссылается точка в индексе [code]point[/code].
 			</description>
 		</method>
 		<method name="set_blend_point_position">
@@ -62,22 +62,22 @@
 			<argument index="0" name="point" type="int" />
 			<argument index="1" name="pos" type="float" />
 			<description>
-				Updates the position of the point at index [code]point[/code] on the blend axis.
+				Обновляет положение точки с индексом [code]point[/code] на оси смешивания.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="max_space" type="float" setter="set_max_space" getter="get_max_space" default="1.0">
-			The blend space's axis's upper limit for the points' position. See [method add_blend_point].
+			Верхняя граница оси пространства наложения для положения точек. См. раздел [method add_blend_point].
 		</member>
 		<member name="min_space" type="float" setter="set_min_space" getter="get_min_space" default="-1.0">
-			The blend space's axis's lower limit for the points' position. See [method add_blend_point].
+			Нижняя граница оси пространства наложения для положения точек. См. раздел [method add_blend_point].
 		</member>
 		<member name="snap" type="float" setter="set_snap" getter="get_snap" default="0.1">
-			Position increment to snap to when moving a point on the axis.
+			Приращение позиции для привязки при перемещении точки по оси.
 		</member>
 		<member name="value_label" type="String" setter="set_value_label" getter="get_value_label" default="&quot;value&quot;">
-			Label of the virtual axis of the blend space.
+			Метка виртуальной оси пространства смешивания.
 		</member>
 	</members>
 	<constants>

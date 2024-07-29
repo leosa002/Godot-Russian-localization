@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="VisualShaderNodeVectorDistance" inherits="VisualShaderNode" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="VisualShaderNodeVectorDistance" inherits="VisualShaderNode" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Returns the distance between two points. To be used within the visual shader graph.
+		Возвращает расстояние между двумя точками. Используется в графике визуальных шейдеров.
 	</brief_description>
 	<description>
-		Calculates distance from point represented by vector [code]p0[/code] to vector [code]p1[/code].
-		Translated to [code]distance(p0, p1)[/code] in the shader language.
+		Вычисляет расстояние от точки, представленной вектором [code]p0[/code], до вектора [code]p1[/code].
+		На языке шейдеров переводится как [code]distance(p0, p1)[/code].
 	</description>
 	<tutorials>
 	</tutorials>

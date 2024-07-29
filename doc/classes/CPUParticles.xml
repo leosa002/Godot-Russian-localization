@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="CPUParticles" inherits="GeometryInstance" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="CPUParticles" inherits="GeometryInstance" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		CPU-based 3D particle emitter.
+		Эмиттер 3D-частиц на базе процессора.
 	</brief_description>
 	<description>
-		CPU-based 3D particle node used to create a variety of particle systems and effects.
-		See also [Particles], which provides the same functionality with hardware acceleration, but may not run on older devices.
-		[b]Note:[/b] Unlike [Particles], the visibility rect is generated on-the-fly and doesn't need to be configured by the user.
+		3D-узел частиц на базе процессора, используемый для создания различных систем частиц и эффектов.
+		См. также [Particles], который обеспечивает ту же функциональность с аппаратным ускорением, но может не работать на старых устройствах.
+		[b]Примечание:[/b] В отличие от [Particles], прямоугольник видимости генерируется на лету и не требует настройки пользователем.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -15,41 +15,41 @@
 			<return type="void" />
 			<argument index="0" name="particles" type="Node" />
 			<description>
-				Sets this node's properties to match a given [Particles] node with an assigned [ParticlesMaterial].
+				Устанавливает свойства этого узла для соответствия данному узлу [Particles] с назначенным [ParticlesMaterial].
 			</description>
 		</method>
 		<method name="get_param" qualifiers="const">
 			<return type="float" />
 			<argument index="0" name="param" type="int" enum="CPUParticles.Parameter" />
 			<description>
-				Returns the base value of the parameter specified by [enum Parameter].
+				Возвращает базовое значение параметра, указанного в [enum Parameter].
 			</description>
 		</method>
 		<method name="get_param_curve" qualifiers="const">
 			<return type="Curve" />
 			<argument index="0" name="param" type="int" enum="CPUParticles.Parameter" />
 			<description>
-				Returns the [Curve] of the parameter specified by [enum Parameter].
+				Возвращает [Curve] параметра, указанного в [enum Parameter].
 			</description>
 		</method>
 		<method name="get_param_randomness" qualifiers="const">
 			<return type="float" />
 			<argument index="0" name="param" type="int" enum="CPUParticles.Parameter" />
 			<description>
-				Returns the randomness factor of the parameter specified by [enum Parameter].
+				Возвращает коэффициент случайности параметра, указанного [enum Parameter].
 			</description>
 		</method>
 		<method name="get_particle_flag" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="flag" type="int" enum="CPUParticles.Flags" />
 			<description>
-				Returns the enabled state of the given flag (see [enum Flags] for options).
+				Возвращает включенное состояние заданного флага (опции см. в [enum Flags]).
 			</description>
 		</method>
 		<method name="restart">
 			<return type="void" />
 			<description>
-				Restarts the particle emitter.
+				Перезапускает эмиттер частиц.
 			</description>
 		</method>
 		<method name="set_param">
@@ -57,7 +57,7 @@
 			<argument index="0" name="param" type="int" enum="CPUParticles.Parameter" />
 			<argument index="1" name="value" type="float" />
 			<description>
-				Sets the base value of the parameter specified by [enum Parameter].
+				Устанавливает базовое значение параметра, указанного в [enum Parameter].
 			</description>
 		</method>
 		<method name="set_param_curve">
@@ -65,7 +65,7 @@
 			<argument index="0" name="param" type="int" enum="CPUParticles.Parameter" />
 			<argument index="1" name="curve" type="Curve" />
 			<description>
-				Sets the [Curve] of the parameter specified by [enum Parameter].
+				Устанавливает [Curve] параметра, указанного в [enum Parameter].
 			</description>
 		</method>
 		<method name="set_param_randomness">
@@ -73,7 +73,7 @@
 			<argument index="0" name="param" type="int" enum="CPUParticles.Parameter" />
 			<argument index="1" name="randomness" type="float" />
 			<description>
-				Sets the randomness factor of the parameter specified by [enum Parameter].
+				Устанавливает коэффициент случайности параметра, указанного [enum Parameter].
 			</description>
 		</method>
 		<method name="set_particle_flag">
@@ -81,306 +81,306 @@
 			<argument index="0" name="flag" type="int" enum="CPUParticles.Flags" />
 			<argument index="1" name="enable" type="bool" />
 			<description>
-				Enables or disables the given flag (see [enum Flags] for options).
+				Включает или выключает заданный флаг (опции см. в [enum Flags]).
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="amount" type="int" setter="set_amount" getter="get_amount" default="8">
-			The number of particles emitted in one emission cycle (corresponding to the [member lifetime]).
-			[b]Note:[/b] Changing [member amount] will reset the particle emission, therefore removing all particles that were already emitted before changing [member amount].
+			Количество частиц, испускаемых за один цикл испускания (соответствует [member lifetime]).
+			[b]Примечание:[/b] Изменение [member amount] сбросит выброс частиц, таким образом удалив все частицы, которые уже были выброшены до изменения [member amount].
 		</member>
 		<member name="angle" type="float" setter="set_param" getter="get_param" default="0.0">
-			Initial rotation applied to each particle, in degrees.
+			Начальное вращение, применяемое к каждой частице, в градусах.
 		</member>
 		<member name="angle_curve" type="Curve" setter="set_param_curve" getter="get_param_curve">
-			Each particle's rotation will be animated along this [Curve].
+			Вращение каждой частицы будет анимировано в соответствии с этим [Curve].
 		</member>
 		<member name="angle_random" type="float" setter="set_param_randomness" getter="get_param_randomness" default="0.0">
-			Rotation randomness ratio.
+			Коэффициент случайности при вращении.
 		</member>
 		<member name="angular_velocity" type="float" setter="set_param" getter="get_param" default="0.0">
-			Initial angular velocity applied to each particle in [i]degrees[/i] per second. Sets the speed of rotation of the particle.
+			Начальная угловая скорость, применяемая к каждой частице, в [i]градусах[/i] в секунду. Задает скорость вращения частицы.
 		</member>
 		<member name="angular_velocity_curve" type="Curve" setter="set_param_curve" getter="get_param_curve">
-			Each particle's angular velocity will vary along this [Curve].
+			Угловая скорость каждой частицы будет изменяться вдоль этого [Curve].
 		</member>
 		<member name="angular_velocity_random" type="float" setter="set_param_randomness" getter="get_param_randomness" default="0.0">
-			Angular velocity randomness ratio.
+			Коэффициент случайности угловых скоростей.
 		</member>
 		<member name="anim_offset" type="float" setter="set_param" getter="get_param" default="0.0">
-			Particle animation offset.
+			Смещения анимации частиц.
 		</member>
 		<member name="anim_offset_curve" type="Curve" setter="set_param_curve" getter="get_param_curve">
-			Each particle's animation offset will vary along this [Curve].
+			Смещение анимации каждой частицы будет меняться следующим образом [Curve].
 		</member>
 		<member name="anim_offset_random" type="float" setter="set_param_randomness" getter="get_param_randomness" default="0.0">
-			Animation offset randomness ratio.
+			Коэффициент случайности смещения анимаций.
 		</member>
 		<member name="anim_speed" type="float" setter="set_param" getter="get_param" default="0.0">
-			Particle animation speed.
+			Скорость анимации частиц.
 		</member>
 		<member name="anim_speed_curve" type="Curve" setter="set_param_curve" getter="get_param_curve">
-			Each particle's animation speed will vary along this [Curve].
+			Скорость анимации каждой частицы будет меняться следующим образом [Curve].
 		</member>
 		<member name="anim_speed_random" type="float" setter="set_param_randomness" getter="get_param_randomness" default="0.0">
-			Animation speed randomness ratio.
+			Коэффициент случайности в скорости анимации.
 		</member>
 		<member name="color" type="Color" setter="set_color" getter="get_color" default="Color( 1, 1, 1, 1 )">
-			Each particle's initial color.
-			[b]Note:[/b] [member color] multiplies the particle mesh's vertex colors. To have a visible effect on a [Material3D], [member Material3D.vertex_color_use_as_albedo] [i]must[/i] be [code]true[/code]. For a [ShaderMaterial], [code]ALBEDO *= COLOR.rgb;[/code] must be inserted in the shader's [code]fragment()[/code] function. Otherwise, [member color] will have no visible effect.
+			Начальный цвет каждой частицы.
+			[b]Примечание:[/b] [member color] умножает цвета вершин сетки частиц. Чтобы эффект был заметен для [SpatialMaterial], [member SpatialMaterial.vertex_color_use_as_albedo] [i]должен[/i] быть [code]true[/code]. Для [ShaderMaterial], [code]ALBEDO *= COLOR.rgb;[/code] должно быть вставлено в функцию шейдера [code]fragment()[/code]. В противном случае [member color] не будет иметь видимого эффекта.
 		</member>
 		<member name="color_initial_ramp" type="Gradient" setter="set_color_initial_ramp" getter="get_color_initial_ramp">
-			Each particle's initial color will vary along this [GradientTexture] (multiplied with [member color]).
-			[b]Note:[/b] [member color_initial_ramp] multiplies the particle mesh's vertex colors. To have a visible effect on a [Material3D], [member Material3D.vertex_color_use_as_albedo] [i]must[/i] be [code]true[/code]. For a [ShaderMaterial], [code]ALBEDO *= COLOR.rgb;[/code] must be inserted in the shader's [code]fragment()[/code] function. Otherwise, [member color_initial_ramp] will have no visible effect.
+			Начальный цвет каждой частицы будет меняться в соответствии с этим [GradientTexture] (умноженным на [member color]).
+			[b]Примечание:[/b] [member color_initial_ramp] умножает цвета вершин сетки частиц. Чтобы эффект был заметен для [SpatialMaterial], [member SpatialMaterial.vertex_color_use_as_albedo] [i]должен[/i] быть [code]true[/code]. Для [ShaderMaterial], [code]ALBEDO *= COLOR.rgb;[/code] должен быть вставлен в функцию шейдера [code]fragment()[/code]. В противном случае [member color_initial_ramp] не будет иметь видимого эффекта.
 		</member>
 		<member name="color_ramp" type="Gradient" setter="set_color_ramp" getter="get_color_ramp">
-			Each particle's color will vary along this [GradientTexture] over its lifetime (multiplied with [member color]).
-			[b]Note:[/b] [member color_ramp] multiplies the particle mesh's vertex colors. To have a visible effect on a [Material3D], [member Material3D.vertex_color_use_as_albedo] [i]must[/i] be [code]true[/code]. For a [ShaderMaterial], [code]ALBEDO *= COLOR.rgb;[/code] must be inserted in the shader's [code]fragment()[/code] function. Otherwise, [member color_ramp] will have no visible effect.
+			Цвет каждой частицы будет меняться по этой [GradientTexture] в течение всего времени ее существования (умноженной на [member color]).
+			[b]Примечание:[/b] [member color_ramp] умножает цвета вершин сетки частиц. Чтобы эффект был заметен для [SpatialMaterial], [member SpatialMaterial.vertex_color_use_as_albedo] [i]должен[/i] быть [code]true[/code]. Для [ShaderMaterial], [code]ALBEDO *= COLOR.rgb;[/code] должно быть вставлено в функцию [code]fragment()[/code] шейдера. В противном случае [member color_ramp] не будет иметь видимого эффекта.
 		</member>
 		<member name="damping" type="float" setter="set_param" getter="get_param" default="0.0">
-			The rate at which particles lose velocity.
+			Скорость, с которой частицы теряют скорость.
 		</member>
 		<member name="damping_curve" type="Curve" setter="set_param_curve" getter="get_param_curve">
-			Damping will vary along this [Curve].
+			Демпфирование будет меняться в зависимости от этого [Curve].
 		</member>
 		<member name="damping_random" type="float" setter="set_param_randomness" getter="get_param_randomness" default="0.0">
-			Damping randomness ratio.
+			Коэффициент произвольности демпфирования.
 		</member>
 		<member name="direction" type="Vector3" setter="set_direction" getter="get_direction" default="Vector3( 1, 0, 0 )">
-			Unit vector specifying the particles' emission direction.
+			Единичный вектор, задающий направление испускания частиц.
 		</member>
 		<member name="draw_order" type="int" setter="set_draw_order" getter="get_draw_order" enum="CPUParticles.DrawOrder" default="0">
-			Particle draw order. Uses [enum DrawOrder] values.
+			Порядок отрисовки частиц. Использует значения [enum DrawOrder].
 		</member>
 		<member name="emission_box_extents" type="Vector3" setter="set_emission_box_extents" getter="get_emission_box_extents">
-			The rectangle's extents if [member emission_shape] is set to [constant EMISSION_SHAPE_BOX].
+			Размеры прямоугольника, если для [member emission_shape] установлено значение [constant EMISSION_SHAPE_BOX].
 		</member>
 		<member name="emission_colors" type="PoolColorArray" setter="set_emission_colors" getter="get_emission_colors">
-			Sets the [Color]s to modulate particles by when using [constant EMISSION_SHAPE_POINTS] or [constant EMISSION_SHAPE_DIRECTED_POINTS].
-			[b]Note:[/b] [member emission_colors] multiplies the particle mesh's vertex colors. To have a visible effect on a [Material3D], [member Material3D.vertex_color_use_as_albedo] [i]must[/i] be [code]true[/code]. For a [ShaderMaterial], [code]ALBEDO *= COLOR.rgb;[/code] must be inserted in the shader's [code]fragment()[/code] function. Otherwise, [member emission_colors] will have no visible effect.
+			Устанавливает [Color]ы для модуляции частиц при использовании [constant EMISSION_SHAPE_POINTS] или [constant EMISSION_SHAPE_DIRECTED_POINTS].
+			[b]Примечание:[/b] [member emission_colors] умножает цвета вершин сетки частиц. Чтобы эффект был заметен для [SpatialMaterial], [member SpatialMaterial.vertex_color_use_as_albedo] [i]должен[/i] быть [code]true[/code]. Для [ShaderMaterial], [code]ALBEDO *= COLOR.rgb;[/code] должно быть вставлено в функцию шейдера [code]fragment()[/code]. В противном случае [member emission_colors] не будет иметь видимого эффекта.
 		</member>
 		<member name="emission_normals" type="PoolVector3Array" setter="set_emission_normals" getter="get_emission_normals">
-			Sets the direction the particles will be emitted in when using [constant EMISSION_SHAPE_DIRECTED_POINTS].
+			Устанавливает направление, в котором будут испускаться частицы при использовании [constant EMISSION_SHAPE_DIRECTED_POINTS].
 		</member>
 		<member name="emission_points" type="PoolVector3Array" setter="set_emission_points" getter="get_emission_points">
-			Sets the initial positions to spawn particles when using [constant EMISSION_SHAPE_POINTS] or [constant EMISSION_SHAPE_DIRECTED_POINTS].
+			Устанавливает начальные позиции для порождения частиц при использовании [constant EMISSION_SHAPE_POINTS] или [constant EMISSION_SHAPE_DIRECTED_POINTS].
 		</member>
 		<member name="emission_ring_axis" type="Vector3" setter="set_emission_ring_axis" getter="get_emission_ring_axis">
-			The axis for the ring shaped emitter when using [constant EMISSION_SHAPE_RING].
+			Ось для кольцеобразного излучателя при использовании [constant EMISSION_SHAPE_RING].
 		</member>
 		<member name="emission_ring_height" type="float" setter="set_emission_ring_height" getter="get_emission_ring_height">
-			The height for the ring shaped emitter when using [constant EMISSION_SHAPE_RING].
+			Высота для кольцеобразного излучателя при использовании [constant EMISSION_SHAPE_RING].
 		</member>
 		<member name="emission_ring_inner_radius" type="float" setter="set_emission_ring_inner_radius" getter="get_emission_ring_inner_radius">
-			The inner radius for the ring shaped emitter when using [constant EMISSION_SHAPE_RING].
+			Внутренний радиус для кольцеобразного излучателя при использовании [constant EMISSION_SHAPE_RING].
 		</member>
 		<member name="emission_ring_radius" type="float" setter="set_emission_ring_radius" getter="get_emission_ring_radius">
-			The radius for the ring shaped emitter when using [constant EMISSION_SHAPE_RING].
+			Радиус для кольцеобразного излучателя при использовании [constant EMISSION_SHAPE_RING].
 		</member>
 		<member name="emission_shape" type="int" setter="set_emission_shape" getter="get_emission_shape" enum="CPUParticles.EmissionShape" default="0">
-			Particles will be emitted inside this region. See [enum EmissionShape] for possible values.
+			Частицы будут испускаться внутри этой области. Возможные значения см. в [enum EmissionShape].
 		</member>
 		<member name="emission_sphere_radius" type="float" setter="set_emission_sphere_radius" getter="get_emission_sphere_radius">
-			The sphere's radius if [enum EmissionShape] is set to [constant EMISSION_SHAPE_SPHERE].
+			Радиус сферы, если для [enum EmissionShape] установлено значение [constant EMISSION_SHAPE_SPHERE].
 		</member>
 		<member name="emitting" type="bool" setter="set_emitting" getter="is_emitting" default="true">
-			If [code]true[/code], particles are being emitted.
+			Если [code]true[/code], частицы излучаются.
 		</member>
 		<member name="explosiveness" type="float" setter="set_explosiveness_ratio" getter="get_explosiveness_ratio" default="0.0">
-			How rapidly particles in an emission cycle are emitted. If greater than [code]0[/code], there will be a gap in emissions before the next cycle begins.
+			Скорость выброса частиц в цикле эмиссии. Если больше [code]0[/code], то перед началом следующего цикла будет промежуток в выбросах.
 		</member>
 		<member name="fixed_fps" type="int" setter="set_fixed_fps" getter="get_fixed_fps" default="0">
-			The particle system's frame rate is fixed to a value. For instance, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the particle system itself.
+			Частота кадров системы частиц фиксируется на определенном значении. Например, если изменить значение на 2, частицы будут отрисовываться со скоростью 2 кадра в секунду. Обратите внимание, что это не замедляет работу самой системы частиц.
 		</member>
 		<member name="flag_align_y" type="bool" setter="set_particle_flag" getter="get_particle_flag" default="false">
-			Align Y axis of particle with the direction of its velocity.
+			Совместите ось Y частицы с направлением ее скорости.
 		</member>
 		<member name="flag_disable_z" type="bool" setter="set_particle_flag" getter="get_particle_flag" default="false">
-			If [code]true[/code], particles will not move on the z axis.
+			Если [code]true[/code], частицы не будут двигаться по оси z.
 		</member>
 		<member name="flag_rotate_y" type="bool" setter="set_particle_flag" getter="get_particle_flag" default="false">
-			If [code]true[/code], particles rotate around Y axis by [member angle].
+			Если [code]true[/code], частицы поворачиваются вокруг оси Y на [member angle].
 		</member>
 		<member name="flatness" type="float" setter="set_flatness" getter="get_flatness" default="0.0">
-			Amount of [member spread] in Y/Z plane. A value of [code]1[/code] restricts particles to X/Z plane.
+			Величина [member spread] в плоскости Y/Z. Значение [code]1[/code] ограничивает частицы плоскостью X/Z.
 		</member>
 		<member name="fract_delta" type="bool" setter="set_fractional_delta" getter="get_fractional_delta" default="true">
-			If [code]true[/code], results in fractional delta calculation which has a smoother particles display effect.
+			Если [code]true[/code], это приводит к расчету дробной дельты, что дает более плавный эффект отображения частиц.
 		</member>
 		<member name="gravity" type="Vector3" setter="set_gravity" getter="get_gravity" default="Vector3( 0, -9.8, 0 )">
-			Gravity applied to every particle.
+			Гравитация распространяется на все частицы.
 		</member>
 		<member name="hue_variation" type="float" setter="set_param" getter="get_param" default="0.0">
-			Initial hue variation applied to each particle.
+			Начальная вариация оттенка, применяемая к каждой частице.
 		</member>
 		<member name="hue_variation_curve" type="Curve" setter="set_param_curve" getter="get_param_curve">
-			Each particle's hue will vary along this [Curve].
+			Оттенок каждой частицы будет меняться следующим образом [Curve].
 		</member>
 		<member name="hue_variation_random" type="float" setter="set_param_randomness" getter="get_param_randomness" default="0.0">
-			Hue variation randomness ratio.
+			Коэффициент случайности изменения оттенков.
 		</member>
 		<member name="initial_velocity" type="float" setter="set_param" getter="get_param" default="0.0">
-			Initial velocity magnitude for each particle. Direction comes from [member spread] and the node's orientation.
+			Величина начальной скорости для каждой частицы. Направление берется из [member spread] и ориентации узла.
 		</member>
 		<member name="initial_velocity_random" type="float" setter="set_param_randomness" getter="get_param_randomness" default="0.0">
-			Initial velocity randomness ratio.
+			Коэффициент случайности начальной скорости.
 		</member>
 		<member name="lifetime" type="float" setter="set_lifetime" getter="get_lifetime" default="1.0">
-			The amount of time each particle will exist (in seconds).
+			Время существования каждой частицы (в секундах).
 		</member>
 		<member name="lifetime_randomness" type="float" setter="set_lifetime_randomness" getter="get_lifetime_randomness" default="0.0">
-			Particle lifetime randomness ratio.
+			Коэффициент случайности времени жизни частиц.
 		</member>
 		<member name="linear_accel" type="float" setter="set_param" getter="get_param" default="0.0">
-			Linear acceleration applied to each particle in the direction of motion.
+			Линейное ускорение, действующее на каждую частицу в направлении движения.
 		</member>
 		<member name="linear_accel_curve" type="Curve" setter="set_param_curve" getter="get_param_curve">
-			Each particle's linear acceleration will vary along this [Curve].
+			Линейное ускорение каждой частицы будет изменяться вдоль этой линии [Curve].
 		</member>
 		<member name="linear_accel_random" type="float" setter="set_param_randomness" getter="get_param_randomness" default="0.0">
-			Linear acceleration randomness ratio.
+			Коэффициент случайности линейных ускорений.
 		</member>
 		<member name="local_coords" type="bool" setter="set_use_local_coordinates" getter="get_use_local_coordinates" default="true">
-			If [code]true[/code], particles use the parent node's coordinate space. If [code]false[/code], they use global coordinates.
+			Если [code]true[/code], частицы используют координатное пространство родительского узла. Если [code]false[/code], то они используют глобальные координаты.
 		</member>
 		<member name="mesh" type="Mesh" setter="set_mesh" getter="get_mesh">
-			The [Mesh] used for each particle. If [code]null[/code], particles will be spheres.
+			Сетка [Mesh], используемая для каждой частицы. Если [code]null[/code], частицы будут сферами.
 		</member>
 		<member name="one_shot" type="bool" setter="set_one_shot" getter="get_one_shot" default="false">
-			If [code]true[/code], only one emission cycle occurs. If set [code]true[/code] during a cycle, emission will stop at the cycle's end.
+			Если [code]true[/code], происходит только один цикл эмиссии. Если установить [code]true[/code] во время цикла, выброс прекратится в конце цикла.
 		</member>
 		<member name="orbit_velocity" type="float" setter="set_param" getter="get_param">
-			Orbital velocity applied to each particle. Makes the particles circle around origin in the local XY plane. Specified in number of full rotations around origin per second.
-			This property is only available when [member flag_disable_z] is [code]true[/code].
+			Орбитальная скорость, приложенная к каждой частице. Заставляет частицы вращаться вокруг начала координат в локальной плоскости XY. Задается в количестве полных оборотов вокруг начала координат в секунду.
+			Это свойство доступно только в том случае, если [member flag_disable_z] имеет значение [code]true[/code].
 		</member>
 		<member name="orbit_velocity_curve" type="Curve" setter="set_param_curve" getter="get_param_curve">
-			Each particle's orbital velocity will vary along this [Curve].
+			Орбитальная скорость каждой частицы будет изменяться вдоль этой линии [Curve].
 		</member>
 		<member name="orbit_velocity_random" type="float" setter="set_param_randomness" getter="get_param_randomness">
-			Orbital velocity randomness ratio.
+			Коэффициент случайности орбитальной скорости.
 		</member>
 		<member name="preprocess" type="float" setter="set_pre_process_time" getter="get_pre_process_time" default="0.0">
-			Particle system starts as if it had already run for this many seconds.
+			Система частиц запускается так, как будто она уже работала в течение стольких-то секунд.
 		</member>
 		<member name="radial_accel" type="float" setter="set_param" getter="get_param" default="0.0">
-			Radial acceleration applied to each particle. Makes particle accelerate away from origin.
+			Радиальное ускорение, применяемое к каждой частице. Заставляет частицу ускоряться в направлении от начала координат.
 		</member>
 		<member name="radial_accel_curve" type="Curve" setter="set_param_curve" getter="get_param_curve">
-			Each particle's radial acceleration will vary along this [Curve].
+			Радиальное ускорение каждой частицы будет изменяться вдоль этого [Curve].
 		</member>
 		<member name="radial_accel_random" type="float" setter="set_param_randomness" getter="get_param_randomness" default="0.0">
-			Radial acceleration randomness ratio.
+			Коэффициент случайности радиальных ускорений.
 		</member>
 		<member name="randomness" type="float" setter="set_randomness_ratio" getter="get_randomness_ratio" default="0.0">
-			Emission lifetime randomness ratio.
+			Коэффициент случайности времени жизни выброса.
 		</member>
 		<member name="scale_amount" type="float" setter="set_param" getter="get_param" default="1.0">
-			Initial scale applied to each particle. This can be set to a negative value to flip the particle on all axes.
+			Начальный масштаб, применяемый к каждой частице.
 		</member>
 		<member name="scale_amount_curve" type="Curve" setter="set_param_curve" getter="get_param_curve">
-			Each particle's scale will vary along this [Curve].
+			Масштаб каждой частицы будет меняться в зависимости от этого [Curve].
 		</member>
 		<member name="scale_amount_random" type="float" setter="set_param_randomness" getter="get_param_randomness" default="0.0">
-			Scale randomness ratio.
+			Коэффициент случайности масштаба.
 		</member>
 		<member name="speed_scale" type="float" setter="set_speed_scale" getter="get_speed_scale" default="1.0">
-			Particle system's running speed scaling ratio. A value of [code]0[/code] can be used to pause the particles.
+			Коэффициент масштабирования скорости работы системы частиц. Значение [code]0[/code] может быть использовано для приостановки работы частиц.
 		</member>
 		<member name="spread" type="float" setter="set_spread" getter="get_spread" default="45.0">
-			Each particle's initial direction range from [code]+spread[/code] to [code]-spread[/code] degrees. Applied to X/Z plane and Y/Z planes.
+			Начальное направление каждой частицы варьируется от [code]+spread[/code] до [code]-spread[/code] градусов. Применяется для плоскостей X/Z и Y/Z.
 		</member>
 		<member name="tangential_accel" type="float" setter="set_param" getter="get_param" default="0.0">
-			Tangential acceleration applied to each particle. Tangential acceleration is perpendicular to the particle's velocity giving the particles a swirling motion.
+			Тангенциальное ускорение, приложенное к каждой частице. Тангенциальное ускорение перпендикулярно скорости частицы, что придает частицам вихревое движение.
 		</member>
 		<member name="tangential_accel_curve" type="Curve" setter="set_param_curve" getter="get_param_curve">
-			Each particle's tangential acceleration will vary along this [Curve].
+			Тангенциальное ускорение каждой частицы будет меняться вдоль этой [Curve].
 		</member>
 		<member name="tangential_accel_random" type="float" setter="set_param_randomness" getter="get_param_randomness" default="0.0">
-			Tangential acceleration randomness ratio.
+			Коэффициент случайности тангенциального ускорения.
 		</member>
 	</members>
 	<constants>
 		<constant name="DRAW_ORDER_INDEX" value="0" enum="DrawOrder">
-			Particles are drawn in the order emitted.
+			Частицы рисуются в порядке их испускания.
 		</constant>
 		<constant name="DRAW_ORDER_LIFETIME" value="1" enum="DrawOrder">
-			Particles are drawn in order of remaining lifetime.
+			Частицы нарисованы в порядке возрастания оставшегося времени жизни.
 		</constant>
 		<constant name="DRAW_ORDER_VIEW_DEPTH" value="2" enum="DrawOrder">
-			Particles are drawn in order of depth.
+			Частицы рисуются в порядке убывания глубины.
 		</constant>
 		<constant name="PARAM_INITIAL_LINEAR_VELOCITY" value="0" enum="Parameter">
-			Use with [method set_param], [method set_param_randomness], and [method set_param_curve] to set initial velocity properties.
+			Используется вместе с [method set_param], [method set_param_randomness] и [method set_param_curve] для задания свойств начальной скорости.
 		</constant>
 		<constant name="PARAM_ANGULAR_VELOCITY" value="1" enum="Parameter">
-			Use with [method set_param], [method set_param_randomness], and [method set_param_curve] to set angular velocity properties.
+			Используется вместе с [method set_param], [method set_param_randomness] и [method set_param_curve] для задания свойств угловой скорости.
 		</constant>
 		<constant name="PARAM_ORBIT_VELOCITY" value="2" enum="Parameter">
-			Use with [method set_param], [method set_param_randomness], and [method set_param_curve] to set orbital velocity properties.
+			Используется с [method set_param], [method set_param_randomness] и [method set_param_curve] для задания свойств орбитальной скорости.
 		</constant>
 		<constant name="PARAM_LINEAR_ACCEL" value="3" enum="Parameter">
-			Use with [method set_param], [method set_param_randomness], and [method set_param_curve] to set linear acceleration properties.
+			Используется вместе с [method set_param], [method set_param_randomness] и [method set_param_curve] для задания свойств линейного ускорения.
 		</constant>
 		<constant name="PARAM_RADIAL_ACCEL" value="4" enum="Parameter">
-			Use with [method set_param], [method set_param_randomness], and [method set_param_curve] to set radial acceleration properties.
+			Используется вместе с [method set_param], [method set_param_randomness] и [method set_param_curve] для задания свойств радиального ускорения.
 		</constant>
 		<constant name="PARAM_TANGENTIAL_ACCEL" value="5" enum="Parameter">
-			Use with [method set_param], [method set_param_randomness], and [method set_param_curve] to set tangential acceleration properties.
+			Используется вместе с [method set_param], [method set_param_randomness] и [method set_param_curve] для задания свойств тангенциального ускорения.
 		</constant>
 		<constant name="PARAM_DAMPING" value="6" enum="Parameter">
-			Use with [method set_param], [method set_param_randomness], and [method set_param_curve] to set damping properties.
+			Используйте вместе с [method set_param], [method set_param_randomness] и [method set_param_curve] для установки свойств демпфирования.
 		</constant>
 		<constant name="PARAM_ANGLE" value="7" enum="Parameter">
-			Use with [method set_param], [method set_param_randomness], and [method set_param_curve] to set angle properties.
+			Используйте с [method set_param], [method set_param_randomness] и [method set_param_curve] для установки свойств угла.
 		</constant>
 		<constant name="PARAM_SCALE" value="8" enum="Parameter">
-			Use with [method set_param], [method set_param_randomness], and [method set_param_curve] to set scale properties.
+			Используйте вместе с [method set_param], [method set_param_randomness] и [method set_param_curve] для установки свойств масштаба.
 		</constant>
 		<constant name="PARAM_HUE_VARIATION" value="9" enum="Parameter">
-			Use with [method set_param], [method set_param_randomness], and [method set_param_curve] to set hue variation properties.
+			Используйте вместе с [method set_param], [method set_param_randomness] и [method set_param_curve] для установки свойств изменения оттенка.
 		</constant>
 		<constant name="PARAM_ANIM_SPEED" value="10" enum="Parameter">
-			Use with [method set_param], [method set_param_randomness], and [method set_param_curve] to set animation speed properties.
+			Используется вместе с [method set_param], [method set_param_randomness] и [method set_param_curve] для установки свойств скорости анимации.
 		</constant>
 		<constant name="PARAM_ANIM_OFFSET" value="11" enum="Parameter">
-			Use with [method set_param], [method set_param_randomness], and [method set_param_curve] to set animation offset properties.
+			Используется вместе с [method set_param], [method set_param_randomness] и [method set_param_curve] для установки свойств смещения анимации.
 		</constant>
 		<constant name="PARAM_MAX" value="12" enum="Parameter">
-			Represents the size of the [enum Parameter] enum.
+			Представляет размер перечисления [enum Parameter].
 		</constant>
 		<constant name="FLAG_ALIGN_Y_TO_VELOCITY" value="0" enum="Flags">
-			Use with [method set_particle_flag] to set [member flag_align_y].
+			Используется с [method set_particle_flag] для установки [member flag_align_y].
 		</constant>
 		<constant name="FLAG_ROTATE_Y" value="1" enum="Flags">
-			Use with [method set_particle_flag] to set [member flag_rotate_y].
+			Используется с [методом set_particle_flag] для установки [члена flag_rotate_y].
 		</constant>
 		<constant name="FLAG_DISABLE_Z" value="2" enum="Flags">
-			Use with [method set_particle_flag] to set [member flag_disable_z].
+			Используется с [методом set_particle_flag] для установки [member flag_disable_z].
 		</constant>
 		<constant name="FLAG_MAX" value="3" enum="Flags">
-			Represents the size of the [enum Flags] enum.
+			Представляет размер списка [enum Flags].
 		</constant>
 		<constant name="EMISSION_SHAPE_POINT" value="0" enum="EmissionShape">
-			All particles will be emitted from a single point.
+			Все частицы будут испускаться из одной точки.
 		</constant>
 		<constant name="EMISSION_SHAPE_SPHERE" value="1" enum="EmissionShape">
-			Particles will be emitted in the volume of a sphere.
+			Частицы будут испускаться в объеме сферы.
 		</constant>
 		<constant name="EMISSION_SHAPE_BOX" value="2" enum="EmissionShape">
-			Particles will be emitted in the volume of a box.
+			Частицы будут испускаться в объеме коробки.
 		</constant>
 		<constant name="EMISSION_SHAPE_POINTS" value="3" enum="EmissionShape">
-			Particles will be emitted at a position chosen randomly among [member emission_points]. Particle color will be modulated by [member emission_colors].
+			Частицы будут испускаться в позиции, выбранной случайным образом среди [member emission_points]. Цвет частиц будет модулироваться [member emission_colors].
 		</constant>
 		<constant name="EMISSION_SHAPE_DIRECTED_POINTS" value="4" enum="EmissionShape">
-			Particles will be emitted at a position chosen randomly among [member emission_points]. Particle velocity and rotation will be set based on [member emission_normals]. Particle color will be modulated by [member emission_colors].
+			Частицы будут испускаться в позиции, выбранной случайным образом среди [member emission_points]. Скорость и вращение частиц будут заданы на основе [member emission_normals]. Цвет частиц будет модулироваться [member emission_colors].
 		</constant>
 		<constant name="EMISSION_SHAPE_RING" value="5" enum="EmissionShape">
-			Particles will be emitted in a ring or cylinder.
+			Частицы будут испускаться в виде кольца или цилиндра.
 		</constant>
 		<constant name="EMISSION_SHAPE_MAX" value="6" enum="EmissionShape">
-			Represents the size of the [enum EmissionShape] enum.
+			Представляет размер перечисления [enum EmissionShape].
 		</constant>
 	</constants>
 </class>

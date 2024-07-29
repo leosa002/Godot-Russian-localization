@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="VisualShaderNodeScalarClamp" inherits="VisualShaderNode" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="VisualShaderNodeScalarClamp" inherits="VisualShaderNode" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Clamps a scalar value within the visual shader graph.
+		Зажимает скалярное значение в графе визуального шейдера.
 	</brief_description>
 	<description>
-		Constrains a value to lie between [code]min[/code] and [code]max[/code] values.
+		Ограничивает значение между значениями [code]min[/code] и [code]max[/code].
 	</description>
 	<tutorials>
 	</tutorials>

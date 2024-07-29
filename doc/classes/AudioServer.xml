@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="AudioServer" inherits="Object" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="AudioServer" inherits="Object" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Server interface for low-level audio access.
+		Серверный интерфейс для низкоуровневого доступа к аудио.
 	</brief_description>
 	<description>
-		[AudioServer] is a low-level server interface for audio access. It is in charge of creating sample data (playable audio) as well as its playback via a voice interface.
+		[AudioServer] - это низкоуровневый серверный интерфейс для доступа к аудио. Он отвечает за создание сэмплов (воспроизводимых аудиоданных), а также за их воспроизведение через голосовой интерфейс.
 	</description>
 	<tutorials>
 		<link title="Audio buses">$DOCS_URL/tutorials/audio/audio_buses.html</link>
@@ -17,7 +17,7 @@
 			<return type="void" />
 			<argument index="0" name="at_position" type="int" default="-1" />
 			<description>
-				Adds a bus at [code]at_position[/code].
+				Добавляет шину в [code]at_position[/code].
 			</description>
 		</method>
 		<method name="add_bus_effect">
@@ -26,27 +26,27 @@
 			<argument index="1" name="effect" type="AudioEffect" />
 			<argument index="2" name="at_position" type="int" default="-1" />
 			<description>
-				Adds an [AudioEffect] effect to the bus [code]bus_idx[/code] at [code]at_position[/code].
+				Добавляет эффект [AudioEffect] на шину [code]bus_idx[/code] по адресу [code]at_position[/code]
 			</description>
 		</method>
 		<method name="capture_get_device_list">
 			<return type="Array" />
 			<description>
-				Returns the names of all audio input devices detected on the system.
-				[b]Note:[/b] [member ProjectSettings.audio/enable_audio_input] must be [code]true[/code] for audio input to work. See also that setting's description for caveats related to permissions and operating system privacy settings.
+				Возвращает имена всех обнаруженных в системе устройств аудиоввода.
+				[b]Примечание:[/b] [member ProjectSettings.audio/enable_audio_input] должен иметь значение [code]true[/code] для работы аудиоввода. См. также описание этого параметра для получения информации о разрешениях и настройках конфиденциальности операционной системы.
 			</description>
 		</method>
 		<method name="generate_bus_layout" qualifiers="const">
 			<return type="AudioBusLayout" />
 			<description>
-				Generates an [AudioBusLayout] using the available buses and effects.
+				Генерирует [AudioBusLayout] с использованием имеющихся шин и эффектов.
 			</description>
 		</method>
 		<method name="get_bus_channels" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="bus_idx" type="int" />
 			<description>
-				Returns the amount of channels of the bus at index [code]bus_idx[/code].
+				Возвращает количество каналов шины по индексу [code]bus_idx[/code].
 			</description>
 		</method>
 		<method name="get_bus_effect">
@@ -54,14 +54,14 @@
 			<argument index="0" name="bus_idx" type="int" />
 			<argument index="1" name="effect_idx" type="int" />
 			<description>
-				Returns the [AudioEffect] at position [code]effect_idx[/code] in bus [code]bus_idx[/code].
+				Возвращает [AudioEffect] в позиции [code]effect_idx[/code] в шине [code]bus_idx[/code].
 			</description>
 		</method>
 		<method name="get_bus_effect_count">
 			<return type="int" />
 			<argument index="0" name="bus_idx" type="int" />
 			<description>
-				Returns the number of effects on the bus at [code]bus_idx[/code].
+				Возвращает количество эффектов на шине по адресу [code]bus_idx[/code].
 			</description>
 		</method>
 		<method name="get_bus_effect_instance">
@@ -70,21 +70,21 @@
 			<argument index="1" name="effect_idx" type="int" />
 			<argument index="2" name="channel" type="int" default="0" />
 			<description>
-				Returns the [AudioEffectInstance] assigned to the given bus and effect indices (and optionally channel).
+				Возвращает экземпляр [AudioEffectInstance], назначенный на заданные индексы шины и эффекта (и, опционально, канала).
 			</description>
 		</method>
 		<method name="get_bus_index" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="bus_name" type="String" />
 			<description>
-				Returns the index of the bus with the name [code]bus_name[/code].
+				Возвращает индекс шины с именем [code]bus_name[/code]
 			</description>
 		</method>
 		<method name="get_bus_name" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="bus_idx" type="int" />
 			<description>
-				Returns the name of the bus with the index [code]bus_idx[/code].
+				Возвращает имя шины с индексом [code]bus_idx[/code].
 			</description>
 		</method>
 		<method name="get_bus_peak_volume_left_db" qualifiers="const">
@@ -92,7 +92,7 @@
 			<argument index="0" name="bus_idx" type="int" />
 			<argument index="1" name="channel" type="int" />
 			<description>
-				Returns the peak volume of the left speaker at bus index [code]bus_idx[/code] and channel index [code]channel[/code].
+				Возвращает пиковую громкость левого динамика с индексом шины [code]bus_idx[/code] и индексом канала [code]channel[/code].
 			</description>
 		</method>
 		<method name="get_bus_peak_volume_right_db" qualifiers="const">
@@ -100,64 +100,64 @@
 			<argument index="0" name="bus_idx" type="int" />
 			<argument index="1" name="channel" type="int" />
 			<description>
-				Returns the peak volume of the right speaker at bus index [code]bus_idx[/code] and channel index [code]channel[/code].
+				Возвращает пиковую громкость правого динамика с индексом шины [code]bus_idx[/code] и индексом канала [code]channel[/code].
 			</description>
 		</method>
 		<method name="get_bus_send" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="bus_idx" type="int" />
 			<description>
-				Returns the name of the bus that the bus at index [code]bus_idx[/code] sends to.
+				Возвращает имя шины, на которую посылается шина с индексом [code]bus_idx[/code].
 			</description>
 		</method>
 		<method name="get_bus_volume_db" qualifiers="const">
 			<return type="float" />
 			<argument index="0" name="bus_idx" type="int" />
 			<description>
-				Returns the volume of the bus at index [code]bus_idx[/code] in dB.
+				Возвращает значение громкости шины по индексу [code]bus_idx[/code] в dB.
 			</description>
 		</method>
 		<method name="get_device_list">
 			<return type="Array" />
 			<description>
-				Returns the names of all audio devices detected on the system.
+				Возвращает имена всех обнаруженных в системе аудиоустройств.
 			</description>
 		</method>
 		<method name="get_mix_rate" qualifiers="const">
 			<return type="float" />
 			<description>
-				Returns the sample rate at the output of the [AudioServer].
+				Возвращает частоту дискретизации на выходе [AudioServer].
 			</description>
 		</method>
 		<method name="get_output_latency" qualifiers="const">
 			<return type="float" />
 			<description>
-				Returns the audio driver's output latency. This can be expensive, it is not recommended to call this every frame.
+				Возвращает выходную задержку аудиодрайвера
 			</description>
 		</method>
 		<method name="get_speaker_mode" qualifiers="const">
 			<return type="int" enum="AudioServer.SpeakerMode" />
 			<description>
-				Returns the speaker configuration.
+				Возвращает конфигурацию динамика.
 			</description>
 		</method>
 		<method name="get_time_since_last_mix" qualifiers="const">
 			<return type="float" />
 			<description>
-				Returns the relative time since the last mix occurred.
+				Возвращает относительное время, прошедшее с момента последнего смешивания.
 			</description>
 		</method>
 		<method name="get_time_to_next_mix" qualifiers="const">
 			<return type="float" />
 			<description>
-				Returns the relative time until the next mix occurs.
+				Возвращает относительное время до следующего смешивания.
 			</description>
 		</method>
 		<method name="is_bus_bypassing_effects" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="bus_idx" type="int" />
 			<description>
-				If [code]true[/code], the bus at index [code]bus_idx[/code] is bypassing effects.
+				Если [code]true[/code], то шина с индексом [code]bus_idx[/code] обходит эффекты.
 			</description>
 		</method>
 		<method name="is_bus_effect_enabled" qualifiers="const">
@@ -165,28 +165,28 @@
 			<argument index="0" name="bus_idx" type="int" />
 			<argument index="1" name="effect_idx" type="int" />
 			<description>
-				If [code]true[/code], the effect at index [code]effect_idx[/code] on the bus at index [code]bus_idx[/code] is enabled.
+				Если [code]true[/code], то эффект с индексом [code]effect_idx[/code] на шине с индексом [code]bus_idx[/code] включен.
 			</description>
 		</method>
 		<method name="is_bus_mute" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="bus_idx" type="int" />
 			<description>
-				If [code]true[/code], the bus at index [code]bus_idx[/code] is muted.
+				Если [code]true[/code], то шина с индексом [code]bus_idx[/code] отключается.
 			</description>
 		</method>
 		<method name="is_bus_solo" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="bus_idx" type="int" />
 			<description>
-				If [code]true[/code], the bus at index [code]bus_idx[/code] is in solo mode.
+				Если [code]true[/code], то шина с индексом [code]bus_idx[/code] находится в одиночном режиме.
 			</description>
 		</method>
 		<method name="lock">
 			<return type="void" />
 			<description>
-				Locks the audio driver's main loop.
-				[b]Note:[/b] Remember to unlock it afterwards.
+				Блокирует основной цикл аудиодрайвера.
+				[b]Примечание:[/b] Не забудьте потом разблокировать его.
 			</description>
 		</method>
 		<method name="move_bus">
@@ -194,14 +194,14 @@
 			<argument index="0" name="index" type="int" />
 			<argument index="1" name="to_index" type="int" />
 			<description>
-				Moves the bus from index [code]index[/code] to index [code]to_index[/code].
+				Перемещает шину из индекса [code]index[/code] в индекс [code]to_index[/code].
 			</description>
 		</method>
 		<method name="remove_bus">
 			<return type="void" />
 			<argument index="0" name="index" type="int" />
 			<description>
-				Removes the bus at index [code]index[/code].
+				Удаляет шину с индексом [code]index[/code].
 			</description>
 		</method>
 		<method name="remove_bus_effect">
@@ -209,7 +209,7 @@
 			<argument index="0" name="bus_idx" type="int" />
 			<argument index="1" name="effect_idx" type="int" />
 			<description>
-				Removes the effect at index [code]effect_idx[/code] from the bus at index [code]bus_idx[/code].
+				Удаляет эффект с индексом [code]effect_idx[/code] с шины с индексом [code]bus_idx[/code].
 			</description>
 		</method>
 		<method name="set_bus_bypass_effects">
@@ -217,7 +217,7 @@
 			<argument index="0" name="bus_idx" type="int" />
 			<argument index="1" name="enable" type="bool" />
 			<description>
-				If [code]true[/code], the bus at index [code]bus_idx[/code] is bypassing effects.
+				Если [code]true[/code], то шина с индексом [code]bus_idx[/code] обходит эффекты.
 			</description>
 		</method>
 		<method name="set_bus_effect_enabled">
@@ -226,14 +226,14 @@
 			<argument index="1" name="effect_idx" type="int" />
 			<argument index="2" name="enabled" type="bool" />
 			<description>
-				If [code]true[/code], the effect at index [code]effect_idx[/code] on the bus at index [code]bus_idx[/code] is enabled.
+				Если [code]true[/code], то эффект с индексом [code]effect_idx[/code] на шине с индексом [code]bus_idx[/code] включен.
 			</description>
 		</method>
 		<method name="set_bus_layout">
 			<return type="void" />
 			<argument index="0" name="bus_layout" type="AudioBusLayout" />
 			<description>
-				Overwrites the currently used [AudioBusLayout].
+				Перезаписывает используемый в данный момент [AudioBusLayout].
 			</description>
 		</method>
 		<method name="set_bus_mute">
@@ -241,7 +241,7 @@
 			<argument index="0" name="bus_idx" type="int" />
 			<argument index="1" name="enable" type="bool" />
 			<description>
-				If [code]true[/code], the bus at index [code]bus_idx[/code] is muted.
+				Если [code]true[/code], то шина с индексом [code]bus_idx[/code] отключается.
 			</description>
 		</method>
 		<method name="set_bus_name">
@@ -249,7 +249,7 @@
 			<argument index="0" name="bus_idx" type="int" />
 			<argument index="1" name="name" type="String" />
 			<description>
-				Sets the name of the bus at index [code]bus_idx[/code] to [code]name[/code].
+				Устанавливает имя шины с индексом [code]bus_idx[/code] в [code]name[/code].
 			</description>
 		</method>
 		<method name="set_bus_send">
@@ -257,7 +257,7 @@
 			<argument index="0" name="bus_idx" type="int" />
 			<argument index="1" name="send" type="String" />
 			<description>
-				Connects the output of the bus at [code]bus_idx[/code] to the bus named [code]send[/code].
+				Подключает выход шины по адресу [code]bus_idx[/code] к шине с именем [code]send[/code].
 			</description>
 		</method>
 		<method name="set_bus_solo">
@@ -265,7 +265,7 @@
 			<argument index="0" name="bus_idx" type="int" />
 			<argument index="1" name="enable" type="bool" />
 			<description>
-				If [code]true[/code], the bus at index [code]bus_idx[/code] is in solo mode.
+				Если [code]true[/code], то шина с индексом [code]bus_idx[/code] находится в одиночном режиме.
 			</description>
 		</method>
 		<method name="set_bus_volume_db">
@@ -273,7 +273,7 @@
 			<argument index="0" name="bus_idx" type="int" />
 			<argument index="1" name="volume_db" type="float" />
 			<description>
-				Sets the volume of the bus at index [code]bus_idx[/code] to [code]volume_db[/code].
+				Устанавливает громкость шины с индексом [code]bus_idx[/code] в [code]volume_db[/code].
 			</description>
 		</method>
 		<method name="swap_bus_effects">
@@ -282,50 +282,50 @@
 			<argument index="1" name="effect_idx" type="int" />
 			<argument index="2" name="by_effect_idx" type="int" />
 			<description>
-				Swaps the position of two effects in bus [code]bus_idx[/code].
+				Меняет местами два эффекта в шине [code]bus_idx[/code].
 			</description>
 		</method>
 		<method name="unlock">
 			<return type="void" />
 			<description>
-				Unlocks the audio driver's main loop. (After locking it, you should always unlock it.)
+				Разблокирует основной цикл аудиодрайвера. (После блокировки его следует всегда разблокировать).
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="bus_count" type="int" setter="set_bus_count" getter="get_bus_count" default="1">
-			Number of available audio buses.
+			Количество доступных аудиошин.
 		</member>
 		<member name="capture_device" type="String" setter="capture_set_device" getter="capture_get_device" default="&quot;Default&quot;">
-			Name of the current device for audio input (see [method capture_get_device_list]). On systems with multiple audio inputs (such as analog, USB and HDMI audio), this can be used to select the audio input device. The value [code]"Default"[/code] will record audio on the system-wide default audio input. If an invalid device name is set, the value will be reverted back to [code]"Default"[/code].
-			[b]Note:[/b] [member ProjectSettings.audio/enable_audio_input] must be [code]true[/code] for audio input to work. See also that setting's description for caveats related to permissions and operating system privacy settings.
+			Имя текущего устройства для ввода звука (см. [method capture_get_device_list]). В системах с несколькими аудиовходами (например, аналоговыми, USB и HDMI) это имя может использоваться для выбора устройства аудиовхода. Значение [code]"Default"[/code] будет записывать звук на общесистемный аудиовход по умолчанию. Если задано недопустимое имя устройства, значение будет возвращено к [code]"Default"[/code].
+			[b]Примечание:[/b] [member ProjectSettings.audio/enable_audio_input] должен иметь значение [code]true[/code], чтобы аудиовход работал. См. также описание этого параметра для получения информации о разрешениях и настройках конфиденциальности операционной системы.
 		</member>
 		<member name="device" type="String" setter="set_device" getter="get_device" default="&quot;Default&quot;">
-			Name of the current device for audio output (see [method get_device_list]). On systems with multiple audio outputs (such as analog, USB and HDMI audio), this can be used to select the audio output device. The value [code]"Default"[/code] will play audio on the system-wide default audio output. If an invalid device name is set, the value will be reverted back to [code]"Default"[/code].
+			Имя текущего устройства для вывода звука (см. [method get_device_list]). В системах с несколькими аудиовыходами (например, аналоговыми, USB и HDMI) это имя может использоваться для выбора устройства вывода звука. Значение [code]"Default"[/code] будет воспроизводить звук на общесистемном аудиовыходе по умолчанию. Если задано недопустимое имя устройства, значение будет возвращено к [code]"Default"[/code].
 		</member>
 		<member name="global_rate_scale" type="float" setter="set_global_rate_scale" getter="get_global_rate_scale" default="1.0">
-			Scales the rate at which audio is played (i.e. setting it to [code]0.5[/code] will make the audio be played twice as fast).
+			Масштабирует скорость воспроизведения звука (например, если установить значение [code]0.5[/code], то звук будет воспроизводиться в два раза быстрее).
 		</member>
 	</members>
 	<signals>
 		<signal name="bus_layout_changed">
 			<description>
-				Emitted when the [AudioBusLayout] changes.
+				Выдается при изменении [AudioBusLayout].
 			</description>
 		</signal>
 	</signals>
 	<constants>
 		<constant name="SPEAKER_MODE_STEREO" value="0" enum="SpeakerMode">
-			Two or fewer speakers were detected.
+			Было обнаружено два или менее динамика.
 		</constant>
 		<constant name="SPEAKER_SURROUND_31" value="1" enum="SpeakerMode">
-			A 3.1 channel surround setup was detected.
+			Была обнаружена 3.1-канальная установка объемного звучания.
 		</constant>
 		<constant name="SPEAKER_SURROUND_51" value="2" enum="SpeakerMode">
-			A 5.1 channel surround setup was detected.
+			Обнаружена 5.1-канальная установка объемного звучания.
 		</constant>
 		<constant name="SPEAKER_SURROUND_71" value="3" enum="SpeakerMode">
-			A 7.1 channel surround setup was detected.
+			Была обнаружена 7.1-канальная установка объемного звучания.
 		</constant>
 	</constants>
 </class>

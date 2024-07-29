@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="AudioEffectRecord" inherits="AudioEffect" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="AudioEffectRecord" inherits="AudioEffect" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Audio effect used for recording the sound from an audio bus.
+		Аудиоэффект, используемый для записи звука с аудиошины.
 	</brief_description>
 	<description>
-		Allows the user to record the sound from an audio bus. This can include all audio output by Godot when used on the "Master" audio bus.
-		Can be used (with an [AudioStreamMicrophone]) to record from a microphone.
-		It sets and gets the format in which the audio file will be recorded (8-bit, 16-bit, or compressed). It checks whether or not the recording is active, and if it is, records the sound. It then returns the recorded sample.
+		Позволяет пользователю записывать звук с аудиошины. Сюда может входить весь звук, выводимый Godot, если он используется на аудиошине "Master".
+		Может использоваться (при наличии [AudioStreamMicrophone]) для записи с микрофона.
+		Устанавливает и получает формат, в котором будет записан аудиофайл (8-битный, 16-битный или сжатый). Проверяет, активна ли запись, и если активна, то записывает звук. Затем возвращается записанный образец.
 	</description>
 	<tutorials>
 		<link title="Recording with microphone">$DOCS_URL/tutorials/audio/recording_with_microphone.html</link>
@@ -16,26 +16,26 @@
 		<method name="get_recording" qualifiers="const">
 			<return type="AudioStreamSample" />
 			<description>
-				Returns the recorded sample.
+				Возвращает записанный образец.
 			</description>
 		</method>
 		<method name="is_recording_active" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns whether the recording is active or not.
+				Возвращает информацию о том, активна запись или нет.
 			</description>
 		</method>
 		<method name="set_recording_active">
 			<return type="void" />
 			<argument index="0" name="record" type="bool" />
 			<description>
-				If [code]true[/code], the sound will be recorded. Note that restarting the recording will remove the previously recorded sample.
+				Если [code]true[/code], то звук будет записан. Обратите внимание, что перезапуск записи приведет к удалению ранее записанного сэмпла.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="format" type="int" setter="set_format" getter="get_format" enum="AudioStreamSample.Format" default="1">
-			Specifies the format in which the sample will be recorded. See [enum AudioStreamSample.Format] for available formats.
+			Определяет формат, в котором будет записан сэмпл. Доступные форматы см. в разделе [enum AudioStreamSample.Format].
 		</member>
 	</members>
 	<constants>

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="AudioEffectEQ6" inherits="AudioEffectEQ" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="AudioEffectEQ6" inherits="AudioEffectEQ" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Adds a 6-band equalizer audio effect to an Audio bus. Gives you control over frequencies from 32 Hz to 10000 Hz.
-		Each frequency can be modulated between -60/+24 dB.
+		Добавляет на шину Audio 6-полосный эквалайзер. Обеспечивает контроль над частотами от 32 до 10000 Гц.
+		Каждая частота может быть промодулирована в диапазоне -60/+24 дБ.
 	</brief_description>
 	<description>
-		Frequency bands:
-		Band 1: 32 Hz
-		Band 2: 100 Hz
-		Band 3: 320 Hz
-		Band 4: 1000 Hz
-		Band 5: 3200 Hz
-		Band 6: 10000 Hz
-		See also [AudioEffectEQ], [AudioEffectEQ10], [AudioEffectEQ21].
+		Частотные диапазоны:
+		Полоса 1: 32 Гц
+		Полоса 2: 100 Гц
+		Полоса 3: 320 Гц
+		Полоса 4: 1000 Гц
+		Полоса 5: 3200 Гц
+		Полоса 6: 10000 Гц
+		См. также [AudioEffectEQ], [AudioEffectEQ10], [AudioEffectEQ21].
 	</description>
 	<tutorials>
 	</tutorials>

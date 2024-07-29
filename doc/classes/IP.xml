@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="IP" inherits="Object" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="IP" inherits="Object" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Internet protocol (IP) support functions such as DNS resolution.
+		Функции поддержки интернет-протокола (IP), такие как разрешение DNS.
 	</brief_description>
 	<description>
-		IP contains support functions for the Internet Protocol (IP). TCP/IP support is in different classes (see [StreamPeerTCP] and [TCP_Server]). IP provides DNS hostname resolution support, both blocking and threaded.
+		IP содержит функции поддержки Интернет-протокола (IP). Поддержка TCP/IP относится к различным классам (см. [StreamPeerTCP] и [TCP_Server]). IP обеспечивает поддержку разрешения имен хостов DNS, как блокирующую, так и потоковую.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -13,33 +13,33 @@
 			<return type="void" />
 			<argument index="0" name="hostname" type="String" default="&quot;&quot;" />
 			<description>
-				Removes all of a [code]hostname[/code]'s cached references. If no [code]hostname[/code] is given, all cached IP addresses are removed.
+				Удаляет все кэшированные ссылки на [code]hostname[/code]. Если имя [code]hostname[/code] не указано, удаляются все кэшированные IP-адреса.
 			</description>
 		</method>
 		<method name="erase_resolve_item">
 			<return type="void" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Removes a given item [code]id[/code] from the queue. This should be used to free a queue after it has completed to enable more queries to happen.
+				Удаляет все кэшированные ссылки на [code]hostname[/code]. Если имя [code]hostname[/code] не указано, удаляются все кэшированные IP-адреса.
 			</description>
 		</method>
 		<method name="get_local_addresses" qualifiers="const">
 			<return type="Array" />
 			<description>
-				Returns all the user's current IPv4 and IPv6 addresses as an array.
+				Возвращает все текущие IPv4- и IPv6-адреса пользователя в виде массива.
 			</description>
 		</method>
 		<method name="get_local_interfaces" qualifiers="const">
 			<return type="Array" />
 			<description>
-				Returns all network adapters as an array.
-				Each adapter is a dictionary of the form:
+				Возвращает все сетевые адаптеры в виде массива.
+				Каждый адаптер представляет собой словарь вида:
 				[codeblock]
 				{
-				    "index": "1", # Interface index.
-				    "name": "eth0", # Interface name.
-				    "friendly": "Ethernet One", # A friendly name (might be empty).
-				    "addresses": ["192.168.1.101"], # An array of IP addresses associated to this interface.
+				    "index": "1", # Индекс интерфейса.
+				    "name": "eth0", # Имя интерфейса.
+				    "friendly": "Ethernet One", # Дружеское имя (может быть пустым).
+				    "addresses": ["192.168.1.101"], # Массив IP-адресов, связанных с этим интерфейсом.
 				}
 				[/codeblock]
 			</description>
@@ -48,21 +48,21 @@
 			<return type="String" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns a queued hostname's IP address, given its queue [code]id[/code]. Returns an empty string on error or if resolution hasn't happened yet (see [method get_resolve_item_status]).
+				Возвращает IP-адрес поставленного в очередь имени хоста, учитывая [code]id[/code] очереди. Возвращает пустую строку при ошибке или если разрешение еще не произошло (см. [метод get_resolve_item_status]).
 			</description>
 		</method>
 		<method name="get_resolve_item_addresses" qualifiers="const">
 			<return type="Array" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Return resolved addresses, or an empty array if an error happened or resolution didn't happen yet (see [method get_resolve_item_status]).
+				Возвращает разрешенные адреса или пустой массив, если произошла ошибка или разрешение еще не произошло (см. [метод get_resolve_item_status]).
 			</description>
 		</method>
 		<method name="get_resolve_item_status" qualifiers="const">
 			<return type="int" enum="IP.ResolverStatus" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				Returns a queued hostname's status as a [enum ResolverStatus] constant, given its queue [code]id[/code].
+				Возвращает статус имени хоста в очереди в виде константы [enum ResolverStatus], учитывая [code]id[/code] очереди.
 			</description>
 		</method>
 		<method name="resolve_hostname">
@@ -70,7 +70,7 @@
 			<argument index="0" name="host" type="String" />
 			<argument index="1" name="ip_type" type="int" enum="IP.Type" default="3" />
 			<description>
-				Returns a given hostname's IPv4 or IPv6 address when resolved (blocking-type method). The address type returned depends on the [enum Type] constant given as [code]ip_type[/code].
+				Возвращает IPv4- или IPv6-адрес заданного имени хоста при его разрешении (метод блокирующего типа). Тип возвращаемого адреса зависит от константы [enum Type], заданной как [code]ip_type[/code].
 			</description>
 		</method>
 		<method name="resolve_hostname_addresses">
@@ -78,7 +78,7 @@
 			<argument index="0" name="host" type="String" />
 			<argument index="1" name="ip_type" type="int" enum="IP.Type" default="3" />
 			<description>
-				Resolves a given hostname in a blocking way. Addresses are returned as an [Array] of IPv4 or IPv6 depending on [code]ip_type[/code].
+				Разрешает заданное имя хоста блокирующим способом. Адреса возвращаются в виде [Array] IPv4 или IPv6 в зависимости от [code]ip_type[/code].
 			</description>
 		</method>
 		<method name="resolve_hostname_queue_item">
@@ -86,40 +86,40 @@
 			<argument index="0" name="host" type="String" />
 			<argument index="1" name="ip_type" type="int" enum="IP.Type" default="3" />
 			<description>
-				Creates a queue item to resolve a hostname to an IPv4 or IPv6 address depending on the [enum Type] constant given as [code]ip_type[/code]. Returns the queue ID if successful, or [constant RESOLVER_INVALID_ID] on error.
+				Создает элемент очереди для преобразования имени хоста в адрес IPv4 или IPv6 в зависимости от константы [enum Type], заданной как [code]ip_type[/code]. Возвращает идентификатор очереди в случае успеха или [константу RESOLVER_INVALID_ID] в случае ошибки.
 			</description>
 		</method>
 	</methods>
 	<constants>
 		<constant name="RESOLVER_STATUS_NONE" value="0" enum="ResolverStatus">
-			DNS hostname resolver status: No status.
+			Состояние DNS-резольвера имен хостов: Нет статуса.
 		</constant>
 		<constant name="RESOLVER_STATUS_WAITING" value="1" enum="ResolverStatus">
-			DNS hostname resolver status: Waiting.
+			Состояние разрешителя имен хостов DNS: Ожидание.
 		</constant>
 		<constant name="RESOLVER_STATUS_DONE" value="2" enum="ResolverStatus">
-			DNS hostname resolver status: Done.
+			Состояние резольвера имен хостов DNS: Выполнено.
 		</constant>
 		<constant name="RESOLVER_STATUS_ERROR" value="3" enum="ResolverStatus">
-			DNS hostname resolver status: Error.
+			Состояние резолвера имен хостов DNS: Ошибка.
 		</constant>
 		<constant name="RESOLVER_MAX_QUERIES" value="256">
-			Maximum number of concurrent DNS resolver queries allowed, [constant RESOLVER_INVALID_ID] is returned if exceeded.
+			Максимально допустимое количество одновременных запросов к DNS-резольверу, при превышении возвращается [константа RESOLVER_INVALID_ID].
 		</constant>
 		<constant name="RESOLVER_INVALID_ID" value="-1">
-			Invalid ID constant. Returned if [constant RESOLVER_MAX_QUERIES] is exceeded.
+			Неверная константа идентификатора. Возвращается, если превышена [константа RESOLVER_MAX_QUERIES].
 		</constant>
 		<constant name="TYPE_NONE" value="0" enum="Type">
-			Address type: None.
+			Тип адреса: Нет.
 		</constant>
 		<constant name="TYPE_IPV4" value="1" enum="Type">
-			Address type: Internet protocol version 4 (IPv4).
+			Тип адреса: Протокол Интернета версии 4 (IPv4).
 		</constant>
 		<constant name="TYPE_IPV6" value="2" enum="Type">
-			Address type: Internet protocol version 6 (IPv6).
+			Тип адреса: Протокол Интернета версии 6 (IPv6).
 		</constant>
 		<constant name="TYPE_ANY" value="3" enum="Type">
-			Address type: Any.
+			Тип адреса: Любой.
 		</constant>
 	</constants>
 </class>

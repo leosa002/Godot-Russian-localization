@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="BakedLightmap" inherits="VisualInstance" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="BakedLightmap" inherits="VisualInstance" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Prerendered indirect light map for a scene.
+		Предрендерная карта непрямого света для сцены.
 	</brief_description>
 	<description>
-		Baked lightmaps are an alternative workflow for adding indirect (or baked) lighting to a scene. Unlike the [GIProbe] approach, baked lightmaps work fine on low-end PCs and mobile devices as they consume almost no resources in run-time.
-		[b]Procedural generation:[/b] Lightmap baking functionality is only available in the editor. This means [BakedLightmap] is not suited to procedurally generated or user-built levels. For procedurally generated or user-built levels, use [GIProbe] instead.
-		[b]Note:[/b] Due to how lightmaps work, most properties only have a visible effect once lightmaps are baked again.
+		Запеченные лайтмапы - это альтернативный способ добавления непрямого (или запеченного) освещения в сцену. В отличие от подхода [GIProbe], запеченные лайтмапы прекрасно работают на низкопроизводительных компьютерах и мобильных устройствах, поскольку практически не потребляют ресурсов во время выполнения.
+		[b]Процедурная генерация:[/b] Функциональность запекания лайтмапов доступна только в редакторе. Это означает, что [BakedLightmap] не подходит для процедурно генерируемых или пользовательских уровней. Для процедурно создаваемых или пользовательских уровней используйте [GIProbe].
+		[b]Примечание:[/b] Из-за особенностей работы лайтмапов большинство свойств оказывают видимый эффект только после повторного запекания лайтмапов.
 	</description>
 	<tutorials>
 		<link>$DOCS_URL/tutorials/3d/baked_lightmaps.html</link>
@@ -17,135 +17,135 @@
 			<argument index="0" name="from_node" type="Node" default="null" />
 			<argument index="1" name="data_save_path" type="String" default="&quot;&quot;" />
 			<description>
-				Bakes the lightmap, scanning from the given [code]from_node[/code] root and saves the resulting [BakedLightmapData] in [code]data_save_path[/code]. If no root node is provided, parent of this node will be used as root instead. If no save path is provided it will try to match the path from the current [member light_data].
+				Запекает лайтмап, сканируя его от заданного корня [code]from_node[/code], и сохраняет полученный [BakedLightmapData] в [code]data_save_path[/code]. Если корневой узел не указан, то в качестве корневого будет использован родитель этого узла. Если путь сохранения не указан, то будет сделана попытка найти путь из текущего [member light_data].
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="atlas_generate" type="bool" setter="set_generate_atlas" getter="is_generate_atlas_enabled" default="true">
-			If [code]true[/code], the lightmapper will merge the textures for all meshes into one or several large layered textures. If [code]false[/code], every mesh will get its own lightmap texture, which is less efficient.
-			[b]Note:[/b] Atlas lightmap rendering is only supported in GLES3, [i]not[/i] GLES2. Non-atlas lightmap rendering is supported by both GLES3 and GLES2. If [member ProjectSettings.rendering/quality/driver/fallback_to_gles2] is [code]true[/code], consider baking lightmaps with [member atlas_generate] set to [code]false[/code] so that the resulting lightmap is visible in both GLES3 and GLES2.
+			Если [code]true[/code], то лайтмап будет объединять текстуры для всех мешей в одну или несколько больших многослойных текстур. Если [code]false[/code], то каждая сетка получит свою собственную текстуру лайтмапа, что менее эффективно.
+			[b]Примечание:[/b] Атласный рендеринг лайтмапов поддерживается только в GLES3, [i]не поддерживается[/i] в GLES2. Неатласный рендеринг лайтмапов поддерживается как GLES3, так и GLES2. Если [member ProjectSettings.rendering/quality/driver/fallback_to_gles2] имеет значение [code]true[/code], рассмотрите возможность запекания лайтмапов с [member atlas_generate], установленным в [code]false[/code], чтобы полученный лайтмап был виден и в GLES3, и в GLES2.
 		</member>
 		<member name="atlas_max_size" type="int" setter="set_max_atlas_size" getter="get_max_atlas_size" default="4096">
-			Maximum size of each lightmap layer, only used when [member atlas_generate] is enabled.
+			Максимальный размер каждого слоя лайтмапа, используется только при включении [member atlas_generate].
 		</member>
 		<member name="bias" type="float" setter="set_bias" getter="get_bias" default="0.005">
-			Raycasting bias used during baking to avoid floating point precision issues.
+			Чтобы избежать проблем с точностью плавающей запятой, при запекании используется смещение лучей.
 		</member>
 		<member name="bounce_indirect_energy" type="float" setter="set_bounce_indirect_energy" getter="get_bounce_indirect_energy" default="1.0">
-			The energy multiplier for each bounce. Higher values will make indirect lighting brighter. A value of [code]1.0[/code] represents physically accurate behavior, but higher values can be used to make indirect lighting propagate more visibly when using a low number of bounces. This can be used to speed up bake times by lowering the number of [member bounces] then increasing [member bounce_indirect_energy]. Unlike [member BakedLightmapData.energy], this property does not affect direct lighting emitted by light nodes, emissive materials and the environment.
-			[b]Note:[/b] [member bounce_indirect_energy] only has an effect if [member bounces] is set to a value greater than or equal to [code]1[/code].
+			Энергетический множитель для каждого отраженного света. При больших значениях непрямое освещение будет ярче. Значение [code]1.0[/code] представляет собой физически точное поведение, но более высокие значения могут использоваться для более заметного распространения непрямого освещения при использовании малого числа отражений. Это можно использовать для ускорения запекания, уменьшив количество [member bounces] и увеличив [member bounce_indirect_energy]. В отличие от [member BakedLightmapData.energy], это свойство не влияет на прямое освещение, излучаемое световыми узлами, излучающими материалами и окружающей средой.
+			[b]Примечание:[/b] [member bounce_indirect_energy] имеет эффект только в том случае, если для [member bounces] установлено значение, большее или равное [code]1[/code].
 		</member>
 		<member name="bounces" type="int" setter="set_bounces" getter="get_bounces" default="3">
-			Number of light bounces that are taken into account during baking. See also [member bounce_indirect_energy].
+			Количество отражений света, учитываемых при запекании. См. также [member bounce_indirect_energy].
 		</member>
 		<member name="capture_cell_size" type="float" setter="set_capture_cell_size" getter="get_capture_cell_size" default="0.5">
-			Grid size used for real-time capture information on dynamic objects.
+			Размерная сетка используется для захвата информации о динамических объектах в реальном времени.
 		</member>
 		<member name="capture_enabled" type="bool" setter="set_capture_enabled" getter="get_capture_enabled" default="true">
-			When enabled, an octree containing the scene's lighting information will be computed. This octree will then be used to light dynamic objects in the scene.
+			При включении этой функции вычисляется восьмеричное дерево, содержащее информацию об освещении сцены. Затем это восьмеричное дерево будет использоваться для освещения динамических объектов сцены.
 		</member>
 		<member name="capture_propagation" type="float" setter="set_capture_propagation" getter="get_capture_propagation" default="1.0">
-			Bias value to reduce the amount of light propagation in the captured octree.
+			Значение смещения для уменьшения распространения света в захваченном октри.
 		</member>
 		<member name="capture_quality" type="int" setter="set_capture_quality" getter="get_capture_quality" enum="BakedLightmap.BakeQuality" default="1">
-			Bake quality of the capture data.
+			Качество захвата данных.
 		</member>
 		<member name="default_texels_per_unit" type="float" setter="set_default_texels_per_unit" getter="get_default_texels_per_unit" default="16.0">
-			If a baked mesh doesn't have a UV2 size hint, this value will be used to roughly compute a suitable lightmap size.
+			Если у запекаемого меша нет подсказки о размере UV2, то это значение будет использовано для приблизительного расчета подходящего размера лайтмапа.
 		</member>
 		<member name="environment_custom_color" type="Color" setter="set_environment_custom_color" getter="get_environment_custom_color">
-			The environment color when [member environment_mode] is set to [constant ENVIRONMENT_MODE_CUSTOM_COLOR].
+			Цвет окружения, если для параметра [member environment_mode] установлено значение [constant ENVIRONMENT_MODE_CUSTOM_COLOR].
 		</member>
 		<member name="environment_custom_energy" type="float" setter="set_environment_custom_energy" getter="get_environment_custom_energy">
-			The energy scaling factor when when [member environment_mode] is set to [constant ENVIRONMENT_MODE_CUSTOM_COLOR] or [constant ENVIRONMENT_MODE_CUSTOM_SKY].
+			Коэффициент масштабирования энергии, когда для параметра [member environment_mode] установлено значение [constant ENVIRONMENT_MODE_CUSTOM_COLOR] или [constant ENVIRONMENT_MODE_CUSTOM_SKY].
 		</member>
 		<member name="environment_custom_sky" type="Sky" setter="set_environment_custom_sky" getter="get_environment_custom_sky">
-			The [Sky] resource to use when [member environment_mode] is set o [constant ENVIRONMENT_MODE_CUSTOM_SKY].
+			Ресурс [Sky], который будет использоваться, если [member environment_mode] установлен o [constant ENVIRONMENT_MODE_CUSTOM_SKY].
 		</member>
 		<member name="environment_custom_sky_rotation_degrees" type="Vector3" setter="set_environment_custom_sky_rotation_degrees" getter="get_environment_custom_sky_rotation_degrees">
-			The rotation of the baked custom sky.
+			Вращение запеченного пользовательского неба.
 		</member>
 		<member name="environment_min_light" type="Color" setter="set_environment_min_light" getter="get_environment_min_light" default="Color( 0, 0, 0, 1 )">
-			Minimum ambient light for all the lightmap texels. This doesn't take into account any occlusion from the scene's geometry, it simply ensures a minimum amount of light on all the lightmap texels. Can be used for artistic control on shadow color.
+			Минимальная освещенность для всех текселей лайтмапа. При этом не учитывается окклюзия от геометрии сцены, а просто обеспечивается минимальное количество света на всех текселях lightmap. Может использоваться для художественного управления цветом теней.
 		</member>
 		<member name="environment_mode" type="int" setter="set_environment_mode" getter="get_environment_mode" enum="BakedLightmap.EnvironmentMode" default="0">
-			Decides which environment to use during baking.
+			Решает, какую среду использовать при выпечке.
 		</member>
 		<member name="extents" type="Vector3" setter="set_extents" getter="get_extents" default="Vector3( 10, 10, 10 )">
-			Size of the baked lightmap. Only meshes inside this region will be included in the baked lightmap, also used as the bounds of the captured region for dynamic lighting.
+			Размер запеченной карты освещенности. Только сетки внутри этой области будут включены в запеченную световую карту, также она используется в качестве границ захваченной области для динамического освещения.
 		</member>
 		<member name="image_path" type="String" setter="set_image_path" getter="get_image_path">
-			Deprecated, in previous versions it determined the location where lightmaps were be saved.
+			Утратил силу, в предыдущих версиях определял место сохранения лайтмапов.
 		</member>
 		<member name="light_data" type="BakedLightmapData" setter="set_light_data" getter="get_light_data">
-			The calculated light data.
+			Расчетные световые данные.
 		</member>
 		<member name="quality" type="int" setter="set_bake_quality" getter="get_bake_quality" enum="BakedLightmap.BakeQuality" default="1">
-			Determines the amount of samples per texel used in indirect light baking. The amount of samples for each quality level can be configured in the project settings.
+			Определяет количество выборок на тексель, используемых при запекании непрямого света. Количество сэмплов для каждого уровня качества может быть настроено в настройках проекта.
 		</member>
 		<member name="use_color" type="bool" setter="set_use_color" getter="is_using_color" default="true">
-			Store full color values in the lightmap textures. When disabled, lightmap textures will store a single brightness channel. Can be disabled to reduce disk usage if the scene contains only white lights or you don't mind losing color information in indirect lighting.
+			Хранить в текстурах lightmap полные значения цветов. При отключении этой опции в текстурах lightmap будет храниться один канал яркости. Может быть отключено для уменьшения использования диска, если сцена содержит только белое освещение или вы не возражаете против потери информации о цвете при непрямом освещении.
 		</member>
 		<member name="use_denoiser" type="bool" setter="set_use_denoiser" getter="is_using_denoiser" default="true">
-			When enabled, a lightmap denoiser will be used to reduce the noise inherent to Monte Carlo based global illumination.
+			Если эта функция включена, то для уменьшения шума, присущего глобальному освещению, основанному на методе Монте-Карло, будет использоваться денуатор карты освещенности.
 		</member>
 		<member name="use_hdr" type="bool" setter="set_use_hdr" getter="is_using_hdr" default="true">
-			If [code]true[/code], stores the lightmap textures in a high dynamic range format (EXR). If [code]false[/code], stores the lightmap texture in a low dynamic range PNG image. This can be set to [code]false[/code] to reduce disk usage, but light values over 1.0 will be clamped and you may see banding caused by the reduced precision.
-			[b]Note:[/b] Setting [member use_hdr] to [code]true[/code] will decrease lightmap banding even when using the GLES2 backend or if [member ProjectSettings.rendering/quality/depth/hdr] is [code]false[/code].
+			Если [code]true[/code], то текстуры lightmap сохраняются в формате с высоким динамическим диапазоном (EXR). Если [code]false[/code], то текстура lightmap сохраняется в PNG-изображении с низким динамическим диапазоном. Это значение может быть установлено в [code]false[/code] для уменьшения использования диска, но при этом значения освещенности более 1.0 будут зажиматься, и может появиться полосатость, вызванная снижением точности.
+			[b]Примечание:[/b] Установка [member use_hdr] в [code]true[/code] уменьшит полосатость лайтмапа даже при использовании бэкэнда GLES2 или если [member ProjectSettings.rendering/quality/depth/hdr] имеет значение [code]false[/code].
 		</member>
 	</members>
 	<constants>
 		<constant name="BAKE_QUALITY_LOW" value="0" enum="BakeQuality">
-			The lowest bake quality mode. Fastest to calculate.
+			Самый низкий режим качества запекания. Самый быстрый для расчета.
 		</constant>
 		<constant name="BAKE_QUALITY_MEDIUM" value="1" enum="BakeQuality">
-			The default bake quality mode.
+			Режим качества запекания по умолчанию.
 		</constant>
 		<constant name="BAKE_QUALITY_HIGH" value="2" enum="BakeQuality">
-			A higher bake quality mode. Takes longer to calculate.
+			Режим более высокого качества запекания. Требуется больше времени для расчета.
 		</constant>
 		<constant name="BAKE_QUALITY_ULTRA" value="3" enum="BakeQuality">
-			The highest bake quality mode. Takes the longest to calculate.
+			Самый высокий режим качества запекания. Требует больше всего времени для расчета.
 		</constant>
 		<constant name="BAKE_ERROR_OK" value="0" enum="BakeError">
-			Baking was successful.
+			Выпечка прошла успешно.
 		</constant>
 		<constant name="BAKE_ERROR_NO_SAVE_PATH" value="1" enum="BakeError">
-			Returns if no viable save path is found. This can happen where an [member image_path] is not specified or when the save location is invalid.
+			Возвращается, если не найден приемлемый путь сохранения. Это может произойти, если не указан [member image_path] или если место сохранения недействительно.
 		</constant>
 		<constant name="BAKE_ERROR_NO_MESHES" value="2" enum="BakeError">
-			Currently unused.
+			В настоящее время не используется.
 		</constant>
 		<constant name="BAKE_ERROR_CANT_CREATE_IMAGE" value="3" enum="BakeError">
-			Returns when the baker cannot save per-mesh textures to file.
+			Возвращается, если пекарь не может сохранить в файл текстуры для каждой сетки.
 		</constant>
 		<constant name="BAKE_ERROR_LIGHTMAP_SIZE" value="4" enum="BakeError">
-			The size of the generated lightmaps is too large.
+			Размер генерируемых лайтмапов слишком велик.
 		</constant>
 		<constant name="BAKE_ERROR_INVALID_MESH" value="5" enum="BakeError">
-			Some mesh contains UV2 values outside the [code][0,1][/code] range.
+			Некоторые сетки содержат значения UV2 вне диапазона [code][0,1][/code].
 		</constant>
 		<constant name="BAKE_ERROR_USER_ABORTED" value="6" enum="BakeError">
-			Returns if user cancels baking.
+			Возвращается, если пользователь отменил выпечку.
 		</constant>
 		<constant name="BAKE_ERROR_NO_LIGHTMAPPER" value="7" enum="BakeError">
-			Returns if lightmapper can't be created. Unless you are using a custom lightmapper, please report this as bug.
+			Возвращается, если лайтмаппер не может быть создан. Если вы не используете собственный lightmapper, сообщите об этом как об ошибке.
 		</constant>
 		<constant name="BAKE_ERROR_NO_ROOT" value="8" enum="BakeError">
-			There is no root node to start baking from. Either provide [code]from_node[/code] argument or attach this node to a parent that should be used as root.
+			Нет корневого узла, с которого можно было бы начать запекание. Либо укажите аргумент [code]from_node[/code], либо прикрепите этот узел к родителю, который должен использоваться в качестве корневого.
 		</constant>
 		<constant name="ENVIRONMENT_MODE_DISABLED" value="0" enum="EnvironmentMode">
-			No environment is used during baking.
+			При выпечке не используется никакая среда.
 		</constant>
 		<constant name="ENVIRONMENT_MODE_SCENE" value="1" enum="EnvironmentMode">
-			The baked environment is automatically picked from the current scene.
+			Запекаемая среда автоматически выбирается из текущей сцены.
 		</constant>
 		<constant name="ENVIRONMENT_MODE_CUSTOM_SKY" value="2" enum="EnvironmentMode">
-			A custom sky is used as environment during baking.
+			В качестве окружения при выпечке используется пользовательское небо.
 		</constant>
 		<constant name="ENVIRONMENT_MODE_CUSTOM_COLOR" value="3" enum="EnvironmentMode">
-			A custom solid color is used as environment during baking.
+			В качестве среды при выпечке используется пользовательский однотонный цвет.
 		</constant>
 	</constants>
 </class>

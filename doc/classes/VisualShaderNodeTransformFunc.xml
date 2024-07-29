@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="VisualShaderNodeTransformFunc" inherits="VisualShaderNode" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="VisualShaderNodeTransformFunc" inherits="VisualShaderNode" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Computes a [Transform] function within the visual shader graph.
+		Вычисляет функцию [Transform] в графе визуального шейдера.
 	</brief_description>
 	<description>
-		Computes an inverse or transpose function on the provided [Transform].
+		Вычисляет обратную или транспонирующую функцию по заданному [Transform].
 	</description>
 	<tutorials>
 	</tutorials>
@@ -12,15 +12,15 @@
 	</methods>
 	<members>
 		<member name="function" type="int" setter="set_function" getter="get_function" enum="VisualShaderNodeTransformFunc.Function" default="0">
-			The function to be computed. See [enum Function] for options.
+			Функция, которую необходимо вычислить. Варианты см. в [enum Function].
 		</member>
 	</members>
 	<constants>
 		<constant name="FUNC_INVERSE" value="0" enum="Function">
-			Perform the inverse operation on the [Transform] matrix.
+			Выполните обратную операцию над матрицей [Transform].
 		</constant>
 		<constant name="FUNC_TRANSPOSE" value="1" enum="Function">
-			Perform the transpose operation on the [Transform] matrix.
+			Выполните операцию транспонирования матрицы [Transform].
 		</constant>
 	</constants>
 </class>

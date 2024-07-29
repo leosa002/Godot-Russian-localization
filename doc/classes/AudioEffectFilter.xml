@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="AudioEffectFilter" inherits="AudioEffect" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="AudioEffectFilter" inherits="AudioEffect" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Adds a filter to the audio bus.
+		Добавляет фильтр к аудиошине.
 	</brief_description>
 	<description>
-		Allows frequencies other than the [member cutoff_hz] to pass.
+		Позволяет пропускать частоты, отличные от [member cutoff_hz].
 	</description>
 	<tutorials>
 		<link title="Audio buses">$DOCS_URL/tutorials/audio/audio_buses.html</link>
@@ -13,15 +13,15 @@
 	</methods>
 	<members>
 		<member name="cutoff_hz" type="float" setter="set_cutoff" getter="get_cutoff" default="2000.0">
-			Threshold frequency for the filter, in Hz.
+			Пороговая частота фильтра, в Hz.
 		</member>
 		<member name="db" type="int" setter="set_db" getter="get_db" enum="AudioEffectFilter.FilterDB" default="0">
 		</member>
 		<member name="gain" type="float" setter="set_gain" getter="get_gain" default="1.0">
-			Gain amount of the frequencies after the filter.
+			Величина усиления частот после фильтра.
 		</member>
 		<member name="resonance" type="float" setter="set_resonance" getter="get_resonance" default="0.5">
-			Amount of boost in the frequency range near the cutoff frequency.
+			Величина усиления в диапазоне частот вблизи частоты среза.
 		</member>
 	</members>
 	<constants>

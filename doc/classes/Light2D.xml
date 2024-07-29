@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Light2D" inherits="Node2D" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Light2D" inherits="Node2D" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Casts light in a 2D environment.
+		Отбрасывает свет в 2D-окружении.
 	</brief_description>
 	<description>
-		Casts light in a 2D environment. Light is defined by a (usually grayscale) texture, a color, an energy value, a mode (see constants), and various other parameters (range and shadows-related).
-		[b]Note:[/b] Light2D can also be used as a mask.
+		Прямой доступ к состоянию физического 3D-пространства мира. Используется для запроса текущих и потенциальных столкновений.
+		[b]Примечание:[/b] Light2D также можно использовать в качестве маски.
 	</description>
 	<tutorials>
 		<link>$DOCS_URL/tutorials/2d/2d_lights_and_shadows.html</link>
@@ -14,99 +14,99 @@
 	</methods>
 	<members>
 		<member name="color" type="Color" setter="set_color" getter="get_color" default="Color( 1, 1, 1, 1 )">
-			The Light2D's [Color].
+			Light2D's [Color].
 		</member>
 		<member name="editor_only" type="bool" setter="set_editor_only" getter="is_editor_only" default="false">
-			If [code]true[/code], Light2D will only appear when editing the scene.
+			Если [code]true[/code], Light2D будет появляться только при редактировании сцены.
 		</member>
 		<member name="enabled" type="bool" setter="set_enabled" getter="is_enabled" default="true">
-			If [code]true[/code], Light2D will emit light.
+			Если [code]true[/code], Light2D будет излучать свет.
 		</member>
 		<member name="energy" type="float" setter="set_energy" getter="get_energy" default="1.0">
-			The Light2D's energy value. The larger the value, the stronger the light.
+			Значение энергии Light2D. Чем больше значение, тем сильнее свет.
 		</member>
 		<member name="mode" type="int" setter="set_mode" getter="get_mode" enum="Light2D.Mode" default="0">
-			The Light2D's mode. See [enum Mode] constants for values.
+			Режим работы Light2D. Значения см. в константах [enum Mode].
 		</member>
 		<member name="offset" type="Vector2" setter="set_texture_offset" getter="get_texture_offset" default="Vector2( 0, 0 )">
-			The offset of the Light2D's [code]texture[/code].
+			Смещение [code]текстуры[/code] Light2D.
 		</member>
 		<member name="range_height" type="float" setter="set_height" getter="get_height" default="0.0">
-			The height of the Light2D. Used with 2D normal mapping.
+			Высота Light2D. Используется при отображении 2D нормалей.
 		</member>
 		<member name="range_item_cull_mask" type="int" setter="set_item_cull_mask" getter="get_item_cull_mask" default="1">
-			The layer mask. Only objects with a matching mask will be affected by the Light2D.
+			Маска слоя. Light2D будет воздействовать только на объекты с соответствующей маской.
 		</member>
 		<member name="range_layer_max" type="int" setter="set_layer_range_max" getter="get_layer_range_max" default="0">
-			Maximum layer value of objects that are affected by the Light2D.
+			Максимальное значение слоя для объектов, на которые воздействует Light2D.
 		</member>
 		<member name="range_layer_min" type="int" setter="set_layer_range_min" getter="get_layer_range_min" default="0">
-			Minimum layer value of objects that are affected by the Light2D.
+			Минимальное значение слоя для объектов, на которые воздействует Light2D.
 		</member>
 		<member name="range_z_max" type="int" setter="set_z_range_max" getter="get_z_range_max" default="1024">
-			Maximum [code]z[/code] value of objects that are affected by the Light2D.
+			Максимальное значение [code]z[/code] объектов, на которые воздействует Light2D.
 		</member>
 		<member name="range_z_min" type="int" setter="set_z_range_min" getter="get_z_range_min" default="-1024">
-			Minimum [code]z[/code] value of objects that are affected by the Light2D.
+			Минимальное значение [code]z[/code] для объектов, на которые воздействует Light2D.
 		</member>
 		<member name="shadow_buffer_size" type="int" setter="set_shadow_buffer_size" getter="get_shadow_buffer_size" default="2048">
-			Shadow buffer size.
+			Размер теневого буфера.
 		</member>
 		<member name="shadow_color" type="Color" setter="set_shadow_color" getter="get_shadow_color" default="Color( 0, 0, 0, 0 )">
-			[Color] of shadows cast by the Light2D.
+			[Color] теней, отбрасываемых Light2D.
 		</member>
 		<member name="shadow_enabled" type="bool" setter="set_shadow_enabled" getter="is_shadow_enabled" default="false">
-			If [code]true[/code], the Light2D will cast shadows.
+			Если [code]true[/code], то Light2D будет отбрасывать тени.
 		</member>
 		<member name="shadow_filter" type="int" setter="set_shadow_filter" getter="get_shadow_filter" enum="Light2D.ShadowFilter" default="0">
-			Shadow filter type. See [enum ShadowFilter] for possible values.
+			Тип фильтра теней. Возможные значения см. в [enum ShadowFilter].
 		</member>
 		<member name="shadow_filter_smooth" type="float" setter="set_shadow_smooth" getter="get_shadow_smooth" default="0.0">
-			Smoothing value for shadows.
+			Значение сглаживания теней.
 		</member>
 		<member name="shadow_gradient_length" type="float" setter="set_shadow_gradient_length" getter="get_shadow_gradient_length" default="0.0">
-			Smooth shadow gradient length.
+			Длина плавного градиента теней.
 		</member>
 		<member name="shadow_item_cull_mask" type="int" setter="set_item_shadow_cull_mask" getter="get_item_shadow_cull_mask" default="1">
-			The shadow mask. Used with [LightOccluder2D] to cast shadows. Only occluders with a matching light mask will cast shadows.
+			Маска тени. Используется с [LightOccluder2D] для отбрасывания теней. Только окклюдеры с соответствующей маской света будут отбрасывать тени.
 		</member>
 		<member name="texture" type="Texture" setter="set_texture" getter="get_texture">
-			[Texture] used for the Light2D's appearance.
+			[Texture] используемый для внешнего вида Light2D.
 		</member>
 		<member name="texture_scale" type="float" setter="set_texture_scale" getter="get_texture_scale" default="1.0">
-			The [code]texture[/code]'s scale factor.
+			Коэффициент масштабирования [code]текстуры[/code].
 		</member>
 	</members>
 	<constants>
 		<constant name="MODE_ADD" value="0" enum="Mode">
-			Adds the value of pixels corresponding to the Light2D to the values of pixels under it. This is the common behavior of a light.
+			Добавляет значение пикселей, соответствующих Light2D, к значениям пикселей под ним. Это обычное поведение света.
 		</constant>
 		<constant name="MODE_SUB" value="1" enum="Mode">
-			Subtracts the value of pixels corresponding to the Light2D to the values of pixels under it, resulting in inversed light effect.
+			Вычитает значения пикселей, соответствующих Light2D, из значений пикселей под ним, в результате чего получается эффект инверсного света.
 		</constant>
 		<constant name="MODE_MIX" value="2" enum="Mode">
-			Mix the value of pixels corresponding to the Light2D to the values of pixels under it by linear interpolation.
+			Смешайте значения пикселей, соответствующих Light2D, со значениями пикселей под ним с помощью линейной интерполяции.
 		</constant>
 		<constant name="MODE_MASK" value="3" enum="Mode">
-			The light texture of the Light2D is used as a mask, hiding or revealing parts of the screen underneath depending on the value of each pixel of the light (mask) texture.
+			Текстура света Light2D используется в качестве маски, скрывая или открывая части экрана под собой в зависимости от значения каждого пикселя текстуры света (маски).
 		</constant>
 		<constant name="SHADOW_FILTER_NONE" value="0" enum="ShadowFilter">
-			No filter applies to the shadow map. See [member shadow_filter].
+			К карте теней не применяется никакой фильтр. См. раздел [member shadow_filter].
 		</constant>
 		<constant name="SHADOW_FILTER_PCF3" value="1" enum="ShadowFilter">
-			Percentage closer filtering (3 samples) applies to the shadow map. See [member shadow_filter].
+			К карте теней применяется фильтрация с приближением в процентах (3 образца). См. раздел [member shadow_filter].
 		</constant>
 		<constant name="SHADOW_FILTER_PCF5" value="2" enum="ShadowFilter">
-			Percentage closer filtering (5 samples) applies to the shadow map. See [member shadow_filter].
+			К карте теней применяется фильтрация с приближением в процентах (5 образцов). См. раздел [member shadow_filter].
 		</constant>
 		<constant name="SHADOW_FILTER_PCF7" value="3" enum="ShadowFilter">
-			Percentage closer filtering (7 samples) applies to the shadow map. See [member shadow_filter].
+			К карте теней применяется фильтрация с приближением в процентах (7 образцов). См. раздел [member shadow_filter].
 		</constant>
 		<constant name="SHADOW_FILTER_PCF9" value="4" enum="ShadowFilter">
-			Percentage closer filtering (9 samples) applies to the shadow map. See [member shadow_filter].
+			К карте теней применяется фильтрация с приближением в процентах (9 образцов). См. раздел [member shadow_filter].
 		</constant>
 		<constant name="SHADOW_FILTER_PCF13" value="5" enum="ShadowFilter">
-			Percentage closer filtering (13 samples) applies to the shadow map. See [member shadow_filter].
+			К карте теней применяется фильтрация с приближением в процентах (13 образцов). См. раздел [member shadow_filter].
 		</constant>
 	</constants>
 </class>

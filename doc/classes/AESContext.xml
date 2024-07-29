@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="AESContext" inherits="Reference" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="AESContext" inherits="Reference" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Interface to low level AES encryption features.
+		Интерфейс для низкоуровневых функций шифрования AES.
 	</brief_description>
 	<description>
-		This class provides access to AES encryption/decryption of raw data. Both AES-ECB and AES-CBC mode are supported.
+		Этот класс предоставляет доступ к AES-шифрованию/дешифрованию необработанных данных. Поддерживается как режим AES-ECB, так и режим AES-CBC.
 		[codeblock]
 		extends Node
 
@@ -12,28 +12,28 @@
 
 		func _ready():
 		    var key = "My secret key!!!" # Key must be either 16 or 32 bytes.
-		    var data = "My secret text!!" # Data size must be multiple of 16 bytes, apply padding if needed.
-		    # Encrypt ECB
+		    var data = "My secret text!!" # Размер данных должен быть кратен 16 байтам, при необходимости применяйте подстановку.
+		    # Шифрование ECB
 		    aes.start(AESContext.MODE_ECB_ENCRYPT, key.to_utf8())
 		    var encrypted = aes.update(data.to_utf8())
 		    aes.finish()
-		    # Decrypt ECB
+		    # Дешифрование ECB
 		    aes.start(AESContext.MODE_ECB_DECRYPT, key.to_utf8())
 		    var decrypted = aes.update(encrypted)
 		    aes.finish()
-		    # Check ECB
+		    # Проверка ECB
 		    assert(decrypted == data.to_utf8())
 
 		    var iv = "My secret iv!!!!" # IV must be of exactly 16 bytes.
-		    # Encrypt CBC
+		    # Шифрование CBC
 		    aes.start(AESContext.MODE_CBC_ENCRYPT, key.to_utf8(), iv.to_utf8())
 		    encrypted = aes.update(data.to_utf8())
 		    aes.finish()
-		    # Decrypt CBC
+		    # Дешифрование CBC
 		    aes.start(AESContext.MODE_CBC_DECRYPT, key.to_utf8(), iv.to_utf8())
 		    decrypted = aes.update(encrypted)
 		    aes.finish()
-		    # Check CBC
+		    # Проверка CBC
 		    assert(decrypted == data.to_utf8())
 		[/codeblock]
 	</description>
@@ -43,14 +43,14 @@
 		<method name="finish">
 			<return type="void" />
 			<description>
-				Close this AES context so it can be started again. See [method start].
+				Закрывает данный контекст AES, чтобы его можно было запустить снова. См. раздел [method start].
 			</description>
 		</method>
 		<method name="get_iv_state">
 			<return type="PoolByteArray" />
 			<description>
-				Get the current IV state for this context (IV gets updated when calling [method update]). You normally don't need this function.
-				[b]Note:[/b] This function only makes sense when the context is started with [constant MODE_CBC_ENCRYPT] or [constant MODE_CBC_DECRYPT].
+				Получить текущее состояние IV для данного контекста (IV обновляется при вызове [method update]). Обычно эта функция не нужна.
+				[b]Примечание:[/b] Эта функция имеет смысл только в том случае, если контекст запущен с [constant MODE_CBC_ENCRYPT] или [constant MODE_CBC_DECRYPT].
 			</description>
 		</method>
 		<method name="start">
@@ -59,33 +59,33 @@
 			<argument index="1" name="key" type="PoolByteArray" />
 			<argument index="2" name="iv" type="PoolByteArray" default="PoolByteArray(  )" />
 			<description>
-				Start the AES context in the given [code]mode[/code]. A [code]key[/code] of either 16 or 32 bytes must always be provided, while an [code]iv[/code] (initialization vector) of exactly 16 bytes, is only needed when [code]mode[/code] is either [constant MODE_CBC_ENCRYPT] or [constant MODE_CBC_DECRYPT].
+				Запускает контекст AES в заданном [code]mode[/code]. Ключ [code]key[/code] размером 16 или 32 байта должен быть предоставлен всегда, а [code]iv[/code] (вектор инициализации) размером ровно 16 байт необходим только в том случае, если [code]mode[/code] является либо [constant MODE_CBC_ENCRYPT], либо [constant MODE_CBC_DECRYPT].
 			</description>
 		</method>
 		<method name="update">
 			<return type="PoolByteArray" />
 			<argument index="0" name="src" type="PoolByteArray" />
 			<description>
-				Run the desired operation for this AES context. Will return a [PoolByteArray] containing the result of encrypting (or decrypting) the given [code]src[/code]. See [method start] for mode of operation.
-				[b]Note:[/b] The size of [code]src[/code] must be a multiple of 16. Apply some padding if needed.
+				Выполняет требуемую операцию для данного AES-контекста. Возвращается массив [PoolByteArray], содержащий результат шифрования (или дешифрования) заданного [code]src[/code]. Режим работы см. в разделе [method start].
+				[b]Примечание:[/b] Размер [code]src[/code] должен быть кратен 16. При необходимости примените некоторую прокладку.
 			</description>
 		</method>
 	</methods>
 	<constants>
 		<constant name="MODE_ECB_ENCRYPT" value="0" enum="Mode">
-			AES electronic codebook encryption mode.
+			Режим шифрования электронной кодовой книгой AES.
 		</constant>
 		<constant name="MODE_ECB_DECRYPT" value="1" enum="Mode">
-			AES electronic codebook decryption mode.
+			Режим расшифровки электронной кодовой книги AES.
 		</constant>
 		<constant name="MODE_CBC_ENCRYPT" value="2" enum="Mode">
-			AES cipher blocker chaining encryption mode.
+			Режим цепного шифрования с блокировкой шифра AES.
 		</constant>
 		<constant name="MODE_CBC_DECRYPT" value="3" enum="Mode">
-			AES cipher blocker chaining decryption mode.
+			Режим цепного дешифрования блокиратора шифра AES.
 		</constant>
 		<constant name="MODE_MAX" value="4" enum="Mode">
-			Maximum value for the mode enum.
+			Максимальное значение для перечисления mode.
 		</constant>
 	</constants>
 </class>

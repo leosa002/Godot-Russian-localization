@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="AudioBusLayout" inherits="Resource" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="AudioBusLayout" inherits="Resource" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Stores information about the audio buses.
+		Хранит информацию о звуковых шинах.
 	</brief_description>
 	<description>
-		Stores position, muting, solo, bypass, effects, effect position, volume, and the connections between buses. See [AudioServer] for usage.
+		Хранит положение, отключение, соло, байпас, эффекты, положение эффектов, громкость и связи между шинами. Использование см. в [AudioServer].
 	</description>
 	<tutorials>
 	</tutorials>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="VisualShaderNodeUniform" inherits="VisualShaderNode" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="VisualShaderNodeUniform" inherits="VisualShaderNode" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		A base type for the uniforms within the visual shader graph.
+		Базовый тип для юниформы(Uniform) в графе визуальных шейдеров.
 	</brief_description>
 	<description>
-		A uniform represents a variable in the shader which is set externally, i.e. from the [ShaderMaterial]. Uniforms are exposed as properties in the [ShaderMaterial] and can be assigned from the inspector or from a script.
+		Форма представляет собой переменную в шейдере, которая задается извне, то есть из [ShaderMaterial]. Формы отображаются как свойства в [ShaderMaterial] и могут быть назначены из инспектора или из скрипта.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -12,7 +12,7 @@
 	</methods>
 	<members>
 		<member name="uniform_name" type="String" setter="set_uniform_name" getter="get_uniform_name" default="&quot;&quot;">
-			Name of the uniform, by which it can be accessed through the [ShaderMaterial] properties.
+			Имя униформы, по которому к ней можно обратиться через свойства [ShaderMaterial].
 		</member>
 	</members>
 	<constants>

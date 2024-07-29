@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="AnimationNodeStateMachine" inherits="AnimationRootNode" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="AnimationNodeStateMachine" inherits="AnimationRootNode" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		State machine for control of animations.
+		Машина состояний для управления анимацией.
 	</brief_description>
 	<description>
-		Contains multiple nodes representing animation states, connected in a graph. Node transitions can be configured to happen automatically or via code, using a shortest-path algorithm. Retrieve the [AnimationNodeStateMachinePlayback] object from the [AnimationTree] node to control it programmatically.
-		[b]Example:[/b]
+		Содержит несколько узлов, представляющих состояния анимации, соединенных в граф. Переходы между узлами могут происходить автоматически или с помощью кода, используя алгоритм кратчайшего пути. Для программного управления узлом [AnimationTree] из него можно извлечь объект [AnimationNodeStateMachinePlayback].
+		[b]Пример:[/b]
 		[codeblock]
 		var state_machine = $AnimationTree.get("parameters/playback")
 		state_machine.travel("some_state")
@@ -21,7 +21,7 @@
 			<argument index="1" name="node" type="AnimationNode" />
 			<argument index="2" name="position" type="Vector2" default="Vector2( 0, 0 )" />
 			<description>
-				Adds a new node to the graph. The [code]position[/code] is used for display in the editor.
+				Добавляет новый узел в граф. Для отображения в редакторе используется [code]позиция[/code].
 			</description>
 		</method>
 		<method name="add_transition">
@@ -30,80 +30,80 @@
 			<argument index="1" name="to" type="String" />
 			<argument index="2" name="transition" type="AnimationNodeStateMachineTransition" />
 			<description>
-				Adds a transition between the given nodes.
+				Добавляет переход между заданными узлами.
 			</description>
 		</method>
 		<method name="get_end_node" qualifiers="const">
 			<return type="String" />
 			<description>
-				Returns the graph's end node.
+				Возвращает конечный узел графа.
 			</description>
 		</method>
 		<method name="get_graph_offset" qualifiers="const">
 			<return type="Vector2" />
 			<description>
-				Returns the draw offset of the graph. Used for display in the editor.
+				Возвращает смещение графика при отрисовке. Используется для отображения в редакторе.
 			</description>
 		</method>
 		<method name="get_node" qualifiers="const">
 			<return type="AnimationNode" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Returns the animation node with the given name.
+				Возвращает узел анимации с заданным именем.
 			</description>
 		</method>
 		<method name="get_node_name" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="node" type="AnimationNode" />
 			<description>
-				Returns the given animation node's name.
+				Возвращает имя заданного узла анимации.
 			</description>
 		</method>
 		<method name="get_node_position" qualifiers="const">
 			<return type="Vector2" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Returns the given node's coordinates. Used for display in the editor.
+				Возвращает координаты заданного узла. Используется для отображения в редакторе.
 			</description>
 		</method>
 		<method name="get_start_node" qualifiers="const">
 			<return type="String" />
 			<description>
-				Returns the graph's end node.
+				Возвращает конечный узел графа.
 			</description>
 		</method>
 		<method name="get_transition" qualifiers="const">
 			<return type="AnimationNodeStateMachineTransition" />
 			<argument index="0" name="idx" type="int" />
 			<description>
-				Returns the given transition.
+				Возвращает заданный переход.
 			</description>
 		</method>
 		<method name="get_transition_count" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the number of connections in the graph.
+				Возвращает количество соединений в графе.
 			</description>
 		</method>
 		<method name="get_transition_from" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="idx" type="int" />
 			<description>
-				Returns the given transition's start node.
+				Возвращает начальный узел данного перехода.
 			</description>
 		</method>
 		<method name="get_transition_to" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="idx" type="int" />
 			<description>
-				Returns the given transition's end node.
+				Возвращает конечный узел данного перехода.
 			</description>
 		</method>
 		<method name="has_node" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Returns [code]true[/code] if the graph contains the given node.
+				Возвращает [code]true[/code], если граф содержит заданную вершину.
 			</description>
 		</method>
 		<method name="has_transition" qualifiers="const">
@@ -111,14 +111,14 @@
 			<argument index="0" name="from" type="String" />
 			<argument index="1" name="to" type="String" />
 			<description>
-				Returns [code]true[/code] if there is a transition between the given nodes.
+				Возвращает [code]true[/code], если между заданными узлами существует переход.
 			</description>
 		</method>
 		<method name="remove_node">
 			<return type="void" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Deletes the given node from the graph.
+				Удаляет заданный узел из графа.
 			</description>
 		</method>
 		<method name="remove_transition">
@@ -126,14 +126,14 @@
 			<argument index="0" name="from" type="String" />
 			<argument index="1" name="to" type="String" />
 			<description>
-				Deletes the transition between the two specified nodes.
+				Удаляет переход между двумя указанными узлами.
 			</description>
 		</method>
 		<method name="remove_transition_by_index">
 			<return type="void" />
 			<argument index="0" name="idx" type="int" />
 			<description>
-				Deletes the given transition by index.
+				Удаляет заданный переход по индексу.
 			</description>
 		</method>
 		<method name="rename_node">
@@ -141,7 +141,7 @@
 			<argument index="0" name="name" type="String" />
 			<argument index="1" name="new_name" type="String" />
 			<description>
-				Renames the given node.
+				Переименовывает заданный узел.
 			</description>
 		</method>
 		<method name="replace_node">
@@ -149,21 +149,21 @@
 			<argument index="0" name="name" type="String" />
 			<argument index="1" name="node" type="AnimationNode" />
 			<description>
-				Replaces the node and keeps its transitions unchanged.
+				Заменяет узел, сохраняя его переходы неизменными.
 			</description>
 		</method>
 		<method name="set_end_node">
 			<return type="void" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Sets the given node as the graph end point.
+				Устанавливает заданный узел в качестве конечной точки графа.
 			</description>
 		</method>
 		<method name="set_graph_offset">
 			<return type="void" />
 			<argument index="0" name="offset" type="Vector2" />
 			<description>
-				Sets the draw offset of the graph. Used for display in the editor.
+				Устанавливает смещение отрисовки графика. Используется для отображения в редакторе.
 			</description>
 		</method>
 		<method name="set_node_position">
@@ -171,14 +171,14 @@
 			<argument index="0" name="name" type="String" />
 			<argument index="1" name="position" type="Vector2" />
 			<description>
-				Sets the node's coordinates. Used for display in the editor.
+				Устанавливает координаты узла. Используется для отображения в редакторе.
 			</description>
 		</method>
 		<method name="set_start_node">
 			<return type="void" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Sets the given node as the graph start point.
+				Устанавливает заданный узел в качестве начальной точки графа.
 			</description>
 		</method>
 	</methods>

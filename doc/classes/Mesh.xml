@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Mesh" inherits="Resource" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Mesh" inherits="Resource" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		A [Resource] that contains vertex array-based geometry.
+		Ресурс [Resource], содержащий геометрию на основе вершинных массивов.
 	</brief_description>
 	<description>
-		Mesh is a type of [Resource] that contains vertex array-based geometry, divided in [i]surfaces[/i]. Each surface contains a completely separate array and a material used to draw it. Design wise, a mesh with multiple surfaces is preferred to a single surface, because objects created in 3D editing software commonly contain multiple materials.
+		Mesh - это тип [ресурса], который содержит геометрию на основе вершинных массивов, разделенную на [i]поверхности[/i]. Каждая поверхность содержит совершенно отдельный массив и материал, используемый для его отрисовки. С точки зрения дизайна, сетка с несколькими поверхностями предпочтительнее, чем с одной поверхностью, поскольку объекты, созданные в программах 3D-редактирования, обычно содержат несколько материалов.
 	</description>
 	<tutorials>
 		<link title="3D Material Testers Demo">https://godotengine.org/asset-library/asset/123</link>
@@ -18,69 +18,69 @@
 			<argument index="0" name="clean" type="bool" default="true" />
 			<argument index="1" name="simplify" type="bool" default="false" />
 			<description>
-				Calculate a [ConvexPolygonShape] from the mesh.
-				If [code]clean[/code] is [code]true[/code] (default), duplicate and interior vertices are removed automatically. You can set it to [code]false[/code] to make the process faster if not needed.
-				If [code]simplify[/code] is [code]true[/code], the geometry can be further simplified to reduce the amount of vertices. Disabled by default.
+				Вычислите [ConvexPolygonShape] из сетки.
+				Если [code]clean[/code] имеет значение [code]true[/code] (по умолчанию), дубликаты и внутренние вершины удаляются автоматически. Вы можете установить значение [code]false[/code], чтобы ускорить процесс, если он не нужен.
+				Если [code]simplify[/code] - [code]true[/code], геометрия может быть дополнительно упрощена, чтобы уменьшить количество вершин. По умолчанию отключено.
 			</description>
 		</method>
 		<method name="create_outline" qualifiers="const">
 			<return type="Mesh" />
 			<argument index="0" name="margin" type="float" />
 			<description>
-				Calculate an outline mesh at a defined offset (margin) from the original mesh.
-				[b]Note:[/b] This method typically returns the vertices in reverse order (e.g. clockwise to counterclockwise).
+				Вычисление контурной сетки с заданным смещением (отступом) от исходной сетки.
+				[b]Примечание:[/b] Этот метод обычно возвращает вершины в обратном порядке (например, по часовой стрелке к против часовой стрелки).
 			</description>
 		</method>
 		<method name="create_trimesh_shape" qualifiers="const">
 			<return type="Shape" />
 			<description>
-				Calculate a [ConcavePolygonShape] from the mesh.
+				Вычислите [ConcavePolygonShape] из сетки.
 			</description>
 		</method>
 		<method name="generate_triangle_mesh" qualifiers="const">
 			<return type="TriangleMesh" />
 			<description>
-				Generate a [TriangleMesh] from the mesh. Considers only surfaces using one of these primitive types: [constant PRIMITIVE_TRIANGLES], [constant PRIMITIVE_TRIANGLE_STRIP], or [constant PRIMITIVE_TRIANGLE_FAN].
+				Создайте [TriangleMesh] из сетки.
 			</description>
 		</method>
 		<method name="get_aabb" qualifiers="const">
 			<return type="AABB" />
 			<description>
-				Returns the smallest [AABB] enclosing this mesh in local space. Not affected by [code]custom_aabb[/code]. See also [method VisualInstance.get_transformed_aabb].
-				[b]Note:[/b] This is only implemented for [ArrayMesh] and [PrimitiveMesh].
+				Возвращает наименьший [AABB], окружающий данную сетку в локальном пространстве. Не зависит от [code]custom_aabb[/code]. См. также [метод VisualInstance.get_transformed_aabb].
+				[b]Примечание:[/b] Это реализовано только для [ArrayMesh] и [PrimitiveMesh].
 			</description>
 		</method>
 		<method name="get_faces" qualifiers="const">
 			<return type="PoolVector3Array" />
 			<description>
-				Returns all the vertices that make up the faces of the mesh. Each three vertices represent one triangle.
+				Возвращает все вершины, составляющие грани сетки. Каждые три вершины представляют собой один треугольник.
 			</description>
 		</method>
 		<method name="get_surface_count" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the amount of surfaces that the [Mesh] holds.
+				Возвращает количество поверхностей, которые содержит [Mesh].
 			</description>
 		</method>
 		<method name="surface_get_arrays" qualifiers="const">
 			<return type="Array" />
 			<argument index="0" name="surf_idx" type="int" />
 			<description>
-				Returns the arrays for the vertices, normals, uvs, etc. that make up the requested surface (see [method ArrayMesh.add_surface_from_arrays]).
+				Возвращает массивы вершин, нормалей, uvs и т.д., составляющих запрашиваемую поверхность (см. [метод ArrayMesh.add_surface_from_arrays]).
 			</description>
 		</method>
 		<method name="surface_get_blend_shape_arrays" qualifiers="const">
 			<return type="Array" />
 			<argument index="0" name="surf_idx" type="int" />
 			<description>
-				Returns the blend shape arrays for the requested surface.
+				Возвращает массивы форм смешивания для запрашиваемой поверхности.
 			</description>
 		</method>
 		<method name="surface_get_material" qualifiers="const">
 			<return type="Material" />
 			<argument index="0" name="surf_idx" type="int" />
 			<description>
-				Returns a [Material] in a given surface. Surface is rendered using this material.
+				Возвращает [Material] в заданной поверхности. Поверхность рендерится с использованием этого материала.
 			</description>
 		</method>
 		<method name="surface_set_material">
@@ -88,147 +88,143 @@
 			<argument index="0" name="surf_idx" type="int" />
 			<argument index="1" name="material" type="Material" />
 			<description>
-				Sets a [Material] for a given surface. Surface will be rendered using this material.
+				Устанавливает [Material] для данной поверхности. Поверхность будет отрисовываться с использованием этого материала.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="lightmap_size_hint" type="Vector2" setter="set_lightmap_size_hint" getter="get_lightmap_size_hint" default="Vector2( 0, 0 )">
-			Sets a hint to be used for lightmap resolution in [BakedLightmap]. Overrides [member BakedLightmap.default_texels_per_unit].
+			Устанавливает подсказку, которая будет использоваться для разрешения лайтмапа в [BakedLightmap]. Переопределяет [member BakedLightmap.default_texels_per_unit].
 		</member>
 	</members>
 	<constants>
 		<constant name="PRIMITIVE_POINTS" value="0" enum="PrimitiveType">
-			Render array as points (one vertex equals one point).
+			Отрисуйте массив в виде точек (одна вершина равна одной точке).
 		</constant>
 		<constant name="PRIMITIVE_LINES" value="1" enum="PrimitiveType">
-			Render array as lines (every two vertices a line is created).
+			Рендеринг массива в виде линий (через каждые две вершины создается линия).
 		</constant>
 		<constant name="PRIMITIVE_LINE_STRIP" value="2" enum="PrimitiveType">
-			Render array as line strip.
+			Рендеринг массива в виде линейной полосы.
 		</constant>
 		<constant name="PRIMITIVE_LINE_LOOP" value="3" enum="PrimitiveType">
-			Render array as line loop (like line strip, but closed).
+			Массив отображается в виде линейного цикла (как линейная полоса, но замкнутая).
 		</constant>
 		<constant name="PRIMITIVE_TRIANGLES" value="4" enum="PrimitiveType">
-			Render array as triangles (every three vertices a triangle is created).
+			Рендеринг массива в виде треугольников (через каждые три вершины создается треугольник).
 		</constant>
 		<constant name="PRIMITIVE_TRIANGLE_STRIP" value="5" enum="PrimitiveType">
-			Render array as triangle strips.
+			Рендеринг массива в виде полос треугольника.
 		</constant>
 		<constant name="PRIMITIVE_TRIANGLE_FAN" value="6" enum="PrimitiveType">
-			Render array as triangle fans.
+			Рендер массива в виде треугольных вееров.
 		</constant>
 		<constant name="BLEND_SHAPE_MODE_NORMALIZED" value="0" enum="BlendShapeMode">
-			Blend shapes are normalized.
+			Формы блендов нормализованы.
 		</constant>
 		<constant name="BLEND_SHAPE_MODE_RELATIVE" value="1" enum="BlendShapeMode">
-			Blend shapes are relative to base weight.
+			Формы блендов относятся к базовому весу.
 		</constant>
 		<constant name="ARRAY_FORMAT_VERTEX" value="1" enum="ArrayFormat">
-			Mesh array contains vertices. All meshes require a vertex array so this should always be present.
+			Массив Mesh содержит вершины. Все сетки требуют массива вершин, поэтому он всегда должен присутствовать.
 		</constant>
 		<constant name="ARRAY_FORMAT_NORMAL" value="2" enum="ArrayFormat">
-			Mesh array contains normals.
+			Массив Mesh, содержащий нормали.
 		</constant>
 		<constant name="ARRAY_FORMAT_TANGENT" value="4" enum="ArrayFormat">
-			Mesh array contains tangents.
+			Массив Mesh содержит тангенсы.
 		</constant>
 		<constant name="ARRAY_FORMAT_COLOR" value="8" enum="ArrayFormat">
-			Mesh array contains colors.
+			Массив Mesh содержит цвета.
 		</constant>
 		<constant name="ARRAY_FORMAT_TEX_UV" value="16" enum="ArrayFormat">
-			Mesh array contains UVs.
+			Массив Mesh содержит UV-файлы.
 		</constant>
 		<constant name="ARRAY_FORMAT_TEX_UV2" value="32" enum="ArrayFormat">
-			Mesh array contains second UV.
+			Массив Mesh содержит второй UV(UV2).
 		</constant>
 		<constant name="ARRAY_FORMAT_BONES" value="64" enum="ArrayFormat">
-			Mesh array contains bones.
+			Массив Mesh содержит кости.
 		</constant>
 		<constant name="ARRAY_FORMAT_WEIGHTS" value="128" enum="ArrayFormat">
-			Mesh array contains bone weights.
+			Массив Mesh содержит веса костей.
 		</constant>
 		<constant name="ARRAY_FORMAT_INDEX" value="256" enum="ArrayFormat">
-			Mesh array uses indices.
+			Массив Mesh использует индексы.
 		</constant>
 		<constant name="ARRAY_COMPRESS_BASE" value="9" enum="ArrayFormat">
-			Used internally to calculate other [code]ARRAY_COMPRESS_*[/code] enum values. Do not use.
+			Используется внутренне для вычисления других значений перечисления [code]ARRAY_COMPRESS_*[/code]. Не использовать.
 		</constant>
 		<constant name="ARRAY_COMPRESS_VERTEX" value="512" enum="ArrayFormat">
-			Flag used to mark a compressed (half float) vertex array.
+			Флаг, используемый для обозначения сжатого (half float) массива вершин.
 		</constant>
 		<constant name="ARRAY_COMPRESS_NORMAL" value="1024" enum="ArrayFormat">
-			Flag used to mark a compressed (half float) normal array.
+			Флаг, используемый для обозначения сжатого (наполовину плавающего) нормального массива.
 		</constant>
 		<constant name="ARRAY_COMPRESS_TANGENT" value="2048" enum="ArrayFormat">
-			Flag used to mark a compressed (half float) tangent array.
+			Флаг, используемый для обозначения сжатого (наполовину плавающего) массива касательных.
 		</constant>
 		<constant name="ARRAY_COMPRESS_COLOR" value="4096" enum="ArrayFormat">
-			Flag used to mark a compressed (half float) color array.
-			[b]Note:[/b] If this flag is enabled, vertex colors will be stored as 8-bit unsigned integers. This will clamp overbright colors to [code]Color(1, 1, 1, 1)[/code] and reduce colors' precision.
+			Флаг, используемый для обозначения сжатого (half float) цветового массива.
+			[b]Примечание:[/b] Если этот флаг установлен, цвета вершин будут храниться как 8-битные целые числа без знака. Это приведет к сжатию слишком ярких цветов до [code]Color(1, 1, 1, 1, 1)[/code] и снижению точности цветов.
 		</constant>
 		<constant name="ARRAY_COMPRESS_TEX_UV" value="8192" enum="ArrayFormat">
-			Flag used to mark a compressed (half float) UV coordinates array.
+			Флаг, используемый для маркировки сжатого (half float) массива UV-координат.
 		</constant>
 		<constant name="ARRAY_COMPRESS_TEX_UV2" value="16384" enum="ArrayFormat">
-			Flag used to mark a compressed (half float) UV coordinates array for the second UV coordinates.
+			Флаг, используемый для обозначения сжатого (half float) массива UV-координат для вторых UV-координат.
 		</constant>
 		<constant name="ARRAY_COMPRESS_BONES" value="32768" enum="ArrayFormat">
-			Flag used to mark a compressed bone array.
+			Флаг, используемый для обозначения массива сжатых костей.
 		</constant>
 		<constant name="ARRAY_COMPRESS_WEIGHTS" value="65536" enum="ArrayFormat">
-			Flag used to mark a compressed (half float) weight array.
+			Флаг, используемый для обозначения сжатого (наполовину плавающего) весового массива.
 		</constant>
 		<constant name="ARRAY_COMPRESS_INDEX" value="131072" enum="ArrayFormat">
-			Flag used to mark a compressed index array.
+			Флаг, используемый для маркировки сжатого индексного массива.
 		</constant>
 		<constant name="ARRAY_FLAG_USE_2D_VERTICES" value="262144" enum="ArrayFormat">
-			Flag used to mark that the array contains 2D vertices.
+			Флаг, указывающий на то, что массив содержит 2D вершины.
 		</constant>
 		<constant name="ARRAY_FLAG_USE_16_BIT_BONES" value="524288" enum="ArrayFormat">
-			Flag used to mark that the array uses 16-bit bones instead of 8-bit.
+			Флаг, используемый для отметки того, что массив использует 16-битные кости вместо 8-битных.
 		</constant>
 		<constant name="ARRAY_FLAG_USE_OCTAHEDRAL_COMPRESSION" value="2097152" enum="ArrayFormat">
-			Flag used to mark that the array uses an octahedral representation of normal and tangent vectors rather than cartesian.
-		</constant>
-		<constant name="ARRAY_FLAG_USE_VERTEX_CACHE_OPTIMIZATION" value="4194304" enum="ArrayFormat">
-			Flag used to request vertex cache optimization.
-			This re-orders indices in order to make best use of GPU vertex caches, which can improve rendering performance particularly with high poly models.
+			Флаг, используемый для отметки того, что массив использует восьмигранное представление нормального и касательного векторов, а не картезианское.
 		</constant>
 		<constant name="ARRAY_COMPRESS_DEFAULT" value="2194432" enum="ArrayFormat">
-			Used to set flags [constant ARRAY_COMPRESS_VERTEX], [constant ARRAY_COMPRESS_NORMAL], [constant ARRAY_COMPRESS_TANGENT], [constant ARRAY_COMPRESS_COLOR], [constant ARRAY_COMPRESS_TEX_UV], [constant ARRAY_COMPRESS_TEX_UV2], [constant ARRAY_COMPRESS_WEIGHTS], and [constant ARRAY_FLAG_USE_OCTAHEDRAL_COMPRESSION] quickly.
-			[b]Note:[/b] Since this flag enables [constant ARRAY_COMPRESS_COLOR], vertex colors will be stored as 8-bit unsigned integers. This will clamp overbright colors to [code]Color(1, 1, 1, 1)[/code] and reduce colors' precision.
+			Используется для быстрой установки флагов [constant ARRAY_COMPRESS_VERTEX], [constant ARRAY_COMPRESS_NORMAL], [constant ARRAY_COMPRESS_TANGENT], [constant ARRAY_COMPRESS_COLOR], [constant ARRAY_COMPRESS_TEX_UV], [constant ARRAY_COMPRESS_TEX_UV2], [constant ARRAY_COMPRESS_WEIGHTS], и [constant ARRAY_FLAG_USE_OCTAHEDRAL_COMPRESSION].
+			[b]Примечание:[/b] Поскольку этот флаг включает [константу ARRAY_COMPRESS_COLOR], цвета вершин будут храниться как 8-битные целые числа без знака. Это приведет к зажатию слишком ярких цветов до [code]Color(1, 1, 1, 1, 1)[/code] и снижению точности цветов.
 		</constant>
 		<constant name="ARRAY_VERTEX" value="0" enum="ArrayType">
-			Array of vertices.
+			Массив вершин.
 		</constant>
 		<constant name="ARRAY_NORMAL" value="1" enum="ArrayType">
-			Array of normals.
+			Массив нормалей.
 		</constant>
 		<constant name="ARRAY_TANGENT" value="2" enum="ArrayType">
-			Array of tangents as an array of floats, 4 floats per tangent.
+			Массив касательных в виде массива float, 4 float на касательную.
 		</constant>
 		<constant name="ARRAY_COLOR" value="3" enum="ArrayType">
-			Array of colors.
+			Массив цветов.
 		</constant>
 		<constant name="ARRAY_TEX_UV" value="4" enum="ArrayType">
-			Array of UV coordinates.
+			Массив UV-координат.
 		</constant>
 		<constant name="ARRAY_TEX_UV2" value="5" enum="ArrayType">
-			Array of second set of UV coordinates.
+			Массив второго набора UV-координат.
 		</constant>
 		<constant name="ARRAY_BONES" value="6" enum="ArrayType">
-			Array of bone data.
+			Массив данных о костях.
 		</constant>
 		<constant name="ARRAY_WEIGHTS" value="7" enum="ArrayType">
-			Array of weights.
+			Массив весов.
 		</constant>
 		<constant name="ARRAY_INDEX" value="8" enum="ArrayType">
-			Array of indices.
+			Массив индексов.
 		</constant>
 		<constant name="ARRAY_MAX" value="9" enum="ArrayType">
-			Represents the size of the [enum ArrayType] enum.
+			Представляет размер перечисления [enum ArrayType].
 		</constant>
 	</constants>
 </class>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Node2D" inherits="CanvasItem" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Node2D" inherits="CanvasItem" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		A 2D game object, inherited by all 2D-related nodes. Has a position, rotation, scale, and Z index.
+		Игровой объект 2D, наследуемый всеми узлами, связанными с 2D. Имеет позицию, вращение, масштаб и индекс Z.
 	</brief_description>
 	<description>
-		A 2D game object, with a transform (position, rotation, and scale). All 2D nodes, including physics objects and sprites, inherit from Node2D. Use Node2D as a parent node to move, scale and rotate children in a 2D project. Also gives control of the node's render order.
+		Двухмерный игровой объект с трансформацией (положение, поворот и масштаб). Все 2D-узлы, включая физические объекты и спрайты, наследуют от Node2D. Используйте Node2D в качестве родительского узла для перемещения, масштабирования и поворота дочерних узлов в 2D-проекте. Также можно контролировать порядок рендеринга узла.
 	</description>
 	<tutorials>
 		<link title="Custom drawing in 2D">$DOCS_URL/tutorials/2d/custom_drawing_in_2d.html</link>
@@ -15,36 +15,36 @@
 			<return type="void" />
 			<argument index="0" name="ratio" type="Vector2" />
 			<description>
-				Multiplies the current scale by the [code]ratio[/code] vector.
+				Умножает текущий масштаб на вектор [code]ratio[/code].
 			</description>
 		</method>
 		<method name="get_angle_to" qualifiers="const">
 			<return type="float" />
 			<argument index="0" name="point" type="Vector2" />
 			<description>
-				Returns the angle between the node and the [code]point[/code] in radians.
-				[url=https://raw.githubusercontent.com/godotengine/godot-docs/master/img/node2d_get_angle_to.png]Illustration of the returned angle.[/url]
+				Возвращает угол между узлом и [code]точкой[/code] в радианах.
+				[url=https://raw.githubusercontent.com/godotengine/godot-docs/master/img/node2d_get_angle_to.png]Иллюстрация возвращаемого угла[/url].
 			</description>
 		</method>
 		<method name="get_relative_transform_to_parent" qualifiers="const">
 			<return type="Transform2D" />
 			<argument index="0" name="parent" type="Node" />
 			<description>
-				Returns the [Transform2D] relative to this node's parent.
+				Возвращает [Transform2D] относительно родителя этого узла.
 			</description>
 		</method>
 		<method name="global_translate">
 			<return type="void" />
 			<argument index="0" name="offset" type="Vector2" />
 			<description>
-				Adds the [code]offset[/code] vector to the node's global position.
+				Добавляет вектор [code]offset[/code] к глобальной позиции узла.
 			</description>
 		</method>
 		<method name="look_at">
 			<return type="void" />
 			<argument index="0" name="point" type="Vector2" />
 			<description>
-				Rotates the node so it points towards the [code]point[/code], which is expected to use global coordinates.
+				Поворачивает узел так, чтобы он указывал на [code]точку[/code], которая, как ожидается, использует глобальные координаты.
 			</description>
 		</method>
 		<method name="move_local_x">
@@ -52,7 +52,7 @@
 			<argument index="0" name="delta" type="float" />
 			<argument index="1" name="scaled" type="bool" default="false" />
 			<description>
-				Applies a local translation on the node's X axis based on the [method Node._process]'s [code]delta[/code]. If [code]scaled[/code] is [code]false[/code], normalizes the movement.
+				Применяет локальный перевод по оси X узла на основе [code]дельты[/code] метода Node._process. Если [code]scaled[/code] - [code]false[/code], нормализует движение.
 			</description>
 		</method>
 		<method name="move_local_y">
@@ -60,75 +60,75 @@
 			<argument index="0" name="delta" type="float" />
 			<argument index="1" name="scaled" type="bool" default="false" />
 			<description>
-				Applies a local translation on the node's Y axis based on the [method Node._process]'s [code]delta[/code]. If [code]scaled[/code] is [code]false[/code], normalizes the movement.
+				Применяет локальный перевод по оси Y узла на основе [code]delta[/code] метода Node._process. Если [code]scaled[/code] - [code]false[/code], нормализует движение.
 			</description>
 		</method>
 		<method name="rotate">
 			<return type="void" />
 			<argument index="0" name="radians" type="float" />
 			<description>
-				Applies a rotation to the node, in radians, starting from its current rotation.
+				Применяет к узлу вращение в радианах, начиная с его текущего вращения.
 			</description>
 		</method>
 		<method name="to_global" qualifiers="const">
 			<return type="Vector2" />
 			<argument index="0" name="local_point" type="Vector2" />
 			<description>
-				Transforms the provided local position into a position in global coordinate space. The input is expected to be local relative to the [Node2D] it is called on. e.g. Applying this method to the positions of child nodes will correctly transform their positions into the global coordinate space, but applying it to a node's own position will give an incorrect result, as it will incorporate the node's own transformation into its global position.
+				Преобразует предоставленную локальную позицию в позицию в глобальном координатном пространстве. Ожидается, что входные данные будут локальными относительно [Node2D], на котором они вызываются. Например, применение этого метода к позициям дочерних узлов правильно преобразует их позиции в глобальное координатное пространство, но применение его к собственной позиции узла даст неверный результат, поскольку он включит собственную трансформацию узла в его глобальную позицию.
 			</description>
 		</method>
 		<method name="to_local" qualifiers="const">
 			<return type="Vector2" />
 			<argument index="0" name="global_point" type="Vector2" />
 			<description>
-				Transforms the provided global position into a position in local coordinate space. The output will be local relative to the [Node2D] it is called on. e.g. It is appropriate for determining the positions of child nodes, but it is not appropriate for determining its own position relative to its parent.
+				Преобразует заданную глобальную позицию в позицию в локальном пространстве координат. Вывод будет локальным относительно [Node2D], на котором он вызван. Например, он подходит для определения позиций дочерних узлов, но не подходит для определения собственной позиции относительно родителя.
 			</description>
 		</method>
 		<method name="translate">
 			<return type="void" />
 			<argument index="0" name="offset" type="Vector2" />
 			<description>
-				Translates the node by the given [code]offset[/code] in local coordinates.
+				Переводит узел на заданное [code]смещение[/code] в локальных координатах.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="global_position" type="Vector2" setter="set_global_position" getter="get_global_position">
-			Global position.
+			Глобальная позиция.
 		</member>
 		<member name="global_rotation" type="float" setter="set_global_rotation" getter="get_global_rotation">
-			Global rotation in radians.
+			Глобальное вращение в радианах.
 		</member>
 		<member name="global_rotation_degrees" type="float" setter="set_global_rotation_degrees" getter="get_global_rotation_degrees">
-			Global rotation in degrees.
+			Глобальное вращение в градусах.
 		</member>
 		<member name="global_scale" type="Vector2" setter="set_global_scale" getter="get_global_scale">
-			Global scale.
+			Глобальный масштаб.
 		</member>
 		<member name="global_transform" type="Transform2D" setter="set_global_transform" getter="get_global_transform">
-			Global [Transform2D].
+			Глобальный [Transform2D].
 		</member>
 		<member name="position" type="Vector2" setter="set_position" getter="get_position" default="Vector2( 0, 0 )">
-			Position, relative to the node's parent.
+			Положение относительно родительского узла.
 		</member>
 		<member name="rotation" type="float" setter="set_rotation" getter="get_rotation" default="0.0">
-			Rotation in radians, relative to the node's parent.
+			Вращение в радианах относительно родительского узла.
 		</member>
 		<member name="rotation_degrees" type="float" setter="set_rotation_degrees" getter="get_rotation_degrees" default="0.0">
-			Rotation in degrees, relative to the node's parent.
+			Вращение в градусах относительно родительского узла.
 		</member>
 		<member name="scale" type="Vector2" setter="set_scale" getter="get_scale" default="Vector2( 1, 1 )">
-			The node's scale. Unscaled value: [code](1, 1)[/code].
-			[b]Note:[/b] Negative X scales in 2D are not decomposable from the transformation matrix. Due to the way scale is represented with transformation matrices in Godot, negative scales on the X axis will be changed to negative scales on the Y axis and a rotation of 180 degrees when decomposed.
+			Масштаб узла. Немасштабированное значение: [code](1, 1)[/code].
+			[b]Примечание:[/b] Отрицательные масштабы по оси X в 2D не разлагаются из матрицы трансформации. Из-за того, как масштаб представлен в матрицах трансформации в Godot, отрицательные масштабы по оси X будут изменены на отрицательные масштабы по оси Y и поворот на 180 градусов при декомпозиции.
 		</member>
 		<member name="transform" type="Transform2D" setter="set_transform" getter="get_transform">
-			Local [Transform2D].
+			Местный [Transform2D].
 		</member>
 		<member name="z_as_relative" type="bool" setter="set_z_as_relative" getter="is_z_relative" default="true">
-			If [code]true[/code], the node's Z index is relative to its parent's Z index. If this node's Z index is 2 and its parent's effective Z index is 3, then this node's effective Z index will be 2 + 3 = 5.
+			Если [code]true[/code], то Z-индекс узла будет относительным к Z-индексу его родителя. Если Z-индекс этого узла равен 2, а эффективный Z-индекс его родителя равен 3, то эффективный Z-индекс этого узла будет равен 2 + 3 = 5.
 		</member>
 		<member name="z_index" type="int" setter="set_z_index" getter="get_z_index" default="0">
-			Z index. Controls the order in which the nodes render. A node with a higher Z index will display in front of others. Must be between [constant VisualServer.CANVAS_ITEM_Z_MIN] and [constant VisualServer.CANVAS_ITEM_Z_MAX] (inclusive).
+			Z-индекс. Управляет порядком отображения узлов. Узел с более высоким Z-индексом будет отображаться перед другими. Должен находиться между [константой VisualServer.CANVAS_ITEM_Z_MIN] и [константой VisualServer.CANVAS_ITEM_Z_MAX] (включительно).
 		</member>
 	</members>
 	<constants>

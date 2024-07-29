@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Bone2D" inherits="Node2D" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Bone2D" inherits="Node2D" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Joint used with [Skeleton2D] to control and animate other nodes.
+		Шарнир, используемый с [Skeleton2D] для управления и анимации других узлов.
 	</brief_description>
 	<description>
-		Use a hierarchy of [code]Bone2D[/code] bound to a [Skeleton2D] to control, and animate other [Node2D] nodes.
-		You can use [code]Bone2D[/code] and [code]Skeleton2D[/code] nodes to animate 2D meshes created with the Polygon 2D UV editor.
-		Each bone has a [member rest] transform that you can reset to with [method apply_rest]. These rest poses are relative to the bone's parent.
-		If in the editor, you can set the rest pose of an entire skeleton using a menu option, from the code, you need to iterate over the bones to set their individual rest poses.
+		Используйте иерархию [code]Bone2D[/code], привязанную к [Skeleton2D], для управления и анимации других узлов [Node2D].
+		Узлы [code]Bone2D[/code] и [code]Skeleton2D[/code] можно использовать для анимирования двумерных сеток, созданных с помощью редактора Polygon 2D UV.
+		Каждая кость имеет преобразование [member rest], к которому можно вернуться с помощью [method apply_rest]. Позиции покоя задаются относительно родительской кости.
+		Если в редакторе можно задать позу покоя всего скелета с помощью меню, то в коде для задания отдельных поз покоя костей необходимо выполнить итерации.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -15,28 +15,28 @@
 		<method name="apply_rest">
 			<return type="void" />
 			<description>
-				Resets the bone to the rest pose. This is equivalent to setting [member Node2D.transform] to [member rest].
+				Сохраняет текущие преобразования узла в [member rest].
 			</description>
 		</method>
 		<method name="get_index_in_skeleton" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the node's index as part of the entire skeleton. See [Skeleton2D].
+				Возвращает кость  в исходное положение. Это эквивалентно установке для [member Node2D.transform] значения [member rest].
 			</description>
 		</method>
 		<method name="get_skeleton_rest" qualifiers="const">
 			<return type="Transform2D" />
 			<description>
-				Returns the node's [member rest] [code]Transform2D[/code] if it doesn't have a parent, or its rest pose relative to its parent.
+				Возвращает [member rest] [code]Transform2D[/code] узла, если у него нет родителя, или его позу покоя относительно родителя.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="default_length" type="float" setter="set_default_length" getter="get_default_length" default="16.0">
-			Length of the bone's representation drawn in the editor's viewport in pixels.
+			Длина представления кости, отрисованной в окне просмотра редактора, в пикселях.
 		</member>
 		<member name="rest" type="Transform2D" setter="set_rest" getter="get_rest" default="Transform2D( 0, 0, 0, 0, 0, 0 )">
-			Rest transform of the bone. You can reset the node's transforms to this value using [method apply_rest].
+			Трансформация покоя кости. Сбросить трансформации узла на это значение можно с помощью [method apply_rest].
 		</member>
 	</members>
 	<constants>

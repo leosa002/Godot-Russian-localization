@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="VisualShaderNodeFaceForward" inherits="VisualShaderNode" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="VisualShaderNodeFaceForward" inherits="VisualShaderNode" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Returns the vector that points in the same direction as a reference vector within the visual shader graph.
+		Возвращает вектор, который указывает в том же направлении, что и опорный вектор в графе визуального шейдера.
 	</brief_description>
 	<description>
-		Translates to [code]faceforward(N, I, Nref)[/code] in the shader language. The function has three vector parameters: [code]N[/code], the vector to orient, [code]I[/code], the incident vector, and [code]Nref[/code], the reference vector. If the dot product of [code]I[/code] and [code]Nref[/code] is smaller than zero the return value is [code]N[/code]. Otherwise, [code]-N[/code] is returned.
+		На языке шейдеров переводится как [code]faceforward(N, I, Nref)[/code]. Функция имеет три векторных параметра: [code]N[/code] - вектор для ориентации, [code]I[/code] - падающий вектор и [code]Nref[/code] - опорный вектор. Если точечное произведение [code]I[/code] и [code]Nref[/code] меньше нуля, то возвращается значение [code]N[/code]. В противном случае возвращается [code]-N[/code].
 	</description>
 	<tutorials>
 	</tutorials>

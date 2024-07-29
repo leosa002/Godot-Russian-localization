@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="PackedScene" inherits="Resource" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="PackedScene" inherits="Resource" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		An abstraction of a serialized scene.
+		Абстракция сериализованной сцены.(Упакованная сцена)
 	</brief_description>
 	<description>
-		A simplified interface to a scene file. Provides access to operations and checks that can be performed on the scene resource itself.
-		Can be used to save a node to a file. When saving, the node as well as all the nodes it owns get saved (see [code]owner[/code] property on [Node]).
-		[b]Note:[/b] The node doesn't need to own itself.
-		[b]Example of loading a saved scene:[/b]
+		Упрощенный интерфейс к файлу сцены. Предоставляет доступ к операциям и проверкам, которые могут быть выполнены над самим ресурсом сцены.
+		Может использоваться для сохранения узла в файл. При сохранении сохраняется как сам узел, так и все принадлежащие ему узлы (см. свойство [code]owner[/code] у [Node]).
+		[b]Примечание:[/b] Узел не обязательно должен владеть собой.
+		[b]Пример загрузки сохраненной сцены:[/b]
 		[codeblock]
-		# Use `load()` instead of `preload()` if the path isn't known at compile-time.
+		# Используйте `load()` вместо `preload()`, если путь не известен во время компиляции.
 		var scene = preload("res://scene.tscn").instance()
-		# Add the node as a child of the node the script is attached to.
+		# Добавьте узел в качестве дочернего узла узла, к которому прикреплен скрипт.
 		add_child(scene)
 		[/codeblock]
-		[b]Example of saving a node with different owners:[/b] The following example creates 3 objects: [code]Node2D[/code] ([code]node[/code]), [code]RigidBody2D[/code] ([code]rigid[/code]) and [code]CollisionObject2D[/code] ([code]collision[/code]). [code]collision[/code] is a child of [code]rigid[/code] which is a child of [code]node[/code]. Only [code]rigid[/code] is owned by [code]node[/code] and [code]pack[/code] will therefore only save those two nodes, but not [code]collision[/code].
+		[b]Пример сохранения узла с разными владельцами:[/b] В следующем примере создаются 3 объекта: [code]Node2D[/code] ([code]node[/code]), [code]RigidBody2D[/code] ([code]rigid[/code]) и [code]CollisionObject2D[/code] ([code]collision[/code]). [code]collision[/code] является дочерним объектом [code]rigid[/code], который является дочерним объектом [code]node[/code]. Только [code]rigid[/code] принадлежит [code]node[/code], поэтому [code]pack[/code] сохранит только эти два узла, но не [code]collision[/code].
 		[codeblock]
-		# Create the objects.
+		# Создание объектов.
 		var node = Node2D.new()
 		var rigid = RigidBody2D.new()
 		var collision = CollisionShape2D.new()
 
-		# Create the object hierarchy.
+		# Создайте иерархию объектов.
 		rigid.add_child(collision)
 		node.add_child(rigid)
 
-		# Change owner of `rigid`, but not of `collision`.
+		# Смените владельца `rigid`, но не `collision`.
 		rigid.owner = node
 
 		var scene = PackedScene.new()
-		# Only `node` and `rigid` are now packed.
+		# Теперь упакованы только `node` и `rigid`.
 		var result = scene.pack(node)
 		if result == OK:
-		    var error = ResourceSaver.save("res://path/name.scn", scene)  # Or "user://..."
+		    var error = ResourceSaver.save("res://path/name.scn", scene)  # Или "user://..."
 		    if error != OK:
-		        push_error("An error occurred while saving the scene to disk.")
+		        push_error("При сохранении сцены на диск произошла ошибка.")
 		[/codeblock]
 	</description>
 	<tutorials>
@@ -44,51 +44,51 @@
 		<method name="can_instance" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the scene file has nodes.
+				Возвращает [code]true[/code], если в файле сцены есть узлы.
 			</description>
 		</method>
 		<method name="get_state">
 			<return type="SceneState" />
 			<description>
-				Returns the [code]SceneState[/code] representing the scene file contents.
+				Возвращает [code]SceneState[/code], представляющий содержимое файла сцены.
 			</description>
 		</method>
 		<method name="instance" qualifiers="const">
 			<return type="Node" />
 			<argument index="0" name="edit_state" type="int" enum="PackedScene.GenEditState" default="0" />
 			<description>
-				Instantiates the scene's node hierarchy. Triggers child scene instantiation(s). Triggers a [constant Node.NOTIFICATION_INSTANCED] notification on the root node.
+				Инстанцирует(Инициализирует) иерархию узлов сцены. Запускает инстанс(ы) дочерних сцен. Запускает уведомление [константа Node.NOTIFICATION_INSTANCED] на корневом узле.
 			</description>
 		</method>
 		<method name="pack">
 			<return type="int" enum="Error" />
 			<argument index="0" name="path" type="Node" />
 			<description>
-				Pack will ignore any sub-nodes not owned by given node. See [member Node.owner].
+				Pack будет игнорировать все подузлы, не принадлежащие данному узлу. См. раздел [member Node.owner].
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="_bundled" type="Dictionary" setter="_set_bundled_scene" getter="_get_bundled_scene" default="{&quot;conn_count&quot;: 0,&quot;conns&quot;: PoolIntArray(  ),&quot;editable_instances&quot;: [  ],&quot;names&quot;: PoolStringArray(  ),&quot;node_count&quot;: 0,&quot;node_paths&quot;: [  ],&quot;nodes&quot;: PoolIntArray(  ),&quot;variants&quot;: [  ],&quot;version&quot;: 2}">
-			A dictionary representation of the scene contents.
-			Available keys include "rnames" and "variants" for resources, "node_count", "nodes", "node_paths" for nodes, "editable_instances" for base scene children overrides, "conn_count" and "conns" for signal connections, and "version" for the format style of the PackedScene.
+			Словарное представление содержимого сцены.
+			Доступные ключи включают "rnames" и "variants" для ресурсов, "node_count", "nodes", "node_paths" для узлов, "editable_instances" для переопределений дочерних элементов базовой сцены, "conn_count" и "conns" для сигнальных соединений, и "version" для стиля формата PackedScene.
 		</member>
 	</members>
 	<constants>
 		<constant name="GEN_EDIT_STATE_DISABLED" value="0" enum="GenEditState">
-			If passed to [method instance], blocks edits to the scene state.
+			При передаче в [method instance] блокирует редактирование состояния сцены.
 		</constant>
 		<constant name="GEN_EDIT_STATE_INSTANCE" value="1" enum="GenEditState">
-			If passed to [method instance], provides local scene resources to the local scene.
-			[b]Note:[/b] Only available in editor builds.
+			При передаче в [method instance] предоставляет локальные ресурсы сцены локальной сцене.
+			[b]Примечание:[/b] Доступно только в сборках редактора.
 		</constant>
 		<constant name="GEN_EDIT_STATE_MAIN" value="2" enum="GenEditState">
-			If passed to [method instance], provides local scene resources to the local scene. Only the main scene should receive the main edit state.
-			[b]Note:[/b] Only available in editor builds.
+			При передаче в [method instance] предоставляет локальной сцене ресурсы локальной сцены. Только главная сцена должна получать основное состояние редактирования.
+			[b]Примечание:[/b] Доступно только в сборках редактора.
 		</constant>
 		<constant name="GEN_EDIT_STATE_MAIN_INHERITED" value="3" enum="GenEditState">
-			It's similar to [constant GEN_EDIT_STATE_MAIN], but for the case where the scene is being instantiated to be the base of another one.
-			[b]Note:[/b] Only available in editor builds.
+			Аналогично [constant GEN_EDIT_STATE_MAIN], но для случая, когда сцена инстансируется как основа другой сцены.
+			[b]Примечание:[/b] Доступно только в сборках редактора.
 		</constant>
 	</constants>
 </class>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Texture3D" inherits="TextureLayered" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Texture3D" inherits="TextureLayered" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Texture with 3 dimensions.
+		Текстура с тремя измерениями.
 	</brief_description>
 	<description>
-		Texture3D is a 3-dimensional [Texture] that has a width, height, and depth. See also [TextureArray].
-		[b]Note:[/b] [Texture3D]s can only be sampled in shaders in the GLES3 backend. In GLES2, their data can be accessed via scripting, but there is no way to render them in a hardware-accelerated manner.
+		Texture3D - это трехмерная [Texture], которая имеет ширину, высоту и глубину. См. также [TextureArray].
+		[b]Примечание:[/b] [Texture3D] можно сэмплировать в шейдерах только в бэкенде GLES3. В GLES2 доступ к их данным можно получить с помощью скриптов, но нет возможности рендерить их с аппаратным ускорением.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -18,7 +18,7 @@
 			<argument index="3" name="format" type="int" enum="Image.Format" />
 			<argument index="4" name="flags" type="int" default="4" />
 			<description>
-				Creates the Texture3D with specified [code]width[/code], [code]height[/code], and [code]depth[/code]. See [enum Image.Format] for [code]format[/code] options. See [enum TextureLayered.Flags] enumerator for [code]flags[/code] options.
+				Создает Texture3D с указанными [code]шириной[/code], [code]высотой[/code] и [code]глубиной[/code]. Параметры [code]формата[/code] см. в [enum Image.Format]. Опции [code]flags[/code] см. в перечислителе [enum TextureLayered.Flags].
 			</description>
 		</method>
 	</methods>

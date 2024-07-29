@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="TextureArray" inherits="TextureLayered" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="TextureArray" inherits="TextureLayered" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Array of textures stored in a single primitive.
+		Массив текстур, хранящихся в одном примитиве.
 	</brief_description>
 	<description>
-		[TextureArray]s store an array of [Image]s in a single [Texture] primitive. Each layer of the texture array has its own mipmap chain. This makes it is a good alternative to texture atlases. See also [Texture3D].
-		[TextureArray]s must be displayed using shaders. After importing your file as a [TextureArray] and setting the appropriate Horizontal and Vertical Slices, display it by setting it as a uniform to a shader, for example (2D):
+		Массивы [TextureArray] хранят массив [Image]ов в одном примитиве [Texture]. Каждый слой массива текстур имеет свою собственную цепочку mipmap. Это делает его хорошей альтернативой текстурным атласам. См. также [Texture3D].
+		Для отображения [TextureArray]ов необходимо использовать шейдеры. Импортировав файл как [TextureArray] и задав соответствующие горизонтальные и вертикальные срезы, отобразите его, задав в качестве униформы шейдер, например (2D):
 		[codeblock]
 		shader_type canvas_item;
 
@@ -16,8 +16,8 @@
 		    COLOR = texture(tex, vec3(UV.x, UV.y, float(index)));
 		}
 		[/codeblock]
-		Set the integer uniform "index" to show a particular part of the texture as defined by the Horizontal and Vertical Slices in the importer.
-		[b]Note:[/b] When sampling an albedo texture from a texture array in 3D, the sRGB -&gt; linear conversion hint ([code]hint_albedo[/code]) should be used to prevent colors from looking washed out:
+		Установите целочисленную форму "index", чтобы показать определенную часть текстуры, как определено горизонтальными и вертикальными срезами в импортере.
+		[b]Примечание:[/b] При выборке текстуры альбедо из массива текстур в 3D следует использовать подсказку линейного преобразования sRGB -&gt; ([code]hint_albedo[/code]), чтобы цвета не выглядели размытыми:
 		[codeblock]
 		shader_type spatial;
 
@@ -28,7 +28,7 @@
 		    ALBEDO = texture(tex, vec3(UV.x, UV.y, float(index)));
 		}
 		[/codeblock]
-		[b]Note:[/b] [TextureArray]s can only be sampled in shaders in the GLES3 backend. In GLES2, their data can be accessed via scripting, but there is no way to render them in a hardware-accelerated manner.
+		[b]Примечание:[/b] [TextureArray]ы могут быть сэмплированы в шейдерах только в бэкенде GLES3. В GLES2 доступ к их данным можно получить с помощью скриптов, но нет возможности рендерить их с аппаратным ускорением.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -41,7 +41,7 @@
 			<argument index="3" name="format" type="int" enum="Image.Format" />
 			<argument index="4" name="flags" type="int" default="7" />
 			<description>
-				Creates the TextureArray with specified [code]width[/code], [code]height[/code], and [code]depth[/code]. See [enum Image.Format] for [code]format[/code] options. See [enum TextureLayered.Flags] enumerator for [code]flags[/code] options.
+				Создает массив текстур с указанными [code]шириной[/code], [code]высотой[/code] и [code]глубиной[/code]. Параметры [code]формата[/code] см. в [enum Image.Format]. Опции [code]flags[/code] см. в перечислителе [enum TextureLayered.Flags].
 			</description>
 		</method>
 	</methods>

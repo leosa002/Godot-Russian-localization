@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="ARVROrigin" inherits="Spatial" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="ARVROrigin" inherits="Spatial" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		The origin point in AR/VR.
+		Точка отсчета в AR/VR.
 	</brief_description>
 	<description>
-		This is a special node within the AR/VR system that maps the physical location of the center of our tracking space to the virtual location within our game world.
-		There should be only one of these nodes in your scene and you must have one. All the ARVRCamera, ARVRController and ARVRAnchor nodes should be direct children of this node for spatial tracking to work correctly.
-		It is the position of this node that you update when your character needs to move through your game world while we're not moving in the real world. Movement in the real world is always in relation to this origin point.
-		For example, if your character is driving a car, the ARVROrigin node should be a child node of this car. Or, if you're implementing a teleport system to move your character, you should change the position of this node.
+		Это специальный узел в системе AR/VR, который отображает физическое местоположение центра нашего пространства отслеживания на виртуальное местоположение в нашем игровом мире.
+		В вашей сцене должен быть только один такой узел и обязательно один. Для корректной работы пространственного отслеживания все узлы ARVRCamera, ARVRController и ARVRAnchor должны быть прямыми дочерними узлами этого узла.
+		Именно позицию этого узла вы обновляете, когда персонажу необходимо перемещаться по игровому миру, в то время как в реальном мире мы не движемся. Движение в реальном мире всегда происходит относительно этой начальной точки.
+		Например, если ваш персонаж управляет автомобилем, то узел ARVROrigin должен быть дочерним узлом этого автомобиля. Или, если вы реализуете систему телепортации для перемещения персонажа, вы должны изменить положение этого узла.
 	</description>
 	<tutorials>
 		<link>$DOCS_URL/tutorials/vr/index.html</link>
@@ -16,8 +16,8 @@
 	</methods>
 	<members>
 		<member name="world_scale" type="float" setter="set_world_scale" getter="get_world_scale" default="1.0">
-			Allows you to adjust the scale to your game's units. Most AR/VR platforms assume a scale of 1 game world unit = 1 real world meter.
-			[b]Note:[/b] This method is a passthrough to the [ARVRServer] itself.
+			Позволяет настроить масштаб в соответствии с единицами измерения вашей игры. В большинстве AR/VR-платформ принят масштаб 1 единица игрового мира = 1 метру реального мира.
+			[b]Примечание:[/b] Этот метод является проходным для самого [ARVRServer].
 		</member>
 	</members>
 	<constants>

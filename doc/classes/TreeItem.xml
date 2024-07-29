@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="TreeItem" inherits="Object" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="TreeItem" inherits="Object" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Control for a single item inside a [Tree].
+		Управление одним элементом внутри [Tree].
 	</brief_description>
 	<description>
-		Control for a single item inside a [Tree]. May have child [TreeItem]s and be styled as well as contain buttons.
-		You can remove a [TreeItem] by using [method Object.free].
-		[b]Note:[/b] The ID values used for buttons are limited to 32 bits, not full 64 bits of [int]. This has a range of [code]-2^32[/code] to [code]2^32 - 1[/code], i.e. [code]-2147483648[/code] to [code]2147483647[/code].
+		Элемент управления для одного элемента внутри [Tree]. Может иметь дочерние [TreeItem] и быть стилизованным, а также содержать кнопки.
+		Удалить [TreeItem] можно с помощью [метода Object.free].
+		[b]Примечание:[/b] Значения ID, используемые для кнопок, ограничены 32 битами, а не полными 64 битами [int]. Это диапазон от [code]-2^32[/code] до [code]2^32 - 1[/code], т.е. от [code]-2147483648[/code] до [code]2147483647[/code].
 	</description>
 	<tutorials>
 	</tutorials>
@@ -19,35 +19,35 @@
 			<argument index="3" name="disabled" type="bool" default="false" />
 			<argument index="4" name="tooltip" type="String" default="&quot;&quot;" />
 			<description>
-				Adds a button with [Texture] [code]button[/code] at column [code]column[/code]. The [code]id[/code] is used to identify the button. If not specified, the next available index is used, which may be retrieved by calling [method get_button_count] immediately before this method. Optionally, the button can be [code]disabled[/code] and have a [code]tooltip[/code].
+				Добавляет кнопку с [текстурой] [code]button[/code] в колонку [code]column[/code]. Для идентификации кнопки используется [code]id[/code]. Если он не указан, используется следующий доступный индекс, который можно получить, вызвав [метод get_button_count] непосредственно перед этим методом. По желанию кнопка может быть [code]отключена[/code] и иметь [code]всплывающую подсказку[/code].
 			</description>
 		</method>
 		<method name="call_recursive" qualifiers="vararg">
 			<return type="Variant" />
 			<argument index="0" name="method" type="String" />
 			<description>
-				Calls the [code]method[/code] on the actual TreeItem and its children recursively. Pass parameters as a comma separated list.
+				Вызывает [code]метод[/code] на реальном TreeItem и его дочерних элементах рекурсивно. Передавайте параметры в виде списка, разделенного запятыми.
 			</description>
 		</method>
 		<method name="clear_custom_bg_color">
 			<return type="void" />
 			<argument index="0" name="column" type="int" />
 			<description>
-				Resets the background color for the given column to default.
+				Устанавливает цвет фона для заданного столбца по умолчанию.
 			</description>
 		</method>
 		<method name="clear_custom_color">
 			<return type="void" />
 			<argument index="0" name="column" type="int" />
 			<description>
-				Resets the color for the given column to default.
+				Устанавливает цвет для заданного столбца по умолчанию.
 			</description>
 		</method>
 		<method name="deselect">
 			<return type="void" />
 			<argument index="0" name="column" type="int" />
 			<description>
-				Deselects the given column.
+				Отменяет выделение заданного столбца.
 			</description>
 		</method>
 		<method name="erase_button">
@@ -55,7 +55,7 @@
 			<argument index="0" name="column" type="int" />
 			<argument index="1" name="button_idx" type="int" />
 			<description>
-				Removes the button at index [code]button_idx[/code] in column [code]column[/code].
+				Удаляет кнопку с индексом [code]button_idx[/code] в столбце [code]column[/code].
 			</description>
 		</method>
 		<method name="get_button" qualifiers="const">
@@ -63,7 +63,7 @@
 			<argument index="0" name="column" type="int" />
 			<argument index="1" name="button_idx" type="int" />
 			<description>
-				Returns the [Texture] of the button at index [code]button_idx[/code] in column [code]column[/code].
+				Возвращает [Texture] кнопки с индексом [code]button_idx[/code] в столбце [code]column[/code].
 			</description>
 		</method>
 		<method name="get_button_by_id" qualifiers="const">
@@ -71,14 +71,14 @@
 			<argument index="0" name="column" type="int" />
 			<argument index="1" name="id" type="int" />
 			<description>
-				Returns the button index if there is a button with id [code]id[/code] in column [code]column[/code], otherwise returns -1.
+				Возвращает индекс кнопки, если в столбце [code]column[/code] есть кнопка с id [code]id[/code], иначе возвращает -1.
 			</description>
 		</method>
 		<method name="get_button_count" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="column" type="int" />
 			<description>
-				Returns the number of buttons in column [code]column[/code].
+				Возвращает количество кнопок в столбце [code]column[/code].
 			</description>
 		</method>
 		<method name="get_button_id" qualifiers="const">
@@ -86,7 +86,7 @@
 			<argument index="0" name="column" type="int" />
 			<argument index="1" name="button_idx" type="int" />
 			<description>
-				Returns the id for the button at index [code]button_idx[/code] in column [code]column[/code].
+				Возвращает идентификатор кнопки с индексом [code]button_idx[/code] в столбце [code]column[/code].
 			</description>
 		</method>
 		<method name="get_button_tooltip" qualifiers="const">
@@ -94,152 +94,152 @@
 			<argument index="0" name="column" type="int" />
 			<argument index="1" name="button_idx" type="int" />
 			<description>
-				Returns the tooltip string for the button at index [code]button_idx[/code] in column [code]column[/code].
+				Возвращает строку всплывающей подсказки для кнопки с индексом [code]button_idx[/code] в столбце [code]column[/code].
 			</description>
 		</method>
 		<method name="get_cell_mode" qualifiers="const">
 			<return type="int" enum="TreeItem.TreeCellMode" />
 			<argument index="0" name="column" type="int" />
 			<description>
-				Returns the column's cell mode.
+				Возвращает режим ячеек столбца.
 			</description>
 		</method>
 		<method name="get_children">
 			<return type="TreeItem" />
 			<description>
-				Returns the TreeItem's first child item or a null object if there is none.
+				Возвращает первый дочерний элемент TreeItem или объект null, если таковой отсутствует.
 			</description>
 		</method>
 		<method name="get_custom_bg_color" qualifiers="const">
 			<return type="Color" />
 			<argument index="0" name="column" type="int" />
 			<description>
-				Returns the custom background color of column [code]column[/code].
+				Возвращает пользовательский цвет фона колонки [code]column[/code].
 			</description>
 		</method>
 		<method name="get_custom_color" qualifiers="const">
 			<return type="Color" />
 			<argument index="0" name="column" type="int" />
 			<description>
-				Returns the custom color of column [code]column[/code].
+				Возвращает пользовательский цвет колонки [code]column[/code].
 			</description>
 		</method>
 		<method name="get_expand_right" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="column" type="int" />
 			<description>
-				Returns [code]true[/code] if [code]expand_right[/code] is set.
+				Возвращает [code]true[/code], если установлено [code]expand_right[/code].
 			</description>
 		</method>
 		<method name="get_icon" qualifiers="const">
 			<return type="Texture" />
 			<argument index="0" name="column" type="int" />
 			<description>
-				Returns the given column's icon [Texture]. Error if no icon is set.
+				Возвращает иконку [Texture] заданного столбца. Ошибка, если иконка не задана.
 			</description>
 		</method>
 		<method name="get_icon_max_width" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="column" type="int" />
 			<description>
-				Returns the column's icon's maximum width.
+				Возвращает максимальную ширину значка столбца.
 			</description>
 		</method>
 		<method name="get_icon_modulate" qualifiers="const">
 			<return type="Color" />
 			<argument index="0" name="column" type="int" />
 			<description>
-				Returns the [Color] modulating the column's icon.
+				Возвращает [Color], модулирующий значок колонки.
 			</description>
 		</method>
 		<method name="get_icon_region" qualifiers="const">
 			<return type="Rect2" />
 			<argument index="0" name="column" type="int" />
 			<description>
-				Returns the icon [Texture] region as [Rect2].
+				Возвращает область иконки [Texture] в виде [Rect2].
 			</description>
 		</method>
 		<method name="get_metadata" qualifiers="const">
 			<return type="Variant" />
 			<argument index="0" name="column" type="int" />
 			<description>
-				Returns the metadata value that was set for the given column using [method set_metadata].
+				Возвращает значение метаданных, которое было установлено для данного столбца с помощью [метода set_metadata].
 			</description>
 		</method>
 		<method name="get_next">
 			<return type="TreeItem" />
 			<description>
-				Returns the next sibling TreeItem in the tree or a null object if there is none.
+				Возвращает следующий сиблинговый TreeItem в дереве или объект null, если его нет.
 			</description>
 		</method>
 		<method name="get_next_visible">
 			<return type="TreeItem" />
 			<argument index="0" name="wrap" type="bool" default="false" />
 			<description>
-				Returns the next visible sibling TreeItem in the tree or a null object if there is none.
-				If [code]wrap[/code] is enabled, the method will wrap around to the first visible element in the tree when called on the last visible element, otherwise it returns [code]null[/code].
+				Возвращает следующий видимый элемент TreeItem в дереве или объект null, если его нет.
+				Если включена функция [code]wrap[/code], то при вызове метода на последнем видимом элементе он будет обернут к первому видимому элементу в дереве, в противном случае возвращается [code]null[/code].
 			</description>
 		</method>
 		<method name="get_parent">
 			<return type="TreeItem" />
 			<description>
-				Returns the parent TreeItem or a null object if there is none.
+				Возвращает родительский TreeItem или объект null, если его нет.
 			</description>
 		</method>
 		<method name="get_prev">
 			<return type="TreeItem" />
 			<description>
-				Returns the previous sibling TreeItem in the tree or a null object if there is none.
+				Возвращает предыдущий дочерний элемент TreeItem в дереве или объект null, если таковой отсутствует.
 			</description>
 		</method>
 		<method name="get_prev_visible">
 			<return type="TreeItem" />
 			<argument index="0" name="wrap" type="bool" default="false" />
 			<description>
-				Returns the previous visible sibling TreeItem in the tree or a null object if there is none.
-				If [code]wrap[/code] is enabled, the method will wrap around to the last visible element in the tree when called on the first visible element, otherwise it returns [code]null[/code].
+				Возвращает предыдущий видимый элемент TreeItem в дереве или объект null, если его нет.
+				Если включена функция [code]wrap[/code], то при вызове метода на первом видимом элементе он будет обернут к последнему видимому элементу в дереве, в противном случае возвращается [code]null[/code].
 			</description>
 		</method>
 		<method name="get_range" qualifiers="const">
 			<return type="float" />
 			<argument index="0" name="column" type="int" />
 			<description>
-				Returns the value of a [constant CELL_MODE_RANGE] column.
+				Возвращает значение столбца [константа CELL_MODE_RANGE].
 			</description>
 		</method>
 		<method name="get_range_config">
 			<return type="Dictionary" />
 			<argument index="0" name="column" type="int" />
 			<description>
-				Returns a dictionary containing the range parameters for a given column. The keys are "min", "max", "step", and "expr".
+				Возвращает словарь, содержащий параметры диапазона для заданного столбца. Ключами являются "min", "max", "step" и "expr".
 			</description>
 		</method>
 		<method name="get_suffix" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="column" type="int" />
 			<description>
-				Gets the suffix string shown after the column value.
+				Получает строку суффикса, отображаемую после значения столбца.
 			</description>
 		</method>
 		<method name="get_text" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="column" type="int" />
 			<description>
-				Returns the given column's text.
+				Возвращает текст заданного столбца.
 			</description>
 		</method>
 		<method name="get_text_align" qualifiers="const">
 			<return type="int" enum="TreeItem.TextAlign" />
 			<argument index="0" name="column" type="int" />
 			<description>
-				Returns the given column's text alignment.
+				Возвращает выравнивание текста в заданном столбце.
 			</description>
 		</method>
 		<method name="get_tooltip" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="column" type="int" />
 			<description>
-				Returns the given column's tooltip.
+				Возвращает всплывающую подсказку данного столбца.
 			</description>
 		</method>
 		<method name="is_button_disabled" qualifiers="const">
@@ -247,14 +247,14 @@
 			<argument index="0" name="column" type="int" />
 			<argument index="1" name="button_idx" type="int" />
 			<description>
-				Returns [code]true[/code] if the button at index [code]button_idx[/code] for the given column is disabled.
+				Возвращает [code]true[/code], если кнопка с индексом [code]button_idx[/code] для данного столбца отключена.
 			</description>
 		</method>
 		<method name="is_checked" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="column" type="int" />
 			<description>
-				Returns [code]true[/code] if the given column is checked.
+				Возвращает [code]true[/code], если указанный столбец отмечен.
 			</description>
 		</method>
 		<method name="is_custom_set_as_button" qualifiers="const">
@@ -267,47 +267,47 @@
 			<return type="bool" />
 			<argument index="0" name="column" type="int" />
 			<description>
-				Returns [code]true[/code] if column [code]column[/code] is editable.
+				Возвращает [code]true[/code], если столбец [code]column[/code] является редактируемым.
 			</description>
 		</method>
 		<method name="is_selectable" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="column" type="int" />
 			<description>
-				Returns [code]true[/code] if column [code]column[/code] is selectable.
+				Возвращает [code]true[/code], если столбец [code]column[/code] является выбираемым.
 			</description>
 		</method>
 		<method name="is_selected">
 			<return type="bool" />
 			<argument index="0" name="column" type="int" />
 			<description>
-				Returns [code]true[/code] if column [code]column[/code] is selected.
+				Возвращает [code]true[/code], если выбран столбец [code]column[/code].
 			</description>
 		</method>
 		<method name="move_to_bottom">
 			<return type="void" />
 			<description>
-				Moves this TreeItem to the bottom in the [Tree] hierarchy.
+				Перемещает этот элемент дерева в самый низ иерархии [Tree].
 			</description>
 		</method>
 		<method name="move_to_top">
 			<return type="void" />
 			<description>
-				Moves this TreeItem to the top in the [Tree] hierarchy.
+				Перемещает этот элемент дерева на вершину иерархии [Tree].
 			</description>
 		</method>
 		<method name="remove_child">
 			<return type="void" />
 			<argument index="0" name="child" type="Object" />
 			<description>
-				Removes the given child [TreeItem] and all its children from the [Tree]. Note that it doesn't free the item from memory, so it can be reused later. To completely remove a [TreeItem] use [method Object.free].
+				Удаляет заданный дочерний [TreeItem] и все его дочерние элементы из [Tree]. Обратите внимание, что при этом элемент не освобождается из памяти, так что его можно использовать повторно. Чтобы полностью удалить [TreeItem], используйте [метод Object.free].
 			</description>
 		</method>
 		<method name="select">
 			<return type="void" />
 			<argument index="0" name="column" type="int" />
 			<description>
-				Selects the column [code]column[/code].
+				Выбор столбца [code]column[/code].
 			</description>
 		</method>
 		<method name="set_button">
@@ -316,7 +316,7 @@
 			<argument index="1" name="button_idx" type="int" />
 			<argument index="2" name="button" type="Texture" />
 			<description>
-				Sets the given column's button [Texture] at index [code]button_idx[/code] to [code]button[/code].
+				Устанавливает [Texture] кнопки данного столбца с индексом [code]button_idx[/code] на [code]button[/code].
 			</description>
 		</method>
 		<method name="set_button_disabled">
@@ -325,7 +325,7 @@
 			<argument index="1" name="button_idx" type="int" />
 			<argument index="2" name="disabled" type="bool" />
 			<description>
-				If [code]true[/code], disables the button at index [code]button_idx[/code] in column [code]column[/code].
+				Если [code]true[/code], отключает кнопку с индексом [code]button_idx[/code] в столбце [code]column[/code].
 			</description>
 		</method>
 		<method name="set_cell_mode">
@@ -333,7 +333,7 @@
 			<argument index="0" name="column" type="int" />
 			<argument index="1" name="mode" type="int" enum="TreeItem.TreeCellMode" />
 			<description>
-				Sets the given column's cell mode to [code]mode[/code]. See [enum TreeCellMode] constants.
+				Устанавливает режим ячеек данного столбца в [code]mode[/code]. См. константы [enum TreeCellMode].
 			</description>
 		</method>
 		<method name="set_checked">
@@ -341,7 +341,7 @@
 			<argument index="0" name="column" type="int" />
 			<argument index="1" name="checked" type="bool" />
 			<description>
-				If [code]true[/code], the column [code]column[/code] is checked.
+				Если [code]true[/code], то проверяется столбец [code]column[/code].
 			</description>
 		</method>
 		<method name="set_custom_as_button">
@@ -357,7 +357,7 @@
 			<argument index="1" name="color" type="Color" />
 			<argument index="2" name="just_outline" type="bool" default="false" />
 			<description>
-				Sets the given column's custom background color and whether to just use it as an outline.
+				Устанавливает пользовательский цвет фона данного столбца и определяет, использовать ли его просто как контур.
 			</description>
 		</method>
 		<method name="set_custom_color">
@@ -365,7 +365,7 @@
 			<argument index="0" name="column" type="int" />
 			<argument index="1" name="color" type="Color" />
 			<description>
-				Sets the given column's custom color.
+				Устанавливает пользовательский цвет заданного столбца.
 			</description>
 		</method>
 		<method name="set_custom_draw">
@@ -374,8 +374,8 @@
 			<argument index="1" name="object" type="Object" />
 			<argument index="2" name="callback" type="String" />
 			<description>
-				Sets the given column's custom draw callback to [code]callback[/code] method on [code]object[/code].
-				The [code]callback[/code] should accept two arguments: the [TreeItem] that is drawn and its position and size as a [Rect2].
+				Устанавливает пользовательский обратный вызов рисования данной колонки в метод [code]callback[/code] на [code]объекте[/code].
+				Обратный вызов [code]callback[/code] должен принимать два аргумента: рисуемый элемент [TreeItem], его положение и размер в виде [Rect2].
 			</description>
 		</method>
 		<method name="set_editable">
@@ -383,7 +383,7 @@
 			<argument index="0" name="column" type="int" />
 			<argument index="1" name="enabled" type="bool" />
 			<description>
-				If [code]true[/code], column [code]column[/code] is editable.
+				Если [code]true[/code], то столбец [code]column[/code] является редактируемым.
 			</description>
 		</method>
 		<method name="set_expand_right">
@@ -391,7 +391,7 @@
 			<argument index="0" name="column" type="int" />
 			<argument index="1" name="enable" type="bool" />
 			<description>
-				If [code]true[/code], column [code]column[/code] is expanded to the right.
+				Если [code]true[/code], то столбец [code]column[/code] расширяется вправо.
 			</description>
 		</method>
 		<method name="set_icon">
@@ -399,7 +399,7 @@
 			<argument index="0" name="column" type="int" />
 			<argument index="1" name="texture" type="Texture" />
 			<description>
-				Sets the given column's icon [Texture].
+				Устанавливает иконку [Texture] данного столбца.
 			</description>
 		</method>
 		<method name="set_icon_max_width">
@@ -407,7 +407,7 @@
 			<argument index="0" name="column" type="int" />
 			<argument index="1" name="width" type="int" />
 			<description>
-				Sets the given column's icon's maximum width.
+				Устанавливает максимальную ширину иконки данного столбца.
 			</description>
 		</method>
 		<method name="set_icon_modulate">
@@ -415,7 +415,7 @@
 			<argument index="0" name="column" type="int" />
 			<argument index="1" name="modulate" type="Color" />
 			<description>
-				Modulates the given column's icon with [code]modulate[/code].
+				Модулирует иконку заданного столбца с помощью [code]modulate[/code].
 			</description>
 		</method>
 		<method name="set_icon_region">
@@ -423,7 +423,7 @@
 			<argument index="0" name="column" type="int" />
 			<argument index="1" name="region" type="Rect2" />
 			<description>
-				Sets the given column's icon's texture region.
+				Устанавливает область текстуры иконки данного столбца.
 			</description>
 		</method>
 		<method name="set_metadata">
@@ -431,7 +431,7 @@
 			<argument index="0" name="column" type="int" />
 			<argument index="1" name="meta" type="Variant" />
 			<description>
-				Sets the metadata value for the given column, which can be retrieved later using [method get_metadata]. This can be used, for example, to store a reference to the original data.
+				Устанавливает значение метаданных для данного столбца, которое впоследствии можно будет получить с помощью [метода get_metadata]. Это можно использовать, например, для хранения ссылки на исходные данные.
 			</description>
 		</method>
 		<method name="set_range">
@@ -439,7 +439,7 @@
 			<argument index="0" name="column" type="int" />
 			<argument index="1" name="value" type="float" />
 			<description>
-				Sets the value of a [constant CELL_MODE_RANGE] column.
+				Устанавливает значение столбца [constant CELL_MODE_RANGE].
 			</description>
 		</method>
 		<method name="set_range_config">
@@ -450,8 +450,8 @@
 			<argument index="3" name="step" type="float" />
 			<argument index="4" name="expr" type="bool" default="false" />
 			<description>
-				Sets the range of accepted values for a column. The column must be in the [constant CELL_MODE_RANGE] mode.
-				If [code]expr[/code] is [code]true[/code], the edit mode slider will use an exponential scale as with [member Range.exp_edit].
+				Устанавливает диапазон принимаемых значений для столбца. Столбец должен находиться в режиме [константа CELL_MODE_RANGE].
+				Если [code]expr[/code] имеет значение [code]true[/code], ползунок режима редактирования будет использовать экспоненциальную шкалу, как в случае [member Range.exp_edit].
 			</description>
 		</method>
 		<method name="set_selectable">
@@ -459,7 +459,7 @@
 			<argument index="0" name="column" type="int" />
 			<argument index="1" name="selectable" type="bool" />
 			<description>
-				If [code]true[/code], the given column is selectable.
+				Если [code]true[/code], то данный столбец можно выбрать.
 			</description>
 		</method>
 		<method name="set_suffix">
@@ -467,7 +467,7 @@
 			<argument index="0" name="column" type="int" />
 			<argument index="1" name="text" type="String" />
 			<description>
-				Sets a string to be shown after a column's value (for example, a unit abbreviation).
+				Задает строку, которая будет отображаться после значения столбца (например, сокращение единиц измерения).
 			</description>
 		</method>
 		<method name="set_text">
@@ -475,7 +475,7 @@
 			<argument index="0" name="column" type="int" />
 			<argument index="1" name="text" type="String" />
 			<description>
-				Sets the given column's text value.
+				Устанавливает текстовое значение данного столбца.
 			</description>
 		</method>
 		<method name="set_text_align">
@@ -483,7 +483,7 @@
 			<argument index="0" name="column" type="int" />
 			<argument index="1" name="text_align" type="int" enum="TreeItem.TextAlign" />
 			<description>
-				Sets the given column's text alignment. See [enum TextAlign] for possible values.
+				Устанавливает выравнивание текста в данном столбце. Возможные значения см. в [enum TextAlign].
 			</description>
 		</method>
 		<method name="set_tooltip">
@@ -491,44 +491,44 @@
 			<argument index="0" name="column" type="int" />
 			<argument index="1" name="tooltip" type="String" />
 			<description>
-				Sets the given column's tooltip text.
+				Устанавливает текст всплывающей подсказки для данного столбца.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="collapsed" type="bool" setter="set_collapsed" getter="is_collapsed">
-			If [code]true[/code], the TreeItem is collapsed.
+			Если [code]true[/code], то элемент TreeItem сворачивается.
 		</member>
 		<member name="custom_minimum_height" type="int" setter="set_custom_minimum_height" getter="get_custom_minimum_height">
 			The custom minimum height.
 		</member>
 		<member name="disable_folding" type="bool" setter="set_disable_folding" getter="is_folding_disabled">
-			If [code]true[/code], folding is disabled for this TreeItem.
+			Если [code]true[/code], то сворачивание для этого TreeItem отключено.
 		</member>
 	</members>
 	<constants>
 		<constant name="CELL_MODE_STRING" value="0" enum="TreeCellMode">
-			Cell contains a string.
+			Ячейка содержит строку.
 		</constant>
 		<constant name="CELL_MODE_CHECK" value="1" enum="TreeCellMode">
-			Cell contains a checkbox.
+			Ячейка содержит флажок.
 		</constant>
 		<constant name="CELL_MODE_RANGE" value="2" enum="TreeCellMode">
-			Cell contains a range.
+			Ячейка содержит диапазон.
 		</constant>
 		<constant name="CELL_MODE_ICON" value="3" enum="TreeCellMode">
-			Cell contains an icon.
+			Ячейка содержит значок.
 		</constant>
 		<constant name="CELL_MODE_CUSTOM" value="4" enum="TreeCellMode">
 		</constant>
 		<constant name="ALIGN_LEFT" value="0" enum="TextAlign">
-			Align text to the left. See [code]set_text_align()[/code].
+			Выравнивание текста по левому краю. Смотрите [code]set_text_align()[/code].
 		</constant>
 		<constant name="ALIGN_CENTER" value="1" enum="TextAlign">
-			Center text. See [code]set_text_align()[/code].
+			Выравнивание текста по центру. См. [code]set_text_align()[/code].
 		</constant>
 		<constant name="ALIGN_RIGHT" value="2" enum="TextAlign">
-			Align text to the right. See [code]set_text_align()[/code].
+			Выравнивание текста по правому краю. Смотрите [code]set_text_align()[/code].
 		</constant>
 	</constants>
 </class>

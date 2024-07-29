@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="InputMap" inherits="Object" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="InputMap" inherits="Object" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Singleton that manages [InputEventAction].
+		Синглтон, управляющий [InputEventAction].
 	</brief_description>
 	<description>
-		Manages all [InputEventAction] which can be created/modified from the project settings menu [b]Project &gt; Project Settings &gt; Input Map[/b] or in code with [method add_action] and [method action_add_event]. See [method Node._input].
+		Управляет всеми [InputEventAction], которые могут быть созданы/изменены в меню настроек проекта [b]Project &gt; Project Settings &gt; Input Map[/b] или в коде с помощью [method add_action] и [method action_add_event]. См. раздел [метод Node._input].
 	</description>
 	<tutorials>
 		<link>$DOCS_URL/tutorials/inputs/inputevent.html#inputmap</link>
@@ -15,7 +15,7 @@
 			<argument index="0" name="action" type="String" />
 			<argument index="1" name="event" type="InputEvent" />
 			<description>
-				Adds an [InputEvent] to an action. This [InputEvent] will trigger the action.
+				Добавляет [InputEvent] к действию. Это [InputEvent] будет запускать действие.
 			</description>
 		</method>
 		<method name="action_erase_event">
@@ -23,21 +23,21 @@
 			<argument index="0" name="action" type="String" />
 			<argument index="1" name="event" type="InputEvent" />
 			<description>
-				Removes an [InputEvent] from an action.
+				Удаляет [InputEvent] из действия.
 			</description>
 		</method>
 		<method name="action_erase_events">
 			<return type="void" />
 			<argument index="0" name="action" type="String" />
 			<description>
-				Removes all events from an action.
+				Удаляет все события из действия.
 			</description>
 		</method>
 		<method name="action_get_deadzone">
 			<return type="float" />
 			<argument index="0" name="action" type="String" />
 			<description>
-				Returns a deadzone value for the action.
+				Возвращает значение мертвой зоны для данного действия.
 			</description>
 		</method>
 		<method name="action_has_event">
@@ -45,7 +45,7 @@
 			<argument index="0" name="action" type="String" />
 			<argument index="1" name="event" type="InputEvent" />
 			<description>
-				Returns [code]true[/code] if the action has the given [InputEvent] associated with it.
+				Возвращает [code]true[/code], если с действием связано данное [InputEvent].
 			</description>
 		</method>
 		<method name="action_set_deadzone">
@@ -53,7 +53,7 @@
 			<argument index="0" name="action" type="String" />
 			<argument index="1" name="deadzone" type="float" />
 			<description>
-				Sets a deadzone value for the action.
+				Устанавливает значение мертвой зоны для действия.
 			</description>
 		</method>
 		<method name="add_action">
@@ -61,15 +61,15 @@
 			<argument index="0" name="action" type="String" />
 			<argument index="1" name="deadzone" type="float" default="0.5" />
 			<description>
-				Adds an empty action to the [InputMap] with a configurable [code]deadzone[/code].
-				An [InputEvent] can then be added to this action with [method action_add_event].
+				Добавляет пустое действие в [InputMap] с настраиваемой [code]мертвой зоной[/code].
+				Затем к этому действию можно добавить событие [InputEvent] с помощью [метод action_add_event].
 			</description>
 		</method>
 		<method name="erase_action">
 			<return type="void" />
 			<argument index="0" name="action" type="String" />
 			<description>
-				Removes an action from the [InputMap].
+				Удаляет действие из [InputMap].
 			</description>
 		</method>
 		<method name="event_is_action" qualifiers="const">
@@ -78,35 +78,35 @@
 			<argument index="1" name="action" type="String" />
 			<argument index="2" name="exact_match" type="bool" default="false" />
 			<description>
-				Returns [code]true[/code] if the given event is part of an existing action. This method ignores keyboard modifiers if the given [InputEvent] is not pressed (for proper release detection). See [method action_has_event] if you don't want this behavior.
-				If [code]exact_match[/code] is [code]false[/code], it ignores additional input modifiers for [InputEventKey] and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+				Возвращает [code]true[/code], если данное событие является частью существующего действия. Этот метод игнорирует модификаторы клавиатуры, если данное [InputEvent] не нажато (для правильного определения отпускания). Если вам не нужно такое поведение, смотрите [метод action_has_event].
+				Если [code]exact_match[/code] равно [code]false[/code], то метод игнорирует дополнительные модификаторы ввода для событий [InputEventKey] и [InputEventMouseButton], а также направление для событий [InputEventJoypadMotion].
 			</description>
 		</method>
 		<method name="get_action_list">
 			<return type="Array" />
 			<argument index="0" name="action" type="String" />
 			<description>
-				Returns an array of [InputEvent]s associated with a given action.
-				[b]Note:[/b] When used in the editor (e.g. a tool script or [EditorPlugin]), this method will return events for the editor action. If you want to access your project's input binds from the editor, read the [code]input/*[/code] settings from [ProjectSettings].
+				Возвращает массив [InputEvent]ов, связанных с заданным действием.
+				[b]Примечание:[/b] При использовании в редакторе (например, в инструментальном скрипте или [EditorPlugin]) этот метод возвращает события для действия редактора. Если вы хотите получить доступ к привязкам ввода вашего проекта из редактора, прочитайте настройки [code]input/*[/code] из [ProjectSettings].
 			</description>
 		</method>
 		<method name="get_actions">
 			<return type="Array" />
 			<description>
-				Returns an array of all actions in the [InputMap].
+				Возвращает массив всех действий в [InputMap].
 			</description>
 		</method>
 		<method name="has_action" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="action" type="String" />
 			<description>
-				Returns [code]true[/code] if the [InputMap] has a registered action with the given name.
+				Возвращает [code]true[/code], если в [InputMap] есть зарегистрированное действие с заданным именем.
 			</description>
 		</method>
 		<method name="load_from_globals">
 			<return type="void" />
 			<description>
-				Clears all [InputEventAction] in the [InputMap] and load it anew from [ProjectSettings].
+				Очищает все [InputEventAction] в [InputMap] и загружает их заново из [ProjectSettings].
 			</description>
 		</method>
 	</methods>

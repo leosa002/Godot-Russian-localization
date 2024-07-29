@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Tree" inherits="Control" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Tree" inherits="Control" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Control to show a tree of items.
+		Элемент управления для отображения дерева элементов.
 	</brief_description>
 	<description>
-		This shows a tree of items that can be selected, expanded and collapsed. The tree can have multiple columns with custom controls like text editing, buttons and popups. It can be useful for structured displays and interactions.
-		Trees are built via code, using [TreeItem] objects to create the structure. They have a single root but multiple roots can be simulated if a dummy hidden root is added.
+		Здесь отображается дерево элементов, которые можно выбирать, разворачивать и сворачивать. Дерево может иметь несколько столбцов с пользовательскими элементами управления, такими как редактирование текста, кнопки и всплывающие окна. Это может быть полезно для структурированных отображений и взаимодействий.
+		Деревья строятся с помощью кода, используя объекты [TreeItem] для создания структуры. У них один корень, но можно смоделировать несколько корней, если добавить фиктивный скрытый корень.
 		[codeblock]
 		func _ready():
 		    var tree = Tree.new()
@@ -16,8 +16,8 @@
 		    var subchild1 = tree.create_item(child1)
 		    subchild1.set_text(0, "Subchild1")
 		[/codeblock]
-		To iterate over all the [TreeItem] objects in a [Tree] object, use [method TreeItem.get_next] and [method TreeItem.get_children] after getting the root through [method get_root]. You can use [method Object.free] on a [TreeItem] to remove it from the [Tree].
-		[b]Incremental search:[/b] Like [ItemList] and [PopupMenu], [Tree] supports searching within the list while the control is focused. Press a key that matches the first letter of an item's name to select the first item starting with the given letter. After that point, there are two ways to perform incremental search: 1) Press the same key again before the timeout duration to select the next item starting with the same letter. 2) Press letter keys that match the rest of the word before the timeout duration to match to select the item in question directly. Both of these actions will be reset to the beginning of the list if the timeout duration has passed since the last keystroke was registered. You can adjust the timeout duration by changing [member ProjectSettings.gui/timers/incremental_search_max_interval_msec].
+		Чтобы перебрать все объекты [TreeItem] в объекте [Tree], используйте [метод TreeItem.get_next] и [метод TreeItem.get_children] после получения корня с помощью [метода get_root]. Вы можете использовать [метод Object.free] на [TreeItem], чтобы удалить его из [Tree].
+		[b]Инкрементный поиск:[/b] Как и [ItemList] и [PopupMenu], [Tree] поддерживает поиск внутри списка, пока элемент управления находится в фокусе. Нажмите клавишу, соответствующую первой букве названия элемента, чтобы выбрать первый элемент, начинающийся на эту букву. После этого есть два способа выполнить инкрементный поиск: 1) Нажмите ту же клавишу еще раз до истечения времени ожидания, чтобы выбрать следующий элемент, начинающийся с той же буквы. 2) До истечения времени ожидания нажать клавиши с буквами, совпадающими с остальной частью слова, чтобы выбрать непосредственно нужный элемент. Оба действия будут сброшены в начало списка, если с момента регистрации последнего нажатия прошло время. Длительность тайм-аута можно настроить, изменив [member ProjectSettings.gui/timers/incremental_search_max_interval_msec].
 	</description>
 	<tutorials>
 	</tutorials>
@@ -25,7 +25,7 @@
 		<method name="clear">
 			<return type="void" />
 			<description>
-				Clears the tree. This removes all items.
+				Очищает дерево. При этом удаляются все элементы.
 			</description>
 		</method>
 		<method name="create_item">
@@ -33,85 +33,85 @@
 			<argument index="0" name="parent" type="Object" default="null" />
 			<argument index="1" name="idx" type="int" default="-1" />
 			<description>
-				Creates an item in the tree and adds it as a child of [code]parent[/code], which can be either a valid [TreeItem] or [code]null[/code].
-				If [code]parent[/code] is [code]null[/code], the root item will be the parent, or the new item will be the root itself if the tree is empty.
-				The new item will be the [code]idx[/code]th child of parent, or it will be the last child if there are not enough siblings.
+				Создает элемент в дереве и добавляет его в качестве дочернего элемента [code]parent[/code], который может быть либо действительным [TreeItem], либо [code]null[/code].
+				Если [code]parent[/code] - [code]null[/code], то родителем будет корневой элемент, или новый элемент будет самим корнем, если дерево пустое.
+				Новый элемент будет [code]idx[/code] дочерним элементом родителя, или последним, если не хватает братьев и сестер.
 			</description>
 		</method>
 		<method name="edit_selected">
 			<return type="bool" />
 			<description>
-				Edits the selected tree item as if it was clicked. The item must be set editable with [method TreeItem.set_editable]. Returns [code]true[/code] if the item could be edited. Fails if no item is selected.
+				Редактирует выбранный элемент дерева, как если бы он был щелкнут. Элемент должен быть установлен редактируемым с помощью [метода TreeItem.set_editable]. Возвращает [code]true[/code], если элемент может быть отредактирован. Не работает, если ни один элемент не выбран.
 			</description>
 		</method>
 		<method name="ensure_cursor_is_visible">
 			<return type="void" />
 			<description>
-				Makes the currently focused cell visible.
-				This will scroll the tree if necessary. In [constant SELECT_ROW] mode, this will not do horizontal scrolling, as all the cells in the selected row is focused logically.
-				[b]Note:[/b] Despite the name of this method, the focus cursor itself is only visible in [constant SELECT_MULTI] mode.
+				Делает видимой текущую сфокусированную ячейку.
+				При необходимости дерево прокручивается. В режиме [constant SELECT_ROW] этот метод не будет выполнять горизонтальную прокрутку, так как все ячейки в выбранном ряду фокусируются логически.
+				[b]Примечание:[/b] Несмотря на название этого метода, сам курсор фокуса виден только в режиме [constant SELECT_MULTI].
 			</description>
 		</method>
 		<method name="get_button_id_at_position" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="position" type="Vector2" />
 			<description>
-				Returns the button id at [code]position[/code], or -1 if no button is there.
+				Возвращает идентификатор кнопки в [code]позиции[/code], или -1, если кнопки нет.
 			</description>
 		</method>
 		<method name="get_column_at_position" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="position" type="Vector2" />
 			<description>
-				Returns the column index at [code]position[/code], or -1 if no item is there.
+				Возвращает индекс столбца в [code]позиции[/code], или -1, если там нет элемента.
 			</description>
 		</method>
 		<method name="get_column_title" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="column" type="int" />
 			<description>
-				Returns the column's title.
+				Возвращает заголовок столбца.
 			</description>
 		</method>
 		<method name="get_column_width" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="column" type="int" />
 			<description>
-				Returns the column's width in pixels.
+				Возвращает ширину столбца в пикселях.
 			</description>
 		</method>
 		<method name="get_custom_popup_rect" qualifiers="const">
 			<return type="Rect2" />
 			<description>
-				Returns the rectangle for custom popups. Helper to create custom cell controls that display a popup. See [method TreeItem.set_cell_mode].
+				Возвращает прямоугольник для пользовательских всплывающих окон. Помощник для создания пользовательских элементов управления ячейками, которые отображают всплывающее окно. Смотрите [метод TreeItem.set_cell_mode].
 			</description>
 		</method>
 		<method name="get_drop_section_at_position" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="position" type="Vector2" />
 			<description>
-				Returns the drop section at [code]position[/code], or -100 if no item is there.
-				Values -1, 0, or 1 will be returned for the "above item", "on item", and "below item" drop sections, respectively. See [enum DropModeFlags] for a description of each drop section.
-				To get the item which the returned drop section is relative to, use [method get_item_at_position].
+				Возвращает секцию падения в [code]позиции[/code], или -100, если там нет предмета.
+				Значения -1, 0 или 1 будут возвращены для секций падения "над элементом", "на элементе" и "под элементом" соответственно. Описание каждой секции падения см. в [enum DropModeFlags].
+				Чтобы получить элемент, к которому относится возвращаемая секция падения, используйте [метод get_item_at_position].
 			</description>
 		</method>
 		<method name="get_edited" qualifiers="const">
 			<return type="TreeItem" />
 			<description>
-				Returns the currently edited item. Can be used with [signal item_edited] to get the item that was modified.
+				Возвращает текущий отредактированный элемент. Может использоваться с [signal item_edited] для получения измененного элемента.
 				[codeblock]
 				func _ready():
 				    $Tree.connect("item_edited", self, "on_Tree_item_edited")
 
 				func on_Tree_item_edited():
-				    print($Tree.get_edited()) # This item just got edited (e.g. checked).
+				    print($Tree.get_edited()) # Этот элемент только что был отредактирован (например, проверен).
 				[/codeblock]
 			</description>
 		</method>
 		<method name="get_edited_column" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the column for the currently edited item.
+				Возвращает колонку для текущего редактируемого элемента.
 			</description>
 		</method>
 		<method name="get_item_area_rect" qualifiers="const">
@@ -119,63 +119,63 @@
 			<argument index="0" name="item" type="Object" />
 			<argument index="1" name="column" type="int" default="-1" />
 			<description>
-				Returns the rectangle area for the specified [TreeItem]. If [code]column[/code] is specified, only get the position and size of that column, otherwise get the rectangle containing all columns.
+				Возвращает площадь прямоугольника для указанного [TreeItem]. Если указан [code]столбец[/code], возвращается только позиция и размер этого столбца, в противном случае возвращается прямоугольник, содержащий все столбцы.
 			</description>
 		</method>
 		<method name="get_item_at_position" qualifiers="const">
 			<return type="TreeItem" />
 			<argument index="0" name="position" type="Vector2" />
 			<description>
-				Returns the tree item at the specified position (relative to the tree origin position).
+				Возвращает элемент дерева в указанной позиции (относительно начальной позиции дерева).
 			</description>
 		</method>
 		<method name="get_next_selected">
 			<return type="TreeItem" />
 			<argument index="0" name="from" type="Object" />
 			<description>
-				Returns the next selected [TreeItem] after the given one, or [code]null[/code] if the end is reached.
-				If [code]from[/code] is [code]null[/code], this returns the first selected item.
+				Возвращает следующий выбранный [TreeItem] после заданного, или [code]null[/code], если достигнут конец.
+				Если [code]from[/code] равен [code]null[/code], возвращается первый выбранный элемент.
 			</description>
 		</method>
 		<method name="get_pressed_button" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the last pressed button's index.
+				Возвращает индекс последней нажатой кнопки.
 			</description>
 		</method>
 		<method name="get_root">
 			<return type="TreeItem" />
 			<description>
-				Returns the tree's root item, or [code]null[/code] if the tree is empty.
+				Возвращает корневой элемент дерева или [code]null[/code], если дерево пустое.
 			</description>
 		</method>
 		<method name="get_scroll" qualifiers="const">
 			<return type="Vector2" />
 			<description>
-				Returns the current scrolling position.
+				Возвращает текущую позицию прокрутки.
 			</description>
 		</method>
 		<method name="get_selected" qualifiers="const">
 			<return type="TreeItem" />
 			<description>
-				Returns the currently focused item, or [code]null[/code] if no item is focused.
-				In [constant SELECT_ROW] and [constant SELECT_SINGLE] modes, the focused item is same as the selected item. In [constant SELECT_MULTI] mode, the focused item is the item under the focus cursor, not necessarily selected.
-				To get the currently selected item(s), use [method get_next_selected].
+				Возвращает текущий сфокусированный элемент или [code]null[/code], если ни один элемент не сфокусирован.
+				В режимах [constant SELECT_ROW] и [constant SELECT_SINGLE] сфокусированный элемент совпадает с выбранным элементом. В режиме [constant SELECT_MULTI] фокусируемый элемент - это элемент под курсором фокуса, не обязательно выбранный.
+				Чтобы получить текущий выбранный элемент (элементы), используйте [метод get_next_selected].
 			</description>
 		</method>
 		<method name="get_selected_column" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the currently focused column, or -1 if no column is focused.
-				In [constant SELECT_SINGLE] mode, the focused column is the selected column. In [constant SELECT_ROW] mode, the focused column is always 0 if any item is selected. In [constant SELECT_MULTI] mode, the focused column is the column under the focus cursor, and there are not necessarily any column selected.
-				To tell whether a column of an item is selected, use [method TreeItem.is_selected].
+Возвращает текущий сфокусированный столбец, или -1, если ни один столбец не сфокусирован.
+				В режиме [constant SELECT_SINGLE] сфокусированным столбцом является выбранный столбец. В режиме [constant SELECT_ROW] фокусируемый столбец всегда равен 0, если выбран любой элемент. В режиме [constant SELECT_MULTI] фокусируемый столбец - это столбец под курсором фокусировки, и не обязательно какой-либо столбец выбран.
+				Чтобы узнать, выбран ли столбец элемента, используйте [метод TreeItem.is_selected].
 			</description>
 		</method>
 		<method name="scroll_to_item">
 			<return type="void" />
 			<argument index="0" name="item" type="Object" />
 			<description>
-				Causes the [Tree] to jump to the specified [TreeItem].
+				Приводит к переходу [Tree] к указанному элементу [TreeItem].
 			</description>
 		</method>
 		<method name="set_column_expand">
@@ -183,7 +183,7 @@
 			<argument index="0" name="column" type="int" />
 			<argument index="1" name="expand" type="bool" />
 			<description>
-				If [code]true[/code], the column will have the "Expand" flag of [Control]. Columns that have the "Expand" flag will use their "min_width" in a similar fashion to [member Control.size_flags_stretch_ratio].
+				Если [code]true[/code], то колонка будет иметь флаг "Expand" [Control]. Колонки, имеющие флаг "Expand", будут использовать свою "min_width" аналогично [member Control.size_flags_stretch_ratio].
 			</description>
 		</method>
 		<method name="set_column_min_width">
@@ -191,7 +191,7 @@
 			<argument index="0" name="column" type="int" />
 			<argument index="1" name="min_width" type="int" />
 			<description>
-				Sets the minimum width of a column. Columns that have the "Expand" flag will use their "min_width" in a similar fashion to [member Control.size_flags_stretch_ratio].
+				Устанавливает минимальную ширину столбца. Колонки, имеющие флаг "Expand", будут использовать свою "min_width" аналогично [member Control.size_flags_stretch_ratio].
 			</description>
 		</method>
 		<method name="set_column_title">
@@ -199,48 +199,37 @@
 			<argument index="0" name="column" type="int" />
 			<argument index="1" name="title" type="String" />
 			<description>
-				Sets the title of a column.
-			</description>
-		</method>
-		<method name="set_selected">
-			<return type="void" />
-			<argument index="0" name="item" type="Object" />
-			<argument index="1" name="column" type="int" />
-			<description>
-				Selects the specified [TreeItem] and column.
+				Устанавливает заголовок столбца.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="allow_reselect" type="bool" setter="set_allow_reselect" getter="get_allow_reselect" default="false">
-			If [code]true[/code], the currently selected cell may be selected again.
+			Если [code]true[/code], то текущая выделенная ячейка может быть выбрана снова.
 		</member>
 		<member name="allow_rmb_select" type="bool" setter="set_allow_rmb_select" getter="get_allow_rmb_select" default="false">
-			If [code]true[/code], a right mouse button click can select items.
-		</member>
-		<member name="allow_search" type="bool" setter="set_allow_search" getter="get_allow_search" default="true">
-			If [code]true[/code], allows navigating the [Tree] with letter keys through incremental search.
+			Если [code]true[/code], щелчок правой кнопкой мыши позволяет выбрать элементы.
 		</member>
 		<member name="column_titles_visible" type="bool" setter="set_column_titles_visible" getter="are_column_titles_visible" default="false">
-			If [code]true[/code], column titles are visible.
+			Если [code]true[/code], заголовки столбцов будут видны.
 		</member>
 		<member name="columns" type="int" setter="set_columns" getter="get_columns" default="1">
-			The number of columns.
+			Количество столбцов.
 		</member>
 		<member name="drop_mode_flags" type="int" setter="set_drop_mode_flags" getter="get_drop_mode_flags" default="0">
-			The drop mode as an OR combination of flags. See [enum DropModeFlags] constants. Once dropping is done, reverts to [constant DROP_MODE_DISABLED]. Setting this during [method Control.can_drop_data] is recommended.
-			This controls the drop sections, i.e. the decision and drawing of possible drop locations based on the mouse position.
+			Режим падения как комбинация флагов в виде ИЛИ. См. константы [enum DropModeFlags]. После завершения сброса возвращается к [константе DROP_MODE_DISABLED]. Рекомендуется устанавливать это значение во время [метод Control.can_drop_data].
+			Это управляет секциями падения, т.е. решением и отрисовкой возможных мест падения на основе положения мыши.
 		</member>
 		<member name="focus_mode" type="int" setter="set_focus_mode" getter="get_focus_mode" overrides="Control" enum="Control.FocusMode" default="2" />
 		<member name="hide_folding" type="bool" setter="set_hide_folding" getter="is_folding_hidden" default="false">
-			If [code]true[/code], the folding arrow is hidden.
+			Если [code]true[/code], стрелка сворачивания будет скрыта.
 		</member>
 		<member name="hide_root" type="bool" setter="set_hide_root" getter="is_root_hidden" default="false">
-			If [code]true[/code], the tree's root is hidden.
+			Если [code]true[/code], корень дерева будет скрыт.
 		</member>
 		<member name="rect_clip_content" type="bool" setter="set_clip_contents" getter="is_clipping_contents" overrides="Control" default="true" />
 		<member name="select_mode" type="int" setter="set_select_mode" getter="get_select_mode" enum="Tree.SelectMode" default="0">
-			Allows single or multiple selection. See the [enum SelectMode] constants.
+			Позволяет выбрать один или несколько вариантов. См. константы [enum SelectMode].
 		</member>
 	</members>
 	<signals>
@@ -249,78 +238,78 @@
 			<argument index="1" name="column" type="int" />
 			<argument index="2" name="id" type="int" />
 			<description>
-				Emitted when a button on the tree was pressed (see [method TreeItem.add_button]).
+				Выдается при нажатии кнопки на дереве (см. [метод TreeItem.add_button]).
 			</description>
 		</signal>
 		<signal name="cell_selected">
 			<description>
-				Emitted when a cell is selected.
+				Выдается при выделении ячейки.
 			</description>
 		</signal>
 		<signal name="column_title_pressed">
 			<argument index="0" name="column" type="int" />
 			<description>
-				Emitted when a column's title is pressed.
+				Выдается при нажатии на заголовок колонки.
 			</description>
 		</signal>
 		<signal name="custom_popup_edited">
 			<argument index="0" name="arrow_clicked" type="bool" />
 			<description>
-				Emitted when a cell with the [constant TreeItem.CELL_MODE_CUSTOM] is clicked to be edited.
+				Выдается, когда ячейка с [константой TreeItem.CELL_MODE_CUSTOM] щелкается для редактирования.
 			</description>
 		</signal>
 		<signal name="empty_rmb">
 			<argument index="0" name="position" type="Vector2" />
 			<description>
-				Emitted when the right mouse button is pressed in the empty space of the tree.
+				Выдается при нажатии правой кнопки мыши в пустом пространстве дерева.
 			</description>
 		</signal>
 		<signal name="empty_tree_rmb_selected">
 			<argument index="0" name="position" type="Vector2" />
 			<description>
-				Emitted when the right mouse button is pressed if right mouse button selection is active and the tree is empty.
+				Выдается при нажатии правой кнопки мыши, если активен выбор правой кнопкой мыши и дерево пустое.
 			</description>
 		</signal>
 		<signal name="item_activated">
 			<description>
-				Emitted when an item's label is double-clicked.
+				Выдается при двойном щелчке по ярлыку элемента.
 			</description>
 		</signal>
 		<signal name="item_collapsed">
 			<argument index="0" name="item" type="TreeItem" />
 			<description>
-				Emitted when an item is collapsed by a click on the folding arrow.
+				Выдается, когда элемент сворачивается при нажатии на стрелку сворачивания.
 			</description>
 		</signal>
 		<signal name="item_custom_button_pressed">
 			<description>
-				Emitted when a custom button is pressed (i.e. in a [constant TreeItem.CELL_MODE_CUSTOM] mode cell).
+				Выдается при нажатии пользовательской кнопки (т.е. в ячейке режима [constant TreeItem.CELL_MODE_CUSTOM]).
 			</description>
 		</signal>
 		<signal name="item_double_clicked">
 			<description>
-				Emitted when an item's icon is double-clicked.
+				Выдается при двойном щелчке по значку элемента.
 			</description>
 		</signal>
 		<signal name="item_edited">
 			<description>
-				Emitted when an item is edited.
+				Выдается при редактировании элемента.
 			</description>
 		</signal>
 		<signal name="item_rmb_edited">
 			<description>
-				Emitted when an item is edited using the right mouse button.
+				Выдается, когда элемент редактируется с помощью правой кнопки мыши.
 			</description>
 		</signal>
 		<signal name="item_rmb_selected">
 			<argument index="0" name="position" type="Vector2" />
 			<description>
-				Emitted when an item is selected with the right mouse button.
+				Выдается при выборе элемента правой кнопкой мыши.
 			</description>
 		</signal>
 		<signal name="item_selected">
 			<description>
-				Emitted when an item is selected.
+				Выдается при выборе элемента.
 			</description>
 		</signal>
 		<signal name="multi_selected">
@@ -328,149 +317,149 @@
 			<argument index="1" name="column" type="int" />
 			<argument index="2" name="selected" type="bool" />
 			<description>
-				Emitted instead of [code]item_selected[/code] if [code]select_mode[/code] is [constant SELECT_MULTI].
+				Выдается вместо [code]item_selected[/code], если [code]select_mode[/code] - [constant SELECT_MULTI].
 			</description>
 		</signal>
 		<signal name="nothing_selected">
 			<description>
-				Emitted when a left mouse button click does not select any item.
+				Выдается, когда при нажатии левой кнопки мыши не выбран ни один элемент.
 			</description>
 		</signal>
 	</signals>
 	<constants>
 		<constant name="SELECT_SINGLE" value="0" enum="SelectMode">
-			Allows selection of a single cell at a time. From the perspective of items, only a single item is allowed to be selected. And there is only one column selected in the selected item.
-			The focus cursor is always hidden in this mode, but it is positioned at the current selection, making the currently selected item the currently focused item.
+			Позволяет выбрать одну ячейку за раз. С точки зрения элементов можно выбрать только один элемент. В выбранном элементе может быть выделен только один столбец.
+			В этом режиме курсор фокуса всегда скрыт, но он располагается на текущем выделении, делая выбранный элемент текущим фокусируемым элементом.
 		</constant>
 		<constant name="SELECT_ROW" value="1" enum="SelectMode">
-			Allows selection of a single row at a time. From the perspective of items, only a single items is allowed to be selected. And all the columns are selected in the selected item.
-			The focus cursor is always hidden in this mode, but it is positioned at the first column of the current selection, making the currently selected item the currently focused item.
+			Позволяет выбрать одну строку за раз. С точки зрения элементов можно выбрать только один элемент. При этом в выбранном элементе выделяются все столбцы.
+			В этом режиме курсор фокуса всегда скрыт, но он располагается в первом столбце текущего выделения, делая выбранный элемент текущим фокусируемым элементом.
 		</constant>
 		<constant name="SELECT_MULTI" value="2" enum="SelectMode">
-			Allows selection of multiple cells at the same time. From the perspective of items, multiple items are allowed to be selected. And there can be multiple columns selected in each selected item.
-			The focus cursor is visible in this mode, the item or column under the cursor is not necessarily selected.
+			Позволяет выбирать несколько ячеек одновременно. С точки зрения элементов, разрешается выбирать несколько элементов. В каждом выбранном элементе может быть выделено несколько столбцов.
+			В этом режиме виден курсор фокуса, но элемент или столбец под курсором не обязательно выбран.
 		</constant>
 		<constant name="DROP_MODE_DISABLED" value="0" enum="DropModeFlags">
-			Disables all drop sections, but still allows to detect the "on item" drop section by [method get_drop_section_at_position].
-			[b]Note:[/b] This is the default flag, it has no effect when combined with other flags.
+			Отключает все секции падения, но по-прежнему позволяет обнаружить секцию падения "на предмете" с помощью [метода get_drop_section_at_position].
+			[b]Примечание:[/b] Это флаг по умолчанию, он не имеет эффекта в сочетании с другими флагами.
 		</constant>
 		<constant name="DROP_MODE_ON_ITEM" value="1" enum="DropModeFlags">
-			Enables the "on item" drop section. This drop section covers the entire item.
-			When combined with [constant DROP_MODE_INBETWEEN], this drop section halves the height and stays centered vertically.
+			Включает секцию падения "на предмет". Эта секция падения охватывает весь элемент.
+			В сочетании с [constant DROP_MODE_INBETWEEN] эта секция уменьшает высоту в два раза и остается выровненной по вертикали.
 		</constant>
 		<constant name="DROP_MODE_INBETWEEN" value="2" enum="DropModeFlags">
-			Enables "above item" and "below item" drop sections. The "above item" drop section covers the top half of the item, and the "below item" drop section covers the bottom half.
-			When combined with [constant DROP_MODE_ON_ITEM], these drop sections halves the height and stays on top / bottom accordingly.
+			Включает секции падения "над элементом" и "под элементом". Секция падения "над элементом" охватывает верхнюю половину элемента, а секция падения "под элементом" - нижнюю половину.
+			В сочетании с [constant DROP_MODE_ON_ITEM] эти секции падения уменьшают высоту вдвое и остаются сверху/снизу соответственно.
 		</constant>
 	</constants>
 	<theme_items>
 		<theme_item name="custom_button_font_highlight" data_type="color" type="Color" default="Color( 0.94, 0.94, 0.94, 1 )">
-			Text [Color] for a [constant TreeItem.CELL_MODE_CUSTOM] mode cell when it's hovered.
+			Текст [Color] для ячейки режима [constant TreeItem.CELL_MODE_CUSTOM] при наведении на нее курсора.
 		</theme_item>
 		<theme_item name="drop_position_color" data_type="color" type="Color" default="Color( 1, 0.3, 0.2, 1 )">
 			[Color] used to draw possible drop locations. See [enum DropModeFlags] constants for further description of drop locations.
 		</theme_item>
 		<theme_item name="font_color" data_type="color" type="Color" default="Color( 0.69, 0.69, 0.69, 1 )">
-			Default text [Color] of the item.
+			Текст [Color] элемента по умолчанию.
 		</theme_item>
 		<theme_item name="font_color_selected" data_type="color" type="Color" default="Color( 1, 1, 1, 1 )">
-			Text [Color] used when the item is selected.
+			Текст [Color], используемый при выборе элемента.
 		</theme_item>
 		<theme_item name="guide_color" data_type="color" type="Color" default="Color( 0, 0, 0, 0.1 )">
-			[Color] of the guideline.
+			[Color] руководящего принципа.
 		</theme_item>
 		<theme_item name="relationship_line_color" data_type="color" type="Color" default="Color( 0.27, 0.27, 0.27, 1 )">
-			[Color] of the relationship lines.
+			[Color] линии отношений.
 		</theme_item>
 		<theme_item name="title_button_color" data_type="color" type="Color" default="Color( 0.88, 0.88, 0.88, 1 )">
-			Default text [Color] of the title button.
+			Текст по умолчанию [Color] кнопки заголовка.
 		</theme_item>
 		<theme_item name="button_margin" data_type="constant" type="int" default="4">
-			The horizontal space between each button in a cell.
+			Горизонтальное пространство между каждой кнопкой в ячейке.
 		</theme_item>
 		<theme_item name="draw_guides" data_type="constant" type="int" default="1">
-			Draws the guidelines if not zero, this acts as a boolean. The guideline is a horizontal line drawn at the bottom of each item.
+			Рисует направляющие, если они не равны нулю. Ориентир - это горизонтальная линия, проведенная внизу каждого элемента.
 		</theme_item>
 		<theme_item name="draw_relationship_lines" data_type="constant" type="int" default="0">
-			Draws the relationship lines if not zero, this acts as a boolean. Relationship lines are drawn at the start of child items to show hierarchy.
+			Рисует линии отношений, если они не равны нулю. Линии отношений рисуются в начале дочерних элементов, чтобы показать иерархию.
 		</theme_item>
-		<theme_item name="hseparation" data_type="constant" type="int" default="4">
-			The horizontal space between item cells. This is also used as the margin at the start of an item when folding is disabled.
+		<theme_item name="hseparation" data_type="constant" type="int" default="4">[StyleBox] используется при нажатии кнопки заголовка.
+			Горизонтальное пространство между ячейками элемента. Также используется в качестве поля в начале элемента, когда сворачивание отключено.
 		</theme_item>
 		<theme_item name="item_margin" data_type="constant" type="int" default="12">
-			The horizontal margin at the start of an item. This is used when folding is enabled for the item.
+			Горизонтальное поле в начале элемента. Используется, если для элемента включена функция сворачивания.
 		</theme_item>
 		<theme_item name="scroll_border" data_type="constant" type="int" default="4">
-			The maximum distance between the mouse cursor and the control's border to trigger border scrolling when dragging.
+			Максимальное расстояние между курсором мыши и границей элемента управления для запуска прокрутки границы при перетаскивании.
 		</theme_item>
 		<theme_item name="scroll_speed" data_type="constant" type="int" default="12">
-			The speed of border scrolling.
+			Скорость прокрутки границ.
 		</theme_item>
 		<theme_item name="vseparation" data_type="constant" type="int" default="4">
-			The vertical padding inside each item, i.e. the distance between the item's content and top/bottom border.
+			Вертикальная подложка внутри каждого элемента, т.е. расстояние между содержимым элемента и верхней/нижней границей.
 		</theme_item>
 		<theme_item name="font" data_type="font" type="Font">
-			[Font] of the item's text.
+			[Font] текста элемента.
 		</theme_item>
 		<theme_item name="title_button_font" data_type="font" type="Font">
-			[Font] of the title button's text.
+			[Font] текст кнопки с заголовком.
 		</theme_item>
 		<theme_item name="arrow" data_type="icon" type="Texture">
-			The arrow icon used when a foldable item is not collapsed.
+			Значок стрелки, используемый, когда складной элемент не свернут.
 		</theme_item>
 		<theme_item name="arrow_collapsed" data_type="icon" type="Texture">
-			The arrow icon used when a foldable item is collapsed.
+			Значок стрелки, используемый, когда складной элемент сворачивается.
 		</theme_item>
 		<theme_item name="checked" data_type="icon" type="Texture">
-			The check icon to display when the [constant TreeItem.CELL_MODE_CHECK] mode cell is checked.
+			Значок проверки, отображаемый при проверке ячейки режима [constant TreeItem.CELL_MODE_CHECK].
 		</theme_item>
 		<theme_item name="select_arrow" data_type="icon" type="Texture">
-			The arrow icon to display for the [constant TreeItem.CELL_MODE_RANGE] mode cell.
+			Значок стрелки, отображаемый для ячейки режима [constant TreeItem.CELL_MODE_RANGE].
 		</theme_item>
 		<theme_item name="unchecked" data_type="icon" type="Texture">
-			The check icon to display when the [constant TreeItem.CELL_MODE_CHECK] mode cell is unchecked.
+			Значок галочки, отображаемый, когда ячейка режима [constant TreeItem.CELL_MODE_CHECK] снята с галочки.
 		</theme_item>
 		<theme_item name="updown" data_type="icon" type="Texture">
-			The updown arrow icon to display for the [constant TreeItem.CELL_MODE_RANGE] mode cell.
+			Значок стрелки вверх, отображаемый для ячейки режима [constant TreeItem.CELL_MODE_RANGE].
 		</theme_item>
 		<theme_item name="bg" data_type="style" type="StyleBox">
-			Default [StyleBox] for the [Tree], i.e. used when the control is not being focused.
+			Стиль по умолчанию [StyleBox] для [Tree], т.е. используется, когда элемент управления не фокусируется.
 		</theme_item>
 		<theme_item name="bg_focus" data_type="style" type="StyleBox">
-			[StyleBox] used when the [Tree] is being focused.
+			[StyleBox] используется при фокусировке [Tree].
 		</theme_item>
 		<theme_item name="button_pressed" data_type="style" type="StyleBox">
-			[StyleBox] used when a button in the tree is pressed.
+			[StyleBox] используется при нажатии кнопки в дереве.
 		</theme_item>
 		<theme_item name="cursor" data_type="style" type="StyleBox">
-			[StyleBox] used for the cursor, when the [Tree] is being focused.
+			[StyleBox] используется для курсора, когда фокусируется [Tree].
 		</theme_item>
 		<theme_item name="cursor_unfocused" data_type="style" type="StyleBox">
-			[StyleBox] used for the cursor, when the [Tree] is not being focused.
+			[StyleBox] используется для курсора, когда [Tree] не сфокусировано.
 		</theme_item>
 		<theme_item name="custom_button" data_type="style" type="StyleBox">
-			Default [StyleBox] for a [constant TreeItem.CELL_MODE_CUSTOM] mode cell.
+			Стиль по умолчанию [StyleBox] для ячейки режима [constant TreeItem.CELL_MODE_CUSTOM].
 		</theme_item>
 		<theme_item name="custom_button_hover" data_type="style" type="StyleBox">
-			[StyleBox] for a [constant TreeItem.CELL_MODE_CUSTOM] mode cell when it's hovered.
+			[StyleBox] для ячейки режима [constant TreeItem.CELL_MODE_CUSTOM] при наведении на нее курсора.
 		</theme_item>
 		<theme_item name="custom_button_pressed" data_type="style" type="StyleBox">
-			[StyleBox] for a [constant TreeItem.CELL_MODE_CUSTOM] mode cell when it's pressed.
+			[StyleBox] для ячейки режима [constant TreeItem.CELL_MODE_CUSTOM] при нажатии на нее.
 		</theme_item>
 		<theme_item name="selected" data_type="style" type="StyleBox">
-			[StyleBox] for the selected items, used when the [Tree] is not being focused.
+			[StyleBox] для выбранных элементов, используется, когда [Tree] не фокусируется.
 		</theme_item>
 		<theme_item name="selected_focus" data_type="style" type="StyleBox">
-			[StyleBox] for the selected items, used when the [Tree] is being focused.
+			[StyleBox] для выбранных элементов, используется при фокусировке [Tree].
 		</theme_item>
 		<theme_item name="title_button_hover" data_type="style" type="StyleBox">
-			[StyleBox] used when the title button is being hovered.
+			[StyleBox] используется при наведении на кнопку заголовка.
 		</theme_item>
 		<theme_item name="title_button_normal" data_type="style" type="StyleBox">
-			Default [StyleBox] for the title button.
+			По умолчанию [StyleBox] для кнопки заголовка.
 		</theme_item>
 		<theme_item name="title_button_pressed" data_type="style" type="StyleBox">
-			[StyleBox] used when the title button is being pressed.
+			[StyleBox] используется при нажатии кнопки заголовка.
 		</theme_item>
 	</theme_items>
 </class>

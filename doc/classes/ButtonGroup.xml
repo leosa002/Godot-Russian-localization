@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="ButtonGroup" inherits="Resource" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="ButtonGroup" inherits="Resource" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Group of Buttons.
+		Группа кнопок.
 	</brief_description>
 	<description>
-		Group of [Button]. All direct and indirect children buttons become radios. Only one allows being pressed.
-		[member BaseButton.toggle_mode] should be [code]true[/code].
+		Группа кнопок [Button]. Все прямые и косвенные дочерние кнопки становятся радиоприемниками. Только одна может быть нажата.
+		[member BaseButton.toggle_mode] должен быть [code]true[/code].
 	</description>
 	<tutorials>
 	</tutorials>
@@ -13,13 +13,13 @@
 		<method name="get_buttons">
 			<return type="Array" />
 			<description>
-				Returns an [Array] of [Button]s who have this as their [ButtonGroup] (see [member BaseButton.group]).
+				Возвращает [Array] кнопок, у которых данная группа является [ButtonGroup] (см. [member BaseButton.group]).
 			</description>
 		</method>
 		<method name="get_pressed_button">
 			<return type="BaseButton" />
 			<description>
-				Returns the current pressed button.
+				Возвращает текущую нажатую кнопку.
 			</description>
 		</method>
 	</methods>
@@ -30,7 +30,7 @@
 		<signal name="pressed">
 			<argument index="0" name="button" type="Object" />
 			<description>
-				Emitted when one of the buttons of the group is pressed.
+				Выдается при нажатии одной из кнопок группы.
 			</description>
 		</signal>
 	</signals>

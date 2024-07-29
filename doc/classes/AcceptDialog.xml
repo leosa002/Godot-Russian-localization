@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="AcceptDialog" inherits="WindowDialog" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="AcceptDialog" inherits="WindowDialog" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Base dialog for user notification.
+		Базовое диалоговое окно для уведомления пользователя.
 	</brief_description>
 	<description>
-		This dialog is useful for small notifications to the user about an event. It can only be accepted or closed, with the same result.
+		Этот диалог удобен для небольших уведомлений пользователя о каком-либо событии. Он может быть только принят или закрыт, с тем же результатом.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -15,71 +15,71 @@
 			<argument index="1" name="right" type="bool" default="false" />
 			<argument index="2" name="action" type="String" default="&quot;&quot;" />
 			<description>
-				Adds a button with label [code]text[/code] and a custom [code]action[/code] to the dialog and returns the created button. [code]action[/code] will be passed to the [signal custom_action] signal when pressed.
-				If [code]true[/code], [code]right[/code] will place the button to the right of any sibling buttons.
-				You can use [method remove_button] method to remove a button created with this method from the dialog.
+				Добавляет в диалог кнопку с меткой [code]text[/code] и пользовательским [code]action[/code] и возвращает созданную кнопку. [code]action[/code] при нажатии будет передан в сигнал [signal custom_action].
+				Если [code]true[/code], то [code]right[/code] поместит кнопку справа от всех соседних кнопок.
+				Для удаления из диалога кнопки, созданной с помощью этого метода, можно использовать метод [method remove_button].
 			</description>
 		</method>
 		<method name="add_cancel">
 			<return type="Button" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Adds a button with label [code]name[/code] and a cancel action to the dialog and returns the created button.
-				You can use [method remove_button] method to remove a button created with this method from the dialog.
+				Добавляет в диалог кнопку с меткой [code]name[/code] и действием отмены и возвращает созданную кнопку.
+				Для удаления из диалога кнопки, созданной с помощью этого метода, можно использовать метод [method remove_button].
 			</description>
 		</method>
 		<method name="get_label">
 			<return type="Label" />
 			<description>
-				Returns the label used for built-in text.
-				[b]Warning:[/b] This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [member CanvasItem.visible] property.
+				Возвращает метку, используемую для встроенного текста.
+				[b]Внимание:[/b] Это обязательный внутренний узел, его удаление и освобождение может привести к аварийному завершению работы. Если вы хотите скрыть этот узел или любой из его дочерних узлов, используйте их свойство [member CanvasItem.visible].
 			</description>
 		</method>
 		<method name="get_ok">
 			<return type="Button" />
 			<description>
-				Returns the OK [Button] instance.
-				[b]Warning:[/b] This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [member CanvasItem.visible] property.
+				Возвращает экземпляр кнопки OK [Button].
+				[b]Внимание:[/b] Это обязательный внутренний узел, его удаление и освобождение может привести к аварийному завершению работы. Если вы хотите скрыть этот узел или любой из его дочерних узлов, используйте их свойство [member CanvasItem.visible].
 			</description>
 		</method>
 		<method name="register_text_enter">
 			<return type="void" />
 			<argument index="0" name="line_edit" type="Node" />
 			<description>
-				Registers a [LineEdit] in the dialog. When the enter key is pressed, the dialog will be accepted.
+				Регистрирует [LineEdit] в диалоге. При нажатии клавиши ввода диалог будет принят.
 			</description>
 		</method>
 		<method name="remove_button">
 			<return type="void" />
 			<argument index="0" name="button" type="Control" />
 			<description>
-				Removes the [code]button[/code] from the dialog. Does NOT free the [code]button[/code]. The [code]button[/code] must be a [Button] added with [method add_button] or [method add_cancel] method. After removal, pressing the [code]button[/code] will no longer emit this dialog's [signal custom_action] signal or cancel this dialog.
+				Удаляет [code]button[/code] из диалога. Не освобождает [код]button[/код]. Кнопка [code]button[/code] должна быть [Button], добавленной с помощью метода [method add_button] или [method add_cancel]. После удаления нажатие [code]button[/code] больше не будет вызывать сигнал [signal custom_action] этого диалога или отменять его
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="dialog_autowrap" type="bool" setter="set_autowrap" getter="has_autowrap" default="false">
-			Sets autowrapping for the text in the dialog.
+			Устанавливает автообертку для текста в диалоге.
 		</member>
 		<member name="dialog_hide_on_ok" type="bool" setter="set_hide_on_ok" getter="get_hide_on_ok" default="true">
-			If [code]true[/code], the dialog is hidden when the OK button is pressed. You can set it to [code]false[/code] if you want to do e.g. input validation when receiving the [signal confirmed] signal, and handle hiding the dialog in your own logic.
-			[b]Note:[/b] Some nodes derived from this class can have a different default value, and potentially their own built-in logic overriding this setting. For example [FileDialog] defaults to [code]false[/code], and has its own input validation code that is called when you press OK, which eventually hides the dialog if the input is valid. As such, this property can't be used in [FileDialog] to disable hiding the dialog when pressing OK.
+			Если [code]true[/code], то при нажатии кнопки OK диалог будет скрыт. Вы можете установить значение [code]false[/code], если хотите, например, выполнять проверку ввода при получении сигнала [signal confirmed], а скрытие диалога обрабатывать в собственной логике.
+			[b]Примечание:[/b] Некоторые узлы, производные от этого класса, могут иметь другое значение по умолчанию и, возможно, собственную встроенную логику, переопределяющую эту настройку. Например, [FileDialog] по умолчанию имеет значение [code]false[/code] и имеет свой собственный код проверки ввода, который вызывается при нажатии кнопки OK, что в итоге скрывает диалог, если вводимые данные верны. Поэтому данное свойство нельзя использовать в [FileDialog] для отключения скрытия диалога при нажатии кнопки OK.
 		</member>
 		<member name="dialog_text" type="String" setter="set_text" getter="get_text" default="&quot;&quot;">
-			The text displayed by the dialog.
+			Текст, отображаемый диалогом.
 		</member>
 		<member name="window_title" type="String" setter="set_title" getter="get_title" overrides="WindowDialog" default="&quot;Alert!&quot;" />
 	</members>
 	<signals>
 		<signal name="confirmed">
 			<description>
-				Emitted when the dialog is accepted, i.e. the OK button is pressed.
+				Выдается, когда диалог принят, т.е. нажата кнопка OK.
 			</description>
 		</signal>
 		<signal name="custom_action">
 			<argument index="0" name="action" type="String" />
 			<description>
-				Emitted when a custom button is pressed. See [method add_button].
+				Выдается при нажатии пользовательской кнопки. См. раздел [method add_button].
 			</description>
 		</signal>
 	</signals>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="BoneAttachment" inherits="Spatial" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="BoneAttachment" inherits="Spatial" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		A node that will attach to a bone.
+		Узел, который будет присоединен к кости.
 	</brief_description>
 	<description>
-		This node must be the child of a [Skeleton] node. You can then select a bone for this node to attach to. The BoneAttachment node will copy the transform of the selected bone.
+		Этот узел должен быть дочерним по отношению к узлу [Skeleton]. Затем можно выбрать кость, к которой будет прикреплен этот узел. Узел BoneAttachment скопирует трансформацию выбранной кости.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -12,7 +12,7 @@
 	</methods>
 	<members>
 		<member name="bone_name" type="String" setter="set_bone_name" getter="get_bone_name" default="&quot;&quot;">
-			The name of the attached bone.
+			Имя присоединенной кости.
 		</member>
 	</members>
 	<constants>

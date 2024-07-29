@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="AudioEffect" inherits="Resource" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="AudioEffect" inherits="Resource" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Audio effect for audio.
+		Аудиоэффект для звука.
 	</brief_description>
 	<description>
-		Base resource for audio bus. Applies an audio effect on the bus that the resource is applied on.
+		Базовый ресурс для аудиошины. Применяет аудиоэффект к шине, к которой применен ресурс.
 	</description>
 	<tutorials>
 		<link title="Audio Mic Record Demo">https://godotengine.org/asset-library/asset/527</link>

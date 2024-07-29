@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="ARVRServer" inherits="Object" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="ARVRServer" inherits="Object" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Server for AR and VR features.
+		Сервер для функций AR и VR.
 	</brief_description>
 	<description>
-		The AR/VR server is the heart of our Advanced and Virtual Reality solution and handles all the processing.
+		Сервер AR/VR является сердцем нашего решения для расширенной и виртуальной реальности и выполняет всю обработку данных.
 	</description>
 	<tutorials>
 		<link>$DOCS_URL/tutorials/vr/index.html</link>
@@ -14,14 +14,14 @@
 			<return type="void" />
 			<argument index="0" name="interface" type="ARVRInterface" />
 			<description>
-				Registers an [ARVRInterface] object.
+				Регистрирует объект [ARVRInterface].
 			</description>
 		</method>
 		<method name="add_tracker">
 			<return type="void" />
 			<argument index="0" name="tracker" type="ARVRPositionalTracker" />
 			<description>
-				Registers a new [ARVRPositionalTracker] that tracks a spatial location in real space.
+				Регистрирует новый [ARVRPositionalTracker], отслеживающий пространственное положение в реальном пространстве.
 			</description>
 		</method>
 		<method name="center_on_hmd">
@@ -29,124 +29,124 @@
 			<argument index="0" name="rotation_mode" type="int" enum="ARVRServer.RotationMode" />
 			<argument index="1" name="keep_height" type="bool" />
 			<description>
-				This is an important function to understand correctly. AR and VR platforms all handle positioning slightly differently.
-				For platforms that do not offer spatial tracking, our origin point (0,0,0) is the location of our HMD, but you have little control over the direction the player is facing in the real world.
-				For platforms that do offer spatial tracking, our origin point depends very much on the system. For OpenVR, our origin point is usually the center of the tracking space, on the ground. For other platforms, it's often the location of the tracking camera.
-				This method allows you to center your tracker on the location of the HMD. It will take the current location of the HMD and use that to adjust all your tracking data; in essence, realigning the real world to your player's current position in the game world.
-				For this method to produce usable results, tracking information must be available. This often takes a few frames after starting your game.
-				You should call this method after a few seconds have passed. For instance, when the user requests a realignment of the display holding a designated button on a controller for a short period of time, or when implementing a teleport mechanism.
+				Это очень важная функция, которую необходимо правильно понимать. Все платформы AR и VR по-разному обрабатывают позиционирование.
+				Для платформ, не предлагающих пространственное отслеживание, наша точка начала координат (0,0,0) - это местоположение нашей HMD, но вы практически не контролируете направление, в котором игрок находится в реальном мире.
+				Для платформ, предлагающих пространственное отслеживание, точка отсчета очень сильно зависит от системы. Для OpenVR точка отсчета обычно находится в центре пространства отслеживания, на земле. Для других платформ это часто местоположение камеры слежения.
+				Данный метод позволяет центрировать трекер по местоположению HMD. Он принимает текущее положение HMD и использует его для корректировки всех данных отслеживания; по сути, реальный мир подстраивается под текущее положение игрока в игровом мире.
+				Для того чтобы этот метод дал приемлемые результаты, необходимо, чтобы информация об отслеживании была доступна. Для этого часто требуется несколько кадров после запуска игры.
+				Вызывать этот метод следует по истечении нескольких секунд. Например, когда пользователь запрашивает изменение положения дисплея, удерживая определенную кнопку на контроллере в течение короткого промежутка времени, или при реализации механизма телепортации.
 			</description>
 		</method>
 		<method name="clear_primary_interface_if">
 			<return type="void" />
 			<argument index="0" name="interface" type="ARVRInterface" />
 			<description>
-				Clears our current primary interface if it is set to the provided interface.
+				Очищает наш текущий основной интерфейс, если он установлен на предоставленный интерфейс.
 			</description>
 		</method>
 		<method name="find_interface" qualifiers="const">
 			<return type="ARVRInterface" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Finds an interface by its name. For instance, if your project uses capabilities of an AR/VR platform, you can find the interface for that platform by name and initialize it.
+				Находит интерфейс по его имени. Например, если ваш проект использует возможности AR/VR-платформы, вы можете найти интерфейс для этой платформы по ее имени и инициализировать его.
 			</description>
 		</method>
 		<method name="get_hmd_transform">
 			<return type="Transform" />
 			<description>
-				Returns the primary interface's transformation.
+				Возвращает преобразование первичного интерфейса.
 			</description>
 		</method>
 		<method name="get_interface" qualifiers="const">
 			<return type="ARVRInterface" />
 			<argument index="0" name="idx" type="int" />
 			<description>
-				Returns the interface registered at a given index in our list of interfaces.
+				Возвращает интерфейс, зарегистрированный по заданному индексу в нашем списке интерфейсов.
 			</description>
 		</method>
 		<method name="get_interface_count" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the number of interfaces currently registered with the AR/VR server. If your project supports multiple AR/VR platforms, you can look through the available interface, and either present the user with a selection or simply try to initialize each interface and use the first one that returns [code]true[/code].
+				Возвращает количество интерфейсов, зарегистрированных в настоящее время на AR/VR-сервере. Если ваш проект поддерживает несколько AR/VR-платформ, вы можете просмотреть все доступные интерфейсы и либо предложить пользователю выбор, либо просто попытаться инициализировать каждый интерфейс и использовать первый, который вернет [code]true[/code].
 			</description>
 		</method>
 		<method name="get_interfaces" qualifiers="const">
 			<return type="Array" />
 			<description>
-				Returns a list of available interfaces the ID and name of each interface.
+				Возвращает список доступных интерфейсов с указанием идентификатора и имени каждого интерфейса.
 			</description>
 		</method>
 		<method name="get_last_commit_usec">
 			<return type="int" />
 			<description>
-				Returns the absolute timestamp (in μs) of the last [ARVRServer] commit of the AR/VR eyes to [VisualServer]. The value comes from an internal call to [method OS.get_ticks_usec].
+				Возвращает абсолютную временную метку (в мкс) последней фиксации [ARVRServer] глаз AR/VR на [VisualServer]. Значение получается из внутреннего вызова [method OS.get_ticks_usec].
 			</description>
 		</method>
 		<method name="get_last_frame_usec">
 			<return type="int" />
 			<description>
-				Returns the duration (in μs) of the last frame. This is computed as the difference between [method get_last_commit_usec] and [method get_last_process_usec] when committing.
+				Возвращает длительность (в мкс) последнего кадра. Она вычисляется как разность между [method get_last_commit_usec] и [method get_last_process_usec] при фиксации.
 			</description>
 		</method>
 		<method name="get_last_process_usec">
 			<return type="int" />
 			<description>
-				Returns the absolute timestamp (in μs) of the last [ARVRServer] process callback. The value comes from an internal call to [method OS.get_ticks_usec].
+				Возвращает абсолютную временную метку (в мкс) последнего обратного вызова процесса [ARVRServer]. Значение получается из внутреннего вызова [method OS.get_ticks_usec].
 			</description>
 		</method>
 		<method name="get_reference_frame" qualifiers="const">
 			<return type="Transform" />
 			<description>
-				Returns the reference frame transform. Mostly used internally and exposed for GDNative build interfaces.
+				Возвращает преобразование системы отсчета. В основном используется для внутренних целей и используется в интерфейсах сборки GDNative.
 			</description>
 		</method>
 		<method name="get_tracker" qualifiers="const">
 			<return type="ARVRPositionalTracker" />
 			<argument index="0" name="idx" type="int" />
 			<description>
-				Returns the positional tracker at the given ID.
+				Возвращает позиционный трекер по заданному идентификатору.
 			</description>
 		</method>
 		<method name="get_tracker_count" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the number of trackers currently registered.
+				Возвращает количество зарегистрированных в данный момент трекеров.
 			</description>
 		</method>
 		<method name="remove_interface">
 			<return type="void" />
 			<argument index="0" name="interface" type="ARVRInterface" />
 			<description>
-				Removes this interface.
+				Удаляет данный интерфейс.
 			</description>
 		</method>
 		<method name="remove_tracker">
 			<return type="void" />
 			<argument index="0" name="tracker" type="ARVRPositionalTracker" />
 			<description>
-				Removes this positional tracker.
+				Удаляет данный позиционный трекер.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="primary_interface" type="ARVRInterface" setter="set_primary_interface" getter="get_primary_interface">
-			The primary [ARVRInterface] currently bound to the [ARVRServer].
+			Основной [ARVRInterface], связанный в данный момент с [ARVRServer].
 		</member>
 		<member name="world_scale" type="float" setter="set_world_scale" getter="get_world_scale" default="1.0">
-			Allows you to adjust the scale to your game's units. Most AR/VR platforms assume a scale of 1 game world unit = 1 real world meter.
+			Позволяет настроить масштаб в соответствии с единицами измерения вашей игры. В большинстве AR/VR-платформ принят масштаб: 1 единица игрового мира = 1 метру реального мира.
 		</member>
 	</members>
 	<signals>
 		<signal name="interface_added">
 			<argument index="0" name="interface_name" type="String" />
 			<description>
-				Emitted when a new interface has been added.
+				Выдается при добавлении нового интерфейса.
 			</description>
 		</signal>
 		<signal name="interface_removed">
 			<argument index="0" name="interface_name" type="String" />
 			<description>
-				Emitted when an interface is removed.
+				Выдается при удалении интерфейса.
 			</description>
 		</signal>
 		<signal name="tracker_added">
@@ -154,7 +154,7 @@
 			<argument index="1" name="type" type="int" />
 			<argument index="2" name="id" type="int" />
 			<description>
-				Emitted when a new tracker has been added. If you don't use a fixed number of controllers or if you're using [ARVRAnchor]s for an AR solution, it is important to react to this signal to add the appropriate [ARVRController] or [ARVRAnchor] nodes related to this new tracker.
+				Выдается при добавлении нового трекера. Если вы не используете фиксированное число контроллеров или используете [ARVRAnchor]ы для AR-решения, важно отреагировать на этот сигнал, чтобы добавить соответствующие узлы [ARVRController] или [ARVRAnchor], относящиеся к этому новому трекеру.
 			</description>
 		</signal>
 		<signal name="tracker_removed">
@@ -162,37 +162,37 @@
 			<argument index="1" name="type" type="int" />
 			<argument index="2" name="id" type="int" />
 			<description>
-				Emitted when a tracker is removed. You should remove any [ARVRController] or [ARVRAnchor] points if applicable. This is not mandatory, the nodes simply become inactive and will be made active again when a new tracker becomes available (i.e. a new controller is switched on that takes the place of the previous one).
+				Выдается при удалении трекера. Необходимо удалить все точки [ARVRController] или [ARVRAnchor], если они имеются. Это не обязательно, узлы просто становятся неактивными и будут снова активны, когда появится новый трекер (т.е. включится новый контроллер, который заменит предыдущий).
 			</description>
 		</signal>
 	</signals>
 	<constants>
 		<constant name="TRACKER_CONTROLLER" value="1" enum="TrackerType">
-			The tracker tracks the location of a controller.
+			Трекер отслеживает местоположение контроллера.
 		</constant>
 		<constant name="TRACKER_BASESTATION" value="2" enum="TrackerType">
-			The tracker tracks the location of a base station.
+			Трекер отслеживает местоположение базовой станции.
 		</constant>
 		<constant name="TRACKER_ANCHOR" value="4" enum="TrackerType">
-			The tracker tracks the location and size of an AR anchor.
+			Трекер отслеживает местоположение и размер AR-якоря.
 		</constant>
 		<constant name="TRACKER_ANY_KNOWN" value="127" enum="TrackerType">
-			Used internally to filter trackers of any known type.
+			Используется для внутренней фильтрации трекеров любого известного типа.
 		</constant>
 		<constant name="TRACKER_UNKNOWN" value="128" enum="TrackerType">
-			Used internally if we haven't set the tracker type yet.
+			Используется внутренне, если мы еще не установили тип трекера.
 		</constant>
 		<constant name="TRACKER_ANY" value="255" enum="TrackerType">
-			Used internally to select all trackers.
+			Используется внутри системы для выбора всех трекеров.
 		</constant>
 		<constant name="RESET_FULL_ROTATION" value="0" enum="RotationMode">
-			Fully reset the orientation of the HMD. Regardless of what direction the user is looking to in the real world. The user will look dead ahead in the virtual world.
+			Полностью сбрасывает ориентацию HMD. Независимо от того, в какую сторону смотрит пользователь в реальном мире. В виртуальном мире пользователь будет смотреть вперед.
 		</constant>
 		<constant name="RESET_BUT_KEEP_TILT" value="1" enum="RotationMode">
-			Resets the orientation but keeps the tilt of the device. So if we're looking down, we keep looking down but heading will be reset.
+			Сбрасывает ориентацию, но сохраняет наклон устройства. Таким образом, если мы смотрим вниз, мы продолжаем смотреть вниз, но ориентация будет сброшена.
 		</constant>
 		<constant name="DONT_RESET_ROTATION" value="2" enum="RotationMode">
-			Does not reset the orientation of the HMD, only the position of the player gets centered.
+			Не сбрасывает ориентацию HMD, центрируется только положение игрока.
 		</constant>
 	</constants>
 </class>

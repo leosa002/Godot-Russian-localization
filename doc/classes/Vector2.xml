@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Vector2" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Vector2" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Vector used for 2D math.
+		Вектор, используемый для 2D-математики.
 	</brief_description>
 	<description>
-		2-element structure that can be used to represent positions in 2D space or any other pair of numeric values.
-		[b]Note:[/b] In a boolean context, a Vector2 will evaluate to [code]false[/code] if it's equal to [code]Vector2(0, 0)[/code]. Otherwise, a Vector2 will always evaluate to [code]true[/code].
+		Двухэлементная структура, которая может использоваться для представления позиций в двумерном пространстве или любой другой пары числовых значений.
+		[b]Примечание:[/b] В булевом контексте Vector2 будет иметь значение [code]false[/code], если он равен [code]Vector2(0, 0)[/code]. В противном случае Vector2 всегда будет оцениваться как [code]true[/code].
 	</description>
 	<tutorials>
 		<link title="Math tutorial index">$DOCS_URL/tutorials/math/index.html</link>
@@ -21,74 +21,74 @@
 			<argument index="0" name="x" type="float" />
 			<argument index="1" name="y" type="float" />
 			<description>
-				Constructs a new Vector2 from the given [code]x[/code] and [code]y[/code].
+				Создает новый Vector2 из заданных [code]x[/code] и [code]y[/code].
 			</description>
 		</method>
 		<method name="abs">
 			<return type="Vector2" />
 			<description>
-				Returns a new vector with all components in absolute values (i.e. positive).
+				Возвращает новый вектор, все компоненты которого имеют абсолютные значения (т.е. положительные).
 			</description>
 		</method>
 		<method name="angle">
 			<return type="float" />
 			<description>
-				Returns this vector's angle with respect to the positive X axis, or [code](1, 0)[/code] vector, in radians.
-				For example, [code]Vector2.RIGHT.angle()[/code] will return zero, [code]Vector2.DOWN.angle()[/code] will return [code]PI / 2[/code] (a quarter turn, or 90 degrees), and [code]Vector2(1, -1).angle()[/code] will return [code]-PI / 4[/code] (a negative eighth turn, or -45 degrees).
-				[url=https://raw.githubusercontent.com/godotengine/godot-docs/master/img/vector2_angle.png]Illustration of the returned angle.[/url]
-				Equivalent to the result of [method @GDScript.atan2] when called with the vector's [member y] and [member x] as parameters: [code]atan2(y, x)[/code].
+				Возвращает угол этого вектора по отношению к положительной оси X или [code](1, 0)[/code] вектора в радианах.
+				Например, [code]Vector2.RIGHT.angle()[/code] вернет ноль, [code]Vector2.DOWN.angle()[/code] вернет [code]PI / 2[/code] (четверть оборота, или 90 градусов), а [code]Vector2(1, -1).angle()[/code] вернет [code]-PI / 4[/code] (отрицательную восьмую оборота, или -45 градусов).
+				[url=https://raw.githubusercontent.com/godotengine/godot-docs/master/img/vector2_angle.png]Иллюстрация возвращаемого угла[/url].
+				Эквивалентно результату работы [метода @GDScript.atan2] при вызове с параметрами [member y] и [member x] вектора: [code]atan2(y, x)[/code].
 			</description>
 		</method>
 		<method name="angle_to">
 			<return type="float" />
 			<argument index="0" name="to" type="Vector2" />
 			<description>
-				Returns the angle to the given vector, in radians.
-				[url=https://raw.githubusercontent.com/godotengine/godot-docs/master/img/vector2_angle_to.png]Illustration of the returned angle.[/url]
+				Возвращает угол к заданному вектору, в радианах.
+				[url=https://raw.githubusercontent.com/godotengine/godot-docs/master/img/vector2_angle_to.png]Иллюстрация возвращаемого угла[/url].
 			</description>
 		</method>
 		<method name="angle_to_point">
 			<return type="float" />
 			<argument index="0" name="to" type="Vector2" />
 			<description>
-				Returns the angle between the line connecting the two points and the X axis, in radians.
-				[url=https://raw.githubusercontent.com/godotengine/godot-docs/3.6/img/vector2_angle_to_point.png]Illustration of the returned angle.[/url]
+				Возвращает угол между линией, соединяющей две точки, и осью X, в радианах.
+				[url=https://raw.githubusercontent.com/godotengine/godot-docs/stable/img/vector2_angle_to_point.png]Иллюстрация возвращаемого угла[/url].
 			</description>
 		</method>
 		<method name="aspect">
 			<return type="float" />
 			<description>
-				Returns the aspect ratio of this vector, the ratio of [member x] to [member y].
+				Возвращает соотношение сторон данного вектора, отношение [member x] к [member y].
 			</description>
 		</method>
 		<method name="bounce">
 			<return type="Vector2" />
 			<argument index="0" name="n" type="Vector2" />
 			<description>
-				Returns the vector "bounced off" from a plane defined by the given normal.
+				Возвращает вектор, "отскочивший" от плоскости, заданной данной нормалью.
 			</description>
 		</method>
 		<method name="ceil">
 			<return type="Vector2" />
 			<description>
-				Returns a new vector with all components rounded up (towards positive infinity).
+				Возвращает новый вектор, все компоненты которого округлены в большую сторону (до положительной бесконечности).
 			</description>
 		</method>
 		<method name="clamped">
 			<return type="Vector2" />
 			<argument index="0" name="length" type="float" />
 			<description>
-				Deprecated, please use [method limit_length] instead.
-				Returns the vector with a maximum length by limiting its length to [code]length[/code].
+				Утратил силу, вместо него используйте [метод limit_length].
+				Возвращает вектор с максимальной длиной, ограничивая его длину значением [code]length[/code].
 			</description>
 		</method>
 		<method name="cross">
 			<return type="float" />
 			<argument index="0" name="with" type="Vector2" />
 			<description>
-				Returns the 2D analog of the cross product for this vector and [code]with[/code].
-				This is the signed area of the parallelogram formed by the two vectors. If the second vector is clockwise from the first vector, then the cross product is the positive area. If counter-clockwise, the cross product is the negative area. If the two vectors are parallel this returns zero, making it useful for testing if two vectors are parallel.
-				[b]Note:[/b] Cross product is not defined in 2D mathematically. This method embeds the 2D vectors in the XY plane of 3D space and uses their cross product's Z component as the analog.
+				Возвращает двумерный аналог кросс-продукта для данного вектора и [code]with[/code].
+				Это знаковая площадь параллелограмма, образованного двумя векторами. Если второй вектор расположен по часовой стрелке относительно первого, то поперечное произведение будет положительной площадью. Если против часовой стрелки, то перекрестное произведение будет отрицательной площадью.
+				[b]Примечание:[/b] Перекрестное произведение не определено в 2D математически. В данном методе 2D-векторы помещаются в плоскость XY 3D-пространства, а в качестве аналога используется Z-компонента их перекрестного произведения.
 			</description>
 		</method>
 		<method name="cubic_interpolate">
@@ -98,85 +98,85 @@
 			<argument index="2" name="post_b" type="Vector2" />
 			<argument index="3" name="weight" type="float" />
 			<description>
-				Cubically interpolates between this vector and [code]b[/code] using [code]pre_a[/code] and [code]post_b[/code] as handles, and returns the result at position [code]weight[/code]. [code]weight[/code] is on the range of 0.0 to 1.0, representing the amount of interpolation.
+				Кубически интерполирует между данным вектором и [code]b[/code], используя [code]pre_a[/code] и [code]post_b[/code] в качестве дескрипторов, и возвращает результат в позиции [code]weight[/code]. [code]weight[/code] находится в диапазоне от 0.0 до 1.0 и представляет собой величину интерполяции.
 			</description>
 		</method>
 		<method name="direction_to">
 			<return type="Vector2" />
 			<argument index="0" name="b" type="Vector2" />
 			<description>
-				Returns the normalized vector pointing from this vector to [code]b[/code]. This is equivalent to using [code](b - a).normalized()[/code].
+				Возвращает нормализованный вектор, направленный из данного вектора в [code]b[/code]. Это эквивалентно использованию [code](b - a).normalized()[/code].
 			</description>
 		</method>
 		<method name="distance_squared_to">
 			<return type="float" />
 			<argument index="0" name="to" type="Vector2" />
 			<description>
-				Returns the squared distance between this vector and [code]b[/code].
-				This method runs faster than [method distance_to], so prefer it if you need to compare vectors or need the squared distance for some formula.
+				Возвращает квадратное расстояние между этим вектором и [code]b[/code].
+				Этот метод работает быстрее, чем [method distance_to], поэтому предпочтите его, если вам нужно сравнить векторы или получить квадратное расстояние для какой-либо формулы.
 			</description>
 		</method>
 		<method name="distance_to">
 			<return type="float" />
 			<argument index="0" name="to" type="Vector2" />
 			<description>
-				Returns the distance between this vector and [code]to[/code].
+				Возвращает расстояние между этим вектором и [code]to[/code].
 			</description>
 		</method>
 		<method name="dot">
 			<return type="float" />
 			<argument index="0" name="with" type="Vector2" />
 			<description>
-				Returns the dot product of this vector and [code]with[/code]. This can be used to compare the angle between two vectors. For example, this can be used to determine whether an enemy is facing the player.
-				The dot product will be [code]0[/code] for a straight angle (90 degrees), greater than 0 for angles narrower than 90 degrees and lower than 0 for angles wider than 90 degrees.
-				When using unit (normalized) vectors, the result will always be between [code]-1.0[/code] (180 degree angle) when the vectors are facing opposite directions, and [code]1.0[/code] (0 degree angle) when the vectors are aligned.
-				[b]Note:[/b] [code]a.dot(b)[/code] is equivalent to [code]b.dot(a)[/code].
+				Возвращает точечное произведение данного вектора и [code]с[/code]. Это можно использовать для сравнения угла между двумя векторами. Например, с его помощью можно определить, стоит ли враг лицом к игроку.
+				Точечное произведение будет равно [code]0[/code] для прямого угла (90 градусов), больше 0 для углов меньше 90 градусов и меньше 0 для углов шире 90 градусов.
+				При использовании единичных (нормализованных) векторов результат всегда будет находиться между [code]-1.0[/code] (угол 180 градусов), когда векторы направлены в противоположные стороны, и [code]1.0[/code] (угол 0 градусов), когда векторы выровнены.
+				[b]Примечание:[/b] [code]a.dot(b)[/code] эквивалентно [code]b.dot(a)[/code].
 			</description>
 		</method>
 		<method name="floor">
 			<return type="Vector2" />
 			<description>
-				Returns a new vector with all components rounded down (towards negative infinity).
+				Возвращает новый вектор, все компоненты которого округлены вниз (в сторону отрицательной бесконечности).
 			</description>
 		</method>
 		<method name="is_equal_approx">
 			<return type="bool" />
 			<argument index="0" name="v" type="Vector2" />
 			<description>
-				Returns [code]true[/code] if this vector and [code]v[/code] are approximately equal, by running [method @GDScript.is_equal_approx] on each component.
+				Возвращает [code]true[/code], если данный вектор и [code]v[/code] приблизительно равны, выполнив [метод @GDScript.is_equal_approx] для каждой компоненты.
 			</description>
 		</method>
 		<method name="is_normalized">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the vector is normalized, [code]false[/code] otherwise.
+				Возвращает [code]true[/code], если вектор нормализован, [code]false[/code] в противном случае.
 			</description>
 		</method>
 		<method name="is_zero_approx">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if this vector's values are approximately zero, by running [method @GDScript.is_zero_approx] on each component.
-				This method is faster than using [method is_equal_approx] with one value as a zero vector.
+				Возвращает [code]true[/code], если значения этого вектора приблизительно равны нулю, выполняя [метод @GDScript.is_zero_approx] для каждого компонента.
+				Этот метод быстрее, чем использование [метода is_equal_approx] с одним значением в качестве нулевого вектора.
 			</description>
 		</method>
 		<method name="length">
 			<return type="float" />
 			<description>
-				Returns the length (magnitude) of this vector.
+				Возвращает длину (величину) данного вектора.
 			</description>
 		</method>
 		<method name="length_squared">
 			<return type="float" />
 			<description>
-				Returns the squared length (squared magnitude) of this vector.
-				This method runs faster than [method length], so prefer it if you need to compare vectors or need the squared distance for some formula.
+				Возвращает квадрат длины (квадрат величины) данного вектора.
+				Этот метод работает быстрее, чем [method length], поэтому предпочтите его, если вам нужно сравнить векторы или получить квадрат расстояния для какой-либо формулы.
 			</description>
 		</method>
 		<method name="limit_length">
 			<return type="Vector2" />
 			<argument index="0" name="length" type="float" default="1.0" />
 			<description>
-				Returns the vector with a maximum length by limiting its length to [code]length[/code].
+				Возвращает вектор с максимальной длиной, ограничивая его длину значением [code]length[/code].
 			</description>
 		</method>
 		<method name="linear_interpolate">
@@ -184,7 +184,7 @@
 			<argument index="0" name="to" type="Vector2" />
 			<argument index="1" name="weight" type="float" />
 			<description>
-				Returns the result of the linear interpolation between this vector and [code]to[/code] by amount [code]weight[/code]. [code]weight[/code] is on the range of 0.0 to 1.0, representing the amount of interpolation.
+				Возвращает результат линейной интерполяции между данным вектором и [code]to[/code] на величину [code]weight[/code]. [code]weight[/code] находится в диапазоне от 0.0 до 1.0 и представляет собой величину интерполяции.
 			</description>
 		</method>
 		<method name="move_toward">
@@ -192,60 +192,60 @@
 			<argument index="0" name="to" type="Vector2" />
 			<argument index="1" name="delta" type="float" />
 			<description>
-				Returns a new vector moved toward [code]to[/code] by the fixed [code]delta[/code] amount. Will not go past the final value.
+				Возвращает новый вектор, сдвинутый в сторону [code]to[/code] на фиксированную величину [code]delta[/code]. Не выходит за пределы конечного значения.
 			</description>
 		</method>
 		<method name="normalized">
 			<return type="Vector2" />
 			<description>
-				Returns the vector scaled to unit length. Equivalent to [code]v / v.length()[/code].
+				Возвращает вектор, масштабированный на единицу длины. Эквивалентно [code]v / v.length()[/code].
 			</description>
 		</method>
 		<method name="posmod">
 			<return type="Vector2" />
 			<argument index="0" name="mod" type="float" />
 			<description>
-				Returns a vector composed of the [method @GDScript.fposmod] of this vector's components and [code]mod[/code].
+				Возвращает вектор, состоящий из [метод @GDScript.fposmod] компонент этого вектора и [code]mod[/code].
 			</description>
 		</method>
 		<method name="posmodv">
 			<return type="Vector2" />
 			<argument index="0" name="modv" type="Vector2" />
 			<description>
-				Returns a vector composed of the [method @GDScript.fposmod] of this vector's components and [code]modv[/code]'s components.
+				Возвращает вектор, состоящий из [метод @GDScript.fposmod] компонент этого вектора и [code]modv[/code] компонент.
 			</description>
 		</method>
 		<method name="project">
 			<return type="Vector2" />
 			<argument index="0" name="b" type="Vector2" />
 			<description>
-				Returns this vector projected onto the vector [code]b[/code].
+				Возвращает данный вектор, спроецированный на вектор [code]b[/code].
 			</description>
 		</method>
 		<method name="reflect">
 			<return type="Vector2" />
 			<argument index="0" name="n" type="Vector2" />
 			<description>
-				Returns the vector reflected (i.e. mirrored, or symmetric) over a line defined by the given direction vector [code]n[/code].
+				Возвращает вектор, отраженный (т.е. зеркальный или симметричный) от линии, заданной вектором направления [code]n[/code].
 			</description>
 		</method>
 		<method name="rotated">
 			<return type="Vector2" />
 			<argument index="0" name="angle" type="float" />
 			<description>
-				Returns the vector rotated by [code]angle[/code] (in radians). See also [method @GDScript.deg2rad].
+				Возвращает вектор, повернутый на [code]угол[/code] (в радианах). См. также [метод @GDScript.deg2rad].
 			</description>
 		</method>
 		<method name="round">
 			<return type="Vector2" />
 			<description>
-				Returns a new vector with all components rounded to the nearest integer, with halfway cases rounded away from zero.
+				Возвращает новый вектор, все компоненты которого округлены до ближайшего целого числа, а полуцелые случаи округлены от нуля.
 			</description>
 		</method>
 		<method name="sign">
 			<return type="Vector2" />
 			<description>
-				Returns a new vector with each component set to one or negative one, depending on the signs of the components. If a component is zero, it returns positive one.
+				Возвращает новый вектор, каждый компонент которого равен единице или отрицательной единице, в зависимости от знаков компонентов. Если компонент равен нулю, возвращается положительная единица.
 			</description>
 		</method>
 		<method name="slerp">
@@ -253,66 +253,66 @@
 			<argument index="0" name="to" type="Vector2" />
 			<argument index="1" name="weight" type="float" />
 			<description>
-				Returns the result of spherical linear interpolation between this vector and [code]to[/code], by amount [code]weight[/code]. [code]weight[/code] is on the range of 0.0 to 1.0, representing the amount of interpolation.
-				[b]Note:[/b] Both vectors must be normalized.
+				Возвращает результат сферической линейной интерполяции между данным вектором и [code]to[/code], на величину [code]weight[/code]. [code]weight[/code] находится в диапазоне от 0.0 до 1.0 и представляет собой величину интерполяции.
+				[b]Примечание:[/b] Оба вектора должны быть нормализованы.
 			</description>
 		</method>
 		<method name="slide">
 			<return type="Vector2" />
 			<argument index="0" name="n" type="Vector2" />
 			<description>
-				Returns this vector slid along a plane defined by the given normal.
+				Возвращает данный вектор, сдвинутый вдоль плоскости, определяемой заданной нормалью.
 			</description>
 		</method>
 		<method name="snapped">
 			<return type="Vector2" />
 			<argument index="0" name="by" type="Vector2" />
 			<description>
-				Returns this vector with each component snapped to the nearest multiple of [code]step[/code]. This can also be used to round to an arbitrary number of decimals.
+				Возвращает данный вектор с каждой компонентой, округленной до ближайшего кратного [code]шага[/code]. Это также можно использовать для округления до произвольного числа десятичных дробей.
 			</description>
 		</method>
 		<method name="tangent">
 			<return type="Vector2" />
 			<description>
-				Returns a perpendicular vector rotated 90 degrees counter-clockwise compared to the original, with the same length.
+				Возвращает перпендикулярный вектор, повернутый на 90 градусов против часовой стрелки по сравнению с исходным, с той же длиной.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="x" type="float" setter="" getter="" default="0.0">
-			The vector's X component. Also accessible by using the index position [code][0][/code].
+			Компонент вектора по оси X. Также доступна через индексную позицию [code][0][/code].
 		</member>
 		<member name="y" type="float" setter="" getter="" default="0.0">
-			The vector's Y component. Also accessible by using the index position [code][1][/code].
+			Компонент Y вектора. Также доступна через индексную позицию [code][1][/code].
 		</member>
 	</members>
 	<constants>
 		<constant name="AXIS_X" value="0">
-			Enumerated value for the X axis.
+			Перечисляемое значение для оси X.
 		</constant>
 		<constant name="AXIS_Y" value="1">
-			Enumerated value for the Y axis.
+			Перечисляемое значение для оси Y.
 		</constant>
 		<constant name="ZERO" value="Vector2( 0, 0 )">
-			Zero vector, a vector with all components set to [code]0[/code].
+			Нулевой вектор - вектор, все компоненты которого равны [code]0[/code].
 		</constant>
 		<constant name="ONE" value="Vector2( 1, 1 )">
-			One vector, a vector with all components set to [code]1[/code].
+			Один вектор - вектор, все компоненты которого равны [code]1[/code].
 		</constant>
 		<constant name="INF" value="Vector2( inf, inf )">
-			Infinity vector, a vector with all components set to [constant @GDScript.INF].
+			Бесконечный вектор, вектор, все компоненты которого равны [константа @GDScript.INF].
 		</constant>
 		<constant name="LEFT" value="Vector2( -1, 0 )">
-			Left unit vector. Represents the direction of left.
+			Левый единичный вектор. Представляет направление влево.
 		</constant>
 		<constant name="RIGHT" value="Vector2( 1, 0 )">
-			Right unit vector. Represents the direction of right.
+			Правый единичный вектор. Представляет направление вправо.
 		</constant>
 		<constant name="UP" value="Vector2( 0, -1 )">
-			Up unit vector. Y is down in 2D, so this vector points -Y.
+			Единичный вектор вверх. Y в 2D направлен вниз, поэтому этот вектор указывает на -Y.
 		</constant>
 		<constant name="DOWN" value="Vector2( 0, 1 )">
-			Down unit vector. Y is down in 2D, so this vector points +Y.
+			Единичный вектор вниз. Y в 2D направлен вниз, поэтому этот вектор указывает на +Y.
 		</constant>
 	</constants>
 </class>

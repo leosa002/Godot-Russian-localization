@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Object" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Object" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Base class for all non-built-in types.
+		Базовый класс для всех не встроенных типов.
 	</brief_description>
 	<description>
-		Every class which is not a built-in type inherits from this class.
-		You can construct Objects from scripting languages, using [code]Object.new()[/code] in GDScript, [code]new Object[/code] in C#, or the "Construct Object" node in VisualScript.
-		Objects do not manage memory. If a class inherits from Object, you will have to delete instances of it manually. To do so, call the [method free] method from your script or delete the instance from C++.
-		Some classes that extend Object add memory management. This is the case of [Reference], which counts references and deletes itself automatically when no longer referenced. [Node], another fundamental type, deletes all its children when freed from memory.
-		Objects export properties, which are mainly useful for storage and editing, but not really so much in programming. Properties are exported in [method _get_property_list] and handled in [method _get] and [method _set]. However, scripting languages and C++ have simpler means to export them.
-		Property membership can be tested directly in GDScript using [code]in[/code]:
+		Каждый класс, не являющийся встроенным типом, наследуется от этого класса.
+		Объекты можно создавать из скриптовых языков, используя [code]Object.new()[/code] в GDScript, [code]new Object[/code] в C# или узел "Construct Object" в VisualScript.
+		Объекты не управляют памятью. Если класс наследуется от Object, вам придется удалять его экземпляры вручную. Для этого вызовите метод [method free] из вашего скрипта или удалите экземпляр из C++.
+		Некоторые классы, расширяющие Object, добавляют управление памятью. Это относится к [Reference], который подсчитывает ссылки и автоматически удаляет себя, когда на него больше не ссылаются. [Node], еще один фундаментальный тип, удаляет все свои дочерние элементы при освобождении памяти.
+		Объекты экспортируют свойства, которые в основном полезны для хранения и редактирования, но не так важны в программировании. Свойства экспортируются в [method _get_property_list] и обрабатываются в [method _get] и [method _set]. Однако скриптовые языки и C++ имеют более простые средства для их экспорта.
+		Принадлежность к свойствам можно проверить непосредственно в GDScript с помощью [code]in[/code]:
 		[codeblock]
 		var n = Node2D.new()
-		print("position" in n) # Prints "True".
-		print("other_property" in n) # Prints "False".
+		print("position" in n) # Печатает "True".
+		print("other_property" in n) # Печатает "False".
 		[/codeblock]
-		The [code]in[/code] operator will evaluate to [code]true[/code] as long as the key exists, even if the value is [code]null[/code].
-		Objects also receive notifications. Notifications are a simple way to notify the object about different events, so they can all be handled together. See [method _notification].
-		[b]Note:[/b] Unlike references to a [Reference], references to an Object stored in a variable can become invalid without warning. Therefore, it's recommended to use [Reference] for data classes instead of [Object].
-		[b]Note:[/b] Due to a bug, you can't create a "plain" Object using [code]Object.new()[/code]. Instead, use [code]ClassDB.instance("Object")[/code]. This bug only applies to Object itself, not any of its descendents like [Reference].
+		Оператор [code]in[/code] будет оцениваться как [code]true[/code] до тех пор, пока существует ключ, даже если значение [code]null[/code].
+		Объекты также получают уведомления. Уведомления - это простой способ оповестить объект о различных событиях, чтобы их можно было обработать все вместе. См. раздел [метод _notification].
+		[b]Примечание:[/b] В отличие от ссылок на [Reference], ссылки на объект, хранящиеся в переменной, могут стать недействительными без предупреждения. Поэтому для классов данных рекомендуется использовать [Reference], а не [Object].
+		[b]Примечание:[/b] Из-за ошибки вы не можете создать "простой" объект с помощью [code]Object.new()[/code]. Вместо этого используйте [code]ClassDB.instance("Object")[/code]. Эта ошибка относится только к самому Object, а не к его потомкам, таким как [Reference].
 	</description>
 	<tutorials>
 		<link title="When and how to avoid using nodes for everything">$DOCS_URL/tutorials/best_practices/node_alternatives.html</link>
@@ -29,30 +29,30 @@
 			<return type="Variant" />
 			<argument index="0" name="property" type="String" />
 			<description>
-				Virtual method which can be overridden to customize the return value of [method get].
-				Returns the given property. Returns [code]null[/code] if the [code]property[/code] does not exist.
+				Виртуальный метод, который можно переопределить, чтобы настроить возвращаемое значение [метода get].
+				Возвращает заданное свойство. Возвращает [code]null[/code], если [code]свойство[/code] не существует.
 			</description>
 		</method>
 		<method name="_get_property_list" qualifiers="virtual">
 			<return type="Array" />
 			<description>
-				Virtual method which can be overridden to customize the return value of [method get_property_list].
-				Returns the object's property list as an [Array] of dictionaries.
-				Each property's [Dictionary] must contain at least [code]name: String[/code] and [code]type: int[/code] (see [enum Variant.Type]) entries. Optionally, it can also include [code]hint: int[/code] (see [enum PropertyHint]), [code]hint_string: String[/code], and [code]usage: int[/code] (see [enum PropertyUsageFlags]).
+				Виртуальный метод, который можно переопределить, чтобы настроить возвращаемое значение [метода get_property_list].
+				Возвращает список свойств объекта в виде [Array] словарей.
+				Каждый словарь [Dictionary] должен содержать как минимум [code]name: String[/code] и [code]type: int[/code] (см. [enum Variant.Type]) записей. Опционально он также может включать [code]hint: int[/code] (см. [enum PropertyHint]), [code]hint_string: String[/code], и [code]usage: int[/code] (см. [enum PropertyUsageFlags]).
 			</description>
 		</method>
 		<method name="_init" qualifiers="virtual">
 			<return type="void" />
 			<description>
-				Called when the object is initialized in memory. Can be defined to take in parameters, that are passed in when constructing.
-				[b]Note:[/b] If [method _init] is defined with required parameters, then explicit construction is the only valid means of creating an Object of the class. If any other means (such as [method PackedScene.instance]) is used, then initialization will fail.
+				Вызывается при инициализации объекта в памяти. Может быть определен, чтобы принимать параметры, которые передаются при конструировании.
+				[b]Примечание:[/b] Если [метод _init] определен с требуемыми параметрами, то явное конструирование является единственным допустимым средством создания объекта класса. Если используется любой другой способ (например, [метод PackedScene.instance]), то инициализация будет неудачной.
 			</description>
 		</method>
 		<method name="_notification" qualifiers="virtual">
 			<return type="void" />
 			<argument index="0" name="what" type="int" />
 			<description>
-				Called whenever the object receives a notification, which is identified in [code]what[/code] by a constant. The base [Object] has two constants [constant NOTIFICATION_POSTINITIALIZE] and [constant NOTIFICATION_PREDELETE], but subclasses such as [Node] define a lot more notifications which are also received by this method.
+				Вызывается всякий раз, когда объект получает уведомление, которое обозначается в [code]what[/code] константой. Базовый [Object] имеет две константы [constant NOTIFICATION_POSTINITIALIZE] и [constant NOTIFICATION_PREDELETE], но подклассы, такие как [Node], определяют гораздо больше уведомлений, которые также принимаются этим методом.
 			</description>
 		</method>
 		<method name="_set" qualifiers="virtual">
@@ -60,15 +60,15 @@
 			<argument index="0" name="property" type="String" />
 			<argument index="1" name="value" type="Variant" />
 			<description>
-				Virtual method which can be overridden to customize the return value of [method set].
-				Sets a property. Returns [code]true[/code] if the [code]property[/code] exists.
+				Виртуальный метод, который можно переопределить, чтобы настроить возвращаемое значение [метода set].
+				Устанавливает свойство. Возвращает [code]true[/code], если [code]свойство[/code] существует.
 			</description>
 		</method>
 		<method name="_to_string" qualifiers="virtual">
 			<return type="String" />
 			<description>
-				Virtual method which can be overridden to customize the return value of [method to_string], and thus the object's representation where it is converted to a string, e.g. with [code]print(obj)[/code].
-				Returns a [String] representing the object. If not overridden, defaults to [code]"[ClassName:RID]"[/code].
+				Виртуальный метод, который можно переопределить, чтобы настроить возвращаемое значение [метода to_string] и, таким образом, представление объекта, когда он преобразуется в строку, например, с помощью [code]print(obj)[/code].
+				Возвращает [String], представляющий объект. Если не переопределено, по умолчанию возвращается [code]"[ClassName:RID]"[/code].
 			</description>
 		</method>
 		<method name="add_user_signal">
@@ -76,29 +76,29 @@
 			<argument index="0" name="signal" type="String" />
 			<argument index="1" name="arguments" type="Array" default="[  ]" />
 			<description>
-				Adds a user-defined [code]signal[/code]. Arguments are optional, but can be added as an [Array] of dictionaries, each containing [code]name: String[/code] and [code]type: int[/code] (see [enum Variant.Type]) entries.
+				Добавляет определяемый пользователем [code]сигнал[/code]. Аргументы необязательны, но могут быть добавлены в виде [массива] словарей, каждый из которых содержит записи [code]name: String[/code] и [code]type: int[/code] (см. [enum Variant.Type]).
 			</description>
 		</method>
 		<method name="call" qualifiers="vararg">
 			<return type="Variant" />
 			<argument index="0" name="method" type="String" />
 			<description>
-				Calls the [code]method[/code] on the object and returns the result. This method supports a variable number of arguments, so parameters are passed as a comma separated list. Example:
+				Вызывает [code]метод[/code] на объекте и возвращает результат. Этот метод поддерживает переменное количество аргументов, поэтому параметры передаются в виде списка, разделенного запятыми. Пример:
 				[codeblock]
 				call("set", "position", Vector2(42.0, 0.0))
 				[/codeblock]
-				[b]Note:[/b] In C#, the method name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined methods where you should use the same convention as in the C# source (typically PascalCase).
+				[b]Примечание:[/b] В C# имя метода должно быть указано как snake_case, если он определен встроенным узлом Godot. Это не относится к пользовательским методам, где следует использовать то же соглашение, что и в исходном тексте C# (обычно PascalCase).
 			</description>
 		</method>
 		<method name="call_deferred" qualifiers="vararg">
 			<return type="void" />
 			<argument index="0" name="method" type="String" />
 			<description>
-				Calls the [code]method[/code] on the object during idle time. This method supports a variable number of arguments, so parameters are passed as a comma separated list. Example:
+				Вызывает [code]метод[/code] объекта во время простоя. Этот метод поддерживает переменное количество аргументов, поэтому параметры передаются в виде списка, разделенного запятыми. Пример:
 				[codeblock]
 				call_deferred("set", "position", Vector2(42.0, 0.0))
 				[/codeblock]
-				[b]Note:[/b] In C#, the method name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined methods where you should use the same convention as in the C# source (typically PascalCase).
+				[b]Примечание:[/b] В C# имя метода должно быть указано как snake_case, если он определен встроенным узлом Godot. Это не относится к пользовательским методам, где следует использовать то же соглашение, что и в исходном тексте C# (обычно PascalCase).
 			</description>
 		</method>
 		<method name="callv">
@@ -106,7 +106,7 @@
 			<argument index="0" name="method" type="String" />
 			<argument index="1" name="arg_array" type="Array" />
 			<description>
-				Calls the [code]method[/code] on the object and returns the result. Contrarily to [method call], this method does not support a variable number of arguments but expects all parameters to be via a single [Array].
+				Вызывает [code]метод[/code] на объекте и возвращает результат. В отличие от [вызова метода], этот метод не поддерживает переменное количество аргументов, а ожидает, что все параметры будут через один [Array].
 				[codeblock]
 				callv("set", [ "position", Vector2(42.0, 0.0) ])
 				[/codeblock]
@@ -115,7 +115,7 @@
 		<method name="can_translate_messages" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the object can translate strings. See [method set_message_translation] and [method tr].
+				Возвращает [code]true[/code], если объект может переводить строки. Смотрите [метод set_message_translation] и [метод tr].
 			</description>
 		</method>
 		<method name="connect">
@@ -126,19 +126,19 @@
 			<argument index="3" name="binds" type="Array" default="[  ]" />
 			<argument index="4" name="flags" type="int" default="0" />
 			<description>
-				Connects a [code]signal[/code] to a [code]method[/code] on a [code]target[/code] object. Pass optional [code]binds[/code] to the call as an [Array] of parameters. These parameters will be passed to the method after any parameter used in the call to [method emit_signal]. Use [code]flags[/code] to set deferred or one-shot connections. See [enum ConnectFlags] constants.
-				A [code]signal[/code] can only be connected once to a [code]method[/code]. It will print an error if already connected, unless the signal was connected with [constant CONNECT_REFERENCE_COUNTED]. To avoid this, first, use [method is_connected] to check for existing connections.
-				If the [code]target[/code] is destroyed in the game's lifecycle, the connection will be lost.
-				Examples:
+				Подключает [code]сигнал[/code] к [code]методу[/code] на [code]целевом[/code] объекте. Передайте необязательные [code]привязки[/code] в вызов в виде [Array] параметров. Эти параметры будут переданы методу после любого параметра, используемого в вызове [method emit_signal]. Используйте [code]флаги[/code] для установки отложенных или одноразовых соединений. См. константы [enum ConnectFlags].
+				Сигнал [code]signal[/code] может быть подключен к [code]методу[/code] только один раз. Если сигнал уже подключен, будет выведена ошибка, если только он не был подключен с помощью [константы CONNECT_REFERENCE_COUNTED]. Чтобы избежать этого, сначала используйте [метод is_connected] для проверки существующих соединений.
+				Если [code]цель[/code] будет уничтожена в жизненном цикле игры, соединение будет потеряно.
+				Примеры:
 				[codeblock]
 				connect("pressed", self, "_on_Button_pressed") # BaseButton signal
 				connect("text_entered", self, "_on_LineEdit_text_entered") # LineEdit signal
-				connect("hit", self, "_on_Player_hit", [ weapon_type, damage ]) # User-defined signal
+				connect("hit", self, "_on_Player_hit", [ weapon_type, damage ]) # Определяемые пользователем signal
 				[/codeblock]
-				An example of the relationship between [code]binds[/code] passed to [method connect] and parameters used when calling [method emit_signal]:
+				Пример связи между [code]привязками[/code], переданными в [method connect], и параметрами, используемыми при вызове [method emit_signal]:
 				[codeblock]
-				connect("hit", self, "_on_Player_hit", [ weapon_type, damage ]) # weapon_type and damage are passed last
-				emit_signal("hit", "Dark lord", 5) # "Dark lord" and 5 are passed first
+				connect("hit", self, "_on_Player_hit", [ weapon_type, damage ]) # weapon_type и damage передаются последними
+				emit_signal("hit", "Dark lord", 5) # "Dark lord" и 5 передаются первыми
 				func _on_Player_hit(hit_by, level, weapon_type, damage):
 				    print("Hit by %s (lvl %d) with weapon %s for %d damage" % [hit_by, level, weapon_type, damage])
 				[/codeblock]
@@ -150,15 +150,15 @@
 			<argument index="1" name="target" type="Object" />
 			<argument index="2" name="method" type="String" />
 			<description>
-				Disconnects a [code]signal[/code] from a [code]method[/code] on the given [code]target[/code].
-				If you try to disconnect a connection that does not exist, the method will print an error. Use [method is_connected] to ensure that the connection exists.
+				Отключает [code]сигнал[/code] от [code]метода[/code] на заданной [code]цели[/code].
+				Если вы попытаетесь отключить несуществующее соединение, метод выведет ошибку. Используйте [method is_connected], чтобы убедиться, что соединение существует.
 			</description>
 		</method>
 		<method name="emit_signal" qualifiers="vararg">
 			<return type="void" />
 			<argument index="0" name="signal" type="String" />
 			<description>
-				Emits the given [code]signal[/code]. The signal must exist, so it should be a built-in signal of this class or one of its parent classes, or a user-defined signal. This method supports a variable number of arguments, so parameters are passed as a comma separated list. Example:
+				Выдает заданный [code]сигнал[/code]. Сигнал должен существовать, поэтому он должен быть встроенным сигналом этого класса или одного из его родительских классов, либо определенным пользователем. Этот метод поддерживает переменное количество аргументов, поэтому параметры передаются в виде списка, разделенного запятыми. Пример:
 				[codeblock]
 				emit_signal("hit", weapon_type, damage)
 				emit_signal("game_over")
@@ -168,48 +168,48 @@
 		<method name="free">
 			<return type="void" />
 			<description>
-				Deletes the object from memory immediately. For [Node]s, you may want to use [method Node.queue_free] to queue the node for safe deletion at the end of the current frame.
-				[b]Important:[/b] If you have a variable pointing to an object, it will [i]not[/i] be assigned to [code]null[/code] once the object is freed. Instead, it will point to a [i]previously freed instance[/i] and you should validate it with [method @GDScript.is_instance_valid] before attempting to call its methods or access its properties.
+				Немедленно удаляет объект из памяти. Для [Node]ов вы можете использовать [метод Node.queue_free], чтобы поставить узел в очередь на безопасное удаление в конце текущего кадра.
+				[b]Важно:[/b] Если у вас есть переменная, указывающая на объект, она [i]не[/i] будет присвоена [code]null[/code] после освобождения объекта. Вместо этого она будет указывать на [i]ранее освобожденный экземпляр[/i], и вы должны подтвердить ее с помощью [метода @GDScript.is_instance_valid], прежде чем пытаться вызвать ее методы или получить доступ к ее свойствам.
 			</description>
 		</method>
 		<method name="get" qualifiers="const">
 			<return type="Variant" />
 			<argument index="0" name="property" type="String" />
 			<description>
-				Returns the [Variant] value of the given [code]property[/code]. If the [code]property[/code] doesn't exist, this will return [code]null[/code].
-				[b]Note:[/b] In C#, the property name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined properties where you should use the same convention as in the C# source (typically PascalCase).
+				Возвращает значение [Variant] данного [code]свойства[/code]. Если [code]свойство[/code] не существует, возвращается [code]null[/code].
+				[b]Примечание:[/b] В C# имя свойства должно быть указано как snake_case, если оно определено встроенным узлом Godot. Это не относится к пользовательским свойствам, где следует использовать то же соглашение, что и в исходном тексте C# (обычно PascalCase).
 			</description>
 		</method>
 		<method name="get_class" qualifiers="const">
 			<return type="String" />
 			<description>
-				Returns the object's class as a [String]. See also [method is_class].
-				[b]Note:[/b] [method get_class] does not take [code]class_name[/code] declarations into account. If the object has a [code]class_name[/code] defined, the base class name will be returned instead.
+				Возвращает класс объекта в виде [String]. См. также [метод is_class].
+				[b]Примечание:[/b] [метод get_class] не учитывает объявления [code]class_name[/code]. Если у объекта определено [code]class_name[/code], вместо него будет возвращено имя базового класса.
 			</description>
 		</method>
 		<method name="get_incoming_connections" qualifiers="const">
 			<return type="Array" />
 			<description>
-				Returns an [Array] of dictionaries with information about signals that are connected to the object.
-				Each [Dictionary] contains three String entries:
-				- [code]source[/code] is a reference to the signal emitter.
-				- [code]signal_name[/code] is the name of the connected signal.
-				- [code]method_name[/code] is the name of the method to which the signal is connected.
+				Возвращает [Array] словарей с информацией о сигналах, подключенных к объекту.
+				Каждый [Dictionary] содержит три записи String:
+				- [code]source[/code] - ссылка на излучатель сигнала.
+				- [code]signal_name[/code] - имя подключенного сигнала.
+				- [code]method_name[/code] - имя метода, к которому подключен сигнал.
 			</description>
 		</method>
 		<method name="get_indexed" qualifiers="const">
 			<return type="Variant" />
-			<argument index="0" name="property_path" type="NodePath" />
+			<argument index="0" name="property" type="NodePath" />
 			<description>
-				Gets the object's property indexed by the given [code]property_path[/code]. The path should be a [NodePath] relative to the current object and can use the colon character ([code]:[/code]) to access nested properties. Examples: [code]"position:x"[/code] or [code]"material:next_pass:blend_mode"[/code].
-				[b]Note:[/b] Even though the method takes [NodePath] argument, it doesn't support actual paths to [Node]s in the scene tree, only colon-separated sub-property paths. For the purpose of nodes, use [method Node.get_node_and_resource] instead.
+				Получает свойство объекта, проиндексированное по заданному [NodePath]. Путь узла должен быть относительным к текущему объекту и может использовать символ двоеточия ([code]:[/code]) для доступа к вложенным свойствам. Примеры: [code]"position:x"[/code] или [code]"material:next_pass:blend_mode"[/code].
+				[b]Примечание:[/b] Несмотря на то, что метод принимает аргумент [NodePath], он не поддерживает фактические пути к [Node]ам в дереве сцены, только пути к вложенным свойствам, разделенные двоеточием. Для получения узлов вместо этого используйте [метод Node.get_node_and_resource].
 			</description>
 		</method>
 		<method name="get_instance_id" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the object's unique instance ID.
-				This ID can be saved in [EncodedObjectAsID], and can be used to retrieve the object instance with [method @GDScript.instance_from_id].
+				Возвращает уникальный идентификатор экземпляра объекта.
+				Этот идентификатор можно сохранить в [EncodedObjectAsID] и использовать для извлечения экземпляра объекта с помощью [метода @GDScript.instance_from_id].
 			</description>
 		</method>
 		<method name="get_meta" qualifiers="const">
@@ -217,88 +217,88 @@
 			<argument index="0" name="name" type="String" />
 			<argument index="1" name="default" type="Variant" default="null" />
 			<description>
-				Returns the object's metadata entry for the given [code]name[/code].
-				Throws error if the entry does not exist, unless [code]default[/code] is not [code]null[/code] (in which case the default value will be returned).
+				Возвращает запись метаданных объекта для заданного [code]name[/code].
+				Выбрасывает ошибку, если запись не существует, если только [code]default[/code] не [code]null[/code] (в этом случае будет возвращено значение по умолчанию).
 			</description>
 		</method>
 		<method name="get_meta_list" qualifiers="const">
 			<return type="PoolStringArray" />
 			<description>
-				Returns the object's metadata as a [PoolStringArray].
+				Возвращает метаданные объекта в виде массива [PoolStringArray].
 			</description>
 		</method>
 		<method name="get_method_list" qualifiers="const">
 			<return type="Array" />
 			<description>
-				Returns the object's methods and their signatures as an [Array].
+				Возвращает методы объекта и их сигнатуры в виде [Array].
 			</description>
 		</method>
 		<method name="get_property_list" qualifiers="const">
 			<return type="Array" />
 			<description>
-				Returns the object's property list as an [Array] of dictionaries.
-				Each property's [Dictionary] contain at least [code]name: String[/code] and [code]type: int[/code] (see [enum Variant.Type]) entries. Optionally, it can also include [code]hint: int[/code] (see [enum PropertyHint]), [code]hint_string: String[/code], and [code]usage: int[/code] (see [enum PropertyUsageFlags]).
+				Возвращает список свойств объекта в виде [Array] словарей.
+				Словарь каждого свойства содержит как минимум [code]name: String[/code] и [code]type: int[/code] (см. [enum Variant.Type]) записей. Опционально он также может включать [code]hint: int[/code] (см. [enum PropertyHint]), [code]hint_string: String[/code], и [code]usage: int[/code] (см. [enum PropertyUsageFlags]).
 			</description>
 		</method>
 		<method name="get_script" qualifiers="const">
 			<return type="Reference" />
 			<description>
-				Returns the object's [Script] instance, or [code]null[/code] if none is assigned.
+				Возвращает экземпляр [Script] объекта, или [code]null[/code], если он не назначен.
 			</description>
 		</method>
 		<method name="get_signal_connection_list" qualifiers="const">
 			<return type="Array" />
 			<argument index="0" name="signal" type="String" />
 			<description>
-				Returns an [Array] of connections for the given [code]signal[/code].
+				Возвращает [Array] соединений для заданного [code]сигнала[/code].
 			</description>
 		</method>
 		<method name="get_signal_list" qualifiers="const">
 			<return type="Array" />
 			<description>
-				Returns the list of signals as an [Array] of dictionaries.
+				Возвращает список сигналов в виде [Array] словарей.
 			</description>
 		</method>
 		<method name="has_meta" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Returns [code]true[/code] if a metadata entry is found with the given [code]name[/code].
+				Возвращает [code]true[/code], если найдена запись метаданных с заданным [code]именем[/code].
 			</description>
 		</method>
 		<method name="has_method" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="method" type="String" />
 			<description>
-				Returns [code]true[/code] if the object contains the given [code]method[/code].
+				Возвращает [code]true[/code], если объект содержит данный [code]метод[/code].
 			</description>
 		</method>
 		<method name="has_signal" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="signal" type="String" />
 			<description>
-				Returns [code]true[/code] if the given [code]signal[/code] exists.
+				Возвращает [code]true[/code], если данный [code]сигнал[/code] существует.
 			</description>
 		</method>
 		<method name="has_user_signal" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="signal" type="String" />
 			<description>
-				Returns [code]true[/code] if the given user-defined [code]signal[/code] exists. Only signals added using [method add_user_signal] are taken into account.
+				Возвращает [code]true[/code], если данный пользовательский [code]сигнал[/code] существует. Учитываются только сигналы, добавленные с помощью [метода add_user_signal].
 			</description>
 		</method>
 		<method name="is_blocking_signals" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if signal emission blocking is enabled.
+				Возвращает [code]true[/code], если блокировка излучения сигнала включена.
 			</description>
 		</method>
 		<method name="is_class" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="class" type="String" />
 			<description>
-				Returns [code]true[/code] if the object inherits from the given [code]class[/code]. See also [method get_class].
-				[b]Note:[/b] [method is_class] does not take [code]class_name[/code] declarations into account. If the object has a [code]class_name[/code] defined, [method is_class] will return [code]false[/code] for that name.
+				Возвращает [code]true[/code], если объект наследует от данного [code]класса[/code]. См. также [метод get_class].
+				[b]Примечание:[/b] [метод is_class] не учитывает объявления [code]class_name[/code]. Если для объекта определено [code]имя_класса[/code], то [метод is_class] вернет [code]false[/code] для этого имени.
 			</description>
 		</method>
 		<method name="is_connected" qualifiers="const">
@@ -307,13 +307,13 @@
 			<argument index="1" name="target" type="Object" />
 			<argument index="2" name="method" type="String" />
 			<description>
-				Returns [code]true[/code] if a connection exists for a given [code]signal[/code], [code]target[/code], and [code]method[/code].
+				Возвращает [code]true[/code], если для заданного [code]сигнала[/code], [code]цели[/code] и [code]метода[/code] существует соединение.
 			</description>
 		</method>
 		<method name="is_queued_for_deletion" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the [method Node.queue_free] method was called for the object.
+				Возвращает [code]true[/code], если для объекта был вызван метод [method Node.queue_free].
 			</description>
 		</method>
 		<method name="notification">
@@ -321,21 +321,21 @@
 			<argument index="0" name="what" type="int" />
 			<argument index="1" name="reversed" type="bool" default="false" />
 			<description>
-				Send a given notification to the object, which will also trigger a call to the [method _notification] method of all classes that the object inherits from.
-				If [code]reversed[/code] is [code]true[/code], [method _notification] is called first on the object's own class, and then up to its successive parent classes. If [code]reversed[/code] is [code]false[/code], [method _notification] is called first on the highest ancestor ([Object] itself), and then down to its successive inheriting classes.
+				Отправьте объекту заданное уведомление, которое также вызовет метод [method _notification] всех классов, от которых наследует объект.
+				Если [code]reversed[/code] имеет значение [code]true[/code], [method _notification] вызывается сначала в собственном классе объекта, а затем в его последовательных родительских классах. Если [code]reversed[/code] равно [code]false[/code], то [метод _notification] вызывается сначала на самом старшем предке (самом [Object]), а затем до последующих наследующих классов.
 			</description>
 		</method>
 		<method name="property_list_changed_notify">
 			<return type="void" />
 			<description>
-				Notify the editor that the property list has changed, so that editor plugins can take the new values into account. Does nothing on export builds.
+				Уведомляет редактор об изменении списка свойств, чтобы плагины редактора могли принять во внимание новые значения. Ничего не делает при экспорте сборки.
 			</description>
 		</method>
 		<method name="remove_meta">
 			<return type="void" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Removes a given entry from the object's metadata. See also [method set_meta].
+				Удаляет заданную запись из метаданных объекта. См. также [метод set_meta].
 			</description>
 		</method>
 		<method name="set">
@@ -343,15 +343,15 @@
 			<argument index="0" name="property" type="String" />
 			<argument index="1" name="value" type="Variant" />
 			<description>
-				Assigns a new value to the given property. If the [code]property[/code] does not exist or the given value's type doesn't match, nothing will happen.
-				[b]Note:[/b] In C#, the property name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined properties where you should use the same convention as in the C# source (typically PascalCase).
+				Присваивает новое значение заданному свойству. Если [code]свойство[/code] не существует или тип заданного значения не совпадает, ничего не произойдет.
+				[b]Примечание:[/b] В C# имя свойства должно быть указано как snake_case, если оно определено встроенным узлом Godot. Это не относится к пользовательским свойствам, где следует использовать то же соглашение, что и в исходном тексте C# (обычно PascalCase).
 			</description>
 		</method>
 		<method name="set_block_signals">
 			<return type="void" />
 			<argument index="0" name="enable" type="bool" />
 			<description>
-				If set to [code]true[/code], signal emission is blocked.
+				Если установлено значение [code]true[/code], излучение сигнала блокируется.
 			</description>
 		</method>
 		<method name="set_deferred">
@@ -359,16 +359,16 @@
 			<argument index="0" name="property" type="String" />
 			<argument index="1" name="value" type="Variant" />
 			<description>
-				Assigns a new value to the given property, after the current frame's physics step. This is equivalent to calling [method set] via [method call_deferred], i.e. [code]call_deferred("set", property, value)[/code].
-				[b]Note:[/b] In C#, the property name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined properties where you should use the same convention as in the C# source (typically PascalCase).
+				Присваивает новое значение заданному свойству после шага физики текущего кадра. Это эквивалентно вызову [метода set] через [метод call_deferred], т. е. [code]call_deferred("set", property, value)[/code].
+				[b]Примечание:[/b] В C# имя свойства должно быть указано как snake_case, если оно определено встроенным узлом Godot. Это не относится к пользовательским свойствам, где следует использовать то же соглашение, что и в исходном тексте C# (обычно PascalCase).
 			</description>
 		</method>
 		<method name="set_indexed">
 			<return type="void" />
-			<argument index="0" name="property_path" type="NodePath" />
+			<argument index="0" name="property" type="NodePath" />
 			<argument index="1" name="value" type="Variant" />
 			<description>
-				Assigns a new value to the property identified by the [code]property_path[/code]. The path should be a [NodePath] relative to the current object and can use the colon character ([code]:[/code]) to access nested properties. Example:
+				Присваивает новое значение свойству, указанному в [NodePath]. Путь узла должен быть относительным к текущему объекту и может использовать символ двоеточия ([code]:[/code]) для доступа к вложенным свойствам. Пример:
 				[codeblock]
 				set_indexed("position", Vector2(42, 0))
 				set_indexed("position:y", -10)
@@ -380,7 +380,7 @@
 			<return type="void" />
 			<argument index="0" name="enable" type="bool" />
 			<description>
-				Defines whether the object can translate strings (with calls to [method tr]). Enabled by default.
+				Определяет, может ли объект переводить строки (с помощью вызовов [метода tr]). По умолчанию включено.
 			</description>
 		</method>
 		<method name="set_meta">
@@ -388,59 +388,59 @@
 			<argument index="0" name="name" type="String" />
 			<argument index="1" name="value" type="Variant" />
 			<description>
-				Adds, changes or removes a given entry in the object's metadata. Metadata are serialized and can take any [Variant] value.
-				To remove a given entry from the object's metadata, use [method remove_meta]. Metadata is also removed if its value is set to [code]null[/code]. This means you can also use [code]set_meta("name", null)[/code] to remove metadata for [code]"name"[/code].
+				Добавляет, изменяет или удаляет заданную запись в метаданных объекта. Метаданные сериализуются и могут принимать любое значение [Variant].
+				Чтобы удалить заданную запись из метаданных объекта, используйте [метод remove_meta]. Метаданные также удаляются, если их значение установлено в [code]null[/code]. Это означает, что вы также можете использовать [code]set_meta("name", null)[/code] для удаления метаданных для [code]"name"[/code].
 			</description>
 		</method>
 		<method name="set_script">
 			<return type="void" />
 			<argument index="0" name="script" type="Reference" />
 			<description>
-				Assigns a script to the object. Each object can have a single script assigned to it, which are used to extend its functionality.
-				If the object already had a script, the previous script instance will be freed and its variables and state will be lost. The new script's [method _init] method will be called.
+				Присваивает объекту скрипт. Каждому объекту может быть назначен один скрипт, который используется для расширения его функциональности.
+				Если объект уже имел скрипт, предыдущий экземпляр скрипта будет освобожден, а его переменные и состояние будут потеряны. Будет вызван метод [method _init] нового скрипта.
 			</description>
 		</method>
 		<method name="to_string">
 			<return type="String" />
 			<description>
-				Returns a [String] representing the object. If not overridden, defaults to [code]"[ClassName:RID]"[/code].
-				Override the method [method _to_string] to customize the [String] representation.
+				Возвращает [String], представляющий объект. Если не переопределено, по умолчанию возвращается [code]"[ClassName:RID]"[/code].
+				Переопределите метод [method _to_string], чтобы настроить представление [String].
 			</description>
 		</method>
 		<method name="tr" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="message" type="String" />
 			<description>
-				Translates a message using translation catalogs configured in the Project Settings.
-				Only works if message translation is enabled (which it is by default), otherwise it returns the [code]message[/code] unchanged. See [method set_message_translation].
+				Переводит сообщение, используя каталоги переводов, настроенные в настройках проекта.
+				Работает, только если перевод сообщения включен (по умолчанию), в противном случае возвращает [code]сообщение[/code] без изменений. Смотрите [метод set_message_translation].
 			</description>
 		</method>
 	</methods>
 	<signals>
 		<signal name="script_changed">
 			<description>
-				Emitted whenever the object's script is changed.
+				Выдается при изменении сценария объекта.
 			</description>
 		</signal>
 	</signals>
 	<constants>
 		<constant name="NOTIFICATION_POSTINITIALIZE" value="0">
-			Called right when the object is initialized. Not available in script.
+			Вызывается сразу после инициализации объекта. Недоступно в скрипте.
 		</constant>
 		<constant name="NOTIFICATION_PREDELETE" value="1">
-			Called before the object is about to be deleted.
+			Вызывается перед тем, как объект будет удален.
 		</constant>
 		<constant name="CONNECT_DEFERRED" value="1" enum="ConnectFlags">
-			Connects a signal in deferred mode. This way, signal emissions are stored in a queue, then set on idle time.
+			Подключает сигнал в отложенном режиме. Таким образом, выбросы сигнала сохраняются в очереди, а затем устанавливаются на время простоя.
 		</constant>
 		<constant name="CONNECT_PERSIST" value="2" enum="ConnectFlags">
-			Persisting connections are saved when the object is serialized to file.
+			Сохраняющиеся соединения сохраняются при сериализации объекта в файл.
 		</constant>
 		<constant name="CONNECT_ONESHOT" value="4" enum="ConnectFlags">
-			One-shot connections disconnect themselves after emission.
+			Одноразовые соединения отключаются сами после эмиссии.
 		</constant>
 		<constant name="CONNECT_REFERENCE_COUNTED" value="8" enum="ConnectFlags">
-			Connect a signal as reference-counted. This means that a given signal can be connected several times to the same target, and will only be fully disconnected once no references are left.
+			Подключите сигнал по ссылке. Это означает, что данный сигнал может быть подключен несколько раз к одной и той же цели и будет полностью отключен только после того, как не останется ссылок.
 		</constant>
 	</constants>
 </class>

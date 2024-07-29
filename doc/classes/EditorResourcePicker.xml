@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="EditorResourcePicker" inherits="HBoxContainer" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="EditorResourcePicker" inherits="HBoxContainer" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Godot editor's control for selecting [Resource] type properties.
+		Элемент управления редактора Godot для выбора свойств типа [Resource].
 	</brief_description>
 	<description>
-		This [Control] node is used in the editor's Inspector dock to allow editing of [Resource] type properties. It provides options for creating, loading, saving and converting resources. Can be used with [EditorInspectorPlugin] to recreate the same behavior.
-		[b]Note:[/b] This [Control] does not include any editor for the resource, as editing is controlled by the Inspector dock itself or sub-Inspectors.
+		Этот узел [Control] используется в доке "Инспектор" редактора для редактирования свойств типа [Resource]. Он предоставляет опции для создания, загрузки, сохранения и преобразования ресурсов. Может быть использован с [EditorInspectorPlugin] для воссоздания того же поведения.
+		[b]Примечание:[/b] Этот [Control] не включает в себя редактор для ресурса, так как редактирование контролируется самим доком Инспектора или вложенными Инспекторами.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -29,7 +29,7 @@
 		<method name="get_allowed_types" qualifiers="const">
 			<return type="PoolStringArray" />
 			<description>
-				Returns a list of all allowed types and subtypes corresponding to the [member base_type]. If the [member base_type] is empty, an empty list is returned.
+				Возвращает список всех допустимых типов и подтипов, соответствующих [member base_type]. Если [member base_type] пуст, возвращается пустой список.
 			</description>
 		</method>
 		<method name="get_drag_data_fw">
@@ -43,51 +43,51 @@
 			<return type="bool" />
 			<argument index="0" name="id" type="int" />
 			<description>
-				This virtual method can be implemented to handle context menu items not handled by default. See [method set_create_options].
+				Этот виртуальный метод может быть реализован для работы с пунктами контекстного меню, не обрабатываемыми по умолчанию. Смотрите [метод set_create_options].
 			</description>
 		</method>
 		<method name="set_create_options" qualifiers="virtual">
 			<return type="void" />
 			<argument index="0" name="menu_node" type="Object" />
 			<description>
-				This virtual method is called when updating the context menu of [EditorResourcePicker]. Implement this method to override the "New ..." items with your own options. [code]menu_node[/code] is a reference to the [PopupMenu] node.
-				[b]Note:[/b] Implement [method handle_menu_selected] to handle these custom items.
+				Этот виртуальный метод вызывается при обновлении контекстного меню [EditorResourcePicker]. Реализуйте этот метод, чтобы переопределить пункты "Новый ..." с вашими собственными опциями. [code]menu_node[/code] - это ссылка на узел [PopupMenu].
+				[b]Примечание:[/b] Реализуйте [метод handle_menu_selected] для обработки этих пользовательских элементов.
 			</description>
 		</method>
 		<method name="set_toggle_pressed">
 			<return type="void" />
 			<argument index="0" name="pressed" type="bool" />
 			<description>
-				Sets the toggle mode state for the main button. Works only if [member toggle_mode] is set to [code]true[/code].
+				Устанавливает состояние режима переключения для главной кнопки. Работает только в том случае, если для [member toggle_mode] установлено значение [code]true[/code].
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="base_type" type="String" setter="set_base_type" getter="get_base_type" default="&quot;&quot;">
-			The base type of allowed resource types. Can be a comma-separated list of several options.
+			Базовый тип разрешенных типов ресурсов. Может представлять собой список из нескольких вариантов, разделенных запятыми.
 		</member>
 		<member name="editable" type="bool" setter="set_editable" getter="is_editable" default="true">
-			If [code]true[/code], the value can be selected and edited.
+			Если [code]true[/code], значение можно выбрать и отредактировать.
 		</member>
 		<member name="edited_resource" type="Resource" setter="set_edited_resource" getter="get_edited_resource">
-			The edited resource value.
+			Редактируемое значение ресурса.
 		</member>
 		<member name="toggle_mode" type="bool" setter="set_toggle_mode" getter="is_toggle_mode" default="false">
-			If [code]true[/code], the main button with the resource preview works in the toggle mode. Use [method set_toggle_pressed] to manually set the state.
+			Если [code]true[/code], то главная кнопка с предварительным просмотром ресурса работает в режиме переключения. Для ручной установки состояния используйте [метод set_toggle_pressed].
 		</member>
 	</members>
 	<signals>
 		<signal name="resource_changed">
 			<argument index="0" name="resource" type="Resource" />
 			<description>
-				Emitted when the value of the edited resource was changed.
+				Выдается при изменении значения редактируемого ресурса.
 			</description>
 		</signal>
 		<signal name="resource_selected">
 			<argument index="0" name="resource" type="Resource" />
 			<argument index="1" name="edit" type="bool" />
 			<description>
-				Emitted when the resource value was set and user clicked to edit it. When [code]edit[/code] is [code]true[/code], the signal was caused by the context menu "Edit" option.
+				Выдается, когда значение ресурса было установлено и пользователь нажал кнопку мыши, чтобы отредактировать его. Если [code]edit[/code] имеет значение [code]true[/code], сигнал был вызван опцией контекстного меню "Edit".
 			</description>
 		</signal>
 	</signals>

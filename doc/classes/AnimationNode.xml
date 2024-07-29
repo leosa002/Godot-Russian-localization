@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="AnimationNode" inherits="Resource" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="AnimationNode" inherits="Resource" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Base resource for [AnimationTree] nodes.
+		Базовый ресурс для узлов [AnimationTree].
 	</brief_description>
 	<description>
-		Base resource for [AnimationTree] nodes. In general, it's not used directly, but you can create custom ones with custom blending formulas.
-		Inherit this when creating nodes mainly for use in [AnimationNodeBlendTree], otherwise [AnimationRootNode] should be used instead.
+		Базовый ресурс для узлов [AnimationTree]. В общем случае он не используется напрямую, но вы можете создавать собственные узлы с пользовательскими формулами смешивания.
+		Наследуйте его при создании узлов, предназначенных в основном для использования в [AnimationNodeBlendTree], в противном случае вместо него следует использовать [AnimationRootNode].
 	</description>
 	<tutorials>
 		<link>$DOCS_URL/tutorials/animation/animation_tree.html</link>
@@ -15,7 +15,7 @@
 			<return type="void" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Adds an input to the node. This is only useful for nodes created for use in an [AnimationNodeBlendTree].
+				Добавляет вход в узел. Это полезно только для узлов, созданных для использования в [AnimationNodeBlendTree].
 			</description>
 		</method>
 		<method name="blend_animation">
@@ -26,7 +26,7 @@
 			<argument index="3" name="seeked" type="bool" />
 			<argument index="4" name="blend" type="float" />
 			<description>
-				Blend an animation by [code]blend[/code] amount (name must be valid in the linked [AnimationPlayer]). A [code]time[/code] and [code]delta[/code] may be passed, as well as whether [code]seek[/code] happened.
+				Смешивает анимацию на [code]blend[/code] количество (имя должно быть действительным в связанном [AnimationPlayer]). Может быть передано [code]time[/code] и [code]delta[/code], а также указано, произошло ли [code]seek[/code].
 			</description>
 		</method>
 		<method name="blend_input">
@@ -38,7 +38,7 @@
 			<argument index="4" name="filter" type="int" enum="AnimationNode.FilterAction" default="0" />
 			<argument index="5" name="optimize" type="bool" default="true" />
 			<description>
-				Blend an input. This is only useful for nodes created for an [AnimationNodeBlendTree]. The [code]time[/code] parameter is a relative delta, unless [code]seek[/code] is [code]true[/code], in which case it is absolute. A filter mode may be optionally passed (see [enum FilterAction] for options).
+				Блендировать вход. Это полезно только для узлов, созданных для [AnimationNodeBlendTree]. Параметр [code]time[/code] является относительной дельтой, если только [code]seek[/code] не является [code]true[/code], в этом случае он абсолютный. Опционально может передаваться режим фильтрации (опции см. в [enum FilterAction]).
 			</description>
 		</method>
 		<method name="blend_node">
@@ -51,72 +51,72 @@
 			<argument index="5" name="filter" type="int" enum="AnimationNode.FilterAction" default="0" />
 			<argument index="6" name="optimize" type="bool" default="true" />
 			<description>
-				Blend another animation node (in case this node contains children animation nodes). This function is only useful if you inherit from [AnimationRootNode] instead, else editors will not display your node for addition.
+				Добавляет еще один узел анимации (в случае, если этот узел содержит дочерние узлы анимации). Эта функция полезна только в том случае, если вы наследуете от [AnimationRootNode], иначе редакторы не будут отображать ваш узел для добавления.
 			</description>
 		</method>
 		<method name="get_caption" qualifiers="virtual">
 			<return type="String" />
 			<description>
-				When inheriting from [AnimationRootNode], implement this virtual method to override the text caption for this node.
+				При наследовании от [AnimationRootNode] реализуйте этот виртуальный метод, чтобы переопределить текстовую надпись для этого узла.
 			</description>
 		</method>
 		<method name="get_child_by_name" qualifiers="virtual">
 			<return type="Object" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				When inheriting from [AnimationRootNode], implement this virtual method to return a child node by its [code]name[/code].
+				При наследовании от [AnimationRootNode] реализуйте этот виртуальный метод для возврата дочернего узла по его [code]имени[/code].
 			</description>
 		</method>
 		<method name="get_child_nodes" qualifiers="virtual">
 			<return type="Dictionary" />
 			<description>
-				When inheriting from [AnimationRootNode], implement this virtual method to return all children nodes in order as a [code]name: node[/code] dictionary.
+				При наследовании от [AnimationRootNode] реализуйте этот виртуальный метод для возврата всех дочерних узлов по порядку в виде словаря [code]name: node[/code].
 			</description>
 		</method>
 		<method name="get_input_count" qualifiers="const">
 			<return type="int" />
 			<description>
-				Amount of inputs in this node, only useful for nodes that go into [AnimationNodeBlendTree].
+				Количество входов в этом узле, полезно только для узлов, входящих в [AnimationNodeBlendTree].
 			</description>
 		</method>
 		<method name="get_input_name">
 			<return type="String" />
 			<argument index="0" name="input" type="int" />
 			<description>
-				Gets the name of an input by index.
+				Получает имя входа по индексу.
 			</description>
 		</method>
 		<method name="get_parameter" qualifiers="const">
 			<return type="Variant" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				Gets the value of a parameter. Parameters are custom local memory used for your nodes, given a resource can be reused in multiple trees.
+				Получает значение параметра. Параметры - это пользовательская локальная память, используемая для ваших узлов, учитывая, что ресурс может быть повторно использован в нескольких деревьях.
 			</description>
 		</method>
 		<method name="get_parameter_default_value" qualifiers="virtual">
 			<return type="Variant" />
 			<argument index="0" name="name" type="String" />
 			<description>
-				When inheriting from [AnimationRootNode], implement this virtual method to return the default value of parameter "[code]name[/code]". Parameters are custom local memory used for your nodes, given a resource can be reused in multiple trees.
+				При наследовании от [AnimationRootNode] реализуйте этот виртуальный метод для возврата значения по умолчанию параметра "[code]name[/code]". Параметры - это пользовательская локальная память, используемая для ваших узлов, учитывая, что один ресурс может быть повторно использован в нескольких деревьях.
 			</description>
 		</method>
 		<method name="get_parameter_list" qualifiers="virtual">
 			<return type="Array" />
 			<description>
-				When inheriting from [AnimationRootNode], implement this virtual method to return a list of the properties on this node. Parameters are custom local memory used for your nodes, given a resource can be reused in multiple trees. Format is similar to [method Object.get_property_list].
+				При наследовании от [AnimationRootNode] реализуйте этот виртуальный метод, чтобы вернуть список свойств этого узла. Параметрами является пользовательская локальная память, используемая для ваших узлов, учитывая, что ресурс может быть повторно использован в нескольких деревьях. Формат аналогичен [method Object.get_property_list].
 			</description>
 		</method>
 		<method name="has_filter" qualifiers="virtual">
 			<return type="bool" />
 			<description>
-				When inheriting from [AnimationRootNode], implement this virtual method to return whether the blend tree editor should display filter editing on this node.
+				При наследовании от [AnimationRootNode] реализуйте этот виртуальный метод, чтобы вернуть, должен ли редактор дерева смешивания отображать редактирование фильтров на этом узле.
 			</description>
 		</method>
 		<method name="is_path_filtered" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="path" type="NodePath" />
 			<description>
-				Returns whether the given path is filtered.
+				Возвращает, фильтруется ли заданный путь.
 			</description>
 		</method>
 		<method name="process" qualifiers="virtual">
@@ -124,16 +124,16 @@
 			<argument index="0" name="time" type="float" />
 			<argument index="1" name="seek" type="bool" />
 			<description>
-				When inheriting from [AnimationRootNode], implement this virtual method to run some code when this node is processed. The [code]time[/code] parameter is a relative delta, unless [code]seek[/code] is [code]true[/code], in which case it is absolute.
-				Here, call the [method blend_input], [method blend_node] or [method blend_animation] functions. You can also use [method get_parameter] and [method set_parameter] to modify local memory.
-				This function should return the time left for the current animation to finish (if unsure, pass the value from the main blend being called).
+				При наследовании от [AnimationRootNode] реализуйте этот виртуальный метод для выполнения некоторого кода при обработке этого узла. Параметр [code]time[/code] является относительной дельтой, если только [code]seek[/code] не является [code]true[/code], в этом случае он является абсолютным.
+				Здесь следует вызвать функции [method blend_input], [method blend_node] или [method blend_animation]. Для модификации локальной памяти можно также использовать функции [method get_parameter] и [method set_parameter].
+				Эта функция должна возвращать время, оставшееся до завершения текущей анимации (если нет уверенности, передайте значение из вызываемого основного бленда).
 			</description>
 		</method>
 		<method name="remove_input">
 			<return type="void" />
 			<argument index="0" name="index" type="int" />
 			<description>
-				Removes an input, call this only when inactive.
+				Удаляет вход, вызывается только в неактивном состоянии.
 			</description>
 		</method>
 		<method name="set_filter_path">
@@ -141,7 +141,7 @@
 			<argument index="0" name="path" type="NodePath" />
 			<argument index="1" name="enable" type="bool" />
 			<description>
-				Adds or removes a path for the filter.
+				Добавляет или удаляет путь для фильтра.
 			</description>
 		</method>
 		<method name="set_parameter">
@@ -149,39 +149,39 @@
 			<argument index="0" name="name" type="String" />
 			<argument index="1" name="value" type="Variant" />
 			<description>
-				Sets a custom parameter. These are used as local memory, because resources can be reused across the tree or scenes.
+				Устанавливает пользовательский параметр. Они используются в качестве локальной памяти, поскольку ресурсы могут быть повторно использованы в дереве или сценах.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="filter_enabled" type="bool" setter="set_filter_enabled" getter="is_filter_enabled">
-			If [code]true[/code], filtering is enabled.
+			Если [code]true[/code], то фильтрация включена.
 		</member>
 	</members>
 	<signals>
 		<signal name="removed_from_graph">
 			<description>
-				Emitted when the node was removed from the graph.
+				Выдается, когда узел был удален из графа.
 			</description>
 		</signal>
 		<signal name="tree_changed">
 			<description>
-				Emitted by nodes that inherit from this class and that have an internal tree when one of their nodes changes. The nodes that emit this signal are [AnimationNodeBlendSpace1D], [AnimationNodeBlendSpace2D], [AnimationNodeStateMachine], and [AnimationNodeBlendTree].
+				Выдается узлами, наследующими от этого класса и имеющими внутреннее дерево, при изменении одного из узлов. Этот сигнал издают узлы [AnimationNodeBlendSpace1D], [AnimationNodeBlendSpace2D], [AnimationNodeStateMachine] и [AnimationNodeBlendTree].
 			</description>
 		</signal>
 	</signals>
 	<constants>
 		<constant name="FILTER_IGNORE" value="0" enum="FilterAction">
-			Do not use filtering.
+			Не используйте фильтрацию.
 		</constant>
 		<constant name="FILTER_PASS" value="1" enum="FilterAction">
-			Paths matching the filter will be allowed to pass.
+			Не используйте фильтрацию. Пути, соответствующие фильтру, будут пропущены.
 		</constant>
 		<constant name="FILTER_STOP" value="2" enum="FilterAction">
-			Paths matching the filter will be discarded.
+			Пути, соответствующие фильтру, будут отброшены.
 		</constant>
 		<constant name="FILTER_BLEND" value="3" enum="FilterAction">
-			Paths matching the filter will be blended (by the blend value).
+			Контуры, соответствующие фильтру, будут смешаны (по значению параметра blend).
 		</constant>
 	</constants>
 </class>

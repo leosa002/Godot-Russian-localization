@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="BoxShape" inherits="Shape" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="BoxShape" inherits="Shape" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Box shape resource.
+		Ресурс в форме коробки.
 	</brief_description>
 	<description>
-		3D box shape that can be a child of a [PhysicsBody] or [Area].
+		3D-форма, которая может быть дочерней по отношению к [PhysicsBody] или [Area].
 	</description>
 	<tutorials>
 		<link title="3D Physics Tests Demo">https://godotengine.org/asset-library/asset/675</link>
@@ -15,7 +15,7 @@
 	</methods>
 	<members>
 		<member name="extents" type="Vector3" setter="set_extents" getter="get_extents" default="Vector3( 1, 1, 1 )">
-			The box's half extents. The width, height and depth of this shape is twice the half extents.
+			Полуэкстенты коробки. Ширина, высота и глубина этой фигуры равны удвоенным полуэкстентам.
 		</member>
 	</members>
 	<constants>

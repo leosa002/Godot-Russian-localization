@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="Viewport" inherits="Node" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="Viewport" inherits="Node" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Creates a sub-view into the screen.
+		Создает подпросмотр на экране.
 	</brief_description>
 	<description>
-		A Viewport creates a different view into the screen, or a sub-view inside another viewport. Children 2D Nodes will display on it, and children Camera 3D nodes will render on it too.
-		Optionally, a viewport can have its own 2D or 3D world, so they don't share what they draw with other viewports.
-		If a viewport is a child of a [ViewportContainer], the viewport will automatically take up the container's size, otherwise it must be set manually.
-		Viewports can also choose to be audio listeners, so they generate positional audio depending on a 2D or 3D camera child of it.
-		Also, viewports can be assigned to different screens in case the devices have multiple screens.
-		Finally, viewports can also behave as render targets, in which case they will not be visible unless the associated texture is used to draw.
-		[b]Note:[/b] By default, a newly created Viewport in Godot 3.x will appear to be upside down. Enabling [member render_target_v_flip] will display the Viewport with the correct orientation.
+		Вьюпорт(Viewport) создает другой вид на экране или под-вид внутри другого вьюпорта. На нем будут отображаться дочерние 2D-узлы, а также дочерние 3D-узлы камеры.
+		Опционально видовой экран может иметь свой собственный 2D или 3D-мир, поэтому он не разделяет нарисованное с другими видовыми экранами.
+		Если видовой экран является дочерним элементом [ViewportContainer], то он автоматически принимает размер контейнера, в противном случае его нужно задать вручную.
+		Видовые экраны также могут быть слушателями звука, то есть генерировать позиционный звук в зависимости от 2D- или 3D-камеры, дочерней по отношению к ним.
+		Кроме того, видовые экраны могут быть назначены на разные экраны в случае, если на устройствах имеется несколько экранов.
+		Наконец, видовые экраны могут выступать в качестве целей рендеринга, в этом случае они не будут видны, пока не будет использована связанная с ними текстура для отрисовки.
+		[b]Примечание:[/b] По умолчанию вновь созданный видовой экран в Godot 3.x будет выглядеть перевернутым. Включение [member render_target_v_flip] приведет к отображению вьюпорта с правильной ориентацией.
 	</description>
 	<tutorials>
 		<link title="Viewport and canvas transforms">$DOCS_URL/tutorials/2d/2d_transforms.html</link>
@@ -26,64 +26,64 @@
 		<method name="find_world" qualifiers="const">
 			<return type="World" />
 			<description>
-				Returns the first valid [World] for this viewport, searching the [member world] property of itself and any Viewport ancestor.
+				Возвращает первый действительный [World] для данного видового экрана, выполняя поиск по свойству [member world] для себя и любого предка видового экрана.
 			</description>
 		</method>
 		<method name="find_world_2d" qualifiers="const">
 			<return type="World2D" />
 			<description>
-				Returns the first valid [World2D] for this viewport, searching the [member world_2d] property of itself and any Viewport ancestor.
+				Возвращает первый допустимый [World2D] для данного видового экрана, выполняя поиск по свойству [member world_2d] для себя и любого предка видового экрана.
 			</description>
 		</method>
 		<method name="get_camera" qualifiers="const">
 			<return type="Camera" />
 			<description>
-				Returns the active 3D camera.
+				Возвращает активную 3D-камеру.
 			</description>
 		</method>
 		<method name="get_final_transform" qualifiers="const">
 			<return type="Transform2D" />
 			<description>
-				Returns the total transform of the viewport.
+				Возвращает полное преобразование области просмотра.
 			</description>
 		</method>
 		<method name="get_modal_stack_top" qualifiers="const">
 			<return type="Control" />
 			<description>
-				Returns the topmost modal in the stack.
+				Возвращает самый верхний модал в стеке.
 			</description>
 		</method>
 		<method name="get_mouse_position" qualifiers="const">
 			<return type="Vector2" />
 			<description>
-				Returns the mouse's position in this [Viewport] using the coordinate system of this [Viewport].
+				Возвращает положение мыши в данном [Viewport], используя систему координат данного [Viewport].
 			</description>
 		</method>
 		<method name="get_render_info">
 			<return type="int" />
 			<argument index="0" name="info" type="int" enum="Viewport.RenderInfo" />
 			<description>
-				Returns information about the viewport from the rendering pipeline.
+				Возвращает информацию о видовом экране из конвейера рендеринга.
 			</description>
 		</method>
 		<method name="get_shadow_atlas_quadrant_subdiv" qualifiers="const">
 			<return type="int" enum="Viewport.ShadowAtlasQuadrantSubdiv" />
 			<argument index="0" name="quadrant" type="int" />
 			<description>
-				Returns the [enum ShadowAtlasQuadrantSubdiv] of the specified quadrant.
+				Возвращает [enum ShadowAtlasQuadrantSubdiv] указанного квадранта.
 			</description>
 		</method>
 		<method name="get_size_override" qualifiers="const">
 			<return type="Vector2" />
 			<description>
-				Returns the size override set with [method set_size_override].
+				Возвращает переопределение размера, установленное с помощью [метода set_size_override].
 			</description>
 		</method>
 		<method name="get_texture" qualifiers="const">
 			<return type="ViewportTexture" />
 			<description>
-				Returns the viewport's texture.
-				[b]Note:[/b] Due to the way OpenGL works, the resulting [ViewportTexture] is flipped vertically. You can use [method Image.flip_y] on the result of [method Texture.get_data] to flip it back, for example:
+				Возвращает текстуру видового экрана.
+				[b]Примечание:[/b] Из-за особенностей работы OpenGL полученная [ViewportTexture] переворачивается по вертикали. Вы можете использовать [метод Image.flip_y] для результата [метода Texture.get_data], чтобы, например, перевернуть его обратно:
 				[codeblock]
 				var img = get_viewport().get_texture().get_data()
 				img.flip_y()
@@ -93,38 +93,38 @@
 		<method name="get_viewport_rid" qualifiers="const">
 			<return type="RID" />
 			<description>
-				Returns the viewport's RID from the [VisualServer].
+				Возвращает RID видового экрана с [VisualServer].
 			</description>
 		</method>
 		<method name="get_visible_rect" qualifiers="const">
 			<return type="Rect2" />
 			<description>
-				Returns the visible rectangle in global screen coordinates.
+				Возвращает видимый прямоугольник в глобальных координатах экрана.
 			</description>
 		</method>
 		<method name="gui_get_drag_data" qualifiers="const">
 			<return type="Variant" />
 			<description>
-				Returns the drag data from the GUI, that was previously returned by [method Control.get_drag_data].
+				Возвращает данные о перетаскивании из графического интерфейса, которые ранее были возвращены [методом Control.get_drag_data].
 			</description>
 		</method>
 		<method name="gui_has_modal_stack" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if there are visible modals on-screen.
+				Возвращает [code]true[/code], если на экране есть видимые модалы.
 			</description>
 		</method>
 		<method name="gui_is_drag_successful" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the drag operation is successful.
+				Возвращает [code]true[/code], если операция перетаскивания прошла успешно.
 			</description>
 		</method>
 		<method name="gui_is_dragging" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the viewport is currently performing a drag operation.
-				Alternative to [constant Node.NOTIFICATION_DRAG_BEGIN] and [constant Node.NOTIFICATION_DRAG_END] when you prefer polling the value.
+				Возвращает [code]true[/code], если во вьюпорте в данный момент выполняется операция перетаскивания.
+				Альтернатива [constant Node.NOTIFICATION_DRAG_BEGIN] и [constant Node.NOTIFICATION_DRAG_END], если вы предпочитаете опрашивать значение.
 			</description>
 		</method>
 		<method name="input">
@@ -141,20 +141,20 @@
 		<method name="is_size_override_enabled" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the size override is enabled. See [method set_size_override].
+				Возвращает [code]true[/code], если переопределение размера включено. Смотрите [метод set_size_override].
 			</description>
 		</method>
 		<method name="set_attach_to_screen_rect">
 			<return type="void" />
 			<argument index="0" name="rect" type="Rect2" />
 			<description>
-				Attaches this [Viewport] to the root [Viewport] with the specified rectangle. This bypasses the need for another node to display this [Viewport] but makes you responsible for updating the position of this [Viewport] manually.
+				Прикрепляет этот [Viewport] к корневому [Viewport] с помощью указанного прямоугольника. Это позволяет обойтись без другого узла для отображения этого [Viewport], но заставляет вас вручную обновлять положение этого [Viewport].
 			</description>
 		</method>
 		<method name="set_input_as_handled">
 			<return type="void" />
 			<description>
-				Stops the input from propagating further down the [SceneTree].
+				Останавливает распространение входных данных дальше по дереву [SceneTree].
 			</description>
 		</method>
 		<method name="set_shadow_atlas_quadrant_subdiv">
@@ -162,7 +162,7 @@
 			<argument index="0" name="quadrant" type="int" />
 			<argument index="1" name="subdiv" type="int" enum="Viewport.ShadowAtlasQuadrantSubdiv" />
 			<description>
-				Sets the number of subdivisions to use in the specified quadrant. A higher number of subdivisions allows you to have more shadows in the scene at once, but reduces the quality of the shadows. A good practice is to have quadrants with a varying number of subdivisions and to have as few subdivisions as possible.
+				Устанавливает количество подразделений, используемых в указанном квадранте. Большее число подразделений позволяет одновременно иметь больше теней в сцене, но снижает качество теней. Хорошей практикой является наличие квадрантов с разным количеством подразделений и как можно меньшее количество подразделений.
 			</description>
 		</method>
 		<method name="set_size_override">
@@ -171,7 +171,7 @@
 			<argument index="1" name="size" type="Vector2" default="Vector2( -1, -1 )" />
 			<argument index="2" name="margin" type="Vector2" default="Vector2( 0, 0 )" />
 			<description>
-				Sets the size override of the viewport. If the [code]enable[/code] parameter is [code]true[/code] the override is used, otherwise it uses the default size. If the size parameter is [code](-1, -1)[/code], it won't update the size.
+				Устанавливает переопределение размера области просмотра. Если параметр [code]enable[/code] имеет значение [code]true[/code], то используется переопределение размера, в противном случае используется размер по умолчанию. Если параметр size имеет значение [code](-1, -1)[/code], то размер не будет обновляться.
 			</description>
 		</method>
 		<method name="unhandled_input">
@@ -183,254 +183,253 @@
 		<method name="update_worlds">
 			<return type="void" />
 			<description>
-				Forces update of the 2D and 3D worlds.
+				Силы(Принудительно) обновления 2D и 3D миров.
 			</description>
 		</method>
 		<method name="warp_mouse">
 			<return type="void" />
 			<argument index="0" name="to_position" type="Vector2" />
 			<description>
-				Moves the mouse pointer to the specified position in this [Viewport] using the coordinate system of this [Viewport].
+				Перемещает указатель мыши в указанную позицию в этом [Viewport], используя систему координат этого [Viewport].
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="arvr" type="bool" setter="set_use_arvr" getter="use_arvr" default="false">
-			If [code]true[/code], the viewport will be used in AR/VR process.
+			Если [code]true[/code], то видовой экран будет использоваться в процессе AR/VR.
 		</member>
 		<member name="audio_listener_enable_2d" type="bool" setter="set_as_audio_listener_2d" getter="is_audio_listener_2d" default="false">
-			If [code]true[/code], the viewport will process 2D audio streams.
+			Если [code]true[/code], то вьюпорт будет обрабатывать 2D аудиопотоки.
 		</member>
 		<member name="audio_listener_enable_3d" type="bool" setter="set_as_audio_listener" getter="is_audio_listener" default="false">
-			If [code]true[/code], the viewport will process 3D audio streams.
+			Если [code]true[/code], то вьюпорт будет обрабатывать 3D-аудиопотоки.
 		</member>
 		<member name="canvas_transform" type="Transform2D" setter="set_canvas_transform" getter="get_canvas_transform">
-			The canvas transform of the viewport, useful for changing the on-screen positions of all child [CanvasItem]s. This is relative to the global canvas transform of the viewport.
+			Трансформация холста области просмотра, полезная для изменения положения на экране всех дочерних [CanvasItem]ов. Это значение относительно глобального преобразования холста области просмотра.
 		</member>
 		<member name="debanding" type="bool" setter="set_use_debanding" getter="get_use_debanding" default="false">
-			If [code]true[/code], uses a fast post-processing filter to make banding significantly less visible in 3D. 2D rendering is [i]not[/i] affected by debanding unless the [member Environment.background_mode] is [constant Environment.BG_CANVAS]. In this case, [member usage] must also be set to [constant USAGE_3D]. See also [member ProjectSettings.rendering/quality/filters/use_debanding].
-			In some cases, debanding may introduce a slightly noticeable dithering pattern. It's recommended to enable debanding only when actually needed since the dithering pattern will make lossless-compressed screenshots larger.
-			[b]Note:[/b] Only available on the GLES3 backend. [member hdr] must also be [code]true[/code] for debanding to be effective.
+			Если [code]true[/code], используется быстрый фильтр постобработки, чтобы сделать полосатость значительно менее заметной в 3D. На 2D-рендеринг дебандинг [i]не влияет[/i], если [member Environment.background_mode] не является [constant Environment.BG_CANVAS]. В этом случае [member usage] также должен быть установлен на [constant USAGE_3D]. См. также [member ProjectSettings.rendering/quality/filters/use_debanding].
+			В некоторых случаях дебандинг может приводить к появлению слегка заметного рисунка дизеринга. Рекомендуется включать дебандинг только в тех случаях, когда это действительно необходимо, поскольку шаблон дизеринга сделает скриншоты, сжатые без потерь, более крупными.
+			[b]Примечание:[/b] Доступно только для бэкенда GLES3. [member hdr] также должен быть [code]true[/code], чтобы дебандинг был эффективен.
 		</member>
 		<member name="debug_draw" type="int" setter="set_debug_draw" getter="get_debug_draw" enum="Viewport.DebugDraw" default="0">
-			The overlay mode for test rendered geometry in debug purposes.
+			Режим наложения для тестового рендеринга геометрии в целях отладки.
 		</member>
 		<member name="disable_3d" type="bool" setter="set_disable_3d" getter="is_3d_disabled" default="false">
-			If [code]true[/code], the viewport will disable 3D rendering. To actually disable allocation of 3D buffers, set [member usage] instead.
+			Если [code]true[/code], то во вьюпорте будет отключен 3D-рендеринг. Чтобы действительно отключить выделение 3D-буферов, вместо этого установите [member usage].
 		</member>
 		<member name="fxaa" type="bool" setter="set_use_fxaa" getter="get_use_fxaa" default="false">
-			Enables fast approximate antialiasing. FXAA is a popular screen-space antialiasing method, which is fast but will make the image look blurry, especially at lower resolutions. It can still work relatively well at large resolutions such as 1440p and 4K. Some of the lost sharpness can be recovered by enabling contrast-adaptive sharpening (see [member sharpen_intensity]).
+			Включает быстрое приближенное сглаживание. FXAA - это популярный метод сглаживания в пространстве экрана, который работает быстро, но делает изображение размытым, особенно при низких разрешениях. Однако он может относительно хорошо работать при больших разрешениях, таких как 1440p и 4K. Часть потерянной резкости можно восстановить, включив адаптивное к контрасту повышение резкости (см. [member sharpen_intensity]).
 		</member>
 		<member name="global_canvas_transform" type="Transform2D" setter="set_global_canvas_transform" getter="get_global_canvas_transform">
-			The global canvas transform of the viewport. The canvas transform is relative to this.
+			Глобальное преобразование холста области просмотра. Трансформация холста является относительной по отношению к этому значению.
 		</member>
 		<member name="gui_disable_input" type="bool" setter="set_disable_input" getter="is_input_disabled" default="false">
-			If [code]true[/code], the viewport will not receive input events.
+			Если [code]true[/code], то область просмотра не будет получать события ввода.
 		</member>
 		<member name="gui_snap_controls_to_pixels" type="bool" setter="set_snap_controls_to_pixels" getter="is_snap_controls_to_pixels_enabled" default="true">
-			If [code]true[/code], the GUI controls on the viewport will lay pixel perfectly.
+			Если [code]true[/code], элементы управления графическим интерфейсом на видовом экране будут располагаться пиксельно.
 		</member>
 		<member name="handle_input_locally" type="bool" setter="set_handle_input_locally" getter="is_handling_input_locally" default="true">
 		</member>
 		<member name="hdr" type="bool" setter="set_hdr" getter="get_hdr" default="true">
-			If [code]true[/code], the viewport rendering will receive benefits from High Dynamic Range algorithm. High Dynamic Range allows the viewport to receive values that are outside the 0-1 range. In Godot, HDR uses half floating-point precision (16-bit) by default. To use full floating-point precision (32-bit), enable [member use_32_bpc_depth].
-			[b]Note:[/b] Requires [member usage] to be set to [constant USAGE_3D] or [constant USAGE_3D_NO_EFFECTS], since HDR is not supported for 2D.
-			[b]Note:[/b] Only available on the GLES3 backend.
+			Если [code]true[/code], рендеринг видового экрана будет получать преимущества от алгоритма High Dynamic Range. High Dynamic Range позволяет вьюпорту получать значения, выходящие за пределы диапазона 0-1. В Godot HDR по умолчанию использует половинную точность с плавающей точкой (16 бит). Чтобы использовать полную точность с плавающей точкой (32 бита), включите [member use_32_bpc_depth].
+			[b]Примечание:[/b] Требуется, чтобы для [member usage] было установлено значение [constant USAGE_3D] или [constant USAGE_3D_NO_EFFECTS], поскольку HDR не поддерживается для 2D.
+			[b]Примечание:[/b] Доступно только для бэкенда GLES3.
 		</member>
 		<member name="keep_3d_linear" type="bool" setter="set_keep_3d_linear" getter="get_keep_3d_linear" default="false">
-			If [code]true[/code], the result after 3D rendering will not have a linear to sRGB color conversion applied. This is important when the viewport is used as a render target where the result is used as a texture on a 3D object rendered in another viewport. It is also important if the viewport is used to create data that is not color based (noise, heightmaps, pickmaps, etc.). Do not enable this when the viewport is used as a texture on a 2D object or if the viewport is your final output. For the GLES2 driver this will convert the sRGB output to linear, this should only be used for VR plugins that require input in linear color space!
+			Если [code]true[/code], то к результату после 3D-рендеринга не будет применяться линейное преобразование цветов в sRGB. Это важно, когда видовой экран используется в качестве цели рендеринга, где результат используется как текстура на 3D-объекте, рендеримом в другом видовом экране. Это также важно, если видовой экран используется для создания данных, не основанных на цвете (шум, карты высот, пикмапы и т. д.). Не включайте эту опцию, если видовой экран используется в качестве текстуры на 2D-объекте или если видовой экран является конечным результатом. Для драйвера GLES2 эта опция преобразует выходной сигнал sRGB в линейный, ее следует использовать только для VR-плагинов, которым требуется входной сигнал в линейном цветовом пространстве!
 		</member>
 		<member name="msaa" type="int" setter="set_msaa" getter="get_msaa" enum="Viewport.MSAA" default="0">
-			The multisample anti-aliasing mode. A higher number results in smoother edges at the cost of significantly worse performance. A value of 4 is best unless targeting very high-end systems.
+			Режим многодискретного сглаживания. Большее число приводит к более плавным краям ценой значительно худшей производительности. Лучше всего использовать значение 4, если вы не нацелены на очень дорогие системы.
 		</member>
 		<member name="own_world" type="bool" setter="set_use_own_world" getter="is_using_own_world" default="false">
-			If [code]true[/code], the viewport will use a unique copy of the [World] defined in [member world].
+			Если [code]true[/code], то область просмотра будет использовать уникальную копию [World], определенную в [member world].
 		</member>
-		<member name="physics_interpolation_mode" type="int" setter="set_physics_interpolation_mode" getter="get_physics_interpolation_mode" overrides="Node" enum="Node.PhysicsInterpolationMode" default="2" />
 		<member name="physics_object_picking" type="bool" setter="set_physics_object_picking" getter="get_physics_object_picking" default="false">
-			If [code]true[/code], the objects rendered by viewport become subjects of mouse picking process.
+			Если [code]true[/code], то объекты, отображаемые во вьюпорте, становятся объектами процесса пикирования мышью.
 		</member>
 		<member name="render_direct_to_screen" type="bool" setter="set_use_render_direct_to_screen" getter="is_using_render_direct_to_screen" default="false">
-			If [code]true[/code], renders the Viewport directly to the screen instead of to the root viewport. Only available in GLES2. This is a low-level optimization and should not be used in most cases. If used, reading from the Viewport or from [code]SCREEN_TEXTURE[/code] becomes unavailable. For more information see [method VisualServer.viewport_set_render_direct_to_screen].
+			Если [code]true[/code], то видовой экран рендерится непосредственно на экран, а не в корневой видовой экран. Доступно только в GLES2. Это низкоуровневая оптимизация, и в большинстве случаев ее не следует использовать. Если она используется, чтение из вьюпорта или из [code]SCREEN_TEXTURE[/code] становится недоступным. Более подробную информацию можно найти в [методе VisualServer.viewport_set_render_direct_to_screen].
 		</member>
 		<member name="render_target_clear_mode" type="int" setter="set_clear_mode" getter="get_clear_mode" enum="Viewport.ClearMode" default="0">
-			The clear mode when viewport used as a render target.
-			[b]Note:[/b] This property is intended for 2D usage.
+			Режим прозрачности при использовании видового экрана в качестве цели рендеринга.
+			[b]Примечание:[/b] Это свойство предназначено для использования в 2D.
 		</member>
 		<member name="render_target_update_mode" type="int" setter="set_update_mode" getter="get_update_mode" enum="Viewport.UpdateMode" default="2">
-			The update mode when viewport used as a render target.
+			Режим обновления при использовании видового экрана в качестве цели рендеринга.
 		</member>
 		<member name="render_target_v_flip" type="bool" setter="set_vflip" getter="get_vflip" default="false">
-			If [code]true[/code], the result of rendering will be flipped vertically. Since Viewports in Godot 3.x render upside-down, it's recommended to set this to [code]true[/code] in most situations.
+			Если [code]true[/code], результат рендеринга будет перевернут по вертикали. Поскольку в Godot 3.x вьюпорты рендерятся вверх ногами, в большинстве ситуаций рекомендуется установить значение [code]true[/code].
 		</member>
 		<member name="shadow_atlas_quad_0" type="int" setter="set_shadow_atlas_quadrant_subdiv" getter="get_shadow_atlas_quadrant_subdiv" enum="Viewport.ShadowAtlasQuadrantSubdiv" default="2">
-			The subdivision amount of the first quadrant on the shadow atlas.
+			Размер подразделения первого квадранта на атласе теней.
 		</member>
 		<member name="shadow_atlas_quad_1" type="int" setter="set_shadow_atlas_quadrant_subdiv" getter="get_shadow_atlas_quadrant_subdiv" enum="Viewport.ShadowAtlasQuadrantSubdiv" default="2">
-			The subdivision amount of the second quadrant on the shadow atlas.
+			Размер подразделения второго квадранта на атласе теней.
 		</member>
 		<member name="shadow_atlas_quad_2" type="int" setter="set_shadow_atlas_quadrant_subdiv" getter="get_shadow_atlas_quadrant_subdiv" enum="Viewport.ShadowAtlasQuadrantSubdiv" default="3">
-			The subdivision amount of the third quadrant on the shadow atlas.
+			Размер подразделения третьего квадранта на теневом атласе.
 		</member>
 		<member name="shadow_atlas_quad_3" type="int" setter="set_shadow_atlas_quadrant_subdiv" getter="get_shadow_atlas_quadrant_subdiv" enum="Viewport.ShadowAtlasQuadrantSubdiv" default="4">
-			The subdivision amount of the fourth quadrant on the shadow atlas.
+			Размер подразделения четвертого квадранта на атласе теней.
 		</member>
 		<member name="shadow_atlas_size" type="int" setter="set_shadow_atlas_size" getter="get_shadow_atlas_size" default="0">
-			The shadow atlas' resolution (used for omni and spot lights). The value will be rounded up to the nearest power of 2.
-			[b]Note:[/b] If this is set to [code]0[/code], both point [i]and[/i] directional shadows won't be visible. Since user-created viewports default to a value of [code]0[/code], this value must be set above [code]0[/code] manually (typically at least [code]256[/code]).
+			Разрешение атласа теней (используется для омни- и точечных светильников). Значение будет округлено до ближайшей степени 2.
+			[b]Примечание:[/b] Если установить значение [code]0[/code], то точечные [i]и [/i] направленные тени не будут видны. Поскольку созданные пользователем видовые экраны по умолчанию имеют значение [code]0[/code], это значение должно быть установлено выше [code]0[/code] вручную (обычно не менее [code]256[/code]).
 		</member>
 		<member name="sharpen_intensity" type="float" setter="set_sharpen_intensity" getter="get_sharpen_intensity" default="0.0">
-			If set to a value greater than [code]0.0[/code], contrast-adaptive sharpening will be applied to the 3D viewport. This has a low performance cost and can be used to recover some of the sharpness lost from using FXAA. Values around [code]0.5[/code] generally give the best results. See also [member fxaa].
+			Если установить значение больше, чем [code]0.0[/code], к 3D-видовому экрану будет применено контрастно-адаптивное повышение резкости. Это не требует больших затрат производительности и может быть использовано для восстановления некоторой резкости, потерянной при использовании FXAA. Значения около [code]0,5[/code] обычно дают наилучшие результаты. См. также [member fxaa].
 		</member>
 		<member name="size" type="Vector2" setter="set_size" getter="get_size" default="Vector2( 0, 0 )">
-			The width and height of viewport. Must be set to a value greater than or equal to 2 pixels on both dimensions. Otherwise, nothing will be displayed.
+			Ширина и высота области просмотра. Должны быть установлены в значение, большее или равное 2 пикселям по обоим измерениям. В противном случае ничего не будет отображаться.
 		</member>
 		<member name="size_override_stretch" type="bool" setter="set_size_override_stretch" getter="is_size_override_stretch_enabled" default="false">
-			If [code]true[/code], the size override affects stretch as well.
+			Если [code]true[/code], то переопределение размера влияет и на растяжение.
 		</member>
 		<member name="transparent_bg" type="bool" setter="set_transparent_background" getter="has_transparent_background" default="false">
-			If [code]true[/code], the viewport should render its background as transparent.
+			Если [code]true[/code], то область просмотра должна отображать свой фон как прозрачный.
 		</member>
 		<member name="usage" type="int" setter="set_usage" getter="get_usage" enum="Viewport.Usage" default="2">
-			The viewport's rendering mode. This controls which buffers are allocated for the viewport (2D only, or 2D + 3D). 2D-only options can reduce memory usage and improve performance slightly, especially on low-end devices.
-			[b]Note:[/b] If set to [constant USAGE_2D] or [constant USAGE_2D_NO_SAMPLING], [member hdr] will have no effect when enabled since HDR is not supported for 2D.
+			Режим рендеринга видового экрана. Он определяет, какие буферы будут выделены для видового экрана (только 2D или 2D + 3D). Варианты только 2D могут снизить потребление памяти и немного повысить производительность, особенно на низкоуровневых устройствах.
+			[b]Примечание:[/b] Если установлено значение [constant USAGE_2D] или [constant USAGE_2D_NO_SAMPLING], [member hdr] не будет иметь никакого эффекта при включении, поскольку HDR не поддерживается для 2D.
 		</member>
 		<member name="use_32_bpc_depth" type="bool" setter="set_use_32_bpc_depth" getter="get_use_32_bpc_depth" default="false">
-			If [code]true[/code], allocates the viewport's framebuffer with full floating-point precision (32-bit) instead of half floating-point precision (16-bit). Only effective when [member hdr] is also enabled.
-			[b]Note:[/b] Enabling this setting does not improve rendering quality. Using full floating-point precision is slower, and is generally only needed for advanced shaders that require a high level of precision. To reduce banding, enable [member debanding] instead.
-			[b]Note:[/b] Only available on the GLES3 backend.
+			Если [code]true[/code], выделяет фреймбуфер видового экрана с полной точностью с плавающей запятой (32-бит) вместо половинной точности с плавающей запятой (16-бит). Действует только в том случае, если [member hdr] также включен.
+			[b]Примечание:[/b] Включение этой настройки не улучшает качество рендеринга. Использование полной точности с плавающей точкой медленнее, и, как правило, требуется только для продвинутых шейдеров, требующих высокого уровня точности. Чтобы уменьшить полосатость, вместо этого включите [member debanding].
+			[b]Примечание:[/b] Доступно только для бэкенда GLES3.
 		</member>
 		<member name="world" type="World" setter="set_world" getter="get_world">
-			The custom [World] which can be used as 3D environment source.
+			Пользовательский [World], который можно использовать в качестве источника 3D-окружения.
 		</member>
 		<member name="world_2d" type="World2D" setter="set_world_2d" getter="get_world_2d">
-			The custom [World2D] which can be used as 2D environment source.
+			Пользовательский [World2D], который можно использовать в качестве источника 2D-окружения.
 		</member>
 	</members>
 	<signals>
 		<signal name="gui_focus_changed">
 			<argument index="0" name="node" type="Control" />
 			<description>
-				Emitted when a Control node grabs keyboard focus.
+				Выдается, когда узел Control захватывает фокус клавиатуры.
 			</description>
 		</signal>
 		<signal name="size_changed">
 			<description>
-				Emitted when the size of the viewport is changed, whether by [method set_size_override], resize of window, or some other means.
+				Выдается при изменении размера области просмотра, будь то с помощью [метода set_size_override], изменения размера окна или каким-либо другим способом.
 			</description>
 		</signal>
 	</signals>
 	<constants>
 		<constant name="UPDATE_DISABLED" value="0" enum="UpdateMode">
-			Do not update the render target.
+			Не обновляйте цель рендера.
 		</constant>
 		<constant name="UPDATE_ONCE" value="1" enum="UpdateMode">
-			Update the render target once, then switch to [constant UPDATE_DISABLED].
+			Обновите цель рендеринга один раз, затем переключитесь на [constant UPDATE_DISABLED].
 		</constant>
 		<constant name="UPDATE_WHEN_VISIBLE" value="2" enum="UpdateMode">
-			Update the render target only when it is visible. This is the default value.
+			Обновляйте цель рендеринга только тогда, когда она видна. Это значение по умолчанию.
 		</constant>
 		<constant name="UPDATE_ALWAYS" value="3" enum="UpdateMode">
-			Always update the render target.
+			Всегда обновляйте цель рендеринга.
 		</constant>
 		<constant name="SHADOW_ATLAS_QUADRANT_SUBDIV_DISABLED" value="0" enum="ShadowAtlasQuadrantSubdiv">
-			This quadrant will not be used.
+			Этот квадрант не будет использоваться.
 		</constant>
 		<constant name="SHADOW_ATLAS_QUADRANT_SUBDIV_1" value="1" enum="ShadowAtlasQuadrantSubdiv">
-			This quadrant will only be used by one shadow map.
+			Этот квадрант будет использоваться только одной картой теней.
 		</constant>
 		<constant name="SHADOW_ATLAS_QUADRANT_SUBDIV_4" value="2" enum="ShadowAtlasQuadrantSubdiv">
-			This quadrant will be split in 4 and used by up to 4 shadow maps.
+			Этот квадрант будет разделен на 4 и будет использоваться до 4 карт теней.
 		</constant>
 		<constant name="SHADOW_ATLAS_QUADRANT_SUBDIV_16" value="3" enum="ShadowAtlasQuadrantSubdiv">
-			This quadrant will be split 16 ways and used by up to 16 shadow maps.
+			Этот квадрант будет разделен на 16 частей и будет использоваться до 16 теневых карт.
 		</constant>
 		<constant name="SHADOW_ATLAS_QUADRANT_SUBDIV_64" value="4" enum="ShadowAtlasQuadrantSubdiv">
-			This quadrant will be split 64 ways and used by up to 64 shadow maps.
+			Этот квадрант будет разделен на 64 части и будет использоваться до 64 карт теней.
 		</constant>
 		<constant name="SHADOW_ATLAS_QUADRANT_SUBDIV_256" value="5" enum="ShadowAtlasQuadrantSubdiv">
-			This quadrant will be split 256 ways and used by up to 256 shadow maps. Unless the [member shadow_atlas_size] is very high, the shadows in this quadrant will be very low resolution.
+			Этот квадрант будет разделен на 256 частей и будет использоваться до 256 карт теней. Если значение [member shadow_atlas_size] не очень велико, тени в этом квадранте будут иметь очень низкое разрешение.
 		</constant>
 		<constant name="SHADOW_ATLAS_QUADRANT_SUBDIV_1024" value="6" enum="ShadowAtlasQuadrantSubdiv">
-			This quadrant will be split 1024 ways and used by up to 1024 shadow maps. Unless the [member shadow_atlas_size] is very high, the shadows in this quadrant will be very low resolution.
+			Этот квадрант будет разделен на 1024 части и будет использоваться 1024 картами теней. Если значение [member shadow_atlas_size] не очень велико, тени в этом квадранте будут иметь очень низкое разрешение.
 		</constant>
 		<constant name="SHADOW_ATLAS_QUADRANT_SUBDIV_MAX" value="7" enum="ShadowAtlasQuadrantSubdiv">
-			Represents the size of the [enum ShadowAtlasQuadrantSubdiv] enum.
+			Представляет размер перечисления [enum ShadowAtlasQuadrantSubdiv].
 		</constant>
 		<constant name="RENDER_INFO_OBJECTS_IN_FRAME" value="0" enum="RenderInfo">
-			Amount of objects in frame.
+			Количество объектов в кадре.
 		</constant>
 		<constant name="RENDER_INFO_VERTICES_IN_FRAME" value="1" enum="RenderInfo">
-			Amount of vertices in frame.
+			Количество вершин в кадре.
 		</constant>
 		<constant name="RENDER_INFO_MATERIAL_CHANGES_IN_FRAME" value="2" enum="RenderInfo">
-			Amount of material changes in frame.
+			Количество материальных изменений в кадре.
 		</constant>
 		<constant name="RENDER_INFO_SHADER_CHANGES_IN_FRAME" value="3" enum="RenderInfo">
-			Amount of shader changes in frame.
+			Количество изменений шейдера в кадре.
 		</constant>
 		<constant name="RENDER_INFO_SURFACE_CHANGES_IN_FRAME" value="4" enum="RenderInfo">
-			Amount of surface changes in frame.
+			Количество изменений поверхности в кадре.
 		</constant>
 		<constant name="RENDER_INFO_DRAW_CALLS_IN_FRAME" value="5" enum="RenderInfo">
-			Amount of draw calls in frame.
+			Количество вызовов рисования в кадре.
 		</constant>
 		<constant name="RENDER_INFO_2D_ITEMS_IN_FRAME" value="6" enum="RenderInfo">
-			Amount of items or joined items in frame.
+			Количество элементов или объединенных элементов в кадре.
 		</constant>
 		<constant name="RENDER_INFO_2D_DRAW_CALLS_IN_FRAME" value="7" enum="RenderInfo">
-			Amount of draw calls in frame.
+			Количество вызовов рисования в кадре.
 		</constant>
 		<constant name="RENDER_INFO_MAX" value="8" enum="RenderInfo">
-			Represents the size of the [enum RenderInfo] enum.
+			Представляет размер перечисления [enum RenderInfo].
 		</constant>
 		<constant name="DEBUG_DRAW_DISABLED" value="0" enum="DebugDraw">
-			Objects are displayed normally.
+			Объекты отображаются в нормальном режиме.
 		</constant>
 		<constant name="DEBUG_DRAW_UNSHADED" value="1" enum="DebugDraw">
-			Objects are displayed without light information.
+			Объекты отображаются без световой информации.
 		</constant>
 		<constant name="DEBUG_DRAW_OVERDRAW" value="2" enum="DebugDraw">
-			Objected are displayed semi-transparent with additive blending so you can see where they intersect.
+			Объекты отображаются полупрозрачными с аддитивным смешиванием, чтобы вы могли видеть, где они пересекаются.
 		</constant>
 		<constant name="DEBUG_DRAW_WIREFRAME" value="3" enum="DebugDraw">
-			Objects are displayed in wireframe style.
+			Объекты отображаются в стиле проволочного каркаса.
 		</constant>
 		<constant name="MSAA_DISABLED" value="0" enum="MSAA">
-			Multisample anti-aliasing mode disabled. This is the default value.
+			Режим многодискретного сглаживания отключен. Это значение используется по умолчанию.
 		</constant>
 		<constant name="MSAA_2X" value="1" enum="MSAA">
-			Use 2x Multisample Antialiasing.
+			Используйте 2x Multisample Antialiasing.
 		</constant>
 		<constant name="MSAA_4X" value="2" enum="MSAA">
-			Use 4x Multisample Antialiasing.
+			Используйте 4x Multisample Antialiasing.
 		</constant>
 		<constant name="MSAA_8X" value="3" enum="MSAA">
-			Use 8x Multisample Antialiasing. Likely unsupported on low-end and older hardware.
+			Используйте 8x Multisample Antialiasing. Вероятно, не поддерживается на низкоуровневом и старом оборудовании.
 		</constant>
 		<constant name="MSAA_16X" value="4" enum="MSAA">
-			Use 16x Multisample Antialiasing. Likely unsupported on medium and low-end hardware.
+			Используйте 16x Multisample Antialiasing. Скорее всего, не поддерживается на среднем и низком оборудовании.
 		</constant>
 		<constant name="USAGE_2D" value="0" enum="Usage">
-			Allocates all buffers needed for drawing 2D scenes. This takes less VRAM than the 3D usage modes. Note that 3D rendering effects such as glow and HDR are not available when using this mode.
+			Выделяет все буферы, необходимые для отрисовки 2D-сцен. Этот режим занимает меньше VRAM, чем режимы использования 3D. Обратите внимание, что при использовании этого режима недоступны такие эффекты 3D-рендеринга, как свечение и HDR.
 		</constant>
 		<constant name="USAGE_2D_NO_SAMPLING" value="1" enum="Usage">
-			Allocates buffers needed for 2D scenes without allocating a buffer for screen copy. Accordingly, you cannot read from the screen. Of the [enum Usage] types, this requires the least VRAM. Note that 3D rendering effects such as glow and HDR are not available when using this mode.
+			Выделяет буферы, необходимые для 2D-сцен, не выделяя буфер для копирования экрана. Соответственно, чтение с экрана невозможно. Из всех типов [enum Usage] этот требует меньше всего VRAM. Обратите внимание, что при использовании этого режима недоступны такие эффекты 3D-рендеринга, как свечение и HDR.
 		</constant>
 		<constant name="USAGE_3D" value="2" enum="Usage">
-			Allocates full buffers for drawing 3D scenes and all 3D effects including buffers needed for 2D scenes and effects.
+			Выделяет полные буферы для рисования 3D-сцен и всех 3D-эффектов, включая буферы, необходимые для 2D-сцен и эффектов.
 		</constant>
 		<constant name="USAGE_3D_NO_EFFECTS" value="3" enum="Usage">
-			Allocates buffers needed for drawing 3D scenes. But does not allocate buffers needed for reading from the screen and post-processing effects. Saves some VRAM.
+			Выделяет буферы, необходимые для отрисовки 3D-сцен. Но не выделяет буферы, необходимые для чтения с экрана и постобработки эффектов. Экономит немного VRAM.
 		</constant>
 		<constant name="CLEAR_MODE_ALWAYS" value="0" enum="ClearMode">
-			Always clear the render target before drawing.
+			Всегда очищайте цель рендеринга перед рисованием.
 		</constant>
 		<constant name="CLEAR_MODE_NEVER" value="1" enum="ClearMode">
-			Never clear the render target.
+			Никогда не очищайте цель рендеринга.
 		</constant>
 		<constant name="CLEAR_MODE_ONLY_NEXT_FRAME" value="2" enum="ClearMode">
-			Clear the render target next frame, then switch to [constant CLEAR_MODE_NEVER].
+			Очистите цель рендеринга в следующем кадре, затем переключитесь на [constant CLEAR_MODE_NEVER].
 		</constant>
 	</constants>
 </class>

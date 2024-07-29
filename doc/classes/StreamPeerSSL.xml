@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="StreamPeerSSL" inherits="StreamPeer" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="StreamPeerSSL" inherits="StreamPeer" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		SSL stream peer.
+		Одноранговый SSL-поток.
 	</brief_description>
 	<description>
-		SSL stream peer. This object can be used to connect to an SSL server or accept a single SSL client connection.
+		Пир SSL-потока. Этот объект можно использовать для подключения к SSL-серверу или для приема одного соединения SSL-клиента.
 	</description>
 	<tutorials>
 		<link>$DOCS_URL/tutorials/networking/ssl_certificates.html</link>
@@ -17,7 +17,7 @@
 			<argument index="2" name="certificate" type="X509Certificate" />
 			<argument index="3" name="chain" type="X509Certificate" default="null" />
 			<description>
-				Accepts a peer connection as a server using the given [code]private_key[/code] and providing the given [code]certificate[/code] to the client. You can pass the optional [code]chain[/code] parameter to provide additional CA chain information along with the certificate.
+				Принимает соединение с пиром в качестве сервера, используя заданный [code]private_key[/code] и предоставляя клиенту заданный [code]certificate[/code]. Вы можете передать дополнительный параметр [code]chain[/code], чтобы предоставить дополнительную информацию о цепочке ЦС вместе с сертификатом.
 			</description>
 		</method>
 		<method name="connect_to_stream">
@@ -27,26 +27,26 @@
 			<argument index="2" name="for_hostname" type="String" default="&quot;&quot;" />
 			<argument index="3" name="valid_certificate" type="X509Certificate" default="null" />
 			<description>
-				Connects to a peer using an underlying [StreamPeer] [code]stream[/code]. If [code]validate_certs[/code] is [code]true[/code], [StreamPeerSSL] will validate that the certificate presented by the peer matches the [code]for_hostname[/code].
-				[b]Note:[/b] Specifying a custom [code]valid_certificate[/code] is not supported in HTML5 exports due to browsers restrictions.
+				Подключается к пиру, используя базовый поток [StreamPeer] [code]stream[/code]. Если [code]validate_certs[/code] имеет значение [code]true[/code], [StreamPeerSSL] проверит, что сертификат, представленный пиром, соответствует [code]for_hostname[/code].
+				[b]Примечание:[/b] Указание пользовательского [code]valid_certificate[/code] не поддерживается в HTML5-экспорте из-за ограничений браузера.
 			</description>
 		</method>
 		<method name="disconnect_from_stream">
 			<return type="void" />
 			<description>
-				Disconnects from host.
+				Отключается от хоста.
 			</description>
 		</method>
 		<method name="get_status" qualifiers="const">
 			<return type="int" enum="StreamPeerSSL.Status" />
 			<description>
-				Returns the status of the connection. See [enum Status] for values.
+				Возвращает статус соединения. Значения см. в [enum Status].
 			</description>
 		</method>
 		<method name="poll">
 			<return type="void" />
 			<description>
-				Poll the connection to check for incoming bytes. Call this right before [method StreamPeer.get_available_bytes] for it to work properly.
+				Опрашивает соединение для проверки входящих байтов. Вызовите его непосредственно перед [методом StreamPeer.get_available_bytes], чтобы он работал правильно.
 			</description>
 		</method>
 	</methods>
@@ -56,19 +56,19 @@
 	</members>
 	<constants>
 		<constant name="STATUS_DISCONNECTED" value="0" enum="Status">
-			A status representing a [StreamPeerSSL] that is disconnected.
+			Статус, представляющий [StreamPeerSSL], который отключен.
 		</constant>
 		<constant name="STATUS_HANDSHAKING" value="1" enum="Status">
-			A status representing a [StreamPeerSSL] during handshaking.
+			Статус, представляющий [StreamPeerSSL] во время квитирования.
 		</constant>
 		<constant name="STATUS_CONNECTED" value="2" enum="Status">
-			A status representing a [StreamPeerSSL] that is connected to a host.
+			Статус, представляющий [StreamPeerSSL], который подключен к хосту.
 		</constant>
 		<constant name="STATUS_ERROR" value="3" enum="Status">
-			A status representing a [StreamPeerSSL] in error state.
+			Статус, представляющий [StreamPeerSSL] в состоянии ошибки.
 		</constant>
 		<constant name="STATUS_ERROR_HOSTNAME_MISMATCH" value="4" enum="Status">
-			An error status that shows a mismatch in the SSL certificate domain presented by the host and the domain requested for validation.
+			Статус ошибки, указывающий на несоответствие домена сертификата SSL, представленного хостом, и домена, запрошенного для проверки.
 		</constant>
 	</constants>
 </class>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<class name="CollisionObject" inherits="Spatial" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+<class name="CollisionObject" inherits="Spatial" version="3.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Base node for collision objects.
+		Базовый узел для объектов столкновения.
 	</brief_description>
 	<description>
-		CollisionObject is the base class for physics objects. It can hold any number of collision [Shape]s. Each shape must be assigned to a [i]shape owner[/i]. The CollisionObject can have any number of shape owners. Shape owners are not nodes and do not appear in the editor, but are accessible through code using the [code]shape_owner_*[/code] methods.
-		[b]Warning:[/b] With a non-uniform scale this node will probably not function as expected. Please make sure to keep its scale uniform (i.e. the same on all axes), and change the size(s) of its collision shape(s) instead.
+		CollisionObject - это базовый класс для объектов физики. Он может содержать любое количество столкновений [Shape]s. Каждая форма должна быть назначена владельцу [i]формы[/i]. Объект CollisionObject может иметь любое количество владельцев фигур. Владельцы фигур не являются узлами и не отображаются в редакторе, но доступны через код с помощью методов [code]shape_owner_*[/code].
+		[b]Предупреждение:[/b] При неравномерном масштабе этот узел, вероятно, не будет работать так, как ожидается. Пожалуйста, убедитесь, что его масштаб равномерен (т.е. одинаков по всем осям), и вместо этого измените размер (размеры) его формы (форм) столкновения.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -18,54 +18,54 @@
 			<argument index="3" name="normal" type="Vector3" />
 			<argument index="4" name="shape_idx" type="int" />
 			<description>
-				Receives unhandled [InputEvent]s. [code]position[/code] is the location in world space of the mouse pointer on the surface of the shape with index [code]shape_idx[/code] and [code]normal[/code] is the normal vector of the surface at that point. Connect to the [signal input_event] signal to easily pick up these events.
+				Получает необработанные события [InputEvent]s. [code]position[/code] - это местоположение в мировом пространстве указателя мыши на поверхности фигуры с индексом [code]shape_idx[/code], а [code]normal[/code] - вектор нормали к поверхности в этой точке. Подключитесь к сигналу [signal input_event], чтобы легко улавливать эти события.
 			</description>
 		</method>
 		<method name="create_shape_owner">
 			<return type="int" />
 			<argument index="0" name="owner" type="Object" />
 			<description>
-				Creates a new shape owner for the given object. Returns [code]owner_id[/code] of the new owner for future reference.
+				Создает нового владельца формы для данного объекта. Возвращает [code]owner_id[/code] нового владельца для дальнейшего использования.
 			</description>
 		</method>
 		<method name="get_collision_layer_bit" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="bit" type="int" />
 			<description>
-				Returns whether or not the specified [code]bit[/code] of the [member collision_layer] is set.
+				Возвращает, установлен или нет указанный [code]бит[/code] в [member collision_layer].
 			</description>
 		</method>
 		<method name="get_collision_mask_bit" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="bit" type="int" />
 			<description>
-				Returns whether or not the specified [code]bit[/code] of the [member collision_mask] is set.
+				Возвращает, установлен или нет указанный [code]бит[/code] в [member collision_mask].
 			</description>
 		</method>
 		<method name="get_rid" qualifiers="const">
 			<return type="RID" />
 			<description>
-				Returns the object's [RID].
+				Возвращает [RID] объекта.
 			</description>
 		</method>
 		<method name="get_shape_owners">
 			<return type="Array" />
 			<description>
-				Returns an [Array] of [code]owner_id[/code] identifiers. You can use these ids in other methods that take [code]owner_id[/code] as an argument.
+				Возвращает [массив] идентификаторов [code]owner_id[/code]. Вы можете использовать эти идентификаторы в других методах, принимающих [code]owner_id[/code] в качестве аргумента.
 			</description>
 		</method>
 		<method name="is_shape_owner_disabled" qualifiers="const">
 			<return type="bool" />
 			<argument index="0" name="owner_id" type="int" />
 			<description>
-				If [code]true[/code], the shape owner and its shapes are disabled.
+				Если [code]true[/code], то владелец фигуры и его фигуры отключены.
 			</description>
 		</method>
 		<method name="remove_shape_owner">
 			<return type="void" />
 			<argument index="0" name="owner_id" type="int" />
 			<description>
-				Removes the given shape owner.
+				Удаляет владельца данной фигуры.
 			</description>
 		</method>
 		<method name="set_collision_layer_bit">
@@ -73,8 +73,8 @@
 			<argument index="0" name="bit" type="int" />
 			<argument index="1" name="value" type="bool" />
 			<description>
-				If [code]value[/code] is [code]true[/code], sets the specified [code]bit[/code] in the [member collision_layer].
-				If [code]value[/code] is [code]false[/code], clears the specified [code]bit[/code] in the [member collision_layer].
+				Если [code]value[/code] равно [code]true[/code], устанавливает указанный [code]бит[/code] в [member collision_layer].
+				Если [code]value[/code] равно [code]false[/code], очищает указанный [code]бит[/code] в [member collision_layer].
 			</description>
 		</method>
 		<method name="set_collision_mask_bit">
@@ -82,15 +82,15 @@
 			<argument index="0" name="bit" type="int" />
 			<argument index="1" name="value" type="bool" />
 			<description>
-				If [code]value[/code] is [code]true[/code], sets the specified [code]bit[/code] in the [member collision_mask].
-				If [code]value[/code] is [code]false[/code], clears the specified [code]bit[/code] in the [member collision_mask].
+				Если [code]value[/code] равно [code]true[/code], устанавливает указанный [code]бит[/code] в [member collision_mask].
+				Если [code]value[/code] равно [code]false[/code], очищает указанный [code]бит[/code] в [member collision_mask].
 			</description>
 		</method>
 		<method name="shape_find_owner" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="shape_index" type="int" />
 			<description>
-				Returns the [code]owner_id[/code] of the given shape.
+				Возвращает [code]owner_id[/code] данной формы.
 			</description>
 		</method>
 		<method name="shape_owner_add_shape">
@@ -98,21 +98,21 @@
 			<argument index="0" name="owner_id" type="int" />
 			<argument index="1" name="shape" type="Shape" />
 			<description>
-				Adds a [Shape] to the shape owner.
+				Добавляет [Shape] к владельцу фигуры.
 			</description>
 		</method>
 		<method name="shape_owner_clear_shapes">
 			<return type="void" />
 			<argument index="0" name="owner_id" type="int" />
 			<description>
-				Removes all shapes from the shape owner.
+				Удаляет все фигуры из владельца фигур.
 			</description>
 		</method>
 		<method name="shape_owner_get_owner" qualifiers="const">
 			<return type="Object" />
 			<argument index="0" name="owner_id" type="int" />
 			<description>
-				Returns the parent object of the given shape owner.
+				Возвращает родительский объект данного владельца фигуры.
 			</description>
 		</method>
 		<method name="shape_owner_get_shape" qualifiers="const">
@@ -120,14 +120,14 @@
 			<argument index="0" name="owner_id" type="int" />
 			<argument index="1" name="shape_id" type="int" />
 			<description>
-				Returns the [Shape] with the given id from the given shape owner.
+				Возвращает [Shape] с заданным идентификатором из данного владельца формы.
 			</description>
 		</method>
 		<method name="shape_owner_get_shape_count" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="owner_id" type="int" />
 			<description>
-				Returns the number of shapes the given shape owner contains.
+				Возвращает количество фигур, которые содержит данный владелец фигуры.
 			</description>
 		</method>
 		<method name="shape_owner_get_shape_index" qualifiers="const">
@@ -135,14 +135,14 @@
 			<argument index="0" name="owner_id" type="int" />
 			<argument index="1" name="shape_id" type="int" />
 			<description>
-				Returns the child index of the [Shape] with the given id from the given shape owner.
+				Возвращает дочерний индекс [Shape] с заданным id от данного владельца формы.
 			</description>
 		</method>
 		<method name="shape_owner_get_transform" qualifiers="const">
 			<return type="Transform" />
 			<argument index="0" name="owner_id" type="int" />
 			<description>
-				Returns the shape owner's [Transform].
+				Возвращает [Transform] владельца формы.
 			</description>
 		</method>
 		<method name="shape_owner_remove_shape">
@@ -150,7 +150,7 @@
 			<argument index="0" name="owner_id" type="int" />
 			<argument index="1" name="shape_id" type="int" />
 			<description>
-				Removes a shape from the given shape owner.
+				Удаляет фигуру из данного владельца фигуры.
 			</description>
 		</method>
 		<method name="shape_owner_set_disabled">
@@ -158,7 +158,7 @@
 			<argument index="0" name="owner_id" type="int" />
 			<argument index="1" name="disabled" type="bool" />
 			<description>
-				If [code]true[/code], disables the given shape owner.
+				Если [code]true[/code], отключает данного владельца фигуры.
 			</description>
 		</method>
 		<method name="shape_owner_set_transform">
@@ -166,24 +166,24 @@
 			<argument index="0" name="owner_id" type="int" />
 			<argument index="1" name="transform" type="Transform" />
 			<description>
-				Sets the [Transform] of the given shape owner.
+				Устанавливает [Transform] для данного владельца фигуры.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="collision_layer" type="int" setter="set_collision_layer" getter="get_collision_layer" default="1">
-			The physics layers this CollisionObject3D is in. Collision objects can exist in one or more of 32 different layers. See also [member collision_mask].
-			[b]Note:[/b] A contact is detected if object A is in any of the layers that object B scans, or object B is in any layers that object A scans. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.
+			Слои физики, в которых находится данный CollisionObject3D. Объекты столкновений могут существовать в одном или нескольких из 32 различных слоев. См. также [member collision_mask].
+			[b]Примечание:[/b] Контакт обнаруживается, если объект A находится в любом из слоев, которые сканирует объект B, или объект B находится в любом слое, который сканирует объект A. Дополнительные сведения см. в документации [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url].
 		</member>
 		<member name="collision_mask" type="int" setter="set_collision_mask" getter="get_collision_mask" default="1">
-			The physics layers this CollisionObject3D scans. Collision objects can scan one or more of 32 different layers. See also [member collision_layer].
-			[b]Note:[/b] A contact is detected if object A is in any of the layers that object B scans, or object B is in any layers that object A scans. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.
+			Физические слои, которые сканирует данный CollisionObject3D. Объекты столкновений могут сканировать один или несколько из 32 различных слоев. См. также [member collision_layer].
+			[b]Примечание:[/b] Контакт обнаруживается, если объект A находится в любом из слоев, которые сканирует объект B, или объект B находится в любом из слоев, которые сканирует объект A. Дополнительные сведения см. в документации [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url].
 		</member>
 		<member name="input_capture_on_drag" type="bool" setter="set_capture_input_on_drag" getter="get_capture_input_on_drag" default="false">
-			If [code]true[/code], the [CollisionObject] will continue to receive input events as the mouse is dragged across its shapes.
+			Если [code]true[/code], то объект [CollisionObject] будет продолжать получать события ввода при перетаскивании мыши по его фигурам.
 		</member>
 		<member name="input_ray_pickable" type="bool" setter="set_ray_pickable" getter="is_ray_pickable" default="true">
-			If [code]true[/code], this object is pickable. A pickable object can detect the mouse pointer entering/leaving, and if the mouse is inside it, report input events. Requires at least one [member collision_layer] bit to be set.
+			Если [code]true[/code], то этот объект является pickable. Объект pickable может обнаружить вход/выход указателя мыши и, если мышь находится внутри него, сообщить о событиях ввода. Требуется, чтобы был установлен хотя бы один бит [member collision_layer].
 		</member>
 	</members>
 	<signals>
@@ -194,17 +194,17 @@
 			<argument index="3" name="normal" type="Vector3" />
 			<argument index="4" name="shape_idx" type="int" />
 			<description>
-				Emitted when the object receives an unhandled [InputEvent]. [code]position[/code] is the location in world space of the mouse pointer on the surface of the shape with index [code]shape_idx[/code] and [code]normal[/code] is the normal vector of the surface at that point.
+				Выдается, когда объект получает необработанное событие [InputEvent]. [code]position[/code] - это положение в мировом пространстве указателя мыши на поверхности фигуры с индексом [code]shape_idx[/code], а [code]normal[/code] - вектор нормали к поверхности в этой точке.
 			</description>
 		</signal>
 		<signal name="mouse_entered">
 			<description>
-				Emitted when the mouse pointer enters any of this object's shapes.
+				Выдается, когда указатель мыши попадает в любую из фигур этого объекта.
 			</description>
 		</signal>
 		<signal name="mouse_exited">
 			<description>
-				Emitted when the mouse pointer exits all this object's shapes.
+				Выдается, когда указатель мыши выходит из всех фигур этого объекта.
 			</description>
 		</signal>
 	</signals>
