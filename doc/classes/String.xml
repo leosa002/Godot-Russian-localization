@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class name="String" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Built-in string class.
+		Встроенный класс строк.
 	</brief_description>
 	<description>
-		This is the built-in string class (and the one used by GDScript). It supports Unicode and provides all necessary means for string handling. Strings are reference-counted and use a copy-on-write approach, so passing them around is cheap in resources.
+		Это встроенный класс строк (и тот, который используется в GDScript). Он поддерживает Unicode и предоставляет все необходимые средства для работы со строками. Строки подсчитываются по ссылкам и используют подход копирования при записи, поэтому их передача обходится дешево по ресурсам.
 	</description>
 	<tutorials>
 		<link>$DOCS_URL/tutorials/scripting/gdscript/gdscript_format_string.html</link>
@@ -14,213 +14,213 @@
 			<return type="String" />
 			<argument index="0" name="from" type="bool" />
 			<description>
-				Constructs a new String from the given [bool].
+				Создает новую строку из заданного типа [bool].
 			</description>
 		</method>
 		<method name="String">
 			<return type="String" />
 			<argument index="0" name="from" type="int" />
 			<description>
-				Constructs a new String from the given [int].
+				Создает новую строку из заданного типа [int].
 			</description>
 		</method>
 		<method name="String">
 			<return type="String" />
 			<argument index="0" name="from" type="float" />
 			<description>
-				Constructs a new String from the given [float].
+				Создает новую строку из заданного типа [float].
 			</description>
 		</method>
 		<method name="String">
 			<return type="String" />
 			<argument index="0" name="from" type="Vector2" />
 			<description>
-				Constructs a new String from the given [Vector2].
+				Создает новую строку из заданного типа [Vector2].
 			</description>
 		</method>
 		<method name="String">
 			<return type="String" />
 			<argument index="0" name="from" type="Rect2" />
 			<description>
-				Constructs a new String from the given [Rect2].
+				Создает новую строку из заданного типа [Rect2].
 			</description>
 		</method>
 		<method name="String">
 			<return type="String" />
 			<argument index="0" name="from" type="Vector3" />
 			<description>
-				Constructs a new String from the given [Vector3].
+				Создает новую строку из заданного типа [Vector3].
 			</description>
 		</method>
 		<method name="String">
 			<return type="String" />
 			<argument index="0" name="from" type="Transform2D" />
 			<description>
-				Constructs a new String from the given [Transform2D].
+				Создает новую строку из заданного типа [Transform2D].
 			</description>
 		</method>
 		<method name="String">
 			<return type="String" />
 			<argument index="0" name="from" type="Plane" />
 			<description>
-				Constructs a new String from the given [Plane].
+				Создает новую строку из заданного типа [Plane].
 			</description>
 		</method>
 		<method name="String">
 			<return type="String" />
 			<argument index="0" name="from" type="Quat" />
 			<description>
-				Constructs a new String from the given [Quat].
+				Создает новую строку из заданного типа [Quat].
 			</description>
 		</method>
 		<method name="String">
 			<return type="String" />
 			<argument index="0" name="from" type="AABB" />
 			<description>
-				Constructs a new String from the given [AABB].
+				Создает новую строку из заданного типа [AABB].
 			</description>
 		</method>
 		<method name="String">
 			<return type="String" />
 			<argument index="0" name="from" type="Basis" />
 			<description>
-				Constructs a new String from the given [Basis].
+				Создает новую строку из заданного типа [Basis].
 			</description>
 		</method>
 		<method name="String">
 			<return type="String" />
 			<argument index="0" name="from" type="Transform" />
 			<description>
-				Constructs a new String from the given [Transform].
+				Создает новую строку из заданного типа [Transform].
 			</description>
 		</method>
 		<method name="String">
 			<return type="String" />
 			<argument index="0" name="from" type="Color" />
 			<description>
-				Constructs a new String from the given [Color].
+				Создает новую строку из заданного типа [Color].
 			</description>
 		</method>
 		<method name="String">
 			<return type="String" />
 			<argument index="0" name="from" type="NodePath" />
 			<description>
-				Constructs a new String from the given [NodePath].
+				Создает новую строку из заданного типа [NodePath].
 			</description>
 		</method>
 		<method name="String">
 			<return type="String" />
 			<argument index="0" name="from" type="RID" />
 			<description>
-				Constructs a new String from the given [RID].
+				Создает новую строку из заданного типа [RID].
 			</description>
 		</method>
 		<method name="String">
 			<return type="String" />
 			<argument index="0" name="from" type="Dictionary" />
 			<description>
-				Constructs a new String from the given [Dictionary].
+				Создает новую строку из заданного типа [Dictionary].
 			</description>
 		</method>
 		<method name="String">
 			<return type="String" />
 			<argument index="0" name="from" type="Array" />
 			<description>
-				Constructs a new String from the given [Array].
+				Создает новую строку из заданного типа [Array].
 			</description>
 		</method>
 		<method name="String">
 			<return type="String" />
 			<argument index="0" name="from" type="PoolByteArray" />
 			<description>
-				Constructs a new String from the given [PoolByteArray].
+				Создает новую строку из заданного типа [PoolByteArray].
 			</description>
 		</method>
 		<method name="String">
 			<return type="String" />
 			<argument index="0" name="from" type="PoolIntArray" />
 			<description>
-				Constructs a new String from the given [PoolIntArray].
+				Создает новую строку из заданного типа [PoolIntArray].
 			</description>
 		</method>
 		<method name="String">
 			<return type="String" />
 			<argument index="0" name="from" type="PoolRealArray" />
 			<description>
-				Constructs a new String from the given [PoolRealArray].
+				Создает новую строку из заданного типа [PoolRealArray].
 			</description>
 		</method>
 		<method name="String">
 			<return type="String" />
 			<argument index="0" name="from" type="PoolStringArray" />
 			<description>
-				Constructs a new String from the given [PoolStringArray].
+				Создает новую строку из заданного типа [PoolStringArray].
 			</description>
 		</method>
 		<method name="String">
 			<return type="String" />
 			<argument index="0" name="from" type="PoolVector2Array" />
 			<description>
-				Constructs a new String from the given [PoolVector2Array].
+				Создает новую строку из заданного типа [PoolVector2Array].
 			</description>
 		</method>
 		<method name="String">
 			<return type="String" />
 			<argument index="0" name="from" type="PoolVector3Array" />
 			<description>
-				Constructs a new String from the given [PoolVector3Array].
+				Создает новую строку из заданного типа [PoolVector3Array].
 			</description>
 		</method>
 		<method name="String">
 			<return type="String" />
 			<argument index="0" name="from" type="PoolColorArray" />
 			<description>
-				Constructs a new String from the given [PoolColorArray].
+				Создает новую строку из заданного типа [PoolColorArray].
 			</description>
 		</method>
 		<method name="begins_with">
 			<return type="bool" />
 			<argument index="0" name="text" type="String" />
 			<description>
-				Returns [code]true[/code] if the string begins with the given string.
+				Возвращает [code]true[/code], если строка начинается с заданной строки.
 			</description>
 		</method>
 		<method name="bigrams">
 			<return type="PoolStringArray" />
 			<description>
-				Returns an array containing the bigrams (pairs of consecutive letters) of this string.
-				[codeblock]
-				print("Bigrams".bigrams()) # Prints "[Bi, ig, gr, ra, am, ms]"
+				Возвращает массив, содержащий биграммы (пары последовательных букв) данной строки.
+				[codeblock].
+				print("Bigrams".bigrams()) # Печатает "[Bi, ig, gr, ra, am, ms]"
 				[/codeblock]
 			</description>
 		</method>
 		<method name="c_escape">
 			<return type="String" />
 			<description>
-				Returns a copy of the string with special characters escaped using the C language standard.
+				Возвращает копию строки с экранированными специальными символами по стандарту языка C.
 			</description>
 		</method>
 		<method name="c_unescape">
 			<return type="String" />
 			<description>
-				Returns a copy of the string with escaped characters replaced by their meanings. Supported escape sequences are [code]\'[/code], [code]\"[/code], [code]\?[/code], [code]\\[/code], [code]\a[/code], [code]\b[/code], [code]\f[/code], [code]\n[/code], [code]\r[/code], [code]\t[/code], [code]\v[/code].
-				[b]Note:[/b] Unlike the GDScript parser, this method doesn't support the [code]\uXXXX[/code] escape sequence.
+				Возвращает копию строки с экранированными символами, замененными их значениями. Поддерживаются следующие последовательности: [code]\'[/code], [code]\"[/code], [code]\?[/code], [code]\\\[/code], [code]\a[/code], [code]\b[/code], [code]\f[/code], [code]\n[/code], [code]\r[/code], [code]\t[/code], [code]\v[/code].
+				[b]Примечание:[/b] В отличие от парсера GDScript, этот метод не поддерживает управляющую последовательность [code]\uXXXX[/code].
 			</description>
 		</method>
 		<method name="capitalize">
 			<return type="String" />
 			<description>
-				Changes the case of some letters. Replaces underscores with spaces, adds spaces before in-word uppercase characters, converts all letters to lowercase, then capitalizes the first letter and every letter following a space character. For [code]capitalize camelCase mixed_with_underscores[/code], it will return [code]Capitalize Camel Case Mixed With Underscores[/code].
+				Изменяет регистр некоторых букв. Заменяет подчеркивания пробелами, добавляет пробелы перед заглавными символами в слове, преобразует все буквы в строчные, затем прописывает первую букву и все буквы, следующие за пробелом. Для [code]capitalize camelCase mixed_with_underscores[/code] будет возвращено [code]Capitalize Camel Case Mixed With Underscores[/code].
 			</description>
 		</method>
 		<method name="casecmp_to">
 			<return type="int" />
 			<argument index="0" name="to" type="String" />
 			<description>
-				Performs a case-sensitive comparison to another string. Returns [code]-1[/code] if less than, [code]1[/code] if greater than, or [code]0[/code] if equal. "less than" or "greater than" are determined by the [url=https://en.wikipedia.org/wiki/List_of_Unicode_characters]Unicode code points[/url] of each string, which roughly matches the alphabetical order.
-				[b]Behavior with different string lengths:[/b] Returns [code]1[/code] if the "base" string is longer than the [code]to[/code] string or [code]-1[/code] if the "base" string is shorter than the [code]to[/code] string. Keep in mind this length is determined by the number of Unicode codepoints, [i]not[/i] the actual visible characters.
-				[b]Behavior with empty strings:[/b] Returns [code]-1[/code] if the "base" string is empty, [code]1[/code] if the [code]to[/code] string is empty or [code]0[/code] if both strings are empty.
-				To get a boolean result from a string comparison, use the [code]==[/code] operator instead. See also [method nocasecmp_to].
+				Выполняет сравнение с другой строкой с учетом регистра. Возвращает [code]-1[/code], если меньше, [code]1[/code], если больше, или [code]0[/code], если равно. Значения "меньше" или "больше" определяются [url=https://en.wikipedia.org/wiki/List_of_Unicode_characters]кодовыми точками Юникода[/url] каждой строки, что примерно соответствует алфавитному порядку.
+				[b]Поведение при различной длине строки:[/b] Возвращает [code]1[/code], если "базовая" строка длиннее строки [code]to[/code], или [code]-1[/code], если "базовая" строка короче строки [code]to[/code]. Следует помнить, что эта длина определяется количеством кодовых точек Юникода, [i]а не[/i] реальных видимых символов.
+				[b]Поведение с пустыми строками:[/b] Возвращает [code]-1[/code], если строка "base" пуста, [code]1[/code], если строка [code]to[/code] пуста, или [code]0[/code], если обе строки пусты.
+				Чтобы получить булев результат сравнения строк, используйте вместо этого оператор [code]==[/code]. См. также [метод nocasecmp_to].
 			</description>
 		</method>
 		<method name="count">
@@ -229,7 +229,7 @@
 			<argument index="1" name="from" type="int" default="0" />
 			<argument index="2" name="to" type="int" default="0" />
 			<description>
-				Returns the number of occurrences of substring [code]what[/code] between [code]from[/code] and [code]to[/code] positions. If [code]from[/code] and [code]to[/code] equals 0 the whole string will be used. If only [code]to[/code] equals 0 the remained substring will be used.
+				Возвращает количество вхождений подстроки [code]what[/code] между позициями [code]from[/code] и [code]to[/code]. Если [code]from[/code] и [code]to[/code] равны 0, то будет использована вся строка. Если только [code]to[/code] равен 0, будет использована оставшаяся подстрока.
 			</description>
 		</method>
 		<method name="countn">
@@ -238,33 +238,33 @@
 			<argument index="1" name="from" type="int" default="0" />
 			<argument index="2" name="to" type="int" default="0" />
 			<description>
-				Returns the number of occurrences of substring [code]what[/code] (ignoring case) between [code]from[/code] and [code]to[/code] positions. If [code]from[/code] and [code]to[/code] equals 0 the whole string will be used. If only [code]to[/code] equals 0 the remained substring will be used.
+				Возвращает количество вхождений подстроки [code]what[/code] (без учета регистра) между позициями [code]from[/code] и [code]to[/code]. Если [code]from[/code] и [code]to[/code] равны 0, то будет использована вся строка. Если только [code]to[/code] равен 0, будет использована оставшаяся подстрока.
 			</description>
 		</method>
 		<method name="dedent">
 			<return type="String" />
 			<description>
-				Returns a copy of the string with indentation (leading tabs and spaces) removed. See also [method indent] to add indentation.
+				Возвращает копию строки с удаленным отступом (ведущие табуляции и пробелы). Для добавления отступов см. также [метод indent].
 			</description>
 		</method>
 		<method name="empty">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the length of the string equals [code]0[/code].
+				Возвращает [code]true[/code], если длина строки равна [code]0[/code].
 			</description>
 		</method>
 		<method name="ends_with">
 			<return type="bool" />
 			<argument index="0" name="text" type="String" />
 			<description>
-				Returns [code]true[/code] if the string ends with the given string.
+				Возвращает [code]true[/code], если строка заканчивается заданной строкой.
 			</description>
 		</method>
 		<method name="erase">
 			<argument index="0" name="position" type="int" />
 			<argument index="1" name="chars" type="int" />
 			<description>
-				Erases [code]chars[/code] characters from the string starting from [code]position[/code].
+				Стирает [code]chars[/code] символов из строки, начиная с [code]position[/code].
 			</description>
 		</method>
 		<method name="find">
@@ -272,10 +272,10 @@
 			<argument index="0" name="what" type="String" />
 			<argument index="1" name="from" type="int" default="0" />
 			<description>
-				Finds the first occurrence of a substring. Returns the starting position of the substring or [code]-1[/code] if not found. Optionally, the initial search index can be passed.
-				[b]Note:[/b] If you just want to know whether a string contains a substring, use the [code]in[/code] operator as follows:
+				Находит первое вхождение подстроки. Возвращает начальную позицию подстроки или [code]-1[/code], если она не найдена. Опционально может быть передан начальный индекс поиска.
+				[b]Примечание:[/b] Если вы просто хотите узнать, содержит ли строка подстроку, используйте оператор [code]in[/code] следующим образом:
 				[codeblock]
-				# Will evaluate to `false`.
+				# Оценивается в `false`.
 				if "i" in "team":
 				    pass
 				[/codeblock]
@@ -285,7 +285,7 @@
 			<return type="int" />
 			<argument index="0" name="what" type="String" />
 			<description>
-				Finds the last occurrence of a substring. Returns the starting position of the substring or [code]-1[/code] if not found.
+				Находит последнее вхождение подстроки. Возвращает начальную позицию подстроки или [code]-1[/code], если она не найдена.
 			</description>
 		</method>
 		<method name="findn">
@@ -293,7 +293,7 @@
 			<argument index="0" name="what" type="String" />
 			<argument index="1" name="from" type="int" default="0" />
 			<description>
-				Finds the first occurrence of a substring, ignoring case. Returns the starting position of the substring or [code]-1[/code] if not found. Optionally, the initial search index can be passed.
+				Находит первое вхождение подстроки, игнорируя регистр. Возвращает начальную позицию подстроки или [code]-1[/code], если она не найдена. Опционально может быть передан начальный индекс поиска.
 			</description>
 		</method>
 		<method name="format">
@@ -301,21 +301,21 @@
 			<argument index="0" name="values" type="Variant" />
 			<argument index="1" name="placeholder" type="String" default="&quot;{_}&quot;" />
 			<description>
-				Formats the string by replacing all occurrences of [code]placeholder[/code] with the elements of [code]values[/code].
-				[code]values[/code] can be a [Dictionary] or an [Array]. Any underscores in [code]placeholder[/code] will be replaced with the corresponding keys in advance. Array elements use their index as keys.
+				Формирует строку, заменяя все вхождения [code]placeholder[/code] на элементы [code]values[/code].
+				[code]values[/code] может быть [Dictionary] или [Array]. Любые символы подчеркивания в [code]placeholder[/code] будут заранее заменены на соответствующие ключи. Элементы массива используют свой индекс в качестве ключа.
 				[codeblock]
-				# Prints: Waiting for Godot is a play by Samuel Beckett, and Godot Engine is named after it.
-				var use_array_values = "Waiting for {0} is a play by {1}, and {0} Engine is named after it."
-				print(use_array_values.format(["Godot", "Samuel Beckett"]))
+				# Вывод: В ожидании Godot - пьеса Сэмюэля Беккета, в честь которой назван Godot Engine.
+				var use_array_values = "Ожидание {0} - это пьеса {1}, и {0} двигатель назван в честь нее".
+				print(use_array_values.format(["Godot", "Samuel Beckett"])])
 
-				# Prints: User 42 is Godot.
-				print("User {id} is {name}.".format({"id": 42, "name": "Godot"}))
-				[/codeblock]
-				Some additional handling is performed when [code]values[/code] is an array. If [code]placeholder[/code] does not contain an underscore, the elements of the array will be used to replace one occurrence of the placeholder in turn; If an array element is another 2-element array, it'll be interpreted as a key-value pair.
+				# Вывод: Пользователь 42 - это Годо.
+				print("Пользователь {id} - это {name}.".format({"id": 42, "name": "Godot"}))
+				[/codeblock].
+				Когда [code]values[/code] является массивом, выполняется дополнительная обработка. Если [code]placeholder[/code] не содержит подчеркивания, то элементы массива будут использоваться для замены одного вхождения placeholder по очереди; если элемент массива является другим двухэлементным массивом, то он будет интерпретироваться как пара ключ-значение.
 				[codeblock]
-				# Prints: User 42 is Godot.
-				print("User {} is {}.".format([42, "Godot"], "{}"))
-				print("User {id} is {name}.".format([["id", 42], ["name", "Godot"]]))
+				# Вывод: Пользователь 42 - это Годо.
+				print("Пользователь {} - это {}.".format([42, "Godot"], "{}"))
+				print("User {id} is {name}.".format([["id", 42], ["name", "Godot"]]]))
 				[/codeblock]
 			</description>
 		</method>
