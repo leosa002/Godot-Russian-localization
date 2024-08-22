@@ -313,7 +313,7 @@
 				[/codeblock].
 				Когда [code]values[/code] является массивом, выполняется дополнительная обработка. Если [code]placeholder[/code] не содержит подчеркивания, то элементы массива будут использоваться для замены одного вхождения placeholder по очереди; если элемент массива является другим двухэлементным массивом, то он будет интерпретироваться как пара ключ-значение.
 				[codeblock]
-				# Вывод: Пользователь 42 - это Годо.
+				# Вывод: Пользователь 42 - это Godot.
 				print("Пользователь {} - это {}.".format([42, "Godot"], "{}"))
 				print("User {id} is {name}.".format([["id", 42], ["name", "Godot"]]]))
 				[/codeblock]
@@ -322,13 +322,13 @@
 		<method name="get_base_dir">
 			<return type="String" />
 			<description>
-				If the string is a valid file path, returns the base directory name.
+				Если строка является действительным путем к файлу, возвращается имя базового каталога.
 			</description>
 		</method>
 		<method name="get_basename">
 			<return type="String" />
 			<description>
-				If the string is a valid file path, returns the full file path without the extension.
+				Если строка является действительным путем к файлу, возвращается полный путь к файлу без расширения.
 			</description>
 		</method>
 		<method name="get_extension">
