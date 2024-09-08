@@ -33,7 +33,7 @@ Godot разрабатывался [Хуан Линецкий](https://github.co
 
 ![Скриншот 3D-сцены в редакторе Godot Engine](https://raw.githubusercontent.com/godotengine/godot-design/master/screenshots/editor_tps_demo_1920x1080.jpg)
 
-## Получени движка
+## Получение движка
 
 ### Загрузка бинарных файлов
 
