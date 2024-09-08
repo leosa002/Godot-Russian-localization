@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class name="File" inherits="Reference" version="3.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
 	<brief_description>
-		Type to handle file reading and writing operations.
+		Тип для обработки операций чтения и записи файлов.
 	</brief_description>
 	<description>
-		File type. This is used to permanently store data into the user device's file system and to read from it. This can be used to store game save data or player configuration files, for example.
-		Here's a sample on how to write and read from a file:
+		Тип файла. Используется для постоянного хранения данных в файловой системе пользовательского устройства и для чтения из нее. Например, он может использоваться для хранения игровых сохранений или файлов конфигурации игрока.
+		Вот пример записи и чтения из файла:
 		[codeblock]
 		func save(content):
 		    var file = File.new()
@@ -20,29 +20,29 @@
 		    file.close()
 		    return content
 		[/codeblock]
-		In the example above, the file will be saved in the user data folder as specified in the [url=$DOCS_URL/tutorials/io/data_paths.html]Data paths[/url] documentation.
-		[b]Note:[/b] To access project resources once exported, it is recommended to use [ResourceLoader] instead of the [File] API, as some files are converted to engine-specific formats and their original source files might not be present in the exported PCK package.
-		[b]Note:[/b] Files are automatically closed only if the process exits "normally" (such as by clicking the window manager's close button or pressing [b]Alt + F4[/b]). If you stop the project execution by pressing [b]F8[/b] while the project is running, the file won't be closed as the game process will be killed. You can work around this by calling [method flush] at regular intervals.
+		В приведенном примере файл будет сохранен в папке данных пользователя, как указано в документации [url=$DOCS_URL/tutorials/io/data_paths.html]Data paths[/url].
+		[b]Примечание:[/b] Для доступа к ресурсам проекта после экспорта рекомендуется использовать [ResourceLoader] вместо API [File], так как некоторые файлы конвертируются в форматы, специфичные для движка, и их исходные файлы могут отсутствовать в экспортированном пакете PCK.
+		[b]Примечание:[/b] Файлы автоматически закрываются только в том случае, если процесс завершается "нормально" (например, щелчком на кнопке закрытия оконного менеджера или нажатием [b]Alt + F4[/b]). Если вы остановите выполнение проекта, нажав [b]F8[/b] во время его работы, файл не будет закрыт, так как игровой процесс будет убит. Это можно обойти, регулярно вызывая [метод flush].
 	</description>
 	<tutorials>
-		<link title="File system">$DOCS_URL/tutorials/scripting/filesystem.html</link>
+		<link title="Файловая система">$DOCS_URL/tutorials/scripting/filesystem.html</link>
 		<link title="3D Voxel Demo">https://godotengine.org/asset-library/asset/676</link>
 	</tutorials>
 	<methods>
 		<method name="close">
 			<return type="void" />
 			<description>
-				Closes the currently opened file and prevents subsequent read/write operations. Use [method flush] to persist the data to disk without closing the file.
+				Закрывает текущий открытый файл и предотвращает последующие операции чтения/записи. Используйте [метод flush], чтобы сохранить данные на диске без закрытия файла.
 			</description>
 		</method>
 		<method name="eof_reached" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the file cursor has already read past the end of the file.
-				[b]Note:[/b] [code]eof_reached() == false[/code] cannot be used to check whether there is more data available. To loop while there is more data available, use:
+				Возвращает [code]true[/code], если файловый курсор уже прочитал конец файла.
+				[b]Примечание:[/b] [code]eof_reached() == false[/code] нельзя использовать для проверки наличия дополнительных данных. Чтобы выполнить цикл, пока есть еще данные, используйте:
 				[codeblock]
 				while file.get_position() &lt; file.get_len():
-				    # Read data
+				    # Данные для чтения
 				[/codeblock]
 			</description>
 		</method>
@@ -50,166 +50,166 @@
 			<return type="bool" />
 			<argument index="0" name="path" type="String" />
 			<description>
-				Returns [code]true[/code] if the file exists in the given path.
-				[b]Note:[/b] Many resources types are imported (e.g. textures or sound files), and their source asset will not be included in the exported game, as only the imported version is used. See [method ResourceLoader.exists] for an alternative approach that takes resource remapping into account.
+				Возвращает [code]true[/code], если файл существует по указанному пути.
+				[b]Примечание:[/b] Многие типы ресурсов импортируются (например, текстуры или звуковые файлы), и их исходный актив не будет включен в экспортируемую игру, так как используется только импортированная версия. Альтернативный подход, учитывающий ремаппинг ресурсов, см. в [методе ResourceLoader.exists].
 			</description>
 		</method>
 		<method name="flush">
 			<return type="void" />
 			<description>
-				Writes the file's buffer to disk. Flushing is automatically performed when the file is closed. This means you don't need to call [method flush] manually before closing a file using [method close]. Still, calling [method flush] can be used to ensure the data is safe even if the project crashes instead of being closed gracefully.
-				[b]Note:[/b] Only call [method flush] when you actually need it. Otherwise, it will decrease performance due to constant disk writes.
+				Записывает буфер файла на диск. Промывка выполняется автоматически при закрытии файла. Это означает, что вам не нужно вызывать [method flush] вручную перед закрытием файла с помощью [method close]. Тем не менее, вызов [method flush] может быть использован для обеспечения сохранности данных, даже если проект падает, а не закрывается изящно.
+				[b]Примечание:[/b] Вызывайте [method flush] только тогда, когда это действительно необходимо. В противном случае это приведет к снижению производительности из-за постоянной записи на диск.
 			</description>
 		</method>
 		<method name="get_16" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the next 16 bits from the file as an integer. See [method store_16] for details on what values can be stored and retrieved this way.
+				Возвращает следующие 16 бит из файла в виде целого числа. Подробности о том, какие значения можно хранить и извлекать таким образом, см. в [метод store_16].
 			</description>
 		</method>
 		<method name="get_32" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the next 32 bits from the file as an integer. See [method store_32] for details on what values can be stored and retrieved this way.
+				Возвращает следующие 32 бита из файла в виде целого числа. Подробности о том, какие значения можно хранить и извлекать таким образом, см. в [метод store_32].
 			</description>
 		</method>
 		<method name="get_64" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the next 64 bits from the file as an integer. See [method store_64] for details on what values can be stored and retrieved this way.
+				Возвращает следующие 64 бита из файла в виде целого числа. Подробности о том, какие значения можно хранить и извлекать таким образом, см. в [method store_64].
 			</description>
 		</method>
 		<method name="get_8" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the next 8 bits from the file as an integer. See [method store_8] for details on what values can be stored and retrieved this way.
+				Возвращает следующие 8 бит из файла в виде целого числа. Подробности о том, какие значения можно хранить и извлекать таким образом, см. в [метод store_8].
 			</description>
 		</method>
 		<method name="get_as_text" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="skip_cr" type="bool" default="true" />
 			<description>
-				Returns the whole file as a [String]. Text is interpreted as being UTF-8 encoded.
-				If [code]skip_cr[/code] is [code]true[/code], carriage return characters ([code]\r[/code], CR) will be ignored when parsing the UTF-8, so that only line feed characters ([code]\n[/code], LF) represent a new line (Unix convention).
+				Возвращает весь файл в виде [String]. Текст интерпретируется как закодированный в UTF-8.
+				Если [code]skip_cr[/code] имеет значение [code]true[/code], то символы возврата каретки ([code]\r[/code], CR) будут игнорироваться при разборе UTF-8, так что только символы перевода строки ([code]\n[/code], LF) будут представлять новую строку (соглашение Unix).
 			</description>
 		</method>
 		<method name="get_buffer" qualifiers="const">
 			<return type="PoolByteArray" />
 			<argument index="0" name="len" type="int" />
 			<description>
-				Returns next [code]len[/code] bytes of the file as a [PoolByteArray].
+				Возвращает следующие [code]len[/code] байтов файла в виде [PoolByteArray].
 			</description>
 		</method>
 		<method name="get_csv_line" qualifiers="const">
 			<return type="PoolStringArray" />
 			<argument index="0" name="delim" type="String" default="&quot;,&quot;" />
 			<description>
-				Returns the next value of the file in CSV (Comma-Separated Values) format. You can pass a different delimiter [code]delim[/code] to use other than the default [code]","[/code] (comma). This delimiter must be one-character long, and cannot be a double quotation mark.
-				Text is interpreted as being UTF-8 encoded. Text values must be enclosed in double quotes if they include the delimiter character. Double quotes within a text value can be escaped by doubling their occurrence.
-				For example, the following CSV lines are valid and will be properly parsed as two strings each:
+				Возвращает следующее значение файла в формате CSV (Comma-Separated Values). Вы можете передать другой разделитель [code]delim[/code], отличный от используемого по умолчанию [code]","[/code] (запятая). Этот разделитель должен состоять из одного символа и не может быть двойной кавычкой.
+				Текст интерпретируется как закодированный в UTF-8. Текстовые значения должны быть заключены в двойные кавычки, если они включают символ-разделитель. Двойные кавычки внутри текстового значения можно экранировать, удвоив их количество.
+				Например, следующие строки CSV являются допустимыми и будут правильно разобраны как две строки каждая:
 				[codeblock]
 				Alice,"Hello, Bob!"
 				Bob,Alice! What a surprise!
 				Alice,"I thought you'd reply with ""Hello, world""."
 				[/codeblock]
-				Note how the second line can omit the enclosing quotes as it does not include the delimiter. However it [i]could[/i] very well use quotes, it was only written without for demonstration purposes. The third line must use [code]""[/code] for each quotation mark that needs to be interpreted as such instead of the end of a text value.
+				Обратите внимание, что во второй строке можно не использовать заключающие кавычки, поскольку в ней нет разделителя. Однако она [i]вполне могла бы[/i] использовать кавычки, но была написана без них только в демонстрационных целях. В третьей строке необходимо использовать [code]""[/code] для каждой кавычки, которая должна интерпретироваться как таковая, а не как конец текстового значения.
 			</description>
 		</method>
 		<method name="get_double" qualifiers="const">
 			<return type="float" />
 			<description>
-				Returns the next 64 bits from the file as a floating-point number.
+				Возвращает следующие 64 бита из файла в виде числа с плавающей точкой.
 			</description>
 		</method>
 		<method name="get_error" qualifiers="const">
 			<return type="int" enum="Error" />
 			<description>
-				Returns the last error that happened when trying to perform operations. Compare with the [code]ERR_FILE_*[/code] constants from [enum Error].
+				Возвращает последнюю ошибку, произошедшую при попытке выполнения операций. Сравните с константами [code]ERR_FILE_*[/code] из [enum Error].
 			</description>
 		</method>
 		<method name="get_float" qualifiers="const">
 			<return type="float" />
 			<description>
-				Returns the next 32 bits from the file as a floating-point number.
+				Возвращает следующие 32 бита из файла в виде числа с плавающей точкой.
 			</description>
 		</method>
 		<method name="get_len" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the size of the file in bytes.
+				Возвращает размер файла в байтах.
 			</description>
 		</method>
 		<method name="get_line" qualifiers="const">
 			<return type="String" />
 			<description>
-				Returns the next line of the file as a [String].
-				Text is interpreted as being UTF-8 encoded.
+				Возвращает следующую строку файла в виде [String].
+				Текст интерпретируется как закодированный в UTF-8.
 			</description>
 		</method>
 		<method name="get_md5" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="path" type="String" />
 			<description>
-				Returns an MD5 String representing the file at the given path or an empty [String] on failure.
+				Возвращает MD5-строку, представляющую файл по указанному пути, или пустую [String] в случае неудачи.
 			</description>
 		</method>
 		<method name="get_modified_time" qualifiers="const">
 			<return type="int" />
 			<argument index="0" name="file" type="String" />
 			<description>
-				Returns the last time the [code]file[/code] was modified in unix timestamp format or returns a [String] "ERROR IN [code]file[/code]". This unix timestamp can be converted to datetime by using [method OS.get_datetime_from_unix_time].
+				Возвращает время последнего изменения [code]файла[/code] в формате unix timestamp или возвращает [String] "ERROR IN [code]file[/code]". Эта временная метка unix может быть преобразована в datetime с помощью [метода OS.get_datetime_from_unix_time].
 			</description>
 		</method>
 		<method name="get_pascal_string">
 			<return type="String" />
 			<description>
-				Returns a [String] saved in Pascal format from the file.
-				Text is interpreted as being UTF-8 encoded.
+				Возвращает из файла [String], сохраненный в формате Pascal.
+				Текст интерпретируется как закодированный в UTF-8.
 			</description>
 		</method>
 		<method name="get_path" qualifiers="const">
 			<return type="String" />
 			<description>
-				Returns the path as a [String] for the current open file.
+				Возвращает путь к текущему открытому файлу в виде [String].
 			</description>
 		</method>
 		<method name="get_path_absolute" qualifiers="const">
 			<return type="String" />
 			<description>
-				Returns the absolute path as a [String] for the current open file.
+				Возвращает абсолютный путь к текущему открытому файлу в виде [String].
 			</description>
 		</method>
 		<method name="get_position" qualifiers="const">
 			<return type="int" />
 			<description>
-				Returns the file cursor's position.
+				Возвращает позицию курсора файла.
 			</description>
 		</method>
 		<method name="get_real" qualifiers="const">
 			<return type="float" />
 			<description>
-				Returns the next bits from the file as a floating-point number.
+				Возвращает следующие биты из файла в виде числа с плавающей точкой.
 			</description>
 		</method>
 		<method name="get_sha256" qualifiers="const">
 			<return type="String" />
 			<argument index="0" name="path" type="String" />
 			<description>
-				Returns a SHA-256 [String] representing the file at the given path or an empty [String] on failure.
+				Возвращает SHA-256 [String], представляющий файл по указанному пути, или пустой [String] в случае неудачи.
 			</description>
 		</method>
 		<method name="get_var" qualifiers="const">
 			<return type="Variant" />
 			<argument index="0" name="allow_objects" type="bool" default="false" />
 			<description>
-				Returns the next [Variant] value from the file. If [code]allow_objects[/code] is [code]true[/code], decoding objects is allowed.
-				[b]Warning:[/b] Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
+				Возвращает следующее значение [Variant] из файла. Если [code]allow_objects[/code] равен [code]true[/code], декодирование объектов разрешено.
+				[b]Предупреждение:[/b] Десериализованные объекты могут содержать код, который будет выполнен. Не используйте эту опцию, если сериализованный объект получен из ненадежных источников, чтобы избежать потенциальных угроз безопасности, таких как удаленное выполнение кода.
 			</description>
 		</method>
 		<method name="is_open" qualifiers="const">
 			<return type="bool" />
 			<description>
-				Returns [code]true[/code] if the file is currently opened.
+				Возвращает [code]true[/code], если файл в данный момент открыт.
 			</description>
 		</method>
 		<method name="open">
@@ -217,7 +217,7 @@
 			<argument index="0" name="path" type="String" />
 			<argument index="1" name="flags" type="int" enum="File.ModeFlags" />
 			<description>
-				Opens the file for writing or reading, depending on the flags.
+				Открывает файл для записи или чтения, в зависимости от установленных флагов.
 			</description>
 		</method>
 		<method name="open_compressed">
@@ -226,8 +226,8 @@
 			<argument index="1" name="mode_flags" type="int" enum="File.ModeFlags" />
 			<argument index="2" name="compression_mode" type="int" enum="File.CompressionMode" default="0" />
 			<description>
-				Opens a compressed file for reading or writing.
-				[b]Note:[/b] [method open_compressed] can only read files that were saved by Godot, not third-party compression formats. See [url=https://github.com/godotengine/godot/issues/28999]GitHub issue #28999[/url] for a workaround.
+				Открывает сжатый файл для чтения или записи.
+				[b]Примечание:[/b] [метод open_compressed] может читать только файлы, сохраненные Godot, но не сторонние форматы сжатия. Смотрите [url=https://github.com/godotengine/godot/issues/28999]GitHub issue #28999[/url] для обходного пути.
 			</description>
 		</method>
 		<method name="open_encrypted">
@@ -236,8 +236,8 @@
 			<argument index="1" name="mode_flags" type="int" enum="File.ModeFlags" />
 			<argument index="2" name="key" type="PoolByteArray" />
 			<description>
-				Opens an encrypted file in write or read mode. You need to pass a binary key to encrypt/decrypt it.
-				[b]Note:[/b] The provided key must be 32 bytes long.
+				Открывает зашифрованный файл в режиме записи или чтения. Для шифрования/дешифрования необходимо передать двоичный ключ.
+				[b]Примечание:[/b] Передаваемый ключ должен быть длиной 32 байта.
 			</description>
 		</method>
 		<method name="open_encrypted_with_pass">
@@ -246,31 +246,31 @@
 			<argument index="1" name="mode_flags" type="int" enum="File.ModeFlags" />
 			<argument index="2" name="pass" type="String" />
 			<description>
-				Opens an encrypted file in write or read mode. You need to pass a password to encrypt/decrypt it.
+				Открывает зашифрованный файл в режиме записи или чтения. Для шифрования/дешифрования необходимо передать пароль.
 			</description>
 		</method>
 		<method name="seek">
 			<return type="void" />
 			<argument index="0" name="position" type="int" />
 			<description>
-				Changes the file reading/writing cursor to the specified position (in bytes from the beginning of the file).
+				Перемещает курсор чтения/записи файла в указанную позицию (в байтах от начала файла).
 			</description>
 		</method>
 		<method name="seek_end">
 			<return type="void" />
 			<argument index="0" name="position" type="int" default="0" />
 			<description>
-				Changes the file reading/writing cursor to the specified position (in bytes from the end of the file).
-				[b]Note:[/b] This is an offset, so you should use negative numbers or the cursor will be at the end of the file.
+				Изменяет курсор чтения/записи файла на указанную позицию (в байтах от конца файла).
+				[b]Примечание:[/b] Это смещение, поэтому следует использовать отрицательные числа, иначе курсор окажется в конце файла.
 			</description>
 		</method>
 		<method name="store_16">
 			<return type="void" />
 			<argument index="0" name="value" type="int" />
 			<description>
-				Stores an integer as 16 bits in the file.
-				[b]Note:[/b] The [code]value[/code] should lie in the interval [code][0, 2^16 - 1][/code]. Any other value will overflow and wrap around.
-				To store a signed integer, use [method store_64] or store a signed integer from the interval [code][-2^15, 2^15 - 1][/code] (i.e. keeping one bit for the signedness) and compute its sign manually when reading. For example:
+				Сохраняет целое число в виде 16 бит в файле.
+				[b]Примечание:[/b] Значение [code]value[/code] должно лежать в интервале [code][0, 2^16 - 1][/code]. Любое другое значение будет переполнено и обернуто вокруг.
+				Для хранения знакового целого используйте [method store_64] или храните знаковое целое из интервала [code][-2^15, 2^15 - 1][/code] (т.е. сохраняя один бит для знаковости) и вычисляйте его знак вручную при чтении. Например:
 				[codeblock]
 				const MAX_15B = 1 &lt;&lt; 15
 				const MAX_16B = 1 &lt;&lt; 16
@@ -281,9 +281,9 @@
 				func _ready():
 				    var f = File.new()
 				    f.open("user://file.dat", File.WRITE_READ)
-				    f.store_16(-42) # This wraps around and stores 65494 (2^16 - 42).
-				    f.store_16(121) # In bounds, will store 121.
-				    f.seek(0) # Go back to start to read the stored value.
+				    f.store_16(-42) # Это обернется и сохранит 65494 (2^16 - 42).
+				    f.store_16(121) # В границах будет храниться 121.
+				    f.seek(0) # Вернитесь к началу, чтобы считать сохраненное значение.
 				    var read1 = f.get_16() # 65494
 				    var read2 = f.get_16() # 121
 				    var converted1 = unsigned16_to_signed(read1) # -42
@@ -295,33 +295,33 @@
 			<return type="void" />
 			<argument index="0" name="value" type="int" />
 			<description>
-				Stores an integer as 32 bits in the file.
-				[b]Note:[/b] The [code]value[/code] should lie in the interval [code][0, 2^32 - 1][/code]. Any other value will overflow and wrap around.
-				To store a signed integer, use [method store_64], or convert it manually (see [method store_16] for an example).
+				Сохраняет в файле целое число в 32 бита.
+				[b]Примечание:[/b] Значение [code]value[/code] должно лежать в интервале [code][0, 2^32 - 1][/code]. Любое другое значение будет переполнено и обернуто вокруг.
+				Для хранения знаковых целых чисел используйте [method store_64] или преобразуйте их вручную (пример см. в [method store_16]).
 			</description>
 		</method>
 		<method name="store_64">
 			<return type="void" />
 			<argument index="0" name="value" type="int" />
 			<description>
-				Stores an integer as 64 bits in the file.
-				[b]Note:[/b] The [code]value[/code] must lie in the interval [code][-2^63, 2^63 - 1][/code] (i.e. be a valid [int] value).
+				Сохраняет в файле целое число в 64 бита.
+				[b]Примечание:[/b] Значение [code]value[/code] должно лежать в интервале [code][-2^63, 2^63 - 1][/code] (т.е. быть допустимым значением [int]).
 			</description>
 		</method>
 		<method name="store_8">
 			<return type="void" />
 			<argument index="0" name="value" type="int" />
 			<description>
-				Stores an integer as 8 bits in the file.
-				[b]Note:[/b] The [code]value[/code] should lie in the interval [code][0, 255][/code]. Any other value will overflow and wrap around.
-				To store a signed integer, use [method store_64], or convert it manually (see [method store_16] for an example).
+				Сохраняет в файле целое число в виде 8 бит.
+				[b]Примечание:[/b] Значение [code]value[/code] должно лежать в интервале [code][0, 255][/code]. Любое другое значение будет переполнено и обернуто вокруг.
+				Для хранения знаковых целых чисел используйте [method store_64] или преобразуйте их вручную (пример см. в [method store_16]).
 			</description>
 		</method>
 		<method name="store_buffer">
 			<return type="void" />
 			<argument index="0" name="buffer" type="PoolByteArray" />
 			<description>
-				Stores the given array of bytes in the file.
+				Записывает заданный массив байтов в файл.
 			</description>
 		</method>
 		<method name="store_csv_line">
@@ -329,52 +329,52 @@
 			<argument index="0" name="values" type="PoolStringArray" />
 			<argument index="1" name="delim" type="String" default="&quot;,&quot;" />
 			<description>
-				Store the given [PoolStringArray] in the file as a line formatted in the CSV (Comma-Separated Values) format. You can pass a different delimiter [code]delim[/code] to use other than the default [code]","[/code] (comma). This delimiter must be one-character long.
-				Text will be encoded as UTF-8.
+				Сохраняет заданный [PoolStringArray] в файле в виде строки, отформатированной в формате CSV (Comma-Separated Values). Вы можете передать другой разделитель [code]delim[/code], отличный от используемого по умолчанию [code]","[/code] (запятая). Этот разделитель должен состоять из одного символа.
+				Текст будет закодирован в формате UTF-8.
 			</description>
 		</method>
 		<method name="store_double">
 			<return type="void" />
 			<argument index="0" name="value" type="float" />
 			<description>
-				Stores a floating-point number as 64 bits in the file.
+				Сохраняет в файле число с плавающей точкой в виде 64 бит.
 			</description>
 		</method>
 		<method name="store_float">
 			<return type="void" />
 			<argument index="0" name="value" type="float" />
 			<description>
-				Stores a floating-point number as 32 bits in the file.
+				Сохраняет в файле число с плавающей точкой в виде 32 бит.
 			</description>
 		</method>
 		<method name="store_line">
 			<return type="void" />
 			<argument index="0" name="line" type="String" />
 			<description>
-				Appends [code]line[/code] to the file followed by a line return character ([code]\n[/code]), encoding the text as UTF-8.
+				Добавляет в файл [code]line[/code], за которым следует символ возврата строки ([code]\n[/code]), кодируя текст в формате UTF-8.
 			</description>
 		</method>
 		<method name="store_pascal_string">
 			<return type="void" />
 			<argument index="0" name="string" type="String" />
 			<description>
-				Stores the given [String] as a line in the file in Pascal format (i.e. also store the length of the string).
-				Text will be encoded as UTF-8.
+				Сохраняет заданную [String] как строку в файле в формате Pascal (т.е. также сохраняет длину строки).
+				Текст будет закодирован в формате UTF-8.
 			</description>
 		</method>
 		<method name="store_real">
 			<return type="void" />
 			<argument index="0" name="value" type="float" />
 			<description>
-				Stores a floating-point number in the file.
+				Сохраняет в файле число с плавающей точкой.
 			</description>
 		</method>
 		<method name="store_string">
 			<return type="void" />
 			<argument index="0" name="string" type="String" />
 			<description>
-				Appends [code]string[/code] to the file without a line return, encoding the text as UTF-8.
-				[b]Note:[/b] This method is intended to be used to write text files. The string is stored as a UTF-8 encoded buffer without string length or terminating zero, which means that it can't be loaded back easily. If you want to store a retrievable string in a binary file, consider using [method store_pascal_string] instead. For retrieving strings from a text file, you can use [code]get_buffer(length).get_string_from_utf8()[/code] (if you know the length) or [method get_as_text].
+				Добавляет [code]строку[/code] в файл без возврата строки, кодируя текст как UTF-8.
+				[b]Примечание:[/b] Этот метод предназначен для записи текстовых файлов. Строка хранится в виде буфера в кодировке UTF-8 без длины строки или завершающего нуля, что означает, что ее нельзя легко загрузить обратно. Если вы хотите хранить извлекаемую строку в бинарном файле, используйте вместо этого [метод store_pascal_string]. Для извлечения строк из текстового файла можно использовать [code]get_buffer(length).get_string_from_utf8()[/code] (если вы знаете длину) или [method get_as_text].
 			</description>
 		</method>
 		<method name="store_var">
@@ -382,42 +382,42 @@
 			<argument index="0" name="value" type="Variant" />
 			<argument index="1" name="full_objects" type="bool" default="false" />
 			<description>
-				Stores any Variant value in the file. If [code]full_objects[/code] is [code]true[/code], encoding objects is allowed (and can potentially include code).
-				[b]Note:[/b] Not all properties are included. Only properties that are configured with the [constant PROPERTY_USAGE_STORAGE] flag set will be serialized. You can add a new usage flag to a property by overriding the [method Object._get_property_list] method in your class. You can also check how property usage is configured by calling [method Object._get_property_list]. See [enum PropertyUsageFlags] for the possible usage flags.
+				Сохраняет любое значение Variant в файле. Если [code]full_objects[/code] имеет значение [code]true[/code], кодирование объектов разрешено (и потенциально может включать код).
+				[b]Примечание:[/b] Не все свойства будут включены. Сериализуются только те свойства, для которых установлен флаг [constant PROPERTY_USAGE_STORAGE]. Вы можете добавить новый флаг использования к свойству, переопределив метод [method Object._get_property_list] в своем классе. Вы также можете проверить, как настроено использование свойства, вызвав метод [method Object._get_property_list]. Смотрите [enum PropertyUsageFlags] для возможных флагов использования.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="endian_swap" type="bool" setter="set_endian_swap" getter="get_endian_swap" default="false">
-			If [code]true[/code], the file is read with big-endian [url=https://en.wikipedia.org/wiki/Endianness]endianness[/url]. If [code]false[/code], the file is read with little-endian endianness. If in doubt, leave this to [code]false[/code] as most files are written with little-endian endianness.
-			[b]Note:[/b] [member endian_swap] is only about the file format, not the CPU type. The CPU endianness doesn't affect the default endianness for files written.
-			[b]Note:[/b] This is always reset to [code]false[/code] whenever you open the file. Therefore, you must set [member endian_swap] [i]after[/i] opening the file, not before.
+			Если [code]true[/code], файл читается с большим [url=https://en.wikipedia.org/wiki/Endianness]endian[/url]. Если [code]false[/code], то файл будет читаться с little-endian. Если вы сомневаетесь, оставьте значение [code]false[/code], так как большинство файлов записываются с little-endian.
+			[b]Примечание:[/b] [member endian_swap] относится только к формату файла, но не к типу процессора. Эндианальность процессора не влияет на эндианальность по умолчанию для записываемых файлов.
+			[b]Примечание:[/b] Этот параметр всегда сбрасывается в [code]false[/code] при открытии файла. Поэтому вы должны установить [member endian_swap] [i]после[/i] открытия файла, а не до.
 		</member>
 	</members>
 	<constants>
 		<constant name="READ" value="1" enum="ModeFlags">
-			Opens the file for read operations. The cursor is positioned at the beginning of the file.
+			Открывает файл для операций чтения. Курсор устанавливается в начало файла.
 		</constant>
 		<constant name="WRITE" value="2" enum="ModeFlags">
-			Opens the file for write operations. The file is created if it does not exist, and truncated if it does.
+			Открывает файл для операций записи. Файл создается, если он не существует, и усекается, если существует.
 		</constant>
 		<constant name="READ_WRITE" value="3" enum="ModeFlags">
-			Opens the file for read and write operations. Does not truncate the file. The cursor is positioned at the beginning of the file.
+			Открывает файл для операций чтения и записи. Не усекает файл. Курсор позиционируется в начале файла.
 		</constant>
 		<constant name="WRITE_READ" value="7" enum="ModeFlags">
-			Opens the file for read and write operations. The file is created if it does not exist, and truncated if it does. The cursor is positioned at the beginning of the file.
+			Открывает файл для операций чтения и записи. Файл создается, если он не существует, и усекается, если существует. Курсор помещается в начало файла.
 		</constant>
 		<constant name="COMPRESSION_FASTLZ" value="0" enum="CompressionMode">
-			Uses the [url=http://fastlz.org/]FastLZ[/url] compression method.
+			Используется метод сжатия [url=http://fastlz.org/]FastLZ[/url].
 		</constant>
 		<constant name="COMPRESSION_DEFLATE" value="1" enum="CompressionMode">
-			Uses the [url=https://en.wikipedia.org/wiki/DEFLATE]DEFLATE[/url] compression method.
+			Использует метод сжатия [url=https://en.wikipedia.org/wiki/DEFLATE]DEFLATE[/url].
 		</constant>
 		<constant name="COMPRESSION_ZSTD" value="2" enum="CompressionMode">
-			Uses the [url=https://facebook.github.io/zstd/]Zstandard[/url] compression method.
+			Используется метод сжатия [url=https://facebook.github.io/zstd/]Zstandard[/url].
 		</constant>
 		<constant name="COMPRESSION_GZIP" value="3" enum="CompressionMode">
-			Uses the [url=https://www.gzip.org/]gzip[/url] compression method.
+			Использует метод сжатия [url=https://www.gzip.org/]gzip[/url].
 		</constant>
 	</constants>
 </class>
